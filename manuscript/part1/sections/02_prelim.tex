@@ -1,0 +1,397 @@
+\section{Preliminaries}
+\label{sec:prelim}
+
+\subsection{Conventions}
+
+We identify $\R^2$ with $\C$, writing $x=(x_1,x_2)=x_1+ix_2$ when convenient,
+and $\bar x$ for the complex conjugate; $|x|$ is the Euclidean norm; for a matrix or an array of numbers, $|\cdot|$ is the
+Euclidean norm of the array of its entries, and for a matrix $M$ we write
+$\|M\|_{\mathrm{op}}$ for its operator norm. For $r>0$, $B_r=\{|x|<r\}$ and
+$\overline B_r$ is its closure; $|S|$ is the Lebesgue measure of a measurable
+set $S\subset\R^2$. The overline thus denotes complex conjugation, of numbers and
+of functions, and the closure of a set; it is also part of the names of some fixed
+objects, such as the radial background $\bomega$ of Section~\ref{sec:ring} and the
+constants $\Gone$, $\sbar$ and $\bar T$. Which meaning is intended will always be
+clear from the context. We use polar
+coordinates $x=r(\cos\theta,\sin\theta)$, with $\er=(\cos\theta,\sin\theta)$
+and $\etheta=(-\sin\theta,\cos\theta)$. For $\theta\in\R$, $\Orot_\theta$ is
+the rotation of $\R^2$ by the angle $\theta$ (multiplication by $e^{i\theta}$),
+and $\Orot=\Orot_{2\pi/3}$. For an integer $m\ge1$, a function $g$ on $\R^2$ is
+\textit{$m$-fold rotationally symmetric} if and only if $g\circ\Orot_{2\pi/m}=g$ almost
+everywhere, and \textit{radial} if and only if $g\circ\Orot_\theta=g$ almost
+everywhere for all $\theta$. If $\theta\mapsto g(re^{i\theta})$ is integrable
+on $[0,2\pi]$ for almost every $r>0$ (by Fubini's theorem in polar
+coordinates, this holds for every $g\in L^1_{\mathrm{loc}}(\R^2)$) and
+$\ell\in\Z$, the \textbf{angular mode} $\ell$ of $g$ is
+$g_\ell(r)=\frac1{2\pi}\int_0^{2\pi}g(re^{i\theta})e^{-i\ell\theta}\dd\theta$,
+defined for almost every $r>0$. If $g\in L^2(\R^2)$, then
+$g=\sum_{\ell\in\Z}g_\ell(r)e^{i\ell\theta}$ in $L^2(\R^2)$, and $g$ is
+$m$-fold rotationally symmetric if and only if $g_\ell=0$ for all $\ell\notin m\Z$.
+
+The Biot-Savart kernel is $\KBS(x)=x^\perp/(2\pi|x|^2)$ with
+$x^\perp=(-x_2,x_1)$, and $\nabla^\perp=(-\partial_2,\partial_1)$. For a
+vorticity $\omega$ we write $v=\KBS\ast\omega$ whenever the integral converges.
+If $\omega\in C_c^\infty(\R^2)$, then the \textbf{stream function}
+$\psi(x)=\frac1{2\pi}\int\log|x-y|\,\omega(y)\dd y$ satisfies
+$v=\nabla^\perp\psi$, $\Delta\psi=\omega$ and $\partial_1v_2-\partial_2v_1=\omega$
+(Lemma~\ref{lem:BS-basic}(d) below). In polar coordinates these sign
+conventions read $v\cdot\er=-r^{-1}\partial_\theta\psi$ and
+$v\cdot\etheta=\partial_r\psi$. For a vector field $u$ we write $\nabla u$ for
+the matrix $(\partial_lu_i)_{i,l=1,2}$, so that $\operatorname{tr}\nabla
+u=\divop u$.
+
+Functions are complex valued unless we say otherwise; vorticities and
+velocities are real. For a multi-index $\gamma=(\gamma_1,\gamma_2)\in\N_0^2$ we
+write $\partial^\gamma=\partial_1^{\gamma_1}\partial_2^{\gamma_2}$,
+$|\gamma|=\gamma_1+\gamma_2$, $\zeta^{2\gamma}=\zeta_1^{2\gamma_1}\zeta_2^{2\gamma_2}$
+for $\zeta\in\R^2$,
+$\beta\le\gamma$ if $\beta_1\le\gamma_1$ and $\beta_2\le\gamma_2$, and
+$\binom\gamma\beta=\binom{\gamma_1}{\beta_1}\binom{\gamma_2}{\beta_2}$; here
+$\N=\{1,2,\dots\}$, $\N_0=\N\cup\{0\}$ and $m\N=\{m,2m,\dots\}$. For an integer
+$k\ge0$ and an open set $V\subset\R^2$, $H^k(V)$ is the Sobolev space with norm
+$\|g\|_{H^k(V)}^2=\sum_{|\gamma|\le k}\|\partial^\gamma g\|_{L^2(V)}^2$, and
+$H^k=H^k(\R^2)$. Sobolev norms of vector and matrix fields are summed over the
+entries; for instance $\|\nabla u\|_{H^k}^2=\sum_{i,l}\|\partial_lu_i\|_{H^k}^2$.
+For a vector or matrix field $F$ on $V$ and $1\le q\le\infty$ we put
+$\|F\|_{L^q(V)}=\|\,|F|\,\|_{L^q(V)}$, where $|F|$ is the Euclidean norm of the
+array of entries; for $q=2$ this agrees with the sum over the entries. For a
+vector field $F$ on $V$ we put
+$\|F\|_{W^{1,\infty}(V)}=\operatorname{ess\,sup}_V|F|+\operatorname{ess\,sup}_V|\nabla F|$.
+
+For a function or vector field $h$ of class $C^q$ near a point $x$, we write
+$\nabla^qh(x)$ for the array of all partial derivatives of order $q$ of the
+components of $h$ at $x$, one entry for each ordered $q$-tuple of directions,
+so that $|\nabla^qh(x)|$ is its Euclidean norm. For an integer $k\ge0$, a closed
+set $U\subset\R^2$ and $h$ of class $C^k$ on a neighborhood of $U$, we put
+$\|h\|_{C^k(U)}=\sum_{q=0}^k\sup_{x\in U}|\nabla^qh(x)|$;
+in particular $|\partial^\gamma h(x)|\le\|h\|_{C^k(U)}$ for $x\in U$ and
+$|\gamma|\le k$, and $C^k(U)$ denotes the space of such $h$ with finite norm.
+The Fourier transform is $\hat g(\zeta)=\int g(x)e^{-ix\cdot\zeta}\dd x$, so that
+$\|\partial^\gamma g\|_{L^2(\R^2)}^2=(2\pi)^{-2}\int\zeta^{2\gamma}|\hat g(\zeta)|^2\dd\zeta$
+by Plancherel's theorem.
+
+We put $\jap{t}=(1+t^2)^{1/2}$ for $t\in\R$ and $\log_+x=\max\{\log x,0\}$ for
+$x>0$. For $x>0$ and an integer $p\ge0$ we put
+\begin{equation}
+\label{eq:Ip}
+\Ip{p}{x}=\int_0^\infty e^{-xu}(1+u)^p\dd u,
+\end{equation}
+a finite (as $x>0$), decreasing function of $x$.
+
+Constants that enter a later choice of parameters carry their own names, and
+their dependence is stated where they are defined. The letter $C$ denotes a
+constant that enters no later choice; its dependence is stated each time, and
+within one proof its value may change from line to line. For a function $u$
+and a nonnegative function $g$, $u=O(g)$ as $r\to r_0$ means that $|u|\le Cg$ in
+a neighborhood of $r_0$ for some constant $C$.
+
+Let $I$ be an interval and $X$ a Banach space. A function $F\colon I\to X$ is
+\textit{strongly measurable} if it is an almost everywhere limit of simple
+functions $\sum_{i=1}^k\mathbf 1_{E_i}(t)x_i$, with $E_i\subset I$ measurable
+and $x_i\in X$, and \textit{weakly measurable} if $t\mapsto\Lambda(F(t))$ is
+measurable for every $\Lambda\in X^*$. We use Pettis's theorem \cite{Pettis}:
+if $X$ is separable, then $F$ is strongly measurable if and only if it is weakly
+measurable. The Bochner spaces $L^\infty(I;X)$ and $L^1(I;X)$ consist of the
+strongly measurable $F$ for which $t\mapsto\|F(t)\|_X$ is essentially bounded,
+respectively integrable, modulo equality almost everywhere.
+
+Let $\Omega\subset\R^2$ be a measurable set. For
+$b\in[1,\infty)$, $L^\infty(I;L^b(\Omega))$ and $L^1(I;L^b(\Omega))$ are the
+Bochner spaces, whose elements we identify with measurable functions on
+$I\times\Omega$; a measurable $u$ on $I\times\Omega$ lies in them if and only if
+$t\mapsto\|u(t)\|_{L^b(\Omega)}$ is essentially bounded, respectively
+integrable, by Pettis's theorem: $L^b(\Omega)$ is separable, and for
+$\phi\in L^{b'}(\Omega)$, $1/b+1/b'=1$, the function $t\mapsto\int u(t)\phi$,
+defined for almost every $t$, is measurable by Tonelli's theorem applied to the
+positive and negative parts of the real and imaginary parts of $u\phi$. We write $L^\infty(I;L^\infty(\Omega))$
+for $L^\infty(I\times\Omega)$, and $L^1(I;L^\infty(\Omega))$ for the set of
+measurable $u$ on $I\times\Omega$ with $\int_I\|u(t)\|_{L^\infty(\Omega)}\dd t<\infty$.
+Intersections such as $L^\infty(I;(L^1\cap L^\infty)(\Omega))$ are intersections of these
+spaces; a space with $W^{1,a}(\Omega)$ in place of $L^b(\Omega)$ consists of the
+$w$ for which $w$ and its distributional gradient in $x$ lie in the
+corresponding space with $L^a(\Omega)$; the subscript $\mathrm{loc}$ on the time
+interval means that the condition holds on $J\times\Omega$ for every compact
+interval $J\subset I$, on $\R^2$ that it holds on $I\times B_R$ for every $R>0$,
+and on both that it holds on $J\times B_R$ for all such $J$ and $R$.
+
+For $T>0$ and $1\le q\le\infty$, the space $X_q(T)$ of Section~1, written
+$L^\infty_t(L^1\cap L^q)_x$ there, is the Bochner space
+$L^\infty\big(0,T;(L^1\cap L^q)(\R^2)\big)$ just described, with
+$\|\omega\|_{(L^1\cap L^q)(\R^2)}=\|\omega\|_{L^1(\R^2)}+\|\omega\|_{L^q(\R^2)}$; and
+$\DT=\{\varphi\in C_c^\infty(\R\times\R^2):\supp\varphi\subset(-\infty,T)\times\R^2\}$.
+$\LipO$ is the set of Lipschitz functions $\Ren\colon\R\to\R$ with $\Ren(0)=0$.
+For $g\in L^1(\R^2)$ we put $\Circ_g(r)=\int_{B_r}g$.
+
+A $C_0$-semigroup $(S(t))_{t\ge0}$ on a Banach space $X$ is a family of bounded
+operators with $S(0)$ the identity, $S(t+s)=S(t)S(s)$, and $t\mapsto S(t)x$ continuous for
+all $x\in X$; its generator $A$ is $Ax=\lim_{h\downarrow0}h^{-1}(S(h)x-x)$ on the
+set $D(A)$ of $x$ for which the limit exists.
+
+\subsection{The Biot-Savart Law}
+
+We split $\KBS=\Knear+\Kfar$ with $\Knear=\mathbf 1_{B_1}\KBS$. By
+Lemma~\ref{lem:BS-basic}(a) below,
+$\|\Knear\|_{L^s(\R^2)}^s=(2\pi)^{1-s}/(2-s)$ for $s\in[1,2)$, and
+$|\Kfar(z)|\le\min\{1,|z|^{-1}\}/(2\pi)$ for $z\in\R^2$.
+
+\begin{lemma}
+\label{lem:BS-basic}
+The kernel $\KBS$ has the following properties.
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item For $z\ne0$, $i,l\in\{1,2\}$ and $\rho>0$, $|\KBS(z)|=(2\pi|z|)^{-1}$,
+  $|\partial_l(\KBS)_i(z)|\le(2\pi|z|^2)^{-1}$ and
+  $\int_{B_\rho}|\KBS|\dd z=\rho$.
+\item Let $g\in (L^1\cap L^\infty)(\R^2)$. Then for every $x\in\R^2$,
+  \[
+  \big(|\KBS|\ast|g|\big)(x)\le\Big(\frac{2\|g\|_{L^1(\R^2)}\|g\|_{L^\infty(\R^2)}}{\pi}\Big)^{1/2} .
+  \]
+  In particular the integral defining $\KBS\ast g(x)$ converges absolutely for
+  every $x$, and
+  $\|\KBS\ast g\|_{L^\infty(\R^2)}\le\big(2\|g\|_{L^1(\R^2)}\|g\|_{L^\infty(\R^2)}/\pi\big)^{1/2}$.
+\item Let $\rho,R>0$ and let $g\in L^2(\R^2)$ vanish outside $B_\rho$. Then
+  $\KBS\ast g$ is defined almost everywhere, and
+  $\|\KBS\ast g\|_{L^2(B_R)}\le(R+\rho)\|g\|_{L^2(\R^2)}$.
+\item Let $g\in C_c^\infty(\R^2)$ and $u=\KBS\ast g$. Then $u\in C^\infty(\R^2)$,
+  $\partial^\gamma u=\KBS\ast\partial^\gamma g$ for every $\gamma$,
+  $u=\nabla^\perp\psi$ with $\psi(x)=\frac1{2\pi}\int\log|x-y|\,g(y)\dd y$,
+  $\Delta\psi=g$, $\divop u=0$ and $\partial_1u_2-\partial_2u_1=g$. Moreover
+  $\sum_{i,l=1}^2\|\partial_l\partial^\gamma u_i\|_{L^2(\R^2)}^2=\|\partial^\gamma g\|_{L^2(\R^2)}^2$
+  for every $\gamma$, and hence $\|\nabla u\|_{H^k}=\|g\|_{H^k}$ for every
+  integer $k\ge0$.
+\item Let $g\in L^1(\R^2)$ and $R>0$. Then
+  $\int_{B_R}\big(|\KBS|\ast|g|\big)\dd x\le R\,\|g\|_{L^1(\R^2)}$. In particular the
+  integral defining $\KBS\ast g$ converges absolutely almost everywhere,
+  $\KBS\ast g\in L^1_{\mathrm{loc}}(\R^2)$, and $\divop(\KBS\ast g)=0$ in
+  $\mathcal D'(\R^2)$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) The first identity holds because $|x^\perp|=|x|$, and integration in polar
+coordinates gives $\int_{B_\rho}(2\pi|z|)^{-1}\dd z=\rho$. Since
+$2\pi\KBS(z)=(-z_2,z_1)/|z|^2$, the derivatives $2\pi\partial_l(\KBS)_i$ are,
+up to sign, the numbers
+$\partial_l(z_k/|z|^2)=\delta_{lk}|z|^{-2}-2z_lz_k|z|^{-4}$, whose modulus is
+$|z_{k'}^2-z_k^2|/|z|^4\le|z|^{-2}$ if $l=k$ (where $k'\ne k$) and
+$2|z_1z_2|/|z|^4\le|z|^{-2}$ if $l\ne k$.
+
+(b) We may assume $g\ne0$. For arbitrary $r>0$, (a) gives, after splitting the
+integral into the near field $\{|z|<r\}$ and the far field $\{|z|\ge r\}$,
+\[
+\begin{aligned}
+2\pi\big(|\KBS|\ast|g|\big)(x)&\le\|g\|_{L^\infty(\R^2)}\int_{B_r}\frac{\dd z}{|z|}
++\frac1r\int_{|z|\ge r}|g(x-z)|\dd z\\
+&\le2\pi r\|g\|_{L^\infty(\R^2)}+\frac{\|g\|_{L^1(\R^2)}}{r},
+\end{aligned}
+\]
+and choosing $r=(\|g\|_{L^1(\R^2)}/(2\pi\|g\|_{L^\infty(\R^2)}))^{1/2}$ gives
+\[
+2\pi(|\KBS|\ast|g|)(x)\le2(2\pi\|g\|_{L^1(\R^2)}\|g\|_{L^\infty(\R^2)})^{1/2},
+\]
+which is the claim.
+The rest follows from $|\KBS\ast g|\le|\KBS|\ast|g|$.
+
+(c) For $|x|<R$ and $|x-z|<\rho$, we have $|z|<\rho+R$, so, as $g$ vanishes
+outside $B_\rho$, $\KBS\ast g(x)=\int_{B_{R+\rho}}\KBS(z)g(x-z)\dd z$ for $x\in B_R$, and Minkowski's
+integral inequality and (a) give
+$\big\|\int_{B_{R+\rho}}|\KBS(z)||g(\cdot-z)|\dd z\big\|_{L^2(B_R)}\le(R+\rho)\|g\|_{L^2(\R^2)}$.
+In particular the integral converges absolutely almost everywhere on $B_R$, for
+every $R>0$.
+
+(d) Let $\supp g\subset B_\rho$. Since $\KBS$ and $\log|\cdot|$ are locally
+integrable, differentiation under the integral sign shows that $u,\psi\in
+C^\infty$, $\partial^\gamma u=\KBS\ast\partial^\gamma g$ and
+$\partial^\gamma\psi=\frac1{2\pi}\log|\cdot|\ast\partial^\gamma g$. Writing
+$\partial_jg(x-z)=-\partial_{z_j}[g(x-z)]$ and integrating by parts on
+$\{|z|>\varepsilon\}$, with a boundary term at most
+$\varepsilon|\log\varepsilon|\sup|g|\to0$, we get
+$\partial_j\psi(x)=\int\frac{z_j}{2\pi|z|^2}g(x-z)\dd z$. Hence
+$u=\nabla^\perp\psi$, so $\divop u=-\partial_1\partial_2\psi+\partial_2\partial_1\psi=0$
+and $\Delta\psi=\partial_1u_2-\partial_2u_1$. Fix $x$, put
+$h(z)=g(x-z)$, and use polar coordinates $z=re^{i\theta}$, in which
+$z\cdot\nabla_z=r\partial_r$.
+Since $\partial_lu=\KBS\ast\partial_lg$ and $(\partial_lg)(x-z)=-\partial_{z_l}h(z)$,
+\[
+(\partial_1u_2-\partial_2u_1)(x)=-\int\frac{z\cdot\nabla_zh}{2\pi|z|^2}\dd z
+=-\frac1{2\pi}\int_0^{2\pi}\!\!\int_0^\infty\partial_rh\dd r\dd\theta=g(x),
+\]
+because $(\KBS)_2\partial_1h-(\KBS)_1\partial_2h=z\cdot\nabla_zh/(2\pi|z|^2)$ and
+$\int_0^\infty\partial_rh\dd r=-h(0)=-g(x)$; the integrand is integrable, as
+$|\partial_rh|\le|\nabla h|$ and $h$ has compact support. Hence $\Delta\psi=g$.
+
+For $|x|\ge2\rho$ and $|y|<\rho$ we have $|x-y|\ge|x|/2$; differentiating under
+the integral sign, with $|\nabla\log|z||=|z|^{-1}$ and
+$|\partial_i\partial_j\log|z||=|\partial_j(z_i/|z|^2)|\le|z|^{-2}$ (proof of
+(a)), gives $|\nabla\psi(x)|\le\|g\|_{L^1(\R^2)}/(\pi|x|)$ and
+$|\partial_i\partial_j\psi(x)|\le2\|g\|_{L^1(\R^2)}/(\pi|x|^2)$ for $|x|\ge2\rho$.
+Two integrations by parts on $B_r$
+give $\int_{B_r}\sum_{i,j}(\partial_i\partial_j\psi)^2\dd x
+=\int_{B_r}(\Delta\psi)^2\dd x+\mathcal B_r$, where $\mathcal B_r$ is a sum of
+integrals over $\partial B_r$ of products of a first and a second derivative of
+$\psi$; for $r\ge2\rho$ the bounds above give
+$|\mathcal B_r|\le Cr\cdot r^{-1}r^{-2}\|g\|_{L^1(\R^2)}^2$ with $C$ absolute. Letting
+$r\to\infty$ gives $\sum_{i,j}\|\partial_i\partial_j\psi\|_{L^2(\R^2)}^2=\|g\|_{L^2(\R^2)}^2$.
+The entries of $\nabla u$ are, up to sign, the second derivatives of $\psi$, so
+$\sum_{i,l}\|\partial_lu_i\|_{L^2(\R^2)}^2=\|g\|_{L^2(\R^2)}^2$. Replacing $g$ by
+$\partial^\gamma g$, whose velocity is $\partial^\gamma u$, and summing over
+$|\gamma|\le k$ gives the rest. For complex $g$ we apply all of this to the
+real and imaginary parts.
+
+(e) Let $D$ be a disk of radius $R$. Then $|D\setminus B_R|=|B_R\setminus D|$.
+Since $|\KBS(z)|=(2\pi|z|)^{-1}$ by (a), $|\KBS|\le(2\pi R)^{-1}$ on $D\setminus B_R$
+and $|\KBS|>(2\pi R)^{-1}$ on $B_R\setminus D$; so
+$\int_D|\KBS|\le\int_{B_R}|\KBS|=R$, by (a). For fixed $y$, the substitution
+$z=x-y$ maps $B_R$ onto the disk $D_y=\{z:|z+y|<R\}$ of radius $R$, so Tonelli's
+theorem gives
+$\int_{B_R}(|\KBS|\ast|g|)\dd x=\int|g(y)|\int_{D_y}|\KBS(z)|\dd z\dd y\le R\|g\|_{L^1(\R^2)}$.
+Hence $|\KBS|\ast|g|$ is finite almost everywhere, and
+$\KBS\ast g\in L^1_{\mathrm{loc}}(\R^2)$ because $|\KBS\ast g|\le|\KBS|\ast|g|$.
+Take $g_n\in C_c^\infty(\R^2)$ with $g_n\to g$ in $L^1(\R^2)$. This bound, applied to
+$g_n-g$, gives $\KBS\ast g_n\to\KBS\ast g$ in $L^1(B_R)$ for every $R>0$, hence
+in $\mathcal D'(\R^2)$; since $\divop(\KBS\ast g_n)=0$ by (d),
+$\divop(\KBS\ast g)=0$ in $\mathcal D'(\R^2)$.
+\end{proof}
+
+\begin{lemma}
+\label{lem:velocity}
+Let $4/3<p<\infty$, $p'=p/(p-1)$, and $R>0$. There is $C=C(p,R)$ such that
+the following hold.
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item For $\omega\in (L^1\cap L^p)(\R^2)$ the integral defining $\KBS\ast\omega$
+  converges absolutely almost everywhere and, with $v=\KBS\ast\omega$,
+  \[
+  \|v\|_{L^{p'}(B_R)}+\|v\|_{L^2(B_R)}\le C\|\omega\|_{(L^1\cap L^p)(\R^2)},\qquad
+  \int_{\R^2}|\omega|\,\big(|\KBS|\ast|\omega|\big)\dd x\le C\|\omega\|_{(L^1\cap L^p)(\R^2)}^2 ;
+  \]
+  the constant in the second inequality can be chosen depending only on $p$,
+  independently of $R$.
+\item Let $\omega_n$ be real and $\omega_n\rightharpoonup\omega$ weakly in $L^p(\R^2)$, with
+  $\sup_n\|\omega_n\|_{L^1(\R^2)}\le M$. Then $\|\omega\|_{L^1(\R^2)}\le M$ and
+  $\KBS\ast\omega_n\to\KBS\ast\omega$ strongly in $L^{p'}(B_R)$.
+\item If $\omega\in (L^1\cap L^2)(\R^2)$, then $v=\KBS\ast\omega$ satisfies $\nabla v\in L^2(\R^2)$ and
+  $\|\nabla v\|_{L^2(\R^2)}=\|\omega\|_{L^2(\R^2)}$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) Put $r(p)=p'$ and $s(p)=p/(2p-2)$ if $p\le2$, and $r(p)=p$ and $s(p)=1$ if
+$p>2$. Since $p>4/3$, we have $s(p)\in[1,2)$, so $\Knear\in L^{s(p)}(\R^2)$. Moreover
+$1+1/r(p)=1/s(p)+1/p$, so Young's inequality gives
+$\||\Knear|\ast|\omega|\|_{L^{r(p)}(\R^2)}\le\|\Knear\|_{L^{s(p)}(\R^2)}\|\omega\|_{L^p(\R^2)}$.
+Also $\||\Kfar|\ast|\omega|\|_{L^\infty(\R^2)}\le\|\omega\|_{L^1(\R^2)}/(2\pi)$. Hence
+$|\KBS|\ast|\omega|$ is finite almost everywhere. Since
+$r(p)\ge\max\{2,p'\}$, H\"older's inequality on $B_R$ gives the velocity bound.
+For the last bound, $r(p)'\in[1,p]$, so
+$\|\omega\|_{L^{r(p)'}(\R^2)}\le\|\omega\|_{(L^1\cap L^p)(\R^2)}$ by interpolation, and
+$\int|\omega|(|\KBS|\ast|\omega|)\le\|\omega\|_{L^{r(p)'}(\R^2)}\||\Knear|\ast|\omega|\|_{L^{r(p)}(\R^2)}
++\|\omega\|_{L^1(\R^2)}^2/(2\pi)$.
+
+(b) For $L>0$ and $g\in L^\infty(B_L)$, the function $g\mathbf 1_{B_L}$ lies in
+$L^{p'}(\R^2)$, so $|\int_{B_L}\omega g|=\lim_n|\int_{B_L}\omega_ng|\le
+M\|g\|_{L^\infty(\R^2)}$. The limit $\omega$ is real, as a weak limit of real functions.
+Taking $g=\sgn\omega$ (with $\sgn s=s/|s|$ for $s\ne0$ and $\sgn0=0$) and
+letting $L\to\infty$ gives $\|\omega\|_{L^1(\R^2)}\le M$.
+
+By hypothesis and the bound just proved, $\omega_n$ and $\omega$ lie in
+$(L^1\cap L^p)(\R^2)$, with $L^1(\R^2)$ norms at most $M$. Put
+$N=\sup_n\|\omega_n\|_{L^p(\R^2)}+\|\omega\|_{L^p(\R^2)}<\infty$ (weakly convergent
+sequences are bounded), let $0<\varepsilon<1<L$, and split
+$\KBS=K^{(1)}+K^{(2)}+K^{(3)}$ with $K^{(1)}=\KBS\mathbf 1_{B_\varepsilon}$,
+$K^{(2)}=\KBS\mathbf 1_{B_L\setminus B_\varepsilon}$ and
+$K^{(3)}=\KBS\mathbf 1_{\R^2\setminus B_L}$. By Young's inequality, as in (a), and
+H\"older's inequality on $B_R$,
+$\|K^{(1)}\ast(\omega_n-\omega)\|_{L^{p'}(B_R)}\le|B_R|^{1/p'-1/r(p)}\|K^{(1)}\|_{L^{s(p)}(\R^2)}N$,
+and $\|K^{(1)}\|_{L^{s(p)}(\R^2)}\to0$ as $\varepsilon\to0$ because $s(p)<2$. Next,
+$|K^{(3)}\ast(\omega_n-\omega)|\le2M/(2\pi L)$ everywhere, since
+$\|\omega_n\|_{L^1(\R^2)},\|\omega\|_{L^1(\R^2)}\le M$; so its $L^{p'}(B_R)$ norm is at most
+$|B_R|^{1/p'}M/(\pi L)$, uniformly in $n$. Finally, for
+$x\in B_R$ the function $K^{(2)}(x-\cdot)$ is bounded by $(2\pi\varepsilon)^{-1}$,
+since $|\KBS(z)|=(2\pi|z|)^{-1}$ and $|z|\ge\varepsilon$ on the support of
+$K^{(2)}$, and vanishes outside $\{y:|x-y|<L\}$; hence it lies in $L^{p'}(\R^2)$, so $K^{(2)}\ast\omega_n(x)\to K^{(2)}\ast\omega(x)$, with
+$|K^{(2)}\ast\omega_n(x)|\le\|K^{(2)}\|_{L^{p'}(\R^2)}N$; dominated convergence gives
+$K^{(2)}\ast\omega_n\to K^{(2)}\ast\omega$ in $L^{p'}(B_R)$. Letting first
+$n\to\infty$ and then $\varepsilon\to0$ and $L\to\infty$ gives (b).
+
+(c) Choose $\omega_j\in C_c^\infty(\R^2)$ with $\omega_j\to\omega$ in $L^1(\R^2)$ and in
+$L^2(\R^2)$, and put $v_j=\KBS\ast\omega_j$. By Lemma~\ref{lem:BS-basic}(d), applied
+to $\omega_j-\omega_i$ and to $\omega_j$, $\|\nabla v_j-\nabla v_i\|_{L^2(\R^2)}=\|\omega_j-\omega_i\|_{L^2(\R^2)}$
+and $\|\nabla v_j\|_{L^2(\R^2)}=\|\omega_j\|_{L^2(\R^2)}$, so $\nabla v_j\to F$ in $L^2(\R^2)$ with
+$\|F\|_{L^2(\R^2)}=\lim_j\|\omega_j\|_{L^2(\R^2)}=\|\omega\|_{L^2(\R^2)}$. By
+Lemma~\ref{lem:BS-basic}(e), $v_j\to v$ in $L^1_{\mathrm{loc}}(\R^2)$, so
+$\nabla v_j\to\nabla v$ in $\mathcal D'$, and $\nabla v=F$.
+\end{proof}
+
+\begin{definition}
+\label{def:multipole}
+Let $m\ge1$ be an integer and let $g\in L^1(\R^2;\C)$ have compact support in
+$\R^2\setminus\{0\}$. Writing $y\in\R^2$ as a complex number, we put
+\[
+\pout_m[g]=\frac1{2\pi}\int g(y)\,(\bar y)^m\dd y,\quad
+\pin_m[g]=\frac1{2\pi}\int g(y)\,y^{-m}\dd y,\quad
+\Qm[g]=\int g(y)\,y^{m}\dd y .
+\]
+\end{definition}
+
+These are the multipole moments of $g$. In polar coordinates $y=se^{i\vartheta}$,
+since $(\bar y)^m=s^me^{-im\vartheta}$, $y^{-m}=s^{-m}e^{-im\vartheta}$ and
+$y^m=s^me^{im\vartheta}$, they read, with the angular modes $g_\ell$ of
+Section~\ref{sec:prelim},
+\[
+\pout_m[g]=\int_0^\infty g_m(s)\,s^{m+1}\dd s,\qquad
+\pin_m[g]=\int_0^\infty g_m(s)\,s^{1-m}\dd s,\qquad
+\Qm[g]=2\pi\int_0^\infty g_{-m}(s)\,s^{m+1}\dd s ;
+\]
+so they see only the angular modes $\pm m$ of $g$. Let $g$ be real with
+$\supp g\subset\{\rho_1\le|y|\le\rho_2\}$, $0<\rho_1\le\rho_2$, and let
+$\psi(x)=\frac1{2\pi}\int\log|x-y|\,g(y)\dd y$ be its stream function. Expanding
+$\log|x-y|=\log|x|+\Re\log(1-y/x)$ for $|x|>\rho_2$, and
+$\log|x-y|=\log|y|+\Re\log(1-x/y)$ for $|x|<\rho_1$, in powers of $y/x$ and
+$x/y$ gives
+\[
+\begin{aligned}
+\psi(x)&=\frac{\int g}{2\pi}\log|x|-\Re\sum_{m\ge1}\frac{\pout_m[g]}m(\bar x)^{-m}&&(|x|>\rho_2),\\
+\psi(x)&=\frac1{2\pi}\int g(y)\log|y|\dd y-\Re\sum_{m\ge1}\frac{\pin_m[g]}m\,x^m&&(|x|<\rho_1),
+\end{aligned}
+\]
+since $\overline{\Qm[g]}=2\pi\pout_m[g]$ for real $g$. Thus $\pout_m[g]$ and
+$\pin_m[g]$ give the field of $g$ in the angular modes $\pm m$ outside and inside its
+support.
+
+\subsection{Weak Solutions}
+
+\begin{definition}
+\label{def:equimeasurable}
+Two real functions $g,h\in L^1(\R^2)$ are \textit{equimeasurable} if and only if
+$|\{g>s\}|=|\{h>s\}|$ and $|\{g<-s\}|=|\{h<-s\}|$ for every $s>0$.
+\end{definition}
+
+\begin{definition}
+\label{def:weak}
+Let $4/3<q<\infty$, $T>0$ and $\omega^{\mathrm{in}}\in (L^1\cap L^q)(\R^2)$. A
+\textit{weak solution with datum $\omega^{\mathrm{in}}$} in $X_q(T)$ is a function
+$\omega\in X_q(T)$ such that, with $v(t)=\KBS\ast\omega(t)$,
+\begin{equation}
+\label{eq:weak}
+\int_0^T\!\!\int\omega\,(\partial_t\varphi+v\cdot\nabla\varphi)\dd x\dd t
++\int\omega^{\mathrm{in}}\varphi(0,\cdot)\dd x=0
+\qquad\text{for all }\varphi\in\DT .
+\end{equation}
+It is \textit{renormalized} if and only if, in addition, for every
+$\Ren\in C^1(\R)$ with $\Ren'$ bounded and $\Ren(0)=0$,
+\begin{equation}
+\label{eq:renorm}
+\int_0^T\!\!\int\Ren(\omega)\,(\partial_t\varphi+v\cdot\nabla\varphi)\dd x\dd t
++\int\Ren(\omega^{\mathrm{in}})\varphi(0,\cdot)\dd x=0
+\qquad\text{for all }\varphi\in\DT .
+\end{equation}
+For $T_0\in(0,\infty]$, a (renormalized) weak solution \textit{on $[0,T_0)$} is a
+function on $[0,T_0)$ whose restriction to $[0,T)$ is a (renormalized) weak
+solution in $X_q(T)$ for every $T<T_0$.
+\end{definition}
+
+The integrals in Equations~\eqref{eq:weak} and~\eqref{eq:renorm} converge
+absolutely, because $|\Ren(\omega)|\le\|\Ren'\|_{L^\infty(\R)}|\omega|$ and
+$|\omega v|\le|\omega|(|\KBS|\ast|\omega|)$, and Lemma~\ref{lem:velocity}(a),
+with $p=q$ and $R=1$, gives
+$\|\omega(t)v(t)\|_{L^1(\R^2)}\le C(q,1)\operatorname{ess\,sup}_{0<s<T}\|\omega(s)\|_{(L^1\cap L^q)(\R^2)}^2$
+for almost every $t\in(0,T)$.

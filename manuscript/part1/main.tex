@@ -1,0 +1,78 @@
+\documentclass[11pt]{article}
+\usepackage{geometry}
+\geometry{letterpaper,margin=1in}
+
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{csquotes}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{float}
+\usepackage{physics}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+
+\MakeOuterQuote{"}
+\setlength{\emergencystretch}{1.5em}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{hypothesis}[theorem]{Hypothesis}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\input{macros}
+
+\title{Non-Uniqueness of Weak Solutions to the Unforced\\
+Two-Dimensional Euler Equations\\ with Vorticity in $L^1\cap L^p$,\\
+I: A Compactness Criterion and the Linear Analysis}
+\hypersetup{pdftitle={Non-Uniqueness of Weak Solutions to the Unforced
+Two-Dimensional Euler Equations with Vorticity in L1 and Lp,
+I: A Compactness Criterion and the Linear Analysis},
+pdfauthor={Matei P. Coiculescu}}
+\author{Matei P. Coiculescu\thanks{
+Department of Mathematics, New York University,
+Email: \texttt{m.coiculescu@nyu.edu}
+}}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This paper and its companion Part II prove that the incompressible Euler
+equations in the plane, without external force, admit two distinct renormalized
+weak solutions with the same initial vorticity $f$, where $f$ is radial and
+nonnegative and lies in $(L^1\cap L^q)(\mathbb{R}^2)$ for every $q<\infty$ but is
+not bounded. One solution is radially symmetric and stationary. The other is
+$3$-fold rotationally symmetric, is equimeasurable with $f$ at every time, and
+departs from $f$ in finite time; the two solutions are distinct in
+$L^\infty_t(L^1\cap L^q)_x$ on $[0,T]\times\mathbb{R}^2$ for every $q\in(4/3,\infty)$
+and every sufficiently large $T$. In this first part we prove two ingredients. One is a
+compactness criterion: for a radial datum, a sequence of $3$-fold rotationally
+symmetric solutions with converging data, whose non-radial moment is bounded
+below at some bounded time, has a subsequence converging to a second distinct
+renormalized weak solution. The other is the linear analysis for the building
+blocks of our multiscale datum. We show that the linearization of the Euler
+equations around the basic building block plus a small point vortex has an
+unstable eigenvalue in a space of $3$-fold rotationally symmetric
+perturbations. This latter argument depends on rigorous interval arithmetic
+that we discuss more fully in Part II.
+\end{abstract}
+
+\input{sections/01_intro}
+\input{sections/02_prelim}
+\input{sections/03_compactness}
+\input{sections/04_ring}
+
+\section*{Statements and Declarations}
+The author has no competing interests to declare.
+
+\input{refs}
+
+\end{document}

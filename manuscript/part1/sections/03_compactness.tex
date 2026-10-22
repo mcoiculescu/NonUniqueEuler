@@ -1,0 +1,814 @@
+\section{Compactness and a Non-Uniqueness Criterion}
+\label{sec:compact}
+
+Compactness results for sequences of renormalized solutions go back to DiPerna and Lions
+\cite{DiPernaLions}; we give a self-contained proof of the one we need. We prove
+it only for vorticity in $L^\infty_t(L^1\cap L^2)_x$, which is all that the proof
+of Theorem~\ref{thm:main} needs. The arguments control $\nabla v$ by $\omega$:
+for vorticity in $L^2(\R^2)$ this is the identity $\|\nabla v\|_{L^2(\R^2)}=\|\omega\|_{L^2(\R^2)}$
+of Lemma~\ref{lem:velocity}(c), while for vorticity in $L^q(\R^2)$, $q\ne2$, it would
+require the $L^q(\R^2)$ bounds of the Calder\'on-Zygmund (Riesz transform) estimate. Equations~\eqref{eq:weak}
+and~\eqref{eq:renorm} do not involve $q$, so, for $q\in(4/3,\infty)$, a
+renormalized weak solution in $X_2(T)$ that lies in $X_q(T)$, with datum in $(L^1\cap L^q)(\R^2)$, is a
+renormalized weak solution in $X_q(T)$; Theorem~\ref{thm:criterion}(ii) gives
+this membership.
+
+All functions in this section are real valued, except $\Psi$ in
+Corollary~\ref{cor:defect}. Let $\varsigma\in C_c^\infty(B_2)$ with
+$0\le\varsigma\le1$ and $\varsigma=1$ on $B_1$, and put
+$\varsigma_R=\varsigma(\cdot/R)$, so that
+$|\nabla\varsigma_R|\le\|\nabla\varsigma\|_{L^\infty(\R^2)}/R$. Let
+$\rho\in C_c^\infty(B_1)$ and $\rho^{\mathrm t}\in C_c^\infty((-1,1))$ be
+nonnegative with integral $1$, and put
+$\rho_\varepsilon=\varepsilon^{-2}\rho(\cdot/\varepsilon)$ and
+$\rho^{\mathrm t}_\delta=\delta^{-1}\rho^{\mathrm t}(\cdot/\delta)$; convolution
+with $\rho_\varepsilon$ acts in the space variable only, and convolution with
+$\rho^{\mathrm t}_\delta$ in the time variable only. Let
+$\varkappa\in C^\infty(\R)$ be nondecreasing with $\varkappa=0$ on
+$(-\infty,0]$ and $\varkappa=1$ on $[1,\infty)$. We write $C_{\mathrm v}$ for
+the constant $C(2,1)$ of Lemma~\ref{lem:velocity}(a); thus
+$\int|g|(|\KBS|\ast|g|)\dd x\le C_{\mathrm v}\|g\|_{(L^1\cap L^2)(\R^2)}^2$ for
+$g\in (L^1\cap L^2)(\R^2)$.
+
+\subsection{The Linear Transport Equation}
+
+Let $T>0$ and $t_0\in[0,T)$, let $w$ be a real measurable vector field and $u$ a
+real measurable function on $(t_0,T)\times\R^2$, and let
+$u_0\in L^1_{\mathrm{loc}}(\R^2)$ be real, such that $u$, $w$ and $uw$ are
+integrable on $(t_0,T')\times B_R$ for all $T'<T$ and $R>0$. We say that $u$
+satisfies Equation~\eqref{eq:te} on $[t_0,T)$ with field $w$ and datum $u_0$ if
+\begin{equation}
+\label{eq:te}
+\int_{t_0}^T\!\!\int u\,(\partial_t\varphi+w\cdot\nabla\varphi)\dd x\dd t
++\int u_0\,\varphi(t_0,\cdot)\dd x=0
+\qquad\text{for all }\varphi\in\DT ;
+\end{equation}
+every integral here converges. Thus $\omega\in X_2(T)$ is a weak solution of the
+Euler equations with datum
+$\omega^{\mathrm{in}}\in (L^1\cap L^2)(\R^2)$ if and only if it satisfies
+Equation~\eqref{eq:te} on $[0,T)$ with field $v=\KBS\ast\omega$ and datum
+$\omega^{\mathrm{in}}$, and it is renormalized if and only if, in addition,
+$\Ren(\omega)$ satisfies Equation~\eqref{eq:te} on $[0,T)$ with field $v$ and
+datum $\Ren(\omega^{\mathrm{in}})$ for every $\Ren\in C^1(\R)$ with $\Ren'$
+bounded and $\Ren(0)=0$. The integrability conditions hold by
+Lemma~\ref{lem:velocity}(a).
+
+\begin{lemma}
+\label{lem:dbr}
+Let $t_0<T$, $B\in L^\infty(t_0,T)$ and $b_0\in\R$, and suppose that, for
+every $\alpha\in C_c^\infty((-\infty,T))$,
+$\int_{t_0}^T\alpha'(t)B(t)\dd t+\alpha(t_0)b_0=0$. Then $B=b_0$ almost
+everywhere on $(t_0,T)$.
+\end{lemma}
+
+\begin{proof}
+For $0<\delta<(T-t_0)/2$ and $t\in(t_0+\delta,T-\delta)$ put
+$B_\delta(t)=\int B(s)\rho^{\mathrm t}_\delta(t-s)\dd s$. The function
+$\alpha(s)=\rho^{\mathrm t}_\delta(t-s)$ vanishes outside $(t-\delta,t+\delta)$,
+which lies in $(t_0,T)$ because $t-t_0>\delta$ and $T-t>\delta$; so
+$\alpha\in C_c^\infty((t_0,T))$ and $\alpha(t_0)=0$, and the hypothesis gives
+$B_\delta'(t)=-\int B(s)\,\partial_s\big(\rho^{\mathrm t}_\delta(t-s)\big)\dd s=0$,
+so $B_\delta$ is constant on $(t_0+\delta,T-\delta)$. Since $B_\delta\to B$ in
+$L^1_{\mathrm{loc}}((t_0,T))$ as $\delta\to0$, the constants converge to some
+$c\in\R$ and $B=c$ almost everywhere. For $\alpha$ with $\alpha(t_0)=1$ we have
+$\int_{t_0}^T\alpha'c\dd t=-c$, because $\alpha$ vanishes near $T$; so the
+hypothesis gives $b_0=c$.
+\end{proof}
+
+\begin{lemma}
+\label{lem:weak-cont}
+Let $T>0$. Let $w$ be a vector field
+with $w\in L^\infty(0,T;L^2(B_R))$ for every $R>0$, let
+$u\in L^\infty(0,T;L^2(\R^2))$ and $u_0\in L^2(\R^2)$, and suppose that
+$u$ satisfies Equation~\eqref{eq:te} on $[0,T)$ with field $w$ and datum $u_0$.
+Put $N=\operatorname{ess\,sup}_t\|u(t)\|_{L^2(\R^2)}$.
+Then $u$ has a representative $\tilde u\colon[0,T]\to L^2(\R^2)$ with the following
+properties.
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item $\tilde u$ is weakly continuous, $\tilde u(0)=u_0$, and
+  $\|\tilde u(t)\|_{L^2(\R^2)}\le N$ for every $t$. If also
+  $u\in L^\infty(0,T;L^1(\R^2))$, then
+  $\|\tilde u(t)\|_{L^1(\R^2)}\le\operatorname{ess\,sup}_s\|u(s)\|_{L^1(\R^2)}$ for every $t$.
+\item For $\psi\in C_c^\infty(\R^2)$ with $\supp\psi\subset B_R$ and every
+  $t\in[0,T]$,
+  $\int\tilde u(t)\psi=\int u_0\psi+\int_0^t\!\int u\,w\cdot\nabla\psi$. In
+  particular, for $s,t\in[0,T]$,
+  \[
+  \Big|\int(\tilde u(t)-\tilde u(s))\psi\Big|
+  \le N\,\|w\|_{L^\infty(0,T;L^2(B_R))}\|\nabla\psi\|_{L^\infty(\R^2)}|t-s| .
+  \]
+\item For every $t_0\in[0,T)$, $u$ satisfies Equation~\eqref{eq:te} on $[t_0,T)$ with
+  field $w$ and datum $\tilde u(t_0)$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+For $j\in\N$, $C_c^\infty(B_j)$ is a subset of the separable Banach space
+$C^1(\overline{B_j})$, hence separable: there is a countable set
+$\mathcal F_j\subset C_c^\infty(B_j)$ such that every $\psi\in C_c^\infty(B_j)$ is the
+limit in $C^1$ of elements of $\mathcal F_j$. The countable union
+$\mathcal F=\bigcup_{j\in\N}\mathcal F_j\subset C_c^\infty(\R^2)$ does not depend on $j$,
+and every $\psi\in C_c^\infty(B_j)$, $j\in\N$, is the limit in $C^1$ of elements of
+$\mathcal F\cap C_c^\infty(B_j)$.
+$C_c^\infty$ is dense in $L^2(\R^2)$, and convergence in
+$C^1$ with supports in a fixed $B_j$ implies convergence in $L^2(\R^2)$; so
+$\mathcal F$ is dense in $L^2(\R^2)$. Write
+$W_R=\|w\|_{L^\infty(0,T;L^2(B_R))}$.
+
+For $\psi\in\mathcal F$ with $\supp\psi\subset B_R$ put
+$a_\psi(t)=\int u(t)\psi$ and $c_\psi(t)=\int u(t)\,w(t)\cdot\nabla\psi$. These
+are measurable by Fubini's theorem, and $|c_\psi|\le NW_R\|\nabla\psi\|_{L^\infty(\R^2)}$
+almost everywhere by H\"older's inequality, so
+$A_\psi(t)=\int u_0\psi+\int_0^tc_\psi$ is Lipschitz on $[0,T]$. For
+$\alpha\in C_c^\infty((-\infty,T))$, Equation~\eqref{eq:te} with the test
+function $\alpha(t)\psi(x)$ gives
+$\int_0^T\alpha'a_\psi+\int_0^T\alpha c_\psi+\alpha(0)\int u_0\psi=0$. Since
+$\alpha$ vanishes near $T$ and $A_\psi'=c_\psi$ almost everywhere, integration
+by parts gives
+$\int_0^T\alpha c_\psi=-\int_0^T\alpha'A_\psi-\alpha(0)\int u_0\psi$. Hence
+$\int_0^T\alpha'(a_\psi-A_\psi)=0$, and Lemma~\ref{lem:dbr}, with $t_0=0$ and
+$b_0=0$, gives $a_\psi=A_\psi$ almost everywhere. Let $\mathcal N$ be the union
+of $\{0,T\}$, of the exceptional null sets of these identities for
+$\psi\in\mathcal F$, of the set of $t$ with $u(t)\notin L^2(\R^2)$ or
+$\|u(t)\|_{L^2(\R^2)}>N$, and, if $u\in L^\infty(0,T;L^1(\R^2))$, of the set of $t$ with
+$\|u(t)\|_{L^1(\R^2)}>N_1:=\operatorname{ess\,sup}_s\|u(s)\|_{L^1(\R^2)}$. As $\mathcal F$
+is countable, $\mathcal N$ is a null set.
+
+For $t\notin\mathcal N$ put $\tilde u(t)=u(t)$. For $t\in\mathcal N$ take
+$t_j\notin\mathcal N$ with $t_j\to t$. Then $\|u(t_j)\|_{L^2(\R^2)}\le N$ and
+$\int u(t_j)\psi=A_\psi(t_j)\to A_\psi(t)$ for $\psi\in\mathcal F$. Since
+$\mathcal F$ is dense in $L^2(\R^2)$, $\int u(t_j)\phi$ converges for every
+$\phi\in L^2(\R^2)$, to a linear functional of norm at most $N$; by the Riesz
+representation theorem in $L^2(\R^2)$, it is $\phi\mapsto\int\tilde u(t)\phi$ for a unique
+$\tilde u(t)\in L^2(\R^2)$, which does not depend on the sequence, because
+$\int\tilde u(t)\psi=A_\psi(t)$ for $\psi\in\mathcal F$. Thus $\tilde u=u$ almost
+everywhere, $\|\tilde u(t)\|_{L^2(\R^2)}\le N$ for every $t$, and
+$\int\tilde u(t)\psi=A_\psi(t)$ for all $t\in[0,T]$ and $\psi\in\mathcal F$.
+
+We prove (a) and (b). For $\phi\in L^2(\R^2)$, $\psi\in\mathcal F$ and $s,t\in[0,T]$,
+$|\int(\tilde u(t)-\tilde u(s))\phi|\le2N\|\phi-\psi\|_{L^2(\R^2)}+|A_\psi(t)-A_\psi(s)|$.
+Given $\phi$ and $\eta>0$, first choose $\psi\in\mathcal F$ with
+$2N\|\phi-\psi\|_{L^2(\R^2)}<\eta/2$, which is possible as $\mathcal F$ is dense in $L^2(\R^2)$;
+then, since $A_\psi$ is Lipschitz, $|A_\psi(t)-A_\psi(s)|<\eta/2$ whenever
+$|t-s|$ is small enough. So $t\mapsto\int\tilde u(t)\phi$ is continuous for every
+$\phi\in L^2(\R^2)$, that is, $\tilde u$ is weakly continuous; and $\tilde u(0)=u_0$, because
+$A_\psi(0)=\int u_0\psi$. If $u\in L^\infty(0,T;L^1(\R^2))$ and $t\in\mathcal N$, then
+$u(t_j)\rightharpoonup\tilde u(t)$ weakly in $L^2(\R^2)$ and $\|u(t_j)\|_{L^1(\R^2)}\le N_1$,
+so $\|\tilde u(t)\|_{L^1(\R^2)}\le N_1$ by Lemma~\ref{lem:velocity}(b) with $p=2$. For
+(b), let $\psi\in C_c^\infty(B_j)$ and $\psi_i\in\mathcal F\cap C_c^\infty(B_j)$
+with $\psi_i\to\psi$ in $C^1$. Then $\int\tilde u(t)\psi_i\to\int\tilde u(t)\psi$,
+since $\|\psi_i-\psi\|_{L^2(\R^2)}\le|B_j|^{1/2}\|\psi_i-\psi\|_{L^\infty(\R^2)}$, and
+$A_{\psi_i}(t)\to\int u_0\psi+\int_0^t\!\int u\,w\cdot\nabla\psi$, since
+$\int u_0\psi_i\to\int u_0\psi$ and
+$|\int_0^t\!\int u\,w\cdot\nabla(\psi_i-\psi)|\le TNW_j\|\nabla(\psi_i-\psi)\|_{L^\infty(\R^2)}$. This is the
+identity in (b), and the bound on $c_\psi$ gives the Lipschitz bound.
+
+For (c), the case $t_0=0$ is the hypothesis, since $\tilde u(0)=u_0$. Let $t_0\in(0,T)$ and
+$\varphi\in\DT$, and for $0<h<T-t_0$ put $\varkappa_h(t)=\varkappa((t-t_0)/h)$.
+Equation~\eqref{eq:te} with the test function $\varkappa_h\varphi\in\DT$, which
+vanishes for $t\le t_0$, gives
+\[
+\int_0^T\!\!\int\varkappa_h\,u\,(\partial_t\varphi+w\cdot\nabla\varphi)\dd x\dd t
++\int_0^T\varkappa_h'(t)\,g(t)\dd t=0,\qquad g(t)=\int\tilde u(t)\varphi(t)\dd x .
+\]
+The function $g$ is continuous, since
+$|g(t)-g(s)|\le N\|\varphi(t)-\varphi(s)\|_{L^2(\R^2)}+|\int(\tilde u(t)-\tilde u(s))\varphi(s)|$
+and $\tilde u$ is weakly continuous. As $h\to0$, the second term tends to $g(t_0)$: since $\varkappa_h'\ge0$,
+$\int\varkappa_h'=1$ and $\supp\varkappa_h'\subset[t_0,t_0+h]$, the functions
+$\varkappa_h'$ converge to the Dirac mass at $t_0$ in the sense of distributions,
+indeed against every continuous function, and $g$ is continuous; and, since
+$\varkappa_h\to\mathbf 1_{(t_0,\infty)}$ pointwise, the first term tends to $\int_{t_0}^T\!\int u\,(\partial_t\varphi+w\cdot\nabla\varphi)$ by
+dominated convergence, with the integrable dominating function
+$|u|(|\partial_t\varphi|+|w||\nabla\varphi|)$. This is (c).
+\end{proof}
+
+\subsection{Weakly Continuous Representatives}
+\label{sec:weak-rep}
+
+Let $\omega$ be a weak solution in $X_2(T)$ with datum
+$\omega^{\mathrm{in}}$, and put $v=\KBS\ast\omega$. By
+Lemma~\ref{lem:velocity}(a), $g\mapsto\KBS\ast g$ is linear and bounded from
+$(L^1\cap L^2)(\R^2)$ to $L^2(B_R)$, and such a map preserves strong
+measurability; so $v\in L^\infty(0,T;L^2(B_R))$ for every
+$R>0$, and $\|\omega(t)v(t)\|_{L^1(\R^2)}\le C_{\mathrm v}\|\omega(t)\|_{(L^1\cap L^2)(\R^2)}^2$ for
+almost every $t$, so $\omega v\in L^1((0,T)\times\R^2)$. Hence Lemma~\ref{lem:weak-cont} applies with
+$u=\omega$, $w=v$ and $u_0=\omega^{\mathrm{in}}$. From now on every such weak
+solution is identified with its weakly continuous representative, so that
+$\omega(t)$ is defined for every $t\in[0,T]$, $\omega(0)=\omega^{\mathrm{in}}$,
+and $\|\omega(t)\|_{L^1(\R^2)}$ and $\|\omega(t)\|_{L^2(\R^2)}$ are bounded by the
+corresponding essential suprema for every $t$. Two weakly continuous functions
+that agree for almost every $t$ agree for every $t$; hence the representatives
+on the intervals $[0,T]$, $T<T_0$, of a weak solution on $[0,T_0)$ with $q=2$
+define a weakly continuous representative on $[0,T_0)$. Moreover
+$\|\nabla v(t)\|_{L^2(\R^2)}=\|\omega(t)\|_{L^2(\R^2)}$
+by Lemma~\ref{lem:velocity}(c) and $\divop v(t)=0$ by
+Lemma~\ref{lem:BS-basic}(e); thus $v\in L^\infty(0,T;W^{1,2}(B_R))$ for every
+$R>0$, and $v$ is divergence-free.
+
+\subsection{Renormalization}
+
+For an open interval $I$, a vector field $w$ and a function $u$ on
+$I\times\R^2$ with $u,wu\in L^1_{\mathrm{loc}}(I\times\R^2)$, put
+\[
+C_\varepsilon[u,w]=w\cdot\nabla(u\ast\rho_\varepsilon)-\big(\divop(wu)\big)\ast\rho_\varepsilon ,
+\]
+where $\big(\divop(wu)\big)\ast\rho_\varepsilon(t,x)=\int(wu)(t,y)\cdot\nabla\rho_\varepsilon(x-y)\dd y$.
+Both terms of $C_\varepsilon$ are defined by these formulas, not derived: the
+divergence $\divop(wu)$ is a distribution,
+and its convolution in $x$ with $\rho_\varepsilon$, which acts by pairing it with
+$\rho_\varepsilon(x-\cdot)$, is the function displayed above, since $wu\in L^1_{\mathrm{loc}}(I\times\R^2)$.
+The function $u\ast\rho_\varepsilon(t,\cdot)$ is smooth, and
+$w\cdot\nabla(u\ast\rho_\varepsilon)$ is its pointwise product with $w$. Writing
+$w(t,x)\cdot\nabla(u\ast\rho_\varepsilon)(t,x)=\int u(t,y)\,w(t,x)\cdot\nabla\rho_\varepsilon(x-y)\dd y$
+and substituting $y=x-\varepsilon z$, we get, for almost every $(t,x)$,
+\begin{equation}
+\label{eq:comm-formula}
+\begin{aligned}
+C_\varepsilon[u,w](t,x)&=\int u(t,y)\,\big(w(t,x)-w(t,y)\big)\cdot\nabla\rho_\varepsilon(x-y)\dd y\\
+&=\int_{B_1}u(t,x-\varepsilon z)\,\frac{w(t,x)-w(t,x-\varepsilon z)}{\varepsilon}\cdot\nabla\rho(z)\dd z ,
+\end{aligned}
+\end{equation}
+because $\nabla\rho_\varepsilon(\varepsilon z)=\varepsilon^{-3}\nabla\rho(z)$. The map
+$(u,w)\mapsto C_\varepsilon[u,w]$ is bilinear.
+
+\begin{lemma}[cf. Lemma II.1 in \cite{DiPernaLions}]
+\label{lem:commutator}
+Let $I\subset\R$ be an open interval, let
+$w\in L^1_{\mathrm{loc}}(I;W^{1,2}_{\mathrm{loc}}(\R^2;\R^2))$ with
+$\divop w=0$, and let $u\in L^\infty_{\mathrm{loc}}(I;L^2_{\mathrm{loc}}(\R^2))$.
+Then $C_\varepsilon[u,w]\to0$ in $L^1_{\mathrm{loc}}(I\times\R^2)$ as
+$\varepsilon\to0$.
+\end{lemma}
+
+\begin{proof}
+Note that $wu\in L^1_{\mathrm{loc}}(I\times\R^2)$, by the Cauchy-Schwarz
+inequality in $x$. Fix a compact interval
+$J\subset I$ and $R>0$, and write $\|\cdot\|_{q,r}$ for the norm of $L^q(B_r)$.
+
+We first prove a bound that is uniform in $\varepsilon\in(0,1]$ and does not use
+$\divop w=0$. If $w(t,\cdot)\in C^1(\R^2;\R^2)$, then
+$w(x)-w(x-\varepsilon z)=\varepsilon\int_0^1\nabla w(x-s\varepsilon z)z\dd s$,
+and Equation~\eqref{eq:comm-formula} with $|z|\le1$ and the Cauchy-Schwarz
+inequality in $x$ give
+\begin{align*}
+\|C_\varepsilon[u,w](t)\|_{1,R}
+&\le\|\nabla\rho\|_{L^\infty(\R^2)}\int_{B_1}\!\int_0^1\!\int_{B_R}
+|u(t,x-\varepsilon z)|\,|\nabla w(t,x-s\varepsilon z)|\dd x\dd s\dd z\\
+&\le\pi\|\nabla\rho\|_{L^\infty(\R^2)}\|u(t)\|_{2,R+1}\|\nabla w(t)\|_{2,R+1}.
+\end{align*}
+For general $w$, apply this to $w_\delta=w\ast\rho_\delta$, $\delta\in(0,1]$,
+for which $\|\nabla w_\delta(t)\|_{2,R+1}\le\|\nabla w(t)\|_{2,R+2}$ by Young's
+inequality. For fixed $\varepsilon$, the first line of
+Equation~\eqref{eq:comm-formula} and the inequalities of H\"older and Young,
+with $\|\nabla\rho_\varepsilon\|_{L^1(\R^2)}=\varepsilon^{-1}\|\nabla\rho\|_{L^1(\R^2)}$,
+give
+\[
+\|C_\varepsilon[u,w-w_\delta](t)\|_{1,R}\le2\varepsilon^{-1}\|\nabla\rho\|_{L^1(\R^2)}
+\|u(t)\|_{2,R+1}\|(w-w_\delta)(t)\|_{2,R+1},
+\]
+which tends to $0$ as
+$\delta\to0$ for almost every $t$, because mollification converges in
+$L^2_{\mathrm{loc}}(\R^2)$. Hence, for almost every $t\in J$ and all
+$\varepsilon\in(0,1]$,
+\begin{equation}
+\label{eq:comm-bound}
+\|C_\varepsilon[u,w](t)\|_{1,R}\le C_\rho\,\|u(t)\|_{2,R+1}\,\|\nabla w(t)\|_{2,R+2},
+\qquad C_\rho=\pi\|\nabla\rho\|_{L^\infty(\R^2)}.
+\end{equation}
+
+We now use $\divop w=0$. For $\delta\in(0,1]$ put $u_\delta(t)=u(t)\ast\rho_\delta$.
+For almost every $t\in J$, $u_\delta(t)$ is smooth with
+$\|\nabla u_\delta(t)\|_{\infty,R+1}\le\|\nabla\rho_\delta\|_{L^\infty(\R^2)}\|u(t)\|_{1,R+2}$,
+and, for $\phi\in C_c^\infty(\R^2)$,
+$\int wu_\delta\cdot\nabla\phi=\int w\cdot\nabla(u_\delta\phi)-\int\phi\,w\cdot\nabla u_\delta=-\int\phi\,w\cdot\nabla u_\delta$,
+because $\divop w(t)=0$. Thus $\divop(wu_\delta)=w\cdot\nabla u_\delta$, and
+\[
+C_\varepsilon[u_\delta,w]=w\cdot\big((\nabla u_\delta)\ast\rho_\varepsilon-\nabla u_\delta\big)
++\big(w\cdot\nabla u_\delta-(w\cdot\nabla u_\delta)\ast\rho_\varepsilon\big).
+\]
+As $\varepsilon\to0$, for almost every $t\in J$ the first term tends to $0$ in
+$L^1(B_R)$, because $\nabla u_\delta(t)$ is uniformly continuous on
+$\overline{B_{R+1}}$, and so does the second, because
+$w\cdot\nabla u_\delta(t)\in L^1(B_{R+1})$. Since
+$\|C_\varepsilon[u_\delta,w](t)\|_{1,R}\le4\|w(t)\|_{1,R+1}\|\nabla u_\delta(t)\|_{\infty,R+1}$,
+which is integrable on $J$ because $w\in L^1(J;L^1(B_{R+1}))$ and
+$u\in L^\infty(J;L^1(B_{R+2}))$, $C_\varepsilon[u_\delta,w]\to0$ in
+$L^1(J\times B_R)$ for each $\delta$. Finally, by bilinearity and
+Equation~\eqref{eq:comm-bound},
+\[
+\sup_{\varepsilon\le1}\|C_\varepsilon[u,w]-C_\varepsilon[u_\delta,w]\|_{L^1(J\times B_R)}
+\le C_\rho\int_J\|(u-u_\delta)(t)\|_{2,R+1}\|\nabla w(t)\|_{2,R+2}\dd t ,
+\]
+Call the right side $\eta(\delta)$; it does not depend on $\varepsilon$, and
+$\eta(\delta)\to0$ as $\delta\to0$ by dominated convergence, since
+$\|(u-u_\delta)(t)\|_{2,R+1}\to0$ for almost every $t$ and is at most
+$2\|u\|_{L^\infty(J;L^2(B_{R+2}))}$. Thus
+$\|C_\varepsilon[u,w]\|_{L^1(J\times B_R)}\le\|C_\varepsilon[u_\delta,w]\|_{L^1(J\times B_R)}+\eta(\delta)$
+for all $\varepsilon\in(0,1]$ and $\delta\in(0,1]$. Letting first $\varepsilon\to0$
+with $\delta$ fixed gives
+$\limsup_{\varepsilon\to0}\|C_\varepsilon[u,w]\|_{L^1(J\times B_R)}\le\eta(\delta)$, and
+letting then $\delta\to0$ gives $C_\varepsilon[u,w]\to0$ in $L^1(J\times B_R)$.
+\end{proof}
+
+\begin{lemma}
+\label{lem:transport}
+Let $T>0$ and $t_0\in[0,T)$. Let $w\in L^\infty(0,T;W^{1,2}_{\mathrm{loc}})$
+with $\divop w=0$, let $u\in X_2(T)$ with
+$uw\in L^1((0,T)\times\R^2)$, and let $u_0\in (L^1\cap L^2)(\R^2)$. Assume that $u$
+satisfies Equation~\eqref{eq:te} on $[t_0,T)$ with field $w$ and datum $u_0$.
+Then, for every $\Ren\in\LipO$:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item $\Ren(u)$ satisfies Equation~\eqref{eq:te} on $[t_0,T)$ with field $w$
+  and datum $\Ren(u_0)$;
+\item $\int\Ren(u(t))\dd x=\int\Ren(u_0)\dd x$ for almost every $t\in(t_0,T)$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+We first prove (i) for $\Ren\in C^1(\R)$ with $|\Ren'|\le L$ and $\Ren(0)=0$.
+Put $I=(t_0-1,T)$, and redefine $w$ and $u$ on $(t_0-1,t_0]$ by $w=0$ and
+$u=u_0$; on $(t_0,T)$ they are unchanged. For $\varphi\in C_c^\infty(I\times\R^2)$, extended by zero to an
+element of $\DT$, the interval $(t_0-1,t_0)$ contributes
+$\int_{t_0-1}^{t_0}\!\int u_0\partial_t\varphi=\int u_0\varphi(t_0)$ to
+$\int_I\!\int u(\partial_t\varphi+w\cdot\nabla\varphi)$, and by
+Equation~\eqref{eq:te} the interval $(t_0,T)$ contributes
+$-\int u_0\varphi(t_0)$. Thus $\partial_tu+\divop(wu)=0$ in
+$\mathcal D'(I\times\R^2)$, and the extended pair satisfies the hypotheses of
+Lemma~\ref{lem:commutator} on $I$.
+
+Let $u_\varepsilon=u\ast\rho_\varepsilon$. Then $\nabla u_\varepsilon\in
+L^\infty_{\mathrm{loc}}(I\times\R^2)$, and convolving the equation
+$\partial_tu+\divop(wu)=0$ in $x$ with $\rho_\varepsilon$ gives
+$\partial_tu_\varepsilon=-\big(\divop(wu)\big)\ast\rho_\varepsilon\in L^1_{\mathrm{loc}}(I\times\R^2)$, where,
+as $wu\in L^1_{\mathrm{loc}}(I\times\R^2)$, the right side is the function defined at the
+start of this subsection,
+so $u_\varepsilon\in W^{1,1}_{\mathrm{loc}}(I\times\R^2)$ and
+$\partial_tu_\varepsilon+w\cdot\nabla u_\varepsilon=C_\varepsilon[u,w]$. For
+almost every $t$, $\Ren(u_\varepsilon(t))$ is a $C^1$ function of $x$ with
+locally bounded gradient, so
+$\divop\big(w\Ren(u_\varepsilon)\big)=w\cdot\nabla\Ren(u_\varepsilon)$ because
+$\divop w=0$; with the chain rule in $W^{1,1}_{\mathrm{loc}}$ this gives
+\[
+\partial_t\Ren(u_\varepsilon)+\divop\big(w\Ren(u_\varepsilon)\big)=\Ren'(u_\varepsilon)C_\varepsilon[u,w]
+\qquad\text{in }\mathcal D'(I\times\R^2).
+\]
+As $\varepsilon\to0$, the right side tends to $0$ in $L^1_{\mathrm{loc}}(I\times\R^2)$ by
+Lemma~\ref{lem:commutator}, since $|\Ren'|\le L$. For almost every $t$, $u_\varepsilon(t)\to u(t)$ in
+$L^2(B_R)$, with the bound $2\|u\|_{L^\infty(I;L^2(\R^2))}$; since
+$|\Ren(u_\varepsilon)-\Ren(u)|\le L|u_\varepsilon-u|$ and
+$w\in L^\infty(I;L^2(B_R))$, dominated convergence gives
+$\Ren(u_\varepsilon)\to\Ren(u)$ and $w\Ren(u_\varepsilon)\to w\Ren(u)$ in
+$L^1_{\mathrm{loc}}(I\times\R^2)$. Therefore $\partial_t\Ren(u)+\divop\big(w\Ren(u)\big)=0$
+in $\mathcal D'(I\times\R^2)$. Now let $\varphi\in\DT$ and
+$\kappa_0(t)=\varkappa\big(3(t-t_0)+2\big)$, so that $\kappa_0=0$ on
+$(-\infty,t_0-2/3]$ and $\kappa_0=1$ on $[t_0-1/3,\infty)$. Test the last
+equation with $\kappa_0\varphi\in C_c^\infty(I\times\R^2)$. On $(t_0-1,t_0)$,
+$w=0$ and $\Ren(u)=\Ren(u_0)$, so this interval contributes
+$\int_{t_0-1}^{t_0}\!\int\Ren(u_0)\partial_t(\kappa_0\varphi)=\int\Ren(u_0)\varphi(t_0)$,
+while $\kappa_0=1$ on $(t_0,T)$. This is (i) for $\Ren$.
+
+Let now $\Ren\in\LipO$ have Lipschitz constant $L$, and put
+$\Ren_j=\Ren\ast\rho^{\mathrm t}_{1/j}-(\Ren\ast\rho^{\mathrm t}_{1/j})(0)$.
+Then $\Ren_j\in C^\infty(\R)$, $|\Ren_j'|\le L$, $\Ren_j(0)=0$, and
+$|\Ren_j-\Ren|\le2L/j$, because $|\Ren\ast\rho^{\mathrm t}_{1/j}-\Ren|\le L/j$
+and $\Ren(0)=0$. Since $|\Ren(u)|\le L|u|$, all integrals in
+Equation~\eqref{eq:te} for $\Ren(u)$ converge. For $\varphi\in\DT$ with
+$\supp\varphi\subset(-\infty,T']\times B_R$, $T'<T$, the left sides of
+Equation~\eqref{eq:te} for $\Ren_j(u)$ (which vanish) and for $\Ren(u)$ differ
+by at most
+$\frac{2L}{j}\big(\int_{t_0}^{T'}\!\int_{B_R}(|\partial_t\varphi|+|w||\nabla\varphi|)+\int_{B_R}|\varphi(t_0)|\big)$,
+which tends to $0$ because $w$ is integrable on $(t_0,T')\times B_R$. This
+proves (i).
+
+For (ii), let $\Ren\in\LipO$ have Lipschitz constant $L$, and let
+$\alpha\in C_c^\infty((-\infty,T))$. Since $\Ren(u)$ solves
+Equation~\eqref{eq:te} by (i), we test it against $\alpha(t)\varsigma_R(x)$ and get
+\[
+\int_{t_0}^T\alpha'(t)\Big(\int\Ren(u(t))\varsigma_R\dd x\Big)\dd t
++\alpha(t_0)\int\Ren(u_0)\varsigma_R\dd x
+=-\int_{t_0}^T\alpha(t)\int\Ren(u)\,w\cdot\nabla\varsigma_R\dd x\dd t ,
+\]
+whose right side is at most
+$\|\alpha\|_{L^\infty(\R)}L\|\nabla\varsigma\|_{L^\infty(\R^2)}R^{-1}\|uw\|_{L^1((0,T)\times\R^2)}$.
+As $R\to\infty$, dominated convergence, with $|\Ren(u)|\le L|u|$ and
+$u\in L^\infty(0,T;L^1(\R^2))$, gives $\int_{t_0}^T\alpha'B+\alpha(t_0)b_0=0$ with
+$B(t)=\int\Ren(u(t))$, a measurable function bounded by
+$L\|u\|_{L^\infty(0,T;L^1(\R^2))}$, and $b_0=\int\Ren(u_0)$. Lemma~\ref{lem:dbr} gives
+(ii).
+\end{proof}
+
+\begin{lemma}
+\label{lem:renorm-all-t}
+Let $T>0$ and let $\omega$ be a renormalized weak solution of the Euler
+equations in $X_2(T)$ with datum $\omega^{\mathrm{in}}$. Then for every
+$t\in[0,T)$ and every $\Ren\in\LipO$,
+\begin{equation}
+\label{eq:conservation}
+\int\Ren(\omega(t))\dd x=\int\Ren(\omega^{\mathrm{in}})\dd x .
+\end{equation}
+Consequently, for every $t\in[0,T)$,
+$\|\omega(t)\|_{L^q(\R^2)}=\|\omega^{\mathrm{in}}\|_{L^q(\R^2)}$ for every $q\in[1,2]$, and
+$\omega(t)$ is equimeasurable with $\omega^{\mathrm{in}}$. Moreover
+$\omega\in C([0,T);L^q(\R^2))$ for every $q\in[1,2]$, and, with
+$v=\KBS\ast\omega$, for every $R>0$ and every $t\in[0,T)$,
+\begin{equation}
+\label{eq:tail}
+\int_{\{|x|\ge2R\}}|\omega(t)|\dd x\le\int_{\{|x|\ge R\}}|\omega^{\mathrm{in}}|\dd x
++\frac{\|\nabla\varsigma\|_{L^\infty(\R^2)}}{R}\,\|\omega v\|_{L^1((0,T)\times\R^2)} ,
+\end{equation}
+where $\|\omega v\|_{L^1((0,T)\times\R^2)}\le C_{\mathrm v}TM^2$ with
+$M=\sup_{t\in[0,T]}\|\omega(t)\|_{(L^1\cap L^2)(\R^2)}$.
+\end{lemma}
+
+\begin{proof}
+The number $M$ is finite by Lemma~\ref{lem:weak-cont}(a), and
+$\|\omega(t)v(t)\|_{L^1(\R^2)}\le C_{\mathrm v}M^2$ for almost every $t$ by
+Lemma~\ref{lem:velocity}(a); this gives the bound on
+$\|\omega v\|_{L^1((0,T)\times\R^2)}$. By the remark at the start of
+Section~\ref{sec:weak-rep},
+$v\in L^\infty(0,T;W^{1,2}(B_R))$ for every $R>0$ and $\divop v=0$.
+
+We first prove Equation~\eqref{eq:conservation}. Let $t_0\in[0,T)$ and
+$\Ren\in\LipO$. By Lemma~\ref{lem:weak-cont}(a) and (c),
+$\omega(t_0)\in (L^1\cap L^2)(\R^2)$, and $\omega$ satisfies Equation~\eqref{eq:te} on
+$[t_0,T)$ with field $v$ and datum $\omega(t_0)$, as well as on $[0,T)$ with
+datum $\omega^{\mathrm{in}}$. Lemma~\ref{lem:transport}(ii), applied on
+$[t_0,T)$ and on $[0,T)$ and compared at a time $t\in(t_0,T)$ that is
+exceptional for neither, gives
+$\int\Ren(\omega(t_0))=\int\Ren(\omega(t))=\int\Ren(\omega^{\mathrm{in}})$. For
+$s,\delta>0$ the functions $z\mapsto\min\{1,(\pm z-s)_+/\delta\}$ lie in
+$\LipO$ and increase to $\mathbf 1_{\{\pm z>s\}}$ as $\delta\downarrow0$, so
+monotone convergence gives the equimeasurability. Integration of the
+distribution function, $\int|g|^q=\int_0^\infty qs^{q-1}\big(|\{g>s\}|+|\{g<-s\}|\big)\dd s$,
+$1\le q<\infty$, gives the norms.
+
+Next, $\omega\in C([0,T);L^2(\R^2))$: the norm $\|\omega(t)\|_{L^2(\R^2)}$ is
+constant on $[0,T)$, and $\omega$ is weakly continuous into $L^2(\R^2)$, so
+$\|\omega(t)-\omega(s)\|_{L^2(\R^2)}^2=\|\omega(t)\|_{L^2(\R^2)}^2+\|\omega(s)\|_{L^2(\R^2)}^2-2\int\omega(t)\omega(s)\to0$
+as $t\to s$. By Lemma~\ref{lem:transport}(i) with $\Ren=|\cdot|$, $|\omega|$
+satisfies Equation~\eqref{eq:te} on $[0,T)$ with field $v$ and datum
+$|\omega^{\mathrm{in}}|$. So Lemma~\ref{lem:weak-cont} applies with
+$u=|\omega|$, $w=v$ and $u_0=|\omega^{\mathrm{in}}|$; since
+$t\mapsto|\omega(t)|$ is continuous into $L^2(\R^2)$ on $[0,T)$, it agrees there with
+the representative of that lemma, because two weakly continuous functions that
+agree for almost every $t$ agree for every $t$. Part (b) of that lemma with
+$\psi=\varsigma_R$, together with Equation~\eqref{eq:conservation} for
+$\Ren=|\cdot|$, gives for every $t\in[0,T)$
+\[
+\int|\omega(t)|(1-\varsigma_R)\dd x
+=\int|\omega^{\mathrm{in}}|(1-\varsigma_R)\dd x-\int_0^t\!\!\int|\omega|\,v\cdot\nabla\varsigma_R\dd x\dd s .
+\]
+Since $\mathbf 1_{\{|x|\ge2R\}}\le1-\varsigma_R\le\mathbf 1_{\{|x|\ge R\}}$ and
+$|\nabla\varsigma_R|\le\|\nabla\varsigma\|_{L^\infty(\R^2)}/R$, this gives
+Equation~\eqref{eq:tail}. Its right side does not depend on $t$ and tends to $0$
+as $R\to\infty$. We split the $L^1(\R^2)$ norm into the parts on $B_{2R}$ and
+outside it: for $s,t\in[0,T)$, by the Cauchy-Schwarz inequality on $B_{2R}$ and
+Equation~\eqref{eq:tail} for $\omega(t)$ and $\omega(s)$,
+\[
+\|\omega(t)-\omega(s)\|_{L^1(\R^2)}
+\le|B_{2R}|^{1/2}\|\omega(t)-\omega(s)\|_{L^2(\R^2)}
++2\sup_{\tau\in[0,T)}\int_{\{|x|\ge2R\}}|\omega(\tau)|\dd x .
+\]
+Given $\eta>0$, choose $R$ so that the last term is less than $\eta/2$; then the
+$L^2(\R^2)$ continuity makes the first term less than $\eta/2$ for $t$ close to
+$s$. Hence $\omega\in C([0,T);L^1(\R^2))$. Interpolation between $L^1(\R^2)$ and
+$L^2(\R^2)$ gives $\omega\in C([0,T);L^q(\R^2))$ for $q\in(1,2)$.
+\end{proof}
+
+\subsection{Radial Data and the Criterion}
+
+Recall from Section~\ref{sec:prelim} that, for $g\in L^1(\R^2)$,
+$\Circ_g(r)=\int_{B_r}g$ is the integral of $g$ over the disk $B_r$; for smooth
+$g$ it is the circulation of $\KBS\ast g$ around the circle $\{|x|=r\}$.
+
+\begin{lemma}
+\label{lem:radial-stationary}
+Let $4/3<q<\infty$, $T>0$, and let $f\in (L^1\cap L^q)(\R^2)$ be radial. Then
+$\KBS\ast f(x)=\Circ_f(|x|)\,x^\perp/(2\pi|x|^2)$ for almost every $x$, and
+$\omega(t)=f$, $t\in[0,T]$, is a renormalized weak solution in $X_q(T)$ with
+datum $f$.
+\end{lemma}
+
+\begin{proof}
+We first prove the formula for radial $h=h_0(|\cdot|)\in L^1(\R^2)$. We
+identify $\R^2$ with $\C$, so that $z^\perp=iz$ and $\KBS(z)=i/(2\pi\bar z)$.
+By Lemma~\ref{lem:BS-basic}(e), for almost every $x\ne0$ the integral defining
+$\KBS\ast h(x)$ converges absolutely, and in polar coordinates
+$y=se^{i\vartheta}$,
+\[
+\KBS\ast h(x)=\frac{i}{2\pi}\int_0^\infty h_0(s)\,s
+\int_0^{2\pi}\frac{\dd\vartheta}{\bar x-se^{-i\vartheta}}\dd s .
+\]
+The inner integral equals $2\pi/\bar x$ for $s<|x|$, by the uniformly
+convergent expansion
+$(\bar x-se^{-i\vartheta})^{-1}=\bar x^{-1}\sum_{l\ge0}(s/\bar x)^le^{-il\vartheta}$,
+and $0$ for $s>|x|$, by the uniformly convergent expansion
+$(\bar x-se^{-i\vartheta})^{-1}=-s^{-1}e^{i\vartheta}\sum_{l\ge0}(\bar x/s)^le^{il\vartheta}$,
+integrated term by term: $\int_0^{2\pi}e^{il\vartheta}\dd\vartheta=0$ for every
+integer $l\ne0$, so only the term $l=0$ of the first expansion survives, and no
+term of the second.
+Since $\Circ_h(r)=2\pi\int_0^rh_0(s)s\dd s$, we get
+\[
+\KBS\ast h(x)=\frac{i}{\bar x}\cdot\frac{\Circ_h(|x|)}{2\pi}
+=\Circ_h(|x|)\frac{x^\perp}{2\pi|x|^2} .
+\]
+
+Now let $f=f_0(|\cdot|)$, $v_f=\KBS\ast f$, and $\Ren\in C^1(\R)$ with
+$|\Ren'|\le L$ and $\Ren(0)=0$. The constant function $\omega(t)=f$ lies in
+$X_q(T)$ and is weakly continuous, $\Ren(f)=\Ren(f_0(|\cdot|))$ is radial,
+and $|\Ren(f)v_f|\le L|f||v_f|$ is
+integrable by Lemma~\ref{lem:velocity}(a). Let $\varphi\in\DT$. In polar
+coordinates $x=r(\cos\theta,\sin\theta)$ we have
+$x^\perp\cdot\nabla=\partial_\theta$, so the formula for $v_f$ gives
+$v_f\cdot\nabla\varphi(t)=\Circ_f(r)(2\pi r^2)^{-1}\partial_\theta\varphi(t)$,
+and Fubini's theorem gives, for every $t$,
+\[
+\int\Ren(f)\,v_f\cdot\nabla\varphi(t)\dd x
+=\int_0^\infty\Ren(f_0(r))\frac{\Circ_f(r)}{2\pi r}
+\Big(\int_0^{2\pi}\partial_\theta\varphi(t)\dd\theta\Big)\dd r=0 .
+\]
+Since $\varphi(t)=0$ for $t$ near $T$, we also have
+$\int_0^T\!\int\Ren(f)\partial_t\varphi\dd x\dd t=-\int\Ren(f)\varphi(0)\dd x$. Hence
+Equation~\eqref{eq:renorm} holds, and Equation~\eqref{eq:weak} is the case
+$\Ren(s)=s$.
+\end{proof}
+
+\begin{definition}
+\label{def:adm}
+Let $f\in (L^1\cap L^2)(\R^2)$. A
+\textit{$2$-admissible sequence for $f$ on $[0,\infty)$} is a sequence of pairs
+$(f^{(n)},\omega^{(n)})_{n\ge1}$ such that $f^{(n)}\in (L^1\cap L^2)(\R^2)$,
+$f^{(n)}\to f$ in $(L^1\cap L^2)(\R^2)$, and $\omega^{(n)}$ is a renormalized weak
+solution on $[0,\infty)$ with datum $f^{(n)}$, in the sense of
+Definition~\ref{def:weak} with $q=2$.
+\end{definition}
+
+\begin{theorem}
+\label{thm:criterion}
+Let $f\in (L^1\cap L^2)(\R^2)$ be radial, and let
+$(f^{(n)},\omega^{(n)})$ be a $2$-admissible sequence for $f$ on $[0,\infty)$.
+Assume that for some $T>0$
+\begin{equation}
+\label{eq:defect}
+c:=\limsup_{n\to\infty}\sup_{0\le t\le T}\|\omega^{(n)}(t)-f\|_{L^1(\R^2)}>0 .
+\end{equation}
+Then there exists a subsequence $(n_k)$, together with a function
+$\omega_\infty\colon[0,\infty)\to (L^1\cap L^2)(\R^2)$, with the following properties.
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item $\omega_\infty$ is a renormalized weak solution on $[0,\infty)$ with datum $f$,
+  in the sense of Definition~\ref{def:weak} with $q=2$.
+\item For every $t\in[0,\infty)$, $\omega_\infty(t)$ is equimeasurable with $f$.
+  Hence $\|\omega_\infty(t)\|_{L^q(\R^2)}=\|f\|_{L^q(\R^2)}$ for every $q\in[1,\infty)$,
+  and, whenever $f\in L^q(\R^2)$ with $q\in(4/3,\infty)$, $\omega_\infty\in X_q(T')$ for
+  every $T'>0$.
+\item $\omega_\infty\in C([0,\infty);L^q(\R^2))$ whenever $f\in L^q(\R^2)$ with
+  $q\in[1,\infty)$.
+\item $\sup_{0\le t\le T}\|\omega^{(n_k)}(t)-\omega_\infty(t)\|_{L^1(\R^2)}\to0$.
+\item $\sup_{0\le t\le T}\|\omega_\infty(t)-f\|_{L^1(\R^2)}=c$. The set
+  $\mathcal O=\{t\in[0,\infty):\omega_\infty(t)\ne f\}$ is open, $0\notin\mathcal O$,
+  and $\mathcal O\cap(0,T]\ne\emptyset$. With $t_0=\inf\mathcal O\in[0,T)$,
+  $\omega_\infty$ and the
+  stationary solution $f$ are distinct elements of $X_q(T')$ for every
+  $T'>t_0$, whenever $f\in L^q(\R^2)$ with $q\in(4/3,\infty)$.
+\item If $\omega^{(n)}(t)$ is $3$-fold rotationally symmetric for all $n$ and $t$, then so is
+  $\omega_\infty(t)$ for every $t$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Write $\omega_n=\omega^{(n)}$ and $f_n=f^{(n)}$. We first construct the limit.
+Pass to a subsequence along which $\sup_{t\le T}\|\omega_n(t)-f\|_{L^1(\R^2)}\to c$,
+and put $T_j=T+j$ for $j\ge1$. For $t\ge0$ choose $j$ with $T_j>t$; by
+Definition~\ref{def:adm}, $\omega_n$ is a renormalized weak solution in
+$X_2(T_j)$, so Lemma~\ref{lem:renorm-all-t} gives
+$\|\omega_n(t)\|_{L^r(\R^2)}=\|f_n\|_{L^r(\R^2)}$ for $r\in\{1,2\}$. Hence
+$M:=\sup_n\sup_{t\ge0}\|\omega_n(t)\|_{(L^1\cap L^2)(\R^2)}=\sup_n\|f_n\|_{(L^1\cap L^2)(\R^2)}<\infty$,
+since $f_n$ converges in $(L^1\cap L^2)(\R^2)$; in particular
+$c\le M+\|f\|_{L^1(\R^2)}<\infty$.
+
+Write $v_n=\KBS\ast\omega_n$, and let $\mathcal F$ be as in the proof of
+Lemma~\ref{lem:weak-cont}. Since
+$\|v_n(t)\|_{L^2(B_R)}\le C(2,R)M$ by Lemma~\ref{lem:velocity}(a),
+Lemma~\ref{lem:weak-cont}(b) on $[0,T_j]$ shows that the functions
+$t\mapsto\int\omega_n(t)\psi$, $\psi\in\mathcal F$, are bounded by
+$M\|\psi\|_{L^2(\R^2)}$ and Lipschitz on every $[0,T_j]$ with a constant that depends
+neither on $n$ nor on $j$. By the Arzel\`a-Ascoli theorem and a diagonal
+argument over $\psi\in\mathcal F$ and $j$, a subsequence $(n_k)$ converges
+uniformly on every $[0,T_j]$ for every $\psi\in\mathcal F$; below, $n$ runs
+through $(n_k)$. Since
+$|\int(\omega_n(t)-\omega_m(t))\psi|\le2M\|\psi-\psi'\|_{L^2(\R^2)}+|\int(\omega_n(t)-\omega_m(t))\psi'|$
+for $\psi\in L^2(\R^2)$ and $\psi'\in\mathcal F$, and $\mathcal F$ is dense in $L^2(\R^2)$,
+$\int\omega_n(t)\psi$ is uniformly Cauchy on every $[0,T_j]$ for every
+$\psi\in L^2(\R^2)$. For each $t$ the limit is a linear functional of norm at most
+$M$, hence $\psi\mapsto\int\omega_\infty(t)\psi$ for a unique
+$\omega_\infty(t)\in L^2(\R^2)$. This gives the uniform weak convergence
+\[
+\sup_{t\le T_j}\Big|\int(\omega_n(t)-\omega_\infty(t))\psi\Big|\to0
+\qquad\text{for every }\psi\in L^2(\R^2)\text{ and every }j,
+\]
+and $\omega_\infty$ is weakly continuous into $L^2(\R^2)$, as a locally uniform limit
+of the continuous functions $t\mapsto\int\omega_n(t)\psi$.
+
+Thus $\omega_n(t)\rightharpoonup\omega_\infty(t)$ weakly in $L^2(\R^2)$ for every $t$.
+Fix $t\ge0$. Weak lower semicontinuity of the $L^2(\R^2)$ norm gives
+$\|\omega_\infty(t)\|_{L^2(\R^2)}\le\liminf_n\|\omega_n(t)\|_{L^2(\R^2)}$. For the $L^1(\R^2)$
+norm, put $\lambda=\liminf_n\|\omega_n(t)\|_{L^1(\R^2)}$ and let $\varepsilon>0$. There
+is a further subsequence $(\omega_{n_i}(t))_{i\ge1}$ with
+$\|\omega_{n_i}(t)\|_{L^1(\R^2)}\le\lambda+\varepsilon$ for every $i$; its terms are
+real, and it still converges weakly in $L^2(\R^2)$ to $\omega_\infty(t)$. The first
+conclusion of Lemma~\ref{lem:velocity}(b), with $p=2$, applied to this
+subsequence with $\lambda+\varepsilon$ in the role of the bound $M$ there, gives
+$\|\omega_\infty(t)\|_{L^1(\R^2)}\le\lambda+\varepsilon$. As $\varepsilon>0$ is
+arbitrary, $\|\omega_\infty(t)\|_{L^1(\R^2)}\le\liminf_n\|\omega_n(t)\|_{L^1(\R^2)}$. Hence
+$\|\omega_\infty(t)\|_{L^1(\R^2)}+\|\omega_\infty(t)\|_{L^2(\R^2)}\le\liminf_n\big(\|\omega_n(t)\|_{L^1(\R^2)}+\|\omega_n(t)\|_{L^2(\R^2)}\big)\le M$,
+so $\sup_{t\ge0}\|\omega_\infty(t)\|_{(L^1\cap L^2)(\R^2)}\le M$.
+For $\phi\in L^\infty(\R^2)$, $t\mapsto\int\omega_\infty(t)\phi$ is the pointwise
+limit of the continuous functions $t\mapsto\int\omega_\infty(t)\phi\mathbf 1_{B_\ell}$
+as $\ell\to\infty$. So $\omega_\infty$ is weakly measurable into $L^1(\R^2)$ and into
+$L^2(\R^2)$, hence strongly measurable into both by Pettis's theorem
+(Section~\ref{sec:prelim}), as $L^1(\R^2)$ and $L^2(\R^2)$ are separable; with the bound by
+$M$ and the convention on intersections in Section~\ref{sec:prelim},
+$\omega_\infty\in X_2(T_j)$ for every $j$.
+
+Lemma~\ref{lem:velocity}(b) with $p=2$ and the uniform weak convergence give
+$v_n(t)\to v(t):=\KBS\ast\omega_\infty(t)$ in $L^2(B_R)$ for every $t$, and
+$\|v_n(t)-v(t)\|_{L^2(B_R)}\le2C(2,R)M$; so dominated convergence in $t$ gives
+$\int_0^{T_j}\|v_n-v\|_{L^2(B_R)}\dd t\to0$ for every $j$ and $R>0$. Now let
+$\varphi\in\mathcal D_{T_j}$ with $\supp\varphi\subset\R\times B_R$. By the
+uniform weak convergence and dominated convergence in $t$, with the bound
+$2M\|\partial_t\varphi(t)\|_{L^2(\R^2)}$,
+$\int_0^{T_j}\!\int\omega_n\partial_t\varphi\to\int_0^{T_j}\!\int\omega_\infty\partial_t\varphi$;
+and $\int f_n\varphi(0)\to\int f\varphi(0)$, because $f_n\to f$ in $L^2(\R^2)$. In
+\[
+\int_0^{T_j}\!\!\int(\omega_nv_n-\omega_\infty v)\cdot\nabla\varphi
+=\int_0^{T_j}\!\!\int\omega_n(v_n-v)\cdot\nabla\varphi
++\int_0^{T_j}\!\!\int(\omega_n-\omega_\infty)\,v\cdot\nabla\varphi ,
+\]
+the first term on the right is at most
+$M\|\nabla\varphi\|_{L^\infty(\R\times\R^2)}\int_0^{T_j}\|v_n-v\|_{L^2(B_R)}\dd t\to0$.
+In the second term on the right, the inner integral tends to $0$ for each $t$ by the uniform weak
+convergence, because $v(t)\cdot\nabla\varphi(t)\in L^2(\R^2)$, and is bounded by
+$2C(2,R)M^2\|\nabla\varphi\|_{L^\infty(\R\times\R^2)}$; so dominated convergence applies.
+Thus Equation~\eqref{eq:weak} for $\omega_n$ on $[0,T_j)$ passes to the limit,
+and $\omega_\infty$ is a weak solution in $X_2(T_j)$ with datum $f$ for every
+$j$; being weakly continuous, it is its own representative in the sense of
+Lemma~\ref{lem:weak-cont}. For $T'>0$ choose $T_j>T'$; since
+$\mathcal D_{T'}\subset\mathcal D_{T_j}$, the restriction of $\omega_\infty$ to
+$[0,T']$ is a weak solution in $X_2(T')$ with datum $f$, and it is
+renormalized: by the remark at the start of Section~\ref{sec:weak-rep},
+Lemma~\ref{lem:transport}(i) with $t_0=0$, $u=\omega_\infty$ and
+$w=\KBS\ast\omega_\infty$ gives Equation~\eqref{eq:te} on $[0,T')$ for
+$\Ren(\omega_\infty)$ with datum $\Ren(f)$, for every $\Ren\in\LipO$, in
+particular for every $\Ren\in C^1(\R)$ with $\Ren'$ bounded and $\Ren(0)=0$;
+this is Equation~\eqref{eq:renorm}. This proves (i).
+
+We next prove (ii) and (iii). By Lemma~\ref{lem:renorm-all-t}, applied to
+$\omega_\infty$ on each $[0,T_j)$, $\omega_\infty(t)$ and $f$ are equimeasurable
+for every $t\ge0$, and integration of the distribution function gives
+$\|\omega_\infty(t)\|_{L^q(\R^2)}=\|f\|_{L^q(\R^2)}$ for $q\in[1,\infty)$. For (iii), the
+case $q\in[1,2]$ is part of Lemma~\ref{lem:renorm-all-t}. Let $s_i\to t$ in
+$[0,\infty)$, and put $g_i=\omega_\infty(s_i)$ and $g=\omega_\infty(t)$. Then
+$g_i\rightharpoonup g$ weakly in $L^2(\R^2)$ by weak continuity of $\omega_\infty$, and $\|g_i\|_{L^2(\R^2)}=\|g\|_{L^2(\R^2)}$, so
+$\|g_i-g\|_{L^2(\R^2)}^2=2\|g\|_{L^2(\R^2)}^2-2\int g_ig\to0$. Let $q\in(2,\infty)$ with
+$f\in L^q(\R^2)$, and let $K>0$. Where $|g_i|\le K$ and $|g|\le K$ we have
+$|g_i-g|^q\le(2K)^{q-2}|g_i-g|^2$. On the remaining set, where $|g_i|>K$ or
+$|g|>K$, we have
+$|g_i-g|^q\le2^q\max\{|g_i|,|g|\}^q\le2^q\big(|g_i|^q\mathbf 1_{\{|g_i|>K\}}+|g|^q\mathbf 1_{\{|g|>K\}}\big)$.
+Integrating these two bounds gives
+\[
+\|g_i-g\|_{L^q(\R^2)}^q\le(2K)^{q-2}\|g_i-g\|_{L^2(\R^2)}^2
++2^q\Big(\int_{\{|g_i|>K\}}|g_i|^q\dd x+\int_{\{|g|>K\}}|g|^q\dd x\Big).
+\]
+The last two integrals depend only on distribution functions. For $h\in L^q(\R^2)$,
+write $|h|^q=K^q+\int_K^{|h|}qs^{q-1}\dd s$ on $\{|h|>K\}$ and integrate in $x$;
+Tonelli's theorem gives
+\[
+\int_{\{|h|>K\}}|h|^q\dd x=K^q\,|\{|h|>K\}|+\int_K^\infty qs^{q-1}\,|\{|h|>s\}|\dd s .
+\]
+Since $g_i$ and $g$ are equimeasurable with $f$ by (ii), the measure
+$|\{|h|>s\}|=|\{h>s\}|+|\{h<-s\}|$ is the same for $h=g_i$, $g$ and $f$, for
+every $s>0$. Hence both integrals equal $\int_{\{|f|>K\}}|f|^q\dd x$, and
+\[
+\|g_i-g\|_{L^q(\R^2)}^q\le(2K)^{q-2}\|g_i-g\|_{L^2(\R^2)}^2+2^{q+1}\int_{\{|f|>K\}}|f|^q\dd x ,
+\]
+and letting $i\to\infty$ and then $K\to\infty$ gives $g_i\to g$ in $L^q(\R^2)$.
+This proves (iii). Now let
+$q\in(4/3,\infty)$ with $f\in L^q(\R^2)$ and $T'>0$. By (iii) and the norm
+identities, $\omega_\infty$ is continuous from $[0,T']$ into $(L^1\cap L^q)(\R^2)$, so
+$\omega_\infty\in X_q(T')$. This proves (ii).
+
+We now prove (iv). Fix $j$ with $T<T_j$. We claim: if $(n_i)$ is
+a subsequence of $(n_k)$ and $t_i\in[0,T]$ with $t_i\to t$, then
+$\omega_{n_i}(t_i)\to\omega_\infty(t)$ in $L^1(\R^2)$. Granting the
+claim, if (iv) failed, there would be $\epsilon>0$, a
+subsequence $(n_i)$ and $t_i\in[0,T]$ with
+$\|\omega_{n_i}(t_i)-\omega_\infty(t_i)\|_{L^1(\R^2)}\ge\epsilon$; along a further
+subsequence $t_i\to t\in[0,T]$, and the claim and (iii) give
+$\|\omega_{n_i}(t_i)-\omega_\infty(t_i)\|_{L^1(\R^2)}\to0$, a contradiction.
+
+To prove the claim, write $n$ for $n_i$. For $\psi\in L^2(\R^2)$,
+\[
+\Big|\int(\omega_n(t_i)-\omega_\infty(t))\psi\Big|
+\le\sup_{s\le T_j}\Big|\int(\omega_n(s)-\omega_\infty(s))\psi\Big|
++\Big|\int(\omega_\infty(t_i)-\omega_\infty(t))\psi\Big|\to0 ,
+\]
+by the uniform weak convergence on $[0,T_j]$ and weak continuity of
+$\omega_\infty$. By the norm identities for $\omega_n$ above and part (ii),
+$\|\omega_n(t_i)\|_{L^2(\R^2)}=\|f_n\|_{L^2(\R^2)}\to\|f\|_{L^2(\R^2)}=\|\omega_\infty(t)\|_{L^2(\R^2)}$;
+expanding $\|\omega_n(t_i)-\omega_\infty(t)\|_{L^2(\R^2)}^2$ shows that
+$\omega_n(t_i)\to\omega_\infty(t)$ in $L^2(\R^2)$, hence in $L^1(B_{2R})$ for every
+$R>0$. Equation~\eqref{eq:tail} on $[0,T_j)$,
+applied to $\omega_n$ and to $\omega_\infty$, gives
+\[
+\int_{\{|x|\ge2R\}}\big(|\omega_n(t_i)|+|\omega_\infty(t)|\big)\dd x
+\le\|f_n-f\|_{L^1(\R^2)}+2\int_{\{|x|\ge R\}}|f|\dd x
++\frac{2\|\nabla\varsigma\|_{L^\infty(\R^2)}}{R}C_{\mathrm v}T_jM^2 .
+\]
+Letting $n\to\infty$ and then $R\to\infty$ proves the claim.
+
+We now prove (v). By (iv),
+\[
+\Big|\sup_{t\le T}\|\omega_n(t)-f\|_{L^1(\R^2)}-\sup_{t\le T}\|\omega_\infty(t)-f\|_{L^1(\R^2)}\Big|
+\le\sup_{t\le T}\|\omega_n(t)-\omega_\infty(t)\|_{L^1(\R^2)}\to0 ,
+\]
+so the second supremum equals $c>0$. By (iii) with $q=1$,
+$t\mapsto\|\omega_\infty(t)-f\|_{L^1(\R^2)}$ is continuous on $[0,\infty)$, so
+$\mathcal O$ is relatively open in $[0,\infty)$, and it meets $[0,T]$. Since
+$\omega_\infty(0)=f$ by Lemma~\ref{lem:weak-cont}(a), $0\notin\mathcal O$; so
+$\mathcal O$ is open in $\R$, it contains some $t_1\in(0,T]$, and
+$0\le t_0=\inf\mathcal O<t_1\le T$, because $\mathcal O$ contains a
+neighborhood of $t_1$. For $T'>t_0$ the set $\mathcal O\cap(0,T')$ is
+nonempty and open, hence of positive measure, and $\omega_\infty(t)\ne f$ on it.
+Thus, for every $q\in(4/3,\infty)$ with $f\in L^q(\R^2)$, $\omega_\infty$, which lies
+in $X_q(T')$ by (ii), and the constant function $f$, which lies in $X_q(T')$
+and is a solution by Lemma~\ref{lem:radial-stationary}, are distinct
+elements of $X_q(T')$.
+
+Finally we prove (vi). Let $t\ge0$ and $\psi\in C_c^\infty(\R^2)$. Since
+$|\det\Orot|=1$ and $\omega_n(t)\circ\Orot=\omega_n(t)$ almost everywhere, by
+the $3$-fold rotational symmetry of $\omega_n(t)$, the uniform weak convergence gives
+\begin{align*}
+\int\omega_\infty(t,\Orot x)\psi(x)\dd x&=\int\omega_\infty(t,y)\psi(\Orot^{-1}y)\dd y
+=\lim_n\int\omega_n(t,y)\psi(\Orot^{-1}y)\dd y\\
+&=\lim_n\int\omega_n(t,\Orot x)\psi(x)\dd x=\int\omega_\infty(t,x)\psi(x)\dd x ,
+\end{align*}
+so $\omega_\infty(t)\circ\Orot=\omega_\infty(t)$ almost everywhere.
+\end{proof}
+
+\begin{corollary}
+\label{cor:defect}
+Let $f\in (L^1\cap L^q)(\R^2)$ for every $q\in[1,\infty)$ be radial. Let $m\ge1$
+be an integer, $\chi\in C_c^\infty((0,\infty))$ real, and
+$\Psi(x)=\chi(|x|)\,(\bar x)^m$ (with $x$ written as a complex number). Let
+$(f^{(n)},\omega^{(n)})$ be a $2$-admissible sequence for $f$ on $[0,\infty)$
+such that $\omega^{(n)}(t)$ is $3$-fold rotationally symmetric for all $n$ and $t$. Assume
+that there are $c_0>0$, $\bar T\in(0,\infty)$ and times
+$T^{(n)}\in[0,\bar T]$ with
+\[
+\Big|\int\omega^{(n)}(T^{(n)})\,\Psi\Big|\ge c_0\qquad\text{for all large }n.
+\]
+Then there is a renormalized weak solution $\omega_\infty$
+on $[0,\infty)$ with datum $f$, in the sense of Definition~\ref{def:weak} with
+$q=2$, such that $\omega_\infty(t)$ is equimeasurable
+with $f$ and $3$-fold rotationally symmetric for every $t\ge0$,
+$\omega_\infty\in C([0,\infty);L^q(\R^2))$ for every $q\in[1,\infty)$, and, for
+some $t_0\in[0,\bar T)$, $\omega_\infty$ and $f$ are distinct elements of
+$X_q(T')$ for every $T'>t_0$ and every $q\in(4/3,\infty)$.
+\end{corollary}
+
+\begin{proof}
+Write $f=f_0(|\cdot|)$. Since $\chi$ has compact support in $(0,\infty)$, the
+function $\Psi$ lies in $C_c^\infty(\R^2;\C)$, and in polar coordinates
+$\int f\Psi=\int_0^\infty f_0(r)\chi(r)r^{m+1}\big(\int_0^{2\pi}e^{-im\theta}\dd\theta\big)\dd r=0$,
+because $m\ne0$. Hence, for all large $n$,
+\[
+c_0\le\Big|\int(\omega^{(n)}(T^{(n)})-f)\Psi\Big|
+\le\|\Psi\|_{L^\infty(\R^2)}\sup_{t\le\bar T}\|\omega^{(n)}(t)-f\|_{L^1(\R^2)} .
+\]
+Thus $\|\Psi\|_{L^\infty(\R^2)}>0$, and Equation~\eqref{eq:defect} holds with
+$T=\bar T$, with $c\ge c_0/\|\Psi\|_{L^\infty(\R^2)}$.
+Theorem~\ref{thm:criterion} gives a subsequence and $\omega_\infty$. By its part
+(i), $\omega_\infty$ is a renormalized weak solution on $[0,\infty)$ with datum
+$f$, with $q=2$. Part (ii) gives equimeasurability, part (iii) gives
+$\omega_\infty\in C([0,\infty);L^q(\R^2))$ for every $q\in[1,\infty)$, and part (v)
+gives, with the set $\mathcal O$ defined there, $t_0=\inf\mathcal O\in[0,\bar T)$
+and the distinctness in $X_q(T')$ for every $T'>t_0$ and $q\in(4/3,\infty)$.
+Part (vi) gives the $3$-fold rotational symmetry of $\omega_\infty(t)$.
+\end{proof}
+
+\begin{remark}
+\label{rem:conditional}
+Corollary~\ref{cor:defect} is a conditional non-uniqueness theorem. Let $f$ be
+radial with $f\in (L^1\cap L^q)(\R^2)$ for every $q\in[1,\infty)$. Suppose that one
+can produce data $f^{(n)}\to f$ in $(L^1\cap L^2)(\R^2)$ and $3$-fold rotationally
+symmetric renormalized weak solutions $\omega^{(n)}$ on $[0,\infty)$ with these
+data and vorticity in $L^\infty_t(L^1\cap L^2)_x$, such that one fixed moment
+$\int\omega^{(n)}(T^{(n)})\Psi$ of the form above has modulus at least $c_0>0$ at
+times $T^{(n)}\le\bar T$, with $c_0$ and $\bar T$ independent of $n$. Then the
+Euler equations with datum $f$ have two distinct renormalized weak solutions: the
+stationary solution $f$ and $\omega_\infty$, which differ in $X_q(T')$ for every
+$T'>t_0$ and every $q\in(4/3,\infty)$. Since $\int f\Psi=0$ for radial $f$, the
+hypothesis says that the approximate solutions leave $f$ by a fixed amount, in
+this moment, within a time bounded independently of $n$. Part~II
+\cite{PartII} produces such a sequence for the datum of Theorem~\ref{thm:main}.
+\end{remark}
