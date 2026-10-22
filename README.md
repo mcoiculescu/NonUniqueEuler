@@ -9,6 +9,11 @@ This repository contains the manuscript
 
 together with a Lean 4 formalization of its proof and the code of its computer-assisted part.
 
+> **Status.** The Lean-verified run of the certificate checker (`ncert par`) is still in progress.
+> Until it finishes, (N1)–(N2) rest on the Python/Arb certificate in
+> [`euler-ring-certificate/`](euler-ring-certificate/), exactly as in the manuscript. See "How
+> (N1)–(N2) are established" below; this README will be updated with the result.
+
 The main theorem (Theorem 1.1 of both parts) says that the incompressible Euler equations in the
 plane, without external force, have two distinct renormalized weak solutions with the same initial
 vorticity `f`. The datum `f` is radial and nonnegative, lies in L¹ ∩ L^q for every q < ∞, and is
