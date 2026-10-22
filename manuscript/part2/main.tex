@@ -1,0 +1,92 @@
+\documentclass[11pt]{article}
+\usepackage{geometry}
+\geometry{letterpaper,margin=1in}
+
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{amssymb}
+\usepackage{csquotes}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{float}
+\usepackage{longtable}
+\usepackage{physics}
+\usepackage{enumitem}
+\usepackage{silence}
+\WarningFilter{hyperref}{Suppressing link with empty target}
+\usepackage{xr-hyper}
+\usepackage[hidelinks]{hyperref}
+\makeatletter\def\XR@addURL#1{\XR@noanchor#1{}{}{}{}\\}
+\def\XR@noanchor#1#2#3#4#5\\{{#1}{#2}{#3}{}{}}\makeatother
+\externaldocument[I-]{../part1/main}
+
+\MakeOuterQuote{"}
+\setlength{\emergencystretch}{5em}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{hypothesis}[theorem]{Hypothesis}
+
+\input{macros}
+
+\title{Non-Uniqueness of Weak Solutions to the Unforced\\
+Two-Dimensional Euler Equations\\ with Vorticity in $L^1\cap L^p$,\\
+II: The Nonlinear Construction}
+\hypersetup{pdftitle={Non-Uniqueness of Weak Solutions to the Unforced
+Two-Dimensional Euler Equations with Vorticity in L1 and Lp,
+II: The Nonlinear Construction},
+pdfauthor={Matei P. Coiculescu}}
+\author{Matei P. Coiculescu\thanks{
+Department of Mathematics, New York University,
+Email: \texttt{m.coiculescu@nyu.edu}
+}}
+\date{Work in progress: draft of \today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We prove that the incompressible Euler equations in the plane, without external
+force, admit two distinct renormalized weak solutions with the same initial
+vorticity $f$, where $f$ is radial and nonnegative and lies in
+$(L^1\cap L^q)(\mathbb{R}^2)$ for every $q<\infty$ but is not bounded. One
+solution is radially symmetric and stationary. The other is $3$-fold rotationally symmetric,
+is equimeasurable with $f$ at every time, and departs from $f$ in finite time;
+the two solutions are distinct in $L^\infty_t(L^1\cap L^q)_x$ on $[0,T]\times\mathbb{R}^2$ for
+every $q\in(4/3,\infty)$ and every sufficiently large $T$. The initial
+vorticity is an explicit superposition of rescaled copies of one linearly
+unstable vortex ring, with radii that decrease to zero and amplitudes that
+increase geometrically, and the second solution is a limit of solutions in
+which an instability placed in a small ring is relayed outward through all the
+larger rings in a bounded time. The proof, using the compactness criterion and the linear
+analysis of Part I, reduces the theorem to three explicit
+statements, two about the zeros of an explicit holomorphic function and one
+inequality between explicit numbers; we verify the first two with rigorous
+interval arithmetic and prove the third without machine computation.
+\end{abstract}
+
+\input{sections/01_intro}
+\input{sections/05_single_ring}
+\input{sections/06_datum}
+\input{sections/07_several_rings}
+\input{sections/08_kick}
+\input{sections/09_relay}
+\input{sections/10_parameters}
+\input{sections/11_bootstrap}
+
+\appendix
+\input{sections/A_verification}
+\input{sections/B_global_smooth}
+\input{sections/C_dependencies}
+
+\section*{Statements and Declarations}
+The author has no competing interests to declare.
+
+\input{refs}
+
+\end{document}

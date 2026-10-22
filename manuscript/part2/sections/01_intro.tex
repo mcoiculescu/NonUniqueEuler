@@ -1,0 +1,530 @@
+\section{Introduction}
+
+\subsection{The Main Results}
+
+We consider the incompressible Euler equations in the plane, in vorticity form:
+\begin{equation}
+\label{eq:euler}
+\partial_t \omega + v\cdot\nabla \omega = 0,\qquad
+v = \KBS\ast \omega,\qquad
+\omega(t=0) = \omega_0 .
+\end{equation}
+Here $\KBS(x)=x^\perp/(2\pi|x|^2)$, $x^\perp=(-x_2,x_1)$, denotes the
+Biot-Savart kernel, so that $v$ is divergence free and
+$\partial_1v_2-\partial_2v_1=\omega$. There is no external force, and we call
+$\omega_0$ the datum.
+
+This paper completes the proof, begun in Part~I~\cite{PartI}, that without
+force in the plane uniqueness fails among renormalized weak solutions with
+vorticity in $L^\infty_t(L^1\cap L^q)_x$, for every $q\in(4/3,\infty)$ at once
+and for an explicit radial datum; numbers with the prefix I refer to
+statements, sections and equations of Part~I. For the question and the rest
+of the literature we refer to the introduction of Part~I.
+
+For $T>0$ and $1\le q\le\infty$ we write $X_q(T)$ for the space
+$L^\infty_t(L^1\cap L^q)_x$ of functions on $(0,T)\times\R^2$. Renormalized weak solutions in $X_q(T)$, $4/3<q<\infty$ (after
+DiPerna and Lions \cite{DiPernaLions}), and equimeasurability are defined in
+Definitions~I.\ref{I-def:weak} and~I.\ref{I-def:equimeasurable}. The ring $\Phi$ of
+Definition~I.\ref{I-def:ring} is a closed formula in $\log|y|$ times a fixed smooth
+cutoff; it is radial, $\Phi\in C_c^\infty(\R^2)$, $0\le\Phi<1$,
+$\Phi\not\equiv0$, and $\supp\Phi\subset\{a\le|y|\le1\}$ for an explicit
+$a\in(0,1)$ (Lemma~I.\ref{I-lem:ring-facts}). For $A_1>0$, $\mu\in(1,2]$ and
+$\sbar\in(0,a/16]$ we put
+\begin{equation}
+\label{eq:datum}
+\begin{gathered}
+f=\sum_{k\ge1}A_k\,\Phi(\cdot/r_k),\qquad A_k=A_1\mu^{k-1},\\
+r_1=1,\qquad r_{k+1}=s_kr_k,\qquad s_k=\sbar(2\mu)^{-k}\qquad(k\ge1).
+\end{gathered}
+\end{equation}
+This is Definition~\ref{def:datum}. Our main theorem is the following.
+
+\begin{theorem}
+\label{thm:main}
+Let $\Phi$ and $a$ be as in Definition~I.\ref{I-def:ring}. There are
+$\mu\in(1,\frac{17}{16}]$ and $\sbar\in(0,a/16]$ such that, for every $A_1>0$,
+the function $f$ of Equation~\eqref{eq:datum} has the following properties. It
+is radial and nonnegative, $f\in (L^1\cap L^q)(\R^2)$ for every $q\in[1,\infty)$,
+and $f\notin L^\infty(\R^2)$. There is $\Tstar\in(0,\infty)$ such that, for
+every $T>\Tstar$ and every $q\in(4/3,\infty)$, Equation~\eqref{eq:euler} with
+$\omega_0=f$ has two distinct renormalized weak solutions in $X_q(T)$, in the
+sense of Definition~I.\ref{I-def:weak}:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item the stationary solution $\omega(t)=f$, $t\in[0,T]$;
+\item a solution $\omega_\infty$ such that
+  $\omega_\infty\in C([0,\infty);L^p(\R^2))$ for every $p\in[1,\infty)$ and,
+  for every $t\ge0$, $\omega_\infty(t)$ is equimeasurable with $f$ and
+  $3$-fold rotationally symmetric.
+\end{enumerate}
+More precisely, there is $t_0\in[0,\Tstar)$ such that $\omega_\infty$ and $f$
+are distinct elements of $X_q(T')$ for every $T'>t_0$ and every
+$q\in(4/3,\infty)$.
+\end{theorem}
+
+We do not treat $q\le4/3$. No symmetry is
+imposed on the class; the $3$-fold rotational symmetry of $\omega_\infty$ comes from the
+construction, where it removes the angular modes $\ell\notin3\Z$, among them the
+modes $\ell=\pm1$ that contain the translations of a ring, and leaves the
+modes $\ell\in3\Z$, whose spectra we control.
+
+The proof of Theorem~\ref{thm:main} uses three explicit statements, collected in Section~I.\ref{I-sec:ring}
+as Hypothesis~I.\ref{I-hyp:N}: \textup{(N1)} and \textup{(N2)} locate the zeros in
+the mode $\ell=3$ of the Evans function of the ring, an explicit holomorphic
+function, for every $G\in[0,\frac1{50}]$ (in the reference units of
+Definition~I.\ref{I-def:ring}; this is $G\in[0,\Gone]$ in ring units); \textup{(N3)} is an inequality between
+explicit numbers controlling the modes $\ell=\pm6$ and $|\ell|\ge9$. We prove
+the following reduction in Section~\ref{sec:bootstrap}.
+
+\begin{proposition}
+\label{prop:reduction}
+Suppose that \textup{(N1)}--\textup{(N3)} of Hypothesis~I.\ref{I-hyp:N} hold. Then
+Theorem~\ref{thm:main} holds.
+\end{proposition}
+
+The proof of Proposition~\ref{prop:reduction} uses no machine computation.
+Appendix~\ref{app:verify} proves \textup{(N3)} by hand and verifies
+\textup{(N1)} and \textup{(N2)} with rigorous interval arithmetic, the only
+machine-computed part of the proof (code: the package
+\texttt{euler-ring-certificate}, version~1.0.0, in the public repository
+\url{https://github.com/mcoiculescu/NonUniqueEuler};
+Section~\ref{app:reproduce}). It thus proves the following theorem.
+
+\begin{theorem}
+\label{thm:N-holds}
+Hypothesis~I.\ref{I-hyp:N} holds: the statements \textup{(N1)}, \textup{(N2)} and
+\textup{(N3)} are true.
+\end{theorem}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+By Theorem~\ref{thm:N-holds}, the hypotheses \textup{(N1)}--\textup{(N3)}
+hold, so Theorem~\ref{thm:main} follows from Proposition~\ref{prop:reduction}.
+\end{proof}
+
+The main idea of a linear instability in physical coordinates driving the
+non-uniqueness mechanism, the use of non-monotone unstable radial vortices and of
+a multiscale datum, and the overall strategy of the proof are due to the author.
+Within this strategy, the detailed proofs and estimates, the code for the
+computer-assisted verification and the text were largely produced with
+Claude Opus 5.5 (Anthropic), under the direction of the author. The author has
+checked all proofs by hand and takes full responsibility for the paper.
+
+\subsection{Results of Part I}
+\label{sec:II-partI}
+
+We use the following definitions and results of Part~I, which we cite by
+their numbers there and do not restate. From Section~I.\ref{I-sec:prelim}: the
+properties of the Biot-Savart kernel (Lemma~I.\ref{I-lem:BS-basic}); the
+multipoles, equimeasurability and renormalized weak solutions
+(Definitions~I.\ref{I-def:multipole}, I.\ref{I-def:equimeasurable}
+and~I.\ref{I-def:weak}, with Equations~(I.\ref{I-eq:weak})
+and~(I.\ref{I-eq:renorm})). From Section~I.\ref{I-sec:compact}: a radial
+function in $(L^1\cap L^q)(\R^2)$, $4/3<q<\infty$, is a stationary renormalized weak
+solution (Lemma~I.\ref{I-lem:radial-stationary}); $2$-admissible sequences
+(Definition~I.\ref{I-def:adm}); and the non-uniqueness criterion of
+Corollary~I.\ref{I-cor:defect}, which rests on Theorem~I.\ref{I-thm:criterion}
+and which we apply in the proof of Proposition~\ref{prop:reduction}. From
+Section~I.\ref{I-sec:ring}: the ring and the annuli $N$, $N'$ (Definition~I.\ref{I-def:ring},
+Lemma~I.\ref{I-lem:ring-facts}); mode settings, the
+decomposition into angular modes, the Evans function and its simple zeros, and
+the semigroup (Definition~I.\ref{I-def:sector-setting},
+Lemmas~I.\ref{I-lem:sector}, I.\ref{I-lem:evans-basic}
+and~I.\ref{I-lem:semigroup-construct}, Theorem~I.\ref{I-thm:evans-simple});
+Hypothesis~I.\ref{I-hyp:N}; and, under \textup{(N1)}--\textup{(N3)}, the
+spectrum of the linearization (Proposition~I.\ref{I-prop:SU}), the eigendata
+(Definition~I.\ref{I-def:eigendata}), the continuity in $G$ of $\lamst(G)$ and of
+the sizes $|\pout_*(G)|$, $|\beta(G)|$, $\|\ellst(G)\|_{(X^0)^*}$ and
+$\|\phist(G)\|_{H^k}$ of the eigendata, the semigroup
+bounds and the uniformity of the constants in $G$
+(Propositions~I.\ref{I-prop:U} and~I.\ref{I-prop:semigroup},
+Lemma~I.\ref{I-lem:uniform}).
+
+\subsection{Strategy}
+
+With a radial force, Vishik \cite{Vishik1}, \cite{Vishik2} proved
+non-uniqueness with vorticity in an $L^p$ space, breaking the radial symmetry.
+The unstable
+manifold of a steady vortex gives non-uniqueness only at time $-\infty$;
+Vishik's self-similar background moves time $-\infty$ to time $0$, but it is
+not an exact solution and requires the force (Section~0.1 of \cite{ABCDGJK}).
+
+In an instability construction without force, the background must be an exact
+solution. Ours is radial, hence stationary: infinitely many rescaled copies of
+one unstable vortex ring on disjoint annuli accumulating at the origin, with
+amplitudes increasing toward it. Inner rings rotate faster, and the task is to
+carry an instability from an inner ring outward through every ring in a time
+independent of the depth, uniformly in the number of interacting rings.
+
+The mechanism is as follows. The linearization of Equation~\eqref{eq:euler} at
+$\Phi$ plus a point vortex of small circulation $2\pi G$ at the origin, which stands
+for everything inside the ring, has on $3$-fold rotationally symmetric perturbations an
+eigenvalue $\lamst(G)$ of the mode $\ell=3$, algebraically simple there, with
+real part $\sigma(G)>0$, and its conjugate $\overline{\lamst(G)}$ in the mode
+$\ell=-3$; the rest of the spectrum has smaller real part
+(Proposition~I.\ref{I-prop:SU}). Ring $k$ of $f$ evolves on the time scale $1/A_k$
+and feels the inner rings mostly through their circulation $2\pi G_kA_kr_k^2$,
+with $G_k\ge0$ small when $\sbar$ is small (Lemma~\ref{lem:inner-circ}). The
+approximate datum $f^{(n)}$ keeps the first $n$ rings and replaces ring $n$ by a
+rearrangement of it that contains the unstable eigenfunction with a small fixed amplitude
+$\kseed$ (Definition~\ref{def:approx}); as $r_n$ decreases faster than $A_n$
+increases, $f^{(n)}\to f$ in $(L^1\cap L^q)(\R^2)$ for every $q<\infty$. Each $f^{(n)}$
+is smooth with compact support, so it has a unique global smooth solution
+$\omega^{(n)}$, which is $3$-fold rotationally symmetric.
+
+In $\omega^{(n)}$ the instability passes outward like a relay. The unstable
+coefficient of ring $k$ grows at the rate $A_k\sigma(G_k)$ to a fixed size
+$\delta_0$, and its mode-$3$ moment drives ring $k-1$ through a field smaller
+by a factor of order $s_{k-1}^5$. This drive outgrows the free growth of ring
+$k-1$ by a margin of order $\sigma(0)(\mu-1)/\mu$, so the forced part of the
+coefficient is a truncated Laplace transform of the drive (Lemma~\ref{lem:coupling},
+Equation~\eqref{eq:kick-A}); it is dominated by the end of the growth and pinned
+after saturation, and its modulus lies between two multiples of the size of the
+drive at saturation divided by $\mu-1$, with constants independent of $k$ and $n$
+(Proposition~\ref{prop:kick} and its proof). As $\mu$ is fixed, ring $k-1$ starts with a
+coefficient of order $s_{k-1}^5$ (Step~3 in the proof of Proposition~\ref{prop:bootstrap}) and saturates after a physical time of
+about $5\log(1/s_{k-1})/(\sigma(G_{k-1})A_{k-1})$; as $\log(1/s_k)$ grows
+linearly and $A_k$ geometrically, the total time is bounded by a $\Tstar$
+independent of $n$ (Lemma~\ref{lem:time}). Meanwhile a ring not yet reached
+stays close to $\Phi$, although forced by the fields inside and outside it
+(Theorem~\ref{thm:quiet}), the active ring follows its unstable eigenfunction
+(Theorem~\ref{thm:active}), and the material inside each ring stays in a small
+disk (Proposition~\ref{prop:confine}); the hypotheses of these three statements are
+verified jointly, for all rings and all times until the outermost ring saturates, by one
+bootstrap with constants independent of $n$ (proof of Proposition~\ref{prop:bootstrap}). When the outermost ring saturates,
+at $T^{(n)}\le\Tstar$, its moment $\int\omega^{(n)}(T^{(n)})\Psione$, where
+$\Psione(x)=\chiout(|x|)\,\bar x^{\,3}$ with a fixed real cutoff
+$\chiout\in C_c^\infty((a/4,3))$, has modulus at least $c_0>0$ independent of
+$n$ (proof of Proposition~\ref{prop:reduction}); it vanishes for $f$. The $\omega^{(n)}$ are
+bounded in $(L^1\cap L^2)(\R^2)$ uniformly in time, and compactness of renormalized
+solutions in $L^2$ (Section~I.\ref{I-sec:compact}) gives a subsequence converging
+to a renormalized weak solution $\omega_\infty$ with datum $f$; the moment bound
+passes to the limit and separates $\omega_\infty$ from $f$
+(Corollary~I.\ref{I-cor:defect}).
+
+The parameters are chosen in Section~\ref{sec:param} in the order of
+Table~\ref{tab:param}, and none of the choices depends on $n$, $A_1$ or
+$\omega^{(n)}$ (Lemma~\ref{lem:nonempty}). Appendix~\ref{app:deps} lists, for
+each statement on the path to Theorem~\ref{thm:main}, the statements of this
+paper and of Part~I that its proof uses and the parts of
+\textup{(N1)}--\textup{(N3)} on which it depends.
+
+\subsection{Preliminaries}
+\label{sec:II-prelim}
+
+This subsection collects the notation that we take from Part~I and the
+preliminaries used only in this paper. We use all notation and conventions of
+Section~I.\ref{I-sec:prelim}, among them the convention on constants and
+$O(\cdot)$, which we follow. From
+Section~I.\ref{I-sec:ring} we use the convention $m=3$, the ring units and the
+number $\Gone$ of Definition~I.\ref{I-def:ring}, the annuli $N$ and $N'$ of
+Section~I.\ref{I-sec:ring-def}, the spaces $X^s$ and the operators $\Lin(G)$ on
+them, fixed before Proposition~I.\ref{I-prop:SU}, and the constants $c_N$, $C_N$,
+$\cout$, $\|\ellst\|$, $\Cls$, $\Cp$ and $\Cnab(k)$ of
+Lemma~I.\ref{I-lem:uniform}. The results and definitions of
+Part~I that we use are listed in Section~\ref{sec:II-partI}.
+
+In ring units we also use the closed annuli
+\[
+\NNm=\{\tfrac78a\le|y|\le\tfrac54\},\qquad \NN=\{\tfrac34a\le|y|\le\tfrac32\},\qquad
+\Nflat=\{\tfrac58a\le|y|\le\tfrac74\}.
+\]
+They mark where the support of a ring lies at the stages of the construction:
+in $\NNm$ for a quiet ring and at the start of the active phase
+(Theorems~\ref{thm:quiet} and~\ref{thm:active}), in $\NN$ during the active
+phase, and in $\Nflat$ under the bootstrap assumption of
+Section~\ref{sec:bootstrap}, which the bootstrap improves to $\NN$. All of them
+lie in $N$, the common support of the spaces $X^s$ of Part~I, and the strict
+inclusion $\NN\subset\operatorname{int}\Nflat$ leaves the room that the bootstrap
+needs.
+
+\begin{lemma}
+\label{lem:annuli}
+Let $a\in(0,1)$ and define the annuli above, and $N$, $N'$, with this $a$. Then
+$\{a\le|y|\le1\}\subset\NNm\subset\NN\subset\operatorname{int}\Nflat\subset\Nflat\subset N\subset N'$.
+Let $S\subset\{a\le|y|\le1\}$ \textup{(}respectively $S\subset\NNm$\textup{)},
+and let $S'$ be a set such that every $y'\in S'$ satisfies
+$\big||y'|-|y|\big|\le a/16$ for some $y\in S$. Then $S'\subset\NNm$
+\textup{(}respectively $S'\subset\NN$\textup{)}.
+\end{lemma}
+\begin{proof}
+The inner radii $a$, $\frac78a$, $\frac34a$, $\frac58a$, $\frac12a$, $\frac14a$
+strictly decrease and the outer radii $1$, $\frac54$, $\frac32$, $\frac74$, $2$, $3$
+strictly increase; this gives the chain. If $a\le|y|\le1$ and
+$||y'|-|y||\le a/16$, then $\frac{15}{16}a\le|y'|\le1+\frac a{16}$, and
+$\frac{15}{16}a\ge\frac78a$ and $1+\frac a{16}\le\frac54$ because $a\le4$. If
+instead $y\in\NNm$, then $\frac{13}{16}a\le|y'|\le\frac54+\frac a{16}$, and
+$\frac{13}{16}a\ge\frac34a$ and $\frac54+\frac a{16}\le\frac32$.
+\end{proof}
+
+We call $V_1-iV_2$ the \textbf{complex form} of a vector field $V$, and wherever
+we use complex forms we write $z=x_1+ix_2$ (this $z$ is not the number
+$\lamst(0)$ of Definition~I.\ref{I-def:eigendata}). Since $(\KBS)_1(x)-i(\KBS)_2(x)=(-x_2-ix_1)/(2\pi|x|^2)=1/(2\pi iz)$,
+the velocity of every $g\in L^1(\R^2)$ has the complex form
+\begin{equation}
+\label{eq:BS-complex}
+(\KBS\ast g)_1(z)-i(\KBS\ast g)_2(z)=\frac1{2\pi i}\int\frac{g(\zeta)}{z-\zeta}\dd A(\zeta)
+\qquad(z\in\C\setminus\supp g),
+\end{equation}
+where $\dd A$ is the area element, the integral converges absolutely and, by differentiation under the
+integral sign, defines a holomorphic function of $z\in\C\setminus\supp g$. Let
+$V$ be a real vector field on an open set $U$ whose complex form $F$ is
+holomorphic on $U$. Then $\partial_{x_1}F=F'$ and $\partial_{x_2}F=iF'$, so every
+partial derivative of order $q$ of $F$ is $i^{\gamma_2}F^{(q)}$ for the
+corresponding multi-index $\gamma$. Since $V_1=\Re F$ and $V_2=-\Im F$, for each of
+the $2^q$ ordered $q$-tuples of directions the corresponding pair of entries of
+$\nabla^qV(x)$ has Euclidean norm $|F^{(q)}(z)|$, which gives
+\begin{equation}
+\label{eq:BS-complex-deriv}
+|\nabla^qV(x)|=2^{q/2}\,|F^{(q)}(z)|\qquad(z\in U,\ q\ge0).
+\end{equation}
+
+\begin{lemma}
+\label{lem:hollow}
+Let $m_0\ge2$ be an integer and $R>0$. Let $\nu\in (L^1\cap L^\infty)(\R^2)$ be
+real and $m_0$-fold rotationally symmetric with $\supp\nu\subset\{|y|\ge R\}$, and let
+$\bar\nu(y)=\frac1{2\pi}\int_0^{2\pi}\nu(\Orot_\phi y)\dd\phi$ be its angular
+average. Then $\KBS\ast\bar\nu=0$ on $B_R$, and for $|x|\le R/2$,
+\[
+|\KBS\ast\nu(x)|\le\tfrac4{3\pi}\|\nu\|_{L^1}|x|^{m_0-1}R^{-m_0}.
+\]
+\end{lemma}
+
+\begin{proof}
+Let $|z|<R$, so that $|z-\zeta|\ge R-|z|>0$ for $\zeta\in\supp\nu$, and let $u=\KBS\ast\nu$. For $|\zeta|\ge R$ the series
+$(z-\zeta)^{-1}=-\sum_{l\ge1}z^{l-1}\zeta^{-l}$ converges uniformly in $\zeta$, with ratio
+at most $|z|/R$, so Equation~\eqref{eq:BS-complex} gives, term by term,
+$u_1-iu_2=\frac{i}{2\pi}\sum_{l\ge1}c_l(\nu)z^{l-1}$ with
+$c_l(\nu)=\int\nu(\zeta)\zeta^{-l}\dd A(\zeta)$. The substitution $\zeta\mapsto e^{2\pi i/m_0}\zeta$ shows $c_l(\nu)=e^{-2\pi
+il/m_0}c_l(\nu)$, so $c_l(\nu)=0$ unless $m_0\mid l$. Integration in the angle
+shows $c_l(\bar\nu)=0$ for $l\ge1$; this proves $\KBS\ast\bar\nu=0$ on $B_R$, and
+also $c_l(\nu)=c_l(\nu-\bar\nu)$, so $|c_l(\nu)|\le\|\nu-\bar\nu\|_{L^1}R^{-l}$.
+Since $\nu$ is real, $|u|=|u_1-iu_2|$, so for $|x|\le R/2$
+\[
+|u(x)|\le\frac{\|\nu-\bar\nu\|_{L^1}}{2\pi}\sum_{j\ge1}|x|^{jm_0-1}R^{-jm_0}
+\le\frac{\|\nu-\bar\nu\|_{L^1}}{2\pi(1-2^{-m_0})}|x|^{m_0-1}R^{-m_0},
+\]
+and $1/(1-2^{-m_0})\le\frac43$ because $m_0\ge2$. Finally
+$\|\nu-\bar\nu\|_{L^1}\le2\|\nu\|_{L^1}$.
+\end{proof}
+
+For an integer $m\ge1$ and $g$ as in Definition~I.\ref{I-def:multipole}, let
+$\pout_m[g]$ and $\Qm[g]$ be the multipoles defined there.
+If $\supp g\subset\overline B_{\varrho}$, the expansion
+\[
+\log|x-y|=\log|x|-\Re\sum_{k\ge1}\frac1k\Big(\frac yx\Big)^k\quad(|y|<|x|)
+\]
+shows that the angular mode $m$ of the stream function
+$(2\pi)^{-1}\log|\cdot|\ast g$ of $g$ equals $-(2m)^{-1}\pout_m[g]\,r^{-m}$
+for $r>\varrho$.
+
+\begin{lemma}
+\label{lem:ext-multipole}
+Let $m\ge1$ and $q\ge0$ be integers, and let $\varrho>0$. Let $g\in L^1(\R^2)$ be
+real and $m$-fold rotationally symmetric with $\supp g\subset\overline{B}_\varrho$, and let $E$ be the
+velocity field $\KBS\ast g$ minus its monopole
+$\frac{1}{2\pi}\big(\int g\big)\frac{x^\perp}{|x|^2}$. Then for $|x|\ge2\varrho$,
+\[
+|\nabla^qE(x)|\le C_{m,q}\,\|g\|_{L^1}\,\varrho^m|x|^{-m-1-q},\qquad
+C_{m,q}=\frac{2^q}{2\pi}\sup_{0<\rho\le1/2}\rho^{-m}\sum_{l\in m\N}(l+q)^q\rho^{l}<\infty .
+\]
+\end{lemma}
+
+\begin{proof}
+Let $|z|>\varrho$. For $|\zeta|\le\varrho$ the series
+$(z-\zeta)^{-1}=\sum_{l\ge0}\zeta^lz^{-l-1}$ converges uniformly in $\zeta$, so
+Equation~\eqref{eq:BS-complex} gives
+$(\KBS\ast g)_1-i(\KBS\ast g)_2=\frac1{2\pi i}\sum_{l\ge0}Q_lz^{-l-1}$ with
+$Q_l=\int g(\zeta)\zeta^l\dd A(\zeta)$. The term $l=0$, which is $(\int g)/(2\pi iz)$, is the
+monopole, and $Q_l=0$ unless $m\mid l$, because the substitution $\zeta\mapsto
+e^{2\pi i/m}\zeta$ and the $m$-fold rotational symmetry of $g$ give $Q_l=e^{2\pi il/m}Q_l$. Hence the complex form of $E$ is
+$F(z)=\frac1{2\pi i}\sum_{l\in m\N}Q_lz^{-l-1}$, where
+$|Q_l|\le\|g\|_{L^1}\varrho^l$. The series converges locally uniformly on
+$\{|z|>\varrho\}$, so $F$ is holomorphic there, may be differentiated term by
+term, and, as $E$ is real,
+Equation~\eqref{eq:BS-complex-deriv} gives
+$|\nabla^qE(x)|=2^{q/2}|F^{(q)}(z)|\le2^q|F^{(q)}(z)|$. With
+$|\partial_z^qz^{-l-1}|=(l+1)\cdots(l+q)|z|^{-l-1-q}\le(l+q)^q|z|^{-l-1-q}$ and
+$\rho=\varrho/|z|\le\frac12$,
+\[
+|F^{(q)}(z)|\le\frac{\|g\|_{L^1}}{2\pi}|z|^{-1-q}\sum_{l\in m\N}(l+q)^q\rho^l
+\le\frac{C_{m,q}}{2^q}\|g\|_{L^1}\rho^m|z|^{-1-q},
+\]
+and $\rho^m|z|^{-1-q}=\varrho^m|x|^{-m-1-q}$. The constant is finite, because
+$\rho^{-m}\sum_{l\in m\N}(l+q)^q\rho^l=\sum_{j\ge1}(mj+q)^q\rho^{m(j-1)}$ is
+nondecreasing in $\rho$ and finite at $\rho=\frac12$.
+\end{proof}
+
+The following classical theorem is proved in Appendix~\ref{app:smooth}.
+
+\begin{theorem}[cf. \cite{Wolibner}, \cite{Holder}, \cite{Kato1967}]
+\label{thm:smooth}
+Let $\omega_0\in C_c^\infty(\R^2)$ be real with $\supp\omega_0\subset B_{R_0}$.
+There is a unique $\omega\in C^\infty(\R\times\R^2)$ such that:
+\begin{enumerate}[label=\textup{(\arabic*)}]
+\item $\supp\omega(t)\subset B_{R(t)}$ for every $t\in\R$, with
+  $R(t)=R_0+(2\|\omega_0\|_{L^\infty}\|\omega_0\|_{L^1}/\pi)^{1/2}|t|$;
+\item $v:=\KBS\ast\omega\in C^\infty(\R\times\R^2)$, $v$ and every derivative of
+  $v$ are bounded on $[-T,T]\times\R^2$ for every $T>0$, and $\divop v=0$;
+\item $\partial_t\omega+v\cdot\nabla\omega=0$ on $\R\times\R^2$ and $\omega(0)=\omega_0$.
+\end{enumerate}
+Moreover:
+\begin{enumerate}[label=\textup{(\arabic*)},resume]
+\item the flow $\flow$ of $v$, $\partial_t\flow(t,y)=v(t,\flow(t,y))$,
+  $\flow(0,y)=y$, is defined for all $t\in\R$; each $\flow_t=\flow(t,\cdot)$ is
+  a $C^\infty$ diffeomorphism of $\R^2$ with $\det D\flow_t\equiv1$; the maps
+  $\flow$ and $(t,x)\mapsto\flow_t^{-1}(x)$ lie in $C^\infty(\R\times\R^2)$; and
+  $\omega(t)=\omega_0\circ\flow_t^{-1}$; consequently
+  $\int F(\omega(t))\dd x=\int F(\omega_0)\dd x$ for every continuous $F$ with
+  $F(0)=0$;
+\item if $I\ni0$ is an interval and $\tilde\omega\in C^1(I\times\R^2)$ satisfies
+  $\tilde\omega(0)=\omega_0$, $\partial_t\tilde\omega+(\KBS\ast\tilde\omega)\cdot\nabla\tilde\omega=0$
+  on $I\times\R^2$, and, for each compact subinterval $I'\subset I$,
+  $\supp\tilde\omega(t)\subset B_{\tilde R}$ for $t\in I'$ with $\tilde R$
+  depending on $I'$, then $\tilde\omega=\omega$ on $I\times\R^2$;
+\item if $\omega_0\circ\Orot_\theta=\omega_0$ for a rotation $\Orot_\theta\in SO(2)$,
+  then $\omega(t)\circ\Orot_\theta=\omega(t)$ for every $t\in\R$;
+\item for every $T>0$ and every $q\in(4/3,\infty)$, the restriction of $\omega$
+  to $[0,T)$ lies in $L^\infty_t(L^1\cap L^\infty)_x$ and is a renormalized
+  weak solution in $X_q(T)$ with datum $\omega_0$, in the sense of
+  Definition~I.\ref{I-def:weak}.
+\end{enumerate}
+\end{theorem}
+
+\begin{lemma}
+\label{lem:embed}
+The following embeddings hold on $\R^2$, with explicit constants.
+\begin{enumerate}[label=\textup{(E\arabic*)}]
+\item For $g\in H^1$, $\|g\|_{L^4}\le\|g\|_{H^1}$.
+\item For $g\in H^2$, $g$ has a bounded continuous
+  representative, and $\|g\|_{L^\infty}\le\|g\|_{H^2}$.
+\item For an integer $k\ge0$ and $g\in H^{2k}$,
+  $\|g\|_{H^k}^2\le3^k\|g\|_{L^2}\|g\|_{H^{2k}}$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(E1) Let first $g\in C_c^\infty(\R^2)$. Since
+$|g(x)|^2=\int_{-\infty}^{x_1}\partial_1|g|^2(t,x_2)\dd t$, we have
+\[
+|g(x)|^2\le\int_\R|\partial_1|g|^2|(t,x_2)\dd t=:a(x_2),
+\]
+and likewise
+$|g(x)|^2\le\int_\R|\partial_2|g|^2|(x_1,t)\dd t=:b(x_1)$. Hence
+$\int|g|^4\le\int a\int b$, and since $|\partial_j|g|^2|\le2|g||\partial_jg|$,
+Cauchy-Schwarz gives
+$\int|g|^4\le4\|g\|_{L^2}^2\allowbreak\|\partial_1g\|_{L^2}\|\partial_2g\|_{L^2}\le2\|g\|_{L^2}^2\|\nabla g\|_{L^2}^2$.
+By density of $C_c^\infty$ in $H^1$ the inequality holds on $H^1$. Then
+$\|g\|_{L^4}\le2^{1/4}\|g\|_{L^2}^{1/2}\|\nabla g\|_{L^2}^{1/2}\le2^{-1/4}\|g\|_{H^1}$.
+
+(E2) Since $\widehat{\Delta g}=-|\zeta|^2\hat g$, Plancherel's theorem gives
+$\|(1+|\zeta|^2)\hat g\|_{L^2}=2\pi\|g-\Delta g\|_{L^2}\le2\sqrt3\,\pi\|g\|_{H^2}$.
+As $\int_{\R^2}(1+|\zeta|^2)^{-2}\dd\zeta=\pi$, Cauchy-Schwarz gives
+$\|\hat g\|_{L^1}\le\sqrt\pi\,\|(1+|\zeta|^2)\hat g\|_{L^2}$. Thus $\hat g\in L^1$, the
+Fourier inversion formula gives a bounded continuous representative, and
+$\|g\|_{L^\infty}\le(2\pi)^{-2}\|\hat g\|_{L^1}\le\frac{\sqrt3}{2\sqrt\pi}\|g\|_{H^2}\le\|g\|_{H^2}$.
+
+(E3) Put $P_k(\zeta)=\sum_{|\gamma|\le k}\zeta^{2\gamma}$. Every monomial
+$\zeta^{2\gamma}$ with $|\gamma|\le k$ occurs in the expansion of
+$(1+\zeta_1^2+\zeta_2^2)^k$ exactly once, with a multinomial coefficient between
+$1$ and $3^k$; hence $P_k\le(1+|\zeta|^2)^k\le3^kP_k$. By Plancherel's theorem and
+Cauchy-Schwarz,
+\[
+\|g\|_{H^k}^2\le\frac{\int(1+|\zeta|^2)^k|\hat g|^2\dd\zeta}{(2\pi)^2}
+\le\frac{\|\hat g\|_{L^2}\|(1+|\zeta|^2)^{k}\hat g\|_{L^2}}{(2\pi)^2}
+\le3^k\|g\|_{L^2}\|g\|_{H^{2k}} .\qedhere
+\]
+\end{proof}
+
+\begin{lemma}
+\label{lem:Hk-calculus}
+Let $k\ge3$ be an integer, $K\subset\R^2$ compact, $\mathcal O\supset K$ open and
+bounded, and $\chi_K\in C_c^\infty(\mathcal O)$ with $\chi_K=1$ on a neighborhood of
+$K$. There is $C=C(k,\chi_K)$ such that:
+\begin{enumerate}[label=\textup{(\arabic*)}]
+\item for $w\in H^{k+1}(\R^2)$ with $\supp w\subset K$, a vector field
+  $U\in W^{1,\infty}(\mathcal O)\cap H^k(\mathcal O)$, and every multi-index $\alpha$ with
+  $|\alpha|\le k$,
+  \[
+  \|[\partial^\alpha,U\cdot\nabla]w\|_{L^2}\le C\big(\|U\|_{W^{1,\infty}(\mathcal O)}+\|U\|_{H^k(\mathcal O)}\big)\|w\|_{H^k};
+  \]
+  if moreover $U$ is real and $\divop U=0$ on $\mathcal O$, then
+  $|\Re\langle\partial^\alpha(U\cdot\nabla w),\partial^\alpha w\rangle_{L^2}|\le
+  C\big(\|U\|_{W^{1,\infty}(\mathcal O)}+\|U\|_{H^k(\mathcal O)}\big)\|w\|_{H^k}^2$, and for
+  real $w$ the inner product is real;
+\item $\|gh\|_{H^j}\le C\|g\|_{H^j}\|h\|_{H^j}$ for every integer $j$ with
+  $2\le j\le k$ and all $g,h\in H^j(\R^2)$;
+\item for every integer $j\ge0$, every $\rho>0$ and every $\chi\in C_c^\infty(B_\rho)$
+  there is $C'=C'(j,\chi,\rho)$ such that
+  $\|\chi\,\KBS\ast w\|_{H^{j+1}}\le C'\|w\|_{H^j}$ for every $w\in H^j(\R^2)$ with
+  $\supp w\subset B_\rho$.
+\end{enumerate}
+Here $[\partial^\alpha,U\cdot\nabla]w=\partial^\alpha(U\cdot\nabla w)-U\cdot\nabla\partial^\alpha w$,
+with both terms extended by $0$ outside $\mathcal O$.
+\end{lemma}
+
+\begin{proof}
+We prove (2) first. Let $g,h\in C_c^\infty(\R^2)$, $|\gamma|\le j$ and
+$\beta\le\gamma$. If $\beta=0$ or $\beta=\gamma$, then
+$\|\partial^\beta g\,\partial^{\gamma-\beta}h\|_{L^2}\le\|g\|_{H^j}\|h\|_{H^j}$ by
+Lemma~\ref{lem:embed}\textup{(E2)}, since $j\ge2$. If
+$1\le|\beta|\le|\gamma|-1$, then by H\"older's inequality and
+Lemma~\ref{lem:embed}\textup{(E1)},
+$\|\partial^\beta g\,\partial^{\gamma-\beta}h\|_{L^2}\le\|\partial^\beta g\|_{H^1}\|\partial^{\gamma-\beta}h\|_{H^1}
+\le\|g\|_{H^{|\beta|+1}}\|h\|_{H^{|\gamma|-|\beta|+1}}\le\|g\|_{H^j}\|h\|_{H^j}$.
+The Leibniz formula
+$\partial^\gamma(gh)=\sum_{\beta\le\gamma}\binom\gamma\beta\partial^\beta g\,\partial^{\gamma-\beta}h$
+and $\sum_{\beta\le\gamma}\binom\gamma\beta=2^{|\gamma|}$ give (2) for smooth $g,h$,
+with $C=C(k)$. For $g,h\in H^j$ take $g_n,h_n\in C_c^\infty$ converging to
+$g,h$ in $H^j$; by the bound just proved, $g_nh_n$ is Cauchy in $H^j$, and by
+(E2) it converges to $gh$ in $L^2$, so $gh\in H^j$ and (2) holds.
+
+We now prove (1). Put $\tilde U=\chi_KU$, extended by $0$ outside $\mathcal O$; by the
+Leibniz rule, $\|\tilde U\|_{W^{1,\infty}(\R^2)}\le C\|U\|_{W^{1,\infty}(\mathcal O)}$ and
+$\|\tilde U\|_{H^k(\R^2)}\le C\|U\|_{H^k(\mathcal O)}$, with $C=C(k,\chi_K)$. Since
+$\chi_K=1$ on a neighborhood $V$ of $K$ and $w=0$ outside $K$,
+$[\partial^\alpha,U\cdot\nabla]w=[\partial^\alpha,\tilde U\cdot\nabla]w$, and
+\[
+[\partial^\alpha,\tilde U\cdot\nabla]w=\sum_{0<\beta\le\alpha}\binom\alpha\beta\,
+\partial^\beta\tilde U\cdot\nabla\partial^{\alpha-\beta}w :
+\]
+this holds in $\mathcal D'$ with $\tilde U_n\in C_c^\infty$ in place of
+$\tilde U$, and, taking such $\tilde U_n\to\tilde U$ in $H^k$ (they exist because
+$\tilde U\in H^k(\R^2)$ by the bound above), each product in it, as
+well as $\tilde U_n\cdot\nabla w$ and $\tilde U_n\cdot\nabla\partial^\alpha w$,
+converges in $L^1$, because $\nabla\partial^{\alpha-\beta}w\in L^2$ for
+$\beta\le\alpha$ ($w\in H^{k+1}$); so the identity passes to the limit. Write each term on the right as
+$\sum_l\partial^\beta\tilde U_l\,\partial_l\partial^{\alpha-\beta}w$. If $|\beta|=1$,
+its $L^2$ norm is at most $2\|\nabla\tilde U\|_{L^\infty}\|w\|_{H^k}$. If
+$|\beta|=|\alpha|\ge2$, it is at most
+$\sum_l\|\partial^\alpha\tilde U_l\|_{L^2}\|\partial_lw\|_{L^\infty}\le2\|\tilde U\|_{H^k}\|w\|_{H^3}
+\le2\|\tilde U\|_{H^k}\|w\|_{H^k}$, by (E2) and $k\ge3$. If
+$2\le|\beta|\le|\alpha|-1$, then by H\"older's inequality and (E1) it is at most
+$\sum_l\|\partial^\beta\tilde U_l\|_{H^1}\|\partial_l\partial^{\alpha-\beta}w\|_{H^1}
+\le2\|\tilde U\|_{H^{|\beta|+1}}\|w\|_{H^{|\alpha|-|\beta|+2}}\le2\|\tilde U\|_{H^k}\|w\|_{H^k}$,
+because $|\beta|+1\le k$ and $|\alpha|-|\beta|+2\le k$. Summing over $\beta$ gives
+the commutator bound. For the second claim, put $g=\partial^\alpha w\in H^1$,
+which vanishes outside $K$. Then
+$\partial^\alpha(U\cdot\nabla w)=[\partial^\alpha,\tilde U\cdot\nabla]w+\tilde U\cdot\nabla g$
+and
+$\Re\langle\tilde U\cdot\nabla g,g\rangle_{L^2}=\frac12\int\tilde U\cdot\nabla|g|^2\dd x
+=-\frac12\int(\divop\tilde U)|g|^2\dd x=0$:
+the integration by parts holds because $|g|^2\in W^{1,1}$ and $\tilde U$ is
+Lipschitz with compact support, and the last integral vanishes because
+$\divop\tilde U=\chi_K\divop U+U\cdot\nabla\chi_K=0$ on $V$ and $g=0$ outside $K$.
+Hence the real part is at most
+$\|[\partial^\alpha,\tilde U\cdot\nabla]w\|_{L^2}\|g\|_{L^2}$, and the commutator
+bound applies.
+
+We now prove (3). Let first $w\in C_c^\infty(B_\rho)$ and $u=\KBS\ast w$. By
+Lemma~I.\ref{I-lem:BS-basic}(d), and (c) with $R=\rho$,
+$\|\nabla u\|_{H^j}=\|w\|_{H^j}$ and $\|u\|_{L^2(B_\rho)}\le2\rho\|w\|_{L^2}$.
+For $|\gamma|\le j+1$, in the Leibniz formula
+$\partial^\gamma(\chi u)=\sum_{\beta\le\gamma}\binom\gamma\beta\partial^{\gamma-\beta}\chi\,\partial^\beta u$
+the term $\beta=0$ has $L^2$ norm at most
+$\|\partial^\gamma\chi\|_{L^\infty}\|u\|_{L^2(B_\rho)}$, because $\chi$ vanishes
+outside $B_\rho$, and every other term at most
+$\|\partial^{\gamma-\beta}\chi\|_{L^\infty}\|\nabla u\|_{H^j}$. This gives (3) for
+smooth $w$. For general $w$, $\supp w$ is a compact subset of $B_\rho$, so
+mollification gives $w_n\in C_c^\infty(B_\rho)$ with $w_n\to w$ in $H^j$; then
+$\chi\KBS\ast w_n$ is Cauchy in $H^{j+1}$ and, by Lemma~I.\ref{I-lem:BS-basic}(c),
+converges to $\chi\KBS\ast w$ in $L^2$, so (3) holds for $w$.
+\end{proof}

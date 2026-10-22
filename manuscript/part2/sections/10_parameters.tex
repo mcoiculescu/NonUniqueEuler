@@ -1,0 +1,298 @@
+\section{Choice of Parameters}
+\label{sec:param}
+
+Throughout this section we assume \textup{(N1)}--\textup{(N3)}.
+
+\begin{definition}
+\label{def:P0-P4}
+\emergencystretch=3em
+The \textbf{structural list} consists of the following choices; the objects of
+(SA1), (SA2), and the quantities that Definition~\ref{def:standing} derives from
+them, are defined there; the list only fixes the order in which they are chosen.
+\begin{description}[font=\normalfont]
+\item[\textup{(P0.1)}] $m=3$; $\Phi$, $a$, $\Gone$ of Definition~I.\ref{I-def:ring}; $z$, $\sigma$,
+  $\sigb$ of Definition~I.\ref{I-def:eigendata}.
+\item[\textup{(P0.2)}] An integer $s$ and a number $\sigma'$ as in (SA1); then
+  $c_\gamma$ of Definition~\ref{def:standing}.
+\item[\textup{(P0.3)}] $p=m$; the integers $N_G$, $M$, the constants
+  $\dH,C_2,C_3,\etmax$ and $\sigma_{\max}$, and the functions
+  $\kappa_0(\cdot)$, $\bar t_1(\cdot)$, $C(\cdot)$ of Theorem~\ref{thm:active};
+  $\kL$ and $\Cseed$ of Lemma~\ref{lem:seed}; $\|\ellst\|$, $\Cls$ and $\Cp$ of
+  Lemma~I.\ref{I-lem:uniform}.
+\item[\textup{(P0.4)}] The integers $s_h$, $N_Q$, $M_h$ and the constants
+  $\majst,C_Q$ of (SA2).
+\item[\textup{(P0.5)}] At order $M_h$: the constants $C_{L1}$, $C_M$, $C_O$,
+  $\Cin$ of (SA2), and $C_\eta$ of Lemma~\ref{lem:field-bound}. Further $\Mvort$,
+  $\Cstar$ of Lemma~\ref{lem:speed}; $C_G$ of Lemma~\ref{lem:inner-circ}; $\Cmom$
+  of Proposition~\ref{prop:confine}.
+\item[\textup{(P0.6)}] $c_N$, $C_N$, $\cout$ of Lemma~I.\ref{I-lem:uniform};
+  $C_{\mathrm{qr}}$, $C_{\mathrm{id}}$, $C_{\mathrm{od}}$
+  and the function $C_{\mathrm{tr}}(\cdot)$ of Lemma~\ref{lem:kicktrue}.
+\item[\textup{(P1)}] $\delta_0\in\big(0,\min(\dH,\dkick,\drd)\big]$, where
+  $\dkick=\frac{225\,\sigma\cout}{40960\,\pi|z|C_3}$ and $\drd=\frac{\cout}{16\pi\Cp C_2}$;
+  equivalently,
+  $\frac{16}{15}\cdot\frac{2\pi C_3\delta_0^2}{\sigma}\le\frac14\cdot\frac{15}{16}\cdot\frac{\cout\delta_0}{20|z|}$
+  and $\Cp C_2\delta_0\le\frac{\cout}{16\pi}$.
+\item[\textup{(P2)}] $\mu\in(1,\mu_{\max}]$, with
+  $\mu_{\max}=1+\min\big(c'\delta_0,\frac1{16}\big)$ and
+  $c'=\frac{15}{16}\cdot\frac{\cout}{10|z|\,\Cmom\,\Ip{m}{\sigma/4}}$; then
+  $\vartheta_\mu$, $\gamma_\mu$, $\gamma'_\mu$, $\CDuh$ of Definition~\ref{def:standing},
+  and $\KO$ of Lemma~\ref{lem:O}.
+\item[\textup{(P3)}] $\Tpin>0$ with $\rT(\Tpin)\le\frac1{64}$, with the function
+  $\rT$ of Definition~\ref{def:standing}. Then $C_D(\Tpin)$
+  (Proposition~\ref{prop:relay}); $c_K$, $K_1$, $\Abar$, $\Klo$, $\Kup$, $\Chand$
+  (Definition~\ref{def:K1});
+  $C_F=\Cin\,\mu\,(2+2\Cstar\Tpin)^m(1+2\Cstar)^m/\Klo$; $\Cdeep$
+  (Lemma~\ref{lem:kicktrue}); $\Tz$ (Lemma~\ref{lem:time}) and
+  $C_\tau=\max\{3,\frac{2m+5}{\sigma'},\frac{3(m+2)}{\sigma'}\}$.
+\item[\textup{(P4)}] $C_0=\max\{1,\,2\Cseed,\,\Chand,\,C_F\}$. Then $\kappa_0(C_0)$,
+  $\bar t_1(C_0)$ and $C(C_0)$ (Theorem~\ref{thm:active}); $C_{\mathrm{tr}}(C_0)$
+  (Lemma~\ref{lem:kicktrue}); $C_\Xi(C_0,K_1)$ (Proposition~\ref{prop:relay});
+  $\Cop(C_0,K_1)$ (Lemma~\ref{lem:Oprime}).
+\end{description}
+\end{definition}
+
+None of $\Chand$, $C_F$, $\Cseed$ in (P4) depends on $C_0$, so the choice of
+$C_0$ is not circular. Likewise $\Tpin$ depends only on $\sigma$
+and $m$; it is chosen before $C_F$, and the drift bound of
+Lemma~\ref{lem:drift} does not involve $C_F$.
+
+\begin{definition}
+\label{def:P5}
+The \textbf{$\kappa$-list (P5)}: choose $\kseed>0$ so small that, for every
+$\kappa\in(0,2\kseed]$, the following hold.
+\begin{description}[font=\normalfont]
+\item[\textup{($\kappa$1)}] $\kappa\le\delta_04^{-\mu/(\mu-1)}$.
+\item[\textup{($\kappa$2)}] \begin{multline*}
+  \frac{2\pi C_3\kappa^{1/2}\mu}{\frac34\sigma(\mu-1)}+C_{\mathrm{tr}}(C_0)\Big(\frac\kappa{\delta_0}\Big)^{\gamma_\mu}\log^{m+1}\frac{\delta_0}\kappa\\
+  +\big[\Cdeep+C_{\mathrm{id}}\rT(\Tpin)\Ip{m}{\tfrac\sigma8}\big]\Big(\frac\kappa{\delta_0}\Big)^{\vartheta_\mu}\log^{m}\frac{\delta_0}\kappa
+  \le\frac12\cdot\frac{15}{16}\cdot\frac{\cout}{20|z|(\mu-1)}.
+  \end{multline*}
+\item[\textup{($\kappa$3)}] $\Cpre(\kappa/\delta_0)^{\vartheta_\mu}\le\frac{15}{16}\cdot\frac{\cout}{20|z|(\mu-1)}$,
+  where $\Cpre=C_{\mathrm{qr}}\big(\frac{4\mu C_{L1}C_Q}{3\sigma(\mu-1)}+1\big)K_1$.
+\item[\textup{($\kappa$4)}] $\kappa\le\kappa_0(C_0)$.
+\item[\textup{($\kappa$5)}] For every $G\in[0,\Gone]$, with $\hat T=\sigma(G)^{-1}\log(\delta_0/\kappa)$
+  and $\rhohat$ the transient of Theorem~\ref{thm:active} for $(C_0,G)$:
+  $\Cp C_2\big(\rhohat(\hat T)+\kappa^{1/2}\big)\le\frac{\cout}{16\pi}$.
+\item[\textup{($\kappa$6)}] $\kappa\le\kL$.
+\item[\textup{($\kappa$7)}] $C_\Xi(C_0,K_1)\big(1+\frac1{\sigb(\mu-1)}\big)(\kappa/\delta_0)^{\gamma'_\mu}\langle\log(\delta_0/\kappa)\rangle^{m+1}\le\frac1{\sigb(\mu-1)}$.
+\end{description}
+\end{definition}
+
+Conditions ($\kappa$1)--($\kappa$3) are hypotheses (c)--(e) of
+Lemma~\ref{lem:kicktrue}, ($\kappa$4) is hypothesis (Small) of
+Theorem~\ref{thm:active}, ($\kappa$5) is used in the proof of
+Proposition~\ref{prop:reduction}, and ($\kappa$6) makes the seed of
+Definition~\ref{def:approx} admissible. Every amplitude $\ksh_k$ lies in
+$(0,2\kseed]$ (Steps~0 and~3 of the proof of Proposition~\ref{prop:bootstrap}),
+so the conditions are imposed on that whole interval.
+Condition ($\kappa$7) is imposed after $C_0$ and $K_1$ are fixed, and $K_1$
+(Definition~\ref{def:K1}) is an explicit function of quantities fixed at
+(P0)--(P3), not involving $C_0$, $\kseed$ or the deeper rings: ring $j+1$ enters
+the hand-off of ring $j$ only through $\Xi_{j+1}$ of Proposition~\ref{prop:relay},
+which ($\kappa$7) makes smaller than $\delta_0/(\sigb(\mu-1))$ at every level.
+
+\begin{definition}
+\label{def:P6}
+The \textbf{$\sbar$-list (P6)}: choose $\sbar>0$ such that the following hold,
+where $s_k=\sbar(2\mu)^{-k}$, $\eta_{b,1}=0$ and $\eta_{b,k}$, $\eta_b$ are as in
+Equation~\eqref{eq:etab}.
+\begin{description}[font=\normalfont]
+\item[\textup{(B1)}] $\sbar\le a/16$ and $\sbar^{m-2}\le\frac12$.
+\item[\textup{(B2)}] $\mu^4\sbar^2\le\frac18$.
+\item[\textup{(B3)}] $C_G\mu\sbar^2\le\Gone$.
+\item[\textup{(B4)}] $\sup_{0\le G\le C_G\mu\sbar^2}|\lamst(G)-z|\le\sigma(\mu-1)/(8\mu)$
+  (this is (Det)).
+\item[\textup{(B5)}] For every $k\ge1$: $\Lconf_ks_k\le a/8$ and
+  $\frac83(\frac2a)^m(\Lconf_k)^{m-1}s_k^{m-2}\le\mu\Cstar$, where
+  \[
+  \Lconf_k=2+2\Cstar\mu\Big[\Tpin+1+\frac1{\sigma'}\Big((m+2)\log\frac1{s_k}+\log_+\frac{\delta_0}{\Klo}\Big)\Big].
+  \]
+\item[\textup{(B6)}] $\Kup\sbar^{m+2}\le\kseed$.
+\item[\textup{(B7)}] $16C_OC_Q\CDuh\KO\sbar^{2m}\le1$, $\KO\sbar^{2m}\le\frac14$,
+  $\KO\mu\sbar^{m+2}\le\frac12$, and
+  \begin{equation}
+  \label{eq:E22}
+  \KO\sbar^{2m}\Big[\Tz+2\log\frac1{\sbar}+\frac1{\mu-1}\Big]\le\frac{\mu-1}{4C_OC_QC_\tau}\min\Big\{\frac12,\frac1{4\Cls K_1}\Big\}.
+  \end{equation}
+\item[\textup{(B8)}] $\eta_b\le\frac12\etmax$; for every $k\ge2$,
+  \[
+  \frac{\Cls\eta_{b,k}}{\sigma'}\Big[(m+2)\log\frac1{s_k}+\log_+\frac{\delta_0}{\Klo}\Big]\le\frac1{32};
+  \]
+  and $\Cls\eta_b\sigma'^{-1}\log(2\delta_0/\kseed)\le\frac1{32}$.
+\item[\textup{(B9)}] $2\Abar\mu\sbar^{m+2}\le\majst$ and $C_\eta(\mu\sbar^2+\sbar^{m-2})\le1$.
+\item[\textup{(B10)}] $4C_M\big(\frac{2C_Q}{\sigb(\mu-1)}+1\big)\mu\sbar^{m+2}\le\frac12$.
+\item[\textup{(B11)}] $\|\ellst\|C_QK_1\Abar\mu\sbar^{m+2}\le\frac12$, and
+  \[
+  C_{\mathrm{od}}\eta_b\delta_0\frac{\mu^2}{\sigma^2(\mu-1)^2}+2\pi C_3\eta_b\frac{4\mu\delta_0}{3\sigma(\mu-1)}
+  \le\frac14\cdot\frac{15}{16}\cdot\frac{\cout\delta_0}{20|z|(\mu-1)} .
+  \]
+\end{description}
+\end{definition}
+
+The second part of (B1), and (B2), hold automatically (see the remark after
+Equation~\eqref{eq:sk-small}); they are listed because Proposition~\ref{prop:confine} and
+Lemma~\ref{lem:field-bound} state them as hypotheses.
+
+\begin{table}[!tb]
+\centering
+\small
+\begin{tabular}{@{}p{0.40\textwidth}lp{0.42\textwidth}@{}}
+\hline
+\raggedright Quantity & Fixed at & \raggedright Determined by \tabularnewline
+\hline
+\raggedright $s$, $\sigma'$, $c_\gamma$ & (P0.2) & \raggedright $\sigb$, $\sigma$ ($s\ge3$ free) \tabularnewline
+\raggedright $N_G$, $M$, $\dH$, $C_2$, $C_3$, $\etmax$, $\sigma_{\max}$, $\kappa_0(\cdot)$, $\bar t_1(\cdot)$, $C(\cdot)$ & (P0.3) & \raggedright $\Phi$, $\Gone$, $s$, $\sigma'$ \tabularnewline
+\raggedright $\kL$; $\Cseed$; $\|\ellst\|$, $\Cls$, $\Cp$ & (P0.3) & \raggedright $\Phi$; $\Phi$, $\Gone$, $s$; $\Phi$, $\Gone$ \tabularnewline
+\raggedright $s_h$, $N_Q$, $M_h$, $\majst$, $C_Q$ & (P0.4) & \raggedright $M$, $\Lam$, $\sigb$ \tabularnewline
+\raggedright $C_{L1}$, $C_M$, $C_O$, $\Cin$, $C_\eta$ & (P0.5) & \raggedright $a$, $m$, $M_h$, $\|\Phi\|_{L^1}$ \tabularnewline
+\raggedright $\Mvort$, $\Cstar$, $C_G$, $\Cmom$ & (P0.5) & \raggedright absolute; $\|\Phi\|_{L^1}$ \tabularnewline
+\raggedright $c_N$, $C_N$, $\cout$, $C_{\mathrm{qr}}$, $C_{\mathrm{id}}$, $C_{\mathrm{od}}$, $C_{\mathrm{tr}}(\cdot)$ & (P0.6) & \raggedright $\Phi$, $\Gone$, $m$; $C_3$, $\sigma$, $C(\cdot)$ \tabularnewline
+\raggedright $\dkick$, $\drd$, $\delta_0$ & (P1) & \raggedright $\dH$, $C_2$, $C_3$, $\Cp$, $\cout$, $\sigma$, $|z|$ \tabularnewline
+\raggedright $c'$, $\mu_{\max}$, $\mu$; $\vartheta_\mu$, $\gamma_\mu$, $\gamma'_\mu$, $\CDuh$, $\KO$ & (P2) & \raggedright $\delta_0$, $\cout$, $|z|$, $\Cmom$, $\sigma$; $c_\gamma$, $\sigb$, $C_M$, $C_Q$ \tabularnewline
+\raggedright $\Tpin$ & (P3) & \raggedright $\sigma$, $m$ \tabularnewline
+\raggedright $C_D(\Tpin)$, $c_K$, $K_1$, $\Abar$, $\Klo$, $\Kup$, $\Chand$ & (P3) & \raggedright (P0)--(P2), $\Tpin$ \tabularnewline
+\raggedright $C_F$, $\Cdeep$, $\Tz$, $C_\tau$ & (P3) & \raggedright (P0)--(P2), $\Tpin$, $\Klo$ \tabularnewline
+\raggedright $C_0$ & (P4) & \raggedright $\Cseed$, $\Chand$, $C_F$ \tabularnewline
+\raggedright $\kappa_0(C_0)$, $\bar t_1(C_0)$, $C(C_0)$, $C_{\mathrm{tr}}(C_0)$, $C_\Xi(C_0,K_1)$, $\Cop(C_0,K_1)$ & (P4) & \raggedright $C_0$, $K_1$ and (P0) \tabularnewline
+\raggedright $\kseed$ & (P5) & \raggedright (P0)--(P4) \tabularnewline
+\raggedright $\sbar$; $\eta_b$, $\eta_{b,k}$, $\theta_j$ & (P6) & \raggedright (P0)--(P5); $\Cop$, $\sbar$, $\mu$, $C_O$, $C_Q$, $\KO$ \tabularnewline
+\hline
+\end{tabular}
+\caption{Where each constant of the construction is fixed, and the quantities
+that determine it. Every entry of the last column is fixed at an earlier row or
+at the same step. The depth $n$, the amplitude $A_1$ and the solution
+$\omega^{(n)}$ appear in no row; a level enters only as the index of
+$\eta_{b,k}$ and $\theta_j$.}
+\label{tab:param}
+\end{table}
+
+\begin{lemma}
+\label{lem:theta-quiet}
+Assume (SA) and \textup{(B7)}, and let $K_1$ be as in Definition~\ref{def:K1},
+$\Tz$ and $C_\tau$ as in \textup{(P3)}, $\theta_j$ as in Lemma~\ref{lem:O} and
+$\bar\tau^\sharp_j$ as in Lemma~\ref{lem:quiet-time}. Then $\theta_j\bar\tau^\sharp_j\le\min\{\frac12,\frac1{4\Cls K_1}\}$
+for every level $1\le j<n$.
+\end{lemma}
+
+\begin{proof}
+For $j=1$, $\theta_1=0$ by Lemma~\ref{lem:O}. Let $2\le j<n$. By
+Lemma~\ref{lem:O}, $\theta_j=4C_OC_Q\KO s_{j-1}^{2m}$. By (SA3),
+$1<\mu\le\frac{17}{16}$, so $\mu\log(2\mu)\le\frac{17}{16}\log\frac{17}8<1$.
+Comparing the three terms of $\bar\tau^\sharp_j$ (Lemma~\ref{lem:quiet-time}) with
+those of $C_\tau[\Tz+\log(1/s_j)+(\mu-1)^{-1}]/(\mu-1)$, namely $3\le C_\tau$,
+$(2m+5)/\sigma'\le C_\tau$ and $(m+2)\mu\log(2\mu)/\sigma'\le(m+2)/\sigma'\le C_\tau$,
+gives $\bar\tau^\sharp_j\le C_\tau\big[\Tz+\log(1/s_j)+(\mu-1)^{-1}\big]/(\mu-1)$. Since
+$s_{j-1}\le\sbar\le a/16<\frac1{2\mu}$, we have
+$\log\frac1{s_j}=\log\frac1{s_{j-1}}+\log(2\mu)\le2\log\frac1{s_{j-1}}$, so
+\[
+\theta_j\bar\tau^\sharp_j\le\frac{4C_OC_QC_\tau}{\mu-1}\,\KO\,g(s_{j-1}),\qquad
+g(x)=x^{2m}\Big[\Tz+2\log\frac1x+\frac1{\mu-1}\Big].
+\]
+For $0<x<1$,
+$g'(x)=x^{2m-1}\big[2m\big(\Tz+2\log\frac1x+\frac1{\mu-1}\big)-2\big]$, which is
+nonnegative when $\log(1/x)\ge1/(2m)$, because $\Tz>0$ and $\mu>1$. So $g$ is
+nondecreasing on $(0,e^{-1/(2m)}]$. Since $s_{j-1}\le\sbar\le a/16<\frac1{16}<e^{-1/(2m)}$,
+$g(s_{j-1})\le g(\sbar)$, and Equation~\eqref{eq:E22} gives
+\[
+\theta_j\bar\tau^\sharp_j\le\frac{4C_OC_QC_\tau}{\mu-1}\KO g(\sbar)\le\min\{\frac12,\frac1{4\Cls K_1}\}.\qedhere
+\]
+\end{proof}
+
+\begin{lemma}
+\label{lem:nonempty}
+Assume \textup{(N1)}--\textup{(N3)}. The choices (P0)--(P6) can be made in this
+order, with all quantities finite and positive (except $\eta_{b,1}=\theta_1=0$),
+and each quantity is determined by quantities fixed at earlier steps or earlier in the same step, as in
+Table~\ref{tab:param}. None of the choices depends on $n$, $A_1$ or
+$\omega^{(n)}$. Finally, if (P0)--(P6) hold, then for every integer $n\ge2$ and
+every $A_1>0$ the standing assumptions (SA) hold with these parameters, and
+(Det) holds.
+\end{lemma}
+
+\begin{proof}
+\emph{(P0)--(P4).} The constants of (P0) exist and are finite by the results
+cited there; in particular, by the formulas of (SA2) and $M\ge s+4$
+(Theorem~\ref{thm:active}), $s_h=M-1\ge s+3\ge3$ and $N_Q\sigb\ge\Lam(s_h)$, as
+Theorem~\ref{thm:quiet} requires. The interval for $\sigma'$ in (SA1) is
+nonempty: by Proposition~I.\ref{I-prop:U}\textup{(a)}, $\sigb$ is attained and
+$\sigb>\frac{211}{2500}>\frac9{200}$; and
+$\frac34\sigma\ge\frac34\sigb>\frac{633}{10000}>\frac9{200}$. Moreover
+$c_\gamma>0$, because $\sigma'<\frac34\sigma<\frac{15}{16}\sigma$. The numbers
+$\dkick$, $\drd$ are positive, because $\sigma\ge\sigb>0$, $\cout>0$,
+$|z|\ge\Re z=\sigma>0$, $C_3>0$, $C_2\ge1$ and $\Cp>0$; so (P1) is satisfiable.
+In (P2), $c'>0$ because $\Cmom>0$ and $0<\Ip{m}{\sigma/4}<\infty$, so
+$\mu_{\max}>1$. In (P3), $\Tpin$ exists because $\rT(T)\to0$ as $T\to\infty$
+($\sigma>0$). The formulas of (P3) and (P4) have positive finite denominators:
+$c_K=3c_N/(32\mu)>0$, $\delta_0>0$, $\sigb>0$, $\mu-1>0$ and $\Klo>0$. So all the
+constants of (P0)--(P4) are finite and positive, and $C_0\ge1$ and
+$0<C_F\le C_0$, as Theorem~\ref{thm:active} and Lemma~\ref{lem:Oprime} require.
+Each is given by an explicit formula, or by a result of an earlier section, in
+terms of the quantities in its row of Table~\ref{tab:param}, which are fixed at
+earlier rows or earlier in the same step.
+
+\emph{(P5).} Since (P5) is imposed for every $\kappa\in(0,2\kseed]$, it suffices
+to find $x_0>0$ such that each condition holds for every $\kappa\in(0,x_0]$; then every $\kseed\in(0,x_0/2]$ is admissible. For ($\kappa$1), ($\kappa$4), ($\kappa$6) this holds
+because $\delta_04^{-\mu/(\mu-1)}$, $\kappa_0(C_0)$, $\kL$ are positive. For
+($\kappa$2), ($\kappa$3), ($\kappa$7) it suffices that each left side tends to
+$0$ as $\kappa\to0$. The left sides are finite sums of terms $C\kappa^{1/2}$ and
+$C(\kappa/\delta_0)^\gamma\langle\log(\delta_0/\kappa)\rangle^N$ with $C$ fixed at
+(P0)--(P4), integers $N\ge0$, and
+$\gamma\in\{\gamma_\mu,\vartheta_\mu,\gamma'_\mu\}$, positive because $\mu>1$ and
+$c_\gamma>0$; each term tends to $0$. For ($\kappa$5) we need a bound uniform in
+$G$. Let $\kappa<\delta_0$ and $G\in[0,\Gone]$, and put $c=\sigb-\sigma'>0$. By Theorem~\ref{thm:active},
+$t_1(C_0,G)\le\bar t_1(C_0)$, and $\sigma(G)\in[\sigb,\sigma_{\max}]$, so
+$\hat T\ge\sigma_{\max}^{-1}\log(\delta_0/\kappa)$. If moreover
+$\kappa\le\delta_0e^{-\sigma_{\max}\bar t_1(C_0)}$, then $\hat T\ge\bar t_1(C_0)$, so
+$y=\hat T-t_1(C_0,G)\ge\hat T-\bar t_1(C_0)\ge0$ and
+\[
+\rhohat(\hat T)=\jap{y}^pe^{-(\sigma(G)-\sigma')y}\le\jap{y}^pe^{-cy}\le K_ce^{-cy/2}
+\le K_ce^{c\bar t_1(C_0)/2}\Big(\frac\kappa{\delta_0}\Big)^{c/(2\sigma_{\max})},
+\]
+where $K_c=\sup_{y\ge0}\jap{y}^pe^{-cy/2}<\infty$. The right side does not depend on
+$G$ and tends to $0$ as $\kappa\to0$, and so does $\kappa^{1/2}$; so ($\kappa$5)
+holds for all small $\kappa$, uniformly in $G\in[0,\Gone]$. We take for $x_0$
+the least of the thresholds found for ($\kappa$1)--($\kappa$7).
+
+\emph{(P6)}, with (P0)--(P5) fixed. It suffices that each condition holds for
+every $\sbar$ in some interval $(0,\sbar_i]$, $\sbar_i>0$; then
+every $\sbar\in(0,\min_i\sbar_i]$ is admissible. The conditions (B1)--(B3), (B6), (B7), (B9),
+(B10), (B11), the first part of (B8) and its last part (with $\kseed$ fixed)
+have left sides that are finite sums of terms $C\sbar^\alpha\log^N(1/\sbar)$ with
+$\alpha>0$, $N\in\{0,1\}$ and $C$ fixed at (P0)--(P5); here we use
+$\eta_b=\Cop\sbar^{2m}/(\sigb(\mu-1))$ and $m=3$. Each such term tends to $0$ as
+$\sbar\to0$, while the right sides are fixed positive numbers. For (B4), the
+supremum tends to $0$ as $\sbar\to0$, because $\lamst$ is continuous at $G=0$
+(Proposition~I.\ref{I-prop:U}\textup{(a)}) and $\lamst(0)=z$; the right side
+$\sigma(\mu-1)/(8\mu)$ is positive. The conditions (B5) and (B8), imposed at
+every level, reduce to a condition on one small number. Put
+$\alpha_0=2+2\Cstar\mu\big[\Tpin+1+\sigma'^{-1}\log_+(\delta_0/\Klo)\big]$ and
+$\beta_0=2\Cstar\mu(m+2)/\sigma'$, so that $\Lconf_k=\alpha_0+\beta_0\log(1/s_k)$.
+The functions $x\mapsto x(\alpha_0+\beta_0\log(1/x))$ and
+$x\mapsto x^{m-2}(\alpha_0+\beta_0\log(1/x))^{m-1}=x(\alpha_0+\beta_0\log(1/x))^2$
+tend to $0$ as $x\to0$, so there is $\sbar_{\mathrm{B5}}>0$ such that both inequalities of
+(B5) hold at level $k$ whenever $s_k\le\sbar_{\mathrm{B5}}$. Since $s_k\le\sbar$ for every
+$k$, (B5) holds for every $\sbar\le\sbar_{\mathrm{B5}}$. For (B8) and $k\ge2$, we have
+$s_k=s_{k-1}/(2\mu)$, and the $k$-th inequality reads $F(s_{k-1})\le\frac1{32}$
+with
+\[
+F(x)=\frac{\Cls\Cop}{\sigma'\sigb(\mu-1)}\,x^{2m}\Big[(m+2)\Big(\log\frac1x+\log(2\mu)\Big)+\log_+\frac{\delta_0}{\Klo}\Big].
+\]
+Since $F(x)\to0$ as $x\to0$, there is $\sbar_{\mathrm{B8}}>0$ with $F\le\frac1{32}$ on
+$(0,\sbar_{\mathrm{B8}}]$, and the inequalities hold for all $k\ge2$ once $\sbar\le\sbar_{\mathrm{B8}}$.
+
+No formula or condition of (P0)--(P6) contains $n$, $A_1$ or $\omega^{(n)}$; the
+levels in (B5) and (B8) range over all integers $k\ge1$ and $k\ge2$.
+
+\emph{(SA) and (Det).} Assume (P0)--(P6) and let $n\ge2$ and $A_1>0$. (SA1) holds by (P0.2) and (P0.3), and (SA2) by (P0.4) and (P0.5). For
+(SA3): $\mu\in(1,\frac{17}{16}]$ because
+$\mu_{\max}\le1+\frac1{16}$; $\sbar\in(0,a/16]$ and $C_G\mu\sbar^2\le\Gone$ by (B1) and (B3);
+$\delta_0\in(0,\dH]$ by (P1); $\Tpin>0$ by (P3); and $\kseed\in(0,\kL]$ by
+($\kappa$6) at $\kappa=2\kseed$. The objects of
+Definitions~\ref{def:datum}--\ref{def:clock} are then defined with these
+parameters: Definition~\ref{def:datum} needs $\mu\in(1,2]$ and $\sbar\in(0,a/16]$,
+Definition~\ref{def:approx} needs $\kseed\in(0,\kL]$, and
+Definition~\ref{def:clock} needs $\delta_0,\Tpin>0$ and $G_k\le\Gone$ for
+$1\le k\le n$, which holds by Lemma~\ref{lem:inner-circ} and (B3). Hypothesis
+(Det) is (B4).
+\end{proof}

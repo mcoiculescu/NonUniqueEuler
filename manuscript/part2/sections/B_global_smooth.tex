@@ -1,0 +1,565 @@
+\section{Global Smooth Solutions}
+\label{app:smooth}
+
+In this appendix we prove Theorem~\ref{thm:smooth}. The argument is a Picard
+iteration through linear transport: each iterate is transported by the
+velocity field of the previous one, the iterates obey bounds that are uniform
+in the iteration index on every bounded time interval, and they converge
+together with all their spatial derivatives. We write the iteration in
+$L^2$-Sobolev form, so that, besides elementary real analysis, it uses only
+Section~I.\ref{I-sec:prelim}, Section~\ref{sec:II-prelim} and the facts on ordinary differential equations
+collected in Lemma~\ref{lem:ode}. For
+the classical theory of smooth solutions see \cite{Wolibner}, \cite{Holder} and
+\cite{Kato1967}.
+
+\subsection{Ordinary Differential Equations}
+
+The following facts are used without proof.
+
+\begin{lemma}[Theorems 2.2, 2.10, 2.13 and 2.17 in \cite{Teschl}]
+\label{lem:ode}
+Let $n\ge1$ and $k\ge1$ be integers, let $U\subset\R\times\R^n$ be open, and let
+$F\in C^k(U;\R^n)$.
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item For every $(s,y)\in U$ the problem $\dot x=F(t,x)$, $x(s)=y$, has a unique
+  maximal solution, defined on an open interval containing $s$. We write
+  $\flow_F(t,s,y)$ for its value at time $t$.
+\item Around each point of $U$ there is an open set $I\times\mathcal U\subset U$,
+  with $I$ an interval, such that $\flow_F$ and $\partial_t\flow_F$ are defined
+  and of class $C^k$ on $I\times I\times\mathcal U$, and there $D_y\flow_F$
+  solves the variational equation
+  \[
+  \partial_tD_y\flow_F(t,s,y)=D_xF\big(t,\flow_F(t,s,y)\big)\,D_y\flow_F(t,s,y).
+  \]
+\item If $U=\R\times\R^n$ and for every $T>0$ there are numbers $M(T)$, $L(T)$
+  with $|F(t,x)|\le M(T)+L(T)|x|$ on $[-T,T]\times\R^n$, then every maximal
+  solution is defined on all of $\R$.
+\end{enumerate}
+\end{lemma}
+
+Item (i) is Theorem 2.2 of \cite{Teschl} (the Picard-Lindel\"of theorem; a
+$C^1$ function is locally Lipschitz) together with Theorem 2.13 there, which
+produces the maximal solution. Item (ii) is Theorem 2.10 of \cite{Teschl}, and
+item (iii) is Theorem 2.17 there. We use these facts through the following
+lemma.
+
+\begin{lemma}
+\label{lem:flow}
+Let $u\in C^\infty(\R\times\R^2;\R^2)$ be bounded on $[-T,T]\times\R^2$ for every
+$T>0$, and write $\flow_u$ for the solution map of $\dot x=u(t,x)$ from
+Lemma~\ref{lem:ode}(i). Then:
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item $\flow_u(t,s,y)$ is defined for all $(t,s,y)\in\R\times\R\times\R^2$, and
+  $\flow_u\in C^\infty(\R\times\R\times\R^2)$;
+\item $\flow_u(t,\tau,\flow_u(\tau,s,y))=\flow_u(t,s,y)$ for all $t,\tau,s,y$, and
+  each map $\flow_u(t,s,\cdot)$ is a $C^\infty$ diffeomorphism of $\R^2$ with
+  inverse $\flow_u(s,t,\cdot)$;
+\item $|\flow_u(t,s,y)-y|\le|t-s|\sup_{[-T,T]\times\R^2}|u|$ whenever
+  $s,t\in[-T,T]$;
+\item $Y(t)=D_y\flow_u(t,s,y)$ solves $\partial_tY=\nabla u(t,\flow_u(t,s,y))\,Y$
+  with $Y(s)=I$, and if $\divop u=0$, then $\det D_y\flow_u\equiv1$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Lemma~\ref{lem:ode}(iii), with $M(T)=\sup_{[-T,T]\times\R^2}|u|$ and $L(T)=0$,
+shows that $\flow_u$ is defined on $\R\times\R\times\R^2$. Both sides of the
+identity in (b) solve $\dot x=u(t,x)$ as functions of $t$ and agree at $t=\tau$,
+so they agree by the uniqueness in Lemma~\ref{lem:ode}(i). With $t=s$ the
+identity gives $\flow_u(s,\tau,\flow_u(\tau,s,y))=y$, so $\flow_u(\tau,s,\cdot)$ is
+a bijection with inverse $\flow_u(s,\tau,\cdot)$. Part (c) follows from
+$\flow_u(t,s,y)-y=\int_s^tu(\sigma,\flow_u(\sigma,s,y))\dd\sigma$.
+
+We prove the smoothness in (a). Fix $k\ge1$ and $(t_*,s_*,y_*)$, let $J$ be the
+closed interval with endpoints $s_*$ and $t_*$, and put
+$\gamma(\tau)=\flow_u(\tau,s_*,y_*)$. For every $\tau\in J$,
+Lemma~\ref{lem:ode}(ii) gives an open set
+$I_\tau\times\mathcal U_\tau\ni(\tau,\gamma(\tau))$ on which $\flow_u$ is $C^k$ in
+the sense stated there. The sets
+$\{\sigma\in J\cap I_\tau:\gamma(\sigma)\in\mathcal U_\tau\}$, $\tau\in J$, are
+relatively open in $J$ and cover $J$. By the Lebesgue number lemma there are
+points $s_*=\tau_0,\tau_1,\dots,\tau_N=t_*$, monotone in the index, and points
+$\tau'_i\in J$ such that $\tau_i,\tau_{i+1}\in I_{\tau'_i}$ and
+$\gamma(\tau_i)\in\mathcal U_{\tau'_i}$ for $0\le i<N$. By (b), for $(t,s,y)$ near $(t_*,s_*,y_*)$,
+\[
+\flow_u(t,s,y)=\flow_u\Big(t,\tau_{N-1},\flow_u\big(\tau_{N-1},\tau_{N-2},\cdots
+\flow_u(\tau_2,\tau_1,\flow_u(\tau_1,s,y))\cdots\big)\Big).
+\]
+The innermost map $(s,y)\mapsto\flow_u(\tau_1,s,y)$ is $C^k$ near
+$(\tau_0,\gamma(\tau_0))$; each map $y\mapsto\flow_u(\tau_{i+1},\tau_i,y)$ is $C^k$
+on $\mathcal U_{\tau'_i}$, which is a neighborhood of $\gamma(\tau_i)$, and it
+maps $\gamma(\tau_i)$ to $\gamma(\tau_{i+1})$; and
+$(t,x)\mapsto\flow_u(t,\tau_{N-1},x)$ is $C^k$ for $t\in I_{\tau'_{N-1}}\ni t_*$
+and $x\in\mathcal U_{\tau'_{N-1}}$. By
+continuity and the chain rule, $\flow_u$ is $C^k$ near $(t_*,s_*,y_*)$. Since $k$
+is arbitrary, $\flow_u\in C^\infty$, and by (b) the maps $\flow_u(t,s,\cdot)$ are
+$C^\infty$ diffeomorphisms.
+
+We prove (d). By (a), $\flow_u$ is $C^\infty$. Differentiating
+$\partial_t\flow_u(t,s,y)=u(t,\flow_u(t,s,y))$ in $y$ and exchanging the order
+of the derivatives gives
+\[
+\partial_tD_y\flow_u(t,s,y)=\nabla u\big(t,\flow_u(t,s,y)\big)\,D_y\flow_u(t,s,y),
+\]
+and $Y(s)=I$ because $\flow_u(s,s,y)=y$. The matrix
+$Y(t)$ is invertible by (b), and Jacobi's formula gives
+$\partial_t\det Y=\det Y\operatorname{tr}(Y^{-1}\partial_tY)=\det
+Y\operatorname{tr}\nabla u=(\divop u)\det Y$. If $\divop u=0$, then $\det Y$ is
+constant in $t$ and equal to $\det Y(s)=1$.
+\end{proof}
+
+\subsection{Two Estimates on the Plane}
+
+\begin{lemma}
+\label{lem:grad-bound}
+Let $g\in C^1_c(\R^2)$ be real with $g\not\equiv0$, and let $u=\KBS\ast g$. Then
+for all $x\in\R^2$ and $i,l\in\{1,2\}$,
+\[
+|\partial_lu_i(x)|\le\|g\|_{L^\infty}\Big(2+\log_+\frac{\|\nabla g\|_{L^\infty}}{\|g\|_{L^\infty}}\Big)
++\frac{\|g\|_{L^1}}{2\pi},
+\]
+where $\|\nabla g\|_{L^\infty}=\sup_x|\nabla g(x)|$.
+\end{lemma}
+
+\begin{proof}
+Since $\KBS$ is locally integrable and $g\in C^1_c$, differentiation under the
+integral sign gives $\partial_lu_i(x)=\int(\KBS)_i(z)\,\partial_lg(x-z)\dd z$.
+Fix $\delta\in(0,1]$. By Lemma~I.\ref{I-lem:BS-basic}(a), the part of the integral
+over $\{|z|<\delta\}$ is at most $\delta\|\nabla g\|_{L^\infty}$. On
+$\{|z|>\delta\}$ we write $\partial_lg(x-z)=-\partial_{z_l}[g(x-z)]$ and apply
+the divergence theorem on $\{\delta<|z|<\rho'\}$, with $\rho'$ so large that
+$g(x-z)=0$ for $|z|\ge\rho'$. The outward normal on $\{|z|=\delta\}$ is
+$-z/|z|$, so
+\begin{align*}
+\int_{|z|>\delta}(\KBS)_i(z)\,\partial_lg(x-z)\dd z
+&=\int_{|z|>\delta}\partial_l(\KBS)_i(z)\,g(x-z)\dd z\\
+&\quad+\int_{|z|=\delta}(\KBS)_i(z)\,g(x-z)\frac{z_l}{|z|}\dd S .
+\end{align*}
+By Lemma~I.\ref{I-lem:BS-basic}(a), the boundary term is at most
+$(2\pi\delta)^{-1}\|g\|_{L^\infty}2\pi\delta=\|g\|_{L^\infty}$, the volume integral
+over $\{\delta<|z|<1\}$ is at most
+$\|g\|_{L^\infty}\int_\delta^1r^{-1}\dd r=\|g\|_{L^\infty}\log\frac1\delta$, and the
+volume integral over $\{|z|\ge1\}$ is at most $\|g\|_{L^1}/(2\pi)$. Hence
+$|\partial_lu_i(x)|\le\delta\|\nabla g\|_{L^\infty}+\|g\|_{L^\infty}\big(1+\log\frac1\delta\big)+\|g\|_{L^1}/(2\pi)$.
+The choice $\delta=\min\{1,\|g\|_{L^\infty}/\|\nabla g\|_{L^\infty}\}$ gives the
+claim.
+\end{proof}
+
+\begin{lemma}
+\label{lem:comm-R2}
+Let $s\ge2$ be an integer, $g\in C_c^\infty(\R^2)$, and let
+$u\in C^\infty(\R^2;\R^2)$ satisfy
+$|\nabla u|_{\max}:=\max_{i,l}\sup_x|\partial_lu_i(x)|<\infty$ and
+$\partial^\beta u\in L^2$ for $1\le|\beta|\le s$. Then for every multi-index
+$\alpha$ with $|\alpha|=s$,
+\[
+\|[\partial^\alpha,u\cdot\nabla]g\|_{L^2}\le2^{s+1}\Big[\big(|\nabla u|_{\max}+\|\nabla u\|_{H^{s-1}}\big)\|g\|_{H^s}
++\|\nabla u\|_{H^{s-1}}\|\nabla g\|_{L^\infty}\Big].
+\]
+\end{lemma}
+
+\begin{proof}
+By the Leibniz formula,
+$[\partial^\alpha,u\cdot\nabla]g=\sum_{l=1}^2\sum_{0<\beta\le\alpha}\binom\alpha\beta\partial^\beta u_l\,\partial_l\partial^{\alpha-\beta}g$,
+and $\sum_l\sum_{\beta\le\alpha}\binom\alpha\beta=2^{s+1}$. It suffices to bound
+each product by the bracket on the right. If $|\beta|=1$, the product is at
+most $|\nabla u|_{\max}\|g\|_{H^s}$. If $\beta=\alpha$, it is at most
+$\|\partial^\alpha u_l\|_{L^2}\|\partial_lg\|_{L^\infty}\le\|\nabla u\|_{H^{s-1}}\|\nabla g\|_{L^\infty}$,
+since $\partial^\alpha u_l$ is a derivative of order $s-1$ of an entry of
+$\nabla u$. If $2\le|\beta|\le s-1$, H\"older's inequality and (E1) of
+Lemma~\ref{lem:embed} give the bound
+$\|\partial^\beta u_l\|_{H^1}\|\partial_l\partial^{\alpha-\beta}g\|_{H^1}
+\le\|\nabla u\|_{H^{|\beta|}}\|g\|_{H^{s-|\beta|+2}}\le\|\nabla u\|_{H^{s-1}}\|g\|_{H^s}$,
+because $|\beta|\le s-1$ and $|\beta|\ge2$.
+\end{proof}
+
+\subsection{The Iteration}
+
+Throughout the rest of this appendix, $\omega_0$ and $R_0$ are as in
+Theorem~\ref{thm:smooth}, and we assume $\omega_0\not\equiv0$. We put
+\begin{gather*}
+A=\|\omega_0\|_{L^\infty},\qquad
+N_0=\sup_x|\nabla\omega_0(x)|,\\
+U_*=\Big(\frac{2A\|\omega_0\|_{L^1}}{\pi}\Big)^{1/2},\qquad
+c_*=2+\frac{\|\omega_0\|_{L^1}}{2\pi A},
+\end{gather*}
+and, for $t\in\R$,
+\begin{gather*}
+\mathcal L(t)=\Big(\log_+\frac{N_0}{A}+c_*\Big)e^{2A|t|}-c_*,\qquad
+\Psi(t)=Ae^{\mathcal L(t)},\\
+V(t)=2A\big(\mathcal L(t)+c_*\big),\qquad R(t)=R_0+U_*|t| .
+\end{gather*}
+The functions $\mathcal L$, $\Psi$ and $V$ are even and nondecreasing in
+$|t|$; moreover $\mathcal L\ge\mathcal L(0)=\log_+(N_0/A)\ge0$, and
+$\mathcal L'=V$ on $(0,\infty)$. Since $\supp\omega_0$ is a compact subset of
+$B_{R_0}$, there is
+$R_0'<R_0$ with $\omega_0=0$ outside $\overline B_{R_0'}$.
+
+\begin{definition}
+\label{def:iterates}
+Put $\omega^{[0]}(t,x)=\omega_0(x)$ for $(t,x)\in\R\times\R^2$. If
+$\omega^{[j]}\in C^\infty(\R\times\R^2)$ is defined and
+$v^{[j]}=\KBS\ast\omega^{[j]}$ satisfies the hypotheses of Lemma~\ref{lem:flow},
+let $\flow^{[j]}=\flow_{v^{[j]}}$ and put
+$\omega^{[j+1]}(t,x)=\omega_0\big(\flow^{[j]}(0,t,x)\big)$.
+\end{definition}
+
+\begin{lemma}
+\label{lem:iterates}
+The iterates $\omega^{[j]}$ are defined for every $j\ge0$, and:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item $\omega^{[j]}\in C^\infty(\R\times\R^2)$ is real, and $\omega^{[j]}(t,x)=0$
+  for $|x|>R_0'+U_*|t|$;
+\item $\|\omega^{[j]}(t)\|_{L^p}=\|\omega_0\|_{L^p}$ for every $t\in\R$ and every
+  $p\in[1,\infty]$;
+\item $v^{[j]}\in C^\infty(\R\times\R^2;\R^2)$, every derivative of $v^{[j]}$ is
+  bounded on $[-T,T]\times\R^2$ for every $T>0$, $\divop v^{[j]}=0$, and
+  $|v^{[j]}|\le U_*$;
+\item $\flow^{[j]}$ is defined and $C^\infty$ on $\R\times\R\times\R^2$,
+  $\det D_y\flow^{[j]}\equiv1$, $\omega^{[j+1]}(0)=\omega_0$, and
+  $\partial_t\omega^{[j+1]}+v^{[j]}\cdot\nabla\omega^{[j+1]}=0$ on $\R\times\R^2$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+We argue by induction on $j$. Items (i) and (ii) hold for $j=0$. Assume (i) and
+(ii) for some $j$.
+
+We prove (iii) for $j$. Fix $T>0$. Every derivative
+$\partial_t^i\partial_x^\gamma\omega^{[j]}$ is continuous and vanishes outside
+the compact set $[-T,T]\times\overline B_{R(T)}$ on $[-T,T]\times\R^2$, so it is
+bounded there. When $(t,x)$ ranges over a bounded subset of
+$(-T,T)\times\R^2$, the functions
+$z\mapsto\KBS(z)\,\partial_t^i\partial_x^\gamma\omega^{[j]}(t,x-z)$ are dominated
+by a constant multiple of the integrable function
+$|\KBS(z)|\mathbf 1_{\{|z|\le\rho\}}$, for a suitable $\rho$. Differentiation under the integral sign
+and dominated convergence give
+$\partial_t^i\partial_x^\gamma v^{[j]}=\KBS\ast\partial_t^i\partial_x^\gamma\omega^{[j]}$,
+continuous, and bounded on $[-T,T]\times\R^2$ by Lemma~I.\ref{I-lem:BS-basic}(b).
+Lemma~I.\ref{I-lem:BS-basic}(d) gives $\divop v^{[j]}=0$, and
+Lemma~I.\ref{I-lem:BS-basic}(b) with (ii) gives
+\[
+|v^{[j]}(t,x)|\le\big(2\|\omega^{[j]}(t)\|_{L^1}\|\omega^{[j]}(t)\|_{L^\infty}/\pi\big)^{1/2}=U_* .
+\]
+
+We prove (iv) for $j$. By (iii), Lemma~\ref{lem:flow} applies to $v^{[j]}$ and
+gives the properties of $\flow^{[j]}$. Hence $\omega^{[j+1]}$ is defined, real
+and $C^\infty$, and $\omega^{[j+1]}(0,x)=\omega_0(x)$. By Lemma~\ref{lem:flow}(b),
+$\omega^{[j+1]}(t,\flow^{[j]}(t,0,a))=\omega_0(a)$ for all $t$ and $a$.
+Differentiating in $t$ gives
+$(\partial_t\omega^{[j+1]}+v^{[j]}\cdot\nabla\omega^{[j+1]})(t,\flow^{[j]}(t,0,a))=0$,
+and $\flow^{[j]}(t,0,\cdot)$ is onto.
+
+We prove (i) and (ii) for $j+1$. If $\omega^{[j+1]}(t,x)\ne0$, then
+$a=\flow^{[j]}(0,t,x)$ satisfies $|a|\le R_0'$, and by Lemma~\ref{lem:flow}(c),
+$|x-a|\le U_*|t|$; so $|x|\le R_0'+U_*|t|$. The substitution
+$x=\flow^{[j]}(t,0,a)$, whose Jacobian determinant is $1$, gives
+$\int|\omega^{[j+1]}(t,x)|^p\dd x=\int|\omega_0(a)|^p\dd a$ for $p<\infty$, and the
+case $p=\infty$ follows because $\flow^{[j]}(0,t,\cdot)$ is a bijection.
+\end{proof}
+
+\begin{lemma}
+\label{lem:iter-lip}
+For every $j\ge0$, $t\in\R$ and $x\in\R^2$,
+\[
+|\nabla\omega^{[j]}(t,x)|\le\Psi(t),\qquad
+\max_{i,l}|\partial_lv^{[j]}_i(t,x)|\le A\big(\mathcal L(t)+c_*\big),\qquad
+\|\nabla v^{[j]}(t,x)\|_{\mathrm{op}}\le V(t).
+\]
+\end{lemma}
+
+\begin{proof}
+The third bound follows from the second, because the operator norm of a
+$2\times2$ matrix is at most twice the largest modulus of its entries. We show,
+by induction on $j$, that the first bound holds for all $t$ and that it implies
+the second.
+
+For $j=0$ we have
+$|\nabla\omega_0|\le N_0\le\max\{A,N_0\}=Ae^{\mathcal L(0)}\le\Psi(t)$. Suppose
+that $|\nabla\omega^{[j]}(\tau,x)|\le\Psi(\tau)$ for all $\tau$ and $x$. Since
+$\mathcal L\ge0$, we have $\log_+(\Psi(\tau)/A)=\mathcal L(\tau)$. By
+Lemma~\ref{lem:iterates}(ii), $\|\omega^{[j]}(\tau)\|_{L^\infty}=A$ and
+$\|\omega^{[j]}(\tau)\|_{L^1}=\|\omega_0\|_{L^1}$. Thus Lemma~\ref{lem:grad-bound},
+applied to $g=\omega^{[j]}(\tau)$, gives
+\[
+|\partial_lv^{[j]}_i(\tau,x)|\le A\big(2+\mathcal L(\tau)\big)+\frac{\|\omega_0\|_{L^1}}{2\pi}=A\big(\mathcal L(\tau)+c_*\big).
+\]
+Hence $\|\nabla v^{[j]}(\tau,x)\|_{\mathrm{op}}\le V(\tau)$.
+
+Next, by the chain rule,
+$\nabla\omega^{[j+1]}(t,x)=D_y\flow^{[j]}(0,t,x)^{\mathsf T}\,\nabla\omega_0\big(\flow^{[j]}(0,t,x)\big)$.
+By Lemma~\ref{lem:flow}(d), $Y(\tau)=D_y\flow^{[j]}(\tau,t,x)$ solves
+$\partial_\tau Y=\nabla v^{[j]}(\tau,\flow^{[j]}(\tau,t,x))Y$ with $Y(t)=I$, so
+$\|Y(\tau)\|_{\mathrm{op}}\le1+\big|\int_t^\tau V(\sigma)\|Y(\sigma)\|_{\mathrm{op}}\dd\sigma\big|$,
+and Gronwall's inequality gives
+$\|Y(0)\|_{\mathrm{op}}\le\exp\big|\int_0^tV(\sigma)\dd\sigma\big|=e^{\mathcal L(t)-\mathcal L(0)}$,
+because $\mathcal L'=V$ on $(0,\infty)$ and both functions are even. Hence
+$|\nabla\omega^{[j+1]}(t,x)|\le N_0e^{\mathcal L(t)-\mathcal L(0)}\le Ae^{\mathcal L(t)}=\Psi(t)$,
+since $N_0e^{-\mathcal L(0)}=\min\{N_0,A\}$.
+\end{proof}
+
+\begin{lemma}
+\label{lem:iter-Hs}
+For every integer $s\ge1$ and every $T>0$, and for all $j\ge0$ and $|t|\le T$,
+$\|\omega^{[j]}(t)\|_{H^s}\le\mathcal M_s(T)$, where
+\begin{gather*}
+\mathcal M_1(T)^2=\|\omega_0\|_{L^2}^2+\pi R(T)^2\Psi(T)^2,\\
+\mathcal M_s(T)^2=\big(\|\omega_0\|_{H^s}^2+\mathcal M_{s-1}(T)^2+1\big)e^{\mathcal B_s(T)T}+\mathcal M_{s-1}(T)^2\quad(s\ge2),\\
+\mathcal B_s(T)=(s+1)2^{s+2}\big(V(T)+\mathcal M_{s-1}(T)+\mathcal M_{s-1}(T)\Psi(T)\big).
+\end{gather*}
+In particular $\mathcal M_s(T)$ depends only on $s$, $T$, $R_0$, $A$, $N_0$ and
+the norms $\|\omega_0\|_{L^1}$ and $\|\omega_0\|_{H^{s'}}$, $0\le s'\le s$.
+\end{lemma}
+
+\begin{proof}
+We argue by induction on $s$. For $s=1$, Lemma~\ref{lem:iterates}(i)--(ii) and
+Lemma~\ref{lem:iter-lip} give $\|\omega^{[j]}(t)\|_{L^2}=\|\omega_0\|_{L^2}$ and
+$\|\nabla\omega^{[j]}(t)\|_{L^2}^2\le|B_{R(T)}|\Psi(T)^2$.
+
+Let $s\ge2$ and assume the bound at level $s-1$ for all iterates. For $j=0$
+the bound holds because $\mathcal M_s(T)\ge\|\omega_0\|_{H^s}$. Let $j\ge0$ and
+$|\alpha|=s$. Differentiating the equation of Lemma~\ref{lem:iterates}(iv) gives
+\[
+\partial_t\partial^\alpha\omega^{[j+1]}+v^{[j]}\cdot\nabla\partial^\alpha\omega^{[j+1]}
+=-[\partial^\alpha,v^{[j]}\cdot\nabla]\omega^{[j+1]} .
+\]
+We multiply by $\partial^\alpha\omega^{[j+1]}$ and integrate; all functions are
+smooth and real, and $\omega^{[j+1]}(t)$ vanishes outside $B_{R(T)}$ for
+$|t|\le T$. Since $\divop v^{[j]}=0$, the transport term gives
+$-\frac12\int(\divop v^{[j]})(\partial^\alpha\omega^{[j+1]})^2\dd x=0$. Put
+$\mathcal H(t)=\sum_{|\alpha|=s}\|\partial^\alpha\omega^{[j+1]}(t)\|_{L^2}^2$ and
+$Z(t)=\|\omega^{[j+1]}(t)\|_{H^s}$; there are $s+1$ multi-indices with
+$|\alpha|=s$. Put $\mathcal M=\mathcal M_{s-1}(T)$. We apply Lemma~\ref{lem:comm-R2} with
+$u=v^{[j]}(t)$ and $g=\omega^{[j+1]}(t)$, using $|\nabla v^{[j]}|_{\max}\le V(T)$
+and $|\nabla\omega^{[j+1]}|\le\Psi(T)$ (Lemma~\ref{lem:iter-lip}), and
+\[
+\|\nabla v^{[j]}(t)\|_{H^{s-1}}=\|\omega^{[j]}(t)\|_{H^{s-1}}\le\mathcal M
+\]
+(Lemma~I.\ref{I-lem:BS-basic}(d) and the induction hypothesis). This gives, for
+$|t|\le T$,
+\begin{align*}
+|\mathcal H'(t)|&\le(s+1)2^{s+2}\big[(V(T)+\mathcal M)Z+\mathcal M\Psi(T)\big]Z\\
+&\le\mathcal B_s(T)(Z^2+1)\le\mathcal B_s(T)\big(\mathcal H+\mathcal M^2+1\big),
+\end{align*}
+because $Z\le Z^2+1$ and $Z^2\le\mathcal H+\|\omega^{[j+1]}(t)\|_{H^{s-1}}^2\le\mathcal H+\mathcal M^2$.
+Since $\mathcal H(0)\le\|\omega_0\|_{H^s}^2$, Gronwall's inequality gives
+$\mathcal H(t)\le(\|\omega_0\|_{H^s}^2+\mathcal M^2+1)e^{\mathcal B_s(T)|t|}$, and
+$Z^2\le\mathcal H+\mathcal M^2\le\mathcal M_s(T)^2$.
+\end{proof}
+
+\subsection{Convergence}
+
+\begin{lemma}
+\label{lem:iter-cauchy}
+Let $T>0$ and put $e_j(t)=\|\omega^{[j]}(t)-\omega^{[j-1]}(t)\|_{L^2}$ for $j\ge1$.
+Then for every $j\ge1$ and every $t\in[-T,T]$,
+\[
+e_{j}(t)\le2\|\omega_0\|_{L^2}\frac{\big(2R(T)\Psi(T)|t|\big)^{j-1}}{(j-1)!} .
+\]
+\end{lemma}
+
+\begin{proof}
+Put $R=R(T)$ and $\Psi=\Psi(T)$. For $j=1$, $e_1(t)\le2\|\omega_0\|_{L^2}$ by
+Lemma~\ref{lem:iterates}(ii). Let $j\ge1$. Subtracting the equations of
+Lemma~\ref{lem:iterates}(iv) for $\omega^{[j+1]}$ and $\omega^{[j]}$ shows that
+$\delta=\omega^{[j+1]}-\omega^{[j]}$ satisfies
+\[
+\partial_t\delta+v^{[j]}\cdot\nabla\delta=-\big(\KBS\ast(\omega^{[j]}-\omega^{[j-1]})\big)\cdot\nabla\omega^{[j]} .
+\]
+We multiply by $\delta$ and integrate; the transport term vanishes, because
+$\divop v^{[j]}=0$ and $\delta(t)$ has compact support. For $|t|\le T$, $\nabla\omega^{[j]}(t)$ vanishes outside $B_R$ and is
+bounded by $\Psi$, and Lemma~I.\ref{I-lem:BS-basic}(c), with $\rho=R$, gives
+$\|\KBS\ast(\omega^{[j]}-\omega^{[j-1]})(t)\|_{L^2(B_R)}\le2Re_j(t)$. Hence
+$|\frac{\dd}{\dd t}e_{j+1}^2|\le4R\Psi e_je_{j+1}$, and for all $\epsilon>0$,
+$\big|\frac{\dd}{\dd t}(e_{j+1}^2+\epsilon)^{1/2}\big|\le2R\Psi e_j$. Since
+$e_{j+1}(0)=0$, letting $\epsilon\to0$ gives
+$e_{j+1}(t)\le2R\Psi\big|\int_0^te_j(\tau)\dd\tau\big|$ for $|t|\le T$, and the
+claim follows by induction on $j$.
+\end{proof}
+
+\begin{proposition}
+\label{prop:iter-limit}
+There is a real $\omega\in C^\infty(\R\times\R^2)$ such that, with
+$v=\KBS\ast\omega$, for every $T>0$ and every multi-index $\gamma$,
+$\partial_x^\gamma\omega^{[j]}\to\partial_x^\gamma\omega$ and
+$\partial_x^\gamma v^{[j]}\to\partial_x^\gamma v$ uniformly on $[-T,T]\times\R^2$
+as $j\to\infty$. The function $\omega$ has properties \textup{(1)}--\textup{(3)}
+of Theorem~\ref{thm:smooth}, and for all $t\in\R$, $x\in\R^2$ and
+$p\in[1,\infty]$,
+\begin{equation}
+\label{eq:limit-bounds}
+\begin{gathered}
+\omega(t,x)=0\ \text{ for }|x|>R_0'+U_*|t|,\qquad
+\|\omega(t)\|_{L^p}=\|\omega_0\|_{L^p},\qquad |\nabla\omega(t,x)|\le\Psi(t),\\
+|v(t,x)|\le U_*,\qquad \max_{i,l}|\partial_lv_i(t,x)|\le A\big(\mathcal L(t)+c_*\big).
+\end{gathered}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+We first prove the convergence. Fix $T>0$. By Lemma~\ref{lem:iter-cauchy} the
+series $\sum_j\sup_{|t|\le T}e_j(t)$ is at most
+$2\|\omega_0\|_{L^2}\exp(2R(T)\Psi(T)T)$. Thus $(\omega^{[j]})$ is a Cauchy sequence
+for the norm $\sup_{|t|\le T}\|\cdot\|_{L^2}$. For an integer
+$k\ge1$, (E3) of Lemma~\ref{lem:embed} and Lemma~\ref{lem:iter-Hs} give
+\[
+\sup_{|t|\le T}\|\omega^{[j]}(t)-\omega^{[i]}(t)\|_{H^k}^2\le3^k\cdot2\mathcal M_{2k}(T)\sup_{|t|\le T}\|\omega^{[j]}(t)-\omega^{[i]}(t)\|_{L^2},
+\]
+which tends to $0$ as $i,j\to\infty$. By (E2), for all $\gamma$ the functions
+$\partial_x^\gamma\omega^{[j]}$, which are continuous on $\R\times\R^2$, form a
+uniform Cauchy sequence on $[-T,T]\times\R^2$. Their uniform limits are
+continuous; the limit of $\partial_x^\gamma\omega^{[j]}$ is $\partial_x^\gamma$ of
+the limit $\omega$ of $\omega^{[j]}$, as one sees by passing to the limit in
+$g(x+he_l)-g(x)=\int_0^h\partial_lg(x+\sigma e_l)\dd\sigma$, with
+$g=\partial_x^\gamma\omega^{[j]}(t)$; and the limits for
+different $T$ agree. The first line of Equation~\eqref{eq:limit-bounds} follows
+from Lemma~\ref{lem:iterates}(i)--(ii) and Lemma~\ref{lem:iter-lip}, because the
+convergence is uniform and the supports lie in a fixed ball for $|t|\le T$. In
+particular $\omega(t)\in C_c^\infty(\R^2)$ for all $t$, and $\omega$ has
+property (1) of Theorem~\ref{thm:smooth}, since $R_0'+U_*|t|<R(t)$.
+
+We now treat the velocity. For a bounded measurable $g$ vanishing outside
+$B_\rho$, Lemma~I.\ref{I-lem:BS-basic}(b) and $\|g\|_{L^1}\le\pi\rho^2\|g\|_{L^\infty}$
+give $\|\KBS\ast g\|_{L^\infty}\le\sqrt2\,\rho\|g\|_{L^\infty}$. Applied to
+$g=\partial_x^\gamma\omega^{[j]}(t)-\partial_x^\gamma\omega(t)$ with $\rho=R(T)$,
+this shows that $\partial_x^\gamma v^{[j]}=\KBS\ast\partial_x^\gamma\omega^{[j]}$
+converges to $\KBS\ast\partial_x^\gamma\omega$ uniformly on $[-T,T]\times\R^2$.
+By Lemma~I.\ref{I-lem:BS-basic}(d) applied to $\omega(t)$, $\KBS\ast\partial_x^\gamma\omega(t)=\partial_x^\gamma v(t)$
+and $\divop v=0$. The bounds on $v$ in Equation~\eqref{eq:limit-bounds} follow
+from Lemma~\ref{lem:iterates}(iii) and Lemma~\ref{lem:iter-lip}.
+
+We now derive the equation. For every $\gamma$, Lemma~\ref{lem:iterates}(iv)
+gives
+\[
+\partial_x^\gamma\omega^{[j+1]}(t,x)=\partial^\gamma\omega_0(x)
+-\int_0^t\partial_x^\gamma\big(v^{[j]}\cdot\nabla\omega^{[j+1]}\big)(\tau,x)\dd\tau .
+\]
+By the Leibniz formula the integrand is a finite sum of products of
+$x$-derivatives of $v^{[j]}$ and of $\omega^{[j+1]}$, each converging uniformly
+and bounded on $[-T,T]\times\R^2$. Passing to the limit,
+\[
+\partial_x^\gamma\omega(t,x)=\partial^\gamma\omega_0(x)-\int_0^t\partial_x^\gamma(v\cdot\nabla\omega)(\tau,x)\dd\tau,
+\]
+with an integrand that is continuous and bounded on $[-T,T]\times\R^2$. Hence
+$\partial_t\partial_x^\gamma\omega$ exists, is continuous and bounded, and
+equals $-\partial_x^\gamma(v\cdot\nabla\omega)$. With $\gamma=0$ this is
+property (3).
+
+Finally we prove that $\omega$ and $v$ are $C^\infty$ with bounded derivatives.
+For $T>0$ and an integer $l\ge0$, let $\mathcal C^l(T)$ be the set of functions
+$g$ on $(-T,T)\times\R^2$ such that $\partial_t^i\partial_x^\gamma g$ exists, is
+continuous and is bounded, for all $i\le l$ and all multi-indices $\gamma$
+(including $i=0$ and $\gamma=0$); here the
+$x$-derivatives are taken first. We have shown $\omega\in\mathcal C^1(T)$. Suppose
+$\omega\in\mathcal C^l(T)$. Every $\partial_t^i\partial_x^\gamma\omega$ with
+$i\le l$ vanishes for $|x|\ge R(T)$, so differentiation under the integral sign,
+as in the proof of Lemma~\ref{lem:iterates}(iii), gives
+$\partial_t^i\partial_x^\gamma v=\KBS\ast\partial_t^i\partial_x^\gamma\omega$,
+continuous and bounded by $\sqrt2R(T)\sup|\partial_t^i\partial_x^\gamma\omega|$;
+so $v\in\mathcal C^l(T)$. By the Leibniz formula $v\cdot\nabla\omega\in\mathcal C^l(T)$,
+and the identity $\partial_t\partial_x^\gamma\omega=-\partial_x^\gamma(v\cdot\nabla\omega)$
+shows that $\partial_t^{i+1}\partial_x^\gamma\omega$ exists, is continuous and
+is bounded for $i\le l$. Hence $\omega\in\mathcal C^{l+1}(T)$. By induction,
+$\omega$ and $v$ lie in $\mathcal C^l(T)$ for all $l$ and $T$. By Schwarz's
+theorem on mixed partial derivatives (if $\partial_ag$, $\partial_bg$ and
+$\partial_b\partial_ag$ exist near a point and $\partial_b\partial_ag$ is
+continuous at it, then $\partial_a\partial_bg$ exists at that point and equals
+$\partial_b\partial_ag$ there), an induction on the order shows that every
+partial derivative of $\omega$ or $v$, taken in any order, exists, is continuous,
+and equals the corresponding $\partial_t^i\partial_x^\gamma$ derivative. Thus
+$\omega,v\in C^\infty(\R\times\R^2)$, $v$ and every derivative of $v$ are bounded
+on $[-T,T]\times\R^2$ for all $T$, and $\omega$ has property (2).
+\end{proof}
+
+\subsection{Proof of Theorem~\ref{thm:smooth}}
+
+The proof of Theorem~\ref{thm:smooth} also gives the following explicit bounds.
+
+\begin{lemma}
+\label{lem:smooth-bounds}
+In Theorem~\ref{thm:smooth}, assume $\omega_0\not\equiv0$ and put
+$A=\|\omega_0\|_{L^\infty}$, $N_0=\sup_x|\nabla\omega_0(x)|$,
+$U_*=\sqrt{2A\|\omega_0\|_{L^1}/\pi}$, $c_*=2+\|\omega_0\|_{L^1}/(2\pi A)$,
+$\mathcal L(t)=(\log_+(N_0/A)+c_*)e^{2A|t|}-c_*$ and $\Psi(t)=Ae^{\mathcal L(t)}$.
+Then for every $t\in\R$ and $x\in\R^2$,
+\begin{gather*}
+|\nabla\omega(t,x)|\le\Psi(t),\qquad|v(t,x)|\le U_*,\\
+\max_{i,l}|\partial_lv_i(t,x)|\le A\big(\mathcal L(t)+c_*\big),\qquad
+\|\nabla v(t,x)\|_{\mathrm{op}}\le2A\big(\mathcal L(t)+c_*\big).
+\end{gather*}
+\end{lemma}
+
+\begin{proof}[Proof of Theorem~\ref{thm:smooth} and Lemma~\ref{lem:smooth-bounds}]
+We first prove (5), for any $\omega$ with properties (1)--(3). Let $\tilde\omega$
+be as in (5), and fix a compact interval $J\subset I$ containing $0$. Let
+$\rho>0$ be such that $\omega(t)$ and $\tilde\omega(t)$ vanish outside $B_\rho$ for
+$t\in J$; this is possible by (1) and the hypothesis on $\tilde\omega$. Put
+$\delta=\omega-\tilde\omega\in C^1(J\times\R^2)$. Since
+$\partial_t\tilde\omega=-v\cdot\nabla\tilde\omega+(v-\KBS\ast\tilde\omega)\cdot\nabla\tilde\omega$,
+\[
+\partial_t\delta+v\cdot\nabla\delta=-(\KBS\ast\delta)\cdot\nabla\tilde\omega
+\qquad\text{on }J\times\R^2 .
+\]
+We multiply by $\delta$ and integrate in $x$. The transport term vanishes,
+because $\divop v=0$ and $\delta(t)$ has compact support. The function
+$\nabla\tilde\omega$ is continuous and vanishes outside $J\times B_\rho$, so it is
+bounded on $J\times\R^2$ by some $L<\infty$, and
+Lemma~I.\ref{I-lem:BS-basic}(c) gives $\|\KBS\ast\delta(t)\|_{L^2(B_\rho)}\le2\rho\|\delta(t)\|_{L^2}$.
+Hence $|\frac{\dd}{\dd t}\|\delta(t)\|_{L^2}^2|\le4\rho L\|\delta(t)\|_{L^2}^2$ on
+$J$. Since $\delta(0)=0$, Gronwall's inequality gives $\delta=0$ on $J$. Every
+point of $I$ lies in such an interval $J$, which proves (5). In particular at
+most one $\omega\in C^\infty(\R\times\R^2)$ has properties (1)--(3), since such
+an $\omega$ satisfies the hypotheses on $\tilde\omega$ in (5) with $I=\R$.
+
+If $\omega_0\equiv0$, the function $\omega\equiv0$ has properties (1)--(4), (6)
+and (7). From now on $\omega_0\not\equiv0$, and $\omega$ is the function of
+Proposition~\ref{prop:iter-limit}, which has properties (1)--(3). The bounds of
+Lemma~\ref{lem:smooth-bounds} are contained in Equation~\eqref{eq:limit-bounds},
+together with $\|M\|_{\mathrm{op}}\le2\max_{i,l}|M_{il}|$ for $2\times2$ matrices
+$M$.
+
+We prove (4). By (2), Lemma~\ref{lem:flow} applies to $v$; let
+$\flow(t,y)=\flow_v(t,0,y)$ and $\flow_t=\flow(t,\cdot)$. By Lemma~\ref{lem:flow},
+$\flow$ is defined for all $t$; by (a) and (b) there, $\flow$ and
+$(t,x)\mapsto\flow_t^{-1}(x)=\flow_v(0,t,x)$ lie in $C^\infty(\R\times\R^2)$ and
+each $\flow_t$ is a $C^\infty$ diffeomorphism; and by (d),
+$\det D\flow_t\equiv1$ because $\divop v=0$. By (3),
+$\frac{\dd}{\dd t}\omega(t,\flow(t,a))=(\partial_t\omega+v\cdot\nabla\omega)(t,\flow(t,a))=0$,
+so $\omega(t)=\omega_0\circ\flow_t^{-1}$. For a continuous $F$ with $F(0)=0$,
+the function $F(\omega(t))$ is continuous with compact support, and the change
+of variables $x=\flow_t(a)$ gives $\int F(\omega(t))\dd x=\int F(\omega_0)\dd a$.
+
+We prove (6). Let $\Orot_\theta\in SO(2)$. Since $(\Orot_\theta z)^\perp=\Orot_\theta z^\perp$,
+we have $\KBS(\Orot_\theta z)=\Orot_\theta\KBS(z)$. Put
+$\omega_\theta(t,x)=\omega(t,\Orot_\theta^{-1}x)$. The substitution
+$y=\Orot_\theta y'$ gives
+$\KBS\ast\omega_\theta(t,x)=\Orot_\theta v(t,\Orot_\theta^{-1}x)$, and
+$\nabla\omega_\theta(t,x)=\Orot_\theta\nabla\omega(t,\Orot_\theta^{-1}x)$. Hence
+$(\KBS\ast\omega_\theta)\cdot\nabla\omega_\theta=(v\cdot\nabla\omega)(t,\Orot_\theta^{-1}x)$,
+and $\omega_\theta$ is a $C^\infty$ solution of the equation in (3) with datum
+$\omega_0\circ\Orot_\theta^{-1}$, vanishing outside $B_{R(t)}$ at time $t$. If
+$\omega_0\circ\Orot_\theta=\omega_0$, then $\omega_0\circ\Orot_\theta^{-1}=\omega_0$,
+and (5) with $I=\R$ gives $\omega_\theta=\omega$, that is,
+$\omega(t)\circ\Orot_\theta^{-1}=\omega(t)$ for all $t$, which is equivalent to
+$\omega(t)\circ\Orot_\theta=\omega(t)$.
+
+We prove (7). Let $T>0$, $\varphi\in\DT$, and let $\Ren\in C^1(\R)$ with
+$\Ren'$ bounded and $\Ren(0)=0$. The function $\Ren(\omega)$ lies in
+$C^1(\R\times\R^2)$, vanishes outside $B_{R(t)}$ at time $t$, and by (3)
+satisfies $\partial_t\Ren(\omega)+v\cdot\nabla\Ren(\omega)=\Ren'(\omega)(\partial_t\omega+v\cdot\nabla\omega)=0$.
+We multiply by $\varphi$ and integrate over $(0,T)\times\R^2$. Since
+$\varphi(t,\cdot)=0$ for $t$ near $T$, an integration by parts in $t$ gives
+$\int_0^T\!\int\partial_t\Ren(\omega)\,\varphi=-\int\Ren(\omega_0)\varphi(0,\cdot)-\int_0^T\!\int\Ren(\omega)\,\partial_t\varphi$,
+and since $\divop v=0$, an integration by parts in $x$ gives
+$\int(v\cdot\nabla\Ren(\omega))\varphi\dd x=-\int\Ren(\omega)\,v\cdot\nabla\varphi\dd x$.
+Hence Equation~(I.\ref{I-eq:renorm}) holds, and with $\Ren(s)=s$ so does
+Equation~(I.\ref{I-eq:weak}). Finally, $\|\omega(t)\|_{L^1}=\|\omega_0\|_{L^1}$ by
+(4) with $F(s)=|s|$, and $\|\omega(t)\|_{L^\infty}=\|\omega_0\|_{L^\infty}$
+because $\omega(t)=\omega_0\circ\flow_t^{-1}$. Moreover $\omega$ is continuous and
+$\omega(t)$ vanishes outside $B_{R(T)}$ for $|t|\le T$, so $\omega$ is uniformly
+continuous on $[0,T]\times\R^2$, and $t\mapsto\omega(t)$ is continuous from
+$[0,T]$ into $(L^1\cap L^q)(\R^2)$ for all $q\in[1,\infty]$. Hence the
+restriction of $\omega$ to $[0,T)$ lies in $L^\infty_t(L^1\cap L^\infty)_x$, and
+in $X_q(T)$ for every $q\in(4/3,\infty)$. This proves (7) and completes the
+proof.
+\end{proof}

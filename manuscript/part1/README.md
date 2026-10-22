@@ -15,8 +15,8 @@ which Part II verifies with rigorous interval arithmetic.
 
 Part I is complete and ready for public sharing, on arXiv and with the mathematical community;
 comments are welcome. Part II, which contains the nonlinear construction, the verification of
-Hypothesis 4.17 and the proof of the main theorem, is still in preparation and will be added to
-this repository when it is ready.
+Hypothesis 4.17 and the proof of the main theorem, is a work in progress: its current draft is in
+`manuscript/part2` of this repository, and it is not being posted on arXiv at this stage.
 
 ## Building
 

@@ -1,0 +1,642 @@
+\section{Verification of the Numerical Hypotheses}
+\label{app:verify}
+
+This appendix proves Theorem~\ref{thm:N-holds}.
+
+Throughout, $a_0,d,\xiL,\xia,\xib,\xiR$, $H$, $\chi$, $\prof$, $\Omega_G$,
+$\psi_\ell$, $\Evans_\ell$, $\Thl{\ell}$ and $\epsst$ are as in
+Definition~I.\ref{I-def:ring} and Hypothesis~I.\ref{I-hyp:N}, and $G\ge0$. Only the
+properties of $\chi$ listed in Definition~I.\ref{I-def:ring} are used. We identify $\C$ with $\R^2$, write $|Y|_w=\max(\ell|u|,|v|)$ for
+$\ell\ge1$ and $Y=(u,v)\in\C^2$, and put
+\[
+x_a=\frac{\xia-a_0}{d},\quad y_b=-\frac{\xib}{d},\quad \Gmax=\frac1{50},\quad \Gmax'=d,\quad
+\Rect=\Big[\frac9{200},3\Big]\times[-5,3].
+\]
+Definition~I.\ref{I-def:ring} gives exactly $\xia-a_0=-\frac12+2^{-54}$ and
+$d=\frac1{50}(1+6\cdot2^{-58})$. So $d>\frac1{50}$, whence the range
+$[0,\Gmax']$ of the computations contains the range $[0,\Gmax]$ of $G$ in
+\textup{(N1)} and \textup{(N2)}, and $50(1-6\cdot2^{-58})<1/d<50$, so
+$x_a=-(\frac12-2^{-54})/d$ and $y_b=-1/(2d)$ satisfy
+\begin{equation}
+\label{eq:xayb}
+-25<x_a<-25+4\cdot10^{-15},\qquad -25<y_b<-25+10^{-15}.
+\end{equation}
+For a continuous closed curve $c\colon[0,1]\to\C\setminus\{0\}$,
+$\wind(c,0)=(\theta(1)-\theta(0))/2\pi$, where $\theta$ is any continuous
+function with $c=|c|e^{i\theta}$. If $\Gamma$ is the boundary of a closed
+rectangle in $\{\Re\lambda>0\}$ and $\Evans_3(\cdot;G)\ne0$ on $\Gamma$,
+$\wind(\Evans_3(\Gamma;G),0)$ is the winding number of
+$t\mapsto\Evans_3(\gamma(t);G)$, where $\gamma$ traverses $\Gamma$ once
+counterclockwise.
+
+\subsection{Ball Arithmetic and the Trusted Base}
+\label{app:arith}
+
+The computations use \textbf{ball arithmetic}: a real number is enclosed in a
+ball $[m\pm r]=[m-r,m+r]$ whose midpoint $m$ and radius $r\ge0$ are binary
+floating-point numbers, and a complex number in a box $X+iY$, the product of two
+real balls. We use the implementation of Johansson \cite{Johansson2017}, part of
+FLINT \cite{FLINT} from version~3 on, in FLINT~3.6.0 as bundled with
+version~0.9.0 of its Python interface python-flint \cite{pythonflint}, at a
+working precision of $128$ bits. For a real ball $X$, $\mathrm{lo}(X)$ and
+$\mathrm{up}(X)$ are its endpoints, which are dyadic rationals; for a box $Z$,
+$|Z|^{\rm up}$ is a dyadic upper bound of $|z|$ over $z\in Z$; for a ball $\rho$,
+$\mathrm{box}(\rho)=[-\mathrm{up}(\rho),\mathrm{up}(\rho)]
++i[-\mathrm{up}(\rho),\mathrm{up}(\rho)]$, which contains the closed disk of
+radius $\rho'$ about $0$ for every $\rho'\in\rho$ with $\rho'\ge0$;
+$\mathrm{hull}(X,X')$ is a ball computed from $\mathrm{lo}(X)$ and
+$\mathrm{up}(X')$; and $X\cup X'$ is the computed union of two real balls, again
+a ball. Every enclosure rests on the following \textbf{containment property}.
+\begin{enumerate}[label=\textup{(CP)}, leftmargin=*]
+\item For every arithmetic operation $f$ that we use (sums, differences, products
+  and quotients of real balls and of boxes, integer powers of a real ball, the
+  maximum of two real balls, and the exponential and the square root of a real
+  ball), and for all input balls $X_1,\dots,X_k$, the output ball contains
+  $f(x_1,\dots,x_k)$ for every choice of $x_j\in X_j$ at which $f$ is defined; a
+  ball with infinite radius, or with an undefined midpoint, is regarded as the
+  whole real line. A ball built from an integer contains that integer, a ball
+  built from an exact midpoint $m$ and an exact radius $r$ is $[m-r,m+r]$, and a
+  box built from two real balls is their product. Moreover
+  $\mathrm{lo}(X)\le x\le\mathrm{up}(X)$ for every $x\in X$, $|z|\le|Z|^{\rm up}$ for
+  every $z\in Z$, $\mathrm{hull}(X,X')$ contains every real number between
+  $\mathrm{lo}(X)$ and $\mathrm{up}(X')$, $X\cup X'$ contains $X$, $X'$ and every
+  real number between a point of $X$ and a point of $X'$, the computed
+  intersection of a ball $X$ with $[0,\infty)$ contains $X\cap[0,\infty)$, and a
+  comparison such as $X>0$ or $X\le c$ returns true only if every point of $X$
+  satisfies it.
+\end{enumerate}
+The data of Definition~I.\ref{I-def:ring}, the contour points, and the endpoints of
+the intervals of $G$ and the rectangles of Section~\ref{app:runs} are rational.
+They are held exactly, as pairs of integers, in the arbitrary-precision integer
+arithmetic of CPython, and every comparison between them is made there. A
+rational $n/k$ in lowest terms, $k\ge1$, enters ball arithmetic as follows. If
+$k=2^e$ and $|n|<2^{125}$, it enters as the product of the ball built from $n$ and
+the power $-e$ of the ball built from $2$; the program checks that this product
+has radius $0$, so by (CP) it is the point $n/k$. Otherwise it enters as the
+quotient of the balls built from $n$ and $k$, which contains $n/k$ by (CP). No
+hardware floating-point number of the programming language enters any enclosure:
+every ball is built from integers or from other balls.
+
+The proof of Proposition~\ref{prop:runs} is a computation. It is correct provided
+the following \textbf{trusted base} holds.
+\begin{enumerate}[label=\textup{(TB\arabic*)}, leftmargin=*]
+\item The ball arithmetic of FLINT~3.6.0, as bundled with python-flint~0.9.0,
+  satisfies (CP) for the operations listed there.
+\item CPython integer arithmetic, and the rational arithmetic of its standard
+  module \texttt{fractions}, are correct.
+\item The program runs as written, with its assertions enabled, and its routines
+  carry out the enclosure procedure of Section~\ref{app:procedure} and the
+  certifications and runs of Section~\ref{app:runs}.
+\end{enumerate}
+We did not inspect FLINT's internal error analysis; if FLINT uses hardware
+floating-point arithmetic internally, its correctness is part of (TB1). The
+function \texttt{evans} of the module \texttt{ringcert.evans} follows steps
+(i)--(iv) of Section~\ref{app:procedure} line by line, and the part of (TB3) that
+concerns it is established by reading it against them; the tests of the package
+detect some departures from the procedure (dropping the Taylor remainder in
+step~(iii)), but not all (omitting the a priori enlargement that defines
+$P^{\rm st}$ and $P'^{\rm st}$ in step~(iii)), and do not replace this reading. A certification (Section~\ref{app:runs})
+is carried out by the function \texttt{certify\_cell} of the module
+\texttt{ringcert.winding}, which follows the description of the certification in
+Section~\ref{app:runs} line by line, and a run
+by the function \texttt{certify\_cell\_adaptive} of the same module. Everything
+else in this paper has a written proof that uses no machine computation.
+
+\subsection{Two Elementary Lemmas}
+
+\begin{lemma}
+\label{lem:end-regions}
+The following two estimates hold.
+\begin{enumerate}[label=\textup{(\arabic*)}]
+\item We have $\int_{-\infty}^{\xia}|\prof'|\dd\xi\le\frac94e^{2x_a}$ and
+  $\int_{\xib}^{\infty}|\prof'|\dd\xi\le\frac94e^{2y_b}$, and both bounds are less
+  than $3e^{-50}$.
+\item Let $\ell\ge1$, $G\ge0$ and $\Re\lambda>0$, let $\psi=\psi_\ell(\cdot;\lambda,G)$,
+  and let $[\alpha,\beta]$ be one of the intervals $[\xiL,\xia]$ and $[\xib,\xiR]$.
+  Let $\psi_0$ solve $\psi_0''=\ell^2\psi_0$ with $\psi_0(\alpha)=\psi(\alpha)$ and
+  $\psi_0'(\alpha)=\psi'(\alpha)$, and put $Y=(\psi,\psi')$, $Y_0=(\psi_0,\psi_0')$
+  and $\epsend=3e^{-50}/\Re\lambda$. Then, for every $\xi\in[\alpha,\beta]$,
+  \[
+  |Y(\xi)-Y_0(\xi)|_w\le e^{\ell(\xi-\alpha)}\,|Y(\alpha)|_w\,\big(e^{\epsend}-1\big).
+  \]
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+(1) Write $A(\xi)=H(\frac{\xi-a_0}d)$, $B(\xi)=H(-\frac\xi d)$, so that
+$\prof=\chi AB$, and $x=\frac{\xi-a_0}d$, $y=-\frac\xi d$. Since
+$H'=\frac12\operatorname{sech}^2$, $A'=\frac1{2d}\operatorname{sech}^2x\ge0$ and
+$B'=-\frac1{2d}\operatorname{sech}^2y\le0$; we use $H(x)\le e^{2x}$,
+$\operatorname{sech}^2x\le4e^{2x}$, $0\le H\le1$ and $\operatorname{sech}^2\le1$. On
+$(-\infty,\xia]$, $\prof'=\chi'AB+\chi(A'B+AB')$, $\chi$ is nondecreasing from
+$\chi(\xiL)=0$ to $\chi(\xia)=1$, and $AB\le A\le A(\xia)=H(x_a)$ since $A$ is
+increasing; so $\int_{-\infty}^{\xia}|\chi'|AB\le H(x_a)\le e^{2x_a}$. Next,
+$0\le\chi\le1$, $|A'B+AB'|\le\frac1{2d}(\operatorname{sech}^2x+H(x)\operatorname{sech}^2y)
+\le\frac5{2d}e^{2x}$ and $\int_{-\infty}^{\xia}e^{2(\xi-a_0)/d}\dd\xi=\frac d2e^{2x_a}$;
+adding gives $\frac94e^{2x_a}$. On $[\xib,\infty)$ exchange the roles of $x$ and
+$y$: $\chi$ is nonincreasing from $1$ to $0$, $AB\le B\le B(\xib)=H(y_b)\le e^{2y_b}$,
+$|A'B+AB'|\le\frac1{2d}(\operatorname{sech}^2x\,H(y)+\operatorname{sech}^2y)\le\frac5{2d}e^{2y}$
+and $\int_{\xib}^\infty e^{-2\xi/d}\dd\xi=\frac d2e^{2y_b}$. By \eqref{eq:xayb}, both
+bounds are at most $\frac94e^{-50}e^{8\cdot10^{-15}}<3e^{-50}$, as
+$e^{8\cdot10^{-15}}<\frac43$.
+
+(2) The vector $Z=(\ell\psi,\psi')$ satisfies $Z'=A_0Z+\mathcal QZ$ with
+$A_0=\begin{psmallmatrix}0&\ell\\ \ell&0\end{psmallmatrix}$ and
+$\mathcal Q=\begin{psmallmatrix}0&0\\ \delta/\ell&0\end{psmallmatrix}$, where
+$\delta=i\ell\prof'/(\lambda+i\ell\Omega_G)$, and $Z_0=(\ell\psi_0,\psi_0')$ satisfies
+$Z_0'=A_0Z_0$; and $|Y|_w=\|Z\|_\infty$, the maximum of the moduli of the
+components. Since $\Omega_G$ is real, $|\lambda+i\ell\Omega_G|\ge\Re\lambda$, so
+the $\|\cdot\|_\infty$ operator norm of $\mathcal Q$ is
+$b=|\prof'|/|\lambda+i\ell\Omega_G|\le|\prof'|/\Re\lambda$, and
+$\int_\alpha^\beta b\le\epsend$ by (1). For $t\ge0$,
+$e^{tA_0}=\begin{psmallmatrix}\cosh\ell t&\sinh\ell t\\ \sinh\ell t&\cosh\ell t\end{psmallmatrix}$
+has norm $e^{\ell t}$. By variation of constants,
+$Z(\xi)-Z_0(\xi)=\int_\alpha^\xi e^{(\xi-\eta)A_0}\mathcal Q(\eta)Z(\eta)\dd\eta$. With
+$u(\xi)=e^{-\ell(\xi-\alpha)}\|Z(\xi)-Z_0(\xi)\|_\infty$, $c=\|Z(\alpha)\|_\infty$ and
+$\|Z_0(\eta)\|_\infty\le e^{\ell(\eta-\alpha)}c$, this gives
+$u(\xi)\le\int_\alpha^\xi b(\eta)(c+u(\eta))\dd\eta$, so by Gronwall's inequality
+$c+u(\xi)\le c\exp(\int_\alpha^\xi b)$ and $u(\xi)\le c\,(e^{\epsend}-1)$.
+\end{proof}
+
+\begin{lemma}
+\label{lem:apriori}
+Let $0\le G\le\Gmax'$. Every zero $\lambda$ of $\Evans_3(\cdot;G)$ with
+$\Re\lambda\ge\frac9{200}$ lies in $\Rect$.
+\end{lemma}
+\begin{proof}
+Let $\ell=3$, let $\lambda$ be a zero of $\Evans_\ell(\cdot;G)$ with
+$\Re\lambda\ge\frac9{200}$, so $\Re\lambda>0$, and put $TV=\int_{\R}|\prof'|\dd\xi$ and
+$\Omega_{\max}=\frac12+\Gmax'e^{-2\xiL}$. On $[\xia,\xib]$, $\chi=1$, so, with $A,B$ as in the proof of
+Lemma~\ref{lem:end-regions}, $\prof'=A'B+AB'$ with $A'\ge0\ge B'$ and $0\le A,B\le1$.
+Hence $\int_{\xia}^{\xib}|\prof'|\le\int_{\xia}^{\xib}(A'-B')
+=A(\xib)-A(\xia)+B(\xia)-B(\xib)<2$, and Lemma~\ref{lem:end-regions}(1) gives
+$TV<2+6e^{-50}$. Since $e>2.7$ and $2.7^7>1000$, $e^{50}>2.7^{49}=(2.7^7)^7>10^{21}$, so
+$6e^{-50}<10^{-20}$; and
+$\log2=\sum_{k\ge1}\frac1{k2^k}>\sum_{k=1}^6\frac1{k2^k}>0.69$. So
+$TV/\log2<(2+10^{-20})/0.69<2.9$.
+
+For $\xi\in\R$, $0\le\prof\le1$ gives
+$0\le\int_{-\infty}^\xi\prof(\xi')e^{2\xi'}\dd\xi'\le\frac12e^{2\xi}$, so
+$0\le\Omega_G(\xi)\le\frac12+Ge^{-2\xi}\le\Omega_{\max}$ for $\xi\ge\xiL$. By
+Definition~I.\ref{I-def:ring}, $-2\xiL=4528212286209965\cdot2^{-51}<2.011$; $e<2.7183$ gives $e^2<7.3892$, and
+$e^x\le1+x+x^2$ ($0\le x\le1$) gives $e^{0.011}<1.01113$, so
+$e^{-2\xiL}<7.3892\cdot1.01113<7.4715$. As $d<0.0200001$,
+$\Omega_{\max}<\frac12+0.0200001\cdot7.4715<0.6495$.
+
+Let $\psi=\psi_\ell(\cdot;\lambda,G)$ and
+$\mu=\min_{\xi\in[\xiL,\xiR]}|\lambda+i\ell\Omega_G(\xi)|$, positive as $\Re\lambda>0$. The proof of
+Lemma~\ref{lem:end-regions}(2), run on $[\xiL,\xiR]$ with
+$\psi_0(\xi)=e^{\ell(\xi-\xiL)}$ (which has the same data at $\xiL$),
+$\int_{\xiL}^{\xiR}b\le TV/\mu=:\varepsilon'$ and $|Y(\xiL)|_w=\ell$, gives
+$|Y(\xiR)-Y_0(\xiR)|_w\le e^{\ell(\xiR-\xiL)}\ell\,(e^{\varepsilon'}-1)$. Since
+$\psi_0'+\ell\psi_0=2\ell e^{\ell(\xi-\xiL)}$ and
+$|(\psi'-\psi_0')+\ell(\psi-\psi_0)|\le2|Y-Y_0|_w$, we get
+$|\Evans_\ell(\lambda;G)-2\ell|\le2\ell(e^{\varepsilon'}-1)$. If $\mu>TV/\log2$, then
+$\varepsilon'<\log2$, the right side is less than $2\ell$, and
+$\Evans_\ell(\lambda;G)\ne0$. As $\lambda$ is a zero, $\mu\le TV/\log2$, and $\mu$ is attained at some
+$\xi\in[\xiL,\xiR]$, so $|\lambda+i\ell\,\Omega_G(\xi)|\le TV/\log2$. At that $\xi$,
+$\Re\lambda\le TV/\log2<2.9$ and $|\Im\lambda+\ell\Omega_G(\xi)|\le TV/\log2$, so
+$0\le\Omega_G(\xi)\le\Omega_{\max}$ gives $-\ell\,\Omega_{\max}-2.9<\Im\lambda<2.9$. As
+$\ell=3$, $-3\Omega_{\max}-2.9>-3\cdot0.6495-2.9>-4.85$. Hence
+$\lambda\in[\frac9{200},2.9)\times(-4.85,2.9)\subset\Rect$.
+\end{proof}
+
+\subsection{The Enclosure Procedure}
+\label{app:procedure}
+
+The procedure encloses $\Evans_\ell(\lambda;G)$ for all $\lambda$ in a box and
+all $G$ in an interval. It crosses the end regions by
+Lemma~\ref{lem:end-regions}, and $[\xia,\xib]$, where $\chi=1$, by a Taylor
+method with coefficients and remainders enclosed in ball arithmetic. Fix the
+Taylor order $\NT=16$, written $N$ in this subsection, and the points $s_0<s_1<\dots<s_n$, $n=360$, given by
+$s_0=\xia$, $s_n=\xib$ and $s_j=\RN(\xia+\frac jn(\xib-\xia))$ for $0<j<n$, where
+$\RN(q)$ is the binary64 number nearest to $q$ (ties to even). Only three facts are
+used: the $s_j$ are dyadic rationals, they are strictly increasing, and the steps
+$h_j=s_{j+1}-s_j$ are exact dyadic rationals.
+
+The input is an integer $\ell\ge1$, a box $\Lambda^{\rm b}=\mathsf X+i\mathsf Y$ and a
+real ball $\mathcal G^{\rm b}$. Each operation below is a ball operation; the
+procedure \textbf{fails} if a comparison that it requires is not certified as
+true, or if its output is not a box of finite radius.
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item \emph{Coefficient data, independent of $\lambda$ and $G$.} For each $j<n$,
+  and for $S=\{s_j\}$ (the \emph{point data}) and for $S=[s_j,s_{j+1}]$ (the
+  \emph{step data}), compute
+  \[
+  \begin{gathered}
+  \mathsf A_0=\mathrm{hull}\big(H(\tfrac{\min S-a_0}d),H(\tfrac{\max S-a_0}d)\big),\quad
+  \bar{\mathsf A}_0=\mathrm{hull}\big(H(\tfrac{a_0-\max S}d),H(\tfrac{a_0-\min S}d)\big),\\
+  \mathsf B_0=\mathrm{hull}\big(H(\tfrac{-\max S}d),H(\tfrac{-\min S}d)\big),\quad
+  \bar{\mathsf B}_0=\mathrm{hull}\big(H(\tfrac{\min S}d),H(\tfrac{\max S}d)\big),
+  \end{gathered}
+  \]
+  with $H(x)$ evaluated as $1/(1+\exp(-2x))$; then, for $0\le k\le N$,
+  \[
+  \begin{gathered}
+  \mathsf A_{k+1}=\frac{2}{d(k+1)}\sum_{r=0}^k\mathsf A_r\bar{\mathsf A}_{k-r},\qquad
+  \bar{\mathsf A}_{k+1}=-\mathsf A_{k+1},\\
+  \mathsf B_{k+1}=-\frac{2}{d(k+1)}\sum_{r=0}^k\mathsf B_r\bar{\mathsf B}_{k-r},\qquad
+  \bar{\mathsf B}_{k+1}=-\mathsf B_{k+1},
+  \end{gathered}
+  \]
+  and $\mathsf w_k=\sum_{r\le k}\mathsf A_r\mathsf B_{k-r}$ for $k\le N+1$,
+  $\mathsf f_k=(k+1)\mathsf w_{k+1}$, $\mathsf E^\pm_k=(\pm2)^ke^{\pm2S}/k!$ (with $e^{\pm2S}$ a
+  ball containing $e^{\pm2\xi}$ for $\xi\in S$) and
+  $\mathsf q_k=\sum_{r\le k}\mathsf w_r\mathsf E^+_{k-r}$ for $k\le N$. Then compute the
+  balls
+  \[
+  \gamma_0=\mathrm{hull}\Big(0,\frac{e^{2x_a+2\xia}}{2/d+2}\Big),\qquad
+  \gamma_{j+1}=\gamma_j+\Big(\sum_{k<N}\mathsf q_k^{\rm pt}\frac{h_j^{k+1}}{k+1}
+  +\mathsf q_N^{\rm st}\frac{h_j^{N+1}}{N+1}\Big)\cap[0,\infty),
+  \]
+  where the superscripts ${\rm pt}$ and ${\rm st}$ refer to the point and the step
+  data of step $j$, and, with $\mathsf g_0=\gamma_j$ for the point data,
+  $\mathsf g_0=\mathrm{hull}(\gamma_j,\gamma_{j+1})$ for the step data, and
+  $\mathsf g_r=\mathsf q_{r-1}/r$ for $1\le r<N$, put
+  $\mathsf o_k=\sum_{r\le k}\mathsf g_r\mathsf E^-_{k-r}$ for $k<N$.
+\item \emph{Left end.} Require $\mathrm{lo}(\mathsf X)>0$. Let $\varepsilon$ be an upper
+  bound of $3e^{-50}/\mathrm{lo}(\mathsf X)$, and require $\varepsilon\le1$. With
+  $L_1=\xia-\xiL$, put
+  $P=e^{\ell L_1}+\mathrm{box}(2\varepsilon\,\mathrm{up}(e^{\ell L_1}))$ and $P'=\ell P$.
+\item \emph{Middle steps.} For $j=0,1,\dots,n-1$ in turn, do the following, and then
+  replace $(P,P')$ by the new values. For the point data and for the step data of
+  step $j$, compute
+  \[
+  \begin{gathered}
+  \mathsf D_0=\Lambda^{\rm b}+i\ell(\mathsf o_0+\mathcal G^{\rm b}\mathsf E^-_0),\qquad
+  \mathsf D_k=i\ell(\mathsf o_k+\mathcal G^{\rm b}\mathsf E^-_k)\quad(1\le k<N),\\
+  \mathsf R_0=1/\mathsf D_0,\qquad \mathsf R_k=-\mathsf R_0\sum_{r=1}^k\mathsf D_r\mathsf R_{k-r}\quad(1\le k<N),\\
+  \mathsf V_k=i\ell\sum_{r\le k}\mathsf f_r\mathsf R_{k-r}+\ell^2[k=0]\quad(0\le k<N),
+  \end{gathered}
+  \]
+  where $[k=0]$ is $1$ if $k=0$ and $0$ otherwise. Let $q_*=|\mathsf V^{\rm st}_0|^{\rm up}$,
+  require that $q_*$ is finite, let $\kst$ be an upper bound of
+  $(\max(q_*,\ell^2))^{1/2}$, require $\kst h_j\le700$, choose a dyadic number
+  $M\ge\max(\kst|P|^{\rm up},|P'|^{\rm up})\,e^{\kst h_j}$, put
+  $P^{\rm st}=P+\mathrm{box}(h_jM)$ and $P'^{\rm st}=P'+\mathrm{box}(h_jq_*M/\kst)$,
+  and compute $\Psi_0=P$, $\Psi_1=P'$ and
+  $\Psi_{k+2}=\frac1{(k+1)(k+2)}\sum_{r\le k}\mathsf V^{\rm pt}_r\Psi_{k-r}$, and in the same
+  way $\Psi^{\rm st}_k$ from $P^{\rm st}$, $P'^{\rm st}$ and $\mathsf V^{\rm st}$, for
+  $k\le N+1$. The new values are
+  \[
+  P_{\rm new}=\sum_{k<N}\Psi_kh_j^k+\Psi^{\rm st}_Nh_j^N,\qquad
+  P'_{\rm new}=\sum_{k=1}^Nk\Psi_kh_j^{k-1}+(N+1)\Psi^{\rm st}_{N+1}h_j^N .
+  \]
+\item \emph{Right end and output.} With $L_2=\xiR-\xib$ and
+  $W=\max(\ell|P|^{\rm up},|P'|^{\rm up})$, return
+  \[
+  \Evans^{\rm b}=e^{-\ell(\xiR-\xiL)}\Big(e^{\ell L_2}(P'+\ell P)
+  +\mathrm{box}\big(4\varepsilon W\,\mathrm{up}(e^{\ell L_2})\big)\Big).
+  \]
+\end{enumerate}
+
+\begin{proposition}
+\label{prop:enclosure}
+Let $\ell\ge1$ be an integer, let $\Lambda\subset\{\Re\lambda>0\}$ be a compact
+axis-parallel box, and let $\Cell\subset[0,\infty)$ be a compact interval. Assume
+that every ball operation satisfies \textup{(CP)}. Run the procedure of
+Section~\ref{app:procedure} with $\ell$, a box $\Lambda^{\rm b}\supset\Lambda$ and a ball
+$\mathcal G^{\rm b}\supset\Cell$. If it does not fail, it returns a box
+$\Evans^{\rm b}$ of finite radius such that $\Evans_\ell(\lambda;G)\in\Evans^{\rm b}$ for every
+$\lambda\in\Lambda$ and every $G\in\Cell$.
+\end{proposition}
+\begin{proof}
+Fix $\lambda\in\Lambda$ and $G\in\Cell$, and let $\psi=\psi_\ell(\cdot;\lambda,G)$. We
+show that every computed ball contains a corresponding exact quantity, defined
+from $\lambda$, $G$ and $\chi$; the last one is $\Evans_\ell(\lambda;G)$. By (CP) it
+suffices to check, at each step, that the exact quantity is the same function of
+the earlier exact quantities, or else to justify the enclosure separately. For a
+smooth function $F$ we write $F_k(\xi)=F^{(k)}(\xi)/k!$.
+
+\emph{Step \textup{(i)}.} On $[\xia,\xib]$, $\chi=1$ and, $\chi$ being smooth, all its
+derivatives vanish there, so $\prof^{(k)}=(AB)^{(k)}$, where
+$A(\xi)=H(\frac{\xi-a_0}d)$, $B(\xi)=H(-\frac\xi d)$, $\bar A=1-A=H(\frac{a_0-\xi}d)$ and
+$\bar B=1-B=H(\frac\xi d)$, as $1-H(x)=H(-x)$. Since $H'=2H(1-H)$, $A'=\frac2dA\bar A$, $\bar A'=-A'$,
+$B'=-\frac2dB\bar B$ and $\bar B'=-B'$. The Leibniz rule gives
+$A_{k+1}=\frac2{d(k+1)}\sum_{r\le k}A_r\bar A_{k-r}$, likewise for $B$, and
+$\prof_k=\sum_{r\le k}A_rB_{k-r}$, $(\prof')_k=(k+1)\prof_{k+1}$,
+$(e^{\pm2\xi})_k=(\pm2)^ke^{\pm2\xi}/k!$; the function $q=\prof e^{2\xi}$ has
+$q_k=\sum_{r\le k}\prof_r(e^{2\xi})_{k-r}$. For $\xi\in S$, since $H$ is increasing,
+$A(\xi)\in\mathsf A_0$, $\bar A(\xi)\in\bar{\mathsf A}_0$, $B(\xi)\in\mathsf B_0$ and
+$\bar B(\xi)\in\bar{\mathsf B}_0$; by induction on $k$, each of
+$\mathsf A_k,\bar{\mathsf A}_k,\mathsf B_k,\bar{\mathsf B}_k,\mathsf w_k,
+\mathsf f_k,\mathsf E^\pm_k,\mathsf q_k$ contains the Taylor coefficient at $\xi$ of
+$A,\bar A,B,\bar B,\prof,\prof',e^{\pm2\xi},q$ respectively. So the point data enclose
+the Taylor coefficients at $s_j$, and the step data at every point of
+$[s_j,s_{j+1}]$.
+
+The function $g(\xi)=\int_{-\infty}^\xi\prof(\xi')e^{2\xi'}\dd\xi'$ has $g'=q\ge0$, so it is
+nondecreasing. On $(-\infty,\xia]$, $0\le\prof\le A\le e^{2(\xi-a_0)/d}$, so
+$0\le g(\xia)\le\int_{-\infty}^{\xia}e^{2(\xi-a_0)/d+2\xi}\dd\xi=e^{2x_a+2\xia}/(2/d+2)$,
+that is, $g(s_0)\in\gamma_0$. Taylor's theorem with the Lagrange remainder,
+applied to $t\mapsto\int_{s_j}^{s_j+t}q$, gives
+\[
+g(s_{j+1})-g(s_j)=\sum_{k<N}q_k(s_j)\frac{h_j^{k+1}}{k+1}+q_N(\eta_j)\frac{h_j^{N+1}}{N+1}
+\]
+for some $\eta_j\in[s_j,s_{j+1}]$. This increment is nonnegative and lies in the
+ball in parentheses defining $\gamma_{j+1}$, so $g(s_j)\in\gamma_j$ for every $j$ by
+induction, and $g(\xi)\in\mathrm{hull}(\gamma_j,\gamma_{j+1})$ for
+$\xi\in[s_j,s_{j+1}]$ since $g$ is nondecreasing. As $g_r=q_{r-1}/r$ for $r\ge1$, the
+balls $\mathsf o_k$ contain the Taylor coefficients of $ge^{-2\xi}$, at $s_j$ for the
+point data and at every point of the step for the step data.
+
+\emph{Step \textup{(ii)}.} Since $\lambda\in\Lambda^{\rm b}$,
+$\Re\lambda\ge\mathrm{lo}(\mathsf X)>0$, so $\varepsilon\ge\epsend$ (as in
+Lemma~\ref{lem:end-regions}) and, as $\varepsilon\le1$,
+$e^{\epsend}-1\le e^\varepsilon-1\le(e-1)\varepsilon\le2\varepsilon$.
+Lemma~\ref{lem:end-regions}(2) on $[\xiL,\xia]$, where $\psi_0(\xi)=e^{\ell(\xi-\xiL)}$
+and $|Y(\xiL)|_w=\ell$, gives $|\psi(\xia)-e^{\ell L_1}|\le2\varepsilon e^{\ell L_1}$ and
+$|\psi'(\xia)-\ell e^{\ell L_1}|\le2\ell\varepsilon e^{\ell L_1}$. Hence
+$\psi(\xia)\in P$ and $\psi'(\xia)\in\ell P=P'$.
+
+\emph{Step \textup{(iii)}.} Assume $\psi(s_j)\in P$ and $\psi'(s_j)\in P'$. On
+$[\xia,\xib]$ the coefficient $V=\ell^2+i\ell\prof'/(\lambda+i\ell\Omega_G)$ is smooth, so
+$\psi$ is smooth there. Put $D=\lambda+i\ell\Omega_G=\lambda+i\ell(g+G)e^{-2\xi}$ and
+$R=1/D$, where $D\ne0$ as $\Re D=\Re\lambda>0$. The identity $DR=1$ gives
+$R_0=1/D_0$ and $R_k=-R_0\sum_{r=1}^kD_rR_{k-r}$ for $k\ge1$, and
+$V=\ell^2+i\ell\prof'R$ gives $V_k=i\ell\sum_{r\le k}(\prof')_rR_{k-r}+\ell^2[k=0]$. By
+step (i) and (CP), $\mathsf V^{\rm pt}_k\ni V_k(s_j)$ and
+$\mathsf V^{\rm st}_k\ni V_k(\xi)$ for every $\xi\in[s_j,s_{j+1}]$; in particular
+$|V|\le q_*\le\kst^2$ on the step. For the a priori enclosure, put
+$u(t)=\max(\kst|\psi(s_j+t)|,|\psi'(s_j+t)|)$ for $t\in[0,h_j]$. Then
+$\kst|\psi(s_j+t)|\le\kst|\psi(s_j)|+\int_0^t\kst|\psi'|$ and
+$|\psi'(s_j+t)|\le|\psi'(s_j)|+\int_0^t\kst\cdot\kst|\psi|$, so
+$u(t)\le u(0)+\kst\int_0^tu$, and Gronwall's inequality gives
+$u(t)\le u(0)e^{\kst t}\le M$. Hence, for $\xi\in[s_j,s_{j+1}]$,
+$|\psi(\xi)-\psi(s_j)|\le h_jM$ and, since $|\psi|\le M/\kst$ on the step,
+$|\psi'(\xi)-\psi'(s_j)|\le\int|V||\psi|\le h_jq_*M/\kst$; so $\psi(\xi)\in P^{\rm st}$
+and $\psi'(\xi)\in P'^{\rm st}$. The equation $\psi''=V\psi$ gives
+$(k+1)(k+2)\psi_{k+2}=\sum_{r\le k}V_r\psi_{k-r}$, so $\Psi_k\ni\psi_k(s_j)$ and
+$\Psi^{\rm st}_k\ni\psi_k(\xi)$ for every $\xi\in[s_j,s_{j+1}]$ and $k\le N+1$.
+Taylor's theorem with the integral remainder gives
+\[
+\psi(s_{j+1})=\sum_{k<N}\psi_k(s_j)h_j^k+h_j^N\int_0^1N(1-\tau)^{N-1}\psi_N(s_j+\tau h_j)\dd\tau .
+\]
+The weight $N(1-\tau)^{N-1}$ is a probability density on $[0,1]$, so the integral
+lies in the closed convex hull of $\{\psi_N(\xi):\xi\in[s_j,s_{j+1}]\}$, which lies in
+the closed convex box $\Psi^{\rm st}_N$. Hence $\psi(s_{j+1})\in P_{\rm new}$; the same
+argument for $\psi'$, with $(\psi')_r=(r+1)\psi_{r+1}$, gives
+$\psi'(s_{j+1})\in P'_{\rm new}$. By induction on $j$, $\psi(\xib)\in P$ and
+$\psi'(\xib)\in P'$ at the end of step (iii).
+
+\emph{Step \textup{(iv)}.} Apply Lemma~\ref{lem:end-regions}(2) on $[\xib,\xiR]$.
+Since $(\psi_0'+\ell\psi_0)'=\ell(\psi_0'+\ell\psi_0)$,
+$(\psi_0'+\ell\psi_0)(\xiR)=e^{\ell L_2}(\psi'+\ell\psi)(\xib)$, and
+\[
+|(\psi'+\ell\psi)(\xiR)-e^{\ell L_2}(\psi'+\ell\psi)(\xib)|\le2|Y(\xiR)-Y_0(\xiR)|_w
+\le2e^{\ell L_2}|Y(\xib)|_w\cdot2\varepsilon\le4\varepsilon We^{\ell L_2}.
+\]
+Multiplying by $e^{-\ell(\xiR-\xiL)}$ gives $\Evans_\ell(\lambda;G)\in\Evans^{\rm b}$.
+\end{proof}
+
+\subsection{Certified Winding Numbers}
+
+A set $B\subset\C$ is of \textbf{type P} if it does not meet $(-\infty,0]$, and
+of \textbf{type N} if it does not meet $[0,\infty)$.
+
+\begin{proposition}
+\label{prop:winding}
+Let $\Gamma$ be the boundary of a closed rectangle $\Rect'$ in $\{\Re\lambda>0\}$,
+traversed counterclockwise and cut into segments $[p_i,p_{i+1}]$,
+$i=0,\dots,I-1$, with $p_I=p_0$. Let $\Cell$ be a set, let $E(\cdot;G)$ be continuous
+on $\Gamma$ for each $G\in\Cell$, and let $\mathcal B_i\subset\C$ be sets with
+$E(\lambda;G)\in\mathcal B_i$ for all $\lambda\in[p_i,p_{i+1}]$ and $G\in\Cell$. Assume that
+each $\mathcal B_i$ is of type P or of type N, and assign to each $i$ one type for which this
+holds. Then $E(\cdot;G)\ne0$ on $\Gamma$ and, for every $G\in\Cell$,
+\[
+\wind\big(E(\Gamma;G),0\big)=\sum_{i\ \text{of type N}}\Big(\mathbf 1\big[\Im E(p_{i+1};G)<0\big]-\mathbf 1\big[\Im E(p_i;G)<0\big]\Big).
+\]
+In this sum the two terms at a point shared by two segments of type N cancel.
+\end{proposition}
+\begin{proof}
+Fix $G\in\Cell$. Every $\mathcal B_i$ misses $0$, so $E(\cdot;G)\ne0$ on $\Gamma$. The
+principal argument $\mathrm{Arg}\colon\C\setminus\{0\}\to(-\pi,\pi]$ is continuous on
+$\C\setminus(-\infty,0]$, and
+$\theta_{\rm N}(z)=\mathrm{Arg}(z)+2\pi\,\mathbf 1[\Im z<0]$ is continuous on
+$\C\setminus[0,\infty)$, with values in $(0,2\pi)$. Since $E(\cdot;G)$ maps the
+$i$-th segment into $\mathcal B_i$, $\mathrm{Arg}(E(\cdot;G))$ is a continuous
+argument on a segment of type P, and $\theta_{\rm N}(E(\cdot;G))$ on one of type N. Each differs by a constant from a continuous argument along the
+whole curve, so the winding number is $\frac1{2\pi}$ times the sum over the
+segments of their increments. The increments of $\mathrm{Arg}$ telescope around the
+closed curve to $0$, and what remains is the indicator sum. At a point shared by
+two segments of type N the indicator enters once with each sign.
+\end{proof}
+
+\subsection{The Two Computations}
+\label{app:runs}
+
+\begin{definition}
+\label{def:Nprime}
+We consider the following two statements.
+\begin{enumerate}[label=\textup{(N\arabic*$'$)}]
+\item For every $G\in[0,\Gmax']$, $\Evans_3(\cdot;G)\ne0$ on $\partial\Rect$ and
+  $\wind(\Evans_3(\partial\Rect;G),0)=1$.
+\item There are $236$ closed intervals $\Cell_i$, $1\le i\le236$, with
+  union $[0,\Gmax']$, and closed rectangles
+  $\Rect_1,\dots,\Rect_{236}\subset\Rect$, the left edge of
+  each of which lies on the line $\Re\lambda=\frac{211}{2500}$, such that for
+  every $i$ and every $G\in\Cell_i$, $\Evans_3(\cdot;G)\ne0$ on $\partial\Rect_i$
+  and $\wind(\Evans_3(\partial\Rect_i;G),0)=1$.
+\end{enumerate}
+\end{definition}
+
+\begin{lemma}
+\label{lem:Nprime-N}
+\textup{(N1$'$)} implies \textup{(N1)}. \textup{(N1)} and \textup{(N2$'$)} imply
+\textup{(N2)}.
+\end{lemma}
+\begin{proof}
+Let $G\in[0,\Gmax]\subset[0,\Gmax']$. By
+Lemma~I.\ref{I-lem:evans-basic}\textup{(1)} and its last assertion, $\Evans_3(\cdot;G)$ is holomorphic on
+$\{\Re\lambda>0\}$, which contains $\Rect$ and every $\Rect_i$.
+
+Assume \textup{(N1$'$)}. By the argument principle, $\Evans_3(\cdot;G)$ has exactly
+one zero, counted with multiplicity, in the interior of $\Rect$. By
+Lemma~\ref{lem:apriori}, every zero with $\Re\lambda\ge\frac9{200}$
+lies in $\Rect$, and by \textup{(N1$'$)} none lies on $\partial\Rect$; so the zeros in
+$\{\Re\lambda\ge\frac9{200}\}$ are exactly those in the interior of $\Rect$. This is
+\textup{(N1)}.
+
+Assume \textup{(N1)} and \textup{(N2$'$)}, let $\lamst$ be the zero of
+\textup{(N1)}, and choose $i$ with $G\in\Cell_i$. By \textup{(N2$'$)} and the argument
+principle, $\Evans_3(\cdot;G)$ has a zero $\lambda'$ in the interior of $\Rect_i$, whose left edge
+lies on $\{\Re\lambda=\frac{211}{2500}\}$, so $\Re\lambda'>\frac{211}{2500}>\frac9{200}$, and $\lambda'=\lamst$ by \textup{(N1)}.
+So the only zero of $\Evans_3(\cdot;G)$ in $\{\Re\lambda\ge\frac9{200}\}$ has real
+part greater than $\frac{211}{2500}$, and there is none in
+$\{\frac9{200}\le\Re\lambda\le\frac{211}{2500}\}$. This is \textup{(N2)}.
+\end{proof}
+
+Both computations use the procedure of Section~\ref{app:procedure} with $\ell=3$.
+For a closed interval $\Cell$ with rational endpoints, a closed rectangle
+$\Rect'=[x_0,x_1]\times[y_0,y_1]\subset\{\Re\lambda>0\}$ with rational vertices, a
+number $\nu>0$ and integers $J,K\ge1$, the \textbf{certification} of
+$(\Cell,\Rect')$ with density $\nu$, at most $J$ rounds and at most $K$ segments
+is the following computation. The boundary of $\Rect'$ is traversed
+counterclockwise from $(x_0,y_0)$, and each edge, of length $L$, is cut into
+$\max(2,\lceil\nu L\rceil)$ segments of equal length; all cut points are rational.
+For a segment $[p,q]$, the procedure is run with
+$\Lambda^{\rm b}=(X_p\cup X_q)+i(Y_p\cup Y_q)$, where $X_p,X_q,Y_p,Y_q$ are the balls
+that contain $\Re p$, $\Re q$, $\Im p$, $\Im q$, and with $\mathcal G^{\rm b}$ the
+union of the balls that contain the two endpoints of $\Cell$; by (CP),
+$\Lambda^{\rm b}\supset[p,q]$ and $\mathcal G^{\rm b}\supset\Cell$. The resulting box
+$\Evans^{\rm b}$ is accepted as of type P if it is certified that
+$\Im\Evans^{\rm b}>0$, or $\Im\Evans^{\rm b}<0$, or $\Re\Evans^{\rm b}>0$; otherwise it
+is accepted as of type N if it is certified that $\Re\Evans^{\rm b}<0$. The first
+round treats every segment; each later round treats the two halves, cut at the
+midpoint, of every segment not accepted in the previous round, including those for
+which the procedure failed. A segment is cut only if there are at most $K$
+segments at that moment, and at most $J$ rounds are made; otherwise the
+certification does not succeed. If every segment has been accepted, then at every
+point $p$ where a segment of type N meets a segment of type P the procedure is run
+with $\Lambda^{\rm b}$ the box of the balls that contain $\Re p$ and $\Im p$ and
+with the same $\mathcal G^{\rm b}$, and the
+indicator $\mathbf 1[\Im\Evans_3(p;G)<0]$ is taken to be $1$ if the resulting box
+is certified to have negative imaginary part and $0$ if it is certified to have
+positive imaginary part. The certification \textbf{succeeds} if every segment is
+accepted and every such indicator is decided; its result is then the indicator sum
+of Proposition~\ref{prop:winding}.
+
+A \textbf{run} with at most $D$ halvings certifies a list of pairs
+$(\Cell,\Rect')$: if the certification of $(\Cell,\Rect')$ does not succeed, $\Cell$
+is halved at its midpoint and each half is certified with the same $\Rect'$, at
+most $D$ times in succession; the certified pieces take the place of $\Cell$, and a
+piece still not certified after $D$ halvings is reported as failed.
+
+The run for \textup{(N1$'$)} uses the rectangle $\Rect$ and the $25$ intervals
+\[
+\Big[\frac{j}{20}d,\frac{j+1}{20}d\Big]\quad(0\le j\le14),\qquad
+\Big[\frac{30+j}{40}d,\frac{31+j}{40}d\Big]\quad(0\le j\le9),
+\]
+whose union is $[0,\Gmax']$, with density $\nu=20$, at most $16$ rounds, at most
+$6000$ segments and at most $4$ halvings. The run for \textup{(N2$'$)} uses $236$
+intervals $\Cell_1,\dots,\Cell_{236}$, numbered from left to right, and rectangles
+$\Rect_i=[\frac{211}{2500},x_i]\times[y_i,y_i']$, with density
+$\nu=3/(x_i-\frac{211}{2500})$, at most $10$ rounds, at most $800$ segments and at
+most $5$ halvings. These $236$ pairs, with every number an exact fraction, form the file
+\texttt{sector3\_gap\_cells.json} of the reproduction package
+(Section~\ref{app:reproduce}), and the file \texttt{sector3\_count\_cells.json}
+lists the $25$ intervals of the first run, also numbered from left to right. In each of these lists the endpoints of
+the intervals are rational, the first interval starts at $0$, the last ends at
+$d=\Gmax'$, and consecutive intervals share an endpoint; every $\Rect_i$ has
+rational vertices, satisfies $x_i>\frac{211}{2500}$ and $y_i<y_i'$, and lies in
+$\Rect$. The re-check of Section~\ref{app:reproduce} confirms these facts, and that
+every rectangle of the first run is $\Rect$, for the output files of the runs, in
+exact rational arithmetic.
+
+\begin{proposition}
+\label{prop:runs}
+\textup{(N1$'$)} and \textup{(N2$'$)} hold.
+\end{proposition}
+\begin{proof}
+The proof is the computation just described, carried out under the trusted base of
+Section~\ref{app:arith}. Each of the $25$ certifications of the first run and each
+of the $236$ of the second succeeded at once, with result $1$, so no interval was
+halved and the output files list exactly the intervals and rectangles described
+above.
+
+Consider a certification of $(\Cell,\Rect')$ that succeeds with result $1$. By
+Lemma~I.\ref{I-lem:evans-basic}\textup{(1)} and its last assertion, $\Evans_3(\cdot;G)$ is continuous on
+$\{\Re\lambda>0\}\supset\partial\Rect'$ for every $G\in\Cell$. By
+Proposition~\ref{prop:enclosure}, the box of each accepted segment $[p,q]$
+contains $\Evans_3(\lambda;G)$ for all $\lambda\in[p,q]$ and $G\in\Cell$, and each decided
+indicator equals $\mathbf 1[\Im\Evans_3(p;G)<0]$ for every $G\in\Cell$; by (CP) for
+the comparisons, a box accepted as of type P misses $(-\infty,0]$ and one accepted
+as of type N misses $[0,\infty)$. The accepted segments are consecutive and cover
+$\partial\Rect'$. By Proposition~\ref{prop:winding}, $\Evans_3(\cdot;G)\ne0$ on
+$\partial\Rect'$ and $\wind(\Evans_3(\partial\Rect';G),0)=1$ for every $G\in\Cell$.
+Applied to the first run, whose intervals cover $[0,\Gmax']$, this gives
+\textup{(N1$'$)}; applied to the second, with the properties of the $\Cell_i$ and
+$\Rect_i$ stated above, it gives \textup{(N2$'$)}.
+\end{proof}
+
+\subsection{The Closed-Form Inequality}
+
+\begin{proposition}
+\label{prop:N3}
+\textup{(N3)} holds.
+\end{proposition}
+\begin{proof}
+We first bound $\epsst$. Since $H(x)\le e^{2x}$, Equation~\eqref{eq:xayb} gives
+$\epsst\le e^{2\max(x_a,y_b)}<e^{-49}<10^{-21}$, as $e^{49}>2.7^{49}>10^{21}$
+(proof of Lemma~\ref{lem:apriori}).
+
+We next bound $e^{a_0}$. From Definition~I.\ref{I-def:ring}, $a_0=-7304210039150669\cdot2^{-54}<-0.4054$. The partial
+sum $\sum_{k\le5}0.4054^k/k!$ of the exponential series is a lower bound for
+$e^{0.4054}$, and it exceeds $1.49989$, so $e^{a_0}<e^{-0.4054}<1/1.49989<0.66672$.
+Squaring and multiplying, $0.66672^2<0.444516$, $0.66672^3<0.296368$,
+$0.66672^6<0.087834$ and $0.66672^9<0.026032$.
+
+We now bound $\Thl{\ell}$ for $\ell\in\{6,9\}$. Put $u=\pi\ell d$. Since $\pi<3.1416$ and $0<d<0.0200001$, we have $0<u<0.377$ for $\ell=6$ and
+$0<u<0.5655$ for $\ell=9$; in particular $0<u<\pi$. For $u\ge0$,
+$\sin u\ge u-u^3/6$, since the difference vanishes at $0$ and has derivative
+$\cos u-1+u^2/2$, which is nonnegative (it vanishes at $0$ and its derivative $u-\sin u$ is
+nonnegative). So $\Thl{\ell}=u/\sin u\le(1-u^2/6)^{-1}$ as
+$u^2<6$. Hence $\Thl{6}\le(1-0.377^2/6)^{-1}<(1-0.023689)^{-1}<1.024264$
+and $\Thl{9}<(1-0.0533)^{-1}<1.0564$. Therefore
+\[
+\begin{gathered}
+e^{6a_0}\Thl{6}+\epsst<0.087834\cdot1.024264+10^{-21}<0.08997,\\
+e^{9a_0}\Thl{9}+\epsst<0.026032\cdot1.0564+10^{-21}<0.0276,
+\end{gathered}
+\]
+and both are less than $\frac9{100}$, which is \textup{(N3)}.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:N-holds}]
+By Proposition~\ref{prop:runs}, \textup{(N1$'$)} and \textup{(N2$'$)} of
+Definition~\ref{def:Nprime} hold; by Lemma~\ref{lem:Nprime-N}, \textup{(N1)} holds, and
+then \textup{(N2)}; by Proposition~\ref{prop:N3}, \textup{(N3)} holds.
+\end{proof}
+
+\subsection{Reproduction}
+\label{app:reproduce}
+
+The computations of Section~\ref{app:runs} can be repeated with version~1.0.0 of
+the package \texttt{euler-ring-certificate}, which is available under the Apache
+License 2.0 in the public repository \url{https://github.com/mcoiculescu/NonUniqueEuler}
+and contains the code, the two
+certificate files of Section~\ref{app:runs} and the reference outputs. It requires
+only python-flint~0.9.0, which bundles FLINT~3.6.0, under CPython~3.10 or later.
+The program refuses to run with assertions disabled, and, unless explicitly
+allowed, with another FLINT version. From the top directory of the package, the
+command \mbox{\texttt{./reproduce.sh 8}} runs, with $8$ worker processes, among other
+items: an environment check; the unit tests; the certification of the $25$
+intervals of \textup{(N1$'$)} and of the $236$ intervals and rectangles of
+\textup{(N2$'$)} (commands \texttt{ringcert sector3-count} and
+\texttt{ringcert sector3-gap}); a re-check of the outputs in exact rational
+arithmetic (\texttt{ringcert check}); and a comparison with the reference
+outputs. A successful run reports all items as passed.
+
+The outputs record, for every certified interval, its endpoints, its rectangle,
+its result, and the numbers of segments and indicators. From the output files
+alone, the re-check confirms that the intervals of each run cover $[0,\Gmax']$,
+with consecutive intervals sharing an endpoint, that every result is $1$, that no
+indicator is undecided and no interval failed, that every rectangle of the first
+run is $\Rect$, and that every rectangle of the second run is nondegenerate, has
+left edge on the line $\Re\lambda=\frac{211}{2500}$ and lies in $\Rect$; it also
+checks that these output files are the ones recorded in the summary of the run.
+
+The output files \texttt{sector3\_count.json} and \texttt{sector3\_gap.json}
+contain no timing or environment data; on an Apple arm64 machine with
+CPython~3.13.5 they are byte-identical to the reference outputs of the package.
+The SHA-256 digests of the certificate files and of these outputs are the following.
+\begin{center}
+\scriptsize
+\begin{tabular}{ll}
+\texttt{sector3\_count\_cells.json} &
+\texttt{518a0ca4f05fd24bae273aebea20862fad1c1beb46dbdee9f8b5fb76c8729dc1}\\
+\texttt{sector3\_gap\_cells.json} &
+\texttt{fb95a3f72eee1f017ddc5c26e7dfca52841759603e34b0131a440c8992086c91}\\
+\texttt{sector3\_count.json} &
+\texttt{2aa43b18d7289b7288f4bc660b1fdbec547458949ee675ef4b23f65cbcf1a1c9}\\
+\texttt{sector3\_gap.json} &
+\texttt{f06feec05cc6633b390bb9ee6191ce59c3bd5231a01ffa0f48263c8c9173a786}
+\end{tabular}
+\end{center}
+The reference outputs were produced on that machine only. With another FLINT
+version or on other hardware the numbers of segments may differ, and an interval
+may be halved. The proof needs only that the re-check passes, that is, that the output files
+have the properties listed above. If some intervals
+were halved, the argument of Proposition~\ref{prop:runs} gives \textup{(N1$'$)},
+and \textup{(N2$'$)} with the certified pieces, each paired with the rectangle of
+its interval, in place of the $236$ intervals; the proof of
+Lemma~\ref{lem:Nprime-N} does not use their number.

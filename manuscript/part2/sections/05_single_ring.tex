@@ -1,0 +1,1126 @@
+\section{Nonlinear Estimates for One Ring}
+\label{sec:single}
+
+Throughout this section we assume \textup{(N1)}--\textup{(N3)}, we work in ring
+units, and we use the objects of Definition~I.\ref{I-def:eigendata}. When $G$ is fixed
+we write $\lamst=\lamst(G)$, $\phist=\phist(G)$, $\ellst=\ellst(G)$,
+$\Riesz=\Riesz(G)$; recall $\sigma(G)=\Re\lamst(G)$ from that definition. The proofs of
+Theorems~\ref{thm:quiet} and~\ref{thm:active} follow Grenier \cite{Grenier}: an
+approximate solution of high order is built from the linear semigroup, and the order is so large that a crude energy estimate for the
+remainder suffices.
+
+We use the norms of $H^k$, $W^{1,\infty}$ and $C^k(N')$ fixed in
+Section~I.\ref{I-sec:prelim}, and the embedding $\|f\|_{L^\infty}\le\|f\|_{H^2}$ of
+Lemma~\ref{lem:embed}\textup{(E2)}. A vector field $h$ on a neighborhood of $N'$
+is \textit{$3$-fold rotationally symmetric} if $h(\Orot x)=\Orot h(x)$. Let $\flow$ be the flow
+of a solution of Theorem~\ref{thm:smooth}, let $\omega_{\mathrm r}(0)$ have compact
+support, let $\omega_{\mathrm r}(t)=\omega_{\mathrm r}(0)\circ\flow_t^{-1}$, and let
+$\delta_{\mathrm r}(t)$ be the supremum of $\big||\flow_\tau(y)|-|y|\big|$ over
+$\tau\in[0,t]$ and $y\in\supp\omega_{\mathrm r}(0)$ ($0$ if the support is empty);
+it is a maximum if the support is nonempty, it is continuous and
+nondecreasing, and $\delta_{\mathrm r}(0)=0$, because $(\tau,y)\mapsto\flow_\tau(y)$
+is continuous. We say that \textit{every trajectory of $\omega_{\mathrm r}$ moves
+radially by at most $\delta$ on $[0,t]$} if $\delta_{\mathrm r}(t)\le\delta$. Since
+$\supp\omega_{\mathrm r}(\tau)=\flow_\tau(\supp\omega_{\mathrm r}(0))$, the support
+of $\omega_{\mathrm r}(\tau)$, $\tau\le t$, then lies within radial distance $\delta$
+of $\supp\omega_{\mathrm r}(0)$.
+
+For $G\in[0,\Gone]$ and an integer $k\ge0$, $e^{t\Lin(G)}$ denotes the semigroup
+of Lemma~I.\ref{I-lem:semigroup-construct} for the ring in ring units. It preserves
+each mode, hence the subspace $X^k$ of the space $Y^k$ of that lemma
+consisting of the functions whose mode components vanish outside $3\Z$. It maps
+real-valued functions to real-valued functions, since it is the sum of a
+Dyson-Phillips series built from $e^{t\Lin^{\rm tr}}$ and $\mathcal K$ of that
+lemma, which both do.
+
+\begin{lemma}
+\label{lem:duhamel}
+Let $G\in[0,\Gone]$, $T>0$, and let $k\ge1$ be an integer. Let $f_0\in X^k$ and
+$g\in C([0,T];X^k)$, and put
+$u(t)=e^{t\Lin(G)}f_0+\int_0^te^{(t-\tau)\Lin(G)}g(\tau)\dd\tau$. Then
+$u\in C([0,T];X^k)\cap C^1([0,T];X^{k-1})$, and $\partial_tu=\Lin(G)u+g$ on
+$[0,T]$. If $f_0$ and $g$ are real-valued, so is $u$.
+\end{lemma}
+\begin{proof}
+The semigroup $S(t)=e^{t\Lin(G)}$ is strongly continuous on $X^k$ and, by the
+uniform boundedness principle, bounded on $[0,T]$; so $\tau\mapsto S(t-\tau)g(\tau)$
+is continuous into $X^k$ (by the identity used below for $H$, read in $X^k$),
+$\int_0^tS(t-\tau)g(\tau)\dd\tau=\int_0^tS(\tau)g(t-\tau)\dd\tau$
+is continuous in $t$ by dominated convergence, and $u\in C([0,T];X^k)$. Moreover
+$X^k\hookrightarrow X^{k-1}$, and $S$ is a $C_0$-semigroup on $X^{k-1}$, since it
+is one on $Y^{k-1}$ and $X^{k-1}=Y^{k-1}_{3\Z}$ is a closed invariant subspace,
+both by Lemma~I.\ref{I-lem:semigroup-construct}\textup{(2)}. By
+Lemma~I.\ref{I-lem:semigroup-construct}\textup{(2)}, the generator $A$ of $S$ on
+$X^{k-1}$ (the part in $X^{k-1}$ of the generator on $Y^{k-1}$ of that lemma)
+satisfies $X^k\subset D(A)$, $Ay=\Lin(G)y$ and $\|Ay\|_{X^{k-1}}\le C\|y\|_{X^k}$ for
+$y\in X^k$; here $\Lin(G)$ maps $X^k$ into $X^{k-1}$ because it preserves modes
+(Lemma~I.\ref{I-lem:sector}\textup{(2)}). Below, $\|\cdot\|$ is the norm of $X^{k-1}$ and
+the operator norm on $X^{k-1}$.
+
+All integrals below are Riemann integrals of continuous functions with values
+in a Banach space; Fubini's theorem holds for them, because it holds after
+applying any continuous linear functional. We extend $g$ by $g(t)=g(T)$ for
+$T<t\le2T$. Since each $t\mapsto S(t)x$, $x\in X^{k-1}$, is continuous, hence bounded on $[0,2T]$, the
+uniform boundedness principle gives $M_T:=\sup_{0\le t\le2T}\|S(t)\|<\infty$.
+
+Let $x\in D(A)$. For $t\ge0$,
+$\epsilon^{-1}(S(\epsilon)-I)S(t)x=S(t)\epsilon^{-1}(S(\epsilon)x-x)\to S(t)Ax$, so $S(t)x\in D(A)$,
+$AS(t)x=S(t)Ax$, and $S(t)Ax$ is the right derivative of $t\mapsto S(t)x$. For
+$0<\epsilon\le t\le2T$,
+$\epsilon^{-1}(S(t)x-S(t-\epsilon)x)-S(t)Ax=S(t-\epsilon)\big(\epsilon^{-1}(S(\epsilon)x-x)-Ax\big)+\big(S(t-\epsilon)-S(t)\big)Ax\to0$,
+because $\|S(t-\epsilon)\|\le M_T$. Thus $t\mapsto S(t)x$ lies in $C^1([0,2T];X^{k-1})$ with
+derivative $S(t)Ax$, and
+\begin{equation}
+\label{eq:semigroup-FTC}
+S(r)x-x=\int_0^rS(s)Ax\dd s\qquad(x\in D(A),\ 0\le r\le2T).
+\end{equation}
+
+Let $H\in C([0,2T];X^{k-1})$. The identity
+$S(s'-\tau')H(\tau')-S(s-\tau)H(\tau)=S(s'-\tau')(H(\tau')-H(\tau))
++(S(s'-\tau')-S(s-\tau))H(\tau)$, whose first term has norm at most
+$M_T\|H(\tau')-H(\tau)\|$ and whose second tends to $0$ by strong continuity,
+shows that $(s,\tau)\mapsto S(s-\tau)H(\tau)$ is continuous on
+$\{0\le\tau\le s\le2T\}$. Moreover
+$s\mapsto\int_0^sS(s-\tau)H(\tau)\dd\tau$ is continuous on $[0,2T]$: for
+$0\le s<s'\le2T$ the difference of its values is
+$\int_s^{s'}S(s'-\tau)H(\tau)\dd\tau+\int_0^sS(s-\tau)(S(s'-s)-I)H(\tau)\dd\tau$,
+of norm at most $M_T\sup\|H\|(s'-s)+2TM_T\sup_\tau\|(S(s'-s)-I)H(\tau)\|$; and the
+operators $S(\epsilon)-I$, $0\le\epsilon\le2T$, are bounded by $M_T+1$ and tend strongly to
+$0$ as $\epsilon\to0$, hence uniformly on the compact set $H([0,2T])$.
+
+Now put $V(t)=\int_0^tS(t-\tau)g(\tau)\dd\tau$ and
+$W(t)=\int_0^tS(t-\tau)Ag(\tau)\dd\tau$. Since
+$\|A(g(\tau)-g(\tau'))\|\le C\|g(\tau)-g(\tau')\|_{X^k}$, $Ag$ is continuous
+into $X^{k-1}$, so $W$ is continuous by the previous paragraph with $H=Ag$. By
+Equation~\eqref{eq:semigroup-FTC} with $x=g(\tau)\in X^k\subset D(A)$ and Fubini's theorem,
+\[
+V(t)=\int_0^t\Big(g(\tau)+\int_\tau^tS(s-\tau)Ag(\tau)\dd s\Big)\dd\tau
+=\int_0^t\big(g(s)+W(s)\big)\dd s ,
+\]
+so $V\in C^1([0,2T];X^{k-1})$ and $V'=g+W$. For $t\in[0,T]$ and $0<\epsilon\le T$ we have
+$V(t+\epsilon)=S(\epsilon)V(t)+\int_t^{t+\epsilon}S(t+\epsilon-\tau)g(\tau)\dd\tau$, and $\epsilon^{-1}$ times the
+last integral tends to $g(t)$ as $\epsilon\to0$, by the continuity of
+$(s,\tau)\mapsto S(s-\tau)g(\tau)$ at $(t,t)$. Hence
+$\epsilon^{-1}(S(\epsilon)V(t)-V(t))\to V'(t)-g(t)=W(t)$; that is, $V(t)\in D(A)$ and
+$AV(t)=W(t)$. With the case $x=f_0\in X^k\subset D(A)$ above, $u=S(\cdot)f_0+V$ lies in
+$C^1([0,T];X^{k-1})$, $u(t)\in D(A)$ with $Au(t)=S(t)Af_0+W(t)$, and
+$\partial_tu=S(\cdot)Af_0+g+W=Au+g=\Lin(G)u+g$, since $u(t)\in X^k$. Finally, $S(t)$
+preserves real-valued functions.
+\end{proof}
+
+\subsection{The Perturbation Equation}
+
+\begin{lemma}
+\label{lem:reduction}
+Let $\omega$ be a solution given by Theorem~\ref{thm:smooth} whose datum
+$\omega(0)$ is $3$-fold rotationally symmetric, and let $\flow_t$ be its flow. Let
+$\omega(0)=\omega_{\mathrm r}(0)+\omega_{\mathrm i}(0)+\omega_{\mathrm o}(0)$ with
+pairwise disjoint supports, $\omega_{\mathrm r}(0)$, $\omega_{\mathrm i}(0)$,
+$\omega_{\mathrm o}(0)$ each $3$-fold rotationally symmetric, and put
+$\omega_\bullet(t)=\omega_\bullet(0)\circ\flow_t^{-1}$ for
+$\bullet\in\{\mathrm r,\mathrm i,\mathrm o\}$. Put
+$G=\frac1{2\pi}\int\omega_{\mathrm i}(0)$. Let $T>0$ and assume that for every
+$t\in[0,T]$, $\supp\omega_{\mathrm i}(t)\subset\overline B_{a/8}$ and
+$\supp\omega_{\mathrm o}(t)\cap B_6=\emptyset$. Put
+\[
+h(t)=\KBS\ast\big(\omega_{\mathrm i}(t)+\omega_{\mathrm o}(t)\big)-G\,\frac{x^\perp}{|x|^2}
+\qquad\text{on a neighborhood of }N'.
+\]
+Then:
+\begin{enumerate}[label=\textup{(\arabic*)}]
+\item for every $t\in[0,T]$, $h(t)$ is smooth, divergence-free and
+  $3$-fold rotationally symmetric on a neighborhood of $N'$; and $t\mapsto h(t)\in C^k(N')$ is
+  continuous on $[0,T]$ for every $k$;
+\item $\omega_{\mathrm r}\in C^\infty(\R\times\R^2)$, and on $[0,T]\times N'$ the
+  velocity $v=\KBS\ast\omega$ is
+  \[
+  v=\Omega(|x|;G)\,x^\perp+h+\KBS\ast(\omega_{\mathrm r}-\Phi),
+  \]
+  with $\Omega$ of Definition~I.\ref{I-def:sector-setting} for $(\Phi,G)$; consequently,
+  if $t\in[0,T]$ and $\flow_\tau(y)\in N'$ for every $\tau\in[0,t]$, then
+  $|\flow_t(y)|-|y|=\int_0^t\big((h+\KBS\ast(\omega_{\mathrm r}-\Phi))\cdot\er\big)(\tau,\flow_\tau(y))\dd\tau$;
+\item if $\supp\omega_{\mathrm r}(t)\subset N$ for $t\in[0,T]$, then the function
+  $w=\omega_{\mathrm r}-\Phi$ is real-valued, it lies in $C^1([0,T];X^k)$ for
+  every $k$, and
+  \begin{equation}
+  \label{eq:ring}
+  \partial_tw=\Lin(G)w+B(w,w)-h\cdot\nabla w-h\cdot\nabla\Phi,\qquad B(v,w)=-(\KBS\ast v)\cdot\nabla w,
+  \end{equation}
+  on $[0,T]\times\R^2$, where $h\cdot\nabla w$ and $h\cdot\nabla\Phi$ denote the
+  functions equal to these products on $N'$ and to $0$ elsewhere.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+Put $K_\bullet=\supp\omega_\bullet(0)$. These compact sets are pairwise
+disjoint, so each $\omega_\bullet(0)$ agrees with $\omega(0)$ near $K_\bullet$ and
+vanishes near the other two; hence $\omega_\bullet(0)\in C_c^\infty(\R^2)$. The
+map $(t,x)\mapsto\flow_t^{-1}(x)$ is the value at time $0$ of the solution of
+$\dot z=v(\tau,z)$ with $z(t)=x$. Since $v$ is smooth and bounded on
+$[-T',T']\times\R^2$ for every $T'>0$ (Theorem~\ref{thm:smooth}\textup{(2)}),
+Lemma~\ref{lem:flow}\textup{(a)}, \textup{(b)} (Appendix~\ref{app:smooth}) shows that this map
+is defined and
+$C^\infty$ on $\R\times\R^2$. Hence $\omega_\bullet\in C^\infty(\R\times\R^2)$,
+$\supp\omega_\bullet(t)=\flow_t(K_\bullet)$, and $\int\omega_{\mathrm i}(t)=2\pi G$
+because $\flow_t$ preserves area. By Theorem~\ref{thm:smooth}\textup{(6)},
+$\omega(t)$ is $3$-fold rotationally symmetric. Since $\KBS(\Orot x)=\Orot\KBS(x)$, we get
+$(\KBS\ast g)(\Orot x)=\Orot(\KBS\ast g)(x)$ for every $3$-fold rotationally symmetric
+$g\in (L^1\cap L^\infty)(\R^2)$; so $v(t,\Orot x)=\Orot v(t,x)$, uniqueness for the flow
+gives $\flow_t(\Orot y)=\Orot\flow_t(y)$, and each $\omega_\bullet(t)$ is $3$-fold
+rotationally symmetric.
+
+\emph{Proof of (1).} By continuity of the flow on compact sets, and since
+$\flow_t(K_{\mathrm i})=\supp\omega_{\mathrm i}(t)\subset\overline B_{a/8}$,
+$\rho_{\mathrm i}:=\max\{|\flow_t(y)|:t\in[0,T],\,y\in K_{\mathrm i}\}\le a/8<a/4$
+($\rho_{\mathrm i}:=0$ if $K_{\mathrm i}=\emptyset$), and $|\flow_t(y)|\ge6$ for
+$t\in[0,T]$ and $y\in K_{\mathrm o}$. So the open annulus
+$U=\{\frac12(\rho_{\mathrm i}+\frac a4)<|x|<4\}\supset N'$ has distance at least
+$\min(\frac12(\frac a4-\rho_{\mathrm i}),2)>0$ from
+$\supp(\omega_{\mathrm i}(t)+\omega_{\mathrm o}(t))$ for $t\in[0,T]$. Since
+$|\partial^\beta\KBS(z)|\le C_\beta|z|^{-1-|\beta|}$, and $\omega_{\mathrm i}$,
+$\omega_{\mathrm o}$ are continuous with supports in a fixed compact set for
+$t\in[0,T]$ (Theorem~\ref{thm:smooth}\textup{(1)}), we may differentiate under the
+integral sign: $h(t)\in C^\infty(U)$, every $\partial^\beta_xh$ is continuous on
+$[0,T]\times U$, and in particular $t\mapsto h(t)\in C^k(N')$ is continuous. The
+fields $x\mapsto\KBS(x-y)=\nabla^\perp_x\big(\frac1{2\pi}\log|x-y|\big)$ and
+$x^\perp/|x|^2$ are divergence-free away from $y$ and from $0$; hence
+so is $h(t)$ on $U$, and it is $3$-fold rotationally symmetric by the equivariance above and
+$(\Orot x)^\perp=\Orot x^\perp$.
+
+\emph{Proof of (2).} For a radial $g\in C_c^\infty(\R^2)$, $\KBS\ast g$ is
+equivariant under every rotation, so $(\KBS\ast g)\cdot\er$ and
+$(\KBS\ast g)\cdot\etheta$ are constant on each $C_r=\{|x|=r\}$, $r>0$. Fix $r>0$,
+orient $C_r$ counterclockwise, and let $|y|\ne r$. Along $C_r$,
+$\KBS(x-y)\cdot\er\,\dd s=-\frac1{2\pi}\dd\log|x-y|$ and
+$\KBS(x-y)\cdot\etheta\,\dd s=\frac1{2\pi}\dd\arg(x-y)$; the first integrates to
+$0$, the second to the winding number of $C_r$ around $y$, which is $1$ if
+$|y|<r$ and $0$ if $|y|>r$. Integrating against $g(y)\dd y$ gives the values $0$
+and $\Circ_g(r)/(2\pi r)$; Fubini's theorem applies because
+$\oint_{C_r}|\KBS(x-y)|\dd s(x)$ is bounded by a constant, depending on $r$, times
+$1+|\log\operatorname{dist}(y,C_r)|$, which is integrable in $y$ over compact sets,
+and $\{|y|=r\}$ has measure $0$. Hence $\KBS\ast g=\Circ_g(|x|)\,x^\perp/(2\pi|x|^2)$.
+With $g=\Phi$ and the definition of $h$, on $[0,T]\times U$,
+\[
+v=\KBS\ast\Phi+\KBS\ast(\omega_{\mathrm r}-\Phi)+\KBS\ast(\omega_{\mathrm i}+\omega_{\mathrm o})
+=\Big(\frac{\Circ_\Phi(|x|)}{2\pi|x|^2}+\frac G{|x|^2}\Big)x^\perp+\KBS\ast(\omega_{\mathrm r}-\Phi)+h,
+\]
+and the bracket is $\Omega(|x|;G)$. Since $\partial_\tau\flow_\tau(y)=v(\tau,\flow_\tau(y))$
+and $x^\perp\cdot\er=0$, we get $\frac{\dd}{\dd\tau}|\flow_\tau(y)|=
+\big((h+\KBS\ast(\omega_{\mathrm r}-\Phi))\cdot\er\big)(\tau,\flow_\tau(y))$ while
+$\flow_\tau(y)\in N'$, which gives the integral formula.
+
+\emph{Proof of (3).} Since $\supp\Phi\subset\{a\le|y|\le1\}\subset N$
+(Lemma~I.\ref{I-lem:ring-facts}), $w(t)$ is a smooth, real, $3$-fold rotationally symmetric function
+supported in $N$. The derivatives $\partial^\alpha_xw$ and
+$\partial_t\partial^\alpha_xw$ are uniformly continuous on the compact set
+$[0,T]\times N$ and vanish outside it, so the difference quotients of
+$t\mapsto w(t)$ converge in every $H^k$, and $w\in C^1([0,T];X^k)$.
+Differentiating $\omega_{\mathrm r}(t,\flow_t(y))=\omega_{\mathrm r}(0,y)$ in $t$ gives
+$\partial_t\omega_{\mathrm r}+v\cdot\nabla\omega_{\mathrm r}=0$. On $N$ we insert (2),
+$x^\perp\cdot\nabla\Phi=\partial_\theta\Phi=0$ and $x^\perp\cdot\nabla w=\partial_\theta w$:
+\[
+\partial_tw=-\Omega(\cdot;G)\,\partial_\theta w-(\KBS\ast w)\cdot\nabla\Phi-(\KBS\ast w)\cdot\nabla w-h\cdot\nabla w-h\cdot\nabla\Phi .
+\]
+The first two terms are $\Lin(G)w$ by Definition~I.\ref{I-def:sector-setting}, and the
+third is $B(w,w)$. Outside $N$ both sides of Equation~\eqref{eq:ring} vanish.
+\end{proof}
+
+In the setting of Lemma~\ref{lem:reduction}, the function $w=\omega_{\mathrm r}-\Phi$
+satisfies: $t\mapsto\|w(t)\|_{H^k}$ is continuous
+on $[0,T]$ for every $k$, since $\omega_{\mathrm r}$ is smooth and its support stays
+in a fixed compact set (Theorem~\ref{thm:smooth}\textup{(1)}). We fix once and for
+all the auxiliary objects of the estimates below. Let $N_1=\{\frac a4<|y|<3\}$ be
+the interior of $N'$. Fix $\chi_B\in C_c^\infty(B_4)$ with $\chi_B=1$ on $B_{7/2}$,
+and $\chi_N\in C_c^\infty(N_1)$ with $\chi_N=1$ on a neighborhood of $N$. For each
+integer $j\ge0$ fix a constant $C^{\mathrm{el}}_j$ of
+Lemma~\ref{lem:Hk-calculus}\textup{(3)} for $j$, $\chi_B$ and $\rho=4$; it depends
+only on $j$. For each integer $k\ge2$ fix a constant $C_P(k)$ of
+Lemma~\ref{lem:Hk-calculus} for $\max(k,3)$, the compact set $N$, the open set
+$N_1$ and $\chi_N$; it depends only on $k$ and $a$.
+
+\begin{lemma}
+\label{lem:bilinear}
+Let $k\ge2$ be an integer. Put $C_B=C_B(k)=2C_P(k)C^{\mathrm{el}}_{k-1}$ and
+$C_{\mathrm{BS}}=2C^{\mathrm{el}}_1$, and let $C_h=C_h(k)$ be the supremum of
+$\|h\cdot\nabla w\|_{H^k}$ over all $w\in X^{k+1}$ and
+$h\in C^k(N';\R^2)$ with $\|w\|_{H^{k+1}}\le1$ and $\|h\|_{C^k(N')}\le1$. Then
+$C_h$ is finite and depends only on $k$ and $a$, and for $v,w\in X^{k+1}$ and
+every vector field $h\in C^k(N';\R^2)$:
+\begin{enumerate}[label=\textup{(\arabic*)}]
+\item $\|B(v,w)\|_{H^k}\le C_B\|v\|_{H^k}\|w\|_{H^{k+1}}$;
+\item $\|h\cdot\nabla w\|_{H^k}\le C_h\|h\|_{C^k(N')}\|w\|_{H^{k+1}}$;
+\item $\|h\cdot\nabla\Phi\|_{H^k}\le\Cnab\|h\|_{C^k(N')}$, with $\Cnab=\Cnab(k)$ of
+  Lemma~I.\ref{I-lem:uniform};
+\item $\sup_{|x|\le3}|(\KBS\ast v)(x)|\le C_{\mathrm{BS}}\|v\|_{H^1}$.
+\end{enumerate}
+The functions in \textup{(1)}--\textup{(3)} are supported in $N$, and they lie in
+$X^k$ if $h$ is $3$-fold rotationally symmetric.
+\end{lemma}
+\begin{proof}
+Since $\nabla w$ is supported in $N$,
+$B(v,w)=-\sum_{i=1,2}(\chi_B\KBS\ast v)_i\,\partial_iw$. By
+Lemma~\ref{lem:Hk-calculus}\textup{(2)} (with $\max(k,3)$ in place of its $k$, and
+$j=k$) and \textup{(3)},
+\[
+\|B(v,w)\|_{H^k}\le2C_P(k)\|\chi_B\KBS\ast v\|_{H^k}\max_i\|\partial_iw\|_{H^k}\le2C_P(k)C^{\mathrm{el}}_{k-1}\|v\|_{H^{k-1}}\|w\|_{H^{k+1}},
+\]
+which is (1). Next, $h\cdot\nabla w=(\chi_Nh)\cdot\nabla w$, and the Leibniz rule
+$\partial^\alpha\big((\chi_Nh)\cdot\nabla w\big)=\sum_{\beta\le\alpha}\binom\alpha\beta
+\partial^\beta(\chi_Nh)\cdot\partial^{\alpha-\beta}\nabla w$ with
+$|\partial^\beta(\chi_Nh)|\le2^{|\beta|}\|\chi_N\|_{C^k}\|h\|_{C^k(N')}$ bounds
+$\|h\cdot\nabla w\|_{H^k}$ by a constant depending only on $k$ and $\chi_N$, hence
+on $k$ and $a$, times $\|h\|_{C^k(N')}\|w\|_{H^{k+1}}$. So $C_h$ is finite, depends
+only on $k$ and $a$, and (2) holds by homogeneity in $h$ and in $w$. Item (3) is the
+last inequality of Lemma~I.\ref{I-lem:uniform}. For (4), $\KBS\ast v=\chi_B\KBS\ast v$ on
+$B_{7/2}$, and Lemma~\ref{lem:embed}\textup{(E2)}, applied to each component, and
+Lemma~\ref{lem:Hk-calculus}\textup{(3)} give
+$\|\chi_B\KBS\ast v\|_{L^\infty}\le2C^{\mathrm{el}}_1\|v\|_{H^1}=C_{\mathrm{BS}}\|v\|_{H^1}$,
+which gives (4), since $\{|x|\le3\}\subset B_{7/2}$. The functions in
+(1)--(3) vanish outside $\supp\nabla w\cup\supp\nabla\Phi\subset N$. If $v$, $w$ and
+$h$ are $3$-fold rotationally symmetric, so are the vector fields $\KBS\ast v$ (by the
+equivariance in the proof of Lemma~\ref{lem:reduction}), $\nabla w$ and
+$\nabla\Phi$, hence the three scalar products.
+\end{proof}
+
+The rate of the energy estimate below involves only norms on $N'$. Let $s\ge3$ be
+an integer, let $n_s$ be the number of multi-indices $\alpha\in\N_0^2$ with
+$|\alpha|\le s$, and put $C_{\mathrm{HK}}=C_P(s)$. The function
+$\Omega(r;G)=\Omega(r;0)+Gr^{-2}$ is smooth on $[\frac a4,3]$ and affine in $G$, so
+\[
+C_\Omega:=\sup_{G\in[0,\Gone]}\Big(\|\Omega(|x|;G)x^\perp\|_{W^{1,\infty}(N_1)}+\|\Omega(|x|;G)x^\perp\|_{H^s(N_1)}\Big)<\infty .
+\]
+Let $C_{N'}$ be the least constant such that
+$\|h\|_{W^{1,\infty}(N_1)}+\|h\|_{H^s(N_1)}\le C_{N'}\|h\|_{C^s(N')}$ for every
+$h\in C^s(N';\R^2)$; it is finite and depends only on $s$ and $a$. Put
+$A_s=C_\Omega+C_{N'}+C^{\mathrm{el}}_s+6C^{\mathrm{el}}_2$ and
+\begin{equation}
+\label{eq:Lambda}
+\Lam(s)=\max\Big(2\max_{G\in[0,\Gone]}\sigma(G),\ n_sC_{\mathrm{HK}}A_s+2C_{\mathrm{HK}}C^{\mathrm{el}}_{s-1}\big(\|\Phi\|_{H^{s+1}}+1\big)\Big).
+\end{equation}
+
+\begin{lemma}
+\label{lem:energy}
+Let $s\ge3$ be an integer, and let $\Lam(s)$ be the number of
+Equation~\eqref{eq:Lambda}; it satisfies $\Lam(s)\ge2\max_{G\in[0,\Gone]}\sigma(G)$,
+where the maximum exists by Proposition~I.\ref{I-prop:U}\textup{(a)}, and it depends
+only on $\Phi$, $\Gone$ and $s$. Let $G\in[0,\Gone]$
+and $t>0$, and let the assumptions of Lemma~\ref{lem:reduction}\textup{(3)} hold on
+$[0,t]$, with $w=\omega_{\mathrm r}-\Phi$. Let
+$w_{\mathrm{app}}\in C([0,t];X^{s+1})\cap C^1([0,t];X^s)$ be real-valued, and put
+$R_{\mathrm{app}}=\partial_tw_{\mathrm{app}}-\big(\Lin(G)w_{\mathrm{app}}+B(w_{\mathrm{app}},w_{\mathrm{app}})-h\cdot\nabla w_{\mathrm{app}}-h\cdot\nabla\Phi\big)$
+and $v=w-w_{\mathrm{app}}$. If on $[0,t]$ we have $\|w\|_{H^s}\le1$,
+$\|w_{\mathrm{app}}\|_{H^{s+1}}\le1$ and $\|h\|_{C^{s+1}(N')}\le1$, then for
+$\tau\in[0,t]$,
+\[
+\|v(\tau)\|_{H^s}\le e^{\Lam(s)\tau}\|v(0)\|_{H^s}+\int_0^\tau e^{\Lam(s)(\tau-\tau')}\|R_{\mathrm{app}}(\tau')\|_{H^s}\dd\tau' .
+\]
+\end{lemma}
+\begin{proof}
+On $N_1$ put $U=\Omega(|x|;G)x^\perp+h+\KBS\ast w$, and for $f$ supported in $N$ let
+$U\cdot\nabla f$ mean $(\chi_NU)\cdot\nabla f$. By
+Lemma~\ref{lem:reduction}\textup{(3)},
+$\partial_tw+U\cdot\nabla w=-(\KBS\ast w)\cdot\nabla\Phi-h\cdot\nabla\Phi$, and by
+the definition of $R_{\mathrm{app}}$ the same identity holds for $w_{\mathrm{app}}$,
+with $\KBS\ast w_{\mathrm{app}}$ in place of $\KBS\ast w$ in $U$ and with
+$R_{\mathrm{app}}$ added on the right. Since
+$(\KBS\ast w)\cdot\nabla w-(\KBS\ast w_{\mathrm{app}})\cdot\nabla w_{\mathrm{app}}=(\KBS\ast w)\cdot\nabla v+(\KBS\ast v)\cdot\nabla w_{\mathrm{app}}$,
+subtraction gives
+\[
+\partial_tv+U\cdot\nabla v=-(\KBS\ast v)\cdot\nabla(\Phi+w_{\mathrm{app}})-R_{\mathrm{app}},
+\]
+where every term lies in $C([0,t];H^s)$, and
+$v\in C^1([0,t];H^s)\cap C([0,t];H^{s+1})$ is real and supported in $N$.
+
+The field $U$ is divergence-free on $N_1$: $\divop h=0$ by
+Lemma~\ref{lem:reduction}\textup{(1)}, $\divop(\KBS\ast w)=0$, and
+$\divop(f(|x|)x^\perp)=f'(|x|)\frac{x}{|x|}\cdot x^\perp=0$. By
+Lemma~\ref{lem:Hk-calculus}\textup{(3)} and Lemma~\ref{lem:embed}\textup{(E2)},
+applied to each entry, and $\|w\|_{H^s}\le1$,
+$\|\KBS\ast w\|_{H^s(N_1)}\le\|\chi_B\KBS\ast w\|_{H^{s+1}}\le C^{\mathrm{el}}_s$ and
+$\|\KBS\ast w\|_{W^{1,\infty}(N_1)}\le6\|\chi_B\KBS\ast w\|_{H^3}\le6C^{\mathrm{el}}_2$.
+With the definitions of $C_\Omega$ and $C_{N'}$ and $\|h\|_{C^s(N')}\le1$, this gives
+$\|U\|_{W^{1,\infty}(N_1)}+\|U\|_{H^s(N_1)}\le A_s$. Since $U$ and $v$ are real and
+$\divop U=0$ on $N_1$, Lemma~\ref{lem:Hk-calculus}\textup{(1)} gives
+$|\langle\partial^\alpha(U\cdot\nabla v),\partial^\alpha v\rangle|\le C_{\mathrm{HK}}A_s\|v\|_{H^s}^2$
+for $|\alpha|\le s$. Since $\nabla(\Phi+w_{\mathrm{app}})$ is supported in $N$,
+Lemma~\ref{lem:Hk-calculus}\textup{(2)} and \textup{(3)} give
+\[
+\begin{aligned}
+\|(\KBS\ast v)\cdot\nabla(\Phi+w_{\mathrm{app}})\|_{H^s}
+&\le2C_{\mathrm{HK}}\|\chi_B\KBS\ast v\|_{H^s}\big(\|\Phi\|_{H^{s+1}}+\|w_{\mathrm{app}}\|_{H^{s+1}}\big)\\
+&\le2C_{\mathrm{HK}}C^{\mathrm{el}}_{s-1}\big(\|\Phi\|_{H^{s+1}}+1\big)\|v\|_{H^s}.
+\end{aligned}
+\]
+We apply $\partial^\alpha$ to the equation of $v$, take the $L^2$ inner product with
+$\partial^\alpha v$, and sum over $|\alpha|\le s$. The Cauchy-Schwarz inequality and
+Equation~\eqref{eq:Lambda} give
+$\frac12\frac{\dd}{\dd\tau}\|v\|_{H^s}^2\le\Lam(s)\|v\|_{H^s}^2+\|R_{\mathrm{app}}\|_{H^s}\|v\|_{H^s}$.
+For $\epsilon>0$ the function $y_\epsilon=(\|v\|_{H^s}^2+\epsilon^2)^{1/2}$ is $C^1$
+and satisfies $y_\epsilon'\le\Lam(s)y_\epsilon+\|R_{\mathrm{app}}\|_{H^s}$, so
+$(e^{-\Lam(s)\tau}y_\epsilon)'\le e^{-\Lam(s)\tau}\|R_{\mathrm{app}}\|_{H^s}$.
+Integrating and letting $\epsilon\to0$ proves the lemma.
+\end{proof}
+
+\emph{Approximate solutions.} Let the assumptions of Lemma~\ref{lem:reduction} hold
+on $[0,T]$, assume $G\in[0,\Gone]$, and put $\Lin=\Lin(G)$ and $F=-h\cdot\nabla\Phi$.
+By Lemma~\ref{lem:reduction}\textup{(1)} and Lemma~\ref{lem:bilinear}, $F$ is real
+and lies in $C([0,T];X^k)$ for every $k$; so, by Lemma~\ref{lem:duhamel}, for every
+real $w_0\in\bigcap_kX^k$ the function
+$e^{t\Lin}w_0+\int_0^te^{(t-\tau)\Lin}F(\tau)\dd\tau$ is real, lies in
+$C([0,T];X^k)\cap C^1([0,T];X^{k-1})$ for every $k\ge1$, and solves
+$\partial_tu=\Lin u+F$. If $\supp\omega_{\mathrm r}(0)\subset N$, this applies to
+$w_0=w(0)=\omega_{\mathrm r}(0)-\Phi$, which is then smooth
+(Lemma~\ref{lem:reduction}\textup{(2)}), real, $3$-fold rotationally symmetric and supported in $N$,
+hence lies in every $X^k$. Let $w^{[1]}$ be such a function, let $J\ge1$ be an integer,
+and for $2\le j\le J$ define recursively
+\begin{equation}
+\label{eq:hier}
+w^{[j]}(t)=\int_0^te^{(t-\tau)\Lin}g^{[j]}(\tau)\dd\tau,\qquad
+g^{[j]}=\sum_{i+l=j}B(w^{[i]},w^{[l]})-h\cdot\nabla w^{[j-1]},
+\end{equation}
+where here and below $i,l\ge1$ in the sums. By induction on $j$,
+Lemma~\ref{lem:bilinear} (whose bounds, with the continuity of $t\mapsto h(t)$ in
+every $C^k(N')$, give continuity in time) and Lemma~\ref{lem:duhamel} show that
+$g^{[j]}$ and $w^{[j]}$ are real, $g^{[j]}\in C([0,T];X^k)$ and
+$w^{[j]}\in C([0,T];X^k)\cap C^1([0,T];X^{k-1})$ for every $k\ge1$, and
+$\partial_tw^{[j]}=\Lin w^{[j]}+g^{[j]}$. Put $w_{\mathrm{app}}=\sum_{j=1}^Jw^{[j]}$.
+Summing the equations of the $w^{[j]}$, and using $F+h\cdot\nabla\Phi=0$,
+$\sum_{j=2}^{J}\sum_{i+l=j}B(w^{[i]},w^{[l]})=B(w_{\mathrm{app}},w_{\mathrm{app}})-\sum_{i,l\le J,\,i+l>J}B(w^{[i]},w^{[l]})$
+and $\sum_{j=2}^{J}h\cdot\nabla w^{[j-1]}=h\cdot\nabla w_{\mathrm{app}}-h\cdot\nabla w^{[J]}$,
+we find that the residual of $w_{\mathrm{app}}$ in Lemma~\ref{lem:energy} is
+\begin{equation}
+\label{eq:hier-res}
+R_{\mathrm{app}}=-\sum_{i,l\le J,\,i+l>J}B(w^{[i]},w^{[l]})+h\cdot\nabla w^{[J]} .
+\end{equation}
+
+\subsection{A Quiet Ring}
+
+\begin{definition}
+\label{def:majorant}
+Let $G\in[0,\Gone]$, $T>0$, and let $\eta\colon[0,T]\to[0,\infty)$ be integrable.
+The \textbf{Duhamel majorant} of $\eta$ is
+$\maj(t)=\int_0^te^{\sigma(G)(t-\tau)}\eta(\tau)\dd\tau$, $t\in[0,T]$.
+\end{definition}
+
+\begin{lemma}
+\label{lem:majorant}
+Let $G$, $T$, $\eta$ and $\maj$ be as in Definition~\ref{def:majorant}. Then for
+$0\le\tau\le t\le T$:
+\textup{(M1)} $e^{\sigma(G)(t-\tau)}\maj(\tau)\le\maj(t)$;
+\textup{(M2)} $\int_\tau^t\eta\le\maj(t)$;
+\textup{(M3)} $\int_0^t\maj\le\maj(t)/\sigma(G)$.
+\end{lemma}
+\begin{proof}
+Write $\sigma=\sigma(G)$, which is positive by Proposition~I.\ref{I-prop:SU}. We have
+$\maj(t)=e^{\sigma(t-\tau)}\maj(\tau)+\int_\tau^te^{\sigma(t-v)}\eta(v)\dd v$, and the
+integral is nonnegative, which gives (M1), and at least $\int_\tau^t\eta$, which
+gives (M2). By (M1), $\maj(\tau)\le e^{-\sigma(t-\tau)}\maj(t)$; integrating over
+$\tau\in[0,t]$ gives (M3).
+\end{proof}
+
+\begin{theorem}
+\label{thm:quiet}
+Assume \textup{(N1)}--\textup{(N3)}. Let $s_h\ge3$ and $N_Q\ge2$ be integers with
+$N_Q\sigb\ge\Lam(s_h)$, and put $M_h=s_h+N_Q+1$. There are $\majst\in(0,1]$ and
+$C_Q<\infty$, depending only on $(\Phi,\Gone,s_h,N_Q)$, such that the following
+holds. Let $\omega$,
+$\omega_{\mathrm r},\omega_{\mathrm i},\omega_{\mathrm o}$, $G$ and $h$ be as in
+Lemma~\ref{lem:reduction} on $[0,T]$, with $\omega_{\mathrm r}(0)=\Phi$ and
+$G\in[0,\Gone]$, and put $w=\omega_{\mathrm r}-\Phi$. Let $\eta$ be measurable with
+$\|h(t)\|_{C^{M_h}(N')}\le\eta(t)\le1$ on $[0,T]$, let $\maj$ be its Duhamel
+majorant, and assume $\maj\le\majst$ on $[0,T]$. Then for every $t\in[0,T]$:
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item $\supp\omega_{\mathrm r}(t)\subset\NNm$;
+\item $\|w(t)-\wlin(t)\|_{H^{s_h}}\le C_Q\maj(t)^2$, where
+  $\wlin(t)=\int_0^te^{(t-\tau)\Lin(G)}\big(-h(\tau)\cdot\nabla\Phi\big)\dd\tau$
+  is the \textbf{linear response};
+\item $\|w(t)\|_{H^{s_h}}\le C_Q\maj(t)$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+Throughout, $\sigma=\sigma(G)\ge\sigb$ and $\Lin=\Lin(G)$.
+
+\emph{Constants.} Put $\sigma'_0=\frac12(\frac9{200}+\sigb)\in(\frac9{200},\sigb)$ and
+\[
+C_L=\max_{0\le k\le M_h}C_S(k,\sigma'_0),\qquad
+C_{\mathrm{bil}}=\max_{2\le k\le M_h}\max\big(C_B(k),C_h(k),\Cnab(k)\big),
+\]
+with $C_S$ of Proposition~I.\ref{I-prop:semigroup} and the constants of
+Lemma~\ref{lem:bilinear}; so $\|e^{t\Lin}\|_{X^k\to X^k}\le C_Le^{\sigma t}$ for
+$k\le M_h$ and $t\ge0$. For $1\le j\le N_Q$ put $k_j=M_h-j$, so that
+$k_{N_Q}=s_h+1$ and $k_j+1=k_{j-1}$. Put $C^{(1)}=C_LC_{\mathrm{bil}}$ and, for
+$2\le j\le N_Q$,
+\[
+\begin{gathered}
+C^{(j)}=C_LC_{\mathrm{bil}}\Big(\frac1{(j-1)\sigb}\sum_{i+l=j}C^{(i)}C^{(l)}+C^{(j-1)}\Big),\\
+C_{\mathrm{res}}=C_{\mathrm{bil}}\Big(\sum_{i,l\le N_Q,\,i+l>N_Q}C^{(i)}C^{(l)}+C^{(N_Q)}\Big),\\
+C_Q=\sum_{j=1}^{N_Q}C^{(j)}+C_{\mathrm{res}}\big(1+\sigb^{-1}\big),\qquad
+C_\Delta=1+\frac{C_{\mathrm{BS}}C_Q}{\sigb},\\
+\majst=\min\Big(1,\frac1{2C_Q},\frac a{16C_\Delta}\Big).
+\end{gathered}
+\]
+The names $C_{\mathrm{bil}}$, $C^{(j)}$ and $C_{\mathrm{res}}$ are local to this proof;
+later in this section they denote other numbers.
+These numbers depend only on $(\Phi,\Gone,s_h,N_Q)$, and $C_\Delta\majst\le a/16$.
+
+\emph{Approximate solution.} Let $w^{[j]}$, $1\le j\le N_Q$, be the functions of
+Equation~\eqref{eq:hier} with $J=N_Q$ and $w^{[1]}=\wlin$ (the case $w_0=0$), so that
+they are regular by Lemmas~\ref{lem:duhamel} and \ref{lem:bilinear}. By
+Lemma~\ref{lem:bilinear}\textup{(3)},
+$\|F(\tau)\|_{H^{M_h}}\le C_{\mathrm{bil}}\eta(\tau)$. We claim that
+\begin{equation}
+\label{eq:Q-hier}
+\|w^{[j]}(t)\|_{H^{k_j}}\le C^{(j)}\maj(t)^j\qquad(t\in[0,T],\ 1\le j\le N_Q).
+\end{equation}
+For $j=1$,
+$\|\wlin(t)\|_{H^{k_1}}\le C_L\int_0^te^{\sigma(t-\tau)}C_{\mathrm{bil}}\eta(\tau)\dd\tau=C^{(1)}\maj(t)$.
+Let $j\ge2$ and assume Equation~\eqref{eq:Q-hier} for all indices less than $j$.
+Since $k_j+1=k_{j-1}\le k_l$ for $l\le j-1$, Lemma~\ref{lem:bilinear} gives
+$\|g^{[j]}(\tau)\|_{H^{k_j}}\le C_{\mathrm{bil}}\big(\sum_{i+l=j}C^{(i)}C^{(l)}\maj(\tau)^j+C^{(j-1)}\eta(\tau)\maj(\tau)^{j-1}\big)$.
+By (M1), $e^{\sigma(t-\tau)}\maj(\tau)^j\le e^{-(j-1)\sigma(t-\tau)}\maj(t)^j$, whose
+integral over $[0,t]$ is at most $\maj(t)^j/((j-1)\sigb)$; and
+$e^{\sigma(t-\tau)}\eta(\tau)\maj(\tau)^{j-1}\le\eta(\tau)\maj(t)^{j-1}$, whose integral
+is at most $\maj(t)^j$ by (M2). With $\|e^{(t-\tau)\Lin}\|\le C_Le^{\sigma(t-\tau)}$ this
+gives Equation~\eqref{eq:Q-hier} for $j$. Since $k_j\ge s_h+1$ and $\maj\le1$,
+Equations~\eqref{eq:hier-res} and \eqref{eq:Q-hier} and Lemma~\ref{lem:bilinear} give
+\begin{equation}
+\label{eq:Q-res}
+\|R_{\mathrm{app}}(\tau)\|_{H^{s_h}}\le C_{\mathrm{res}}\big(\maj(\tau)^{N_Q+1}+\eta(\tau)\maj(\tau)^{N_Q}\big),
+\end{equation}
+and $\|w_{\mathrm{app}}\|_{H^{s_h+1}}\le\sum_jC^{(j)}\maj\le C_Q\majst\le\frac12$ on
+$[0,T]$.
+
+\emph{Continuity argument.} Let $t_*$ be the largest $t\in[0,T]$ such that
+$\delta_{\mathrm r}(t)\le a/8$ and $\|w(\tau)\|_{H^{s_h}}\le1$ for $\tau\in[0,t]$; it
+exists and is positive since $\delta_{\mathrm r}(0)=0$, $w(0)=0$, and $\delta_{\mathrm r}$
+and $\|w\|_{H^{s_h}}$ are continuous (start of this section; Theorem~\ref{thm:smooth}\textup{(1)}). Because $\supp\Phi\subset\{a\le|y|\le1\}$ and
+$1+\frac a8\le\frac54$, the support of $\omega_{\mathrm r}(\tau)$ lies in
+$\NNm\subset N$ for $\tau\le t_*$. So Lemma~\ref{lem:reduction}\textup{(3)} and
+Lemma~\ref{lem:energy} with $s=s_h$ apply on $[0,t_*]$; the conditions
+$\|w_{\mathrm{app}}\|_{H^{s_h+1}}\le1$ and $\|h\|_{C^{s_h+1}(N')}\le\eta\le1$ hold.
+Since $v=w-w_{\mathrm{app}}$ has $v(0)=0$, Equation~\eqref{eq:Q-res} gives, for
+$t\le t_*$,
+\[
+\|v(t)\|_{H^{s_h}}\le C_{\mathrm{res}}\int_0^te^{\Lam(s_h)(t-\tau)}\maj(\tau)^{N_Q}\big(\maj(\tau)+\eta(\tau)\big)\dd\tau .
+\]
+For $0\le\tau\le t$, (M1) and $N_Q\sigma\ge N_Q\sigb\ge\Lam(s_h)$ give
+$e^{\Lam(s_h)(t-\tau)}\maj(\tau)^{N_Q}\le e^{(\Lam(s_h)-N_Q\sigma)(t-\tau)}\maj(t)^{N_Q}$,
+which is at most $\maj(t)^{N_Q}$. By (M2) and (M3) we conclude, for $t\le t_*$,
+\begin{equation}
+\label{eq:Q-v}
+\|v(t)\|_{H^{s_h}}\le C_{\mathrm{res}}\maj(t)^{N_Q}\int_0^t(\maj+\eta)\le C_{\mathrm{res}}\big(1+\sigb^{-1}\big)\maj(t)^{N_Q+1}.
+\end{equation}
+Since $w=\wlin+\sum_{j\ge2}w^{[j]}+v$ and $\maj\le1$, Equations~\eqref{eq:Q-hier}
+and \eqref{eq:Q-v} give, for $t\le t_*$,
+\begin{equation}
+\label{eq:Q-b}
+\|w(t)-\wlin(t)\|_{H^{s_h}}\le C_Q\maj(t)^2,\qquad\|w(t)\|_{H^{s_h}}\le C_Q\maj(t)\le\tfrac12 .
+\end{equation}
+For $y\in\supp\Phi$ and $\tau\le t\le t_*$, the point $\flow_\tau(y)$ lies in $N$, so
+by Lemma~\ref{lem:reduction}\textup{(2)}, Lemma~\ref{lem:bilinear}\textup{(4)},
+Equation~\eqref{eq:Q-b}, (M2) and (M3),
+\[
+\big||\flow_\tau(y)|-|y|\big|\le\int_0^t\big(\eta+C_{\mathrm{BS}}\|w\|_{H^{s_h}}\big)\le\maj(t)+\frac{C_{\mathrm{BS}}C_Q}{\sigb}\maj(t)=C_\Delta\maj(t).
+\]
+So $\delta_{\mathrm r}\le C_\Delta\maj\le a/16$ and $\|w\|_{H^{s_h}}\le\frac12$ on
+$[0,t_*]$. If $t_*<T$, continuity would give a larger $t$ with
+$\delta_{\mathrm r}(t)\le a/8$ and $\|w\|_{H^{s_h}}\le1$ on $[0,t]$; hence $t_*=T$.
+Then (a) follows from $\delta_{\mathrm r}\le C_\Delta\maj$ and Lemma~\ref{lem:annuli},
+and (b), (c) are
+Equation~\eqref{eq:Q-b}.
+\end{proof}
+
+\subsection{An Active Ring}
+
+\begin{lemma}
+\label{lem:running}
+Let $G\in[0,\Gone]$, $\bar u>0$, $w_0\in X^0$ real, and let $h$ be continuous on
+$[0,\bar u]$ with values in $C^0(N';\R^2)$ and $3$-fold rotationally symmetric. Put
+$F(u)=-h(u)\cdot\nabla\Phi$ and
+\begin{equation}
+\label{eq:running}
+c(u)=\ellst(w_0)+\int_0^ue^{-\lamst v}\,\ellst(F(v))\dd v\qquad(0\le u\le\bar u),
+\end{equation}
+the \textbf{running coefficient}. Then
+$\wlin_0(u):=e^{u\Lin(G)}w_0+\int_0^ue^{(u-v)\Lin(G)}F(v)\dd v$ satisfies
+$\ellst(\wlin_0(u))=c(u)e^{\lamst u}$ and
+$\Riesz\,\wlin_0(u)=2\Re\big(c(u)e^{\lamst u}\phist\big)$ for $0\le u\le\bar u$.
+\end{lemma}
+\begin{proof}
+The function $F$ is continuous on $[0,\bar u]$ with values in $X^0$, since
+$\|h(u)\cdot\nabla\Phi-h(u')\cdot\nabla\Phi\|_{L^2}\le\|h(u)-h(u')\|_{C^0(N')}\|\nabla\Phi\|_{L^2}$,
+and $F(u)$ is real, supported in $N$ and $3$-fold rotationally symmetric. The functional
+$\ellst$ is bounded on $X^0$, so it commutes with the integral, and
+Proposition~I.\ref{I-prop:semigroup} gives $\ellst(e^{\tau\Lin}f)=e^{\lamst\tau}\ellst(f)$
+for $f\in X^0$. Hence
+$\ellst(\wlin_0(u))=e^{\lamst u}\ellst(w_0)+\int_0^ue^{\lamst(u-v)}\ellst(F(v))\dd v=c(u)e^{\lamst u}$.
+Since $\wlin_0(u)$ is real, Definition~I.\ref{I-def:eigendata} gives
+$\Riesz\,\wlin_0(u)=2\Re\big(\ellst(\wlin_0(u))\phist\big)=2\Re\big(c(u)e^{\lamst u}\phist\big)$.
+\end{proof}
+
+\begin{lemma}
+\label{lem:linear-part}
+Assume \textup{(N1)}--\textup{(N3)}. Let $\sigma'\in(\frac9{200},\sigb)$, and let
+$p\ge0$ and $k\ge2$ be integers. Put
+$C_{\mathrm{lin}}(k)=C_S(k,\sigma')\big(1+\Cnab(k)/\sigma'+\Cnab(k)/(\sigb-\sigma')\big)$,
+with $C_S$ of Proposition~I.\ref{I-prop:semigroup}. Let $G\in[0,\Gone]$,
+$\sigma=\sigma(G)$, $\lambda=\lamst(G)$, $\bar u>0$, $A\ge0$, $\kappa\ge0$ and
+$\eta_b\ge0$. Let $w_0\in X^k$ be real with $\|w_0\|_{H^k}\le A$, and let $h$ be
+continuous on $[0,\bar u]$ with values in $C^k(N';\R^2)$, $3$-fold rotationally symmetric, with
+$\|h(u)\|_{C^k(N')}\le A\jap{u}^p+\eta_b\kappa e^{\sigma u}$. Let $c$ and $\wlin_0$ be as
+in Lemma~\ref{lem:running}. Then for $u\in[0,\bar u]$,
+\[
+\begin{gathered}
+\wlin_0(u)=2\Re\big(c(u)e^{\lambda u}\phist\big)+(1-\Riesz)\wlin_0(u),\\
+\|(1-\Riesz)\wlin_0(u)\|_{H^k}\le C_{\mathrm{lin}}(k)\big(A\jap{u}^pe^{\sigma'u}+\eta_b\kappa e^{\sigma u}\big).
+\end{gathered}
+\]
+\end{lemma}
+\begin{proof}
+The decomposition is Lemma~\ref{lem:running}. For real $f\in X^k$,
+Proposition~I.\ref{I-prop:semigroup} gives
+$\Riesz e^{\tau\Lin}f=2\Re\big(\ellst(e^{\tau\Lin}f)\phist\big)=2\Re\big(e^{\lambda\tau}\ellst(f)\phist\big)=e^{\tau\Lin}\Riesz f$.
+Since $\Riesz$ is bounded on $X^k$, it commutes with the integral, and
+$(1-\Riesz)\wlin_0(u)=e^{u\Lin}(1-\Riesz)w_0+\int_0^ue^{(u-v)\Lin}(1-\Riesz)F(v)\dd v$.
+By Proposition~I.\ref{I-prop:semigroup} and the bound
+$\|h\cdot\nabla\Phi\|_{H^k}\le\Cnab(k)\|h\|_{C^k(N')}$ of Lemma~I.\ref{I-lem:uniform}, its
+norm in $H^k$ is at most
+$C_S(k,\sigma')\big(e^{\sigma'u}A+\Cnab(k)\int_0^ue^{\sigma'(u-v)}(A\jap{v}^p+\eta_b\kappa e^{\sigma v})\dd v\big)$.
+Finally
+$\int_0^ue^{\sigma'(u-v)}\jap{v}^p\dd v\le\jap{u}^pe^{\sigma'u}/\sigma'$ and
+$\int_0^ue^{\sigma'(u-v)}e^{\sigma v}\dd v\le e^{\sigma u}/(\sigma-\sigma')\le e^{\sigma u}/(\sigb-\sigma')$.
+\end{proof}
+
+For $x\in(0,1]$ we write $\varsigma(x)=1+\sigb^{-1}\log(1/x)$. For an integer $s\ge3$
+and a number $\sigma'\in(\frac9{200},\sigb)$ we put
+\begin{equation}
+\label{eq:W-const}
+\begin{gathered}
+p=3,\qquad N_G=\min\big\{n\in\Z:n\ge2,\ n\ge\Lam(s)/\sigb+1\big\},\qquad
+M=s+N_G+2,\\ N_W=(p+2)N_G+1,\qquad
+\bar C_S=\max_{0\le k\le M}C_S(k,\sigma'),\qquad
+C_{\mathrm{lin}}=\max_{2\le k\le M}C_{\mathrm{lin}}(k),\\
+C_{\mathrm{bil}}=\max_{2\le k\le M}\max\big(C_B(k),C_h(k),\Cnab(k)\big),\\
+C_\phi=\max_{G\in[0,\Gone]}\|\phist(G)\|_{H^M},\qquad
+\bar\rho=\sup_{u\ge0}\jap{u}^pe^{-(\sigb-\sigma')u},
+\end{gathered}
+\end{equation}
+with $C_S$ of Proposition~I.\ref{I-prop:semigroup}, $C_B$ and $C_h$ of
+Lemma~\ref{lem:bilinear}, $\Cnab$ of Lemma~I.\ref{I-lem:uniform} and
+$C_{\mathrm{lin}}(k)$ of Lemma~\ref{lem:linear-part}. The maximum defining $C_\phi$
+exists and is finite by Lemma~I.\ref{I-lem:uniform}, and $\bar\rho<\infty$ because
+$\sigb>\sigma'$. All these numbers depend only on $(\Phi,\Gone,s,\sigma')$.
+
+\begin{lemma}
+\label{lem:window}
+Assume \textup{(N1)}--\textup{(N3)}. Let $s\ge3$ be an integer and
+$\sigma'\in(\frac9{200},\sigb)$, let $p$, $N_G$, $M$ and $N_W$ be as in
+Equation~\eqref{eq:W-const}, and let $C_\natural\ge1$. There are $\delta_W\in(0,\frac12]$, $\kappa_W\in(0,1]$ and
+$C_W\ge1$, depending only on $(\Phi,\Gone,s,\sigma',C_\natural)$, such that the
+following holds. Let $G\in[0,\Gone]$, $\sigma=\sigma(G)$, $\lambda=\lamst(G)$,
+$\kappa_1\in(0,\kappa_W]$, $\delta_0\in(0,\delta_W]$, $\eta_b\in[0,1]$,
+$\hat T_1=\sigma^{-1}\log(\delta_0/\kappa_1)$ and $\bar u\in(0,\hat T_1]$. Let
+$\omega$, $\omega_{\mathrm r},\omega_{\mathrm i},\omega_{\mathrm o}$ and $h$ be as in
+Lemma~\ref{lem:reduction} on $[0,\bar u]$ with this $G$, put
+$w=\omega_{\mathrm r}-\Phi$, and let $c$ be the running coefficient of Equation~\eqref{eq:running}
+with $w_0=w(0)$. Assume that $\|w(0)\|_{H^{M-2}}\le C_\natural\kappa_1$, that
+$\supp(\Phi+w(0))\subset\{(\frac78-\frac1{64})a\le|y|\le\frac54+\frac a{64}\}$, and
+that for $u\in[0,\bar u]$,
+\[
+\|h(u)\|_{C^M(N')}\le C_\natural\kappa_1\jap{u}^p+\eta_b\kappa_1e^{\sigma u},\qquad
+|c(u)|\le C_\natural\kappa_1 .
+\]
+Put $\hat a_1(u)=\kappa_1e^{\sigma u}$ and $\rho_1(u)=\jap{u}^pe^{-(\sigma-\sigma')u}$.
+Then for every $u\in[0,\bar u]$, every trajectory of $\omega_{\mathrm r}$ moves
+radially by at most $C_W\delta_0+C_W\kappa_1\varsigma(\kappa_1)^{N_W}\le a/32$ on
+$[0,u]$, and
+\[
+\big\|w(u)-2\Re\big(c(u)e^{\lambda u}\phist\big)\big\|_{H^s}\le C_W\hat a_1(u)\big[\rho_1(u)+\hat a_1(u)+\kappa_1\varsigma(\kappa_1)^{N_W}+\eta_b\big].
+\]
+\end{lemma}
+\begin{proof}
+Write $\Lam=\Lam(s)$ and $\Lin=\Lin(G)$. Since $N_G\ge\Lam/\sigb+1$ and
+$\Lam\ge2\sigma\ge2\sigb$ (Lemma~\ref{lem:energy}),
+\begin{equation}
+\label{eq:W-exp}
+(N_G+1)\sigma-\Lam\ge2\sigma,\qquad\Lam-\sigma\ge\sigma\ge\sigb,\qquad N_G+1-\Lam/\sigma\ge2 .
+\end{equation}
+
+\emph{Constants.} With the numbers of Equation~\eqref{eq:W-const}, put
+$C^{(1)}=2C_\natural C_\phi+C_{\mathrm{lin}}(C_\natural\bar\rho+1)$ and, for
+$2\le j\le N_G$,
+\[
+C^{(j)}=2^{j-1}\max(1,\sigb^{-1})\,\bar C_SC_{\mathrm{bil}}\Big(\sum_{i+l=j}C^{(i)}C^{(l)}+C^{(j-1)}\Big).
+\]
+Put $C_{\mathrm{res}}=C_{\mathrm{bil}}\big(\sum_{i,l\le N_G,\,i+l>N_G}C^{(i)}C^{(l)}+2C^{(N_G)}\big)$,
+$C_{\mathrm{en}}=2^{N_G-1}C_{\mathrm{res}}/\sigb$, $S_W=\sum_{j=1}^{N_G}C^{(j)}+C_{\mathrm{en}}$,
+\[
+C_W=2\big(1+\sigb^{-1}\big)\big(1+C_{\mathrm{BS}}\big)C_\natural^{N_G}\big(C_{\mathrm{lin}}C_\natural+S_W\big),\qquad
+\delta_W=\min\Big(\frac12,\frac1{S_W},\frac a{64C_W}\Big),
+\]
+and let $\kappa_W$ be the largest number in $(0,1]$ such that
+$C_Wx\varsigma(x)^{N_W}\le a/64$ for every $x\in(0,\kappa_W]$; it exists because
+$x\varsigma(x)^{N_W}\to0$ as $x\to0^+$ and the inequality is non-strict between
+continuous functions (as for $\kappa_0(C_0)$ below). Taking $t=0$ in
+Proposition~I.\ref{I-prop:semigroup} gives $C_S\ge1$, so $C_{\mathrm{lin}}\ge1$ and
+$C_W\ge C_\natural$.
+
+Now fix the data, and put $\varepsilon_W=C_\natural\kappa_1$,
+$\mathfrak b(u)=\hat a_1(u)+\varepsilon_W\jap{u}^{p+2}$ and $k_j=M-1-j$ for
+$1\le j\le N_G$, so $k_1=M-2$, $k_{N_G}=s+1$, $k_j+1=k_{j-1}$. For
+$u\le\bar u\le\hat T_1\le\sigma^{-1}\log(1/\kappa_1)$ we have $\jap{u}\le1+u\le\varsigma(\kappa_1)$,
+$\hat a_1(u)\le\delta_0$ and $\kappa_1\le\hat a_1(u)$. By the choice of $\kappa_W$ and
+$\delta_W$, for $u\in[0,\bar u]$,
+\begin{equation}
+\label{eq:W-small}
+\mathfrak b(u)\le\delta_0+C_\natural\kappa_1\varsigma(\kappa_1)^{p+2}\le1,\qquad
+\|h(u)\|_{C^{s+1}(N')}\le C_\natural\kappa_1\varsigma(\kappa_1)^p+\delta_0\le1 .
+\end{equation}
+
+\emph{Approximate solution.} Let $w^{[j]}$ be the functions of
+Equation~\eqref{eq:hier} with $J=N_G$ and $w^{[1]}=\wlin_0$, the function of
+Lemma~\ref{lem:running} with $w_0=w(0)$, admissible as $\supp(\Phi+w(0))\subset N$
+(regular by Lemma~\ref{lem:duhamel}). We
+claim that
+\begin{equation}
+\label{eq:W-hier}
+\|w^{[j]}(u)\|_{H^{k_j}}\le C^{(j)}\hat a_1(u)\,\mathfrak b(u)^{j-1}\qquad(u\in[0,\bar u],\ 1\le j\le N_G).
+\end{equation}
+For $j=1$, Lemma~\ref{lem:linear-part} with $k=M-2$, $A=C_\natural\kappa_1$ and
+$\kappa=\kappa_1$ gives
+$\|(1-\Riesz)w^{[1]}(u)\|_{H^{M-2}}\le C_{\mathrm{lin}}\hat a_1(u)\big(C_\natural\rho_1(u)+\eta_b\big)$,
+since $C_\natural\kappa_1\jap{u}^pe^{\sigma'u}=C_\natural\hat a_1(u)\rho_1(u)$; and
+$\|2\Re(c(u)e^{\lambda u}\phist)\|_{H^{M-2}}\le2C_\phi C_\natural\hat a_1(u)$. As
+$\rho_1\le\bar\rho$ and $\eta_b\le1$, this is Equation~\eqref{eq:W-hier} for $j=1$.
+Let $j\ge2$. By Lemma~\ref{lem:bilinear}, Equation~\eqref{eq:W-hier} for the
+indices less than $j$, and
+$\|h(v)\|_{C^{k_j}(N')}\le\varepsilon_W\jap{v}^p+\hat a_1(v)$,
+\[
+\|g^{[j]}(v)\|_{H^{k_j}}\le C_{\mathrm{bil}}\Big(\sum_{i+l=j}C^{(i)}C^{(l)}+C^{(j-1)}\Big)\hat a_1(v)\big(\hat a_1(v)+\varepsilon_W\jap{v}^p\big)\mathfrak b(v)^{j-2}.
+\]
+Since $e^{\sigma(u-v)}\hat a_1(v)=\hat a_1(u)$ and
+$\|e^{(u-v)\Lin}\|\le\bar C_Se^{\sigma(u-v)}$, it suffices to show that
+\[
+\int_0^u\big(\hat a_1+\varepsilon_W\jap{v}^p\big)\mathfrak b^{j-2}\dd v\le2^{j-1}\max(1,\sigb^{-1})\,\mathfrak b(u)^{j-1}.
+\]
+Expand $\mathfrak b^{j-2}=\sum_{i+q=j-2}\binom{j-2}i\hat a_1^i(\varepsilon_W\jap{v}^{p+2})^q$,
+and use that $\hat a_1$ and $\jap{\cdot}$ are nondecreasing. Then
+\[
+\begin{gathered}
+\int_0^u\hat a_1^{i+1}(\varepsilon_W\jap{v}^{p+2})^q\dd v\le\frac{\hat a_1(u)^{i+1}(\varepsilon_W\jap{u}^{p+2})^q}{(i+1)\sigma},\\
+\int_0^u\varepsilon_W\jap{v}^p\hat a_1^i(\varepsilon_W\jap{v}^{p+2})^q\dd v\le\frac{\hat a_1(u)^i(\varepsilon_W\jap{u}^{p+2})^{q+1}}{i\sigma}\quad(i\ge1),\\
+\int_0^u\varepsilon_W^{j-1}\jap{v}^{p+(p+2)(j-2)}\dd v\le(\varepsilon_W\jap{u}^{p+2})^{j-1},
+\end{gathered}
+\]
+where the second line uses $\jap{u}^p\le\jap{u}^{p+2}$ and the third uses
+$u\le\jap{u}$. Each right side is a monomial of degree $j-1$ in
+$\hat a_1(u)$ and $\varepsilon_W\jap{u}^{p+2}$, hence at most
+$\max(1,\sigb^{-1})\mathfrak b(u)^{j-1}$, and there are $2\cdot2^{j-2}$ terms counted with
+the binomial weights. This proves Equation~\eqref{eq:W-hier}.
+
+The residual is given by Equation~\eqref{eq:hier-res} with $J=N_G$. Since
+$\mathfrak b\le1$ and $\hat a_1\le\mathfrak b$, we have
+$\hat a_1^2\mathfrak b^{i+l-2}\le\hat a_1\mathfrak b^{N_G}$ for $i+l>N_G$, and
+$\|h\|_{C^s(N')}\le\varepsilon_W\jap{u}^p+\hat a_1\le2\mathfrak b$. So
+\begin{equation}
+\label{eq:W-res}
+\|R_{\mathrm{app}}(u)\|_{H^s}\le C_{\mathrm{res}}\hat a_1(u)\mathfrak b(u)^{N_G},\qquad
+\|w_{\mathrm{app}}(u)\|_{H^{s+1}}\le\Big(\sum_jC^{(j)}\Big)\hat a_1(u)\le S_W\delta_0\le1 .
+\end{equation}
+
+\emph{Continuity argument.} Let $u_*$ be the largest $u\in[0,\bar u]$ with
+$\delta_{\mathrm r}(u)\le a/16$ and $\|w(v)\|_{H^s}\le1$ for $v\in[0,u]$; at $u=0$
+both hold, since $\|w(0)\|_{H^s}\le C_\natural\kappa_1\le a/64$. For $u\le u_*$ the
+support of $\omega_{\mathrm r}(u)$ lies in
+$\{\frac{51}{64}a\le|y|\le\frac54+\frac5{64}a\}\subset\Nflat\subset N$
+(Lemma~\ref{lem:annuli}). So
+Lemma~\ref{lem:reduction}\textup{(3)} and Lemma~\ref{lem:energy} apply on $[0,u_*]$,
+by Equations~\eqref{eq:W-small} and \eqref{eq:W-res}. As $v=w-w_{\mathrm{app}}$
+vanishes at $u=0$, and
+$\mathfrak b^{N_G}\le2^{N_G-1}\big(\hat a_1^{N_G}+(\varepsilon_W\jap{\cdot}^{p+2})^{N_G}\big)$,
+\[
+\begin{aligned}
+\|v(u)\|_{H^s}\le2^{N_G-1}C_{\mathrm{res}}\Big(&\int_0^ue^{\Lam(u-v)}\hat a_1(v)^{N_G+1}\dd v\\
+&+(\varepsilon_W\jap{u}^{p+2})^{N_G}\int_0^ue^{\Lam(u-v)}\hat a_1(v)\dd v\Big).
+\end{aligned}
+\]
+By Equation~\eqref{eq:W-exp}, the first integral is at most
+$\hat a_1(u)^{N_G+1}/((N_G+1)\sigma-\Lam)\le\hat a_1(u)^{N_G+1}/(2\sigb)$, and the second is
+at most $\kappa_1e^{\Lam u}/(\Lam-\sigma)\le\kappa_1e^{\Lam u}/\sigb$. For $u\le\hat T_1$,
+$\kappa_1e^{\Lam u}\le\kappa_1^{1-\Lam/\sigma}\delta_0^{\Lam/\sigma}$. Hence, for $u\le u_*$,
+\begin{equation}
+\label{eq:W-v}
+\|v(u)\|_{H^s}\le C_{\mathrm{en}}\big(\hat a_1(u)^{N_G+1}+\Theta_W(u)\big),\qquad
+\Theta_W(u)=(\varepsilon_W\jap{u}^{p+2})^{N_G}\kappa_1^{1-\Lam/\sigma}\delta_0^{\Lam/\sigma},
+\end{equation}
+and, by Equation~\eqref{eq:W-exp}, $\kappa_1\le1$ and $\delta_0\le1$,
+\begin{equation}
+\label{eq:W-theta}
+\Theta_W(u)\le C_\natural^{N_G}\varsigma(\kappa_1)^{(p+2)N_G}\kappa_1^2\le C_\natural^{N_G}\kappa_1\varsigma(\kappa_1)^{N_W}\cdot\kappa_1 .
+\end{equation}
+
+We collect the bounds for $u\le u_*$. Write
+$w-2\Re(ce^{\lambda u}\phist)=(1-\Riesz)w^{[1]}+\sum_{j\ge2}w^{[j]}+v$. By the bound on
+$(1-\Riesz)w^{[1]}$ above, Equation~\eqref{eq:W-hier} with $\mathfrak b\le1$,
+Equations~\eqref{eq:W-v} and \eqref{eq:W-theta}, $\hat a_1^{N_G+1}\le\hat a_1^2$ and $\Theta_W\le\hat a_1\Theta_W/\kappa_1$,
+\[
+\begin{aligned}
+\big\|w-2\Re(ce^{\lambda u}\phist)\big\|_{H^s}\le{}&C_{\mathrm{lin}}\hat a_1(C_\natural\rho_1+\eta_b)\\
+&+S_W\hat a_1\big(2\hat a_1+C_\natural\kappa_1\varsigma(\kappa_1)^{p+2}+C_\natural^{N_G}\kappa_1\varsigma(\kappa_1)^{N_W}\big),
+\end{aligned}
+\]
+which is at most $C_W\hat a_1\big[\rho_1+\hat a_1+\kappa_1\varsigma(\kappa_1)^{N_W}+\eta_b\big]$.
+Similarly,
+$\|w(u)\|_{H^s}\le S_W\big(\hat a_1(u)+\Theta_W(u)\big)\le C_W\big(\delta_0+\kappa_1\varsigma(\kappa_1)^{N_W}\big)\le\tfrac a{32}$.
+For the displacement, Lemma~\ref{lem:reduction}\textup{(2)} and
+Lemma~\ref{lem:bilinear}\textup{(4)} give, for $u\le u_*$,
+\[
+\begin{aligned}
+\delta_{\mathrm r}(u)&\le\int_0^u\big(\|h\|_{C^0(N')}+C_{\mathrm{BS}}\|w\|_{H^s}\big)\\
+&\le C_\natural\kappa_1\varsigma(\kappa_1)^{p+1}+\frac{\delta_0}{\sigb}+C_{\mathrm{BS}}\Big(\frac{S_W\delta_0}{\sigb}+C_{\mathrm{en}}C_\natural^{N_G}\varsigma(\kappa_1)^{N_W}\kappa_1^2\Big),
+\end{aligned}
+\]
+where we used $\|w\|_{H^s}\le\sum_j\|w^{[j]}\|_{H^s}+\|v\|_{H^s}\le S_W\hat a_1+C_{\mathrm{en}}\Theta_W$,
+$\int_0^u\hat a_1\le\hat a_1(u)/\sigma\le\delta_0/\sigb$, and
+$\int_0^u\Theta_W\le\bar u\,C_\natural^{N_G}\varsigma(\kappa_1)^{(p+2)N_G}\kappa_1^2$ with
+$\bar u\le\varsigma(\kappa_1)$. The right side is at most
+$C_W\delta_0+C_W\kappa_1\varsigma(\kappa_1)^{N_W}\le a/32$. If $u_*<\bar u$, continuity
+would give a larger $u$ with $\delta_{\mathrm r}(u)\le a/16$ and $\|w\|_{H^s}\le1$ on $[0,u]$, a
+contradiction. So $u_*=\bar u$, and the bounds just proved hold on $[0,\bar u]$.
+\end{proof}
+
+\begin{theorem}
+\label{thm:active}
+Assume \textup{(N1)}--\textup{(N3)}. Fix an integer $s\ge3$, a number
+$\sigma'\in(\frac9{200},\sigb)$, and put $p=3$ $(=m)$. Let $N_G$ be the least integer
+with $N_G\ge2$ and $N_G\ge\Lam(s)/\sigb+1$, put $M=s+N_G+2$ (so $M\ge s+4$), and
+put $\etmax=1$. There are $\dH\in(0,1)$, $C_2\ge1$ and $C_3>0$, depending only on
+$(\Phi,\Gone,s,\sigma')$, and for every $C_0\ge1$ a number $\kappa_0(C_0)>0$,
+depending only on $C_0$ and $(\Phi,\Gone,s,\sigma')$, such that the following holds.
+
+Let $G\in[0,\Gone]$, $\sigma=\sigma(G)$, $\lambda=\lamst(G)$, $\kappa>0$,
+$\eta_b\in[0,\etmax]$, $\delta_0\in(0,\dH]$, $\hat a(u)=\kappa e^{\sigma u}$ and
+$\hat T=\sigma^{-1}\log(\delta_0/\kappa)$. Let $t_1=t_1(C_0,G)$ be the least
+$t\ge0$ such that $2^{p/2}C_0\jap{t'}^pe^{-(\sigma-\sigma')t'}\le1$ for all $t'\ge t$,
+and define the \textbf{transient}
+\[
+\rhohat(u)=C_0\jap{u}^pe^{-(\sigma-\sigma')u}\ (0\le u<t_1),\qquad
+\rhohat(u)=\jap{u-t_1}^pe^{-(\sigma-\sigma')(u-t_1)}\ (u\ge t_1).
+\]
+Let $\bar u>0$, let $\omega$, $\omega_{\mathrm r},\omega_{\mathrm i},\omega_{\mathrm o}$
+and $h$ be as in Lemma~\ref{lem:reduction} on $[0,\bar u]$ with this $G$, put
+$w(u)=\omega_{\mathrm r}(u)-\Phi$, and let $c$ be the running coefficient of
+Equation~\eqref{eq:running} with $w_0=w(0)$. Assume:
+\begin{description}[font=\normalfont]
+\item[\textup{(Init)}] $\|w(0)\|_{H^{M-1}}\le C_0\kappa$ and $\supp(\Phi+w(0))\subset\NNm$;
+\item[\textup{(Field)}] $h=h_1+h_2$ on $[0,\bar u]$ with
+  $\|h_1(u)\|_{C^M(N')}\le C_0\kappa\jap{u}^p$ and
+  $\|h_2(u)\|_{C^M(N')}\le\eta_b\,\hat a(u)$;
+\item[\textup{(Coef)}] $|c(u)|\le\kappa\big(2+C_0\jap{u}^pe^{-\sigma u}\big)$ on $[0,\bar u]$;
+\item[\textup{(Small)}] $\kappa\le\kappa_0(C_0)$.
+\end{description}
+Then for every $u\in[0,\min(\bar u,\hat T)]$:
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item $\supp(\Phi+w(u))\subset\NN$;
+\item $\big\|w(u)-2\Re\big(c(u)e^{\lambda u}\phist\big)\big\|_{H^s}\le
+  C_2\hat a(u)\big[\rhohat(u)+\hat a(u)+\kappa^{1/2}+\eta_b\big]$ and
+  $\|w(u)\|_{H^s}\le C_2\hat a(u)(1+\rhohat(u))$.
+\end{enumerate}
+Moreover, let $\sigma_{\max}=\max_{G\in[0,\Gone]}\sigma(G)$, and let $\bar t_1(C_0)$ be the
+least $t\ge0$ such that
+\[
+2^{p/2}C_0\jap{t'}^pe^{-(\sigb-\sigma')t'}\le1\qquad\text{for all }t'\ge t .
+\]
+Then $t_1(C_0,G)\le\bar t_1(C_0)$, and for all $u\ge0$,
+\[
+\hat a(u)\rhohat(u)\le C(C_0)\,\kappa\jap{u}^pe^{\sigma'u},\qquad
+C(C_0)=\max\big(C_0,e^{\sigma_{\max}\bar t_1(C_0)}\big);
+\]
+the number $C(C_0)$ depends only on $C_0$, $\sigma'$, $p$, $\sigb$ and $\sigma_{\max}$.
+\end{theorem}
+\begin{proof}
+Throughout,
+$\Lin=\Lin(G)$, $F=-h\cdot\nabla\Phi$, and $\wlin$ is the function $\wlin_0$ of
+Lemma~\ref{lem:running} with $w_0=w(0)$, admissible in Equation~\eqref{eq:hier}
+as $\supp(\Phi+w(0))\subset\NNm\subset N$ by (Init).
+
+\emph{Constants.} Let $C_\phi$, $\bar C_S$, $C_{\mathrm{bil}}$ and
+$C_{\mathrm{lin}}$ be the numbers of Equation~\eqref{eq:W-const}, $\|\ellst\|$ and
+$\Cp$ as in Lemma~I.\ref{I-lem:uniform}, and put
+$C_\natural=\max(4,\,6C_\phi+2C_{\mathrm{lin}}+1)$. Let $\delta_W,\kappa_W,C_W$ be the
+constants of Lemma~\ref{lem:window} for this $C_\natural$, and put
+\[
+C_2=6C_\phi+3\big(C_W+C_{\mathrm{lin}}+1\big),\qquad C_3=(1+\Cp)C_2,\qquad
+\dH=\min\Big(\delta_W,\frac a{32C_2}\Big).
+\]
+These depend only on $(\Phi,\Gone,s,\sigma')$. Now let $C_0\ge1$, write
+$\bar t_1=\bar t_1(C_0)$, $\Lambda'=\Lam(M-1)$, $\Lambda''=\Lam(M-2)$,
+$C_{\mathrm f}=C_0\jap{\bar t_1}^p+e^{\sigma_{\max}\bar t_1}$, and define the
+constants of the initial layer by
+\[
+\begin{gathered}
+C^{\mathrm{lay}}_1=e^{\Lambda'\bar t_1}\big(C_0+C_{\mathrm{bil}}C_{\mathrm f}\bar t_1\big),\qquad
+C^{\mathrm{lay}}_2=\bar t_1\big(C_{\mathrm f}+C_{\mathrm{BS}}C^{\mathrm{lay}}_1\big),\\
+C^{\mathrm{lay}}_3=\bar C_Se^{\sigma_{\max}\bar t_1}\big(C_0+C_{\mathrm{bil}}C_{\mathrm f}\bar t_1\big),\qquad
+C^{\mathrm{lay}}_4=\bar t_1e^{\Lambda''\bar t_1}C_{\mathrm{bil}}\big(C^{\mathrm{lay}}_3+C_{\mathrm f}\big)C^{\mathrm{lay}}_3 .
+\end{gathered}
+\]
+Let $\kappa_0(C_0)$ be the largest $x\in(0,(a/32)^2]$ such that every
+$\kappa\in(0,x]$ satisfies:
+\begin{enumerate}[label=\textup{(L\arabic*)}]
+\item $C_{\mathrm f}\kappa\le1$, $C^{\mathrm{lay}}_1\kappa\le\frac12$, $C^{\mathrm{lay}}_3\kappa\le1$ and
+  $C^{\mathrm{lay}}_2\kappa\le\min(\frac a{128},\frac12\kappa^{1/2})$;
+\item $(1+\|\ellst\|)C^{\mathrm{lay}}_4\kappa\le1$ and
+  $4(1+C_\phi\|\ellst\|)C^{\mathrm{lay}}_4\kappa^{1/2}\le1$;
+\item $e^{\sigma_{\max}\bar t_1}\kappa\le\kappa_W$ and
+  $C_We^{\sigma_{\max}\bar t_1}\kappa\,\varsigma(\kappa)^{N_W}\le\frac12\kappa^{1/2}$.
+\end{enumerate}
+This number exists. Each inequality in (L1)--(L3) is non-strict between continuous
+functions of $\kappa\in(0,1]$, so the set $S$ of $\kappa\in(0,(a/32)^2]$ satisfying all of
+them is closed in $(0,(a/32)^2]$; and $S\supset(0,\epsilon]$ for some $\epsilon>0$,
+because in each inequality the ratio of the left side to the right side tends to $0$
+as $\kappa\to0^+$. So the supremum $x_0$ of the $x$ with $(0,x]\subset S$ is positive,
+$(0,x_0)\subset S$, and $x_0\in S$ by closedness. The number $\kappa_0(C_0)$ depends
+only on $C_0$ and $(\Phi,\Gone,s,\sigma')$, and by (Small) the $\kappa$ of the theorem
+satisfies (L1)--(L3) and $\kappa\le(a/32)^2$.
+
+\emph{The time $t_1$.} Since $\sigma\ge\sigb$,
+$2^{p/2}C_0\jap{t'}^pe^{-(\sigma-\sigma')t'}\le2^{p/2}C_0\jap{t'}^pe^{-(\sigb-\sigma')t'}$, so
+$t_1\le\bar t_1$. For $u\ge t_1$, the definition of $t_1$ with $t'=u$ gives
+\begin{equation}
+\label{eq:A-t1}
+C_0\jap{u}^pe^{-\sigma u}\le2^{-p/2}e^{-\sigma'u}\le1,\qquad\text{hence }|c(u)|\le3\kappa\text{ by (Coef)}.
+\end{equation}
+For $u<t_1$,
+$\hat a(u)\rhohat(u)=C_0\kappa\jap{u}^pe^{\sigma'u}$. For $u\ge t_1$,
+$\hat a(u)\rhohat(u)=\kappa e^{\sigma t_1}\jap{u-t_1}^pe^{\sigma'(u-t_1)}\le e^{\sigma_{\max}\bar t_1}\kappa\jap{u}^pe^{\sigma'u}$.
+This proves the last assertion of the theorem.
+
+\emph{The initial layer $[0,\bar u_1]$, $\bar u_1=\min(\bar u,t_1)$.} Since
+$t_1\le\bar t_1$ and $\eta_b\le1$, (Field) gives
+$\|h(u)\|_{C^M(N')}\le C_{\mathrm f}\kappa\le1$ there. Let $u_*$ be the largest
+$u\in[0,\bar u_1]$ such that $\delta_{\mathrm r}(u)\le a/64$ and $\|w(v)\|_{H^{M-1}}\le1$ for
+$v\in[0,u]$; both hold at $u=0$ by (Init) and (L1). For $u\le u_*$ the support of
+$\omega_{\mathrm r}(u)$ lies in $\{(\frac78-\frac1{64})a\le|y|\le\frac54+\frac a{64}\}\subset N$
+(Lemma~\ref{lem:annuli}), so Lemma~\ref{lem:reduction}\textup{(3)} applies on $[0,u_*]$. Lemma~\ref{lem:energy}
+at level $M-1$ with $w_{\mathrm{app}}=0$, for which $R_{\mathrm{app}}=h\cdot\nabla\Phi$, and
+Lemma~\ref{lem:bilinear}\textup{(3)} give
+\[
+\|w(u)\|_{H^{M-1}}\le e^{\Lambda'u}C_0\kappa+\int_0^ue^{\Lambda'(u-v)}C_{\mathrm{bil}}C_{\mathrm f}\kappa\dd v\le C^{\mathrm{lay}}_1\kappa\le\tfrac12 ,
+\]
+and Lemma~\ref{lem:reduction}\textup{(2)} and Lemma~\ref{lem:bilinear}\textup{(4)} give
+$\delta_{\mathrm r}(u)\le\int_0^u\big(\|h\|_{C^0(N')}+C_{\mathrm{BS}}\|w\|_{H^1}\big)\le C^{\mathrm{lay}}_2\kappa\le a/128$.
+If $u_*<\bar u_1$, continuity would give a larger admissible $u$; so $u_*=\bar u_1$.
+Next, $\wlin\in C([0,\bar u];X^{M-1})\cap C^1([0,\bar u];X^{M-2})$ is real with
+$\partial_u\wlin=\Lin\wlin+F$ (Lemma~\ref{lem:duhamel}), and
+Proposition~I.\ref{I-prop:semigroup} with Lemma~\ref{lem:bilinear} gives
+$\|\wlin(u)\|_{H^{M-1}}\le C^{\mathrm{lay}}_3\kappa\le1$ for $u\le\bar u_1$. So
+Lemma~\ref{lem:energy} at level $M-2$ applies to $w_{\mathrm{app}}=\wlin$ on
+$[0,\bar u_1]$. Its residual, Equation~\eqref{eq:hier-res} with $J=1$, is
+$R_{\mathrm{app}}=-B(\wlin,\wlin)+h\cdot\nabla\wlin$, and
+$\|R_{\mathrm{app}}\|_{H^{M-2}}\le C_{\mathrm{bil}}(C^{\mathrm{lay}}_3+C_{\mathrm f})C^{\mathrm{lay}}_3\kappa^2$.
+Since $v_1:=w-\wlin$ vanishes at $u=0$,
+\begin{equation}
+\label{eq:A-layer}
+\|v_1(u)\|_{H^{M-2}}\le C^{\mathrm{lay}}_4\kappa^2,\qquad \delta_{\mathrm r}(u)\le C^{\mathrm{lay}}_2\kappa\qquad(0\le u\le\bar u_1).
+\end{equation}
+
+\emph{Proof of (b) for $u\le\min(\bar u_1,\hat T)$.} By
+Lemma~\ref{lem:linear-part} with $k=s$ and $A=C_0\kappa$, and since
+$C_0\kappa\jap{u}^pe^{\sigma'u}\le\hat a(u)\rhohat(u)$ for $u\le t_1$ (with
+equality for $u<t_1$, while at $u=t_1$ the left side is at most
+$2^{-p/2}\hat a(t_1)$ by the definition of $t_1$ and $\rhohat(t_1)=1$),
+\[
+\begin{gathered}
+\wlin(u)=2\Re\big(c(u)e^{\lambda u}\phist\big)+(1-\Riesz)\wlin(u),\\
+\|(1-\Riesz)\wlin(u)\|_{H^s}\le C_{\mathrm{lin}}\hat a(u)\big(\rhohat(u)+\eta_b\big).
+\end{gathered}
+\]
+By Equation~\eqref{eq:A-layer} and (L2),
+$\|v_1(u)\|_{H^s}\le C^{\mathrm{lay}}_4\kappa^2\le\kappa^{1/2}\kappa\le\kappa^{1/2}\hat a(u)$. Hence
+$\|w-2\Re(ce^{\lambda u}\phist)\|_{H^s}\le(C_{\mathrm{lin}}+1)\hat a\big[\rhohat+\kappa^{1/2}+\eta_b\big]$.
+By (Coef), $|c(u)|e^{\sigma u}\le2\hat a(u)+C_0\kappa\jap{u}^p\le\hat a(u)(2+\rhohat(u))$,
+so $\|w(u)\|_{H^s}\le2C_\phi(2+\rhohat)\hat a+(C_{\mathrm{lin}}+1)(\rhohat+2)\hat a\le C_2\hat a(1+\rhohat)$.
+The displacement is at most $C^{\mathrm{lay}}_2\kappa\le\frac12\kappa^{1/2}$ by (L1). This
+proves (b), and bounds the displacement by $\frac12\kappa^{1/2}$, when
+$\min(\bar u,\hat T)\le t_1$.
+
+\emph{Restart.} Assume now that $t_1<u_e:=\min(\bar u,\hat T)$. The function
+$\tilde\omega(u')=\omega(t_1+u')$ is the solution of Theorem~\ref{thm:smooth} with the
+$3$-fold rotationally symmetric datum $\omega(t_1)$, by Theorem~\ref{thm:smooth}\textup{(5)}, and its
+flow is $\tilde\flow_{u'}=\flow_{t_1+u'}\circ\flow_{t_1}^{-1}$. With
+$\tilde\omega_\bullet(0)=\omega_\bullet(t_1)$ we get $\tilde\omega_\bullet(u')=\omega_\bullet(t_1+u')$,
+the same $G$ (since $\int\omega_{\mathrm i}(t_1)=2\pi G$), and the field
+$\tilde h(u')=h(t_1+u')$. So the restarted configuration satisfies the assumptions of
+Lemma~\ref{lem:reduction} on $[0,\bar u-t_1]$, and its perturbation is
+$\tilde w(u')=w(t_1+u')$. Its running coefficient is
+$\tilde c(u')=\ellst(w(t_1))+\int_0^{u'}e^{-\lambda v}\ellst(F(t_1+v))\dd v$. By
+Equation~\eqref{eq:running} and Lemma~\ref{lem:running},
+$e^{\lambda t_1}c(t_1+u')=\ellst(\wlin(t_1))+\int_0^{u'}e^{-\lambda v}\ellst(F(t_1+v))\dd v$, so
+\begin{equation}
+\label{eq:A-restart}
+\tilde c(u')=e^{\lambda t_1}c(t_1+u')+\ellst(v_1(t_1)).
+\end{equation}
+
+We check the assumptions of Lemma~\ref{lem:window} for the restarted problem,
+with $C_\natural$ as above, $\kappa_1=\hat a(t_1)=\kappa e^{\sigma t_1}$, the same
+$\delta_0$ and $\eta_b$, and $\bar u'=u_e-t_1$. First,
+$\kappa\le\kappa_1\le e^{\sigma_{\max}\bar t_1}\kappa\le\kappa_W$ by (L3),
+$\delta_0\le\dH\le\delta_W$, and $\sigma^{-1}\log(\delta_0/\kappa_1)=\hat T-t_1\ge\bar u'$.
+By Equation~\eqref{eq:A-t1} at $u=t_1$, $|c(t_1)|e^{\sigma t_1}\le3\kappa_1$ and
+$C_0\kappa\jap{t_1}^pe^{\sigma't_1}\le\kappa_1$, and
+$\eta_b\kappa e^{\sigma t_1}\le\kappa_1$. So Lemma~\ref{lem:linear-part} at $k=M-2$,
+Equation~\eqref{eq:A-layer} and (L2) give
+\[
+\|w(t_1)\|_{H^{M-2}}\le6C_\phi\kappa_1+C_{\mathrm{lin}}(\kappa_1+\kappa_1)+C^{\mathrm{lay}}_4\kappa^2\le(6C_\phi+2C_{\mathrm{lin}}+1)\kappa_1\le C_\natural\kappa_1 .
+\]
+Second, by Equation~\eqref{eq:A-layer} the support of $\Phi+w(t_1)$ lies in
+$\{(\frac78-\frac1{64})a\le|y|\le\frac54+\frac a{64}\}$. Third, by Peetre's inequality
+$\jap{t_1+u'}\le\sqrt2\jap{t_1}\jap{u'}$ and the definition of $t_1$,
+\[
+C_0\kappa\jap{t_1+u'}^p\le\big[2^{p/2}C_0\jap{t_1}^pe^{-(\sigma-\sigma')t_1}\big]e^{-\sigma't_1}\kappa_1\jap{u'}^p\le\kappa_1\jap{u'}^p,
+\]
+and $\eta_b\hat a(t_1+u')=\eta_b\kappa_1e^{\sigma u'}$; so
+$\|\tilde h(u')\|_{C^M(N')}\le C_\natural\kappa_1\jap{u'}^p+\eta_b\kappa_1e^{\sigma u'}$. Fourth,
+by Equations~\eqref{eq:A-restart}, \eqref{eq:A-t1} and \eqref{eq:A-layer} and (L2),
+$|\tilde c(u')|\le3e^{\sigma t_1}\kappa+\|\ellst\|C^{\mathrm{lay}}_4\kappa^2\le4\kappa_1\le C_\natural\kappa_1$.
+
+\emph{Proof of (b) for $u\in[t_1,u_e]$.} Lemma~\ref{lem:window} applies; put
+$u'=u-t_1$. Then $\kappa_1e^{\sigma u'}=\hat a(u)$ and
+$\jap{u'}^pe^{-(\sigma-\sigma')u'}=\rhohat(u)$. Since $\varsigma$ is decreasing and
+$\kappa_1\ge\kappa$, (L3) gives $C_W\kappa_1\varsigma(\kappa_1)^{N_W}\le\frac12\kappa^{1/2}$.
+By Equation~\eqref{eq:A-restart},
+$\tilde c(u')e^{\lambda u'}=c(u)e^{\lambda u}+\ellst(v_1(t_1))e^{\lambda u'}$, and
+$|\ellst(v_1(t_1))e^{\lambda u'}|\le\|\ellst\|C^{\mathrm{lay}}_4\kappa^2e^{\sigma u'}\le\|\ellst\|C^{\mathrm{lay}}_4\kappa\,\hat a(u)$.
+Since $\|2\Re(X\phist)\|_{H^s}\le2C_\phi|X|$ for $X\in\C$, (L2) gives
+\[
+\begin{aligned}
+\big\|w(u)-2\Re\big(c(u)e^{\lambda u}\phist\big)\big\|_{H^s}
+&\le C_W\hat a(u)\big[\rhohat(u)+\hat a(u)+\tfrac12\kappa^{1/2}+\eta_b\big]\\
+&\quad+\tfrac12\kappa^{1/2}\hat a(u),
+\end{aligned}
+\]
+which gives the first bound of (b), since $C_W+1\le C_2$. By
+Equation~\eqref{eq:A-t1}, the main term $2\Re(c(u)e^{\lambda u}\phist)$ has $H^s$ norm
+at most $6C_\phi\hat a(u)$. Since $\hat a+\kappa^{1/2}+\eta_b\le3$, we get
+\[
+\|w(u)\|_{H^s}\le6C_\phi\hat a+(C_W+1)\hat a(\rhohat+3)\le C_2\hat a(1+\rhohat).
+\]
+For the displacement, a trajectory of $\omega_{\mathrm r}$ satisfies, with $z=\flow_{t_1}(y)$,
+\[
+|\flow_u(y)|-|y|=\big(|\tilde\flow_{u'}(z)|-|z|\big)+\big(|\flow_{t_1}(y)|-|y|\big),
+\]
+so by Lemma~\ref{lem:window} and Equation~\eqref{eq:A-layer} it moves radially by at
+most $C_W\delta_0+\frac12\kappa^{1/2}+C^{\mathrm{lay}}_2\kappa\le C_2\delta_0+\kappa^{1/2}$.
+
+\emph{Proof of (a).} In both cases the displacement is at most
+$C_2\delta_0+\kappa^{1/2}\le\frac a{32}+\frac a{32}=\frac a{16}$, because
+$\delta_0\le\dH\le a/(32C_2)$ and $\kappa\le(a/32)^2$. Since
+$\supp\omega_{\mathrm r}(0)\subset\NNm$ by (Init), Lemma~\ref{lem:annuli} gives
+$\supp(\Phi+w(u))\subset\nobreak\NN$.
+\end{proof}
+
+\begin{corollary}
+\label{cor:active-moment}
+Under the assumptions of Theorem~\ref{thm:active}, put
+$q(u)=2\pi\,\pout_3[w(u)]$. Then for every $u\in[0,\min(\bar u,\hat T)]$,
+\[
+\big|q(u)-2\pi\pout_*(G)\,c(u)e^{\lambda u}\big|\le2\pi C_3\,\hat a(u)\big[\rhohat(u)+\hat a(u)+\kappa^{1/2}+\eta_b\big].
+\]
+\end{corollary}
+\begin{proof}
+For $X\in\C$, $\pout_3[2\Re(X\phist)]=X\pout_3[\phist]+\bar X\pout_3[\overline{\phist}]$. The
+second term vanishes: $\overline{\phist}$ lies in mode $-3$, and
+$\int_0^{2\pi}e^{-3i\theta}e^{-3i\theta}\dd\theta=0$. Since
+$\pout_*(G)=\pout_3[\phist(G)]$, linearity gives
+$\pout_3[w(u)]-\pout_*(G)c(u)e^{\lambda u}=\pout_3\big[w(u)-2\Re(c(u)e^{\lambda u}\phist)\big]$.
+The function in brackets is supported in $N$, so Lemma~I.\ref{I-lem:uniform} and
+Theorem~\ref{thm:active}\textup{(b)} bound its modulus by
+$\Cp C_2\hat a(u)\big[\rhohat(u)+\hat a(u)+\kappa^{1/2}+\eta_b\big]$. Multiplying by $2\pi$
+and using $\Cp C_2\le C_3$ proves the corollary.
+\end{proof}
+
+\subsection{The Seeded Ring}
+
+\begin{lemma}
+\label{lem:seed}
+Assume \textup{(N1)}--\textup{(N3)}, let $s\ge3$ be an integer, and let
+$M=s+N_G+2$ be the integer of Theorem~\ref{thm:active} for this $s$. There are a
+number $\kL>0$ and functions $\Phi^\kappa$, $\kappa\in(0,\kL]$, all depending only
+on $\Phi$, and a number $\Cseed<\infty$, depending only on $\Phi$, $\Gone$ and $s$,
+such that for every
+$\kappa\in(0,\kL]$: $\Phi^\kappa\in C_c^\infty(\R^2)$, $\Phi^\kappa\ge0$,
+$\Phi^\kappa$ is $3$-fold rotationally symmetric and equimeasurable with $\Phi$;
+$\supp\Phi^\kappa\subset\NNm$;
+$\|\Phi^\kappa-\Phi\|_{H^{M-1}}\le\Cseed\kappa$;
+and $|\ellst(0)(\Phi^\kappa-\Phi)|\in[\frac\kappa2,2\kappa]$.
+\end{lemma}
+\begin{proof}
+Let $G=0$, $\lambda=\lamst(0)$, and let $\psi_*$ and $n_*=n_*(0)$ be
+as in Theorem~I.\ref{I-thm:evans-simple} and Definition~I.\ref{I-def:eigendata}, for the
+ring in ring units and $\ell=3$. By these definitions, the mode-$3$ profile of
+$\phist(0)$ is
+\[
+\vphist(r)=n_*^{-1}\,\frac{3i\,\Phi'(r)}{r}\,\frac{\psi_*(\log r)}{\lambda+3i\Omega(r;0)} .
+\]
+Put $g_{\mathrm s}(r)=n_*^{-1}\psi_*(\log r)/(\lambda+3i\Omega(r;0))$ for $r>0$. It is
+smooth: $\psi_*$ solves a linear equation with smooth coefficients
+(Lemma~I.\ref{I-lem:sector}\textup{(3)}), $\Omega(\cdot;0)$ is smooth on $(0,\infty)$, and
+$|\lambda+3i\Omega|\ge\Re\lambda>0$. Let $\chiseed\in C_c^\infty(\{a/2<|y|<2\})$ be
+radial with $\chiseed=1$ on $\{a\le|y|\le1\}$, and put
+$\psi_{\mathrm{seed}}=-2\Re\big(\chiseed(r)\,g_{\mathrm s}(r)\,e^{3i\theta}\big)$ and
+$V=\nabla^\perp\psi_{\mathrm{seed}}$. Then $\psi_{\mathrm{seed}}$ is real, smooth,
+$3$-fold rotationally symmetric and supported in the compact set
+$K_V=\supp\chiseed\subset\{a/2<|y|<2\}$, and $V\in C_c^\infty(\R^2;\R^2)$ is
+divergence-free and $3$-fold rotationally symmetric. Let $Y_\kappa=\flow_V(\kappa,0,\cdot)$ be the
+time-$\kappa$ flow of $V$, with $\flow_V$ as in Lemma~\ref{lem:flow} for the
+time-independent bounded field $V$. By Lemma~\ref{lem:flow}\textup{(a)}, \textup{(b)},
+\textup{(d)}, $Y$ is defined for all $\kappa\in\R$ and is $C^\infty$ in $(\kappa,y)$,
+each $Y_\kappa$ is a $C^\infty$ diffeomorphism of $\R^2$, and $\det DY_\kappa=1$
+because $\divop V=0$. Since $V$ does not depend on time, uniqueness for the flow
+gives $Y_{\kappa+\kappa'}=Y_\kappa\circ Y_{\kappa'}$ and, since
+$V(\Orot y)=\Orot V(y)$, $Y_\kappa\circ\Orot=\Orot\circ Y_\kappa$. For $y\notin K_V$
+the constant path $y$ solves $\dot x=V(x)$, since $V(y)=0$; so $Y_\kappa$ is the identity outside
+$K_V$.
+
+Put $\Phi^\kappa=\Phi\circ Y_\kappa$. Then $\Phi^\kappa\in C_c^\infty(\R^2)$ is nonnegative and $3$-fold
+rotationally symmetric. It is equimeasurable with $\Phi$: for $c>0$,
+$\{\Phi^\kappa>c\}=Y_\kappa^{-1}(\{\Phi>c\})$ has the measure of $\{\Phi>c\}$ because
+$Y_\kappa$ preserves area, and $\{\Phi^\kappa<-c\}=\{\Phi<-c\}=\emptyset$. Since
+$\Phi$ is radial, $V\cdot\nabla\Phi=(V\cdot\er)\Phi'$, and
+$V\cdot\er=-r^{-1}\partial_\theta\psi_{\mathrm{seed}}=2\Re\big(\frac{3i}r\chiseed g_{\mathrm s}e^{3i\theta}\big)$.
+On $\supp\Phi'\subset\{a\le|y|\le1\}$ we have $\chiseed=1$, so
+$(V\cdot\er)\Phi'=2\Re(\vphist e^{3i\theta})=2\Re\phist(0)$; off $\supp\Phi'$ both
+sides vanish, because $\vphist$ is a multiple of $\Phi'$. Thus
+\begin{equation}
+\label{eq:seed-first}
+V\cdot\nabla\Phi=2\Re\phist(0).
+\end{equation}
+
+We now expand in $\kappa$. Fix $y$ and put $f_y(t)=\Phi(Y_t(y))$. Then
+$f_y'(t)=(V\cdot\nabla\Phi)(Y_t(y))$ and $f_y''(t)=(V\cdot\nabla(V\cdot\nabla\Phi))(Y_t(y))$,
+so with $\Psi_{\mathrm s}=V\cdot\nabla(V\cdot\nabla\Phi)\in C_c^\infty(\R^2)$,
+\[
+\Phi^\kappa-\Phi=\int_0^\kappa(V\cdot\nabla\Phi)\circ Y_t\dd t,\qquad
+\Phi^\kappa-\Phi-\kappa V\cdot\nabla\Phi=\int_0^\kappa(\kappa-t)\,\Psi_{\mathrm s}\circ Y_t\dd t .
+\]
+The derivatives of $Y_t(y)-y$ of every order vanish outside $K_V$ and are
+continuous on $[-1,1]\times K_V$, hence bounded there. By the chain rule and
+$\det DY_t=1$, for every $k$ there is $C^Y_k$ with $\|g\circ Y_t\|_{H^k}\le C^Y_k\|g\|_{H^k}$
+for $g\in C_c^\infty(\R^2)$ and $|t|\le1$. Put $C'_0=\frac12C^Y_0\|\Psi_{\mathrm s}\|_{L^2}$, which depends only on $\Phi$, and
+$\Cseed=C^Y_{M-1}\|2\Re\phist(0)\|_{H^{M-1}}$. For $0<\kappa\le1$,
+Equation~\eqref{eq:seed-first} and the two identities give
+$\|\Phi^\kappa-\Phi-2\kappa\Re\phist(0)\|_{L^2}\le C'_0\kappa^2$ and
+$\|\Phi^\kappa-\Phi\|_{H^{M-1}}\le\Cseed\kappa$.
+
+Finally put
+$\kL=\min\big(1,\,a/(8(1+\|V\|_{L^\infty})),\,1/(2(1+\|\ellst(0)\|_{(X^0)^*}C'_0))\big)$,
+and let $\kappa\in(0,\kL]$. Since $|Y_\kappa^{-1}(x)-x|\le\kappa\|V\|_{L^\infty}\le a/8$ by
+Lemma~\ref{lem:flow}\textup{(b)}, \textup{(c)}, and
+$\supp\Phi^\kappa=Y_\kappa^{-1}(\supp\Phi)$ with $\supp\Phi\subset\{a\le|y|\le1\}$, we get
+$\supp\Phi^\kappa\subset\{\frac78a\le|y|\le1+\frac a8\}\subset\NNm$. The function
+$\Phi^\kappa-\Phi$ is supported in $N$ and $3$-fold rotationally symmetric, so it lies in $X^0$.
+By Definition~I.\ref{I-def:eigendata}, $\ellst(0)(2\Re\phist(0))=\ellst(0)(\phist(0))+\ellst(0)(\overline{\phist(0)})=1$.
+Hence
+$|\ellst(0)(\Phi^\kappa-\Phi)-\kappa|\le\|\ellst(0)\|_{(X^0)^*}C'_0\kappa^2\le\frac\kappa2$, and
+$|\ellst(0)(\Phi^\kappa-\Phi)|\in[\frac\kappa2,\frac{3\kappa}2]\subset[\frac\kappa2,2\kappa]$.
+\end{proof}

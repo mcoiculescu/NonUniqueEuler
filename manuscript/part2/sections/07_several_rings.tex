@@ -1,0 +1,351 @@
+\section{Several Rings: Transfer of Moments and Confinement}
+
+We assume \textup{(N1)}--\textup{(N3)}, fix $n\ge2$, and use
+Definitions~\ref{def:datum}, \ref{def:approx}, \ref{def:regions} and
+\ref{def:clock} with $\mu\in(1,2]$ and $\sbar\in(0,a/16]$; we write
+$\omega=\omega^{(n)}$, $v=\KBS\ast\omega$, and $\flow_t$ for the flow of $v$.
+Since $s_k=\sbar(2\mu)^{-k}\le\sbar/2$ and $r_k/r_i=s_is_{i+1}\cdots s_{k-1}$,
+\begin{equation}
+\label{eq:sk-small}
+s_k\le\frac a{32}\quad(k\ge1),\qquad
+\frac{r_k}{r_i}\le s_{k-1}\,\sbar^{\,k-i-1}\quad(1\le i<k).
+\end{equation}
+Moreover $\sbar^{m-2}=\sbar<\frac12$, because $m=3$, and
+$\mu^4\sbar^2\le16\cdot2^{-8}<\frac18$, because $a<1$. The conditions
+$\sbar\le a/16$, $\sbar^{m-2}\le\frac12$ and $\mu^4\sbar^2\le\frac18$ appear
+among the hypotheses of some statements below so that these can be quoted on
+their own; under the standing assumptions of this section they always hold.
+
+In this section $q$, without an index, is the order of a derivative, and $i$ is a ring index or
+the imaginary unit. For a velocity field $V$, $V_{[j]}$ is $V$ in ring-$j$ units
+(defined before Definition~\ref{def:regions}), and $V$ is \emph{bounded on
+$N'_j$ in $C^k$, in ring-$j$ units, by} a number if and only if
+$\|V_{[j]}\|_{C^k(N')}$ is at most that number. We use the \textbf{scaling
+rule}: if $c\in\R$, $c'>0$ and $W(y)=cV(c'y)$, then
+$\nabla^qW(y)=c\,c'^{\,q}(\nabla^qV)(c'y)$.
+
+We write $F=V_1-iV_2$ for the complex form of a vector field $V$, and we use
+Equation~\eqref{eq:BS-complex} for the complex form of $\KBS\ast g$
+(Section~\ref{sec:II-prelim}). The monopole
+$\frac1{2\pi}\big(\int g\big)x^\perp/|x|^2$ of $g$ has complex form $\big(\int g\big)/(2\pi iz)$,
+and $\Orot$ is multiplication by $e^{2\pi i/m}$. For real $g$, the complex forms
+of $\KBS\ast g$ and of $\KBS\ast g$ minus its monopole are holomorphic on
+$U=\C\setminus(\supp g\cup\{0\})$, so Equation~\eqref{eq:BS-complex-deriv}
+applies to them there.
+
+\subsection{Fields Induced by One Ring on Another}
+
+\begin{lemma}
+\label{lem:transfer}
+Assume $\sbar\le a/16$, and let $M_h\ge1$ and $s'\ge0$ be integers. There are
+constants $C^{\mathrm T}_M$ and $C^{\mathrm T}_O$, depending only on $a$, $m$ and
+$M_h$, such that with $C_{L1}=|N|^{1/2}$, where $|N|$ is the area of $N$,
+\[
+C_M=C^{\mathrm T}_M\max(1,C_{L1}),\qquad C_O=C^{\mathrm T}_O\max(1,C_{L1}),
+\]
+the following hold at every time $t\ge0$, for $1\le j<n$.
+\begin{enumerate}[label=\textup{(\arabic*)}]
+\item Let $g\in L^1(\R^2)$ be real valued, $3$-fold rotationally symmetric and supported in
+  $\overline B_{ar_{j+1}/8}$, and let $E_g$ be its velocity field minus its
+  monopole. Then
+  $\|(E_g)_{[j]}\|_{C^{M_h}(N')}\le C_M\varepsilon_j\sup_{|y|=a/4}|(E_g)_{[j+1]}(y)|$.
+\item If $S_{j+1}(t)\subset N_{j+1}$, the velocity field induced on $N'_j$ by
+  $A_{j+1}w_{j+1}(t,\cdot/r_{j+1})$ is bounded in $C^{M_h}(N'_j)$, in
+  ring-$j$ units, by $C_M\varepsilon_j\|w_{j+1}(t)\|_{H^{s'}}$.
+\item If $D_{j+1}(t)\subset\overline B_R$ with $R\le ar_j/8$, the non-monopole
+  field of $\omega_{\ge j+1}(t)$ on $N'_j$ is bounded in $C^{M_h}(N'_j)$, in ring-$j$
+  units, by $C_M\varepsilon_j(R/r_{j+1})^m$.
+\item For $1\le i<k\le n$ with $S_i(t)\subset N_i$, the velocity field induced on
+  $N'_k$ by $A_iw_i(t,\cdot/r_i)$ is bounded in $C^{M_h}(N'_k)$, in ring-$k$
+  units, by $C_Ob_{i,k}\|w_i(t)\|_{L^1}$ and by $C_Ob_{i,k}\|w_i(t)\|_{H^{s'}}$,
+  where $b_{i,k}=\mu^{i-k}(r_k/r_i)^{m-2}$. If $S_i(t)\subset N_i$ for every
+  $i<k$, the velocity field of $\omega(t)\mathbf 1_{S_1(t)\cup\dots\cup S_{k-1}(t)}$
+  on $N'_k$ is the sum of these fields over $i<k$, and its norm in
+  $C^{M_h}(N'_k)$, in ring-$k$ units, is at most
+  $C_O\sum_{i<k}b_{i,k}\|w_i(t)\|_{L^1}$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+With $C_{m,q}$ the constant of Lemma~\ref{lem:ext-multipole}, put
+\[
+\begin{gathered}
+\mathsf S_{m,q}=\sum_{p\ge1}(pm+q)^q2^{-(p-1)m}<\infty,\qquad
+C^{(1)}_{\mathrm T}=\sum_{q=0}^{M_h}2^{q/2}\Big(\frac4a\Big)^q\mathsf S_{m,q},\\
+C^{(2)}_{\mathrm T}=\frac2{\pi a}\Big(\frac8a\Big)^mC^{(1)}_{\mathrm T},\qquad
+C^{(3)}_{\mathrm T}=2\pi\sum_{q=0}^{M_h}C_{m,q}\Big(\frac4a\Big)^{m+1+q},\\
+C^{(4)}_{\mathrm T}=\frac1{2\pi}\sum_{q=0}^{M_h}2^{q/2}\Big(\frac2a\Big)^{q+1}\Big(\frac6a\Big)^{m-1-q}\mathsf S_{m,q}.
+\end{gathered}
+\]
+We prove (1)--(3) with $C^{(1)}_{\mathrm T},C^{(2)}_{\mathrm T},C^{(3)}_{\mathrm T}$,
+respectively, in place of $C_M$ and (4) with $C^{(4)}_{\mathrm T}$ in place of
+$C_O$, for the $L^1$ norms. Then
+$C^{\mathrm T}_M=\max(C^{(1)}_{\mathrm T},C^{(2)}_{\mathrm T},C^{(3)}_{\mathrm T})$
+and $C^{\mathrm T}_O=C^{(4)}_{\mathrm T}$
+depend only on $a$, $m$ and $M_h$, and the $L^1$ bounds follow from
+$C_M\ge C^{\mathrm T}_M$ and $C_O\ge C^{\mathrm T}_O$. The $H^{s'}$ bounds follow,
+because $\|w\|_{L^1}\le C_{L1}\|w\|_{L^2}\le C_{L1}\|w\|_{H^{s'}}$ for
+$w=w_{j+1}(t)$ and $w=w_i(t)$ (Lemma~\ref{lem:regions-basic}(4)). Put
+$\rho_0=a/4$.
+
+\emph{Proof of (1).} Put $V=(E_g)_{[j+1]}$,
+$\mathcal M=\sup_{|z|=\rho_0}|V(z)|$ and
+$\tilde g(\zeta)=g(r_{j+1}\zeta)/A_{j+1}$. Since $\KBS$ is homogeneous of degree
+$-1$, $V$ is the field of $\tilde g$ minus its monopole, and $\tilde g$ is
+$3$-fold rotationally symmetric and supported in $\overline B_{a/8}$. Inserting
+$(z-\zeta)^{-1}=\sum_{l\ge0}\zeta^lz^{-l-1}$, uniformly convergent for
+$|\zeta|\le a/8$ and $z$ in compact subsets of $\{|z|>a/8\}$, in
+Equation~\eqref{eq:BS-complex}, the complex form of $V$ is
+\[
+F(z)=\sum_{l\ge1}\alpha_lz^{-l-1},\qquad \alpha_l=\frac1{2\pi i}\int\tilde g(\zeta)\zeta^l\dd A(\zeta)\qquad(|z|>a/8),
+\]
+the term $l=0$ being the monopole. The substitution $\zeta=\Orot\zeta'$ gives
+$\alpha_l=e^{2\pi il/m}\alpha_l$, so $\alpha_l=0$ unless $m\mid l$. On
+$|z|=\rho_0$ the series converges uniformly, and $\alpha_l\rho_0^{-l-1}$ is the
+Fourier coefficient of $\theta\mapsto F(\rho_0e^{i\theta})$ at the frequency
+$-(l+1)$; since $|F|=|V|$, $|\alpha_l|\le\mathcal M\rho_0^{l+1}$. For
+$|z|\ge\rho_0/s_j$, since $(l+1)\cdots(l+q)\le(l+q)^q$ and $s_j\le\frac12$
+(Equation~\eqref{eq:sk-small}),
+\begin{align*}
+|F^{(q)}(z)|&\le\mathcal M\sum_{l\in m\N}(l+q)^q\rho_0^{l+1}\Big(\frac{s_j}{\rho_0}\Big)^{l+1+q}
+=\mathcal M\rho_0^{-q}s_j^{m+1+q}\sum_{p\ge1}(pm+q)^qs_j^{(p-1)m}\\
+&\le\mathcal M\Big(\frac4a\Big)^q\mathsf S_{m,q}\,s_j^{m+1+q}.
+\end{align*}
+In ring-$j$ units
+$(E_g)_{[j]}(y)=\mu s_jV(y/s_j)$, since $A_{j+1}r_{j+1}=\mu s_jA_jr_j$, and
+$|y/s_j|\ge\rho_0/s_j$ for $y\in N'$. By the scaling rule and
+Equation~\eqref{eq:BS-complex-deriv}, on $N'$,
+$|\nabla^q(E_g)_{[j]}(y)|=\mu s_j^{1-q}2^{q/2}|F^{(q)}(y/s_j)|$, which is at most
+$\mu s_j^{m+2}\mathcal M\,2^{q/2}(4/a)^q\mathsf S_{m,q}$; summing over
+$q\le M_h$ gives $\|(E_g)_{[j]}\|_{C^{M_h}(N')}\le C^{(1)}_{\mathrm T}\varepsilon_j\mathcal M$,
+which is (1).
+
+\emph{Proof of (2).} Let $w=w_{j+1}(t)$; by Lemma~\ref{lem:regions-basic}(4), $w$
+is $3$-fold rotationally symmetric, supported in $N\subset\overline B_2$, and $\int w=0$. The
+field $V$ of $A_{j+1}w(\cdot/r_{j+1})$ satisfies $V_{[j+1]}=\KBS\ast w$, by
+homogeneity, so as in (1) its complex form in ring-$(j+1)$ units is
+$F(z)=\sum_{l\in m\N}\alpha_lz^{-l-1}$ for $|z|>2$, with
+$|\alpha_l|\le\frac1{2\pi}2^l\|w\|_{L^1}$ and no term $l=0$, since $\int w=0$.
+For $|z|\ge\rho_0/s_j$ we have $2/|z|\le8s_j/a\le\frac14$ by
+Equation~\eqref{eq:sk-small}, and
+\[
+|F^{(q)}(z)|\le\frac{\|w\|_{L^1}}{2\pi}\sum_{l\in m\N}(l+q)^q2^l\Big(\frac{4s_j}a\Big)^{l+1+q}
+\le\frac{\|w\|_{L^1}}{2\pi}\Big(\frac4a\Big)^{1+q}\Big(\frac8a\Big)^m\mathsf S_{m,q}\,s_j^{m+1+q}.
+\]
+Passing to ring-$j$ units as in (1),
+$|\nabla^qV_{[j]}(y)|\le\varepsilon_j\|w\|_{L^1}\frac1{2\pi}2^{q/2}(4/a)^{1+q}(8/a)^m\mathsf S_{m,q}$
+on $N'$, and the sum over $q\le M_h$ is $C^{(2)}_{\mathrm T}\varepsilon_j\|w\|_{L^1}$.
+
+\emph{Proof of (3).} By Lemma~\ref{lem:regions-basic}(3), $g=\omega_{\ge j+1}(t)$
+is $3$-fold rotationally symmetric and supported in $D_{j+1}(t)\subset\overline B_R$, and by
+Lemma~\ref{lem:speed}, $\|g\|_{L^1}\le2\|\Phi\|_{L^1}A_{j+1}r_{j+1}^2\le2\pi
+A_{j+1}r_{j+1}^2$, since $0\le\Phi<1$ and $\supp\Phi\subset\overline B_1$. Every
+$x\in N'_j$ has $|x|\ge ar_j/4\ge2R$. For the field $E$ of $g$ minus its
+monopole, Lemma~\ref{lem:ext-multipole} with $\varrho=R$ and the scaling rule
+give, for $y\in N'$,
+\begin{align*}
+|\nabla^qE_{[j]}(y)|&=\frac{r_j^{q}}{A_jr_j}|\nabla^qE(r_jy)|
+\le C_{m,q}\frac{2\pi A_{j+1}r_{j+1}^2R^m}{A_jr_j^{m+2}}|y|^{-m-1-q}\\
+&\le2\pi C_{m,q}\Big(\frac4a\Big)^{m+1+q}\mu s_j^2\Big(\frac R{r_j}\Big)^m .
+\end{align*}
+Since $\mu s_j^2(R/r_j)^m=\mu s_j^{m+2}(R/r_{j+1})^m=\varepsilon_j(R/r_{j+1})^m$,
+the sum over $q\le M_h$ is at most $C^{(3)}_{\mathrm T}\varepsilon_j(R/r_{j+1})^m$.
+
+\emph{Proof of (4).} Let $w=w_i(t)$ and $s_{i,k}=r_k/r_i\le a/32$
+(Equation~\eqref{eq:sk-small}). The field $V$ of $A_iw(\cdot/r_i)$ satisfies
+$V_{[i]}=\KBS\ast w$, and $w$ is $3$-fold rotationally symmetric and supported in
+$N=\{a/2\le|\zeta|\le2\}$. Inserting
+$(z-\zeta)^{-1}=-\sum_{l\ge0}z^l\zeta^{-l-1}$, uniformly convergent for
+$\zeta\in N$ and $z$ in compact subsets of $B_{a/2}$, in
+Equation~\eqref{eq:BS-complex} gives, for $|z|<a/2$,
+\[
+F(z)=-\sum_{l\ge0}\alpha_lz^l,\qquad \alpha_l=\frac1{2\pi i}\int w(\zeta)\zeta^{-l-1}\dd A(\zeta),\qquad
+|\alpha_l|\le\frac{\|w\|_{L^1}}{2\pi}\Big(\frac2a\Big)^{l+1},
+\]
+and the substitution $\zeta=\Orot\zeta'$ shows $\alpha_l=0$ unless $m\mid l+1$.
+Let $|z|\le3s_{i,k}$, so that $6s_{i,k}/a\le\frac14$. Writing $l=pm-1$ with
+$p\ge1$, and using $l(l-1)\cdots(l-q+1)\le(pm)^q$, we get
+\[
+|F^{(q)}(z)|\le\frac{\|w\|_{L^1}}{2\pi}\sum_{p\ge1}(pm)^q\Big(\frac2a\Big)^{pm}(3s_{i,k})^{pm-1-q}
+\le\frac{\|w\|_{L^1}}{2\pi}\Big(\frac2a\Big)^{q+1}\Big(\frac{6s_{i,k}}a\Big)^{m-1-q}\mathsf S_{m,q};
+\]
+the terms with $pm-1<q$ vanish on the left and are nonnegative on the right,
+and
+\[
+(2/a)^{pm}(3s_{i,k})^{pm-1-q}=(2/a)^{q+1}(6s_{i,k}/a)^{m-1-q}(6s_{i,k}/a)^{(p-1)m}.
+\]
+In ring-$k$ units,
+$V_{[k]}(y)=\frac{A_ir_i}{A_kr_k}V_{[i]}(s_{i,k}y)=\mu^{i-k}s_{i,k}^{-1}V_{[i]}(s_{i,k}y)$,
+and $|s_{i,k}y|\le3s_{i,k}$ for $y\in N'$. Hence, on $N'$, by the scaling rule,
+Equation~\eqref{eq:BS-complex-deriv} and $\mu^{i-k}s_{i,k}^{m-2}=b_{i,k}$,
+\[
+|\nabla^qV_{[k]}(y)|=\mu^{i-k}s_{i,k}^{q-1}2^{q/2}|F^{(q)}(s_{i,k}y)|
+\le b_{i,k}\|w\|_{L^1}\frac{2^{q/2}}{2\pi}\Big(\frac2a\Big)^{q+1}\Big(\frac6a\Big)^{m-1-q}\mathsf S_{m,q},
+\]
+and the sum over $q\le M_h$ is $C^{(4)}_{\mathrm T}b_{i,k}\|w\|_{L^1}$. For the last
+assertion, Lemma~\ref{lem:regions-basic}(2) and the definition of $w_i$ give
+$\omega(t)\mathbf 1_{S_1(t)\cup\dots\cup S_{k-1}(t)}=\sum_{i<k}\big(A_i\Phi(\cdot/r_i)+A_iw_i(t,\cdot/r_i)\big)$.
+Each $A_i\Phi(\cdot/r_i)$ is radial and supported in $\{|x|\ge ar_i\}$, so its
+field vanishes on $B_{ar_i}$ by Lemma~\ref{lem:hollow}, and
+$N'_k\subset\overline B_{3r_k}\subset B_{ar_i}$ because $3r_k=3s_{i,k}r_i<ar_i$.
+Summing the bounds over $i<k$ completes the proof.
+\end{proof}
+
+\begin{lemma}
+\label{lem:inner-field}
+Let $M_h\ge1$ be an integer. There is $\Cin$, depending only on $a$, $m$ and
+$M_h$, such that the following holds. Let $1\le k<n$ and $t\ge0$ be such that
+$\omega_{\ge k+1}(t)$ is supported in $\overline B_R$ with $R\le\frac a8r_k$ and
+$\|\omega_{\ge k+1}(t)\|_{L^1}\le\Mvort A_{k+1}r_{k+1}^2$. Let $E$ be the
+velocity field of $\omega_{\ge k+1}(t)$ minus its monopole. Then
+$\|E_{[k]}\|_{C^{M_h}(N')}\le\Cin\,\mu s_k^2\,(R/r_k)^m$. If moreover
+$D_{k+1}(t)\subset B_{ar_k/8}$, then $E_{[k]}=\hin_k(A_kt)$ on $N'$.
+\end{lemma}
+
+\begin{proof}
+Put $\Cin=\Mvort\sum_{q=0}^{M_h}C_{m,q}(4/a)^{m+1+q}$, with $C_{m,q}$ of
+Lemma~\ref{lem:ext-multipole}. The function $g=\omega_{\ge k+1}(t)$ is $3$-fold
+rotationally symmetric by Lemma~\ref{lem:regions-basic}(3), and every $x\in N'_k$ has
+$|x|\ge ar_k/4\ge2R$. The computation in the proof of
+Lemma~\ref{lem:transfer}(3), with $\|g\|_{L^1}\le\Mvort A_{k+1}r_{k+1}^2$ in
+place of $2\pi A_{k+1}r_{k+1}^2$, gives
+\[
+|\nabla^qE_{[k]}(y)|\le\Mvort C_{m,q}(4/a)^{m+1+q}\mu s_k^2(R/r_k)^m\qquad(y\in N'),
+\]
+and the sum over $q\le M_h$ is the claimed bound. Now let
+$D_{k+1}(t)\subset B_{ar_k/8}$, so that $\hin_k(A_kt)$ is defined. By homogeneity
+of $\KBS$, $(\KBS\ast\omega_{\ge k+1}(t))_{[k]}=\KBS\ast\nu^{\mathrm{in}}_k$, and the
+monopole of $\omega_{\ge k+1}(t)$ is, in ring-$k$ units,
+$\frac1{2\pi}\big(\int\nu^{\mathrm{in}}_k\big)y^\perp/|y|^2$. By
+Lemma~\ref{lem:inner-circ}, $\int\omega_{\ge k+1}(t)=\int\omega_{\ge k+1}(0)$, so
+$\int\nu^{\mathrm{in}}_k=A_k^{-1}r_k^{-2}\int\omega_{\ge k+1}(0)=2\pi G_k$. Hence
+$E_{[k]}=\KBS\ast\nu^{\mathrm{in}}_k-G_ky^\perp/|y|^2=\hin_k(A_kt)$.
+\end{proof}
+
+\subsection{Confinement on a Window}
+
+\begin{proposition}
+\label{prop:confine}
+Let $1\le k<n$, assume that the clock is defined up to level $k+1$, put
+$t_0=T_{k+1}$, and let $t_1\ge t_0$. Put $\tauK=A_{k+1}(t-t_0)$ and
+$\Lambda=2+2\Cstar A_{k+1}(t_1-t_0)$. Assume:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item $D_{k+1}(t_0)\subset\overline{B}_{2r_{k+1}}$;
+\item for every $t\in[t_0,t_1]$ and every $j\le k$,
+  $S_j(t)\subset\{|x|\ge\frac a2r_j\}$;
+\item $\sbar\le a/16$, $\sbar^{m-2}\le\frac12$ and $\mu^4\sbar^2\le\frac18$;
+\item $\Lambda s_k\le a/8$ and
+  $\frac83\big(\frac2a\big)^m\Lambda^{m-1}s_k^{m-2}\le\mu\Cstar$.
+\end{enumerate}
+Then for every $t\in[t_0,t_1]$:
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item $D_{k+1}(t)\subset\overline{B}_{\varrho(t)}$ with
+  $\varrho(t)=(2+2\Cstar\tauK)r_{k+1}\le\frac a8r_k$;
+\item $|q_{k+1}(t)|\le\Cmom(1+\tauK)^m$, with $\Cmom=\Mvort(2\max(1,\Cstar))^m$.
+\end{enumerate}
+None of the constants depends on $n$, $k$, $t_0$, $\mu$, $\sbar$, $\delta_0$ or
+$\kseed$.
+\end{proposition}
+
+\begin{proof}
+The only constants, $\Cstar$, $\Mvort$ and $\Cmom$, are absolute numbers by
+Lemma~\ref{lem:speed}, which gives the last sentence.
+
+\emph{Speed bound.} Fix $t\in[t_0,t_1]$ and $x\in\overline B_{\Lambda r_{k+1}}$;
+by (iv), $|x|\le\Lambda s_kr_k\le\frac a8r_k$. By
+Lemma~\ref{lem:regions-basic}(2),(3), $\omega(t)=\omega_{\ge k+1}(t)+\sum_{j\le k}g_j$
+with $g_j=\omega(t)\mathbf 1_{S_j(t)}$, so
+$v(t,x)=\KBS\ast\omega_{\ge k+1}(t)(x)+\sum_{j\le k}\KBS\ast g_j(x)$, and
+$|\KBS\ast\omega_{\ge k+1}(t)(x)|\le\Cstar A_{k+1}r_{k+1}$ by Lemma~\ref{lem:speed}.
+Let $j\le k$. By Lemma~\ref{lem:regions-basic}(3), $g_j\in C_c^\infty$ is
+$3$-fold rotationally symmetric and $\|g_j\|_{L^1}=A_jr_j^2\|\Phi\|_{L^1}\le\pi A_jr_j^2$, since
+$0\le\Phi<1$ and $\supp\Phi\subset\overline B_1$. By (ii), $g_j$ is supported in
+$\{|y|\ge R_j\}$ with $R_j=\frac a2r_j$, and $|x|\le\frac a8r_k\le R_j/2$.
+Lemma~\ref{lem:hollow} with $m_0=m$, $|x|\le\Lambda r_{k+1}$ and
+$A_j=\mu^{j-k-1}A_{k+1}$ give
+\begin{align*}
+|\KBS\ast g_j(x)|&\le\frac4{3\pi}\pi A_jr_j^2|x|^{m-1}R_j^{-m}
+=\frac43\Big(\frac2a\Big)^mA_jr_j\Big(\frac{|x|}{r_j}\Big)^{m-1}\\
+&\le\frac43\Big(\frac2a\Big)^m\Lambda^{m-1}A_{k+1}r_{k+1}\,\mu^{j-k-1}\Big(\frac{r_{k+1}}{r_j}\Big)^{m-2}.
+\end{align*}
+By Equation~\eqref{eq:sk-small}, $r_{k+1}/r_j\le s_k\sbar^{k-j}$, and by (iii),
+$\sbar^{(m-2)(k-j)}\le2^{j-k}$; with $\mu^{j-k}\le1$,
+$\mu^{j-k-1}(r_{k+1}/r_j)^{m-2}\le\mu^{-1}s_k^{m-2}2^{j-k}$, whose sum over
+$j\le k$ is less than $2\mu^{-1}s_k^{m-2}$. By (iv),
+$\sum_{j\le k}|\KBS\ast g_j(x)|\le\frac83(\frac2a)^m\Lambda^{m-1}s_k^{m-2}\mu^{-1}A_{k+1}r_{k+1}\le\Cstar A_{k+1}r_{k+1}$,
+so
+\[
+|v(t,x)|\le2\Cstar A_{k+1}r_{k+1}\qquad(t\in[t_0,t_1],\ x\in\overline B_{\Lambda r_{k+1}}).\tag{$*$}
+\]
+
+\emph{Proof of (a).} By definition $D_{k+1}(t)=\flow_t(D_{k+1}(0))$, and
+$D_{k+1}(0)=S_{k+1}\cup\dots\cup S_n$ is compact. Let $t^*$ be the largest
+$t\in[t_0,t_1]$ such that $D_{k+1}(t')\subset\overline B_{\Lambda r_{k+1}}$ for
+every $t'\in[t_0,t]$; it exists, because the set of such $t$ contains $t_0$, by
+(i) and $\Lambda\ge2$, and is closed, because $(t,y)\mapsto\flow_t(y)$ is
+continuous (Theorem~\ref{thm:smooth}\textup{(4)}). For $t\in[t_0,t^*]$ and
+$y\in D_{k+1}(0)$, the point $\flow_{t'}(y)$ lies in $\overline B_{\Lambda r_{k+1}}$
+for $t'\in[t_0,t]$, so \textup{($*$)} gives
+$|\partial_{t'}\flow_{t'}(y)|=|v(t',\flow_{t'}(y))|\le2\Cstar A_{k+1}r_{k+1}$, and by (i),
+$|\flow_t(y)|\le|\flow_{t_0}(y)|+2\Cstar A_{k+1}r_{k+1}(t-t_0)\le\varrho(t)$. If
+$t^*<t_1$, then $\varrho(t^*)<\varrho(t_1)=\Lambda r_{k+1}$, since $\Cstar>0$, and
+the uniform continuity of $(t,y)\mapsto|\flow_t(y)|$ on
+$[t_0,t_1]\times D_{k+1}(0)$ gives $\delta\in(0,t_1-t^*]$ with
+$|\flow_t(y)|<\Lambda r_{k+1}$ for $t\in[t^*,t^*+\delta]$ and $y\in D_{k+1}(0)$,
+contradicting the maximality of $t^*$. Hence $t^*=t_1$, and (a) holds, because
+$\varrho(t)\le\varrho(t_1)=\Lambda s_kr_k\le\frac a8r_k$ by (iv).
+
+\emph{Proof of (b).} By (a) and Lemma~\ref{lem:speed},
+$|\Qm[\omega_{\ge k+1}(t)]|\le\varrho(t)^m\|\omega_{\ge k+1}(t)\|_{L^1}\le\Mvort A_{k+1}r_{k+1}^2\allowbreak\varrho(t)^m$,
+so by the definition of $q_{k+1}$,
+$|q_{k+1}(t)|\le\Mvort(\varrho(t)/r_{k+1})^m=\Mvort(2+2\Cstar\tauK)^m$, and
+$2+2\Cstar\tauK\le2\max(1,\Cstar)(1+\tauK)$.
+\end{proof}
+
+\begin{definition}
+\label{def:loc}
+Let $t\ge0$. In this definition we read $t\le T_i$ and $t\le\tsh_i$ as true
+when $T_i$, respectively $\tsh_i$, is not defined by Definition~\ref{def:clock},
+and ring $j$ is \textbf{quiet at $t$} if and only if $t\le\tsh_j$. The
+\textbf{localization hypothesis} $(\mathrm{Loc})$ holds at $t$ if and only if:
+\begin{enumerate}[label=\textup{(\arabic*)}]
+\item for every ring $i$ with $t\le T_i$, $S_i(t)\subset N_i$;
+\item for every ring $j$ that is quiet at $t$: $S_i(t)\cap B_{6r_j}=\emptyset$ for
+  every $i<j$; $D_{j+1}(t)\subset B_{ar_j/8}$ (the open disk); and, if $T_{j+1}$ is defined
+  and $t\ge T_{j+1}$, $D_{j+1}(t)\subset\overline{B}_{\varrho_j(t)}$ with
+  $\varrho_j(t)=\big(2+2\Cstar A_{j+1}(t-T_{j+1})\big)r_{j+1}$, the radius of
+  Proposition~\ref{prop:confine}\textup{(a)} for $k=j$.
+\end{enumerate}
+\end{definition}
+
+\begin{lemma}
+\label{lem:field-bound}
+Let $M_h\ge1$ be an integer. There is $C_\eta$, depending only on $a$, $m$, $M_h$
+and $\|\Phi\|_{L^1}$, such that the following holds. Assume
+$\sbar\le a/16$ and $\sbar^{m-2}\le\frac12$, let $1\le j<n$ and $t\ge0$, and
+assume that $S_i(t)\subset N_i$ for every $i<j$, that $S_i(t)\cap B_{6r_j}=\emptyset$
+for every $i<j$, and that $D_{j+1}(t)\subset B_{ar_j/8}$. Then
+$\eta_j(A_jt)\le C_\eta\big(\mu\sbar^2+\sbar^{m-2}\big)$.
+\end{lemma}
+
+\begin{proof}
+Put $C_\eta=\max\{(a/8)^mC_M,\,4\|\Phi\|_{L^1}C_O\}$, with $C_M$ and $C_O$ of
+Lemma~\ref{lem:transfer} at order $M_h$; it depends only on $a$, $m$, $M_h$ and
+$\|\Phi\|_{L^1}$. The hypotheses are those under which
+Definition~\ref{def:regions} defines $h_j$ at time $t$, and
+$\eta_j(A_jt)=\etin_j(A_jt)+\etout_j(A_jt)$, where $\etin_j(A_jt)$ is the norm in
+$C^{M_h}(N')$ of the non-monopole field of $\omega_{\ge j+1}(t)$ in ring-$j$ units
+(Lemma~\ref{lem:inner-field}, whose hypotheses hold with $R=ar_j/8$ by
+Lemma~\ref{lem:speed}), and $\etout_j(A_jt)$ that of the field of
+$\omega(t)\mathbf 1_{S_1(t)\cup\dots\cup S_{j-1}(t)}$. By
+Lemma~\ref{lem:transfer}(3) with $R=ar_j/8$,
+$\etin_j(A_jt)\le C_M\varepsilon_j(ar_j/(8r_{j+1}))^m=(a/8)^mC_M\mu s_j^2\le(a/8)^mC_M\mu\sbar^2$.
+If $j=1$, then $\etout_1=0$. If $j\ge2$, Lemma~\ref{lem:transfer}(4) with $k=j$ and
+Lemma~\ref{lem:regions-basic}(4) give
+$\etout_j(A_jt)\le C_O\sum_{i<j}b_{i,j}\|w_i(t)\|_{L^1}\le2\|\Phi\|_{L^1}C_O\sum_{i<j}b_{i,j}$.
+By Equation~\eqref{eq:sk-small}, $r_j/r_i\le\sbar^{j-i}$, and $\mu^{i-j}\le1$, so
+$b_{i,j}\le(\sbar^{m-2})^{j-i}$ and, as $\sbar^{m-2}\le\frac12$,
+$\sum_{i<j}b_{i,j}\le\sum_{l\ge1}(\sbar^{m-2})^l\le2\sbar^{m-2}$. Hence
+$\etout_j(A_jt)\le4\|\Phi\|_{L^1}C_O\sbar^{m-2}$, and adding the two bounds proves
+the lemma.
+\end{proof}
