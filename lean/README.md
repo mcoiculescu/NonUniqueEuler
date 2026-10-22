@@ -162,7 +162,13 @@ stays explicit, and it is established in three steps.
    - Note that the conclusion of the final theorem does not mention `cert`. The data decide
      only whether the hypothesis can be met, not the soundness of the argument.
 
-**Status of the run.** A full run of `ncert par` (6 threads) was started on 2026-10-21. When this release was prepared (2026-10-21, 23:00 EDT) it had certified 13 of the 261 cells, all with winding number 1 and none failed; it was still running. Until it prints `true`, the hypothesis `Verify.check Verify.cert = true` is not established by this program. The same certificate is independently certified by the Python/Arb package `euler-ring-certificate` (all cells pass; see its `expected/summary.json`), which is the computer-assisted proof of Appendix A of the manuscript.
+**Status of the run.** The full run completed on 2026-10-22. `ncert par` (6 threads, Apple M3 Pro, 8.75 hours wall time, 106,680 Evans enclosures) printed
+
+```
+checkCorePar defaultPrec certLits = check cert = true  (31481.868 s)
+```
+
+and exited with code 0. All 261 cells (25 for (N1′), 236 for (N2′)) were certified with winding number 1. The output and the per-cell log, with the JSON record of every certified sub-cell, are in `certificate_run/`. The hypothesis `Verify.check Verify.cert = true` is therefore established by this program, and Theorem 1.1 follows by `main_theorem_of_certificate`. The same certificate is also certified independently by the Python/Arb package `euler-ring-certificate` (the computer-assisted proof of Appendix A of the manuscript).
 
 ## Layout
 
@@ -243,9 +249,8 @@ tools/ncert_par_run.sh OUTDIR 6      # start `ncert par` in the background with 
 
 **Cost.** The run is long. Each Evans enclosure takes about two CPU-seconds (Apple arm64). The
 ball arithmetic is looser than Arb's, so the 25 (N1′) cells often need adaptive halving and many
-more enclosures than the Python/Arb reference. The first full run used more than 50,000
-enclosures (about 30 CPU-hours) for its first 13 cells. Plan for a long run (on the order of a
-hundred CPU-hours), or for a day on six threads.
+more enclosures than the Python/Arb reference. The recorded full run used 106,680 enclosures:
+8.75 hours wall time on 6 threads of an Apple M3 Pro, about 52 CPU-hours.
 
 **Regenerating the certificate data.** The following command reproduces
 `NonUniqueEuler/Verify/Data/CellLits.lean` and `Cells.lean` byte for byte. With `--check` it

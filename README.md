@@ -9,10 +9,11 @@ This repository contains the manuscript
 
 together with a Lean 4 formalization of its proof and the code of its computer-assisted part.
 
-> **Status.** The Lean-verified run of the certificate checker (`ncert par`) is still in progress.
-> Until it finishes, (N1)–(N2) rest on the Python/Arb certificate in
-> [`euler-ring-certificate/`](euler-ring-certificate/), exactly as in the manuscript. See "How
-> (N1)–(N2) are established" below; this README will be updated with the result.
+> **Status.** The Lean-verified run of the certificate checker (`ncert par`) completed on
+> 2026-10-22 and printed `check cert = true`: all 261 cells were certified (output and log in
+> [`lean/certificate_run/`](lean/certificate_run/)). (N1)–(N2) are thus established both by the
+> Python/Arb certificate in [`euler-ring-certificate/`](euler-ring-certificate/) and by the
+> Lean-verified checker. See "How (N1)–(N2) are established" below.
 
 The main theorem (Theorem 1.1 of both parts) says that the incompressible Euler equations in the
 plane, without external force, have two distinct renormalized weak solutions with the same initial
@@ -24,7 +25,7 @@ symmetric, is equimeasurable with `f` at every time, and departs from `f` in fin
 |---|---|---|
 | [`manuscript/part1/`](manuscript/part1/) | LaTeX source of Part I: the compactness criterion and the linear instability of the ring. | Complete; the version submitted to arXiv. |
 | [`manuscript/part2/`](manuscript/part2/) | LaTeX source of Part II: the nonlinear construction, the verification of Hypothesis (N) and the proof of the main theorem. | Draft, work in progress; not on arXiv. |
-| [`lean/`](lean/) | A Lean 4 + Mathlib formalization of the whole proof, including the algorithms of the computer-assisted part. See `lean/README.md`. | No `sorry`, only the standard axioms. The compiled run of the verified checker is in progress (see below). |
+| [`lean/`](lean/) | A Lean 4 + Mathlib formalization of the whole proof, including the algorithms of the computer-assisted part. See `lean/README.md`. | No `sorry`, only the standard axioms. The compiled run of the verified checker printed `true` on all 261 cells (see below). |
 | [`euler-ring-certificate/`](euler-ring-certificate/) | The computer-assisted proof of (N1)–(N2) in Python with FLINT/Arb, with the certificate (`certificates/*.json`) and the recorded outputs of its run (`expected/`, with SHA-256 checksums). See `euler-ring-certificate/README.md`. | Complete; every cell passes. |
 
 ## Structure of the proof
@@ -74,11 +75,12 @@ Theorem 1.1 is proved in two steps (Part II, Section 1).
    `main_theorem_of_certificate` (theorem `Verify.check_eq_checkCorePar`). Its trusted base is the
    Lean compiler and runtime and GMP.
 
-   **Status of the Lean-verified re-run.** A full run of `ncert par` started on 2026-10-21. At
-   23:00 EDT it had certified 13 of the 261 cells, all with winding number 1, with none failed,
-   and it was still running. Until it prints `true`, (N1)–(N2) rest on the Arb certificate
-   (item 1), exactly as in the manuscript. A completed run will establish them also through the
-   Lean-verified checker.
+   **Status of the Lean-verified re-run: complete.** On 2026-10-22 the full run of `ncert par`
+   (6 threads, Apple M3 Pro, 8.75 hours, 106,680 Evans enclosures) printed
+   `checkCorePar defaultPrec certLits = check cert = true` and exited with code 0. All 261 cells
+   were certified with winding number 1 (output and log: `lean/certificate_run/`). So (N1)–(N2)
+   are established twice: by the Arb certificate, and by the Lean-verified checker, whose result
+   is the hypothesis of the kernel-checked `main_theorem_of_certificate`.
 
 ## How the code refers to the manuscript
 

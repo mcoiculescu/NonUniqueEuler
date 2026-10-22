@@ -1,0 +1,2 @@
+checkCorePar defaultPrec certLits = check cert = true  (31481.868 s)
+exit code 0
