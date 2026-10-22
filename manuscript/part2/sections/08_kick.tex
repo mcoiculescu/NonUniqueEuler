@@ -1,9 +1,16 @@
 \section{The Kick}
+\label{sec:kick}
 
-Let $1\le k<n$. While ring $k$ is quiet, the field of the region $D_{k+1}(t)$
-inside it drives the unstable coefficient of ring $k$ exactly through the
-mode-$3$ moment $q_{k+1}$ (Lemma~\ref{lem:coupling}); we bound the response
-from above and below (Proposition~\ref{prop:kick}).
+We compute the kick that ring $k$ receives from the rings inside it,
+for $1\le k<n$. While ring $k$ is quiet, the inner field $\hin_k$ of
+Definition~\ref{def:regions} drives the unstable coefficient of ring $k$ exactly
+through the mode-$3$ moment $q_{k+1}$ of the region $D_{k+1}(t)$: the unstable
+coefficient of the part of the linear response of ring $k$ driven by $\hin_k$
+solves the scalar linear Equation~\eqref{eq:kick}, with drive $q_{k+1}$
+(Lemma~\ref{lem:coupling}). Proposition~\ref{prop:kick} bounds the modulus of
+the solution at the final time, with its free growth factored out, from above
+and below, and Section~\ref{sec:relay} uses these bounds to start ring $k$
+(Lemmas~\ref{lem:handoff} and~\ref{lem:kicktrue}).
 
 \begin{lemma}
 \label{lem:coupling}
@@ -49,17 +56,24 @@ Definitions~\ref{def:regions} and \ref{def:clock}, and let $1\le k<n$.
 \end{enumerate}
 \end{lemma}
 \begin{proof}
-\emph{(1).} By Lemma~\ref{lem:regions-basic}(2),(3), the function
-$\nu^{\mathrm{in}}_k$ of Definition~\ref{def:regions} at time $t$ is real,
+\emph{(1).} This part makes precise the computation made before
+Definition~I.\ref{I-def:eigendata}, where $b$ is introduced as the mode-$3$
+forcing of the ring by an interior field of unit outer moment, and $\beta(G)$ as
+the component of that forcing along the unstable eigenfunction. By
+Lemma~\ref{lem:regions-basic}(2),(3), the function
+$\nu^{\mathrm{in}}_k$ of Definition~\ref{def:regions} at time $t$, the vorticity of
+$D_{k+1}(t)$ in ring-$k$ units, is real,
 $3$-fold rotationally symmetric, in $C_c^\infty(\R^2)$, and its support avoids $0$; by the
 hypothesis $D_{k+1}(t)\subset B_{ar_k/8}$ the support is a compact subset of
-$B_{a/8}$, so its largest modulus $\rho$ satisfies $\rho<a/8$. By
+$B_{a/8}$, so the largest modulus $\rho$ of a point of the support satisfies $\rho<a/8$. By
 Lemma~I.\ref{I-lem:BS-basic}(d), $\KBS\ast\nu^{\mathrm{in}}_k=\nabla^\perp\psi$ with
 $\psi=\frac1{2\pi}\log|\cdot|\ast\nu^{\mathrm{in}}_k$ smooth on $\{|y|>\rho\}$.
-The monopole $G_ky^\perp/|y|^2$ is orthogonal to $\er$, so the polar form of
-Section~I.\ref{I-sec:prelim} gives $\hin_k(\tau)\cdot\er=-r^{-1}\partial_\theta\psi$
-on $N'$. Put $p_3=\pout_3[\nu^{\mathrm{in}}_k]$. By the expansion in
-Section~\ref{sec:II-prelim}, the angular mode $3$ of $\psi$ is
+The monopole $G_ky^\perp/|y|^2$ is orthogonal to $\er$, so the polar form
+$v\cdot\er=-r^{-1}\partial_\theta\psi$ of the Biot-Savart law
+(Section~I.\ref{I-sec:prelim}) gives $\hin_k(\tau)\cdot\er=-r^{-1}\partial_\theta\psi$
+on $N'$. Put $p_3=\pout_3[\nu^{\mathrm{in}}_k]$, the outer mode-$3$ moment of
+Definition~I.\ref{I-def:multipole}. By the expansion of the stream function stated
+before Lemma~\ref{lem:ext-multipole}, with $m=3$ and $\varrho=\rho$, the angular mode $3$ of $\psi$ is
 $-\frac16p_3r^{-3}$ for $r>\rho$, and by integration by parts in $\theta$ that of
 $\partial_\theta\psi$ is $3i$ times that of $\psi$. Since
 $N'=\{a/4\le|y|\le3\}\subset\{|y|>\rho\}$, the mode-$3$ profile of
@@ -75,14 +89,17 @@ $3$-fold rotationally symmetric and supported in $\{a\le|y|\le1\}\subset N$, hen
 for every $s$. By Definition~I.\ref{I-def:eigendata}, $\ellst(G_k)(w)=n_*(G_k)\,\ellst(w_3)$
 depends linearly on the mode-$3$ profile $w_3$ of $w$ only, and
 $\beta(G_k)=\ellst(G_k)(b\,e^{3i\theta})=n_*(G_k)\ellst(b)$; so
-$\ellst(G_k)(-\hin_k(\tau)\cdot\nabla\Phi)=p_3\,\beta(G_k)$. Finally, the change
+$\ellst(G_k)(-\hin_k(\tau)\cdot\nabla\Phi)=p_3\,\beta(G_k)$. It remains to
+express $p_3$ through the normalized moment $q_{k+1}(t)$ of
+Definition~\ref{def:regions}. The change
 of variables $x=r_ky$ and the reality of $\omega_{\ge k+1}(t)$ give
 \[
 p_3=\frac1{2\pi A_k}\int\omega_{\ge k+1}(t,r_ky)\,\bar y^{\,3}\dd y
 =\frac{\overline{\Qm[\omega_{\ge k+1}(t)]}}{2\pi A_kr_k^5}
 =\frac{A_{k+1}r_{k+1}^5}{2\pi A_kr_k^5}\,q_{k+1}(t)=\frac{\mu s_k^5}{2\pi}\,q_{k+1}(t),
 \]
-and (1) follows from $m+2=5$ and $\beta_k=\beta(G_k)s_k^5/(2\pi)$.
+and (1) follows from $m+2=5$ (recall $m=3$) and $\beta_k=\beta(G_k)s_k^5/(2\pi)$
+(Definition~\ref{def:regions}).
 
 \emph{(2).} By the hypothesis and the paragraph after
 Lemma~\ref{lem:regions-basic}, $\tau\mapsto\hin_k(\tau)$ is continuous from
@@ -93,12 +110,21 @@ $\|g(\tau)-g(\tau')\|_{H^M}\le\Cnab(M)\|\hin_k(\tau)-\hin_k(\tau')\|_{C^M(N')}$;
 so $g$ is continuous into $X^s$ for every $s$. Since $e^{t\Lin(G_k)}$ is a
 $C_0$-semigroup on $X^s$ (Lemma~I.\ref{I-lem:semigroup-construct}), the integrand
 $v\mapsto e^{(\tau-v)\Lin(G_k)}g(v)$ is continuous into $X^s$, so
-$\wlin_{\mathrm{in},k}$ is well defined. As $A_kT_{k+1}=-\tau_0/\mu$, ring-$k$
-time and kick time are related by $\tau=(\tauK-\tau_0)/\mu$, and $\tauK$ runs over
+$\wlin_{\mathrm{in},k}$ is well defined.
+
+Next we change from ring-$k$ time to kick time. Recall from
+Definition~\ref{def:clock} that $\tau_0=-A_{k+1}T_{k+1}$ is the kick time of $t=0$.
+Since $A_{k+1}=\mu A_k$ by Equation~\eqref{eq:datum}, we have
+$A_kT_{k+1}=-\tau_0/\mu$, so ring-$k$
+time and kick time are related by $\tau=(\tauK-\tau_0)/\mu$. As
+$\tsh_k=T_{k+1}+\Tpin/A_{k+1}$ (Definition~\ref{def:clock}), $\tauK$ runs over
 $[\tau_0,\Tpin]$ as $t$ runs over $[0,\tsh_k]$. As $\ellst(G_k)$ is bounded on
-$X^0$ (Lemma~I.\ref{I-lem:uniform}), it commutes with the integral, and
-Proposition~I.\ref{I-prop:semigroup}, (1) and the substitution
-$v=(\tauK'-\tau_0)/\mu$ give, for $\tau_0\le\tauK\le\Tpin$ and
+$X^0$ (Lemma~I.\ref{I-lem:uniform}), it commutes with the integral that defines
+$\wlin_{\mathrm{in},k}$. In the display below, the first equality is then the
+last identity of Proposition~I.\ref{I-prop:semigroup}, by which $\ellst(G_k)$
+turns $e^{t\Lin(G_k)}$ into multiplication by $e^{\lambda_kt}$; the second is
+(1); and the third is the substitution
+$v=(\tauK'-\tau_0)/\mu$. This gives, for $\tau_0\le\tauK\le\Tpin$ and
 $\tau=(\tauK-\tau_0)/\mu$, with $q_{k+1}$ written as a function of kick time in
 the last line,
 \begin{align*}
@@ -107,30 +133,40 @@ the last line,
 &=\beta_k\int_{\tau_0}^{\tauK}e^{\zeta_0(\tauK-\tauK')}\,q_{k+1}(\tauK')\dd\tauK'.
 \end{align*}
 By Equation~\eqref{eq:omega-ge} and area preservation,
-$\Qm[\omega_{\ge k+1}(t)]=\int\sum_{i>k}f^{(n)}_i(x')\,\flow_t(x')^m\dd x'$, so
-$q_{k+1}$ is continuous. Hence
-$\cin\in C^1([\tau_0,\Tpin])$, $\cin(\tau_0)=0$, and differentiation gives
+$\Qm[\omega_{\ge k+1}(t)]=\int\sum_{i>k}f^{(n)}_i(x')\,\flow_t(x')^m\dd x'$. The
+integrand is supported in the compact set $D_{k+1}(0)$, it is bounded uniformly
+for $t$ in compact intervals, and it is continuous in $t$, as
+$(t,x')\mapsto\flow_t(x')$ is continuous (Theorem~\ref{thm:smooth}\textup{(4)});
+so, by dominated convergence, $q_{k+1}$ is continuous. Hence, taking the factor
+$e^{\zeta_0\tauK}$ out of the last integral and using the fundamental theorem of
+calculus, $\cin\in C^1([\tau_0,\Tpin])$, $\cin(\tau_0)=0$, and differentiation gives
 Equation~\eqref{eq:kick}. At $t=\tsh_k$ we have $\tau=\tash_k$ and
 $\tauK=A_{k+1}(\tsh_k-T_{k+1})=\Tpin$, so $\cin_k=\cin(\Tpin)=e^{\zeta_0\Tpin}\Ain(\Tpin)$.
 
 \emph{(3).} By the hypotheses and the paragraph after
 Lemma~\ref{lem:regions-basic}, $\tau\mapsto\hout_k(\tau)$ is continuous from
 $[0,\tash_k]$ into $C^M(N')$ for every $M$. By Lemma~\ref{lem:regions-basic}(3),
-$\nu^{\mathrm{out}}_k$ is real and $3$-fold rotationally symmetric, and it vanishes on $B_6$; so
+$\nu^{\mathrm{out}}_k$ is real and $3$-fold rotationally symmetric, and, as the
+rings $i<k$ lie outside $B_{6r_k}$, it vanishes on $B_6$; so
 $\hout_k(\tau)$ is real, $3$-fold rotationally symmetric and smooth on $B_6$, by
-Equation~\eqref{eq:BS-complex}. Hence $-\hout_k(\tau)\cdot\nabla\Phi\in X^s$
+Equation~\eqref{eq:BS-complex}, and $B_6$ contains $N'$. Hence, as in (1),
+$-\hout_k(\tau)\cdot\nabla\Phi\in X^s$
 for every $s$, and it is continuous in $\tau$ into $X^s$ by
 Lemma~I.\ref{I-lem:uniform}, as in (2). By the discussion after
 Lemma~\ref{lem:regions-basic}, ring $k$ in ring-$k$ units satisfies the
 hypotheses of Lemma~\ref{lem:reduction} on $[0,\tash_k]$ with $G=G_k$ and
-$h=h_k=\hin_k+\hout_k$; the identity for $\wlin$ is the linearity of the integral.
+$h=h_k=\hin_k+\hout_k$, so the linear response $\wlin$ of
+Theorem~\ref{thm:quiet}\textup{(b)} is defined with this $h$; the identity for
+$\wlin$ is then the linearity of the integral that defines it.
 \end{proof}
 
 Proposition~\ref{prop:kick} works in the following setting, which isolates
 Equation~\eqref{eq:kick}. Let $\zeta_0,\beta\in\C$, put $x=\Re\zeta_0$, let
 $\tau_0<\tau_1$ be real, put $I=[\tau_0,\tau_1]$, let
 $q\colon I\to\C$ be continuous, let $c$ solve $c'=\zeta_0c+\beta q$ on $I$ with
-$c(\tau_0)=0$, and put $A(\tau)=e^{-\zeta_0\tau}c(\tau)$. Since
+$c(\tau_0)=0$, and put $A(\tau)=e^{-\zeta_0\tau}c(\tau)$. The factor
+$e^{-\zeta_0\tau}$ removes the free growth of $c$, so that $A$ is a weighted
+integral of the drive $q$, as the next display shows. Since
 $A'=e^{-\zeta_0\tau}(c'-\zeta_0c)=\beta e^{-\zeta_0\tau}q$ and $A(\tau_0)=0$,
 \begin{equation}
 \label{eq:kick-A}
@@ -143,7 +179,8 @@ $\tau_0=-A_{k+1}T_{k+1}<0<\Tpin$ by Lemma~\ref{lem:clock}(1) and
 Definition~\ref{def:clock}.
 
 Recall $z=\lamst(0)$ and $\sigma=\Re z>0$ (Definition~I.\ref{I-def:eigendata},
-Proposition~I.\ref{I-prop:U}(a)).
+Proposition~I.\ref{I-prop:U}(a)), and the integral $\Ip{p}{x}$ of
+Equation~(I.\ref{I-eq:Ip}), a decreasing function of $x$.
 
 \begin{proposition}
 \label{prop:kick}
@@ -174,8 +211,26 @@ Then at $\tau=\tau_1$,
 \frac{|\beta|\,|\qs|}{10|z|(\mu-1)}\le|A(\tau)|\le\frac{3|\beta|\,|\qs|\,\mu}{|z|(\mu-1)} .
 \]
 \end{proposition}
+
+The hypotheses describe the drive $q$ on three consecutive intervals:
+\textup{(Q2)} bounds it on $[\tau_0,-T_g]$, \textup{(Q1)} says that on $[-T_g,0]$
+it is close to the exponential $\qs e^{z'\tau}$, and \textup{(Q3)} bounds its
+growth on $[0,\tau_1]$. In Lemma~\ref{lem:kicktrue}, where $G'=G_{k+1}$ and
+$T_g=\hat T_{k+1}$, these intervals are, for $k+1<n$, the quiet phase and the
+active phase of ring $k+1$ and the pinning phase $\Pin_k$ of ring $k$, in kick
+time; at the seeded level $k+1=n$ the proof of that lemma applies
+Proposition~\ref{prop:kick} with a slightly smaller $T_g$. The proof below shows
+that $\Re w>0$ and that $|w|$ is comparable to $|z|(\mu-1)/\mu$. By
+\textup{(Q1)}, the integrand of Equation~\eqref{eq:kick-A} on $[-T_g,0]$ is
+close to $\qs e^{ws}$. \textup{(Kick2)} makes $|1-e^{-wT_g}|\ge\frac12$, so
+this interval contributes a term of modulus comparable to
+$|\beta||\qs|/(|z|(\mu-1))$, and \textup{(Kick1)}, \textup{(Kick3)} and
+\textup{(Kick4)} make the contributions of $[0,\tau_1]$, of the error in
+\textup{(Q1)} and of $[\tau_0,-T_g]$ small against it.
+
 \begin{proof}
-Put $e_\mu=\frac{\mu-1}{8\mu}\le\frac1{16}$ and write $z'=z+d_1$,
+We first compare $w$ with $z$ and bound $x$ from below. Put
+$e_\mu=\frac{\mu-1}{8\mu}\le\frac1{16}$ and write $z'=z+d_1$,
 $\lamst(G)=z+d_2$ with $|d_1|,|d_2|\le e_\mu\sigma$. Then
 $w=z\frac{\mu-1}\mu+d_1-\frac{d_2}\mu$ with
 $|d_1-\frac{d_2}\mu|\le2e_\mu\sigma=\frac{\sigma(\mu-1)}{4\mu}$, so, since
@@ -187,14 +242,15 @@ $\Re z=\sigma\le|z|$,
 As $\mu\le2$, $x=\Re\lamst(G)/\mu\ge(1-e_\mu)\sigma/\mu\ge\frac{15}{32}\sigma\ge\frac\sigma4>0$,
 and as $\Ip{p}{\cdot}$ is decreasing, $\Ip{p}{x}\le\Ip{p}{\sigma/4}$.
 
-Put $\mathsf K=\beta\qs(1-e^{-wT_g})/w$ and let $\tau=\tau_1$. By
-Equation~\eqref{eq:kick-A},
+Next we split the integral of Equation~\eqref{eq:kick-A} at $-T_g$ and $0$,
+according to the three hypotheses on $q$. Put $\mathsf K=\beta\qs(1-e^{-wT_g})/w$,
+the main term, and let $\tau=\tau_1$. Then
 \[
 A(\tau)=\beta\int_{\tau_0}^{-T_g}e^{-\zeta_0s}q(s)\dd s+\beta\int_{-T_g}^0e^{-\zeta_0s}q(s)\dd s
 +\beta\int_0^\tau e^{-\zeta_0s}q(s)\dd s ,
 \]
 and $|e^{-\zeta_0s}|=e^{-xs}$. By (Q2), the
-first term has modulus at most $|\beta|\Errpre$. Since
+first term on the right has modulus at most $|\beta|\Errpre$. Since
 \[
 \int_{-T_g}^0e^{-\zeta_0s}\qs e^{z's}\dd s=\qs\int_{-T_g}^0e^{ws}\dd s=\qs(1-e^{-wT_g})/w,
 \]
@@ -203,9 +259,10 @@ $|\beta|\Errg$, by (Q1). By (Q3), $x>0$ and Equation~(I.\ref{I-eq:Ip}), the thir
 has modulus at most
 $|\beta|\bar Q\int_0^\infty e^{-xs}(1+s)^p\dd s=|\beta|\bar Q\,\Ip{p}{x}$.
 
-Put $\mathsf Z=\frac25|\beta||\qs|/(|z|(\mu-1))$.
+Finally we compare the main term and the three remainders with
+$\mathsf Z=\frac25|\beta||\qs|/(|z|(\mu-1))$.
 By (Kick2) and $|e^{-wT_g}|=e^{-\Re w\,T_g}$, $|1-e^{-wT_g}|\in[\frac12,\frac32]$,
-and the bounds on $|w|$ give
+and the bounds on $|w|$ from the first paragraph give
 \[
 |\mathsf K|\ge\frac12\cdot\frac45\cdot\frac{|\beta||\qs|\mu}{|z|(\mu-1)}=\mu\,\mathsf Z,\qquad
 |\mathsf K|\le\frac32\cdot\frac43\cdot\frac{|\beta||\qs|\mu}{|z|(\mu-1)}=\frac{2|\beta||\qs|\mu}{|z|(\mu-1)} .

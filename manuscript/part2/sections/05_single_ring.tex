@@ -1,10 +1,32 @@
 \section{Nonlinear Estimates for One Ring}
 \label{sec:single}
 
+In this section we study, in ring units, one ring of the approximate solutions: a
+ring close to $\Phi$, whose deviation from $\Phi$ is driven by its own
+nonlinearity and by the field $h$ of the vorticity inside and outside it, apart
+from the point-vortex part of the inner vorticity, which enters the linearization
+$\Lin(G)$ (Lemma~\ref{lem:reduction}). We prove three results. A ring that the
+instability has not yet reached stays close to $\Phi$, and its deviation equals
+the linear response to $h$ up to an error of second order
+(Theorem~\ref{thm:quiet}). A ring whose component along
+the unstable eigenfunction grows follows that eigenfunction until the envelope of
+this component reaches a small size (Theorem~\ref{thm:active}). And the innermost ring of
+the approximate datum can be given a small component along the unstable
+eigenfunction by a rearrangement of $\Phi$ (Lemma~\ref{lem:seed}).
+Sections~\ref{sec:relay} and~\ref{sec:bootstrap} apply Theorems~\ref{thm:quiet}
+and~\ref{thm:active} to every ring, in its own units, and Section~\ref{sec:kick} also uses
+Theorem~\ref{thm:quiet}. Lemma~\ref{lem:seed} gives the innermost ring of the
+datum of Definition~\ref{def:approx}.
+
 Throughout this section we assume \textup{(N1)}--\textup{(N3)}, we work in ring
-units, and we use the objects of Definition~I.\ref{I-def:eigendata}. When $G$ is fixed
+units, and we use the objects of Definition~I.\ref{I-def:eigendata}: the unstable
+eigenvalue $\lamst(G)$ of $\Lin(G)$ in the mode $3$ and its eigenfunction
+$\phist(G)$, normalized in $L^2(\R^2)$; the functional $\ellst(G)$ that gives the
+coefficient of a function along $\phist(G)$; the Riesz projection $\Riesz(G)$
+onto the span of $\phist(G)$ and $\overline{\phist(G)}$; and the growth rates
+$\sigma(G)=\Re\lamst(G)$ and $\sigb=\min_{G\in[0,\Gone]}\sigma(G)$. When $G$ is fixed
 we write $\lamst=\lamst(G)$, $\phist=\phist(G)$, $\ellst=\ellst(G)$,
-$\Riesz=\Riesz(G)$; recall $\sigma(G)=\Re\lamst(G)$ from that definition. The proofs of
+$\Riesz=\Riesz(G)$. The proofs of
 Theorems~\ref{thm:quiet} and~\ref{thm:active} follow Grenier \cite{Grenier}: an
 approximate solution of high order is built from the linear semigroup, and the order is so large that a crude energy estimate for the
 remainder suffices.
@@ -12,7 +34,12 @@ remainder suffices.
 We use the norms of $H^k$, $W^{1,\infty}$ and $C^k(N')$ fixed in
 Section~I.\ref{I-sec:prelim}, and the embedding $\|f\|_{L^\infty}\le\|f\|_{H^2}$ of
 Lemma~\ref{lem:embed}\textup{(E2)}. A vector field $h$ on a neighborhood of $N'$
-is \textit{$3$-fold rotationally symmetric} if $h(\Orot x)=\Orot h(x)$. Let $\flow$ be the flow
+is \textit{$3$-fold rotationally symmetric} if $h(\Orot x)=\Orot h(x)$.
+
+The equation for the deviation of a ring from $\Phi$
+(Lemma~\ref{lem:reduction}\textup{(3)} below) assumes that the ring stays in
+the annulus $N$, and the continuity arguments of this section keep it there by
+bounding how far its material moves radially. Let $\flow$ be the flow
 of a solution of Theorem~\ref{thm:smooth}, let $\omega_{\mathrm r}(0)$ have compact
 support, let $\omega_{\mathrm r}(t)=\omega_{\mathrm r}(0)\circ\flow_t^{-1}$, and let
 $\delta_{\mathrm r}(t)$ be the supremum of $\big||\flow_\tau(y)|-|y|\big|$ over
@@ -30,8 +57,13 @@ of Lemma~I.\ref{I-lem:semigroup-construct} for the ring in ring units. It preser
 each mode, hence the subspace $X^k$ of the space $Y^k$ of that lemma
 consisting of the functions whose mode components vanish outside $3\Z$. It maps
 real-valued functions to real-valued functions, since it is the sum of a
-Dyson-Phillips series built from $e^{t\Lin^{\rm tr}}$ and $\mathcal K$ of that
-lemma, which both do.
+Dyson-Phillips series built from the two operators of that lemma, which both do:
+the transport group $e^{t\Lin^{\rm tr}}$, which rotates each circle $\{|y|=r\}$ by
+the angle $\Omega(r;G)t$, and the coupling operator $\mathcal K$, here
+$\mathcal Kw=-(\KBS\ast w)\cdot\nabla\Phi$. The approximate solutions of this
+section are Duhamel integrals of this semigroup. The next lemma shows that they are
+solutions of the forced linear equation, differentiable in time as functions with
+values in $X^{k-1}$ when the data lie in $X^k$.
 
 \begin{lemma}
 \label{lem:duhamel}
@@ -42,9 +74,14 @@ $u\in C([0,T];X^k)\cap C^1([0,T];X^{k-1})$, and $\partial_tu=\Lin(G)u+g$ on
 $[0,T]$. If $f_0$ and $g$ are real-valued, so is $u$.
 \end{lemma}
 \begin{proof}
+We first prove the continuity of $u$ in $X^k$, and then its differentiability in
+$X^{k-1}$, where the generator of the semigroup acts on $X^k$ as $\Lin(G)$.
 The semigroup $S(t)=e^{t\Lin(G)}$ is strongly continuous on $X^k$ and, by the
-uniform boundedness principle, bounded on $[0,T]$; so $\tau\mapsto S(t-\tau)g(\tau)$
-is continuous into $X^k$ (by the identity used below for $H$, read in $X^k$),
+uniform boundedness principle, bounded on $[0,T]$. So $\tau\mapsto S(t-\tau)g(\tau)$
+is continuous into $X^k$: the argument given below for the continuity of
+$(s,\tau)\mapsto S(s-\tau)H(\tau)$ in $X^{k-1}$ uses only the strong continuity of
+$S$ and a bound on $\|S(t)\|$ for $t$ in a compact interval, and both hold in
+$X^k$. Hence
 $\int_0^tS(t-\tau)g(\tau)\dd\tau=\int_0^tS(\tau)g(t-\tau)\dd\tau$
 is continuous in $t$ by dominated convergence, and $u\in C([0,T];X^k)$. Moreover
 $X^k\hookrightarrow X^{k-1}$, and $S$ is a $C_0$-semigroup on $X^{k-1}$, since it
@@ -109,6 +146,14 @@ preserves real-valued functions.
 \end{proof}
 
 \subsection{The Perturbation Equation}
+
+We split a smooth solution into a ring $\omega_{\mathrm r}$, the vorticity
+$\omega_{\mathrm i}$ inside it and the vorticity $\omega_{\mathrm o}$ outside it,
+each transported by the full flow, and write the Euler equations as an equation
+for the deviation $w=\omega_{\mathrm r}-\Phi$ of the ring from $\Phi$. The
+vorticity inside the ring enters the linearization $\Lin(G)$ as a point vortex at
+the origin with its circulation $2\pi G$; the rest of its field, and the field of
+the vorticity outside the ring, form the field $h$, which forces the equation.
 
 \begin{lemma}
 \label{lem:reduction}
@@ -224,11 +269,16 @@ The first two terms are $\Lin(G)w$ by Definition~I.\ref{I-def:sector-setting}, a
 third is $B(w,w)$. Outside $N$ both sides of Equation~\eqref{eq:ring} vanish.
 \end{proof}
 
-In the setting of Lemma~\ref{lem:reduction}, the function $w=\omega_{\mathrm r}-\Phi$
-satisfies: $t\mapsto\|w(t)\|_{H^k}$ is continuous
+In the setting of Lemma~\ref{lem:reduction}, put $w=\omega_{\mathrm r}-\Phi$. Then
+$t\mapsto\|w(t)\|_{H^k}$ is continuous
 on $[0,T]$ for every $k$, since $\omega_{\mathrm r}$ is smooth and its support stays
 in a fixed compact set (Theorem~\ref{thm:smooth}\textup{(1)}). We fix once and for
-all the auxiliary objects of the estimates below. Let $N_1=\{\frac a4<|y|<3\}$ be
+all the auxiliary objects of the estimates below. The functions we estimate are
+supported in $N$, and the velocities that act on them are needed only on a
+neighborhood of $N$. We therefore multiply the Biot-Savart velocity by a compactly
+supported cutoff $\chi_B$ that does not change it on $N'$, so that
+Lemma~\ref{lem:Hk-calculus}\textup{(3)} applies, and we use a cutoff $\chi_N$ around $N$ in Lemma~\ref{lem:Hk-calculus}\textup{(1)}
+and \textup{(2)}. Let $N_1=\{\frac a4<|y|<3\}$ be
 the interior of $N'$. Fix $\chi_B\in C_c^\infty(B_4)$ with $\chi_B=1$ on $B_{7/2}$,
 and $\chi_N\in C_c^\infty(N_1)$ with $\chi_N=1$ on a neighborhood of $N$. For each
 integer $j\ge0$ fix a constant $C^{\mathrm{el}}_j$ of
@@ -281,7 +331,13 @@ equivariance in the proof of Lemma~\ref{lem:reduction}), $\nabla w$ and
 $\nabla\Phi$, hence the three scalar products.
 \end{proof}
 
-The rate of the energy estimate below involves only norms on $N'$. Let $s\ge3$ be
+Lemma~\ref{lem:energy} below compares the deviation $w$ of a ring with an
+approximate solution $w_{\mathrm{app}}$ by an energy estimate in $H^s$. Its rate
+$\Lam(s)$, defined next, bounds the transport of $w-w_{\mathrm{app}}$ by the
+velocity and the coupling through $\nabla(\Phi+w_{\mathrm{app}})$; the entry
+$2\max_{G\in[0,\Gone]}\sigma(G)$ in its definition makes $\Lam(s)\ge2\sigma(G)$ for every $G$,
+which the proof of Lemma~\ref{lem:window} uses.
+This rate involves only norms on $N'$. Let $s\ge3$ be
 an integer, let $n_s$ be the number of multi-indices $\alpha\in\N_0^2$ with
 $|\alpha|\le s$, and put $C_{\mathrm{HK}}=C_P(s)$. The function
 $\Omega(r;G)=\Omega(r;0)+Gr^{-2}$ is smooth on $[\frac a4,3]$ and affine in $G$, so
@@ -354,13 +410,27 @@ We apply $\partial^\alpha$ to the equation of $v$, take the $L^2$ inner product 
 $\partial^\alpha v$, and sum over $|\alpha|\le s$. The Cauchy-Schwarz inequality and
 Equation~\eqref{eq:Lambda} give
 $\frac12\frac{\dd}{\dd\tau}\|v\|_{H^s}^2\le\Lam(s)\|v\|_{H^s}^2+\|R_{\mathrm{app}}\|_{H^s}\|v\|_{H^s}$.
-For $\epsilon>0$ the function $y_\epsilon=(\|v\|_{H^s}^2+\epsilon^2)^{1/2}$ is $C^1$
-and satisfies $y_\epsilon'\le\Lam(s)y_\epsilon+\|R_{\mathrm{app}}\|_{H^s}$, so
+To divide by $\|v\|_{H^s}$, which may vanish, we regularize it. For $\epsilon>0$
+the function $y_\epsilon=(\|v\|_{H^s}^2+\epsilon^2)^{1/2}$ is $C^1$, as
+$v\in C^1([0,t];H^s)$ and $y_\epsilon\ge\epsilon$. Since
+$y_\epsilon y_\epsilon'=\frac12\frac{\dd}{\dd\tau}\|v\|_{H^s}^2$ and
+$\|v\|_{H^s}\le y_\epsilon$, it satisfies
+$y_\epsilon'\le\Lam(s)y_\epsilon+\|R_{\mathrm{app}}\|_{H^s}$, so
 $(e^{-\Lam(s)\tau}y_\epsilon)'\le e^{-\Lam(s)\tau}\|R_{\mathrm{app}}\|_{H^s}$.
-Integrating and letting $\epsilon\to0$ proves the lemma.
+Integrating from $0$ to $\tau$, and letting $\epsilon\to0$ with
+$\|v\|_{H^s}\le y_\epsilon$ and $y_\epsilon(0)\to\|v(0)\|_{H^s}$, proves the lemma.
 \end{proof}
 
-\emph{Approximate solutions.} Let the assumptions of Lemma~\ref{lem:reduction} hold
+\emph{Approximate solutions.} Following Grenier, we approximate the deviation $w$
+by the first $J$ terms $w^{[1]},\dots,w^{[J]}$ of its formal expansion in powers of
+the size of the data, in which $h$ and the initial value count as terms of first
+order: $w^{[1]}$ solves the linear equation forced by $-h\cdot\nabla\Phi$, with an
+initial value $w_0$ that is $0$ or $w(0)$ in our applications, and $w^{[j]}$,
+$j\ge2$, solves the linear equation with initial value $0$, forced by the terms of
+order $j$ of $B(w,w)-h\cdot\nabla w$. The
+residual of the sum then consists of terms of order larger than $J$
+(Equation~\eqref{eq:hier-res}), and Lemma~\ref{lem:energy} controls the difference
+between $w$ and the sum. Let the assumptions of Lemma~\ref{lem:reduction} hold
 on $[0,T]$, assume $G\in[0,\Gone]$, and put $\Lin=\Lin(G)$ and $F=-h\cdot\nabla\Phi$.
 By Lemma~\ref{lem:reduction}\textup{(1)} and Lemma~\ref{lem:bilinear}, $F$ is real
 and lies in $C([0,T];X^k)$ for every $k$; so, by Lemma~\ref{lem:duhamel}, for every
@@ -393,6 +463,14 @@ R_{\mathrm{app}}=-\sum_{i,l\le J,\,i+l>J}B(w^{[i]},w^{[l]})+h\cdot\nabla w^{[J]}
 \end{equation}
 
 \subsection{A Quiet Ring}
+
+A ring is quiet while the instability has not reached it: it starts exactly at
+$\Phi$, so its deviation is created by the field $h$ alone, and
+Theorem~\ref{thm:quiet} shows that it stays small. We bound a norm of the field by a
+function $\eta$ of time, and its effect by the Duhamel majorant of $\eta$, defined
+next. Since the semigroup bound of Proposition~I.\ref{I-prop:semigroup} grows like
+$e^{\sigma(G)t}$, the majorant bounds, up to a constant factor, the linear
+response to a forcing of size $\eta$.
 
 \begin{definition}
 \label{def:majorant}
@@ -437,7 +515,14 @@ majorant, and assume $\maj\le\majst$ on $[0,T]$. Then for every $t\in[0,T]$:
 \end{enumerate}
 \end{theorem}
 \begin{proof}
-Throughout, $\sigma=\sigma(G)\ge\sigb$ and $\Lin=\Lin(G)$.
+Throughout, $\sigma=\sigma(G)\ge\sigb$ and $\Lin=\Lin(G)$. We compare $w$ with the
+approximate solution of Equation~\eqref{eq:hier} with $J=N_Q$ and $w^{[1]}=\wlin$,
+bound its terms by powers of $\maj$, and close with Lemma~\ref{lem:energy} in a
+continuity argument on the radial displacement and on $\|w\|_{H^{s_h}}$. Both
+terms of the bound on the residual contain the factor $\maj^{N_Q}$
+(Equation~\eqref{eq:Q-res} below), and the condition $N_Q\sigb\ge\Lam(s_h)$ lets
+the growth of this factor absorb the growth $e^{\Lam(s_h)t}$ allowed by the
+energy estimate.
 
 \emph{Constants.} Put $\sigma'_0=\frac12(\frac9{200}+\sigb)\in(\frac9{200},\sigb)$ and
 \[
@@ -491,8 +576,9 @@ $[0,T]$.
 
 \emph{Continuity argument.} Let $t_*$ be the largest $t\in[0,T]$ such that
 $\delta_{\mathrm r}(t)\le a/8$ and $\|w(\tau)\|_{H^{s_h}}\le1$ for $\tau\in[0,t]$; it
-exists and is positive since $\delta_{\mathrm r}(0)=0$, $w(0)=0$, and $\delta_{\mathrm r}$
-and $\|w\|_{H^{s_h}}$ are continuous (start of this section; Theorem~\ref{thm:smooth}\textup{(1)}). Because $\supp\Phi\subset\{a\le|y|\le1\}$ and
+exists and is positive since $\delta_{\mathrm r}(0)=0$, $w(0)=0$, $\delta_{\mathrm r}$
+is continuous (see its definition at the start of this section), and
+$\|w\|_{H^{s_h}}$ is continuous by Theorem~\ref{thm:smooth}\textup{(1)}. Because $\supp\Phi\subset\{a\le|y|\le1\}$ and
 $1+\frac a8\le\frac54$, the support of $\omega_{\mathrm r}(\tau)$ lies in
 $\NNm\subset N$ for $\tau\le t_*$. So Lemma~\ref{lem:reduction}\textup{(3)} and
 Lemma~\ref{lem:energy} with $s=s_h$ apply on $[0,t_*]$; the conditions
@@ -531,6 +617,16 @@ Equation~\eqref{eq:Q-b}.
 
 \subsection{An Active Ring}
 
+A ring is active once its deviation from $\Phi$ has a component along the
+unstable eigenfunction that grows at the rate $\sigma(G)$. Theorem~\ref{thm:active}
+shows that the deviation then follows this component, up to a decaying transient
+and errors of relative size $\hat a$, $\kappa^{1/2}$ and $\eta_b$, until its
+envelope $\kappa e^{\sigma(G)u}$ reaches a small size $\delta_0$.
+Corollary~\ref{cor:active-moment} gives the outer moment of the ring, through
+which it drives the rings outside it. The unstable component of the linear
+response is explicit, by Proposition~I.\ref{I-prop:semigroup}; the next lemma
+writes it with a running coefficient $c(u)$, which accounts for the forcing by $h$.
+
 \begin{lemma}
 \label{lem:running}
 Let $G\in[0,\Gone]$, $\bar u>0$, $w_0\in X^0$ real, and let $h$ be continuous on
@@ -556,6 +652,10 @@ $\ellst(\wlin_0(u))=e^{\lamst u}\ellst(w_0)+\int_0^ue^{\lamst(u-v)}\ellst(F(v))\
 Since $\wlin_0(u)$ is real, Definition~I.\ref{I-def:eigendata} gives
 $\Riesz\,\wlin_0(u)=2\Re\big(\ellst(\wlin_0(u))\phist\big)=2\Re\big(c(u)e^{\lamst u}\phist\big)$.
 \end{proof}
+
+On the range of $1-\Riesz$ the semigroup grows at most at a rate $\sigma'<\sigb$
+(Proposition~I.\ref{I-prop:semigroup}). The next lemma uses this to bound the rest
+$(1-\Riesz)\wlin_0$ of the linear response.
 
 \begin{lemma}
 \label{lem:linear-part}
@@ -590,7 +690,10 @@ $\int_0^ue^{\sigma'(u-v)}\jap{v}^p\dd v\le\jap{u}^pe^{\sigma'u}/\sigma'$ and
 $\int_0^ue^{\sigma'(u-v)}e^{\sigma v}\dd v\le e^{\sigma u}/(\sigma-\sigma')\le e^{\sigma u}/(\sigb-\sigma')$.
 \end{proof}
 
-For $x\in(0,1]$ we write $\varsigma(x)=1+\sigb^{-1}\log(1/x)$. For an integer $s\ge3$
+For $x\in(0,1]$ we write $\varsigma(x)=1+\sigb^{-1}\log(1/x)$. Since
+$\sigma(G)\ge\sigb$, this number bounds $1+u$ for $u\le\sigma(G)^{-1}\log(1/x)$,
+the time in which a coefficient of size $x$ that grows at the rate $\sigma(G)$
+reaches size $1$. For an integer $s\ge3$
 and a number $\sigma'\in(\frac9{200},\sigb)$ we put
 \begin{equation}
 \label{eq:W-const}
@@ -608,7 +711,17 @@ with $C_S$ of Proposition~I.\ref{I-prop:semigroup}, $C_B$ and $C_h$ of
 Lemma~\ref{lem:bilinear}, $\Cnab$ of Lemma~I.\ref{I-lem:uniform} and
 $C_{\mathrm{lin}}(k)$ of Lemma~\ref{lem:linear-part}. The maximum defining $C_\phi$
 exists and is finite by Lemma~I.\ref{I-lem:uniform}, and $\bar\rho<\infty$ because
-$\sigb>\sigma'$. All these numbers depend only on $(\Phi,\Gone,s,\sigma')$.
+$\sigb>\sigma'$. All these numbers depend only on $(\Phi,\Gone,s,\sigma')$. As in
+Theorem~\ref{thm:quiet}, the order $N_G$ of the approximate solution is chosen
+large, so that its residual, which is one order higher, is small enough on the
+window of Lemma~\ref{lem:window} to absorb the growth $e^{\Lam(s)u}$ allowed by
+Lemma~\ref{lem:energy} (Equation~\eqref{eq:W-exp} below).
+
+Lemma~\ref{lem:window} is the main step in the proof of Theorem~\ref{thm:active}.
+It treats an active ring whose initial deviation and running coefficient are
+bounded by a fixed multiple $C_\natural$ of a number $\kappa_1$, and whose field is
+bounded accordingly. It does so on the window of time in which a component of
+initial size $\kappa_1$, growing at the rate $\sigma(G)$, stays below $\delta_0$.
 
 \begin{lemma}
 \label{lem:window}
@@ -658,15 +771,18 @@ C_W=2\big(1+\sigb^{-1}\big)\big(1+C_{\mathrm{BS}}\big)C_\natural^{N_G}\big(C_{\m
 \delta_W=\min\Big(\frac12,\frac1{S_W},\frac a{64C_W}\Big),
 \]
 and let $\kappa_W$ be the largest number in $(0,1]$ such that
-$C_Wx\varsigma(x)^{N_W}\le a/64$ for every $x\in(0,\kappa_W]$; it exists because
+$C_Wx\varsigma(x)^{N_W}\le a/64$ for every $x\in(0,\kappa_W]$. It exists by the
+argument given for $\kappa_0(C_0)$ in the proof of Theorem~\ref{thm:active}, because
 $x\varsigma(x)^{N_W}\to0$ as $x\to0^+$ and the inequality is non-strict between
-continuous functions (as for $\kappa_0(C_0)$ below). Taking $t=0$ in
+continuous functions. Taking $t=0$ in
 Proposition~I.\ref{I-prop:semigroup} gives $C_S\ge1$, so $C_{\mathrm{lin}}\ge1$ and
 $C_W\ge C_\natural$.
 
 Now fix the data, and put $\varepsilon_W=C_\natural\kappa_1$,
 $\mathfrak b(u)=\hat a_1(u)+\varepsilon_W\jap{u}^{p+2}$ and $k_j=M-1-j$ for
-$1\le j\le N_G$, so $k_1=M-2$, $k_{N_G}=s+1$, $k_j+1=k_{j-1}$. For
+$1\le j\le N_G$, so $k_1=M-2$, $k_{N_G}=s+1$, $k_j+1=k_{j-1}$. The function
+$\mathfrak b$ plays the role of $\maj$ in the proof of Theorem~\ref{thm:quiet}: the
+terms $w^{[j]}$ below are bounded by multiples of $\hat a_1\mathfrak b^{j-1}$. For
 $u\le\bar u\le\hat T_1\le\sigma^{-1}\log(1/\kappa_1)$ we have $\jap{u}\le1+u\le\varsigma(\kappa_1)$,
 $\hat a_1(u)\le\delta_0$ and $\kappa_1\le\hat a_1(u)$. By the choice of $\kappa_W$ and
 $\delta_W$, for $u\in[0,\bar u]$,
@@ -678,8 +794,9 @@ $\delta_W$, for $u\in[0,\bar u]$,
 
 \emph{Approximate solution.} Let $w^{[j]}$ be the functions of
 Equation~\eqref{eq:hier} with $J=N_G$ and $w^{[1]}=\wlin_0$, the function of
-Lemma~\ref{lem:running} with $w_0=w(0)$, admissible as $\supp(\Phi+w(0))\subset N$
-(regular by Lemma~\ref{lem:duhamel}). We
+Lemma~\ref{lem:running} with $w_0=w(0)$. This choice of $w^{[1]}$ is admissible in
+Equation~\eqref{eq:hier} because $\supp(\Phi+w(0))\subset N$, and the functions
+$w^{[j]}$ are regular by Lemmas~\ref{lem:duhamel} and \ref{lem:bilinear}. We
 claim that
 \begin{equation}
 \label{eq:W-hier}
@@ -729,7 +846,9 @@ $\|h\|_{C^s(N')}\le\varepsilon_W\jap{u}^p+\hat a_1\le2\mathfrak b$. So
 
 \emph{Continuity argument.} Let $u_*$ be the largest $u\in[0,\bar u]$ with
 $\delta_{\mathrm r}(u)\le a/16$ and $\|w(v)\|_{H^s}\le1$ for $v\in[0,u]$; at $u=0$
-both hold, since $\|w(0)\|_{H^s}\le C_\natural\kappa_1\le a/64$. For $u\le u_*$ the
+both hold, since $\delta_{\mathrm r}(0)=0$ and, as $s\le M-2$,
+$\|w(0)\|_{H^s}\le C_\natural\kappa_1\le a/64$ (recall $C_W\ge C_\natural$, $\varsigma\ge1$
+and the choice of $\kappa_W$). For $u\le u_*$ the
 support of $\omega_{\mathrm r}(u)$ lies in
 $\{\frac{51}{64}a\le|y|\le\frac54+\frac5{64}a\}\subset\Nflat\subset N$
 (Lemma~\ref{lem:annuli}). So
@@ -840,13 +959,19 @@ the number $C(C_0)$ depends only on $C_0$, $\sigma'$, $p$, $\sigb$ and $\sigma_{
 \begin{proof}
 Throughout,
 $\Lin=\Lin(G)$, $F=-h\cdot\nabla\Phi$, and $\wlin$ is the function $\wlin_0$ of
-Lemma~\ref{lem:running} with $w_0=w(0)$, admissible in Equation~\eqref{eq:hier}
-as $\supp(\Phi+w(0))\subset\NNm\subset N$ by (Init).
+Lemma~\ref{lem:running} with $w_0=w(0)$; it is an admissible choice of $w^{[1]}$
+in Equation~\eqref{eq:hier}, because $\supp(\Phi+w(0))\subset\NNm\subset N$ by
+(Init). The proof has two stages. On
+the initial layer $[0,\min(\bar u,t_1)]$, whose length is at most $\bar t_1(C_0)$,
+we compare $w$ with $\wlin$ by Lemma~\ref{lem:energy}. At the time $t_1$ the
+transient has decayed, and we restart the problem there and apply
+Lemma~\ref{lem:window} on the rest of the interval.
 
 \emph{Constants.} Let $C_\phi$, $\bar C_S$, $C_{\mathrm{bil}}$ and
 $C_{\mathrm{lin}}$ be the numbers of Equation~\eqref{eq:W-const}, $\|\ellst\|$ and
 $\Cp$ as in Lemma~I.\ref{I-lem:uniform}, and put
-$C_\natural=\max(4,\,6C_\phi+2C_{\mathrm{lin}}+1)$. Let $\delta_W,\kappa_W,C_W$ be the
+$C_\natural=\max(4,\,6C_\phi+2C_{\mathrm{lin}}+1)$; this choice makes the restarted
+problem below satisfy the assumptions of Lemma~\ref{lem:window}. Let $\delta_W,\kappa_W,C_W$ be the
 constants of Lemma~\ref{lem:window} for this $C_\natural$, and put
 \[
 C_2=6C_\phi+3\big(C_W+C_{\mathrm{lin}}+1\big),\qquad C_3=(1+\Cp)C_2,\qquad
@@ -864,6 +989,9 @@ C^{\mathrm{lay}}_3=\bar C_Se^{\sigma_{\max}\bar t_1}\big(C_0+C_{\mathrm{bil}}C_{
 C^{\mathrm{lay}}_4=\bar t_1e^{\Lambda''\bar t_1}C_{\mathrm{bil}}\big(C^{\mathrm{lay}}_3+C_{\mathrm f}\big)C^{\mathrm{lay}}_3 .
 \end{gathered}
 \]
+The smallness of $\kappa$ is imposed by three groups of conditions: (L1) is used on
+the initial layer, (L2) to bound the terms that contain the error $v_1=w-\wlin$ of
+the initial layer, and (L3) to apply Lemma~\ref{lem:window} after the restart.
 Let $\kappa_0(C_0)$ be the largest $x\in(0,(a/32)^2]$ such that every
 $\kappa\in(0,x]$ satisfies:
 \begin{enumerate}[label=\textup{(L\arabic*)}]
@@ -1019,6 +1147,15 @@ $\supp\omega_{\mathrm r}(0)\subset\NNm$ by (Init), Lemma~\ref{lem:annuli} gives
 $\supp(\Phi+w(u))\subset\nobreak\NN$.
 \end{proof}
 
+Recall from the expansion after Definition~I.\ref{I-def:multipole} that the outer
+moment $\pout_3$ of a function determines the part in the angular modes $\pm3$ of its
+field outside its support. So the outer moment of the deviation of a ring
+determines the part in these modes of the field that the ring exerts on the rings
+outside it. Recall also from Definition~I.\ref{I-def:eigendata} and the discussion
+before it that $\pout_*(G)=\pout_3[\phist(G)]$ is the outer moment of the unstable
+eigenfunction.
+The next corollary gives this moment for an active ring.
+
 \begin{corollary}
 \label{cor:active-moment}
 Under the assumptions of Theorem~\ref{thm:active}, put
@@ -1029,7 +1166,7 @@ $q(u)=2\pi\,\pout_3[w(u)]$. Then for every $u\in[0,\min(\bar u,\hat T)]$,
 \end{corollary}
 \begin{proof}
 For $X\in\C$, $\pout_3[2\Re(X\phist)]=X\pout_3[\phist]+\bar X\pout_3[\overline{\phist}]$. The
-second term vanishes: $\overline{\phist}$ lies in mode $-3$, and
+second term vanishes: $\overline{\phist}$ lies in the angular mode $-3$, and
 $\int_0^{2\pi}e^{-3i\theta}e^{-3i\theta}\dd\theta=0$. Since
 $\pout_*(G)=\pout_3[\phist(G)]$, linearity gives
 $\pout_3[w(u)]-\pout_*(G)c(u)e^{\lambda u}=\pout_3\big[w(u)-2\Re(c(u)e^{\lambda u}\phist)\big]$.
@@ -1040,6 +1177,14 @@ and using $\Cp C_2\le C_3$ proves the corollary.
 \end{proof}
 
 \subsection{The Seeded Ring}
+
+The approximate datum of Definition~\ref{def:approx} replaces its innermost ring by
+a rearrangement $\Phi^\kappa$ of $\Phi$ whose deviation from $\Phi$ has an unstable
+component of size about $\kappa$. We obtain $\Phi^\kappa$ by composing $\Phi$ with
+the time-$\kappa$ flow of a divergence-free field $V$. This flow preserves area, so
+$\Phi^\kappa$ is equimeasurable with $\Phi$, and $V$ is chosen with
+$V\cdot\nabla\Phi=2\Re\phist(0)$, so that $\Phi^\kappa-\Phi$ is $2\kappa\Re\phist(0)$ to
+first order in $\kappa$.
 
 \begin{lemma}
 \label{lem:seed}
@@ -1057,7 +1202,10 @@ and $|\ellst(0)(\Phi^\kappa-\Phi)|\in[\frac\kappa2,2\kappa]$.
 \begin{proof}
 Let $G=0$, $\lambda=\lamst(0)$, and let $\psi_*$ and $n_*=n_*(0)$ be
 as in Theorem~I.\ref{I-thm:evans-simple} and Definition~I.\ref{I-def:eigendata}, for the
-ring in ring units and $\ell=3$. By these definitions, the mode-$3$ profile of
+ring in ring units and $\ell=3$. By these definitions,
+$\phist(0)=n_*^{-1}g_*(r)e^{3i\theta}$ with $g_*=\Mres_{\lambda}\kcoef_3\,\psi_*(\log r)$,
+where $\kcoef_3(r)=3i\Phi'(r)/r$ and $\Mres_\lambda=(\lambda+3i\Omega(\cdot;0))^{-1}$
+(Definition~I.\ref{I-def:sector-setting}). So the mode-$3$ profile of
 $\phist(0)$ is
 \[
 \vphist(r)=n_*^{-1}\,\frac{3i\,\Phi'(r)}{r}\,\frac{\psi_*(\log r)}{\lambda+3i\Omega(r;0)} .

@@ -1,25 +1,30 @@
 \section{Dependency Table}
 \label{app:deps}
 
+This appendix records the logical structure of the proof of
+Theorem~\ref{thm:main}.
 Table~\ref{tab:deps} lists, for each statement of this paper on the path to
 Theorem~\ref{thm:main} whose proof cites another statement, the statements of
 this paper and of Part~I that its proof uses and the parts of
 Hypothesis~I.\ref{I-hyp:N} on which it depends,
-directly or through its inputs. Statements whose proofs cite no other statement
+directly or through its inputs. The rows are ordered so that every input that
+has a row appears in an earlier row; so the dependencies recorded in the table
+contain no cycle.
+
+Statements whose proofs cite no other statement
 have no row, and definitions are not listed as inputs. Theorem~\ref{thm:smooth}
 and Lemma~\ref{lem:smooth-bounds} have a joint proof and share a row; consecutive
 statements with the same inputs that depend on the same parts of
-Hypothesis~I.\ref{I-hyp:N} also share a row. The rows are
-ordered so that every input that has a row appears in an earlier row.
-Statements of Part~I appear only as inputs, with their Part~I numbers; they
-have no row, and a row is marked with the parts of Hypothesis~I.\ref{I-hyp:N}
+Hypothesis~I.\ref{I-hyp:N} also share a row.
+Statements of Part~I appear only as inputs, with their Part~I numbers, and have
+no row. A row is marked with the parts of Hypothesis~I.\ref{I-hyp:N}
 that its Part~I inputs assume in their statements.
 
 A statement that assumes some of \textup{(N1)}--\textup{(N3)} is marked with them,
 and so is every statement whose inputs are marked. The objects of
 Definition~I.\ref{I-def:eigendata} exist only under \textup{(N1)}--\textup{(N3)}, and
 the seed of the approximate data of Definition~\ref{def:approx} is built from
-them; so every statement about these objects, or about the approximate
+them. So every statement about these objects, or about the approximate
 solutions, depends on \textup{(N1)}--\textup{(N3)} through these definitions,
 even when its proof cites none of the three. Theorem~\ref{thm:N-holds} proves
 \textup{(N1)}--\textup{(N3)}, so it and Theorem~\ref{thm:main} depend on none of

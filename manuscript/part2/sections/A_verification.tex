@@ -1,17 +1,34 @@
 \section{Verification of the Numerical Hypotheses}
 \label{app:verify}
 
-This appendix proves Theorem~\ref{thm:N-holds}.
+This appendix proves Theorem~\ref{thm:N-holds}, that is, the statements
+\textup{(N1)}--\textup{(N3)} of Hypothesis~I.\ref{I-hyp:N}. The inequality
+\textup{(N3)} is between explicit numbers, and we prove it by hand
+(Proposition~\ref{prop:N3}). The statements \textup{(N1)} and \textup{(N2)} concern
+the zeros of $\Evans_3(\cdot;G)$ for every $G$ in an interval, and we prove them with
+the argument principle. For this we compute winding numbers of $\Evans_3(\cdot;G)$
+along the boundaries of finitely many rectangles, from enclosures of $\Evans_3$ in
+ball arithmetic.
 
 Throughout, $a_0,d,\xiL,\xia,\xib,\xiR$, $H$, $\chi$, $\prof$, $\Omega_G$,
 $\psi_\ell$, $\Evans_\ell$, $\Thl{\ell}$ and $\epsst$ are as in
 Definition~I.\ref{I-def:ring} and Hypothesis~I.\ref{I-hyp:N}, and $G\ge0$. Only the
-properties of $\chi$ listed in Definition~I.\ref{I-def:ring} are used. We identify $\C$ with $\R^2$, write $|Y|_w=\max(\ell|u|,|v|)$ for
+properties of $\chi$ listed in Definition~I.\ref{I-def:ring} are used. Recall that, for
+$\Re\lambda>0$, $\psi_\ell(\cdot;\lambda,G)$ is the solution of
+$\psi''=(\ell^2+i\ell\prof'/(\lambda+i\ell\Omega_G))\psi$ on $[\xiL,\xiR]$ with
+$\psi(\xiL)=1$ and $\psi'(\xiL)=\ell$, and that
+$\Evans_\ell(\lambda;G)=e^{-\ell(\xiR-\xiL)}(\psi'+\ell\psi)(\xiR)$.
+We identify $\C$ with $\R^2$, write $|Y|_w=\max(\ell|u|,|v|)$ for
 $\ell\ge1$ and $Y=(u,v)\in\C^2$, and put
 \[
 x_a=\frac{\xia-a_0}{d},\quad y_b=-\frac{\xib}{d},\quad \Gmax=\frac1{50},\quad \Gmax'=d,\quad
 \Rect=\Big[\frac9{200},3\Big]\times[-5,3].
 \]
+The weighted norm $|Y|_w$ is used for $Y=(\psi,\psi')$: in it, a solution of
+$\psi''=\ell^2\psi$ grows at most by the factor $e^{\ell t}$ over an interval of
+length $t$ (proof of Lemma~\ref{lem:end-regions}). The numbers $x_a$ and $y_b$ are
+the arguments of the two factors $H$ of $\prof$ at $\xia$ and at $\xib$, so that
+$\epsst=\max(H(x_a),H(y_b))$.
 Definition~I.\ref{I-def:ring} gives exactly $\xia-a_0=-\frac12+2^{-54}$ and
 $d=\frac1{50}(1+6\cdot2^{-58})$. So $d>\frac1{50}$, whence the range
 $[0,\Gmax']$ of the computations contains the range $[0,\Gmax]$ of $G$ in
@@ -21,6 +38,7 @@ $x_a=-(\frac12-2^{-54})/d$ and $y_b=-1/(2d)$ satisfy
 \label{eq:xayb}
 -25<x_a<-25+4\cdot10^{-15},\qquad -25<y_b<-25+10^{-15}.
 \end{equation}
+For the argument principle we use winding numbers in the following form.
 For a continuous closed curve $c\colon[0,1]\to\C\setminus\{0\}$,
 $\wind(c,0)=(\theta(1)-\theta(0))/2\pi$, where $\theta$ is any continuous
 function with $c=|c|e^{i\theta}$. If $\Gamma$ is the boundary of a closed
@@ -31,6 +49,10 @@ counterclockwise.
 
 \subsection{Ball Arithmetic and the Trusted Base}
 \label{app:arith}
+
+This subsection fixes the arithmetic in which the computations are made and
+states exactly what the proof of Proposition~\ref{prop:runs} assumes about the
+software that carries them out.
 
 The computations use \textbf{ball arithmetic}: a real number is enclosed in a
 ball $[m\pm r]=[m-r,m+r]$ whose midpoint $m$ and radius $r\ge0$ are binary
@@ -92,7 +114,7 @@ We did not inspect FLINT's internal error analysis; if FLINT uses hardware
 floating-point arithmetic internally, its correctness is part of (TB1). The
 function \texttt{evans} of the module \texttt{ringcert.evans} follows steps
 (i)--(iv) of Section~\ref{app:procedure} line by line, and the part of (TB3) that
-concerns it is established by reading it against them; the tests of the package
+concerns it is established by reading it against them. The tests of the package
 detect some departures from the procedure (dropping the Taylor remainder in
 step~(iii)), but not all (omitting the a priori enlargement that defines
 $P^{\rm st}$ and $P'^{\rm st}$ in step~(iii)), and do not replace this reading. A certification (Section~\ref{app:runs})
@@ -103,6 +125,14 @@ by the function \texttt{certify\_cell\_adaptive} of the same module. Everything
 else in this paper has a written proof that uses no machine computation.
 
 \subsection{Two Elementary Lemmas}
+
+The first lemma bounds by $3e^{-50}$ the total variation of $\prof$ on
+$(-\infty,\xia]$ and on $[\xib,\infty)$, and compares $\psi_\ell$ on the end regions
+$[\xiL,\xia]$ and $[\xib,\xiR]$ with a solution of $\psi''=\ell^2\psi$;
+Lemma~\ref{lem:apriori} and steps (ii) and (iv) of the enclosure procedure of
+Section~\ref{app:procedure} use it. The second confines the zeros of
+$\Evans_3(\cdot;G)$ with $\Re\lambda\ge\frac9{200}$ to the rectangle $\Rect$, for
+$0\le G\le\Gmax'$.
 
 \begin{lemma}
 \label{lem:end-regions}
@@ -127,19 +157,23 @@ $\prof=\chi AB$, and $x=\frac{\xi-a_0}d$, $y=-\frac\xi d$. Since
 $H'=\frac12\operatorname{sech}^2$, $A'=\frac1{2d}\operatorname{sech}^2x\ge0$ and
 $B'=-\frac1{2d}\operatorname{sech}^2y\le0$; we use $H(x)\le e^{2x}$,
 $\operatorname{sech}^2x\le4e^{2x}$, $0\le H\le1$ and $\operatorname{sech}^2\le1$. On
-$(-\infty,\xia]$, $\prof'=\chi'AB+\chi(A'B+AB')$, $\chi$ is nondecreasing from
-$\chi(\xiL)=0$ to $\chi(\xia)=1$, and $AB\le A\le A(\xia)=H(x_a)$ since $A$ is
-increasing; so $\int_{-\infty}^{\xia}|\chi'|AB\le H(x_a)\le e^{2x_a}$. Next,
-$0\le\chi\le1$, $|A'B+AB'|\le\frac1{2d}(\operatorname{sech}^2x+H(x)\operatorname{sech}^2y)
-\le\frac5{2d}e^{2x}$ and $\int_{-\infty}^{\xia}e^{2(\xi-a_0)/d}\dd\xi=\frac d2e^{2x_a}$;
+$(-\infty,\xia]$, $\prof'=\chi'AB+\chi(A'B+AB')$, and we bound the integrals of the
+moduli of the two terms separately. For the first, $\chi$ is nondecreasing from
+$\chi(\xiL)=0$ to $\chi(\xia)=1$, so $\int_{-\infty}^{\xia}|\chi'|=1$, and $AB\le A\le A(\xia)=H(x_a)$ since $A$ is
+increasing; so $\int_{-\infty}^{\xia}|\chi'|AB\le H(x_a)\le e^{2x_a}$. For the second,
+$0\le\chi\le1$, and the bounds just listed give $|A'B+AB'|\le\frac1{2d}(\operatorname{sech}^2x+H(x)\operatorname{sech}^2y)
+\le\frac5{2d}e^{2x}$, and $\int_{-\infty}^{\xia}e^{2(\xi-a_0)/d}\dd\xi=\frac d2e^{2x_a}$,
+so the second term contributes at most $\frac54e^{2x_a}$;
 adding gives $\frac94e^{2x_a}$. On $[\xib,\infty)$ exchange the roles of $x$ and
 $y$: $\chi$ is nonincreasing from $1$ to $0$, $AB\le B\le B(\xib)=H(y_b)\le e^{2y_b}$,
 $|A'B+AB'|\le\frac1{2d}(\operatorname{sech}^2x\,H(y)+\operatorname{sech}^2y)\le\frac5{2d}e^{2y}$
-and $\int_{\xib}^\infty e^{-2\xi/d}\dd\xi=\frac d2e^{2y_b}$. By \eqref{eq:xayb}, both
+and $\int_{\xib}^\infty e^{-2\xi/d}\dd\xi=\frac d2e^{2y_b}$, and the same addition gives
+$\frac94e^{2y_b}$. By Equation~\eqref{eq:xayb}, both
 bounds are at most $\frac94e^{-50}e^{8\cdot10^{-15}}<3e^{-50}$, as
 $e^{8\cdot10^{-15}}<\frac43$.
 
-(2) The vector $Z=(\ell\psi,\psi')$ satisfies $Z'=A_0Z+\mathcal QZ$ with
+(2) By the equation for $\psi$ in Hypothesis~I.\ref{I-hyp:N}, the vector
+$Z=(\ell\psi,\psi')$ satisfies $Z'=A_0Z+\mathcal QZ$ with
 $A_0=\begin{psmallmatrix}0&\ell\\ \ell&0\end{psmallmatrix}$ and
 $\mathcal Q=\begin{psmallmatrix}0&0\\ \delta/\ell&0\end{psmallmatrix}$, where
 $\delta=i\ell\prof'/(\lambda+i\ell\Omega_G)$, and $Z_0=(\ell\psi_0,\psi_0')$ satisfies
@@ -150,11 +184,16 @@ $b=|\prof'|/|\lambda+i\ell\Omega_G|\le|\prof'|/\Re\lambda$, and
 $\int_\alpha^\beta b\le\epsend$ by (1). For $t\ge0$,
 $e^{tA_0}=\begin{psmallmatrix}\cosh\ell t&\sinh\ell t\\ \sinh\ell t&\cosh\ell t\end{psmallmatrix}$
 has norm $e^{\ell t}$. By variation of constants,
-$Z(\xi)-Z_0(\xi)=\int_\alpha^\xi e^{(\xi-\eta)A_0}\mathcal Q(\eta)Z(\eta)\dd\eta$. With
-$u(\xi)=e^{-\ell(\xi-\alpha)}\|Z(\xi)-Z_0(\xi)\|_\infty$, $c=\|Z(\alpha)\|_\infty$ and
-$\|Z_0(\eta)\|_\infty\le e^{\ell(\eta-\alpha)}c$, this gives
+$Z(\xi)-Z_0(\xi)=\int_\alpha^\xi e^{(\xi-\eta)A_0}\mathcal Q(\eta)Z(\eta)\dd\eta$. Put
+$u(\xi)=e^{-\ell(\xi-\alpha)}\|Z(\xi)-Z_0(\xi)\|_\infty$ and $c=\|Z(\alpha)\|_\infty$;
+then $\|Z_0(\eta)\|_\infty\le e^{\ell(\eta-\alpha)}c$. Taking norms in the
+variation of constants formula, with
+$\|Z(\eta)\|_\infty\le\|Z_0(\eta)\|_\infty+\|Z(\eta)-Z_0(\eta)\|_\infty$, and multiplying
+by $e^{-\ell(\xi-\alpha)}$ gives
 $u(\xi)\le\int_\alpha^\xi b(\eta)(c+u(\eta))\dd\eta$, so by Gronwall's inequality
-$c+u(\xi)\le c\exp(\int_\alpha^\xi b)$ and $u(\xi)\le c\,(e^{\epsend}-1)$.
+$c+u(\xi)\le c\exp(\int_\alpha^\xi b)$ and, as $\int_\alpha^\xi b\le\epsend$,
+$u(\xi)\le c\,(e^{\epsend}-1)$. Since $c=|Y(\alpha)|_w$ and
+$e^{\ell(\xi-\alpha)}u(\xi)=|Y(\xi)-Y_0(\xi)|_w$, this is the claim.
 \end{proof}
 
 \begin{lemma}
@@ -163,9 +202,16 @@ Let $0\le G\le\Gmax'$. Every zero $\lambda$ of $\Evans_3(\cdot;G)$ with
 $\Re\lambda\ge\frac9{200}$ lies in $\Rect$.
 \end{lemma}
 \begin{proof}
+The proof compares $\psi_\ell$, $\ell=3$, with the solution $e^{\ell(\xi-\xiL)}$ of
+$\psi''=\ell^2\psi$ on the whole interval $[\xiL,\xiR]$. If $|\lambda+i\ell\Omega_G|$
+is large on $[\xiL,\xiR]$ compared with the total variation of $\prof$, the
+coefficient of the equation for $\psi_\ell$ differs from $\ell^2$ by a term whose
+modulus has small integral over $[\xiL,\xiR]$; then
+$|\Evans_\ell(\lambda;G)-2\ell|<2\ell$, so $\Evans_\ell(\lambda;G)\ne0$.
+
 Let $\ell=3$, let $\lambda$ be a zero of $\Evans_\ell(\cdot;G)$ with
 $\Re\lambda\ge\frac9{200}$, so $\Re\lambda>0$, and put $TV=\int_{\R}|\prof'|\dd\xi$ and
-$\Omega_{\max}=\frac12+\Gmax'e^{-2\xiL}$. On $[\xia,\xib]$, $\chi=1$, so, with $A,B$ as in the proof of
+$\Omega_{\max}=\frac12+\Gmax'e^{-2\xiL}$. We first bound $TV$. On $[\xia,\xib]$, $\chi=1$, so, with $A,B$ as in the proof of
 Lemma~\ref{lem:end-regions}, $\prof'=A'B+AB'$ with $A'\ge0\ge B'$ and $0\le A,B\le1$.
 Hence $\int_{\xia}^{\xib}|\prof'|\le\int_{\xia}^{\xib}(A'-B')
 =A(\xib)-A(\xia)+B(\xia)-B(\xib)<2$, and Lemma~\ref{lem:end-regions}(1) gives
@@ -174,15 +220,16 @@ $6e^{-50}<10^{-20}$; and
 $\log2=\sum_{k\ge1}\frac1{k2^k}>\sum_{k=1}^6\frac1{k2^k}>0.69$. So
 $TV/\log2<(2+10^{-20})/0.69<2.9$.
 
-For $\xi\in\R$, $0\le\prof\le1$ gives
-$0\le\int_{-\infty}^\xi\prof(\xi')e^{2\xi'}\dd\xi'\le\frac12e^{2\xi}$, so
+We next bound $\Omega_G$ on $[\xiL,\infty)$. For $\xi\in\R$, $0\le\prof\le1$ gives
+$0\le\int_{-\infty}^\xi\prof(\xi')e^{2\xi'}\dd\xi'\le\frac12e^{2\xi}$, so, as
+$G\le\Gmax'$,
 $0\le\Omega_G(\xi)\le\frac12+Ge^{-2\xi}\le\Omega_{\max}$ for $\xi\ge\xiL$. By
 Definition~I.\ref{I-def:ring}, $-2\xiL=4528212286209965\cdot2^{-51}<2.011$; $e<2.7183$ gives $e^2<7.3892$, and
 $e^x\le1+x+x^2$ ($0\le x\le1$) gives $e^{0.011}<1.01113$, so
-$e^{-2\xiL}<7.3892\cdot1.01113<7.4715$. As $d<0.0200001$,
+$e^{-2\xiL}<7.3892\cdot1.01113<7.4715$. As $\Gmax'=d$ and $d<0.0200001$,
 $\Omega_{\max}<\frac12+0.0200001\cdot7.4715<0.6495$.
 
-Let $\psi=\psi_\ell(\cdot;\lambda,G)$ and
+Finally we compare $\psi$ with $e^{\ell(\xi-\xiL)}$. Let $\psi=\psi_\ell(\cdot;\lambda,G)$ and
 $\mu=\min_{\xi\in[\xiL,\xiR]}|\lambda+i\ell\Omega_G(\xi)|$, positive as $\Re\lambda>0$. The proof of
 Lemma~\ref{lem:end-regions}(2), run on $[\xiL,\xiR]$ with
 $\psi_0(\xi)=e^{\ell(\xi-\xiL)}$ (which has the same data at $\xiL$),
@@ -206,7 +253,12 @@ $\lambda\in[\frac9{200},2.9)\times(-4.85,2.9)\subset\Rect$.
 The procedure encloses $\Evans_\ell(\lambda;G)$ for all $\lambda$ in a box and
 all $G$ in an interval. It crosses the end regions by
 Lemma~\ref{lem:end-regions}, and $[\xia,\xib]$, where $\chi=1$, by a Taylor
-method with coefficients and remainders enclosed in ball arithmetic. Fix the
+method with coefficients and remainders enclosed in ball arithmetic. The Taylor
+method needs the derivatives of $\prof$, which are explicit on $[\xia,\xib]$, where
+$\prof$ is the product of the two factors $H$, but not elsewhere, as $\chi$ is known
+only through the properties listed in Definition~I.\ref{I-def:ring};
+Lemma~\ref{lem:end-regions}(2) needs only the bounds of
+Lemma~\ref{lem:end-regions}(1) on $\prof'$. Fix the
 Taylor order $\NT=16$, written $N$ in this subsection, and the points $s_0<s_1<\dots<s_n$, $n=360$, given by
 $s_0=\xia$, $s_n=\xib$ and $s_j=\RN(\xia+\frac jn(\xib-\xia))$ for $0<j<n$, where
 $\RN(q)$ is the binary64 number nearest to $q$ (ties to even). Only three facts are
@@ -216,7 +268,12 @@ $h_j=s_{j+1}-s_j$ are exact dyadic rationals.
 The input is an integer $\ell\ge1$, a box $\Lambda^{\rm b}=\mathsf X+i\mathsf Y$ and a
 real ball $\mathcal G^{\rm b}$. Each operation below is a ball operation; the
 procedure \textbf{fails} if a comparison that it requires is not certified as
-true, or if its output is not a box of finite radius.
+true, or if its output is not a box of finite radius. Step (i) encloses the Taylor
+coefficients of $\prof$, of $\prof'$ and of the term
+$e^{-2\xi}\int_{-\infty}^{\xi}\prof(\xi')e^{2\xi'}\dd\xi'$ of $\Omega_G$; step (ii)
+crosses the left end region; step (iii) carries enclosures of $\psi_\ell$ and
+$\psi_\ell'$ across $[\xia,\xib]$, one step $[s_j,s_{j+1}]$ at a time; and step (iv)
+crosses the right end region and forms the enclosure of $\Evans_\ell$.
 \begin{enumerate}[label=\textup{(\roman*)}]
 \item \emph{Coefficient data, independent of $\lambda$ and $G$.} For each $j<n$,
   and for $S=\{s_j\}$ (the \emph{point data}) and for $S=[s_j,s_{j+1}]$ (the
@@ -252,11 +309,18 @@ true, or if its output is not a box of finite radius.
   data of step $j$, and, with $\mathsf g_0=\gamma_j$ for the point data,
   $\mathsf g_0=\mathrm{hull}(\gamma_j,\gamma_{j+1})$ for the step data, and
   $\mathsf g_r=\mathsf q_{r-1}/r$ for $1\le r<N$, put
-  $\mathsf o_k=\sum_{r\le k}\mathsf g_r\mathsf E^-_{k-r}$ for $k<N$.
+  $\mathsf o_k=\sum_{r\le k}\mathsf g_r\mathsf E^-_{k-r}$ for $k<N$. The point data
+  serve for the Taylor polynomials at $s_j$, and the step data, which enclose the
+  coefficients at every point of the step, for the a priori enclosures on the step
+  and the remainders.
 \item \emph{Left end.} Require $\mathrm{lo}(\mathsf X)>0$. Let $\varepsilon$ be an upper
   bound of $3e^{-50}/\mathrm{lo}(\mathsf X)$, and require $\varepsilon\le1$. With
   $L_1=\xia-\xiL$, put
   $P=e^{\ell L_1}+\mathrm{box}(2\varepsilon\,\mathrm{up}(e^{\ell L_1}))$ and $P'=\ell P$.
+  The condition $\varepsilon\le1$ gives $e^{\varepsilon}-1\le2\varepsilon$, which
+  bounds the factor $e^{\epsend}-1$ of Lemma~\ref{lem:end-regions}(2) (proof of
+  Proposition~\ref{prop:enclosure}); this is the origin of $2\varepsilon$ here and
+  of $4\varepsilon$ in step (iv).
 \item \emph{Middle steps.} For $j=0,1,\dots,n-1$ in turn, do the following, and then
   replace $(P,P')$ by the new values. For the point data and for the step data of
   step $j$, compute
@@ -281,6 +345,9 @@ true, or if its output is not a box of finite radius.
   P_{\rm new}=\sum_{k<N}\Psi_kh_j^k+\Psi^{\rm st}_Nh_j^N,\qquad
   P'_{\rm new}=\sum_{k=1}^Nk\Psi_kh_j^{k-1}+(N+1)\Psi^{\rm st}_{N+1}h_j^N .
   \]
+  Here $P^{\rm st}$ and $P'^{\rm st}$ are a priori enclosures of $\psi_\ell$ and
+  $\psi_\ell'$ on the whole step, and the terms with $\Psi^{\rm st}$ are the Taylor
+  remainders.
 \item \emph{Right end and output.} With $L_2=\xiR-\xib$ and
   $W=\max(\ell|P|^{\rm up},|P'|^{\rm up})$, return
   \[
@@ -324,7 +391,8 @@ $A,\bar A,B,\bar B,\prof,\prof',e^{\pm2\xi},q$ respectively. So the point data e
 the Taylor coefficients at $s_j$, and the step data at every point of
 $[s_j,s_{j+1}]$.
 
-The function $g(\xi)=\int_{-\infty}^\xi\prof(\xi')e^{2\xi'}\dd\xi'$ has $g'=q\ge0$, so it is
+The function $g(\xi)=\int_{-\infty}^\xi\prof(\xi')e^{2\xi'}\dd\xi'$, for which
+$\Omega_G=e^{-2\xi}(G+g)$, has $g'=q\ge0$, so it is
 nondecreasing. On $(-\infty,\xia]$, $0\le\prof\le A\le e^{2(\xi-a_0)/d}$, so
 $0\le g(\xia)\le\int_{-\infty}^{\xia}e^{2(\xi-a_0)/d+2\xi}\dd\xi=e^{2x_a+2\xia}/(2/d+2)$,
 that is, $g(s_0)\in\gamma_0$. Taylor's theorem with the Lagrange remainder,
@@ -332,8 +400,10 @@ applied to $t\mapsto\int_{s_j}^{s_j+t}q$, gives
 \[
 g(s_{j+1})-g(s_j)=\sum_{k<N}q_k(s_j)\frac{h_j^{k+1}}{k+1}+q_N(\eta_j)\frac{h_j^{N+1}}{N+1}
 \]
-for some $\eta_j\in[s_j,s_{j+1}]$. This increment is nonnegative and lies in the
-ball in parentheses defining $\gamma_{j+1}$, so $g(s_j)\in\gamma_j$ for every $j$ by
+for some $\eta_j\in[s_j,s_{j+1}]$. Since $\mathsf q_k^{\rm pt}\ni q_k(s_j)$ and
+$\mathsf q_N^{\rm st}\ni q_N(\eta_j)$, (CP) puts this increment in the ball in
+parentheses defining $\gamma_{j+1}$; as it is nonnegative ($q\ge0$), it lies in the
+intersection of that ball with $[0,\infty)$, so $g(s_j)\in\gamma_j$ for every $j$ by
 induction, and $g(\xi)\in\mathrm{hull}(\gamma_j,\gamma_{j+1})$ for
 $\xi\in[s_j,s_{j+1}]$ since $g$ is nondecreasing. As $g_r=q_{r-1}/r$ for $r\ge1$, the
 balls $\mathsf o_k$ contain the Taylor coefficients of $ge^{-2\xi}$, at $s_j$ for the
@@ -356,16 +426,21 @@ $R_0=1/D_0$ and $R_k=-R_0\sum_{r=1}^kD_rR_{k-r}$ for $k\ge1$, and
 $V=\ell^2+i\ell\prof'R$ gives $V_k=i\ell\sum_{r\le k}(\prof')_rR_{k-r}+\ell^2[k=0]$. By
 step (i) and (CP), $\mathsf V^{\rm pt}_k\ni V_k(s_j)$ and
 $\mathsf V^{\rm st}_k\ni V_k(\xi)$ for every $\xi\in[s_j,s_{j+1}]$; in particular
-$|V|\le q_*\le\kst^2$ on the step. For the a priori enclosure, put
+$|V|\le q_*\le\kst^2$ on the step. We next justify the a priori enclosures
+$P^{\rm st}$ and $P'^{\rm st}$. Put
 $u(t)=\max(\kst|\psi(s_j+t)|,|\psi'(s_j+t)|)$ for $t\in[0,h_j]$. Then
 $\kst|\psi(s_j+t)|\le\kst|\psi(s_j)|+\int_0^t\kst|\psi'|$ and
 $|\psi'(s_j+t)|\le|\psi'(s_j)|+\int_0^t\kst\cdot\kst|\psi|$, so
 $u(t)\le u(0)+\kst\int_0^tu$, and Gronwall's inequality gives
-$u(t)\le u(0)e^{\kst t}\le M$. Hence, for $\xi\in[s_j,s_{j+1}]$,
+$u(t)\le u(0)e^{\kst t}\le M$; the last inequality holds because $\psi(s_j)\in P$
+and $\psi'(s_j)\in P'$ give $u(0)\le\max(\kst|P|^{\rm up},|P'|^{\rm up})$, and
+$t\le h_j$. Hence, for $\xi\in[s_j,s_{j+1}]$,
 $|\psi(\xi)-\psi(s_j)|\le h_jM$ and, since $|\psi|\le M/\kst$ on the step,
 $|\psi'(\xi)-\psi'(s_j)|\le\int|V||\psi|\le h_jq_*M/\kst$; so $\psi(\xi)\in P^{\rm st}$
 and $\psi'(\xi)\in P'^{\rm st}$. The equation $\psi''=V\psi$ gives
-$(k+1)(k+2)\psi_{k+2}=\sum_{r\le k}V_r\psi_{k-r}$, so $\Psi_k\ni\psi_k(s_j)$ and
+$(k+1)(k+2)\psi_{k+2}=\sum_{r\le k}V_r\psi_{k-r}$, so, by induction on $k$ with
+(CP), starting from $\Psi_0=P\ni\psi(s_j)$ and $\Psi_1=P'\ni\psi'(s_j)$, and for the
+step data from $P^{\rm st}$ and $P'^{\rm st}$, $\Psi_k\ni\psi_k(s_j)$ and
 $\Psi^{\rm st}_k\ni\psi_k(\xi)$ for every $\xi\in[s_j,s_{j+1}]$ and $k\le N+1$.
 Taylor's theorem with the integral remainder gives
 \[
@@ -375,10 +450,13 @@ The weight $N(1-\tau)^{N-1}$ is a probability density on $[0,1]$, so the integra
 lies in the closed convex hull of $\{\psi_N(\xi):\xi\in[s_j,s_{j+1}]\}$, which lies in
 the closed convex box $\Psi^{\rm st}_N$. Hence $\psi(s_{j+1})\in P_{\rm new}$; the same
 argument for $\psi'$, with $(\psi')_r=(r+1)\psi_{r+1}$, gives
-$\psi'(s_{j+1})\in P'_{\rm new}$. By induction on $j$, $\psi(\xib)\in P$ and
+$\psi'(s_{j+1})\in P'_{\rm new}$. Step (ii) gives the assumption for $j=0$, as
+$s_0=\xia$, so by induction on $j$, $\psi(\xib)\in P$ and
 $\psi'(\xib)\in P'$ at the end of step (iii).
 
-\emph{Step \textup{(iv)}.} Apply Lemma~\ref{lem:end-regions}(2) on $[\xib,\xiR]$.
+\emph{Step \textup{(iv)}.} Apply Lemma~\ref{lem:end-regions}(2) on $[\xib,\xiR]$, where
+$\psi_0$ has the data of $\psi$ at $\xib$; by step (iii),
+$|Y(\xib)|_w\le W$, and, as in step (ii), $e^{\epsend}-1\le2\varepsilon$.
 Since $(\psi_0'+\ell\psi_0)'=\ell(\psi_0'+\ell\psi_0)$,
 $(\psi_0'+\ell\psi_0)(\xiR)=e^{\ell L_2}(\psi'+\ell\psi)(\xib)$, and
 \[
@@ -390,8 +468,12 @@ Multiplying by $e^{-\ell(\xiR-\xiL)}$ gives $\Evans_\ell(\lambda;G)\in\Evans^{\r
 
 \subsection{Certified Winding Numbers}
 
-A set $B\subset\C$ is of \textbf{type P} if it does not meet $(-\infty,0]$, and
-of \textbf{type N} if it does not meet $[0,\infty)$.
+We read the winding number of $\Evans_3(\cdot;G)$ along the boundary of a rectangle
+off enclosures of its values on the segments of the boundary, simultaneously for all
+$G$ in an interval. A set $B\subset\C$ is of \textbf{type P} if it does not meet $(-\infty,0]$, and
+of \textbf{type N} if it does not meet $[0,\infty)$. On a set of type P the principal
+argument is continuous, and on a set of type N a continuous argument with values in
+$(0,2\pi)$ exists.
 
 \begin{proposition}
 \label{prop:winding}
@@ -416,13 +498,21 @@ $\C\setminus[0,\infty)$, with values in $(0,2\pi)$. Since $E(\cdot;G)$ maps the
 $i$-th segment into $\mathcal B_i$, $\mathrm{Arg}(E(\cdot;G))$ is a continuous
 argument on a segment of type P, and $\theta_{\rm N}(E(\cdot;G))$ on one of type N. Each differs by a constant from a continuous argument along the
 whole curve, so the winding number is $\frac1{2\pi}$ times the sum over the
-segments of their increments. The increments of $\mathrm{Arg}$ telescope around the
+segments of their increments. On a segment of type N, by the definition of
+$\theta_{\rm N}$, the increment is that of $\mathrm{Arg}$ plus $2\pi$ times the
+difference of the indicators at the two ends. The increments of $\mathrm{Arg}$ telescope around the
 closed curve to $0$, and what remains is the indicator sum. At a point shared by
 two segments of type N the indicator enters once with each sign.
 \end{proof}
 
 \subsection{The Two Computations}
 \label{app:runs}
+
+We reduce \textup{(N1)} and \textup{(N2)} to the statements \textup{(N1$'$)} and
+\textup{(N2$'$)} below, about winding numbers along the boundaries of finitely many
+rectangles, and verify these by two computations. The line
+$\Re\lambda=\frac{211}{2500}$ in \textup{(N2$'$)} is the right edge of the strip of
+\textup{(N2)}.
 
 \begin{definition}
 \label{def:Nprime}
@@ -491,7 +581,11 @@ with $\Lambda^{\rm b}$ the box of the balls that contain $\Re p$ and $\Im p$ and
 with the same $\mathcal G^{\rm b}$, and the
 indicator $\mathbf 1[\Im\Evans_3(p;G)<0]$ is taken to be $1$ if the resulting box
 is certified to have negative imaginary part and $0$ if it is certified to have
-positive imaginary part. The certification \textbf{succeeds} if every segment is
+positive imaginary part. By Proposition~\ref{prop:winding}, only endpoints of
+segments of type N enter the indicator sum, and at a point shared by two such
+segments the terms cancel; so the sum needs the sign of $\Im\Evans_3$ only at
+endpoints of segments of type N that are not shared with another segment of
+type N. The certification \textbf{succeeds} if every segment is
 accepted and every such indicator is decided; its result is then the indicator sum
 of Proposition~\ref{prop:winding}.
 
@@ -533,14 +627,18 @@ of the $236$ of the second succeeded at once, with result $1$, so no interval wa
 halved and the output files list exactly the intervals and rectangles described
 above.
 
-Consider a certification of $(\Cell,\Rect')$ that succeeds with result $1$. By
+It remains to show that a successful certification proves the corresponding
+winding statement. Consider a certification of $(\Cell,\Rect')$ that succeeds with result $1$. By
 Lemma~I.\ref{I-lem:evans-basic}\textup{(1)} and its last assertion, $\Evans_3(\cdot;G)$ is continuous on
 $\{\Re\lambda>0\}\supset\partial\Rect'$ for every $G\in\Cell$. By
 Proposition~\ref{prop:enclosure}, the box of each accepted segment $[p,q]$
 contains $\Evans_3(\lambda;G)$ for all $\lambda\in[p,q]$ and $G\in\Cell$, and each decided
-indicator equals $\mathbf 1[\Im\Evans_3(p;G)<0]$ for every $G\in\Cell$; by (CP) for
-the comparisons, a box accepted as of type P misses $(-\infty,0]$ and one accepted
-as of type N misses $[0,\infty)$. The accepted segments are consecutive and cover
+indicator equals $\mathbf 1[\Im\Evans_3(p;G)<0]$ for every $G\in\Cell$. By (CP) for
+the comparisons, a box certified to have $\Im\Evans^{\rm b}>0$ or
+$\Im\Evans^{\rm b}<0$ misses the real line, and one certified to have
+$\Re\Evans^{\rm b}>0$ misses $(-\infty,0]$, so a box accepted as of type P misses
+$(-\infty,0]$; one accepted as of type N, certified to have $\Re\Evans^{\rm b}<0$,
+misses $[0,\infty)$. The accepted segments are consecutive and cover
 $\partial\Rect'$. By Proposition~\ref{prop:winding}, $\Evans_3(\cdot;G)\ne0$ on
 $\partial\Rect'$ and $\wind(\Evans_3(\partial\Rect';G),0)=1$ for every $G\in\Cell$.
 Applied to the first run, whose intervals cover $[0,\Gmax']$, this gives
@@ -549,6 +647,10 @@ $\Rect_i$ stated above, it gives \textup{(N2$'$)}.
 \end{proof}
 
 \subsection{The Closed-Form Inequality}
+
+The proof of \textup{(N3)} is a computation by hand from the exact values of
+$a_0$ and $d$ in Definition~I.\ref{I-def:ring} and from
+Equation~\eqref{eq:xayb}.
 
 \begin{proposition}
 \label{prop:N3}

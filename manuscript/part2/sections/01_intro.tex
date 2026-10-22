@@ -14,12 +14,16 @@ Biot-Savart kernel, so that $v$ is divergence free and
 $\partial_1v_2-\partial_2v_1=\omega$. There is no external force, and we call
 $\omega_0$ the datum.
 
-This paper completes the proof, begun in Part~I~\cite{PartI}, that without
-force in the plane uniqueness fails among renormalized weak solutions with
-vorticity in $L^\infty_t(L^1\cap L^q)_x$, for every $q\in(4/3,\infty)$ at once
-and for an explicit radial datum; numbers with the prefix I refer to
-statements, sections and equations of Part~I. For the question and the rest
-of the literature we refer to the introduction of Part~I.
+This paper is the second of two. Together with Part~I~\cite{PartI}, it proves
+that, without force in the plane, uniqueness fails among renormalized weak
+solutions with vorticity in $L^\infty_t(L^1\cap L^q)_x$, for every
+$q\in(4/3,\infty)$ at once and for an explicit radial datum. Numbers with the
+prefix I refer to statements, sections and equations of Part~I. Section~1 of
+Part~I states the question and discusses the literature, including the
+non-uniqueness with a radial force of Vishik \cite{Vishik1}, \cite{Vishik2}, in
+the account of \cite{ABCDGJK}, and the results obtained without force by convex
+integration. It also describes the construction heuristically. We do not
+repeat this discussion.
 
 For $T>0$ and $1\le q\le\infty$ we write $X_q(T)$ for the space
 $L^\infty_t(L^1\cap L^q)_x$ of functions on $(0,T)\times\R^2$. Renormalized weak solutions in $X_q(T)$, $4/3<q<\infty$ (after
@@ -37,7 +41,10 @@ f=\sum_{k\ge1}A_k\,\Phi(\cdot/r_k),\qquad A_k=A_1\mu^{k-1},\\
 r_1=1,\qquad r_{k+1}=s_kr_k,\qquad s_k=\sbar(2\mu)^{-k}\qquad(k\ge1).
 \end{gathered}
 \end{equation}
-This is Definition~\ref{def:datum}. Our main theorem is the following.
+This is Definition~\ref{def:datum}. We call $A_k\Phi(\cdot/r_k)$ ring $k$ of
+$f$. It is supported in the annulus $\{ar_k\le|x|\le r_k\}$, and these annuli
+are pairwise disjoint (Proposition~\ref{prop:integrability}). The main theorem
+of the two papers is the following; it is Theorem~I.\ref{I-thm:main}, restated.
 
 \begin{theorem}
 \label{thm:main}
@@ -65,15 +72,25 @@ We do not treat $q\le4/3$. No symmetry is
 imposed on the class; the $3$-fold rotational symmetry of $\omega_\infty$ comes from the
 construction, where it removes the angular modes $\ell\notin3\Z$, among them the
 modes $\ell=\pm1$ that contain the translations of a ring, and leaves the
-modes $\ell\in3\Z$, whose spectra we control.
+modes $\ell\in3\Z$, whose spectra Part~I controls under
+Hypothesis~I.\ref{I-hyp:N}.
 
-The proof of Theorem~\ref{thm:main} uses three explicit statements, collected in Section~I.\ref{I-sec:ring}
-as Hypothesis~I.\ref{I-hyp:N}: \textup{(N1)} and \textup{(N2)} locate the zeros in
-the mode $\ell=3$ of the Evans function of the ring, an explicit holomorphic
-function, for every $G\in[0,\frac1{50}]$ (in the reference units of
-Definition~I.\ref{I-def:ring}; this is $G\in[0,\Gone]$ in ring units); \textup{(N3)} is an inequality between
-explicit numbers controlling the modes $\ell=\pm6$ and $|\ell|\ge9$. We prove
-the following reduction in Section~\ref{sec:bootstrap}.
+The proof of Theorem~\ref{thm:main} is divided between Part~I and this paper.
+Part~I proves a non-uniqueness criterion (Section~I.\ref{I-sec:compact}) and the
+linear analysis of the ring (Section~I.\ref{I-sec:ring}), and it uses no machine
+computation. The main conclusions of its linear analysis assume three explicit
+statements, collected in Section~I.\ref{I-sec:ring} as
+Hypothesis~I.\ref{I-hyp:N}. The statements \textup{(N1)} and \textup{(N2)} locate
+the zeros in the mode $\ell=3$ of the Evans function of the ring, an explicit
+holomorphic function, for every $G\in[0,\frac1{50}]$, where $2\pi G$ is the
+circulation of a point vortex at the origin (in the reference units of
+Definition~I.\ref{I-def:ring}; this is $G\in[0,\Gone]$ in ring units). The
+statement \textup{(N3)} is an inequality between explicit numbers controlling
+the modes $\ell=\pm6$ and $|\ell|\ge9$. This paper proves that
+\textup{(N1)}--\textup{(N3)} imply Theorem~\ref{thm:main}, by a nonlinear
+construction followed by the criterion of Part~I, and it proves
+\textup{(N1)}--\textup{(N3)}. The implication is the following reduction,
+which we prove in Section~\ref{sec:bootstrap}.
 
 \begin{proposition}
 \label{prop:reduction}
@@ -100,6 +117,139 @@ By Theorem~\ref{thm:N-holds}, the hypotheses \textup{(N1)}--\textup{(N3)}
 hold, so Theorem~\ref{thm:main} follows from Proposition~\ref{prop:reduction}.
 \end{proof}
 
+\subsection{Results of Part I}
+\label{sec:II-partI}
+
+Part~I's introduction summarizes what this paper uses in two theorems: the
+conditional non-uniqueness theorem (Theorem~I.\ref{I-thm:conditional}, the form
+of Corollary~I.\ref{I-cor:defect} given by Remark~I.\ref{I-rem:conditional}) and
+the linear instability of the ring under \textup{(N1)}--\textup{(N3)}
+(Theorem~I.\ref{I-thm:linear}).
+
+In detail, we use the following definitions and results of Part~I, which we
+cite by their numbers there and do not restate. From
+Section~I.\ref{I-sec:prelim}, we use the properties of the Biot-Savart kernel
+(Lemma~I.\ref{I-lem:BS-basic}) and the multipoles, equimeasurability and
+renormalized weak solutions (Definitions~I.\ref{I-def:multipole},
+I.\ref{I-def:equimeasurable} and~I.\ref{I-def:weak}, with
+Equations~(I.\ref{I-eq:weak}) and~(I.\ref{I-eq:renorm})). From
+Section~I.\ref{I-sec:compact}, we use the fact that a radial function in
+$(L^1\cap L^q)(\R^2)$, $4/3<q<\infty$, is a stationary renormalized weak
+solution (Lemma~I.\ref{I-lem:radial-stationary}), the $2$-admissible sequences
+(Definition~I.\ref{I-def:adm}), and the non-uniqueness criterion of
+Corollary~I.\ref{I-cor:defect}, which rests on Theorem~I.\ref{I-thm:criterion}
+and which we apply in the proof of Proposition~\ref{prop:reduction}. From
+Section~I.\ref{I-sec:ring}, we use the ring and the annuli $N$, $N'$
+(Definition~I.\ref{I-def:ring}, Lemma~I.\ref{I-lem:ring-facts}); the mode
+settings, the decomposition into angular modes, the Evans function and its
+simple zeros, and the semigroup (Definition~I.\ref{I-def:sector-setting},
+Lemmas~I.\ref{I-lem:sector}, I.\ref{I-lem:evans-basic}
+and~I.\ref{I-lem:semigroup-construct}, Theorem~I.\ref{I-thm:evans-simple}); and
+Hypothesis~I.\ref{I-hyp:N}. Under \textup{(N1)}--\textup{(N3)} we use, from the
+same section, the spectrum of the linearization (Proposition~I.\ref{I-prop:SU}),
+the eigendata (Definition~I.\ref{I-def:eigendata}), the continuity in $G$ of
+$\lamst(G)$ and of the sizes $|\pout_*(G)|$, $|\beta(G)|$,
+$\|\ellst(G)\|_{(X^0)^*}$ and $\|\phist(G)\|_{H^k}$ of the eigendata, the
+semigroup bounds and the uniformity of the constants in $G$
+(Propositions~I.\ref{I-prop:U} and~I.\ref{I-prop:semigroup},
+Lemma~I.\ref{I-lem:uniform}).
+
+\subsection{Strategy}
+
+We describe the construction with references to the statements of this paper
+that carry it out. The background is the datum $f$, which is radial, hence
+stationary (Lemma~I.\ref{I-lem:radial-stationary}). Its inner rings have larger
+amplitudes and rotate faster, and the task is to
+carry an instability from an inner ring outward through every ring in a time
+independent of the depth, uniformly in the number of interacting rings.
+
+The linear input is the instability of one ring. The linearization of
+Equation~\eqref{eq:euler} at $\Phi$ plus a point vortex of small circulation
+$2\pi G$ at the origin, which stands for everything inside the ring, is the
+operator $\Lin(G)$ of Theorem~I.\ref{I-thm:linear}. On $3$-fold rotationally
+symmetric perturbations it has an eigenvalue $\lamst(G)$ of the mode $\ell=3$,
+algebraically simple there, with real part $\sigma(G)>0$, and its conjugate
+$\overline{\lamst(G)}$ in the mode $\ell=-3$; the rest of the spectrum has
+smaller real part (Proposition~I.\ref{I-prop:SU}). Ring $k$ of $f$ evolves on
+the time scale $1/A_k$ and feels the inner rings mostly through their
+circulation $2\pi G_kA_kr_k^2$, with $G_k\ge0$ small when $\sbar$ is small
+(Lemma~\ref{lem:inner-circ}). In ring-$k$ units (Section~\ref{sec:datum}), the linearization at
+ring $k$ plus this point vortex is therefore $\Lin(G_k)$.
+
+The approximate datum $f^{(n)}$ keeps the first $n$ rings of $f$ and replaces
+ring $n$, the innermost of them, by a rearrangement of it whose coefficient
+along the unstable eigenfunction has a small size of order $\kseed$, fixed
+independently of $n$ (Definition~\ref{def:approx}, Lemma~\ref{lem:seed}). As
+$r_n$ decreases faster than $A_n$ increases, $f^{(n)}\to f$ in
+$(L^1\cap L^q)(\R^2)$ for every $q<\infty$ (Lemma~\ref{lem:adm}). Each
+$f^{(n)}$ is smooth with compact support, so it has a unique global smooth
+solution $\omega^{(n)}$ (Theorem~\ref{thm:smooth}), which is $3$-fold
+rotationally symmetric (Lemma~\ref{lem:adm}).
+
+In $\omega^{(n)}$ the instability passes outward like a relay. The unstable
+coefficient of ring $k$ grows at the rate $A_k\sigma(G_k)$ to a fixed size
+$\delta_0$, and we then say that ring $k$ saturates. Its mode-$3$ moment drives
+ring $k-1$ through a field smaller by a factor of order $s_{k-1}^5$
+(Lemma~\ref{lem:coupling}). This drive outgrows the free growth of ring $k-1$
+by a margin of order $\sigma(0)(\mu-1)/\mu$. The forced part of the
+coefficient of ring $k-1$ is a truncated Laplace transform of the drive
+(Lemma~\ref{lem:coupling}, Equation~\eqref{eq:kick-A}). Because of this
+margin, it is dominated by the end of the growth and pinned after saturation. Its modulus lies between two multiples of the size of
+the drive at saturation divided by $\mu-1$, with constants independent of $k$
+and $n$ (Proposition~\ref{prop:kick} and its proof).
+
+As $\mu$ is fixed, ring $k-1$ therefore starts with a coefficient of order
+$s_{k-1}^5$ (Step~3 in the proof of Proposition~\ref{prop:bootstrap}), and it
+saturates after a physical time of about
+$5\log(1/s_{k-1})/(\sigma(G_{k-1})A_{k-1})$. Since $\log(1/s_k)$ grows
+linearly in $k$ and $A_k$ geometrically, the total time is bounded by a
+$\Tstar$ independent of $n$ (Lemma~\ref{lem:time}).
+
+The phase clock of Definition~\ref{def:clock} fixes, from $\omega^{(n)}$
+itself, the time at which each ring becomes active and the time at which it is
+expected to saturate. Until it becomes active, a ring stays close to $\Phi$,
+although forced by the fields inside and outside it (Theorem~\ref{thm:quiet}).
+The active ring follows its unstable eigenfunction (Theorem~\ref{thm:active}).
+Once the ring just inside it has saturated, the material inside each ring
+stays in a small disk (Proposition~\ref{prop:confine}). The hypotheses of these three statements are
+verified jointly, for all rings and all times until the outermost ring
+saturates, by one bootstrap with constants independent of $n$ (proof of
+Proposition~\ref{prop:bootstrap}).
+
+When the outermost ring saturates, at $T^{(n)}\le\Tstar$, its moment
+$\int\omega^{(n)}(T^{(n)})\Psione$, where $\Psione(x)=\chiout(|x|)\,\bar x^{\,3}$
+with a fixed real cutoff $\chiout\in C_c^\infty((a/4,3))$, has modulus at least
+$c_0>0$ independent of $n$ (proof of Proposition~\ref{prop:reduction}), while
+it vanishes for $f$. This lower bound is the moment hypothesis of
+Theorem~I.\ref{I-thm:conditional}. The $\omega^{(n)}$ are bounded in
+$(L^1\cap L^2)(\R^2)$ uniformly in time, and compactness of renormalized
+solutions in $L^2$ (Section~I.\ref{I-sec:compact}) gives a subsequence
+converging to a renormalized weak solution $\omega_\infty$ with datum $f$. The
+moment bound passes to the limit and separates $\omega_\infty$ from $f$
+(Corollary~I.\ref{I-cor:defect}).
+
+Section~\ref{sec:II-prelim} collects notation and preliminaries.
+Section~\ref{sec:single} studies, in ring units, one ring of the approximate
+solutions, driven by the field of the vorticity inside and outside it: the quiet
+ring, the active ring and the seeded ring.
+Section~\ref{sec:datum} defines the datum, the approximants $f^{(n)}$ and the
+phase clock. Section~\ref{sec:several} bounds the fields that the rings induce
+on one another, and it confines the material inside a ring after the ring just
+inside it has saturated. Section~\ref{sec:kick} computes the kick that a ring
+receives from the rings inside it. Section~\ref{sec:relay} proves the relay
+lemmas, which are the estimates on the rings that the bootstrap combines, each
+under explicit hypotheses; it also proves the time bound of Lemma~\ref{lem:time}.
+Section~\ref{sec:param} chooses the parameters so that the conditions of the
+relay lemmas on them hold; the choices are made in the order of
+Table~\ref{tab:param}, and none of them depends on $n$, $A_1$ or
+$\omega^{(n)}$ (Lemma~\ref{lem:nonempty}). Section~\ref{sec:bootstrap} proves
+the joint bootstrap (Proposition~\ref{prop:bootstrap}) and
+Proposition~\ref{prop:reduction}. Appendices~\ref{app:verify}
+and~\ref{app:smooth} prove Theorems~\ref{thm:N-holds} and~\ref{thm:smooth}, respectively.
+Appendix~\ref{app:deps} lists, for each statement on the path to
+Theorem~\ref{thm:main}, the statements of this paper and of Part~I that its
+proof uses and the parts of \textup{(N1)}--\textup{(N3)} on which it depends.
+
 The main idea of a linear instability in physical coordinates driving the
 non-uniqueness mechanism, the use of non-monotone unstable radial vortices and of
 a multiscale datum, and the overall strategy of the proof are due to the author.
@@ -108,104 +258,11 @@ computer-assisted verification and the text were largely produced with
 Claude Opus 5.5 (Anthropic), under the direction of the author. The author has
 checked all proofs by hand and takes full responsibility for the paper.
 
-\subsection{Results of Part I}
-\label{sec:II-partI}
-
-We use the following definitions and results of Part~I, which we cite by
-their numbers there and do not restate. From Section~I.\ref{I-sec:prelim}: the
-properties of the Biot-Savart kernel (Lemma~I.\ref{I-lem:BS-basic}); the
-multipoles, equimeasurability and renormalized weak solutions
-(Definitions~I.\ref{I-def:multipole}, I.\ref{I-def:equimeasurable}
-and~I.\ref{I-def:weak}, with Equations~(I.\ref{I-eq:weak})
-and~(I.\ref{I-eq:renorm})). From Section~I.\ref{I-sec:compact}: a radial
-function in $(L^1\cap L^q)(\R^2)$, $4/3<q<\infty$, is a stationary renormalized weak
-solution (Lemma~I.\ref{I-lem:radial-stationary}); $2$-admissible sequences
-(Definition~I.\ref{I-def:adm}); and the non-uniqueness criterion of
-Corollary~I.\ref{I-cor:defect}, which rests on Theorem~I.\ref{I-thm:criterion}
-and which we apply in the proof of Proposition~\ref{prop:reduction}. From
-Section~I.\ref{I-sec:ring}: the ring and the annuli $N$, $N'$ (Definition~I.\ref{I-def:ring},
-Lemma~I.\ref{I-lem:ring-facts}); mode settings, the
-decomposition into angular modes, the Evans function and its simple zeros, and
-the semigroup (Definition~I.\ref{I-def:sector-setting},
-Lemmas~I.\ref{I-lem:sector}, I.\ref{I-lem:evans-basic}
-and~I.\ref{I-lem:semigroup-construct}, Theorem~I.\ref{I-thm:evans-simple});
-Hypothesis~I.\ref{I-hyp:N}; and, under \textup{(N1)}--\textup{(N3)}, the
-spectrum of the linearization (Proposition~I.\ref{I-prop:SU}), the eigendata
-(Definition~I.\ref{I-def:eigendata}), the continuity in $G$ of $\lamst(G)$ and of
-the sizes $|\pout_*(G)|$, $|\beta(G)|$, $\|\ellst(G)\|_{(X^0)^*}$ and
-$\|\phist(G)\|_{H^k}$ of the eigendata, the semigroup
-bounds and the uniformity of the constants in $G$
-(Propositions~I.\ref{I-prop:U} and~I.\ref{I-prop:semigroup},
-Lemma~I.\ref{I-lem:uniform}).
-
-\subsection{Strategy}
-
-With a radial force, Vishik \cite{Vishik1}, \cite{Vishik2} proved
-non-uniqueness with vorticity in an $L^p$ space, breaking the radial symmetry.
-The unstable
-manifold of a steady vortex gives non-uniqueness only at time $-\infty$;
-Vishik's self-similar background moves time $-\infty$ to time $0$, but it is
-not an exact solution and requires the force (Section~0.1 of \cite{ABCDGJK}).
-
-In an instability construction without force, the background must be an exact
-solution. Ours is radial, hence stationary: infinitely many rescaled copies of
-one unstable vortex ring on disjoint annuli accumulating at the origin, with
-amplitudes increasing toward it. Inner rings rotate faster, and the task is to
-carry an instability from an inner ring outward through every ring in a time
-independent of the depth, uniformly in the number of interacting rings.
-
-The mechanism is as follows. The linearization of Equation~\eqref{eq:euler} at
-$\Phi$ plus a point vortex of small circulation $2\pi G$ at the origin, which stands
-for everything inside the ring, has on $3$-fold rotationally symmetric perturbations an
-eigenvalue $\lamst(G)$ of the mode $\ell=3$, algebraically simple there, with
-real part $\sigma(G)>0$, and its conjugate $\overline{\lamst(G)}$ in the mode
-$\ell=-3$; the rest of the spectrum has smaller real part
-(Proposition~I.\ref{I-prop:SU}). Ring $k$ of $f$ evolves on the time scale $1/A_k$
-and feels the inner rings mostly through their circulation $2\pi G_kA_kr_k^2$,
-with $G_k\ge0$ small when $\sbar$ is small (Lemma~\ref{lem:inner-circ}). The
-approximate datum $f^{(n)}$ keeps the first $n$ rings and replaces ring $n$ by a
-rearrangement of it that contains the unstable eigenfunction with a small fixed amplitude
-$\kseed$ (Definition~\ref{def:approx}); as $r_n$ decreases faster than $A_n$
-increases, $f^{(n)}\to f$ in $(L^1\cap L^q)(\R^2)$ for every $q<\infty$. Each $f^{(n)}$
-is smooth with compact support, so it has a unique global smooth solution
-$\omega^{(n)}$, which is $3$-fold rotationally symmetric.
-
-In $\omega^{(n)}$ the instability passes outward like a relay. The unstable
-coefficient of ring $k$ grows at the rate $A_k\sigma(G_k)$ to a fixed size
-$\delta_0$, and its mode-$3$ moment drives ring $k-1$ through a field smaller
-by a factor of order $s_{k-1}^5$. This drive outgrows the free growth of ring
-$k-1$ by a margin of order $\sigma(0)(\mu-1)/\mu$, so the forced part of the
-coefficient is a truncated Laplace transform of the drive (Lemma~\ref{lem:coupling},
-Equation~\eqref{eq:kick-A}); it is dominated by the end of the growth and pinned
-after saturation, and its modulus lies between two multiples of the size of the
-drive at saturation divided by $\mu-1$, with constants independent of $k$ and $n$
-(Proposition~\ref{prop:kick} and its proof). As $\mu$ is fixed, ring $k-1$ starts with a
-coefficient of order $s_{k-1}^5$ (Step~3 in the proof of Proposition~\ref{prop:bootstrap}) and saturates after a physical time of
-about $5\log(1/s_{k-1})/(\sigma(G_{k-1})A_{k-1})$; as $\log(1/s_k)$ grows
-linearly and $A_k$ geometrically, the total time is bounded by a $\Tstar$
-independent of $n$ (Lemma~\ref{lem:time}). Meanwhile a ring not yet reached
-stays close to $\Phi$, although forced by the fields inside and outside it
-(Theorem~\ref{thm:quiet}), the active ring follows its unstable eigenfunction
-(Theorem~\ref{thm:active}), and the material inside each ring stays in a small
-disk (Proposition~\ref{prop:confine}); the hypotheses of these three statements are
-verified jointly, for all rings and all times until the outermost ring saturates, by one
-bootstrap with constants independent of $n$ (proof of Proposition~\ref{prop:bootstrap}). When the outermost ring saturates,
-at $T^{(n)}\le\Tstar$, its moment $\int\omega^{(n)}(T^{(n)})\Psione$, where
-$\Psione(x)=\chiout(|x|)\,\bar x^{\,3}$ with a fixed real cutoff
-$\chiout\in C_c^\infty((a/4,3))$, has modulus at least $c_0>0$ independent of
-$n$ (proof of Proposition~\ref{prop:reduction}); it vanishes for $f$. The $\omega^{(n)}$ are
-bounded in $(L^1\cap L^2)(\R^2)$ uniformly in time, and compactness of renormalized
-solutions in $L^2$ (Section~I.\ref{I-sec:compact}) gives a subsequence converging
-to a renormalized weak solution $\omega_\infty$ with datum $f$; the moment bound
-passes to the limit and separates $\omega_\infty$ from $f$
-(Corollary~I.\ref{I-cor:defect}).
-
-The parameters are chosen in Section~\ref{sec:param} in the order of
-Table~\ref{tab:param}, and none of the choices depends on $n$, $A_1$ or
-$\omega^{(n)}$ (Lemma~\ref{lem:nonempty}). Appendix~\ref{app:deps} lists, for
-each statement on the path to Theorem~\ref{thm:main}, the statements of this
-paper and of Part~I that its proof uses and the parts of
-\textup{(N1)}--\textup{(N3)} on which it depends.
+\paragraph{Acknowledgments.} I am supported at New York University by a Junior
+Fellowship of the Simons Society of Fellows, funded by Simons Foundation
+International and administered by the Simons Foundation. I would also like to thank
+Tristan Buckmaster for generously offering his time and advice on this and many
+other projects.
 
 \subsection{Preliminaries}
 \label{sec:II-prelim}
@@ -248,13 +305,18 @@ $\big||y'|-|y|\big|\le a/16$ for some $y\in S$. Then $S'\subset\NNm$
 \begin{proof}
 The inner radii $a$, $\frac78a$, $\frac34a$, $\frac58a$, $\frac12a$, $\frac14a$
 strictly decrease and the outer radii $1$, $\frac54$, $\frac32$, $\frac74$, $2$, $3$
-strictly increase; this gives the chain. If $a\le|y|\le1$ and
+strictly increase, and the last two radii of each list are those of $N$ and $N'$;
+this gives the chain. If $a\le|y|\le1$ and
 $||y'|-|y||\le a/16$, then $\frac{15}{16}a\le|y'|\le1+\frac a{16}$, and
 $\frac{15}{16}a\ge\frac78a$ and $1+\frac a{16}\le\frac54$ because $a\le4$. If
 instead $y\in\NNm$, then $\frac{13}{16}a\le|y'|\le\frac54+\frac a{16}$, and
-$\frac{13}{16}a\ge\frac34a$ and $\frac54+\frac a{16}\le\frac32$.
+$\frac{13}{16}a\ge\frac34a$ and $\frac54+\frac a{16}\le\frac32$, for the same
+reason.
 \end{proof}
 
+Away from the support of a vorticity, complex variables turn the Biot-Savart
+law into a Cauchy integral, which can be expanded in powers of the complex
+variable.
 We call $V_1-iV_2$ the \textbf{complex form} of a vector field $V$, and wherever
 we use complex forms we write $z=x_1+ix_2$ (this $z$ is not the number
 $\lamst(0)$ of Definition~I.\ref{I-def:eigendata}). Since $(\KBS)_1(x)-i(\KBS)_2(x)=(-x_2-ix_1)/(2\pi|x|^2)=1/(2\pi iz)$,
@@ -269,13 +331,21 @@ integral sign, defines a holomorphic function of $z\in\C\setminus\supp g$. Let
 $V$ be a real vector field on an open set $U$ whose complex form $F$ is
 holomorphic on $U$. Then $\partial_{x_1}F=F'$ and $\partial_{x_2}F=iF'$, so every
 partial derivative of order $q$ of $F$ is $i^{\gamma_2}F^{(q)}$ for the
-corresponding multi-index $\gamma$. Since $V_1=\Re F$ and $V_2=-\Im F$, for each of
-the $2^q$ ordered $q$-tuples of directions the corresponding pair of entries of
-$\nabla^qV(x)$ has Euclidean norm $|F^{(q)}(z)|$, which gives
+corresponding multi-index $\gamma$. Fix one of the $2^q$ ordered $q$-tuples of
+directions. Since $V_1=\Re F$ and $V_2=-\Im F$, the corresponding derivatives of
+$V_1$ and $V_2$ at $x$ are the real part and minus the imaginary part of the
+corresponding derivative of $F$ at $z$, a number of modulus $|F^{(q)}(z)|$; so this
+pair of entries of $\nabla^qV(x)$ has Euclidean norm $|F^{(q)}(z)|$. Summing the
+squares over the $2^q$ tuples gives
 \begin{equation}
 \label{eq:BS-complex-deriv}
 |\nabla^qV(x)|=2^{q/2}\,|F^{(q)}(z)|\qquad(z\in U,\ q\ge0).
 \end{equation}
+
+The next two lemmas bound the field of a rotationally symmetric vorticity away
+from its support: in a disk inside a hole of the support, and outside a disk that
+contains the support, after the monopole is removed. Section~\ref{sec:several}
+applies them to the rings outside and inside a given ring, respectively.
 
 \begin{lemma}
 \label{lem:hollow}
@@ -293,17 +363,24 @@ Let $|z|<R$, so that $|z-\zeta|\ge R-|z|>0$ for $\zeta\in\supp\nu$, and let $u=\
 $(z-\zeta)^{-1}=-\sum_{l\ge1}z^{l-1}\zeta^{-l}$ converges uniformly in $\zeta$, with ratio
 at most $|z|/R$, so Equation~\eqref{eq:BS-complex} gives, term by term,
 $u_1-iu_2=\frac{i}{2\pi}\sum_{l\ge1}c_l(\nu)z^{l-1}$ with
-$c_l(\nu)=\int\nu(\zeta)\zeta^{-l}\dd A(\zeta)$. The substitution $\zeta\mapsto e^{2\pi i/m_0}\zeta$ shows $c_l(\nu)=e^{-2\pi
-il/m_0}c_l(\nu)$, so $c_l(\nu)=0$ unless $m_0\mid l$. Integration in the angle
-shows $c_l(\bar\nu)=0$ for $l\ge1$; this proves $\KBS\ast\bar\nu=0$ on $B_R$, and
-also $c_l(\nu)=c_l(\nu-\bar\nu)$, so $|c_l(\nu)|\le\|\nu-\bar\nu\|_{L^1}R^{-l}$.
-Since $\nu$ is real, $|u|=|u_1-iu_2|$, so for $|x|\le R/2$
+$c_l(\nu)=\int\nu(\zeta)\zeta^{-l}\dd A(\zeta)$. The substitution $\zeta\mapsto e^{2\pi i/m_0}\zeta$ and the $m_0$-fold rotational
+symmetry of $\nu$ show $c_l(\nu)=e^{-2\pi
+il/m_0}c_l(\nu)$, so $c_l(\nu)=0$ unless $m_0\mid l$. The angular average
+$\bar\nu$ is radial and, like $\nu$, supported in $\{|y|\ge R\}$, so the same
+expansion applies to it, and integration in the angle
+shows $c_l(\bar\nu)=0$ for $l\ge1$; this proves $\KBS\ast\bar\nu=0$ on $B_R$. It
+also gives $c_l(\nu)=c_l(\nu-\bar\nu)$, so $|c_l(\nu)|\le\|\nu-\bar\nu\|_{L^1}R^{-l}$,
+as $|\zeta|\ge R$ on the support of $\nu-\bar\nu$.
+Since $\nu$ is real, $|u|=|u_1-iu_2|$. Only the terms with $l=jm_0$, $j\ge1$,
+remain, so for $|x|\le R/2$ these bounds and the sum of a geometric series
+give
 \[
 |u(x)|\le\frac{\|\nu-\bar\nu\|_{L^1}}{2\pi}\sum_{j\ge1}|x|^{jm_0-1}R^{-jm_0}
 \le\frac{\|\nu-\bar\nu\|_{L^1}}{2\pi(1-2^{-m_0})}|x|^{m_0-1}R^{-m_0},
 \]
 and $1/(1-2^{-m_0})\le\frac43$ because $m_0\ge2$. Finally
-$\|\nu-\bar\nu\|_{L^1}\le2\|\nu\|_{L^1}$.
+$\|\nu-\bar\nu\|_{L^1}\le2\|\nu\|_{L^1}$, because averaging over rotations does
+not increase the $L^1$ norm.
 \end{proof}
 
 For an integer $m\ge1$ and $g$ as in Definition~I.\ref{I-def:multipole}, let
@@ -314,7 +391,11 @@ If $\supp g\subset\overline B_{\varrho}$, the expansion
 \]
 shows that the angular mode $m$ of the stream function
 $(2\pi)^{-1}\log|\cdot|\ast g$ of $g$ equals $-(2m)^{-1}\pout_m[g]\,r^{-m}$
-for $r>\varrho$.
+for $r>\varrho$; the series may be integrated term by term against $g$ because,
+for fixed $|x|>\varrho$, it converges uniformly in $y\in\overline B_\varrho$. For real $g$ this is the angular mode $m$ of the exterior
+expansion after Definition~I.\ref{I-def:multipole}.
+Section~\ref{sec:kick} uses it for the field that the inner rings induce on a
+ring.
 
 \begin{lemma}
 \label{lem:ext-multipole}
@@ -337,7 +418,7 @@ $Q_l=\int g(\zeta)\zeta^l\dd A(\zeta)$. The term $l=0$, which is $(\int g)/(2\pi
 monopole, and $Q_l=0$ unless $m\mid l$, because the substitution $\zeta\mapsto
 e^{2\pi i/m}\zeta$ and the $m$-fold rotational symmetry of $g$ give $Q_l=e^{2\pi il/m}Q_l$. Hence the complex form of $E$ is
 $F(z)=\frac1{2\pi i}\sum_{l\in m\N}Q_lz^{-l-1}$, where
-$|Q_l|\le\|g\|_{L^1}\varrho^l$. The series converges locally uniformly on
+$|Q_l|\le\|g\|_{L^1}\varrho^l$ because $|\zeta|\le\varrho$ on $\supp g$. The series converges locally uniformly on
 $\{|z|>\varrho\}$, so $F$ is holomorphic there, may be differentiated term by
 term, and, as $E$ is real,
 Equation~\eqref{eq:BS-complex-deriv} gives
@@ -353,7 +434,14 @@ $\rho^{-m}\sum_{l\in m\N}(l+q)^q\rho^l=\sum_{j\ge1}(mj+q)^q\rho^{m(j-1)}$ is
 nondecreasing in $\rho$ and finite at $\rho=\frac12$.
 \end{proof}
 
-The following classical theorem is proved in Appendix~\ref{app:smooth}.
+The approximate solutions $\omega^{(n)}$ of Definition~\ref{def:approx} are the
+global smooth solutions with the smooth, compactly supported data $f^{(n)}$,
+given by the following classical theorem, which is proved in
+Appendix~\ref{app:smooth}. Besides the properties (1)--(3) of the solution, the
+proof of Theorem~\ref{thm:main} uses the flow of item~(4), the uniqueness of
+item~(5), which identifies a rescaled or time-translated solution with the
+solution of its datum, the symmetry of item~(6), and item~(7), by which these solutions are renormalized weak solutions
+in the sense of Part~I.
 
 \begin{theorem}[cf. \cite{Wolibner}, \cite{Holder}, \cite{Kato1967}]
 \label{thm:smooth}
@@ -389,6 +477,10 @@ Moreover:
 \end{enumerate}
 \end{theorem}
 
+The energy estimates of Section~\ref{sec:single}, the construction of
+Appendix~\ref{app:smooth} and the proof of Lemma~\ref{lem:Hk-calculus} below use
+the following Sobolev inequalities.
+
 \begin{lemma}
 \label{lem:embed}
 The following embeddings hold on $\R^2$, with explicit constants.
@@ -408,15 +500,20 @@ $|g(x)|^2=\int_{-\infty}^{x_1}\partial_1|g|^2(t,x_2)\dd t$, we have
 |g(x)|^2\le\int_\R|\partial_1|g|^2|(t,x_2)\dd t=:a(x_2),
 \]
 and likewise
-$|g(x)|^2\le\int_\R|\partial_2|g|^2|(x_1,t)\dd t=:b(x_1)$. Hence
-$\int|g|^4\le\int a\int b$, and since $|\partial_j|g|^2|\le2|g||\partial_jg|$,
-Cauchy-Schwarz gives
+$|g(x)|^2\le\int_\R|\partial_2|g|^2|(x_1,t)\dd t=:b(x_1)$. The product of
+these two bounds, integrated over $x$, gives
+$\int|g|^4\le\int a\int b$. Since $|\partial_j|g|^2|\le2|g||\partial_jg|$,
+the Cauchy-Schwarz inequality, and then the inequality between the arithmetic
+and geometric means, give
 $\int|g|^4\le4\|g\|_{L^2}^2\allowbreak\|\partial_1g\|_{L^2}\|\partial_2g\|_{L^2}\le2\|g\|_{L^2}^2\|\nabla g\|_{L^2}^2$.
-By density of $C_c^\infty$ in $H^1$ the inequality holds on $H^1$. Then
+By density of $C_c^\infty$ in $H^1$ the inequality holds on $H^1$. Then, by the
+same inequality between the means,
 $\|g\|_{L^4}\le2^{1/4}\|g\|_{L^2}^{1/2}\|\nabla g\|_{L^2}^{1/2}\le2^{-1/4}\|g\|_{H^1}$.
 
 (E2) Since $\widehat{\Delta g}=-|\zeta|^2\hat g$, Plancherel's theorem gives
-$\|(1+|\zeta|^2)\hat g\|_{L^2}=2\pi\|g-\Delta g\|_{L^2}\le2\sqrt3\,\pi\|g\|_{H^2}$.
+$\|(1+|\zeta|^2)\hat g\|_{L^2}=2\pi\|g-\Delta g\|_{L^2}\le2\sqrt3\,\pi\|g\|_{H^2}$,
+where the inequality follows from the triangle inequality for the three terms of
+$g-\Delta g$ and the Cauchy-Schwarz inequality.
 As $\int_{\R^2}(1+|\zeta|^2)^{-2}\dd\zeta=\pi$, Cauchy-Schwarz gives
 $\|\hat g\|_{L^1}\le\sqrt\pi\,\|(1+|\zeta|^2)\hat g\|_{L^2}$. Thus $\hat g\in L^1$, the
 Fourier inversion formula gives a bounded continuous representative, and
@@ -433,6 +530,12 @@ Cauchy-Schwarz,
 \le3^k\|g\|_{L^2}\|g\|_{H^{2k}} .\qedhere
 \]
 \end{proof}
+
+In Section~\ref{sec:single} the perturbation of a ring is supported in a fixed
+annulus, and the field that transports it is controlled only on an open
+neighborhood of that annulus. The following calculus in $H^k$ is stated for
+such data: $w$ is supported in a compact set $K$, and the field $U$ need only be
+given on an open set $\mathcal O\supset K$.
 
 \begin{lemma}
 \label{lem:Hk-calculus}
@@ -486,12 +589,15 @@ $[\partial^\alpha,U\cdot\nabla]w=[\partial^\alpha,\tilde U\cdot\nabla]w$, and
 [\partial^\alpha,\tilde U\cdot\nabla]w=\sum_{0<\beta\le\alpha}\binom\alpha\beta\,
 \partial^\beta\tilde U\cdot\nabla\partial^{\alpha-\beta}w :
 \]
-this holds in $\mathcal D'$ with $\tilde U_n\in C_c^\infty$ in place of
-$\tilde U$, and, taking such $\tilde U_n\to\tilde U$ in $H^k$ (they exist because
-$\tilde U\in H^k(\R^2)$ by the bound above), each product in it, as
+with $\tilde U_n\in C_c^\infty$ in place of
+$\tilde U$, this identity holds in $\mathcal D'$ by the Leibniz formula. Since
+$\tilde U\in H^k(\R^2)$ by the bound above, there are such $\tilde U_n$ with
+$\tilde U_n\to\tilde U$ in $H^k$. As $w\in H^{k+1}$, we have
+$\nabla\partial^{\alpha-\beta}w\in L^2$ for $\beta\le\alpha$; so each product in
+the identity, as
 well as $\tilde U_n\cdot\nabla w$ and $\tilde U_n\cdot\nabla\partial^\alpha w$,
-converges in $L^1$, because $\nabla\partial^{\alpha-\beta}w\in L^2$ for
-$\beta\le\alpha$ ($w\in H^{k+1}$); so the identity passes to the limit. Write each term on the right as
+converges in $L^1$, and the identity passes to the limit. We bound the terms on
+the right according to $|\beta|$. Write each of them as
 $\sum_l\partial^\beta\tilde U_l\,\partial_l\partial^{\alpha-\beta}w$. If $|\beta|=1$,
 its $L^2$ norm is at most $2\|\nabla\tilde U\|_{L^\infty}\|w\|_{H^k}$. If
 $|\beta|=|\alpha|\ge2$, it is at most
@@ -511,8 +617,9 @@ the integration by parts holds because $|g|^2\in W^{1,1}$ and $\tilde U$ is
 Lipschitz with compact support, and the last integral vanishes because
 $\divop\tilde U=\chi_K\divop U+U\cdot\nabla\chi_K=0$ on $V$ and $g=0$ outside $K$.
 Hence the real part is at most
-$\|[\partial^\alpha,\tilde U\cdot\nabla]w\|_{L^2}\|g\|_{L^2}$, and the commutator
-bound applies.
+$\|[\partial^\alpha,\tilde U\cdot\nabla]w\|_{L^2}\|g\|_{L^2}$, by the
+Cauchy-Schwarz inequality, and the commutator bound gives the claim, because
+the $L^2$ norm of $g$ is at most the $H^k$ norm of $w$.
 
 We now prove (3). Let first $w\in C_c^\infty(B_\rho)$ and $u=\KBS\ast w$. By
 Lemma~I.\ref{I-lem:BS-basic}(d), and (c) with $R=\rho$,
