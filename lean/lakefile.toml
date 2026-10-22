@@ -1,0 +1,16 @@
+name = "NonUniqueEuler"
+version = "0.1.0"
+defaultTargets = ["NonUniqueEuler"]
+
+# Mathlib pinned to v4.34.0-rc2 (85e3a25e006c35636f0e53b0e9296caca2685bc0).
+# Files adapted from other projects are in NonUniqueEuler/Vendor/ with attribution (see NOTICE).
+[[require]]
+name = "mathlib"
+scope = "leanprover-community"
+git = "https://github.com/leanprover-community/mathlib4.git"
+rev = "v4.34.0-rc2"
+
+[[lean_lib]]
+name = "NonUniqueEuler"
+leanOptions = { autoImplicit = false, relaxedAutoImplicit = false, maxSynthPendingDepth = 3 }
+globs = ["NonUniqueEuler", "NonUniqueEuler.+"]

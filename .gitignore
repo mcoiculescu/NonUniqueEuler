@@ -1,16 +1,16 @@
 # macOS
 .DS_Store
 
-# LaTeX build files
-*.aux
-*.log
-*.out
-*.toc
-*.fls
-*.fdb_latexmk
-*.synctex.gz
-*.bbl
-*.blg
+# LaTeX build files (manuscript only: euler-ring-certificate/expected/ ships *.log files)
+manuscript/**/*.aux
+manuscript/**/*.log
+manuscript/**/*.out
+manuscript/**/*.toc
+manuscript/**/*.fls
+manuscript/**/*.fdb_latexmk
+manuscript/**/*.synctex.gz
+manuscript/**/*.bbl
+manuscript/**/*.blg
 manuscript/*/main.pdf
 
 # Python

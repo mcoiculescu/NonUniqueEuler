@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "euler-ring-certificate"
+version = "1.0.0"
+description = "Rigorous FLINT/Arb verification of (N1) and (N2) of the numerical hypothesis (N) for non-uniqueness of 2D Euler"
+readme = "README.md"
+license = "Apache-2.0"
+license-files = ["LICENSE", "NOTICE"]
+authors = [{name = "Matei P. Coiculescu"}]
+# python-flint 0.9.0 requires Python >= 3.10; the reference runs used CPython 3.13.5.
+requires-python = ">=3.10"
+dependencies = ["python-flint==0.9.0"]
+
+[project.scripts]
+ringcert = "ringcert.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

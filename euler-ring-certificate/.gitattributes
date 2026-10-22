@@ -1,0 +1,2 @@
+# Keep line endings fixed so that SHA-256 hashes of shipped files agree on every platform.
+* -text

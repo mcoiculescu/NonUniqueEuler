@@ -1,0 +1,247 @@
+{
+ "format": "ringcert-constants-1",
+ "data": {
+  "a0": "-7304210039150669/18014398509481984",
+  "d": "5764607523034235/288230376151711744",
+  "sL": "-4528212286209965/4503599627370496",
+  "sa": "-4077852323472915/4503599627370496",
+  "sb": "1/2",
+  "sR": "5404319552844595/9007199254740992",
+  "Gmax": "5764607523034235/288230376151711744"
+ },
+ "checks": [
+  {
+   "id": "D1",
+   "group": "data",
+   "method": "exact",
+   "statement": "s_L < s_a <= a_0/2 <= s_b < s_R",
+   "passed": true,
+   "value": ""
+  },
+  {
+   "id": "D2",
+   "group": "data",
+   "method": "exact",
+   "statement": "d > 1/50 (so [0, 1/50] is inside the certified range [0, G_MAX], G_MAX = d)",
+   "passed": true,
+   "value": "d - 1/50 = 4.16e-19"
+  },
+  {
+   "id": "D3",
+   "group": "data",
+   "method": "exact",
+   "statement": "x_a < -24 and y_b < -24",
+   "passed": true,
+   "value": "x_a + 25 = 3.29e-15, y_b + 25 = 5.20e-16"
+  },
+  {
+   "id": "D4",
+   "group": "data",
+   "method": "exact",
+   "statement": "pi < 355/113 (Machin bracket)",
+   "passed": true,
+   "value": ""
+  },
+  {
+   "id": "D5",
+   "group": "data",
+   "method": "exact",
+   "statement": "e > 2718/1000",
+   "passed": true,
+   "value": ""
+  },
+  {
+   "id": "D6.6",
+   "group": "data",
+   "method": "exact",
+   "statement": "0 < (355/113)*6*d <= 1",
+   "passed": true,
+   "value": "u = 0.376992"
+  },
+  {
+   "id": "D6.9",
+   "group": "data",
+   "method": "exact",
+   "statement": "0 < (355/113)*9*d <= 1",
+   "passed": true,
+   "value": "u = 0.565487"
+  },
+  {
+   "id": "D7.d",
+   "group": "data (informational)",
+   "method": "exact",
+   "statement": "d = RN(1/50) (nearest binary64)",
+   "passed": true,
+   "value": ""
+  },
+  {
+   "id": "D7.sL",
+   "group": "data (informational)",
+   "method": "exact",
+   "statement": "sL = RN(a0 - 3/5) (nearest binary64)",
+   "passed": true,
+   "value": ""
+  },
+  {
+   "id": "D7.sa",
+   "group": "data (informational)",
+   "method": "exact",
+   "statement": "sa = RN(a0 - 1/2) (nearest binary64)",
+   "passed": true,
+   "value": ""
+  },
+  {
+   "id": "D7.sb",
+   "group": "data (informational)",
+   "method": "exact",
+   "statement": "sb = 1/2 = RN(1/2) (nearest binary64)",
+   "passed": true,
+   "value": ""
+  },
+  {
+   "id": "D7.sR",
+   "group": "data (informational)",
+   "method": "exact",
+   "statement": "sR = RN(3/5) (nearest binary64)",
+   "passed": true,
+   "value": ""
+  },
+  {
+   "id": "LA",
+   "group": "Lemma A.1",
+   "method": "exact",
+   "statement": "TV_end = (9/4) e^{2 max(x_a, y_b)} <= 3 e^{-50}",
+   "passed": true,
+   "value": "TV_end / (3 e^-50) <= 0.750000000000005"
+  },
+  {
+   "id": "LB1",
+   "group": "Lemma A.2",
+   "method": "exact",
+   "statement": "TV/ln2 < 2.886 with TV = 2 + 2 TV_end",
+   "passed": true,
+   "value": "TV/ln2 <= 2.8853900818"
+  },
+  {
+   "id": "LB2",
+   "group": "Lemma A.2",
+   "method": "exact",
+   "statement": "-3 Omega_max - TV/ln2 > -5 with TV = 2 + 2 TV_end",
+   "passed": true,
+   "value": "Omega_max <= 0.6494052616; -3 Omega_max - TV/ln2 >= -4.833606"
+  },
+  {
+   "id": "LB3",
+   "group": "Lemma A.2",
+   "method": "exact",
+   "statement": "TV/ln2 < 2.886 with TV = 2 + 6 e^{-50}",
+   "passed": true,
+   "value": "TV/ln2 <= 2.8853900818"
+  },
+  {
+   "id": "LB4",
+   "group": "Lemma A.2",
+   "method": "exact",
+   "statement": "-3 Omega_max - TV/ln2 > -5 with TV = 2 + 6 e^{-50}",
+   "passed": true,
+   "value": "-3 Omega_max - TV/ln2 >= -4.833606"
+  },
+  {
+   "id": "LB5",
+   "group": "Lemma A.2",
+   "method": "exact",
+   "statement": "TV/ln2 < 3 (so every zero with Re lambda > 0 has Re lambda < 3 and Im lambda < 3)",
+   "passed": true,
+   "value": ""
+  },
+  {
+   "id": "N3.6",
+   "group": "(N3)",
+   "method": "exact",
+   "statement": "(1/2)(e^{6 a_0} X_6 + eps_*) < 9/200, i.e. e^{6 a_0} X_6 + eps_* < 9/100",
+   "passed": true,
+   "value": "(1/2)(...) <= 0.0449530111; margin >= 0.0000469889"
+  },
+  {
+   "id": "N3.9",
+   "group": "(N3)",
+   "method": "exact",
+   "statement": "(1/2)(e^{9 a_0} X_9 + eps_*) < 9/200, i.e. e^{9 a_0} X_9 + eps_* < 9/100",
+   "passed": true,
+   "value": "(1/2)(...) <= 0.0137260837; margin >= 0.0312739163"
+  },
+  {
+   "id": "N3.6.A",
+   "group": "(N3)",
+   "method": "arb",
+   "statement": "(1/2)(e^{6 a_0} X_6 + eps_*) < 9/200",
+   "passed": true,
+   "value": "enclosure [0.0449530107709 +/- 1.39e-14]"
+  },
+  {
+   "id": "N3.6.AQ",
+   "group": "(N3)",
+   "method": "arb",
+   "statement": "[arb] enclosure <= [exact] bound (m = 6)",
+   "passed": true,
+   "value": ""
+  },
+  {
+   "id": "N3.9.A",
+   "group": "(N3)",
+   "method": "arb",
+   "statement": "(1/2)(e^{9 a_0} X_9 + eps_*) < 9/200",
+   "passed": true,
+   "value": "enclosure [0.0137260830775 +/- 4.12e-14]"
+  },
+  {
+   "id": "N3.9.AQ",
+   "group": "(N3)",
+   "method": "arb",
+   "statement": "[arb] enclosure <= [exact] bound (m = 9)",
+   "passed": true,
+   "value": ""
+  },
+  {
+   "id": "LA.A",
+   "group": "Lemma A.1",
+   "method": "arb",
+   "statement": "(9/4) e^{2 max(x_a, y_b)} <= 3 e^{-50}",
+   "passed": true,
+   "value": "ratio [0.7500000000000049 +/- 4.40e-17]"
+  },
+  {
+   "id": "LB1.A",
+   "group": "Lemma A.2",
+   "method": "arb",
+   "statement": "TV/ln2 < 2.886",
+   "passed": true,
+   "value": "TV/ln2 in [2.88539008178 +/- 2.08e-12]"
+  },
+  {
+   "id": "LB2.A",
+   "group": "Lemma A.2",
+   "method": "arb",
+   "statement": "-3 Omega_max - TV/ln2 > -5",
+   "passed": true,
+   "value": "Omega_max in [0.649405261523 +/- 1.45e-13]"
+  },
+  {
+   "id": "D8.A",
+   "group": "data (informational)",
+   "method": "arb",
+   "statement": "|a_0 - log(2/3)| < 6e-17",
+   "passed": true,
+   "value": "|a_0 - log(2/3)| <= [5.84e-17 +/- 7.74e-21]"
+  }
+ ],
+ "summary": {
+  "x_a": "-144115188075855856/5764607523034235",
+  "y_b": "-144115188075855872/5764607523034235",
+  "N3.6_upper_bound_decimal": "0.0449530111",
+  "N3.6_threshold": "9/200",
+  "N3.9_upper_bound_decimal": "0.0137260837",
+  "N3.9_threshold": "9/200",
+  "all_pass": true
+ }
+}

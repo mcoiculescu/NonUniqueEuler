@@ -1,0 +1,61 @@
+certificate files: sector3_count_cells.json: 5 checks, 0 failures
+   (test_certificates.test_count_certificate: 0.0 s)
+certificate files: sector3_gap_cells.json: 4 checks, 0 failures
+   (test_certificates.test_gap_certificate: 0.0 s)
+checker: accepts well-formed outputs, rejects tampered ones: 36 checks, 0 failures
+   (test_checker_rejects.test_checker_accepts_and_rejects: 0.1 s)
+certification driver: rectangle rule: 9 checks, 0 failures
+   (test_checker_rejects.test_driver_rectangle_rule: 0.0 s)
+ringcert all / check: gating of PASS: 31 checks, 0 failures
+   (test_cli_gating.test_all_gating: 3.7 s)
+ringcert all: a non-reference environment is marked: 3 checks, 0 failures
+   (test_cli_gating.test_non_reference_marked: 0.3 s)
+every command refuses python -O: 2 checks, 0 failures
+   (test_cli_gating.test_optimize_refused_everywhere: 0.4 s)
+sector3-count / sector3-gap: exit status requires the exact checks of the result: 5 checks, 0 failures
+   (test_cli_gating.test_per_item_commands_check_rectangles: 0.1 s)
+constants: non-vacuity: 17 checks, 0 failures
+   (test_constants_nonvacuity.test_thresholds_are_tight: 0.1 s)
+conversions: exp, TVEND, H, 1 - H against 60-digit Decimal: 28 checks, 0 failures
+   (test_conversions.test_exp_and_H: 0.0 s)
+conversions: qball contains its rational; dyadics exact: 10000 checks, 0 failures
+   (test_conversions.test_qball_dyadic: 0.1 s)
+data: exact in Arb; grid: 11 checks, 0 failures
+   (test_data.test_arb_data_and_grid: 0.1 s)
+data: pinned values: 16 checks, 0 failures
+   (test_data.test_pinned_data: 0.0 s)
+data: rn_binary64 against CPython float rounding: 20002 checks, 0 failures
+   (test_data.test_rn_binary64: 0.3 s)
+environment: refusals: 4 checks, 0 failures
+   (test_environment.test_refusals: 1.1 s)
+failure paths: broken enclosure routine caught: 2 checks, 0 failures
+   (test_failure_paths.test_broken_enclosure_is_caught: 0.1 s)
+failure paths: perturbed a_0: 1 checks, 0 failures
+   (test_failure_paths.test_perturbed_data_rejected: 0.3 s)
+failure paths: refusals: 5 checks, 0 failures
+   (test_failure_paths.test_refusals: 0.1 s)
+float-free: constructor guard: 3 checks, 0 failures
+   (test_float_free.test_dynamic_guard: 0.2 s)
+float-free: every operation of the certified modules (instrumented copy): 3 checks, 0 failures
+   (test_float_free.test_every_operation: 13.1 s)
+float-free: static scan: 8 checks, 0 failures
+   (test_float_free.test_static_scan: 0.0 s)
+known answer: constant coefficient closed form: 9 checks, 0 failures
+   (test_known_answers.test_constant_coefficient: 0.2 s)
+agreement with an independent double-precision solver: 26 checks, 0 failures
+   (test_known_answers.test_float_reference_agreement: 1.8 s)
+known answer: no ring, E = 2m: 6 checks, 0 failures
+   (test_known_answers.test_no_ring: 0.2 s)
+known windings (small rectangles): 2 checks, 0 failures
+   (test_known_windings.test_small_known_windings: 7.1 s)
+independent RK4 reference inside the enclosure; mutation M1 caught: 109 checks, 0 failures
+   (test_reference_rk4.test_reference_containment: 8.9 s)
+winding layer: classify: 13 checks, 0 failures
+   (test_winding_layer.test_classify: 0.0 s)
+precision: 64-bit and 128-bit point enclosures: 2 checks, 0 failures
+   (test_winding_layer.test_precision: 0.3 s)
+winding layer: rect_points: 3 checks, 0 failures
+   (test_winding_layer.test_rect_points: 0.0 s)
+winding layer: segment boxes contain their segments: 6000 checks, 0 failures
+   (test_winding_layer.test_segment_boxes: 0.1 s)
+tests: 36365 checks, 0 failures, 0 failing test functions (39 s)

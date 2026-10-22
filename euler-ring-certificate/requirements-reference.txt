@@ -1,0 +1,4 @@
+# Optional: only for validation/reference_dop853.py (an uncertified floating-point reference).
+# These are the versions that produced tests/fixtures/dop853_reference.json.
+numpy==2.3.1
+scipy==1.16.0

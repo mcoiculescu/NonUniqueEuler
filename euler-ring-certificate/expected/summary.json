@@ -1,0 +1,152 @@
+{
+ "format": "ringcert-summary-1",
+ "package_version": "1.0.0",
+ "quick": false,
+ "reference_environment": true,
+ "environment": {
+  "python": "3.13.5",
+  "implementation": "CPython",
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "python_flint": "0.9.0",
+  "flint": "3.6.0",
+  "prec": 128,
+  "modules": {
+   "__init__.py": "f6593ab86a2125ee3b487819c676a88e6436eca828c6c66d24f2dc25913b6efa",
+   "__main__.py": "ca3c7bce6d99810bd9b7042a7a24d862c11e7259d3c30d8ea8dbee2d4324923a",
+   "balls.py": "bfe33f7ba86b20a18ec770a69105d14cc8f904f0752ee7c0cece3f173e151d4b",
+   "cli.py": "5b073f238a657ddb659a8da83f90f6cb5d5b7ad9f86203374e74fc3eaf045c87",
+   "constants.py": "a3ddfcc2c6d0900d2f12d865d3c736313d848a8c3f68d6c3fa4ea8c1fd0f1955",
+   "data.py": "cbf0b8d386769605329b95d97b9cd6df79e87154f583e53a08e443e1ddeb2c07",
+   "environment.py": "1104dbb5256674dc21874b05d2f0832a387b22fbda4ce99f959fc77b77500ee3",
+   "evans.py": "02eef1de67fb006924674efc1373b083542a011ee96b428daaaf88b06d2b396b",
+   "results.py": "b522bb1739cf2ca5f8b4713c0b0a6b237812e7cd7f3a0846391aaf071f02c63a",
+   "sector3.py": "e43c20855855ad63c6b2619c69d060226ad99829afac965e92e8dfd9b61c2441",
+   "winding.py": "2d9f1976a87f25df02bf80b259c8bce969b78a782371efd0a93a45e64a0d5d76"
+  }
+ },
+ "data": {
+  "a0": "-7304210039150669/18014398509481984",
+  "d": "5764607523034235/288230376151711744",
+  "sL": "-4528212286209965/4503599627370496",
+  "sa": "-4077852323472915/4503599627370496",
+  "sb": "1/2",
+  "sR": "5404319552844595/9007199254740992",
+  "Gmax": "5764607523034235/288230376151711744"
+ },
+ "complete": true,
+ "all_pass": true,
+ "steps": [
+  {
+   "step": "constants",
+   "passed": true,
+   "seconds": 0.1,
+   "output": "constants.json"
+  },
+  {
+   "step": "selftest",
+   "passed": true,
+   "seconds": 39.1,
+   "output": "selftest.log"
+  },
+  {
+   "step": "sector3_count",
+   "passed": true,
+   "seconds": 233.3,
+   "output": "sector3_count.json",
+   "mode": "certificate",
+   "cells_file": "sector3_count_cells.json"
+  },
+  {
+   "step": "sector3_gap",
+   "passed": true,
+   "seconds": 316.6,
+   "output": "sector3_gap.json",
+   "mode": "certificate",
+   "cells_file": "sector3_gap_cells.json"
+  },
+  {
+   "step": "check",
+   "passed": true,
+   "output": "check.log"
+  }
+ ],
+ "items": [
+  {
+   "id": "N1",
+   "statement": "(N1) for every G in [0, 1/50], E_3(.;G) has exactly one zero, counted with multiplicity, in {Re lambda >= 9/200}",
+   "status": "PASS",
+   "evidence": {
+    "N1'": {
+     "cells": 25,
+     "coverage": [
+      "0",
+      "5764607523034235/288230376151711744"
+     ],
+     "rectangle": [
+      "9/200",
+      "3",
+      "-5",
+      "3"
+     ],
+     "windings": [
+      "1"
+     ],
+     "ambiguous": 0,
+     "failed": 0,
+     "segments": 15095,
+     "evaluations": 19432,
+     "output": "sector3_count.json"
+    },
+    "lemma_A1": "LA: TV_end/(3e^-50) <= 0.750000000000005",
+    "lemma_A2": "Omega_max <= 0.6494052616; -3 Omega_max - TV/ln2 >= -4.833606",
+    "G_range": "d > 1/50: d - 1/50 = 4.16e-19"
+   }
+  },
+  {
+   "id": "N2",
+   "statement": "(N2) for every G in [0, 1/50], E_3(.;G) has no zero in the closed strip {9/200 <= Re lambda <= 211/2500}",
+   "status": "PASS",
+   "evidence": {
+    "N2'": {
+     "cells": 236,
+     "coverage": [
+      "0",
+      "5764607523034235/288230376151711744"
+     ],
+     "left_edge": "211/2500",
+     "windings": [
+      "1"
+     ],
+     "ambiguous": 0,
+     "failed": 0,
+     "segments": 15793,
+     "evaluations": 28924,
+     "output": "sector3_gap.json"
+    },
+    "uses": "N1"
+   }
+  },
+  {
+   "id": "N3",
+   "statement": "(N3) for m in {6, 9}: e^{m a_0} X_m + eps_* < 9/100",
+   "status": "PASS",
+   "evidence": {
+    "m=6": "(1/2)(...) <= 0.0449530111; margin >= 0.0000469889",
+    "m=9": "(1/2)(...) <= 0.0137260837; margin >= 0.0312739163",
+    "threshold": "9/200 (half of 9/100)",
+    "arb_cross_check": [
+     "enclosure [0.0449530107709 +/- 1.39e-14]",
+     "enclosure [0.0137260830775 +/- 4.12e-14]"
+    ],
+    "output": "constants.json"
+   }
+  }
+ ],
+ "outputs_sha256": {
+  "constants.json": "e48a235923bb8ab9db10c38c9effb9452a965e8e8bee02d6d4b945c09cbb05b5",
+  "sector3_count.json": "2aa43b18d7289b7288f4bc660b1fdbec547458949ee675ef4b23f65cbcf1a1c9",
+  "sector3_gap.json": "f06feec05cc6633b390bb9ee6191ce59c3bd5231a01ffa0f48263c8c9173a786"
+ },
+ "reference_verification": true,
+ "seconds": 589.3
+}

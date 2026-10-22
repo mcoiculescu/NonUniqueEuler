@@ -1,0 +1,30 @@
+TRUE  N1': item and format
+TRUE  N1': not a partial run
+TRUE  N1': data equal the pinned data
+TRUE  N1': G_MAX = d > 1/50
+TRUE  N1': sector 3, expected winding 1
+TRUE  N1': no failed sub-cells
+TRUE  N1': every winding is 1 and no indicator is ambiguous  (25 cells)
+TRUE  N1': the G-cells partition [0, G_MAX] (start 0, end G_MAX, consecutive, positive widths)  (coverage [0, 5764607523034235/288230376151711744])
+TRUE  N1': every rectangle equals R_A = [9/200,3]x[-5,3]
+TRUE  N1': totals consistent  (nseg 15095, ncells 25)
+TRUE  N1': recorded flags agree with the recomputation
+TRUE  N2': item and format
+TRUE  N2': not a partial run
+TRUE  N2': data equal the pinned data
+TRUE  N2': G_MAX = d > 1/50
+TRUE  N2': sector 3, expected winding 1
+TRUE  N2': no failed sub-cells
+TRUE  N2': every winding is 1 and no indicator is ambiguous  (236 cells)
+TRUE  N2': the G-cells partition [0, G_MAX] (start 0, end G_MAX, consecutive, positive widths)  (coverage [0, 5764607523034235/288230376151711744])
+TRUE  N2': every left edge equals 211/2500
+TRUE  N2': every rectangle has x0 < x1 and y0 < y1 (so x0 is its left edge and its boundary is traversed counterclockwise)
+TRUE  N2': 211/2500 > 9/200 (each rectangle lies in {Re lambda > 9/200})
+TRUE  N2': every rectangle lies inside R_A
+TRUE  N2': totals consistent  (nseg 15793, ncells 236)
+TRUE  N2': recorded flags agree with the recomputation
+TRUE  constants: recorded checks all pass  (28 checks)
+TRUE  constants: exact-rational checks re-run now, all pass  (20 checks)
+TRUE  summary: recorded module sha256 equal the modules checking now
+TRUE  summary: recorded sha256 of constants.json, sector3_count.json, sector3_gap.json equal the files checked
+TRUE  summary: recorded reference-environment flag agrees with the recorded versions  (python-flint 0.9.0, FLINT 3.6.0)

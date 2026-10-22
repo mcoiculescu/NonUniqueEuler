@@ -1,0 +1,22 @@
+nonunique-euler-lean
+Copyright 2026 Matei P. Coiculescu
+
+Licensed under the Apache License, Version 2.0 (see LICENSE).
+
+This repository includes files adapted from NavierStokesAndEuler
+(https://github.com/openai/NavierStokesAndEuler), developed by OpenAI and licensed
+under the Apache License, Version 2.0. The adapted files, taken from commit
+f9e8bc5b38b6e212696e8a30e3e91517af887bbd, are
+
+  NonUniqueEuler/Vendor/ODE/GlobalPicard.lean
+      from Euler/EulerProof.lean (lines 18141-18310)
+  NonUniqueEuler/Vendor/Flow/BoundedLipschitzFlow.lean
+      from Euler/BoundedLipschitzFlow.lean (lines 1-125) and
+      Euler/BoundedFlowContinuity.lean (lines 1-98)
+
+The modifications (namespaces, imports, module documentation, and the cross-reference from
+the second file to the first) are stated in the header of each file.
+
+The build depends on Lean 4 and on Mathlib
+(https://github.com/leanprover-community/mathlib4, Apache License, Version 2.0), which
+are fetched at build time and are not included in this repository.

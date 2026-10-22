@@ -1,0 +1,3 @@
+# Runtime requirement of the certified computation (the only one).
+# python-flint 0.9.0 bundles FLINT 3.6.0; the package checks both versions at start-up.
+python-flint==0.9.0

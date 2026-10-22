@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite the paper it accompanies (see preferred-citation)."
+title: "euler-ring-certificate: verification of the numerical hypothesis (N) for non-uniqueness of 2D Euler"
+type: software
+authors:
+  - family-names: Coiculescu
+    given-names: Matei P.
+version: 1.0.0
+license: Apache-2.0
+keywords:
+  - interval arithmetic
+  - computer-assisted proof
+  - Euler equations
+  - Evans function
+preferred-citation:
+  type: article
+  title: "Non-Uniqueness of Weak Solutions to the Unforced Two-Dimensional Euler Equations with Vorticity in L^1 ∩ L^p, II: The Nonlinear Construction"
+  authors:
+    - family-names: Coiculescu
+      given-names: Matei P.
+  year: 2026
