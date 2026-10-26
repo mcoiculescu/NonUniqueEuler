@@ -82,8 +82,8 @@ $\mu^{i-j}$ times the time of ring $j$.
 
 \subsection{Quiet Rings}
 
-A quiet ring is forced by the field of the region inside it and by the field of
-the rings outside it. Lemma~\ref{lem:transfer-step} bounds these two fields by
+A quiet ring is driven by the velocity field of the region inside it and by
+the velocity field of the rings outside it. Lemma~\ref{lem:transfer-step} bounds these two fields by
 the perturbations of the other rings and, for the inner field, by the inner field
 of the next ring inward. With it, Lemma~\ref{lem:O} shows that,
 while ring $j$ and the rings outside it are quiet, ring $j$ dominates them:
@@ -1108,7 +1108,9 @@ The relay ends when the outermost ring saturates, at the time $T_1$.
 Lemma~\ref{lem:time} bounds $T_1$ by a number $\Tstar$ independent of $n$, given
 lower bounds on the amplitudes $\ksh_k$: the active phase of ring $k$ lasts a
 ring-$k$ time $\hat T_k$ of at most order $\log(1/s_k)$, which grows linearly in
-$k$, while $A_k$ grows geometrically.
+$k$, while $A_k$ grows geometrically. The resulting bounds on the relay times
+are summable over infinitely many rings, so the total time remains bounded
+as the number of rings tends to infinity.
 Lemma~\ref{lem:quiet-time} bounds in the same way the ring-$j$ time that a quiet
 ring $j$ spends before its activation; Section~\ref{sec:bootstrap} uses it, with
 Lemma~\ref{lem:theta-quiet} of Section~\ref{sec:param}, to verify the conditions on $\theta_j\tau$ in

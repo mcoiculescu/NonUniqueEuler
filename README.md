@@ -24,7 +24,7 @@ symmetric, is equimeasurable with `f` at every time, and departs from `f` in fin
 | Folder | What it is | Status |
 |---|---|---|
 | [`manuscript/part1/`](manuscript/part1/) | LaTeX source of Part I: the compactness criterion and the linear instability of the ring. | Complete; the version submitted to arXiv. |
-| [`manuscript/part2/`](manuscript/part2/) | LaTeX source of Part II: the nonlinear construction, the verification of Hypothesis (N) and the proof of the main theorem. | Draft, work in progress; not on arXiv. |
+| [`manuscript/part2/`](manuscript/part2/) | LaTeX source of Part II: the nonlinear construction, the verification of Hypothesis (N) and the proof of the main theorem. | Not on arXiv. |
 | [`lean/`](lean/) | A Lean 4 + Mathlib formalization of the whole proof, including the algorithms of the computer-assisted part. See `lean/README.md`. | No `sorry`, only the standard axioms. The compiled run of the verified checker printed `true` on all 261 cells (see below). |
 | [`euler-ring-certificate/`](euler-ring-certificate/) | The computer-assisted proof of (N1)–(N2) in Python with FLINT/Arb, with the certificate (`certificates/*.json`) and the recorded outputs of its run (`expected/`, with SHA-256 checksums). See `euler-ring-certificate/README.md`. | Complete; every cell passes. |
 

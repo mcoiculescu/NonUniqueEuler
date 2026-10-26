@@ -62,7 +62,7 @@ the transport group $e^{t\Lin^{\rm tr}}$, which rotates each circle $\{|y|=r\}$ 
 the angle $\Omega(r;G)t$, and the coupling operator $\mathcal K$, here
 $\mathcal Kw=-(\KBS\ast w)\cdot\nabla\Phi$. The approximate solutions of this
 section are Duhamel integrals of this semigroup. The next lemma shows that they are
-solutions of the forced linear equation, differentiable in time as functions with
+solutions of the inhomogeneous linear equation, differentiable in time as functions with
 values in $X^{k-1}$ when the data lie in $X^k$.
 
 \begin{lemma}
@@ -153,7 +153,8 @@ each transported by the full flow, and write the Euler equations as an equation
 for the deviation $w=\omega_{\mathrm r}-\Phi$ of the ring from $\Phi$. The
 vorticity inside the ring enters the linearization $\Lin(G)$ as a point vortex at
 the origin with its circulation $2\pi G$; the rest of its field, and the field of
-the vorticity outside the ring, form the field $h$, which forces the equation.
+the vorticity outside the ring, form the velocity field $h$, which drives the
+perturbation equation.
 
 \begin{lemma}
 \label{lem:reduction}
@@ -424,9 +425,9 @@ $\|v\|_{H^s}\le y_\epsilon$ and $y_\epsilon(0)\to\|v(0)\|_{H^s}$, proves the lem
 \emph{Approximate solutions.} Following Grenier, we approximate the deviation $w$
 by the first $J$ terms $w^{[1]},\dots,w^{[J]}$ of its formal expansion in powers of
 the size of the data, in which $h$ and the initial value count as terms of first
-order: $w^{[1]}$ solves the linear equation forced by $-h\cdot\nabla\Phi$, with an
+order: $w^{[1]}$ solves the linear equation driven by $-h\cdot\nabla\Phi$, with an
 initial value $w_0$ that is $0$ or $w(0)$ in our applications, and $w^{[j]}$,
-$j\ge2$, solves the linear equation with initial value $0$, forced by the terms of
+$j\ge2$, solves the linear equation with initial value $0$, driven by the terms of
 order $j$ of $B(w,w)-h\cdot\nabla w$. The
 residual of the sum then consists of terms of order larger than $J$
 (Equation~\eqref{eq:hier-res}), and Lemma~\ref{lem:energy} controls the difference
@@ -470,7 +471,7 @@ Theorem~\ref{thm:quiet} shows that it stays small. We bound a norm of the field 
 function $\eta$ of time, and its effect by the Duhamel majorant of $\eta$, defined
 next. Since the semigroup bound of Proposition~I.\ref{I-prop:semigroup} grows like
 $e^{\sigma(G)t}$, the majorant bounds, up to a constant factor, the linear
-response to a forcing of size $\eta$.
+response to a driving term of size $\eta$.
 
 \begin{definition}
 \label{def:majorant}
@@ -625,7 +626,8 @@ envelope $\kappa e^{\sigma(G)u}$ reaches a small size $\delta_0$.
 Corollary~\ref{cor:active-moment} gives the outer moment of the ring, through
 which it drives the rings outside it. The unstable component of the linear
 response is explicit, by Proposition~I.\ref{I-prop:semigroup}; the next lemma
-writes it with a running coefficient $c(u)$, which accounts for the forcing by $h$.
+writes it with a running coefficient $c(u)$, which accounts for the driving by
+the velocity field $h$.
 
 \begin{lemma}
 \label{lem:running}

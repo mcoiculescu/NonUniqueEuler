@@ -1,10 +1,6 @@
-# Part II: The Nonlinear Construction (work in progress)
+# Part II: The Nonlinear Construction
 
-> **Work in progress.** This is a draft. It is shared here so that readers of Part I can see how
-> the argument is completed, but it is not yet ready for public sharing in the way Part I is, and
-> it is not being posted on arXiv at this stage. Statements, numbering and proofs may still change.
-
-LaTeX source of the current draft of
+LaTeX source of
 
 > M. P. Coiculescu, *Non-Uniqueness of Weak Solutions to the Unforced Two-Dimensional Euler
 > Equations with Vorticity in L¹ ∩ Lᵖ, II: The Nonlinear Construction.*
@@ -13,8 +9,7 @@ Part II proves the main theorem. It reduces it to three explicit statements abou
 Part I (Hypothesis 4.17 of Part I), constructs the approximate solutions by relaying an
 instability outward through a multiscale datum, and verifies the three statements: two with
 rigorous interval arithmetic (Appendix A, using the package `euler-ring-certificate`) and one by
-hand. Appendix B gives the existence theory for the smooth solutions used in the construction,
-and Appendix C lists the dependencies of the proof.
+hand. Appendix B gives the existence theory for the smooth solutions used in the construction.
 
 ## Building
 

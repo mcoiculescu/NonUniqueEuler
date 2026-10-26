@@ -112,11 +112,6 @@ Hypothesis~I.\ref{I-hyp:N} holds: the statements \textup{(N1)}, \textup{(N2)} an
 \textup{(N3)} are true.
 \end{theorem}
 
-\begin{proof}[Proof of Theorem~\ref{thm:main}]
-By Theorem~\ref{thm:N-holds}, the hypotheses \textup{(N1)}--\textup{(N3)}
-hold, so Theorem~\ref{thm:main} follows from Proposition~\ref{prop:reduction}.
-\end{proof}
-
 \subsection{Results of Part I}
 \label{sec:II-partI}
 
@@ -129,7 +124,7 @@ the linear instability of the ring under \textup{(N1)}--\textup{(N3)}
 In detail, we use the following definitions and results of Part~I, which we
 cite by their numbers there and do not restate. From
 Section~I.\ref{I-sec:prelim}, we use the properties of the Biot-Savart kernel
-(Lemma~I.\ref{I-lem:BS-basic}) and the multipoles, equimeasurability and
+(Lemma~I.\ref{I-lem:BS-basic}) and the multipole moments, equimeasurability and
 renormalized weak solutions (Definitions~I.\ref{I-def:multipole},
 I.\ref{I-def:equimeasurable} and~I.\ref{I-def:weak}, with
 Equations~(I.\ref{I-eq:weak}) and~(I.\ref{I-eq:renorm})). From
@@ -187,28 +182,45 @@ solution $\omega^{(n)}$ (Theorem~\ref{thm:smooth}), which is $3$-fold
 rotationally symmetric (Lemma~\ref{lem:adm}).
 
 In $\omega^{(n)}$ the instability passes outward like a relay. The unstable
-coefficient of ring $k$ grows at the rate $A_k\sigma(G_k)$ to a fixed size
-$\delta_0$, and we then say that ring $k$ saturates. Its mode-$3$ moment drives
-ring $k-1$ through a field smaller by a factor of order $s_{k-1}^5$
-(Lemma~\ref{lem:coupling}). This drive outgrows the free growth of ring $k-1$
-by a margin of order $\sigma(0)(\mu-1)/\mu$. The forced part of the
-coefficient of ring $k-1$ is a truncated Laplace transform of the drive
-(Lemma~\ref{lem:coupling}, Equation~\eqref{eq:kick-A}). Because of this
-margin, it is dominated by the end of the growth and pinned after saturation. Its modulus lies between two multiples of the size of
-the drive at saturation divided by $\mu-1$, with constants independent of $k$
-and $n$ (Proposition~\ref{prop:kick} and its proof).
+coefficient of ring $k$ grows at the rate $A_k\sigma(G_k)$ per unit physical
+time to a fixed size $\delta_0$, and we then say that ring $k$ saturates.
+The mode-$3$ component of the velocity induced by ring $k$ and the rings
+inside it advects the radial vorticity of ring $k-1$ and drives its unstable
+coefficient. In ring-$(k-1)$ units, this coupling carries the factor
+$\mu s_{k-1}^5$, where $s_{k-1}=r_k/r_{k-1}$ and
+$\mu=A_k/A_{k-1}$ (Lemma~\ref{lem:coupling}). In ring-$k$ time $\tau=A_kt$,
+this velocity component grows at rate $\sigma(G_k)$, while ring $k-1$ grows
+freely at rate $\sigma(G_{k-1})/\mu$. The parameter choices give
+\[
+\sigma(G_k)-\frac{\sigma(G_{k-1})}{\mu}
+\asymp\sigma(0)\frac{\mu-1}{\mu}>0.
+\]
+Here $\sigma(0)=\Re\lamst(0)$ is the instability growth rate of the reference
+ring without a central point vortex. After the free linear evolution of ring
+$k-1$ is factored out, the driven part of its unstable coefficient is a
+truncated Laplace transform of the mode-$3$ moment of the vorticity in ring
+$k$ and the rings inside it (Lemma~\ref{lem:coupling},
+Equation~\eqref{eq:kick-A}). The positive difference of growth rates makes
+this integral dominated by the contribution near the saturation of ring $k$.
+The resulting amplitude remains essentially stationary during the subsequent
+handoff to ring $k-1$. Its modulus lies between two multiples of the size of
+the mode-$3$ driving at saturation divided by $\mu-1$, with constants
+independent of $k$ and $n$ (Proposition~\ref{prop:kick} and its proof).
 
 As $\mu$ is fixed, ring $k-1$ therefore starts with a coefficient of order
 $s_{k-1}^5$ (Step~3 in the proof of Proposition~\ref{prop:bootstrap}), and it
 saturates after a physical time of about
 $5\log(1/s_{k-1})/(\sigma(G_{k-1})A_{k-1})$. Since $\log(1/s_k)$ grows
-linearly in $k$ and $A_k$ geometrically, the total time is bounded by a
-$\Tstar$ independent of $n$ (Lemma~\ref{lem:time}).
+linearly in $k$ and $A_k$ geometrically, the bounds on the relay times are
+summable over infinitely many rings. Thus the total time for the relay remains
+bounded even as the number of rings tends to infinity: every finite relay
+finishes by a time $\Tstar$ independent of $n$ (Lemma~\ref{lem:time}).
 
 The phase clock of Definition~\ref{def:clock} fixes, from $\omega^{(n)}$
 itself, the time at which each ring becomes active and the time at which it is
 expected to saturate. Until it becomes active, a ring stays close to $\Phi$,
-although forced by the fields inside and outside it (Theorem~\ref{thm:quiet}).
+although driven by the velocity fields of the vorticity inside and outside it
+(Theorem~\ref{thm:quiet}).
 The active ring follows its unstable eigenfunction (Theorem~\ref{thm:active}).
 Once the ring just inside it has saturated, the material inside each ring
 stays in a small disk (Proposition~\ref{prop:confine}). The hypotheses of these three statements are
@@ -246,9 +258,6 @@ $\omega^{(n)}$ (Lemma~\ref{lem:nonempty}). Section~\ref{sec:bootstrap} proves
 the joint bootstrap (Proposition~\ref{prop:bootstrap}) and
 Proposition~\ref{prop:reduction}. Appendices~\ref{app:verify}
 and~\ref{app:smooth} prove Theorems~\ref{thm:N-holds} and~\ref{thm:smooth}, respectively.
-Appendix~\ref{app:deps} lists, for each statement on the path to
-Theorem~\ref{thm:main}, the statements of this paper and of Part~I that its
-proof uses and the parts of \textup{(N1)}--\textup{(N3)} on which it depends.
 
 The main idea of a linear instability in physical coordinates driving the
 non-uniqueness mechanism, the use of non-monotone unstable radial vortices and of
@@ -292,6 +301,9 @@ Section~\ref{sec:bootstrap}, which the bootstrap improves to $\NN$. All of them
 lie in $N$, the common support of the spaces $X^s$ of Part~I, and the strict
 inclusion $\NN\subset\operatorname{int}\Nflat$ leaves the room that the bootstrap
 needs.
+We will apply the statement about $S'$ below to a transported ring support,
+to keep it in the next larger annulus when its radial displacement is at most
+$a/16$.
 
 \begin{lemma}
 \label{lem:annuli}
@@ -306,7 +318,7 @@ $\big||y'|-|y|\big|\le a/16$ for some $y\in S$. Then $S'\subset\NNm$
 The inner radii $a$, $\frac78a$, $\frac34a$, $\frac58a$, $\frac12a$, $\frac14a$
 strictly decrease and the outer radii $1$, $\frac54$, $\frac32$, $\frac74$, $2$, $3$
 strictly increase, and the last two radii of each list are those of $N$ and $N'$;
-this gives the chain. If $a\le|y|\le1$ and
+this gives the inclusion chain. If $a\le|y|\le1$ and
 $||y'|-|y||\le a/16$, then $\frac{15}{16}a\le|y'|\le1+\frac a{16}$, and
 $\frac{15}{16}a\ge\frac78a$ and $1+\frac a{16}\le\frac54$ because $a\le4$. If
 instead $y\in\NNm$, then $\frac{13}{16}a\le|y'|\le\frac54+\frac a{16}$, and
@@ -329,78 +341,112 @@ the velocity of every $g\in L^1(\R^2)$ has the complex form
 where $\dd A$ is the area element, the integral converges absolutely and, by differentiation under the
 integral sign, defines a holomorphic function of $z\in\C\setminus\supp g$. Let
 $V$ be a real vector field on an open set $U$ whose complex form $F$ is
-holomorphic on $U$. Then $\partial_{x_1}F=F'$ and $\partial_{x_2}F=iF'$, so every
+holomorphic on $U$. Recall the Wirtinger derivatives
+\[
+\partial_z=\tfrac12(\partial_{x_1}-i\partial_{x_2}),\qquad
+\partial_{\bar z}=\tfrac12(\partial_{x_1}+i\partial_{x_2}).
+\]
+Since $F$ is holomorphic, $\partial_{\bar z}F=0$, and we write
+$F'=dF/dz=\partial_zF$ for its derivative in the complex variable $z$, and
+$F^{(q)}=\partial_z^qF$ for its $q$-th complex derivative.
+Then $\partial_{x_1}F=F'$ and $\partial_{x_2}F=iF'$, so every
 partial derivative of order $q$ of $F$ is $i^{\gamma_2}F^{(q)}$ for the
-corresponding multi-index $\gamma$. Fix one of the $2^q$ ordered $q$-tuples of
-directions. Since $V_1=\Re F$ and $V_2=-\Im F$, the corresponding derivatives of
+corresponding multi-index $\gamma$. Fix one of the $2^q$ ways of applying $q$
+successive derivatives, choosing $\partial_{x_1}$ or $\partial_{x_2}$ at each
+step. Since $V_1=\Re F$ and $V_2=-\Im F$, the corresponding derivatives of
 $V_1$ and $V_2$ at $x$ are the real part and minus the imaginary part of the
 corresponding derivative of $F$ at $z$, a number of modulus $|F^{(q)}(z)|$; so this
 pair of entries of $\nabla^qV(x)$ has Euclidean norm $|F^{(q)}(z)|$. Summing the
-squares over the $2^q$ tuples gives
+squares over these $2^q$ choices gives
 \begin{equation}
 \label{eq:BS-complex-deriv}
 |\nabla^qV(x)|=2^{q/2}\,|F^{(q)}(z)|\qquad(z\in U,\ q\ge0).
 \end{equation}
+The point of this discussion is that, for these holomorphic fields, complex
+derivative bounds and ordinary Cartesian derivative bounds are equivalent,
+with constants depending only on the derivative order $q$.
 
-The next two lemmas bound the field of a rotationally symmetric vorticity away
-from its support: in a disk inside a hole of the support, and outside a disk that
-contains the support, after the monopole is removed. Section~\ref{sec:several}
-applies them to the rings outside and inside a given ring, respectively.
+The next two lemmas bound the velocity induced by a rotationally symmetric
+vorticity away from its support. Both assume that $g$ is real-valued and are
+applied only to real-valued vorticities or vorticity perturbations.
+In Lemma~\ref{lem:hollow}, $\bar g$ denotes the angular average of $g$, not
+its complex conjugate, which would equal $g$; bars on complex coordinates and
+moments continue to denote complex conjugation.
+
+Lemma~\ref{lem:hollow} will control the
+velocity that the outer rings induce on an inner ring: the angular average
+$\bar g$ produces no velocity in the central hole, so only the nonradial
+part $g-\bar g$ contributes there, and rotational symmetry makes its
+velocity small near the origin. Lemma~\ref{lem:ext-multipole} gives the
+corresponding exterior estimate; Section~\ref{sec:several} applies both.
 
 \begin{lemma}
 \label{lem:hollow}
-Let $m_0\ge2$ be an integer and $R>0$. Let $\nu\in (L^1\cap L^\infty)(\R^2)$ be
-real and $m_0$-fold rotationally symmetric with $\supp\nu\subset\{|y|\ge R\}$, and let
-$\bar\nu(y)=\frac1{2\pi}\int_0^{2\pi}\nu(\Orot_\phi y)\dd\phi$ be its angular
-average. Then $\KBS\ast\bar\nu=0$ on $B_R$, and for $|x|\le R/2$,
+Let $m_0\ge2$ be an integer and $R>0$. Let $g\in (L^1\cap L^\infty)(\R^2)$ be
+real-valued and $m_0$-fold rotationally symmetric with $\supp g\subset\{|y|\ge R\}$, and let
+$\bar g(y)=\frac1{2\pi}\int_0^{2\pi}g(\Orot_\phi y)\dd\phi$ be its angular
+average. Then $\KBS\ast\bar g=0$ on $B_R$, and for $|x|\le R/2$,
 \[
-|\KBS\ast\nu(x)|\le\tfrac4{3\pi}\|\nu\|_{L^1}|x|^{m_0-1}R^{-m_0}.
+|\KBS\ast g(x)|\le\tfrac4{3\pi}\|g\|_{L^1}|x|^{m_0-1}R^{-m_0}.
 \]
 \end{lemma}
 
 \begin{proof}
-Let $|z|<R$, so that $|z-\zeta|\ge R-|z|>0$ for $\zeta\in\supp\nu$, and let $u=\KBS\ast\nu$. For $|\zeta|\ge R$ the series
-$(z-\zeta)^{-1}=-\sum_{l\ge1}z^{l-1}\zeta^{-l}$ converges uniformly in $\zeta$, with ratio
-at most $|z|/R$, so Equation~\eqref{eq:BS-complex} gives, term by term,
-$u_1-iu_2=\frac{i}{2\pi}\sum_{l\ge1}c_l(\nu)z^{l-1}$ with
-$c_l(\nu)=\int\nu(\zeta)\zeta^{-l}\dd A(\zeta)$. The substitution $\zeta\mapsto e^{2\pi i/m_0}\zeta$ and the $m_0$-fold rotational
-symmetry of $\nu$ show $c_l(\nu)=e^{-2\pi
-il/m_0}c_l(\nu)$, so $c_l(\nu)=0$ unless $m_0\mid l$. The angular average
-$\bar\nu$ is radial and, like $\nu$, supported in $\{|y|\ge R\}$, so the same
+Let $|z|<R$, so that $|z-\zeta|\ge R-|z|>0$ for $\zeta\in\supp g$, and let $u=\KBS\ast g$. For $|\zeta|\ge R$ the series
+$(z-\zeta)^{-1}=-\zeta^{-1}\sum_{l\ge0}(z/\zeta)^l$ converges uniformly in $\zeta$,
+so Equation~\eqref{eq:BS-complex} gives, term by term,
+$u_1-iu_2=\frac{i}{2\pi}\sum_{l\ge0}c_l(g)z^l$ with
+$c_l(g)=\int g(\zeta)\zeta^{-l-1}\dd A(\zeta)$. The substitution $\zeta\mapsto e^{2\pi i/m_0}\zeta$ and the $m_0$-fold rotational
+symmetry of $g$ show $c_l(g)=e^{-2\pi
+i(l+1)/m_0}c_l(g)$, so $c_l(g)=0$ unless $m_0\mid(l+1)$. The angular average
+$\bar g$ is radial and, like $g$, supported in $\{|y|\ge R\}$, so the same
 expansion applies to it, and integration in the angle
-shows $c_l(\bar\nu)=0$ for $l\ge1$; this proves $\KBS\ast\bar\nu=0$ on $B_R$. It
-also gives $c_l(\nu)=c_l(\nu-\bar\nu)$, so $|c_l(\nu)|\le\|\nu-\bar\nu\|_{L^1}R^{-l}$,
-as $|\zeta|\ge R$ on the support of $\nu-\bar\nu$.
-Since $\nu$ is real, $|u|=|u_1-iu_2|$. Only the terms with $l=jm_0$, $j\ge1$,
+shows $c_l(\bar g)=0$ for $l\ge0$; this proves $\KBS\ast\bar g=0$ on $B_R$. It
+also gives $c_l(g)=c_l(g-\bar g)$, so $|c_l(g)|\le\|g-\bar g\|_{L^1}R^{-l-1}$,
+as $|\zeta|\ge R$ on the support of $g-\bar g$.
+Since $g$ is real, $|u|=|u_1-iu_2|$. Only the terms with $l=(j+1)m_0-1$, $j\ge0$,
 remain, so for $|x|\le R/2$ these bounds and the sum of a geometric series
 give
 \[
-|u(x)|\le\frac{\|\nu-\bar\nu\|_{L^1}}{2\pi}\sum_{j\ge1}|x|^{jm_0-1}R^{-jm_0}
-\le\frac{\|\nu-\bar\nu\|_{L^1}}{2\pi(1-2^{-m_0})}|x|^{m_0-1}R^{-m_0},
+\begin{aligned}
+|u(x)|&\le\frac{\|g-\bar g\|_{L^1}}{2\pi}\sum_{j\ge0}|x|^{(j+1)m_0-1}R^{-(j+1)m_0}\\
+&=\frac{\|g-\bar g\|_{L^1}}{2\pi}|x|^{m_0-1}R^{-m_0}
+\sum_{j\ge0}\Big(\frac{|x|}{R}\Big)^{jm_0}\\
+&\le\frac{\|g-\bar g\|_{L^1}}{2\pi(1-2^{-m_0})}|x|^{m_0-1}R^{-m_0},
+\end{aligned}
 \]
 and $1/(1-2^{-m_0})\le\frac43$ because $m_0\ge2$. Finally
-$\|\nu-\bar\nu\|_{L^1}\le2\|\nu\|_{L^1}$, because averaging over rotations does
+$\|g-\bar g\|_{L^1}\le2\|g\|_{L^1}$, because averaging over rotations does
 not increase the $L^1$ norm.
 \end{proof}
 
 For an integer $m\ge1$ and $g$ as in Definition~I.\ref{I-def:multipole}, let
-$\pout_m[g]$ and $\Qm[g]$ be the multipoles defined there.
-If $\supp g\subset\overline B_{\varrho}$, the expansion
+$\pout_m[g]$ and $\Qm[g]$ be the multipole moments defined there.
+If $\supp g\subset\overline B_{\varrho}$, we use the expansion
 \[
-\log|x-y|=\log|x|-\Re\sum_{k\ge1}\frac1k\Big(\frac yx\Big)^k\quad(|y|<|x|)
+\log|z-w|=\log|z|-\Re\sum_{k\ge1}\frac1k\Big(\frac wz\Big)^k
+\qquad(z,w\in\C,\ |w|<|z|),
 \]
-shows that the angular mode $m$ of the stream function
+where $z$ and $w$ are complex numbers representing points of $\R^2$.
+It shows that the angular mode $m$ of the stream function
 $(2\pi)^{-1}\log|\cdot|\ast g$ of $g$ equals $-(2m)^{-1}\pout_m[g]\,r^{-m}$
 for $r>\varrho$; the series may be integrated term by term against $g$ because,
-for fixed $|x|>\varrho$, it converges uniformly in $y\in\overline B_\varrho$. For real $g$ this is the angular mode $m$ of the exterior
+for fixed $|z|>\varrho$, it converges uniformly in $w\in\overline B_\varrho$. For real $g$ this is the angular mode $m$ of the exterior
 expansion after Definition~I.\ref{I-def:multipole}.
 Section~\ref{sec:kick} uses it for the field that the inner rings induce on a
 ring.
 
+For the exterior estimate, the radial part produces the \emph{monopole}
+velocity $\frac{\Gamma}{2\pi}\frac{x^\perp}{|x|^2}$, where
+$\Gamma=\int g$ is the total circulation, or zeroth vorticity moment.
+This is the velocity of a point vortex at the origin with circulation
+$\Gamma$. Subtracting it isolates the nonradial velocity, which decays faster
+with distance and transmits the instability to the outer rings.
+
 \begin{lemma}
 \label{lem:ext-multipole}
 Let $m\ge1$ and $q\ge0$ be integers, and let $\varrho>0$. Let $g\in L^1(\R^2)$ be
-real and $m$-fold rotationally symmetric with $\supp g\subset\overline{B}_\varrho$, and let $E$ be the
+real-valued and $m$-fold rotationally symmetric with $\supp g\subset\overline{B}_\varrho$, and let $E$ be the
 velocity field $\KBS\ast g$ minus its monopole
 $\frac{1}{2\pi}\big(\int g\big)\frac{x^\perp}{|x|^2}$. Then for $|x|\ge2\varrho$,
 \[
