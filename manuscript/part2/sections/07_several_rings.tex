@@ -40,10 +40,13 @@ $q$. We use the \textbf{scaling
 rule}: if $c\in\R$, $c'>0$ and $W(y)=cV(c'y)$, then
 $\nabla^qW(y)=c\,c'^{\,q}(\nabla^qV)(c'y)$.
 
-We write $F=V_1-iV_2$ for the complex form of a vector field $V$, and we use
+In the complex-variable calculations below, we use the spatial variable
+$z\in\C$ and the conventions for $V(z)$ and its Cartesian derivatives
+from Section~\ref{sec:II-prelim}.
+We write $F(z)=V_1(z)-iV_2(z)$ for the complex form of a vector field $V$, and we use
 Equation~\eqref{eq:BS-complex} for the complex form of $\KBS\ast g$
 (Section~\ref{sec:II-prelim}). The monopole
-$\frac1{2\pi}\big(\int g\big)x^\perp/|x|^2$ of $g$ has complex form $\big(\int g\big)/(2\pi iz)$,
+$\frac1{2\pi}\big(\int g\big)(-\Im z,\Re z)/|z|^2$ of $g$ has complex form $\big(\int g\big)/(2\pi iz)$,
 and the rotation $\Orot$ by the angle $2\pi/m$ (Section~I.\ref{I-sec:prelim}) is
 multiplication by $e^{2\pi i/m}$. For real $g$, the complex forms
 of $\KBS\ast g$ and of $\KBS\ast g$ minus its monopole are holomorphic on
@@ -146,10 +149,10 @@ $|z|\ge\rho_0/s_j$, since $(l+1)\cdots(l+q)\le(l+q)^q$ and $s_j\le\frac12$
 &\le\mathcal M\Big(\frac4a\Big)^q\mathsf S_{m,q}\,s_j^{m+1+q}.
 \end{align*}
 In ring-$j$ units
-$(E_g)_{[j]}(y)=\mu s_jV(y/s_j)$, since $A_{j+1}r_{j+1}=\mu s_jA_jr_j$, and
-$|y/s_j|\ge\rho_0/s_j$ for $y\in N'$. By the scaling rule and
+$(E_g)_{[j]}(z)=\mu s_jV(z/s_j)$, since $A_{j+1}r_{j+1}=\mu s_jA_jr_j$, and
+$|z/s_j|\ge\rho_0/s_j$ for $z\in N'$. By the scaling rule and
 Equation~\eqref{eq:BS-complex-deriv}, on $N'$,
-$|\nabla^q(E_g)_{[j]}(y)|=\mu s_j^{1-q}2^{q/2}|F^{(q)}(y/s_j)|$, which is at most
+$|\nabla^q(E_g)_{[j]}(z)|=\mu s_j^{1-q}2^{q/2}|F^{(q)}(z/s_j)|$, which is at most
 $\mu s_j^{m+2}\mathcal M\,2^{q/2}(4/a)^q\mathsf S_{m,q}$; summing over
 $q\le M_h$ gives $\|(E_g)_{[j]}\|_{C^{M_h}(N')}\le C^{(1)}_{\mathrm T}\varepsilon_j\mathcal M$,
 which is (1).
@@ -220,11 +223,11 @@ nonnegative on the right, and the others are bounded by means of the identity
 Since $6s_{i,k}/a\le\frac14$, the last factor is at most $2^{-(p-1)m}$, and
 $(pm)^q\le(pm+q)^q$; this gives the bound by $\mathsf S_{m,q}$.
 In ring-$k$ units,
-$V_{[k]}(y)=\frac{A_ir_i}{A_kr_k}V_{[i]}(s_{i,k}y)=\mu^{i-k}s_{i,k}^{-1}V_{[i]}(s_{i,k}y)$,
-and $|s_{i,k}y|\le3s_{i,k}$ for $y\in N'$. Hence, on $N'$, by the scaling rule,
+$V_{[k]}(z)=\frac{A_ir_i}{A_kr_k}V_{[i]}(s_{i,k}z)=\mu^{i-k}s_{i,k}^{-1}V_{[i]}(s_{i,k}z)$,
+and $|s_{i,k}z|\le3s_{i,k}$ for $z\in N'$. Hence, on $N'$, by the scaling rule,
 Equation~\eqref{eq:BS-complex-deriv} and $\mu^{i-k}s_{i,k}^{m-2}=b_{i,k}$,
 \[
-|\nabla^qV_{[k]}(y)|=\mu^{i-k}s_{i,k}^{q-1}2^{q/2}|F^{(q)}(s_{i,k}y)|
+|\nabla^qV_{[k]}(z)|=\mu^{i-k}s_{i,k}^{q-1}2^{q/2}|F^{(q)}(s_{i,k}z)|
 \le b_{i,k}\|w\|_{L^1}\frac{2^{q/2}}{2\pi}\Big(\frac2a\Big)^{q+1}\Big(\frac6a\Big)^{m-1-q}\mathsf S_{m,q},
 \]
 and the sum over $q\le M_h$ is $C^{(4)}_{\mathrm T}b_{i,k}\|w\|_{L^1}$. For the last

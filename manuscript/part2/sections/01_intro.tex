@@ -329,9 +329,15 @@ reason.
 Away from the support of a vorticity, complex variables turn the Biot-Savart
 law into a Cauchy integral, which can be expanded in powers of the complex
 variable.
-We call $V_1-iV_2$ the \textbf{complex form} of a vector field $V$, and wherever
-we use complex forms we write $z=x_1+ix_2$ (this $z$ is not the number
-$\lamst(0)$ of Definition~I.\ref{I-def:eigendata}). Since $(\KBS)_1(x)-i(\KBS)_2(x)=(-x_2-ix_1)/(2\pi|x|^2)=1/(2\pi iz)$,
+In these complex-variable calculations we use a single spatial variable
+$z\in\C$. For a real vector field $V=(V_1,V_2)$, we write
+$V(z)=V(\Re z,\Im z)$, and use the same convention for scalar functions.
+The notation $\nabla^qV(z)$ always means the tensor of ordinary Cartesian
+derivatives evaluated at $(\Re z,\Im z)$; it does not denote complex
+differentiation. We call $F(z)=V_1(z)-iV_2(z)$ the \textbf{complex form} of
+$V$. The spatial variable $z$ here is distinct from the constant
+$\lamst(0)$ of Definition~I.\ref{I-def:eigendata}.
+Since $(\KBS)_1(z)-i(\KBS)_2(z)=1/(2\pi iz)$,
 the velocity of every $g\in L^1(\R^2)$ has the complex form
 \begin{equation}
 \label{eq:BS-complex}
@@ -341,7 +347,8 @@ the velocity of every $g\in L^1(\R^2)$ has the complex form
 where $\dd A$ is the area element, the integral converges absolutely and, by differentiation under the
 integral sign, defines a holomorphic function of $z\in\C\setminus\supp g$. Let
 $V$ be a real vector field on an open set $U$ whose complex form $F$ is
-holomorphic on $U$. Recall the Wirtinger derivatives
+holomorphic on $U$. Writing $z=x_1+ix_2$ only to name its two real
+coordinates, recall the Wirtinger derivatives
 \[
 \partial_z=\tfrac12(\partial_{x_1}-i\partial_{x_2}),\qquad
 \partial_{\bar z}=\tfrac12(\partial_{x_1}+i\partial_{x_2}).
@@ -354,19 +361,19 @@ partial derivative of order $q$ of $F$ is $i^{\gamma_2}F^{(q)}$ for the
 corresponding multi-index $\gamma$. Fix one of the $2^q$ ways of applying $q$
 successive derivatives, choosing $\partial_{x_1}$ or $\partial_{x_2}$ at each
 step. Since $V_1=\Re F$ and $V_2=-\Im F$, the corresponding derivatives of
-$V_1$ and $V_2$ at $x$ are the real part and minus the imaginary part of the
+$V_1$ and $V_2$ at $z$ are the real part and minus the imaginary part of the
 corresponding derivative of $F$ at $z$, a number of modulus $|F^{(q)}(z)|$; so this
-pair of entries of $\nabla^qV(x)$ has Euclidean norm $|F^{(q)}(z)|$. Summing the
+pair of entries of $\nabla^qV(z)$ has Euclidean norm $|F^{(q)}(z)|$. Summing the
 squares over these $2^q$ choices gives
 \begin{equation}
 \label{eq:BS-complex-deriv}
-|\nabla^qV(x)|=2^{q/2}\,|F^{(q)}(z)|\qquad(z\in U,\ q\ge0).
+|\nabla^qV(z)|=2^{q/2}\,|F^{(q)}(z)|\qquad(z\in U,\ q\ge0).
 \end{equation}
 The point of this discussion is that, for these holomorphic fields, complex
 derivative bounds and ordinary Cartesian derivative bounds are equivalent,
 with constants depending only on the derivative order $q$.
 
-The next two lemmas bound the velocity induced by a rotationally symmetric
+Lemmas~\ref{lem:hollow} and~\ref{lem:ext-multipole} bound the velocity induced by a rotationally symmetric
 vorticity away from its support. Both assume that $g$ is real-valued and are
 applied only to real-valued vorticities or vorticity perturbations.
 In Lemma~\ref{lem:hollow}, $\bar g$ denotes the angular average of $g$, not
@@ -383,11 +390,11 @@ corresponding exterior estimate; Section~\ref{sec:several} applies both.
 \begin{lemma}
 \label{lem:hollow}
 Let $m_0\ge2$ be an integer and $R>0$. Let $g\in (L^1\cap L^\infty)(\R^2)$ be
-real-valued and $m_0$-fold rotationally symmetric with $\supp g\subset\{|y|\ge R\}$, and let
-$\bar g(y)=\frac1{2\pi}\int_0^{2\pi}g(\Orot_\phi y)\dd\phi$ be its angular
-average. Then $\KBS\ast\bar g=0$ on $B_R$, and for $|x|\le R/2$,
+real-valued and $m_0$-fold rotationally symmetric with $\supp g\subset\{|z|\ge R\}$, and let
+$\bar g(z)=\frac1{2\pi}\int_0^{2\pi}g(\Orot_\phi z)\dd\phi$ be its angular
+average. Then $\KBS\ast\bar g=0$ on $B_R$, and for $|z|\le R/2$,
 \[
-|\KBS\ast g(x)|\le\tfrac4{3\pi}\|g\|_{L^1}|x|^{m_0-1}R^{-m_0}.
+|\KBS\ast g(z)|\le\tfrac4{3\pi}\|g\|_{L^1}|z|^{m_0-1}R^{-m_0}.
 \]
 \end{lemma}
 
@@ -399,20 +406,20 @@ $u_1-iu_2=\frac{i}{2\pi}\sum_{l\ge0}c_l(g)z^l$ with
 $c_l(g)=\int g(\zeta)\zeta^{-l-1}\dd A(\zeta)$. The substitution $\zeta\mapsto e^{2\pi i/m_0}\zeta$ and the $m_0$-fold rotational
 symmetry of $g$ show $c_l(g)=e^{-2\pi
 i(l+1)/m_0}c_l(g)$, so $c_l(g)=0$ unless $m_0\mid(l+1)$. The angular average
-$\bar g$ is radial and, like $g$, supported in $\{|y|\ge R\}$, so the same
+$\bar g$ is radial and, like $g$, supported in $\{|z|\ge R\}$, so the same
 expansion applies to it, and integration in the angle
 shows $c_l(\bar g)=0$ for $l\ge0$; this proves $\KBS\ast\bar g=0$ on $B_R$. It
 also gives $c_l(g)=c_l(g-\bar g)$, so $|c_l(g)|\le\|g-\bar g\|_{L^1}R^{-l-1}$,
 as $|\zeta|\ge R$ on the support of $g-\bar g$.
 Since $g$ is real, $|u|=|u_1-iu_2|$. Only the terms with $l=(j+1)m_0-1$, $j\ge0$,
-remain, so for $|x|\le R/2$ these bounds and the sum of a geometric series
+remain, so for $|z|\le R/2$ these bounds and the sum of a geometric series
 give
 \[
 \begin{aligned}
-|u(x)|&\le\frac{\|g-\bar g\|_{L^1}}{2\pi}\sum_{j\ge0}|x|^{(j+1)m_0-1}R^{-(j+1)m_0}\\
-&=\frac{\|g-\bar g\|_{L^1}}{2\pi}|x|^{m_0-1}R^{-m_0}
-\sum_{j\ge0}\Big(\frac{|x|}{R}\Big)^{jm_0}\\
-&\le\frac{\|g-\bar g\|_{L^1}}{2\pi(1-2^{-m_0})}|x|^{m_0-1}R^{-m_0},
+|u(z)|&\le\frac{\|g-\bar g\|_{L^1}}{2\pi}\sum_{j\ge0}|z|^{(j+1)m_0-1}R^{-(j+1)m_0}\\
+&=\frac{\|g-\bar g\|_{L^1}}{2\pi}|z|^{m_0-1}R^{-m_0}
+\sum_{j\ge0}\Big(\frac{|z|}{R}\Big)^{jm_0}\\
+&\le\frac{\|g-\bar g\|_{L^1}}{2\pi(1-2^{-m_0})}|z|^{m_0-1}R^{-m_0},
 \end{aligned}
 \]
 and $1/(1-2^{-m_0})\le\frac43$ because $m_0\ge2$. Finally
@@ -422,22 +429,42 @@ not increase the $L^1$ norm.
 
 For an integer $m\ge1$ and $g$ as in Definition~I.\ref{I-def:multipole}, let
 $\pout_m[g]$ and $\Qm[g]$ be the multipole moments defined there.
-If $\supp g\subset\overline B_{\varrho}$, we use the expansion
+The following lemma gives the angular modes of the stream function of the
+inner rings outside the disk containing their support, where the outer rings
+are located; Section~\ref{sec:kick} uses this formula.
+
+\begin{lemma}
+\label{lem:exterior-mode}
+Let $m\ge1$ be an integer and $\varrho>0$. Let $g\in L^1(\R^2)$ be
+real-valued with compact support in $\overline B_{\varrho}\setminus\{0\}$,
+and put $\psi=(2\pi)^{-1}\log|\cdot|\ast g$. Then the angular mode $m$ of
+$\psi$ is
+\[
+\psi_m(r)=-\frac1{2m}\pout_m[g]\,r^{-m}\qquad(r>\varrho).
+\]
+\end{lemma}
+
+\begin{proof}
+For complex numbers $z,w$ with $|w|<|z|$, we have
 \[
 \log|z-w|=\log|z|-\Re\sum_{k\ge1}\frac1k\Big(\frac wz\Big)^k
-\qquad(z,w\in\C,\ |w|<|z|),
+.
 \]
-where $z$ and $w$ are complex numbers representing points of $\R^2$.
-It shows that the angular mode $m$ of the stream function
-$(2\pi)^{-1}\log|\cdot|\ast g$ of $g$ equals $-(2m)^{-1}\pout_m[g]\,r^{-m}$
-for $r>\varrho$; the series may be integrated term by term against $g$ because,
-for fixed $|z|>\varrho$, it converges uniformly in $w\in\overline B_\varrho$. For real $g$ this is the angular mode $m$ of the exterior
-expansion after Definition~I.\ref{I-def:multipole}.
-Section~\ref{sec:kick} uses it for the field that the inner rings induce on a
-ring.
+For fixed $|z|>\varrho$, the series converges uniformly in
+$w\in\overline B_\varrho$, so it may be integrated term by term against $g$.
+Writing $z=re^{i\theta}$, the angular mode $m$ of
+$\Re((w/z)^k)$ vanishes unless $k=m$, when it equals
+$\tfrac12\bar w^{\,m}r^{-m}$. Hence
+\[
+\psi_m(r)=-\frac{r^{-m}}{4\pi m}\int g(w)\bar w^{\,m}\dd A(w)
+=-\frac1{2m}\pout_m[g]\,r^{-m}.
+\qedhere
+\]
+\end{proof}
 
-For the exterior estimate, the radial part produces the \emph{monopole}
-velocity $\frac{\Gamma}{2\pi}\frac{x^\perp}{|x|^2}$, where
+In Lemma~\ref{lem:ext-multipole} below, we estimate the exterior velocity after
+subtracting its axisymmetric circulation field, or \emph{monopole},
+$\frac{\Gamma}{2\pi}\frac{(-\Im z,\Re z)}{|z|^2}$, where
 $\Gamma=\int g$ is the total circulation, or zeroth vorticity moment.
 This is the velocity of a point vortex at the origin with circulation
 $\Gamma$. Subtracting it isolates the nonradial velocity, which decays faster
@@ -448,9 +475,9 @@ with distance and transmits the instability to the outer rings.
 Let $m\ge1$ and $q\ge0$ be integers, and let $\varrho>0$. Let $g\in L^1(\R^2)$ be
 real-valued and $m$-fold rotationally symmetric with $\supp g\subset\overline{B}_\varrho$, and let $E$ be the
 velocity field $\KBS\ast g$ minus its monopole
-$\frac{1}{2\pi}\big(\int g\big)\frac{x^\perp}{|x|^2}$. Then for $|x|\ge2\varrho$,
+$\frac{1}{2\pi}\big(\int g\big)\frac{(-\Im z,\Re z)}{|z|^2}$. Then for $|z|\ge2\varrho$,
 \[
-|\nabla^qE(x)|\le C_{m,q}\,\|g\|_{L^1}\,\varrho^m|x|^{-m-1-q},\qquad
+|\nabla^qE(z)|\le C_{m,q}\,\|g\|_{L^1}\,\varrho^m|z|^{-m-1-q},\qquad
 C_{m,q}=\frac{2^q}{2\pi}\sup_{0<\rho\le1/2}\rho^{-m}\sum_{l\in m\N}(l+q)^q\rho^{l}<\infty .
 \]
 \end{lemma}
@@ -459,7 +486,7 @@ C_{m,q}=\frac{2^q}{2\pi}\sup_{0<\rho\le1/2}\rho^{-m}\sum_{l\in m\N}(l+q)^q\rho^{
 Let $|z|>\varrho$. For $|\zeta|\le\varrho$ the series
 $(z-\zeta)^{-1}=\sum_{l\ge0}\zeta^lz^{-l-1}$ converges uniformly in $\zeta$, so
 Equation~\eqref{eq:BS-complex} gives
-$(\KBS\ast g)_1-i(\KBS\ast g)_2=\frac1{2\pi i}\sum_{l\ge0}Q_lz^{-l-1}$ with
+$(\KBS\ast g)_1(z)-i(\KBS\ast g)_2(z)=\frac1{2\pi i}\sum_{l\ge0}Q_lz^{-l-1}$ with
 $Q_l=\int g(\zeta)\zeta^l\dd A(\zeta)$. The term $l=0$, which is $(\int g)/(2\pi iz)$, is the
 monopole, and $Q_l=0$ unless $m\mid l$, because the substitution $\zeta\mapsto
 e^{2\pi i/m}\zeta$ and the $m$-fold rotational symmetry of $g$ give $Q_l=e^{2\pi il/m}Q_l$. Hence the complex form of $E$ is
@@ -468,14 +495,14 @@ $|Q_l|\le\|g\|_{L^1}\varrho^l$ because $|\zeta|\le\varrho$ on $\supp g$. The ser
 $\{|z|>\varrho\}$, so $F$ is holomorphic there, may be differentiated term by
 term, and, as $E$ is real,
 Equation~\eqref{eq:BS-complex-deriv} gives
-$|\nabla^qE(x)|=2^{q/2}|F^{(q)}(z)|\le2^q|F^{(q)}(z)|$. With
+$|\nabla^qE(z)|=2^{q/2}|F^{(q)}(z)|\le2^q|F^{(q)}(z)|$. With
 $|\partial_z^qz^{-l-1}|=(l+1)\cdots(l+q)|z|^{-l-1-q}\le(l+q)^q|z|^{-l-1-q}$ and
 $\rho=\varrho/|z|\le\frac12$,
 \[
 |F^{(q)}(z)|\le\frac{\|g\|_{L^1}}{2\pi}|z|^{-1-q}\sum_{l\in m\N}(l+q)^q\rho^l
 \le\frac{C_{m,q}}{2^q}\|g\|_{L^1}\rho^m|z|^{-1-q},
 \]
-and $\rho^m|z|^{-1-q}=\varrho^m|x|^{-m-1-q}$. The constant is finite, because
+and $\rho^m|z|^{-1-q}=\varrho^m|z|^{-m-1-q}$. The constant is finite, because
 $\rho^{-m}\sum_{l\in m\N}(l+q)^q\rho^l=\sum_{j\ge1}(mj+q)^q\rho^{m(j-1)}$ is
 nondecreasing in $\rho$ and finite at $\rho=\frac12$.
 \end{proof}
@@ -556,10 +583,24 @@ By density of $C_c^\infty$ in $H^1$ the inequality holds on $H^1$. Then, by the
 same inequality between the means,
 $\|g\|_{L^4}\le2^{1/4}\|g\|_{L^2}^{1/2}\|\nabla g\|_{L^2}^{1/2}\le2^{-1/4}\|g\|_{H^1}$.
 
-(E2) Since $\widehat{\Delta g}=-|\zeta|^2\hat g$, Plancherel's theorem gives
-$\|(1+|\zeta|^2)\hat g\|_{L^2}=2\pi\|g-\Delta g\|_{L^2}\le2\sqrt3\,\pi\|g\|_{H^2}$,
-where the inequality follows from the triangle inequality for the three terms of
-$g-\Delta g$ and the Cauchy-Schwarz inequality.
+(E2) Since $\Delta g=\partial_1^2g+\partial_2^2g$, the triangle inequality
+and then the arithmetic mean--quadratic mean (AM--QM) inequality give
+\[
+\begin{aligned}
+\|g-\Delta g\|_{L^2}
+&\le\|g\|_{L^2}+\|\partial_1^2g\|_{L^2}+\|\partial_2^2g\|_{L^2}\\
+&\le\sqrt3\big(\|g\|_{L^2}^2+\|\partial_1^2g\|_{L^2}^2
++\|\partial_2^2g\|_{L^2}^2\big)^{1/2}
+\le\sqrt3\,\|g\|_{H^2},
+\end{aligned}
+\]
+since the three squared norms are terms in $\|g\|_{H^2}^2$.
+Our Fourier normalization gives $\|\hat h\|_{L^2}=2\pi\|h\|_{L^2}$ by
+Plancherel's theorem. Thus, using $\widehat{\Delta g}=-|\zeta|^2\hat g$,
+\[
+\|(1+|\zeta|^2)\hat g\|_{L^2}=2\pi\|g-\Delta g\|_{L^2}
+\le2\sqrt3\,\pi\|g\|_{H^2}.
+\]
 As $\int_{\R^2}(1+|\zeta|^2)^{-2}\dd\zeta=\pi$, Cauchy-Schwarz gives
 $\|\hat g\|_{L^1}\le\sqrt\pi\,\|(1+|\zeta|^2)\hat g\|_{L^2}$. Thus $\hat g\in L^1$, the
 Fourier inversion formula gives a bounded continuous representative, and
@@ -643,7 +684,9 @@ $\nabla\partial^{\alpha-\beta}w\in L^2$ for $\beta\le\alpha$; so each product in
 the identity, as
 well as $\tilde U_n\cdot\nabla w$ and $\tilde U_n\cdot\nabla\partial^\alpha w$,
 converges in $L^1$, and the identity passes to the limit. We bound the terms on
-the right according to $|\beta|$. Write each of them as
+the right according to $|\beta|$. Here $l\in\{1,2\}$ indexes the Cartesian
+components $U_l$ and $\tilde U_l$, whereas $n$ above indexes the approximating
+sequence $\tilde U_n$. Write each term as
 $\sum_l\partial^\beta\tilde U_l\,\partial_l\partial^{\alpha-\beta}w$. If $|\beta|=1$,
 its $L^2$ norm is at most $2\|\nabla\tilde U\|_{L^\infty}\|w\|_{H^k}$. If
 $|\beta|=|\alpha|\ge2$, it is at most
