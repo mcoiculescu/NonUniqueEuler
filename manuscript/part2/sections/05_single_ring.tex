@@ -140,8 +140,14 @@ so $V\in C^1([0,2T];X^{k-1})$ and $V'=g+W$. For $t\in[0,T]$ and $0<\epsilon\le T
 $V(t+\epsilon)=S(\epsilon)V(t)+\int_t^{t+\epsilon}S(t+\epsilon-\tau)g(\tau)\dd\tau$, and $\epsilon^{-1}$ times the
 last integral tends to $g(t)$ as $\epsilon\to0$, by the continuity of
 $(s,\tau)\mapsto S(s-\tau)g(\tau)$ at $(t,t)$. Hence
-$\epsilon^{-1}(S(\epsilon)V(t)-V(t))\to V'(t)-g(t)=W(t)$; that is, $V(t)\in D(A)$ and
-$AV(t)=W(t)$. With the case $x=f_0\in X^k\subset D(A)$ above, $u=S(\cdot)f_0+V$ lies in
+$\epsilon^{-1}(S(\epsilon)V(t)-V(t))\to V'(t)-g(t)=W(t)$ in $X^{k-1}$.
+By definition of the generator $A$, existence of this right difference-quotient
+limit means that $V(t)\in D(A)$, and the limit is $AV(t)$; hence $AV(t)=W(t)$.
+Now apply the semigroup differentiation argument immediately preceding
+Equation~\eqref{eq:semigroup-FTC} to $x=f_0$, which is admissible since
+$f_0\in X^k\subset D(A)$. It gives $S(t)f_0\in D(A)$ and
+$\frac{\dd}{\dd t}S(t)f_0=AS(t)f_0=S(t)Af_0$.
+Combining these facts, $u=S(\cdot)f_0+V$ lies in
 $C^1([0,T];X^{k-1})$, $u(t)\in D(A)$ with $Au(t)=S(t)Af_0+W(t)$, and
 $\partial_tu=S(\cdot)Af_0+g+W=Au+g=\Lin(G)u+g$, since $u(t)\in X^k$. Finally, $S(t)$
 preserves real-valued functions.
@@ -153,14 +159,25 @@ response to the prescribed driving term $g$.
 
 \subsection{The Perturbation Equation}
 
-We split a smooth solution into a ring $\omega_{\mathrm r}$, the vorticity
-$\omega_{\mathrm i}$ inside it and the vorticity $\omega_{\mathrm o}$ outside it,
-each transported by the full flow, and write the Euler equations as an equation
-for the deviation $w=\omega_{\mathrm r}-\Phi$ of the ring from $\Phi$. The
-vorticity inside the ring enters the linearization $\Lin(G)$ as a point vortex at
-the origin with its circulation $2\pi G$; the rest of its field, and the field of
-the vorticity outside the ring, form the velocity field $h$, which drives the
-perturbation equation.
+We start with the global smooth solution $\omega$ given by
+Theorem~\ref{thm:smooth} for a real-valued, $3$-fold rotationally symmetric
+initial vorticity $\omega_0\in C_c^\infty(\R^2)$. In the applications,
+$\omega$ is a rescaled, and possibly time-translated, version of the smooth
+approximate solution $\omega^{(n)}$ of Definition~\ref{def:approx}.
+We split its initial datum as
+$\omega_0=\omega_{\mathrm r}(0)+\omega_{\mathrm i}(0)+\omega_{\mathrm o}(0)$,
+corresponding to the selected ring, the vorticity inside it and the vorticity
+outside it, and transport all three components by the full flow.
+
+Our principal analysis concerns $\omega_{\mathrm r}$, through its deviation
+$w=\omega_{\mathrm r}-\Phi$ from the reference ring. The inner vorticity's
+circulation $2\pi G$ enters the linearization $\Lin(G)$ as a point vortex at
+the origin. The rest of its velocity field, together with the velocity field
+of $\omega_{\mathrm o}$, forms the field $h$ in the perturbation equation.
+The later estimates use the separation between the rings to control $h$ as
+a small perturbation on the selected ring; the inner and outer vorticities
+themselves need not be small, and $h$ retains its role in driving the
+instability.
 
 \begin{lemma}
 \label{lem:reduction}
