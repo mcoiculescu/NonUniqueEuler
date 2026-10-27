@@ -323,11 +323,8 @@ remaining terms of its active phase.
 
 \begin{proposition}
 \label{prop:relay}
-Assume (SA) and (Det), and let $C_0\ge1$ and $K_1>0$. Put
-\[
-C_\Xi=C_\Xi(C_0,K_1)=\max(1,2C_Q)\,K_1+\frac{2C_2C(C_0)+C_0}{\sigb\min(1,\sigb)^m},
-\]
-with $C(C_0)$ of Theorem~\ref{thm:active}. As a function of $(C_0,K_1)$, it
+Assume (SA) and (Det), and let $C_0\ge1$ and $K_1>0$.
+There is a constant $C_\Xi=C_\Xi(C_0,K_1)$ for the estimates below. It
 depends only on $C_0$, $K_1$, $\sigb$ and the constants of (SA1)--(SA2), and not
 on $\mu$, $\delta_0$,
 $\Tpin$, $\sbar$, $\kseed$, $n$ or the level. Let $1\le j<n$, assume that the
@@ -481,11 +478,10 @@ Adding the three parts, with $\langle\log(\delta_0/\kappa)\rangle\ge1$ for the
 part over $\Iint_1$, $\maj^{\mathrm{in}}_j(\tau)$ is at most
 $C_M\varepsilon_je^{x_j\Tpin}[\frac{4C_2\delta_0}{\sigb(\mu-1)}+C_D(\Tpin)
 +C'_\Xi\delta_0(\frac\kappa{\delta_0})^{1-\gamma_j}\langle\log\frac{\delta_0}\kappa\rangle^{m+1}]$
-with
-\[
-C'_\Xi=K_1\Big(\frac{2C_Q}{\sigb(\mu-1)}+1\Big)+\frac{2C_2C(C_0)+C_0}{\sigb\min(1,\sigb)^m}\le C_\Xi\Big(1+\frac1{\sigb(\mu-1)}\Big),
-\]
-because $K_1(\frac{2C_Q}{\sigb(\mu-1)}+1)\le\max(1,2C_Q)K_1(1+\frac1{\sigb(\mu-1)})$.
+where $C'_\Xi\lesssim1+(\sigb(\mu-1))^{-1}$, with a constant depending
+only on $C_0$, $K_1$ and the fixed data of (SA1)--(SA2).
+Choose $C_\Xi(C_0,K_1)$ large enough that
+$C'_\Xi\le C_\Xi(1+(\sigb(\mu-1))^{-1})$.
 So $\maj^{\mathrm{in}}_j(\tau)$ is at most half the right side of
 Equation~\eqref{eq:relay}, and $\maj_j\le2\maj^{\mathrm{in}}_j$ gives (ii) and (iii).
 
@@ -504,11 +500,8 @@ Theorem~\ref{thm:active}.
 
 \begin{lemma}
 \label{lem:Oprime}
-Assume (SA) and (Det), and let $C_0\ge1$, $K_1>0$ and $C_F\in(0,C_0]$. Put
-\[
-\Cop=\Cop(C_0,K_1)=4C_OC_QC_M\Big[2C_QK_1+4C_2+\sigb K_1+2\sigb\big(2C_2C(C_0)+C_0\big)\Ip{m}{\tfrac{9\sigma}{64}}\Big],
-\]
-with $C(C_0)$ of Theorem~\ref{thm:active}. As a function of $(C_0,K_1)$, it
+Assume (SA) and (Det), and let $C_0\ge1$, $K_1>0$ and $C_F\in(0,C_0]$.
+There is a constant $\Cop=\Cop(C_0,K_1)$ for the estimate below. It
 depends only on $C_0$, $K_1$, $\sigma$, $\sigb$ and the constants of
 (SA1)--(SA2), and not on $C_F$, $\mu$,
 $\delta_0$, $\Tpin$, $\sbar$, $\kseed$, $n$ or the level. Let $1\le k\le n$, assume
@@ -597,7 +590,7 @@ and, as $\sigma_{k-1}\ge\frac{9\sigma}{64}$, $\Ip{m}{\cdot}$ is decreasing and
 $C_F\le C_0$, the inner part contributes at most
 $2C_0\Ip{m}{\frac{9\sigma}{64}}C_M\varepsilon_{k-1}\hat a_k(u)$.
 
-Using $\sigb(\mu-1)\le\sigb$ and the definition of $\Cop$, the coefficients of
+Using $\sigb(\mu-1)\le\sigb$ and choosing $\Cop(C_0,K_1)$ sufficiently large, the coefficients of
 $C_M\varepsilon_{k-1}\hat a_k(u)$ found above add up to at most
 $\Cop/(4C_OC_QC_M\sigb(\mu-1))$; so, for $\tau'\in[\tau^{\mathrm{act}},A_{k-1}t]$,
 \[
@@ -824,17 +817,13 @@ $D_j(t)$ is the disjoint union of $S_j(t)$ and $D_{j+1}(t)$ for $j\le n$, $t\ge0
 
 \begin{lemma}
 \label{lem:kicktrue}
-Assume (SA) and (Det), and let $C_0\ge1$ and $K_1>0$. Put
-\[
-\begin{gathered}
-C_{\mathrm{id}}=4\pi\Big(\frac{17}{16}\Big)^m\max_{G\in[0,\Gone]}|\pout_*(G)|,\qquad
-C_{\mathrm{od}}=\frac{32\pi}{9}\,\Cls\max_{G\in[0,\Gone]}|\pout_*(G)|,\\
-C_{\mathrm{tr}}(C_0)=\frac{32\pi C_3}{15\sigma}\Big(1+\frac{16}{15\sigma}\Big)^mC(C_0),\qquad
-C_{\mathrm{qr}}=\max(2^m,4\pi),\\
-\Cdeep=\frac{4\mu\Cmom\big(1+\Tpin+\frac{32}{15\sigma}\big)^m}{\sigma\Klo},
-\end{gathered}
-\]
-with $C_3$ and $C(C_0)$ of Theorem~\ref{thm:active} and $\Cmom$ of
+Assume (SA) and (Det), and let $C_0\ge1$ and $K_1>0$.
+Choose constants $C_{\mathrm{id}}$, $C_{\mathrm{od}}$ and $C_{\mathrm{qr}}$
+depending only on the fixed data of (SA1)--(SA2), and
+$C_{\mathrm{tr}}(C_0)$ with the additional dependence on $C_0$, large enough
+for the error bounds in the proof below. Also choose $\Cdeep>0$ depending
+only on $\mu$, $\Tpin$, $\Klo$, $\sigma$ and $\Cmom$ for the deep-ring bound there,
+with $\Cmom$ of
 Proposition~\ref{prop:confine}. Let $1\le k<n$, assume that
 the clock is defined up to level $k+1$, put $\kappa=\ksh_{k+1}$,
 $T_g=\hat T_{k+1}$ and
@@ -992,11 +981,13 @@ $\hat a(u)\rhohat(u)\le C(C_0)\kappa\jap{u}^me^{\sigma'u}$; as
 $x(T_g-u)+\sigma'u\le\max(x,\sigma')T_g$ on $[0,T_g]$,
 $\jap{T_g}\le(1+\frac{16}{15\sigma})L$, $1-\max(x,\sigma')/\sigma_+\ge\gamma_\mu$ and
 $\kappa<\delta_0$, it contributes at most
-\begin{align*}
+\[
 2\pi C_3C(C_0)\,T_g\jap{T_g}^m\kappa e^{\max(x,\sigma')T_g}
-&\le2\pi C_3C(C_0)\frac{16L}{15\sigma}\Big(1+\frac{16}{15\sigma}\Big)^mL^m\,\delta_0\Big(\frac\kappa{\delta_0}\Big)^{\gamma_\mu}\\
-&=C_{\mathrm{tr}}(C_0)\,\delta_0\Big(\frac\kappa{\delta_0}\Big)^{\gamma_\mu}L^{m+1}.
-\end{align*}
+\le C_{\mathrm{tr}}(C_0)\,\delta_0
+\Big(\frac\kappa{\delta_0}\Big)^{\gamma_\mu}L^{m+1},
+\]
+where $C_{\mathrm{tr}}(C_0)$ depends only on $C_0$ and the fixed data of
+(SA1)--(SA2).
 The inner drift term is absent if $k+1=n$. If $k+1<n$, we use
 $\rT(\Tpin+\mu u)\le\rT(\Tpin)(1+\mu u)^me^{-\sigma\mu u/4}$,
 $(1+\mu u)^m\le\mu^m(1+u)^m$, $\mu\le\frac{17}{16}$, $1-x/\sigma_+\ge\vartheta_\mu$ and
@@ -1025,7 +1016,7 @@ $s_{k+1}^{m+2}\le\kappa/\Klo$, $\kappa e^{xT_g}=\delta_0(\kappa/\delta_0)^{1-x/\
 $1-x/\sigma_+\ge\vartheta_\mu$ and $\kappa<\delta_0$, the deep term contributes at most
 \[
 \frac{4\mu\Cmom}{\sigma\Klo}\Big(1+\Tpin+\frac{32}{15\sigma}\Big)^mL^m\,\kappa e^{xT_g}
-=\Cdeep\,\delta_0\Big(\frac\kappa{\delta_0}\Big)^{1-x/\sigma_+}L^m
+\le\Cdeep\,\delta_0\Big(\frac\kappa{\delta_0}\Big)^{1-x/\sigma_+}L^m
 \le\Cdeep\,\delta_0\Big(\frac\kappa{\delta_0}\Big)^{\vartheta_\mu}L^m .
 \]
 As $L\ge1$, the $\kappa^{1/2}$-, transient,

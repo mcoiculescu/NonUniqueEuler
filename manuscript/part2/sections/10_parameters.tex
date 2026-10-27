@@ -41,24 +41,23 @@ them, are defined there; the list only fixes the order in which they are chosen.
 \item[\textup{(P0.6)}] $c_N$, $C_N$, $\cout$ of Lemma~I.\ref{I-lem:uniform};
   $C_{\mathrm{qr}}$, $C_{\mathrm{id}}$, $C_{\mathrm{od}}$
   and the function $C_{\mathrm{tr}}(\cdot)$ of Lemma~\ref{lem:kicktrue}.
-\item[\textup{(P1)}] $\delta_0\in\big(0,\min(\dH,\dkick,\drd)\big]$, where
-  $\dkick=\frac{225\,\sigma\cout}{40960\,\pi|z|C_3}$ and $\drd=\frac{\cout}{16\pi\Cp C_2}$;
-  equivalently,
+\item[\textup{(P1)}] Choose $\delta_0\in(0,\dH]$ sufficiently small that
   $\frac{16}{15}\cdot\frac{2\pi C_3\delta_0^2}{\sigma}\le\frac14\cdot\frac{15}{16}\cdot\frac{\cout\delta_0}{20|z|}$
   and $\Cp C_2\delta_0\le\frac{\cout}{16\pi}$.
 \item[\textup{(P2)}] $\mu\in(1,\mu_{\max}]$, with
   $\mu_{\max}=1+\min\big(c'\delta_0,\frac1{16}\big)$ and
-  $c'=\frac{15}{16}\cdot\frac{\cout}{10|z|\,\Cmom\,\Ip{m}{\sigma/4}}$; then
+  a fixed $c'>0$ sufficiently small that
+  $c'\le\frac{15}{16}\cdot\frac{\cout}{10|z|\,\Cmom\,\Ip{m}{\sigma/4}}$; then
   $\vartheta_\mu$, $\gamma_\mu$, $\gamma'_\mu$, $\CDuh$ of Definition~\ref{def:standing},
   and $\KO$ of Lemma~\ref{lem:O}.
 \item[\textup{(P3)}] $\Tpin>0$ with $\rT(\Tpin)\le\frac1{64}$, with the function
   $\rT$ of Definition~\ref{def:standing}. Then $C_D(\Tpin)$
   (Proposition~\ref{prop:relay}); $c_K$, $K_1$, $\Abar$, $\Klo$, $\Kup$, $\Chand$
   (Definition~\ref{def:K1});
-  $C_F=\Cin\,\mu\,(2+2\Cstar\Tpin)^m(1+2\Cstar)^m/\Klo$; $\Cdeep$
+  $C_F\ge\Cin\,\mu\,(2+2\Cstar\Tpin)^m(1+2\Cstar)^m/\Klo$; $\Cdeep$
   (Lemma~\ref{lem:kicktrue}); $\Tz$ (Lemma~\ref{lem:time}) and
-  $C_\tau=\max\{3,\frac{2m+5}{\sigma'},\frac{3(m+2)}{\sigma'}\}$.
-\item[\textup{(P4)}] $C_0=\max\{1,\,2\Cseed,\,\Chand,\,C_F\}$. Then $\kappa_0(C_0)$,
+  choose $C_\tau\ge\max\{3,\frac{2m+5}{\sigma'},\frac{3(m+2)}{\sigma'}\}$.
+\item[\textup{(P4)}] Choose $C_0\ge\max\{1,\,2\Cseed,\,\Chand,\,C_F\}$. Then $\kappa_0(C_0)$,
   $\bar t_1(C_0)$ and $C(C_0)$ (Theorem~\ref{thm:active}); $C_{\mathrm{tr}}(C_0)$
   (Lemma~\ref{lem:kicktrue}); $C_\Xi(C_0,K_1)$ (Proposition~\ref{prop:relay});
   $\Cop(C_0,K_1)$ (Lemma~\ref{lem:Oprime}).
@@ -184,7 +183,7 @@ Lemma~\ref{lem:field-bound} state them as hypotheses.
 \raggedright $C_{L1}$, $C_M$, $C_O$, $\Cin$, $C_\eta$ & (P0.5) & \raggedright $a$, $m$, $M_h$, $\|\Phi\|_{L^1}$ \tabularnewline
 \raggedright $\Mvort$, $\Cstar$, $C_G$, $\Cmom$ & (P0.5) & \raggedright absolute; $\|\Phi\|_{L^1}$ \tabularnewline
 \raggedright $c_N$, $C_N$, $\cout$, $C_{\mathrm{qr}}$, $C_{\mathrm{id}}$, $C_{\mathrm{od}}$, $C_{\mathrm{tr}}(\cdot)$ & (P0.6) & \raggedright $\Phi$, $\Gone$, $m$; $C_3$, $\sigma$, $C(\cdot)$ \tabularnewline
-\raggedright $\dkick$, $\drd$, $\delta_0$ & (P1) & \raggedright $\dH$, $C_2$, $C_3$, $\Cp$, $\cout$, $\sigma$, $|z|$ \tabularnewline
+\raggedright $\delta_0$ & (P1) & \raggedright $\dH$, $C_2$, $C_3$, $\Cp$, $\cout$, $\sigma$, $|z|$ \tabularnewline
 \raggedright $c'$, $\mu_{\max}$, $\mu$; $\vartheta_\mu$, $\gamma_\mu$, $\gamma'_\mu$, $\CDuh$, $\KO$ & (P2) & \raggedright $\delta_0$, $\cout$, $|z|$, $\Cmom$, $\sigma$; $c_\gamma$, $\sigb$, $C_M$, $C_Q$ \tabularnewline
 \raggedright $\Tpin$ & (P3) & \raggedright $\sigma$, $m$ \tabularnewline
 \raggedright $C_D(\Tpin)$, $c_K$, $K_1$, $\Abar$, $\Klo$, $\Kup$, $\Chand$ & (P3) & \raggedright (P0)--(P2), $\Tpin$ \tabularnewline
@@ -274,17 +273,15 @@ Theorem~\ref{thm:quiet} requires. The interval $\big(\frac9{200},\min(\sigb,\fra
 in (SA1) is nonempty: by Proposition~I.\ref{I-prop:U}\textup{(a)}, $\sigb$ is attained and
 $\sigb>\frac{211}{2500}>\frac9{200}$; and
 $\frac34\sigma\ge\frac34\sigb>\frac{633}{10000}>\frac9{200}$. Moreover
-$c_\gamma>0$, because $\sigma'<\frac34\sigma<\frac{15}{16}\sigma$. The numbers
-$\dkick$, $\drd$ are positive, because $\sigma\ge\sigb>0$, $\cout>0$,
-$|z|\ge\Re z=\sigma>0$, $C_3>0$, $C_2\ge1$ and $\Cp>0$; so (P1) is satisfiable.
+$c_\gamma>0$, because $\sigma'<\frac34\sigma<\frac{15}{16}\sigma$. The conditions in (P1) hold for sufficiently small $\delta_0>0$ because
+$\sigma\ge\sigb>0$, $\cout>0$ and the other constants have already been fixed.
 In (P2), $c'>0$ because $\Cmom>0$ and $0<\Ip{m}{\sigma/4}<\infty$, so
 $\mu_{\max}>1$. In (P3), $\Tpin$ exists because $\rT(T)=(1+T)^me^{-\sigma T/4}$
 (Definition~\ref{def:standing}) tends to $0$ as $T\to\infty$, as $\sigma>0$. The formulas of (P3) and (P4) have positive finite denominators:
 $c_K=3c_N/(32\mu)>0$, $\delta_0>0$, $\sigb>0$, $\mu-1>0$ and $\Klo>0$. So all the
 constants of (P0)--(P4) are finite and positive, and $C_0\ge1$ and
 $0<C_F\le C_0$, as Theorem~\ref{thm:active} and Lemma~\ref{lem:Oprime} require.
-Each is given by an explicit formula, or by a result of an earlier section, in
-terms of the quantities in its row of Table~\ref{tab:param}, which are fixed at
+Each can be chosen in terms of the quantities in its row of Table~\ref{tab:param}, which are fixed at
 earlier rows or earlier in the same step.
 
 \emph{(P5).} Since (P5) is imposed for every $\kappa\in(0,2\kseed]$, it suffices

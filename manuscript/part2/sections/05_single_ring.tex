@@ -338,14 +338,19 @@ only on $j$. For each integer $k\ge2$ fix a constant $C_P(k)$ of
 Lemma~\ref{lem:Hk-calculus} for $\max(k,3)$, the compact set $N$, the open set
 $N_1$ and $\chi_N$; it depends only on $k$ and $a$.
 
+\newpage
+In the analytic estimates that follow, $A\lesssim B$ means $A\le CB$ for
+an auxiliary constant whose dependencies are specified in the argument.
+Constants are uniform in $G\in[0,\Gone]$, the number of rings, their indices
+and $A_1$, unless stated otherwise. Named constants are fixed before the
+parameters whose choice depends on them.
+
 \begin{lemma}
 \label{lem:bilinear}
-Let $k\ge2$ be an integer. Put $C_B=C_B(k)=2C_P(k)C^{\mathrm{el}}_{k-1}$ and
-$C_{\mathrm{BS}}=2C^{\mathrm{el}}_1$, and let $C_h=C_h(k)$ be the supremum of
-$\|h\cdot\nabla w\|_{H^k}$ over all $w\in X^{k+1}$ and
-$h\in C^k(N';\R^2)$ with $\|w\|_{H^{k+1}}\le1$ and $\|h\|_{C^k(N')}\le1$. Then
-$C_h$ is finite and depends only on $k$ and $a$, and for $v,w\in X^{k+1}$ and
-every vector field $h\in C^k(N';\R^2)$:
+Let $k\ge2$ be an integer. There are constants $C_B=C_B(k)$,
+$C_h=C_h(k)$, depending only on $k$ and $a$, and an absolute constant
+$C_{\mathrm{BS}}$, such that for $v,w\in X^{k+1}$ and every vector field
+$h\in C^k(N';\R^2)$:
 \begin{enumerate}[label=\textup{(\arabic*)}]
 \item $\|B(v,w)\|_{H^k}\le C_B\|v\|_{H^k}\|w\|_{H^{k+1}}$;
 \item $\|h\cdot\nabla w\|_{H^k}\le C_h\|h\|_{C^k(N')}\|w\|_{H^{k+1}}$;
@@ -362,19 +367,19 @@ $B(v,w)=-\sum_{i=1,2}(\chi_B\KBS\ast v)_i\,\partial_iw$. By
 Lemma~\ref{lem:Hk-calculus}\textup{(2)} (with $\max(k,3)$ in place of its $k$, and
 $j=k$) and \textup{(3)},
 \[
-\|B(v,w)\|_{H^k}\le2C_P(k)\|\chi_B\KBS\ast v\|_{H^k}\max_i\|\partial_iw\|_{H^k}\le2C_P(k)C^{\mathrm{el}}_{k-1}\|v\|_{H^{k-1}}\|w\|_{H^{k+1}},
+\|B(v,w)\|_{H^k}\lesssim
+\|\chi_B\KBS\ast v\|_{H^k}\|w\|_{H^{k+1}}
+\lesssim\|v\|_{H^{k-1}}\|w\|_{H^{k+1}},
 \]
-which is (1). Next, $h\cdot\nabla w=(\chi_Nh)\cdot\nabla w$, and the Leibniz rule
-$\partial^\alpha\big((\chi_Nh)\cdot\nabla w\big)=\sum_{\beta\le\alpha}\binom\alpha\beta
-\partial^\beta(\chi_Nh)\cdot\partial^{\alpha-\beta}\nabla w$ with
-$|\partial^\beta(\chi_Nh)|\le2^{|\beta|}\|\chi_N\|_{C^k}\|h\|_{C^k(N')}$ bounds
-$\|h\cdot\nabla w\|_{H^k}$ by a constant depending only on $k$ and $\chi_N$, hence
-on $k$ and $a$, times $\|h\|_{C^k(N')}\|w\|_{H^{k+1}}$. So $C_h$ is finite, depends
-only on $k$ and $a$, and (2) holds by homogeneity in $h$ and in $w$. Item (3) is the
+with constants depending only on $k$ and $a$, which gives (1).
+For (2), write $h\cdot\nabla w=(\chi_Nh)\cdot\nabla w$ and apply the
+Leibniz rule. Each term is bounded by a constant depending only on $k$ and
+$\chi_N$ times $\|h\|_{C^k(N')}\|w\|_{H^{k+1}}$.
+Item (3) is the
 last inequality of Lemma~I.\ref{I-lem:uniform}. For (4), $\KBS\ast v=\chi_B\KBS\ast v$ on
 $B_{7/2}$, and Lemma~\ref{lem:embed}\textup{(E2)}, applied to each component, and
 Lemma~\ref{lem:Hk-calculus}\textup{(3)} give
-$\|\chi_B\KBS\ast v\|_{L^\infty}\le2C^{\mathrm{el}}_1\|v\|_{H^1}=C_{\mathrm{BS}}\|v\|_{H^1}$,
+$\|\chi_B\KBS\ast v\|_{L^\infty}\lesssim\|v\|_{H^1}$ with an absolute constant,
 which gives (4), since $\{|x|\le3\}\subset B_{7/2}$. The functions in
 (1)--(3) vanish outside $\supp\nabla w\cup\supp\nabla\Phi\subset N$. If $v$, $w$ and
 $h$ are $3$-fold rotationally symmetric, the vector fields $\KBS\ast v$,
@@ -383,32 +388,19 @@ $\KBS\ast v$ this was proved in Lemma~\ref{lem:reduction}.
 Their scalar products are therefore $3$-fold rotationally symmetric.
 \end{proof}
 
-Lemma~\ref{lem:energy} below compares the deviation $w$ of a ring with an
-approximate solution $w_{\mathrm{app}}$ by an energy estimate in $H^s$. Its rate
-$\Lam(s)$, defined next, bounds the transport of $w-w_{\mathrm{app}}$ by the
-velocity and the coupling through $\nabla(\Phi+w_{\mathrm{app}})$; the entry
-$2\max_{G\in[0,\Gone]}\sigma(G)$ in its definition makes $\Lam(s)\ge2\sigma(G)$ for every $G$,
-which the proof of Lemma~\ref{lem:window} uses.
-This rate involves only norms on $N'$. Let $s\ge3$ be
-an integer, let $n_s$ be the number of multi-indices $\alpha\in\N_0^2$ with
-$|\alpha|\le s$, and put $C_{\mathrm{HK}}=C_P(s)$. The function
-$\Omega(r;G)=\Omega(r;0)+Gr^{-2}$ is smooth on $[\frac a4,3]$ and affine in $G$, so
-\[
-C_\Omega:=\sup_{G\in[0,\Gone]}\Big(\|\Omega(|x|;G)x^\perp\|_{W^{1,\infty}(N_1)}+\|\Omega(|x|;G)x^\perp\|_{H^s(N_1)}\Big)<\infty .
-\]
-Let $C_{N'}$ be the least constant such that
-$\|h\|_{W^{1,\infty}(N_1)}+\|h\|_{H^s(N_1)}\le C_{N'}\|h\|_{C^s(N')}$ for every
-$h\in C^s(N';\R^2)$; it is finite and depends only on $s$ and $a$. Put
-$A_s=C_\Omega+C_{N'}+C^{\mathrm{el}}_s+6C^{\mathrm{el}}_2$ and
+Lemma~\ref{lem:energy} compares the deviation $w$ of a ring with an
+approximate solution $w_{\mathrm{app}}$ by an energy estimate in $H^s$.
+For each integer $s\ge3$, fix a sufficiently large rate $\Lam(s)$, depending
+only on $\Phi$, $\Gone$ and $s$, so that this estimate holds and
 \begin{equation}
 \label{eq:Lambda}
-\Lam(s)=\max\Big(2\max_{G\in[0,\Gone]}\sigma(G),\ n_sC_{\mathrm{HK}}A_s+2C_{\mathrm{HK}}C^{\mathrm{el}}_{s-1}\big(\|\Phi\|_{H^{s+1}}+1\big)\Big).
+\Lam(s)\ge2\max_{G\in[0,\Gone]}\sigma(G).
 \end{equation}
+The latter inequality will be used in Lemma~\ref{lem:window}.
 
 \begin{lemma}
 \label{lem:energy}
-Let $s\ge3$ be an integer, and let $\Lam(s)$ be the number of
-Equation~\eqref{eq:Lambda}; it satisfies $\Lam(s)\ge2\max_{G\in[0,\Gone]}\sigma(G)$,
+Let $s\ge3$ be an integer, and choose $\Lam(s)$ as above; it satisfies $\Lam(s)\ge2\max_{G\in[0,\Gone]}\sigma(G)$,
 where the maximum exists by Proposition~I.\ref{I-prop:U}\textup{(a)}, and it depends
 only on $\Phi$, $\Gone$ and $s$. Let $G\in[0,\Gone]$
 and $t>0$, and let the assumptions of Lemma~\ref{lem:reduction}\textup{(3)} hold on
@@ -441,26 +433,24 @@ $v\in C^1([0,t];H^s)\cap C([0,t];H^{s+1})$ is real and supported in $N$.
 The field $U$ is divergence-free on $N_1$: $\divop h=0$ by
 Lemma~\ref{lem:reduction}\textup{(1)}, $\divop(\KBS\ast w)=0$, and
 $\divop(f(|x|)x^\perp)=f'(|x|)\frac{x}{|x|}\cdot x^\perp=0$. By
-Lemma~\ref{lem:Hk-calculus}\textup{(3)} and Lemma~\ref{lem:embed}\textup{(E2)},
-applied to each entry, and $\|w\|_{H^s}\le1$,
-$\|\KBS\ast w\|_{H^s(N_1)}\le\|\chi_B\KBS\ast w\|_{H^{s+1}}\le C^{\mathrm{el}}_s$ and
-$\|\KBS\ast w\|_{W^{1,\infty}(N_1)}\le6\|\chi_B\KBS\ast w\|_{H^3}\le6C^{\mathrm{el}}_2$.
-With the definitions of $C_\Omega$ and $C_{N'}$ and $\|h\|_{C^s(N')}\le1$, this gives
-$\|U\|_{W^{1,\infty}(N_1)}+\|U\|_{H^s(N_1)}\le A_s$. Since $U$ and $v$ are real and
-$\divop U=0$ on $N_1$, Lemma~\ref{lem:Hk-calculus}\textup{(1)} gives
-$|\langle\partial^\alpha(U\cdot\nabla v),\partial^\alpha v\rangle|\le C_{\mathrm{HK}}A_s\|v\|_{H^s}^2$
-for $|\alpha|\le s$. Since $\nabla(\Phi+w_{\mathrm{app}})$ is supported in $N$,
-Lemma~\ref{lem:Hk-calculus}\textup{(2)} and \textup{(3)} give
+Lemma~\ref{lem:Hk-calculus}\textup{(3)}, Sobolev embedding and the hypotheses give
 \[
-\begin{aligned}
-\|(\KBS\ast v)\cdot\nabla(\Phi+w_{\mathrm{app}})\|_{H^s}
-&\le2C_{\mathrm{HK}}\|\chi_B\KBS\ast v\|_{H^s}\big(\|\Phi\|_{H^{s+1}}+\|w_{\mathrm{app}}\|_{H^{s+1}}\big)\\
-&\le2C_{\mathrm{HK}}C^{\mathrm{el}}_{s-1}\big(\|\Phi\|_{H^{s+1}}+1\big)\|v\|_{H^s}.
-\end{aligned}
+\|U\|_{W^{1,\infty}(N_1)}+\|U\|_{H^s(N_1)}\lesssim1.
 \]
-We apply $\partial^\alpha$ to the equation of $v$, take the $L^2$ inner product with
-$\partial^\alpha v$, and sum over $|\alpha|\le s$. The Cauchy-Schwarz inequality and
-Equation~\eqref{eq:Lambda} give
+Here the implicit constant depends only on $\Phi$, $\Gone$ and $s$:
+$\Omega(r;G)=\Omega(r;0)+Gr^{-2}$ is uniformly smooth on
+$[a/4,3]\times[0,\Gone]$. Since $U$ and $v$ are real and $\divop U=0$ on
+$N_1$, Lemma~\ref{lem:Hk-calculus}\textup{(1)} bounds the transport contribution
+by $C\|v\|_{H^s}^2$. Parts \textup{(2)} and \textup{(3)} of that lemma also give
+\[
+\|(\KBS\ast v)\cdot\nabla(\Phi+w_{\mathrm{app}})\|_{H^s}
+\lesssim\|v\|_{H^s}
+\big(\|\Phi\|_{H^{s+1}}+\|w_{\mathrm{app}}\|_{H^{s+1}}\big)
+\lesssim\|v\|_{H^s}.
+\]
+Apply $\partial^\alpha$ to the equation of $v$, take the $L^2$ inner product
+with $\partial^\alpha v$, and sum over $|\alpha|\le s$. Choosing $\Lam(s)$
+large enough to dominate these bounds gives
 $\frac12\frac{\dd}{\dd\tau}\|v\|_{H^s}^2\le\Lam(s)\|v\|_{H^s}^2+\|R_{\mathrm{app}}\|_{H^s}\|v\|_{H^s}$.
 To divide by $\|v\|_{H^s}$, which may vanish, we regularize it. For $\epsilon>0$
 the function $y_\epsilon=(\|v\|_{H^s}^2+\epsilon^2)^{1/2}$ is $C^1$, as
@@ -584,20 +574,19 @@ C_{\mathrm{bil}}=\max_{2\le k\le M_h}\max\big(C_B(k),C_h(k),\Cnab(k)\big),
 with $C_S$ of Proposition~I.\ref{I-prop:semigroup} and the constants of
 Lemma~\ref{lem:bilinear}; so $\|e^{t\Lin}\|_{X^k\to X^k}\le C_Le^{\sigma t}$ for
 $k\le M_h$ and $t\ge0$. For $1\le j\le N_Q$ put $k_j=M_h-j$, so that
-$k_{N_Q}=s_h+1$ and $k_j+1=k_{j-1}$. Put $C^{(1)}=C_LC_{\mathrm{bil}}$ and, for
-$2\le j\le N_Q$,
+$k_{N_Q}=s_h+1$ and $k_j+1=k_{j-1}$. Choose the constants $C^{(j)}$
+successively to bound the $j$th term of the approximate solution as in
+Equation~\eqref{eq:Q-hier}, and then choose $C_{\mathrm{res}}$ for
+Equation~\eqref{eq:Q-res}. These choices are justified by the estimates below.
+Take $C_Q$ and $C_\Delta$ large enough that
 \[
-\begin{gathered}
-C^{(j)}=C_LC_{\mathrm{bil}}\Big(\frac1{(j-1)\sigb}\sum_{i+l=j}C^{(i)}C^{(l)}+C^{(j-1)}\Big),\\
-C_{\mathrm{res}}=C_{\mathrm{bil}}\Big(\sum_{i,l\le N_Q,\,i+l>N_Q}C^{(i)}C^{(l)}+C^{(N_Q)}\Big),\\
-C_Q=\sum_{j=1}^{N_Q}C^{(j)}+C_{\mathrm{res}}\big(1+\sigb^{-1}\big),\qquad
-C_\Delta=1+\frac{C_{\mathrm{BS}}C_Q}{\sigb},\\
-\majst=\min\Big(1,\frac1{2C_Q},\frac a{16C_\Delta}\Big).
-\end{gathered}
+C_Q\ge\sum_{j=1}^{N_Q}C^{(j)}+C_{\mathrm{res}}(1+\sigb^{-1}),\qquad
+C_\Delta\ge1+C_{\mathrm{BS}}C_Q/\sigb,
 \]
-The names $C_{\mathrm{bil}}$, $C^{(j)}$ and $C_{\mathrm{res}}$ are local to this proof;
-later in this section they denote other numbers.
-These numbers depend only on $(\Phi,\Gone,s_h,N_Q)$, and $C_\Delta\majst\le a/16$.
+and choose $\majst>0$ sufficiently small that
+$\majst\le1$, $C_Q\majst\le1/2$ and $C_\Delta\majst\le a/16$.
+All these constants depend only on $(\Phi,\Gone,s_h,N_Q)$.
+The names $C_{\mathrm{bil}}$, $C^{(j)}$ and $C_{\mathrm{res}}$ are local to this proof.
 
 \emph{Approximate solution.} Let $w^{[j]}$, $1\le j\le N_Q$, be the functions of
 Equation~\eqref{eq:hier} with $J=N_Q$ and $w^{[1]}=\wlin$ (the case $w_0=0$), so that
@@ -609,7 +598,7 @@ $\|F(\tau)\|_{H^{M_h}}\le C_{\mathrm{bil}}\eta(\tau)$. We claim that
 \|w^{[j]}(t)\|_{H^{k_j}}\le C^{(j)}\maj(t)^j\qquad(t\in[0,T],\ 1\le j\le N_Q).
 \end{equation}
 For $j=1$,
-$\|\wlin(t)\|_{H^{k_1}}\le C_L\int_0^te^{\sigma(t-\tau)}C_{\mathrm{bil}}\eta(\tau)\dd\tau=C^{(1)}\maj(t)$.
+$\|\wlin(t)\|_{H^{k_1}}\le C_L\int_0^te^{\sigma(t-\tau)}C_{\mathrm{bil}}\eta(\tau)\dd\tau\le C^{(1)}\maj(t)$.
 Let $j\ge2$ and assume Equation~\eqref{eq:Q-hier} for all indices less than $j$.
 Since $k_j+1=k_{j-1}\le k_l$ for $l\le j-1$, Lemma~\ref{lem:bilinear} gives
 $\|g^{[j]}(\tau)\|_{H^{k_j}}\le C_{\mathrm{bil}}\big(\sum_{i+l=j}C^{(i)}C^{(l)}\maj(\tau)^j+C^{(j-1)}\eta(\tau)\maj(\tau)^{j-1}\big)$.
@@ -657,7 +646,7 @@ For $y\in\supp\Phi$ and $\tau\le t\le t_*$, the point $\flow_\tau(y)$ lies in $N
 by Lemma~\ref{lem:reduction}\textup{(2)}, Lemma~\ref{lem:bilinear}\textup{(4)},
 Equation~\eqref{eq:Q-b}, (M2) and (M3),
 \[
-\big||\flow_\tau(y)|-|y|\big|\le\int_0^t\big(\eta+C_{\mathrm{BS}}\|w\|_{H^{s_h}}\big)\le\maj(t)+\frac{C_{\mathrm{BS}}C_Q}{\sigb}\maj(t)=C_\Delta\maj(t).
+\big||\flow_\tau(y)|-|y|\big|\le\int_0^t\big(\eta+C_{\mathrm{BS}}\|w\|_{H^{s_h}}\big)\le\maj(t)+\frac{C_{\mathrm{BS}}C_Q}{\sigb}\maj(t)\le C_\Delta\maj(t).
 \]
 So $\delta_{\mathrm r}\le C_\Delta\maj\le a/16$ and $\|w\|_{H^{s_h}}\le\frac12$ on
 $[0,t_*]$. If $t_*<T$, continuity would give a larger $t$ with
@@ -713,9 +702,8 @@ $(1-\Riesz)\wlin_0$ of the linear response.
 \begin{lemma}
 \label{lem:linear-part}
 Assume \textup{(N1)}--\textup{(N3)}. Let $\sigma'\in(\frac9{200},\sigb)$, and let
-$p\ge0$ and $k\ge2$ be integers. Put
-$C_{\mathrm{lin}}(k)=C_S(k,\sigma')\big(1+\Cnab(k)/\sigma'+\Cnab(k)/(\sigb-\sigma')\big)$,
-with $C_S$ of Proposition~I.\ref{I-prop:semigroup}. Let $G\in[0,\Gone]$,
+$p\ge0$ and $k\ge2$ be integers. There is a constant $C_{\mathrm{lin}}(k)\ge1$,
+depending only on $\Phi$, $\Gone$, $k$ and $\sigma'$, with the following property. Let $G\in[0,\Gone]$,
 $\sigma=\sigma(G)$, $\lambda=\lamst(G)$, $\bar u>0$, $A\ge0$, $\kappa\ge0$ and
 $\eta_b\ge0$. Let $w_0\in X^k$ be real with $\|w_0\|_{H^k}\le A$, and let $h$ be
 continuous on $[0,\bar u]$ with values in $C^k(N';\R^2)$, $3$-fold rotationally symmetric, with
@@ -811,25 +799,18 @@ $\Lam\ge2\sigma\ge2\sigb$ (Lemma~\ref{lem:energy}),
 (N_G+1)\sigma-\Lam\ge2\sigma,\qquad\Lam-\sigma\ge\sigma\ge\sigb,\qquad N_G+1-\Lam/\sigma\ge2 .
 \end{equation}
 
-\emph{Constants.} With the numbers of Equation~\eqref{eq:W-const}, put
-$C^{(1)}=2C_\natural C_\phi+C_{\mathrm{lin}}(C_\natural\bar\rho+1)$ and, for
-$2\le j\le N_G$,
-\[
-C^{(j)}=2^{j-1}\max(1,\sigb^{-1})\,\bar C_SC_{\mathrm{bil}}\Big(\sum_{i+l=j}C^{(i)}C^{(l)}+C^{(j-1)}\Big).
-\]
-Put $C_{\mathrm{res}}=C_{\mathrm{bil}}\big(\sum_{i,l\le N_G,\,i+l>N_G}C^{(i)}C^{(l)}+2C^{(N_G)}\big)$,
-$C_{\mathrm{en}}=2^{N_G-1}C_{\mathrm{res}}/\sigb$, $S_W=\sum_{j=1}^{N_G}C^{(j)}+C_{\mathrm{en}}$,
-\[
-C_W=2\big(1+\sigb^{-1}\big)\big(1+C_{\mathrm{BS}}\big)C_\natural^{N_G}\big(C_{\mathrm{lin}}C_\natural+S_W\big),\qquad
-\delta_W=\min\Big(\frac12,\frac1{S_W},\frac a{64C_W}\Big),
-\]
-and let $\kappa_W$ be the largest number in $(0,1]$ such that
-$C_Wx\varsigma(x)^{N_W}\le a/64$ for every $x\in(0,\kappa_W]$. It exists by the
-argument given for $\kappa_0(C_0)$ in the proof of Theorem~\ref{thm:active}, because
-$x\varsigma(x)^{N_W}\to0$ as $x\to0^+$ and the inequality is non-strict between
-continuous functions. Taking $t=0$ in
-Proposition~I.\ref{I-prop:semigroup} gives $C_S\ge1$, so $C_{\mathrm{lin}}\ge1$ and
-$C_W\ge C_\natural$.
+\emph{Constants.} Using Equation~\eqref{eq:W-const}, choose $C^{(j)}$
+successively for the hierarchy bound \eqref{eq:W-hier}, then
+$C_{\mathrm{res}}$ for the residual bound \eqref{eq:W-res} and $C_{\mathrm{en}}$
+for the energy bound \eqref{eq:W-v} below. Put
+$S_W=\sum_{j=1}^{N_G}C^{(j)}+C_{\mathrm{en}}$.
+Choose $C_W\ge C_\natural$ large enough to dominate the coefficients in the
+final norm and displacement estimates below. These constants depend only on
+$(\Phi,\Gone,s,\sigma',C_\natural)$.
+Choose $\delta_W\in(0,1/2]$ so that $S_W\delta_W\le1$ and
+$C_W\delta_W\le a/64$, and $\kappa_W\in(0,1]$ so that
+$C_Wx\varsigma(x)^{N_W}\le a/64$ for every $0<x\le\kappa_W$.
+The latter choice is possible since $x\varsigma(x)^{N_W}\to0$ as $x\to0^+$.
 
 Now fix the data, and put $\varepsilon_W=C_\natural\kappa_1$,
 $\mathfrak b(u)=\hat a_1(u)+\varepsilon_W\jap{u}^{p+2}$ and $k_j=M-1-j$ for
@@ -1022,31 +1003,30 @@ Lemma~\ref{lem:window} on the rest of the interval.
 
 \emph{Constants.} Let $C_\phi$, $\bar C_S$, $C_{\mathrm{bil}}$ and
 $C_{\mathrm{lin}}$ be the numbers of Equation~\eqref{eq:W-const}, $\|\ellst\|$ and
-$\Cp$ as in Lemma~I.\ref{I-lem:uniform}, and put
-$C_\natural=\max(4,\,6C_\phi+2C_{\mathrm{lin}}+1)$; this choice makes the restarted
-problem below satisfy the assumptions of Lemma~\ref{lem:window}. Let $\delta_W,\kappa_W,C_W$ be the
-constants of Lemma~\ref{lem:window} for this $C_\natural$, and put
+$\Cp$ as in Lemma~I.\ref{I-lem:uniform}. Choose $C_\natural\ge4$ sufficiently
+large for the restarted initial-data bound below, so that
+Lemma~\ref{lem:window} applies. Let $\delta_W,\kappa_W,C_W$ be the
+constants of Lemma~\ref{lem:window} for this $C_\natural$, and choose
 \[
-C_2=6C_\phi+3\big(C_W+C_{\mathrm{lin}}+1\big),\qquad C_3=(1+\Cp)C_2,\qquad
-\dH=\min\Big(\delta_W,\frac a{32C_2}\Big).
+C_2\ge1,\qquad C_3\ge(1+\Cp)C_2,\qquad
+0<\dH\le\delta_W,\quad C_2\dH\le a/32,
 \]
+with $C_2$ large enough for the norm and displacement estimates below.
 These depend only on $(\Phi,\Gone,s,\sigma')$. Now let $C_0\ge1$, write
 $\bar t_1=\bar t_1(C_0)$, $\Lambda'=\Lam(M-1)$, $\Lambda''=\Lam(M-2)$,
-$C_{\mathrm f}=C_0\jap{\bar t_1}^p+e^{\sigma_{\max}\bar t_1}$, and define the
-constants of the initial layer by
-\[
-\begin{gathered}
-C^{\mathrm{lay}}_1=e^{\Lambda'\bar t_1}\big(C_0+C_{\mathrm{bil}}C_{\mathrm f}\bar t_1\big),\qquad
-C^{\mathrm{lay}}_2=\bar t_1\big(C_{\mathrm f}+C_{\mathrm{BS}}C^{\mathrm{lay}}_1\big),\\
-C^{\mathrm{lay}}_3=\bar C_Se^{\sigma_{\max}\bar t_1}\big(C_0+C_{\mathrm{bil}}C_{\mathrm f}\bar t_1\big),\qquad
-C^{\mathrm{lay}}_4=\bar t_1e^{\Lambda''\bar t_1}C_{\mathrm{bil}}\big(C^{\mathrm{lay}}_3+C_{\mathrm f}\big)C^{\mathrm{lay}}_3 .
-\end{gathered}
-\]
+and choose $C_{\mathrm f}=C_{\mathrm f}(C_0)$ to bound
+$C_0\jap{u}^p+e^{\sigma_{\max}u}$ on $[0,\bar t_1]$.
+Choose $C^{\mathrm{lay}}_1$, $C^{\mathrm{lay}}_2$, $C^{\mathrm{lay}}_3$ and
+$C^{\mathrm{lay}}_4$ for the initial-layer bounds below on, respectively,
+$\|w\|_{H^{M-1}}/\kappa$, $\delta_{\mathrm r}/\kappa$,
+$\|\wlin\|_{H^{M-1}}/\kappa$ and $\|w-\wlin\|_{H^{M-2}}/\kappa^2$.
+The energy and semigroup estimates on this fixed interval show that all four
+constants depend only on $C_0$ and $(\Phi,\Gone,s,\sigma')$.
 The smallness of $\kappa$ is imposed by three groups of conditions: (L1) is used on
 the initial layer, (L2) to bound the terms that contain the error $v_1=w-\wlin$ of
 the initial layer, and (L3) to apply Lemma~\ref{lem:window} after the restart.
-Let $\kappa_0(C_0)$ be the largest $x\in(0,(a/32)^2]$ such that every
-$\kappa\in(0,x]$ satisfies:
+Choose $\kappa_0(C_0)\in(0,(a/32)^2]$ sufficiently small that every
+$\kappa\in(0,\kappa_0(C_0)]$ satisfies:
 \begin{enumerate}[label=\textup{(L\arabic*)}]
 \item $C_{\mathrm f}\kappa\le1$, $C^{\mathrm{lay}}_1\kappa\le\frac12$, $C^{\mathrm{lay}}_3\kappa\le1$ and
   $C^{\mathrm{lay}}_2\kappa\le\min(\frac a{128},\frac12\kappa^{1/2})$;
@@ -1055,14 +1035,10 @@ $\kappa\in(0,x]$ satisfies:
 \item $e^{\sigma_{\max}\bar t_1}\kappa\le\kappa_W$ and
   $C_We^{\sigma_{\max}\bar t_1}\kappa\,\varsigma(\kappa)^{N_W}\le\frac12\kappa^{1/2}$.
 \end{enumerate}
-This number exists. Each inequality in (L1)--(L3) is non-strict between continuous
-functions of $\kappa\in(0,1]$, so the set $S$ of $\kappa\in(0,(a/32)^2]$ satisfying all of
-them is closed in $(0,(a/32)^2]$; and $S\supset(0,\epsilon]$ for some $\epsilon>0$,
-because in each inequality the ratio of the left side to the right side tends to $0$
-as $\kappa\to0^+$. So the supremum $x_0$ of the $x$ with $(0,x]\subset S$ is positive,
-$(0,x_0)\subset S$, and $x_0\in S$ by closedness. The number $\kappa_0(C_0)$ depends
-only on $C_0$ and $(\Phi,\Gone,s,\sigma')$, and by (Small) the $\kappa$ of the theorem
-satisfies (L1)--(L3) and $\kappa\le(a/32)^2$.
+Such a choice is possible because in each inequality the ratio of the left
+side to the right side tends to zero as $\kappa\to0^+$. Thus $\kappa_0(C_0)$
+depends only on $C_0$ and $(\Phi,\Gone,s,\sigma')$, and (Small) gives
+(L1)--(L3) and $\kappa\le(a/32)^2$.
 
 \emph{The time $t_1$.} Since $\sigma\ge\sigb$,
 $2^{p/2}C_0\jap{t'}^pe^{-(\sigma-\sigma')t'}\le2^{p/2}C_0\jap{t'}^pe^{-(\sigb-\sigma')t'}$, so
@@ -1307,14 +1283,16 @@ so with $\Psi_{\mathrm s}=V\cdot\nabla(V\cdot\nabla\Phi)\in C_c^\infty(\R^2)$,
 The derivatives of $Y_t(y)-y$ of every order vanish outside $K_V$ and are
 continuous on $[-1,1]\times K_V$, hence bounded there. By the chain rule and
 $\det DY_t=1$, for every $k$ there is $C^Y_k$ with $\|g\circ Y_t\|_{H^k}\le C^Y_k\|g\|_{H^k}$
-for $g\in C_c^\infty(\R^2)$ and $|t|\le1$. Put $C'_0=\frac12C^Y_0\|\Psi_{\mathrm s}\|_{L^2}$, which depends only on $\Phi$, and
-$\Cseed=C^Y_{M-1}\|2\Re\phist(0)\|_{H^{M-1}}$. For $0<\kappa\le1$,
-Equation~\eqref{eq:seed-first} and the two identities give
+for $g\in C_c^\infty(\R^2)$ and $|t|\le1$.
+Equation~\eqref{eq:seed-first} and the two identities therefore give constants
+$C'_0$, depending only on $\Phi$, and $\Cseed$, depending only on $\Phi$ and $M$,
+such that for $0<\kappa\le1$,
 $\|\Phi^\kappa-\Phi-2\kappa\Re\phist(0)\|_{L^2}\le C'_0\kappa^2$ and
 $\|\Phi^\kappa-\Phi\|_{H^{M-1}}\le\Cseed\kappa$.
 
-Finally put
-$\kL=\min\big(1,\,a/(8(1+\|V\|_{L^\infty})),\,1/(2(1+\|\ellst(0)\|_{(X^0)^*}C'_0))\big)$,
+Finally choose $\kL\in(0,1]$ sufficiently small that
+$\kL\|V\|_{L^\infty}\le a/8$ and
+$\kL\|\ellst(0)\|_{(X^0)^*}C'_0\le1/2$,
 and let $\kappa\in(0,\kL]$. Since $|Y_\kappa^{-1}(x)-x|\le\kappa\|V\|_{L^\infty}\le a/8$ by
 Lemma~\ref{lem:flow}\textup{(b)}, \textup{(c)}, and
 $\supp\Phi^\kappa=Y_\kappa^{-1}(\supp\Phi)$ with $\supp\Phi\subset\{a\le|y|\le1\}$, we get
