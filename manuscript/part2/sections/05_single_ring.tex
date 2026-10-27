@@ -165,7 +165,7 @@ initial vorticity $\omega_0\in C_c^\infty(\R^2)$. In the applications,
 $\omega$ is a rescaled, and possibly time-translated, version of the smooth
 approximate solution $\omega^{(n)}$ of Definition~\ref{def:approx}.
 We split its initial datum as
-$\omega_0=\omega_{\mathrm r}(0)+\omega_{\mathrm i}(0)+\omega_{\mathrm o}(0)$,
+$\omega_0=\omega_{\mathrm r}(0)+\omega_{\mathrm{inn}}(0)+\omega_{\mathrm{ou}}(0)$,
 corresponding to the selected ring, the vorticity inside it and the vorticity
 outside it, and transport all three components by the full flow.
 
@@ -173,26 +173,36 @@ Our principal analysis concerns $\omega_{\mathrm r}$, through its deviation
 $w=\omega_{\mathrm r}-\Phi$ from the reference ring. The inner vorticity's
 circulation $2\pi G$ enters the linearization $\Lin(G)$ as a point vortex at
 the origin. The rest of its velocity field, together with the velocity field
-of $\omega_{\mathrm o}$, forms the field $h$ in the perturbation equation.
+of $\omega_{\mathrm{ou}}$, forms the field $h$ in the perturbation equation.
 The later estimates use the separation between the rings to control $h$ as
 a small perturbation on the selected ring; the inner and outer vorticities
 themselves need not be small, and $h$ retains its role in driving the
 instability.
 
+In the approximate data, the initial ring supports are widely separated.
+The components $\omega_\bullet(t)$ below follow the material transported
+from these initial supports. Since the full flow is a diffeomorphism at every
+time (Theorem~\ref{thm:smooth}\textup{(4)}), their transported supports remain
+pairwise disjoint for all time, and the decomposition remains well-defined.
+The quantitative radial separation required below is an additional
+hypothesis on $[0,T]$, as is the condition that the selected ring stays in
+$N$. The later confinement and bootstrap estimates verify these conditions
+on the time windows needed for the relay and the non-uniqueness argument.
+
 \begin{lemma}
 \label{lem:reduction}
 Let $\omega$ be a solution given by Theorem~\ref{thm:smooth} whose datum
 $\omega(0)$ is $3$-fold rotationally symmetric, and let $\flow_t$ be its flow. Let
-$\omega(0)=\omega_{\mathrm r}(0)+\omega_{\mathrm i}(0)+\omega_{\mathrm o}(0)$ with
-pairwise disjoint supports, $\omega_{\mathrm r}(0)$, $\omega_{\mathrm i}(0)$,
-$\omega_{\mathrm o}(0)$ each $3$-fold rotationally symmetric, and put
+$\omega(0)=\omega_{\mathrm r}(0)+\omega_{\mathrm{inn}}(0)+\omega_{\mathrm{ou}}(0)$ with
+pairwise disjoint supports, $\omega_{\mathrm r}(0)$, $\omega_{\mathrm{inn}}(0)$,
+$\omega_{\mathrm{ou}}(0)$ each $3$-fold rotationally symmetric, and put
 $\omega_\bullet(t)=\omega_\bullet(0)\circ\flow_t^{-1}$ for
-$\bullet\in\{\mathrm r,\mathrm i,\mathrm o\}$. Put
-$G=\frac1{2\pi}\int\omega_{\mathrm i}(0)$. Let $T>0$ and assume that for every
-$t\in[0,T]$, $\supp\omega_{\mathrm i}(t)\subset\overline B_{a/8}$ and
-$\supp\omega_{\mathrm o}(t)\cap B_6=\emptyset$. Put
+$\bullet\in\{\mathrm r,\mathrm{inn},\mathrm{ou}\}$. Put
+$G=\frac1{2\pi}\int\omega_{\mathrm{inn}}(0)$. Let $T>0$ and assume that for every
+$t\in[0,T]$, $\supp\omega_{\mathrm{inn}}(t)\subset\overline B_{a/8}$ and
+$\supp\omega_{\mathrm{ou}}(t)\cap B_6=\emptyset$. Put
 \[
-h(t)=\KBS\ast\big(\omega_{\mathrm i}(t)+\omega_{\mathrm o}(t)\big)-G\,\frac{x^\perp}{|x|^2}
+h(t)=\KBS\ast\big(\omega_{\mathrm{inn}}(t)+\omega_{\mathrm{ou}}(t)\big)-G\,\frac{x^\perp}{|x|^2}
 \qquad\text{on a neighborhood of }N'.
 \]
 Then:
@@ -229,7 +239,7 @@ $[-T',T']\times\R^2$ for every $T'>0$ (Theorem~\ref{thm:smooth}\textup{(2)}),
 Lemma~\ref{lem:flow}\textup{(a)}, \textup{(b)} (Appendix~\ref{app:smooth}) shows that this map
 is defined and
 $C^\infty$ on $\R\times\R^2$. Hence $\omega_\bullet\in C^\infty(\R\times\R^2)$,
-$\supp\omega_\bullet(t)=\flow_t(K_\bullet)$, and $\int\omega_{\mathrm i}(t)=2\pi G$
+$\supp\omega_\bullet(t)=\flow_t(K_\bullet)$, and $\int\omega_{\mathrm{inn}}(t)=2\pi G$
 because $\flow_t$ preserves area. By Theorem~\ref{thm:smooth}\textup{(6)},
 $\omega(t)$ is $3$-fold rotationally symmetric. Since $\KBS(\Orot x)=\Orot\KBS(x)$, we get
 $(\KBS\ast g)(\Orot x)=\Orot(\KBS\ast g)(x)$ for every $3$-fold rotationally symmetric
@@ -238,38 +248,28 @@ gives $\flow_t(\Orot y)=\Orot\flow_t(y)$, and each $\omega_\bullet(t)$ is $3$-fo
 rotationally symmetric.
 
 \emph{Proof of (1).} By continuity of the flow on compact sets, and since
-$\flow_t(K_{\mathrm i})=\supp\omega_{\mathrm i}(t)\subset\overline B_{a/8}$,
-$\rho_{\mathrm i}:=\max\{|\flow_t(y)|:t\in[0,T],\,y\in K_{\mathrm i}\}\le a/8<a/4$
-($\rho_{\mathrm i}:=0$ if $K_{\mathrm i}=\emptyset$), and $|\flow_t(y)|\ge6$ for
-$t\in[0,T]$ and $y\in K_{\mathrm o}$. So the open annulus
-$U=\{\frac12(\rho_{\mathrm i}+\frac a4)<|x|<4\}\supset N'$ has distance at least
-$\min(\frac12(\frac a4-\rho_{\mathrm i}),2)>0$ from
-$\supp(\omega_{\mathrm i}(t)+\omega_{\mathrm o}(t))$ for $t\in[0,T]$. Since
-$|\partial^\beta\KBS(z)|\le C_\beta|z|^{-1-|\beta|}$, and $\omega_{\mathrm i}$,
-$\omega_{\mathrm o}$ are continuous with supports in a fixed compact set for
+$\flow_t(K_{\mathrm{inn}})=\supp\omega_{\mathrm{inn}}(t)\subset\overline B_{a/8}$,
+$\rho_{\mathrm{inn}}:=\max\{|\flow_t(y)|:t\in[0,T],\,y\in K_{\mathrm{inn}}\}\le a/8<a/4$
+($\rho_{\mathrm{inn}}:=0$ if $K_{\mathrm{inn}}=\emptyset$), and $|\flow_t(y)|\ge6$ for
+$t\in[0,T]$ and $y\in K_{\mathrm{ou}}$. So the open annulus
+$U=\{\frac12(\rho_{\mathrm{inn}}+\frac a4)<|x|<4\}\supset N'$ has distance at least
+$\min(\frac12(\frac a4-\rho_{\mathrm{inn}}),2)>0$ from
+$\supp(\omega_{\mathrm{inn}}(t)+\omega_{\mathrm{ou}}(t))$ for $t\in[0,T]$. Since
+$|\partial^\beta\KBS(z)|\le C_\beta|z|^{-1-|\beta|}$, and $\omega_{\mathrm{inn}}$,
+$\omega_{\mathrm{ou}}$ are continuous with supports in a fixed compact set for
 $t\in[0,T]$ (Theorem~\ref{thm:smooth}\textup{(1)}), we may differentiate under the
 integral sign: $h(t)\in C^\infty(U)$, every $\partial^\beta_xh$ is continuous on
 $[0,T]\times U$, and in particular $t\mapsto h(t)\in C^k(N')$ is continuous. The
 fields $x\mapsto\KBS(x-y)=\nabla^\perp_x\big(\frac1{2\pi}\log|x-y|\big)$ and
 $x^\perp/|x|^2$ are divergence-free away from $y$ and from $0$; hence
-so is $h(t)$ on $U$, and it is $3$-fold rotationally symmetric by the equivariance above and
+$h(t)$ is divergence-free on $U$, and it is $3$-fold rotationally symmetric by the rotation identities above and
 $(\Orot x)^\perp=\Orot x^\perp$.
 
-\emph{Proof of (2).} For a radial $g\in C_c^\infty(\R^2)$, $\KBS\ast g$ is
-equivariant under every rotation, so $(\KBS\ast g)\cdot\er$ and
-$(\KBS\ast g)\cdot\etheta$ are constant on each $C_r=\{|x|=r\}$, $r>0$. Fix $r>0$,
-orient $C_r$ counterclockwise, and let $|y|\ne r$. Along $C_r$,
-$\KBS(x-y)\cdot\er\,\dd s=-\frac1{2\pi}\dd\log|x-y|$ and
-$\KBS(x-y)\cdot\etheta\,\dd s=\frac1{2\pi}\dd\arg(x-y)$; the first integrates to
-$0$, the second to the winding number of $C_r$ around $y$, which is $1$ if
-$|y|<r$ and $0$ if $|y|>r$. Integrating against $g(y)\dd y$ gives the values $0$
-and $\Circ_g(r)/(2\pi r)$; Fubini's theorem applies because
-$\oint_{C_r}|\KBS(x-y)|\dd s(x)$ is bounded by a constant, depending on $r$, times
-$1+|\log\operatorname{dist}(y,C_r)|$, which is integrable in $y$ over compact sets,
-and $\{|y|=r\}$ has measure $0$. Hence $\KBS\ast g=\Circ_g(|x|)\,x^\perp/(2\pi|x|^2)$.
-With $g=\Phi$ and the definition of $h$, on $[0,T]\times U$,
+\emph{Proof of (2).} The radial Biot-Savart formula of
+Lemma~I.\ref{I-lem:radial-stationary} applies to $\Phi$ and holds pointwise
+away from $0$ by smoothness. Thus, by the definition of $h$, on $[0,T]\times U$,
 \[
-v=\KBS\ast\Phi+\KBS\ast(\omega_{\mathrm r}-\Phi)+\KBS\ast(\omega_{\mathrm i}+\omega_{\mathrm o})
+v=\KBS\ast\Phi+\KBS\ast(\omega_{\mathrm r}-\Phi)+\KBS\ast(\omega_{\mathrm{inn}}+\omega_{\mathrm{ou}})
 =\Big(\frac{\Circ_\Phi(|x|)}{2\pi|x|^2}+\frac G{|x|^2}\Big)x^\perp+\KBS\ast(\omega_{\mathrm r}-\Phi)+h,
 \]
 and the bracket is $\Omega(|x|;G)$. Since $\partial_\tau\flow_\tau(y)=v(\tau,\flow_\tau(y))$
@@ -281,16 +281,43 @@ $\flow_\tau(y)\in N'$, which gives the integral formula.
 (Lemma~I.\ref{I-lem:ring-facts}), $w(t)$ is a smooth, real, $3$-fold rotationally symmetric function
 supported in $N$. The derivatives $\partial^\alpha_xw$ and
 $\partial_t\partial^\alpha_xw$ are uniformly continuous on the compact set
-$[0,T]\times N$ and vanish outside it, so the difference quotients of
+$[0,T]\times N$ and, for each $t\in[0,T]$, vanish for $x\notin N$.
+Thus the difference quotients of
 $t\mapsto w(t)$ converge in every $H^k$, and $w\in C^1([0,T];X^k)$.
-Differentiating $\omega_{\mathrm r}(t,\flow_t(y))=\omega_{\mathrm r}(0,y)$ in $t$ gives
-$\partial_t\omega_{\mathrm r}+v\cdot\nabla\omega_{\mathrm r}=0$. On $N$ we insert (2),
-$x^\perp\cdot\nabla\Phi=\partial_\theta\Phi=0$ and $x^\perp\cdot\nabla w=\partial_\theta w$:
+
+The ring component is transported by the full velocity $v$. Differentiating
+its defining identity along a trajectory gives
 \[
-\partial_tw=-\Omega(\cdot;G)\,\partial_\theta w-(\KBS\ast w)\cdot\nabla\Phi-(\KBS\ast w)\cdot\nabla w-h\cdot\nabla w-h\cdot\nabla\Phi .
+0=\frac{\dd}{\dd t}\omega_{\mathrm r}(t,\flow_t(y))
+=\big(\partial_t\omega_{\mathrm r}+v\cdot\nabla\omega_{\mathrm r}\big)(t,\flow_t(y)).
 \]
-The first two terms are $\Lin(G)w$ by Definition~I.\ref{I-def:sector-setting}, and the
-third is $B(w,w)$. Outside $N$ both sides of Equation~\eqref{eq:ring} vanish.
+Since $\flow_t$ is onto, $\partial_t\omega_{\mathrm r}
++v\cdot\nabla\omega_{\mathrm r}=0$ at every spatial point.
+Now $\omega_{\mathrm r}=\Phi+w$ and $\Phi$ is independent of time, so
+$\partial_t\omega_{\mathrm r}=\partial_tw$ and
+$\nabla\omega_{\mathrm r}=\nabla\Phi+\nabla w$.
+Substituting the velocity decomposition from (2), on $[0,T]\times N'$ we obtain
+\[
+\partial_tw=-\big(\Omega(|x|;G)x^\perp+\KBS\ast w+h\big)
+\cdot(\nabla\Phi+\nabla w).
+\]
+Because $\Phi$ is radial,
+$x^\perp\cdot\nabla\Phi=\partial_\theta\Phi=0$, whereas
+$x^\perp\cdot\nabla w=\partial_\theta w$. Expanding the product therefore gives
+\[
+\begin{aligned}
+\partial_tw
+&=-\Omega(\cdot;G)\,\partial_\theta w-(\KBS\ast w)\cdot\nabla\Phi\\
+&\quad-(\KBS\ast w)\cdot\nabla w-h\cdot\nabla w-h\cdot\nabla\Phi.
+\end{aligned}
+\]
+The first line on the right is $\Lin(G)w$ by
+Definition~I.\ref{I-def:sector-setting}, with background $\Phi$.
+The self-interaction term $-(\KBS\ast w)\cdot\nabla w$ is $B(w,w)$, and
+the remaining two terms describe advection of $w$ and $\Phi$ by $h$.
+This is Equation~\eqref{eq:ring} on $N'$. The spatial support properties
+above extend it to $\R^2$, with the products involving $h$ extended by zero
+as in the statement.
 \end{proof}
 
 In the setting of Lemma~\ref{lem:reduction}, put $w=\omega_{\mathrm r}-\Phi$. Then
@@ -350,9 +377,10 @@ Lemma~\ref{lem:Hk-calculus}\textup{(3)} give
 $\|\chi_B\KBS\ast v\|_{L^\infty}\le2C^{\mathrm{el}}_1\|v\|_{H^1}=C_{\mathrm{BS}}\|v\|_{H^1}$,
 which gives (4), since $\{|x|\le3\}\subset B_{7/2}$. The functions in
 (1)--(3) vanish outside $\supp\nabla w\cup\supp\nabla\Phi\subset N$. If $v$, $w$ and
-$h$ are $3$-fold rotationally symmetric, so are the vector fields $\KBS\ast v$ (by the
-equivariance in the proof of Lemma~\ref{lem:reduction}), $\nabla w$ and
-$\nabla\Phi$, hence the three scalar products.
+$h$ are $3$-fold rotationally symmetric, the vector fields $\KBS\ast v$,
+$\nabla w$ and $\nabla\Phi$ satisfy $V(\Orot x)=\Orot V(x)$; for
+$\KBS\ast v$ this was proved in Lemma~\ref{lem:reduction}.
+Their scalar products are therefore $3$-fold rotationally symmetric.
 \end{proof}
 
 Lemma~\ref{lem:energy} below compares the deviation $w$ of a ring with an
@@ -525,7 +553,7 @@ Assume \textup{(N1)}--\textup{(N3)}. Let $s_h\ge3$ and $N_Q\ge2$ be integers wit
 $N_Q\sigb\ge\Lam(s_h)$, and put $M_h=s_h+N_Q+1$. There are $\majst\in(0,1]$ and
 $C_Q<\infty$, depending only on $(\Phi,\Gone,s_h,N_Q)$, such that the following
 holds. Let $\omega$,
-$\omega_{\mathrm r},\omega_{\mathrm i},\omega_{\mathrm o}$, $G$ and $h$ be as in
+$\omega_{\mathrm r},\omega_{\mathrm{inn}},\omega_{\mathrm{ou}}$, $G$ and $h$ be as in
 Lemma~\ref{lem:reduction} on $[0,T]$, with $\omega_{\mathrm r}(0)=\Phi$ and
 $G\in[0,\Gone]$, and put $w=\omega_{\mathrm r}-\Phi$. Let $\eta$ be measurable with
 $\|h(t)\|_{C^{M_h}(N')}\le\eta(t)\le1$ on $[0,T]$, let $\maj$ be its Duhamel
@@ -757,7 +785,7 @@ $C_W\ge1$, depending only on $(\Phi,\Gone,s,\sigma',C_\natural)$, such that the
 following holds. Let $G\in[0,\Gone]$, $\sigma=\sigma(G)$, $\lambda=\lamst(G)$,
 $\kappa_1\in(0,\kappa_W]$, $\delta_0\in(0,\delta_W]$, $\eta_b\in[0,1]$,
 $\hat T_1=\sigma^{-1}\log(\delta_0/\kappa_1)$ and $\bar u\in(0,\hat T_1]$. Let
-$\omega$, $\omega_{\mathrm r},\omega_{\mathrm i},\omega_{\mathrm o}$ and $h$ be as in
+$\omega$, $\omega_{\mathrm r},\omega_{\mathrm{inn}},\omega_{\mathrm{ou}}$ and $h$ be as in
 Lemma~\ref{lem:reduction} on $[0,\bar u]$ with this $G$, put
 $w=\omega_{\mathrm r}-\Phi$, and let $c$ be the running coefficient of Equation~\eqref{eq:running}
 with $w_0=w(0)$. Assume that $\|w(0)\|_{H^{M-2}}\le C_\natural\kappa_1$, that
@@ -950,7 +978,7 @@ and define the \textbf{transient}
 \rhohat(u)=C_0\jap{u}^pe^{-(\sigma-\sigma')u}\ (0\le u<t_1),\qquad
 \rhohat(u)=\jap{u-t_1}^pe^{-(\sigma-\sigma')(u-t_1)}\ (u\ge t_1).
 \]
-Let $\bar u>0$, let $\omega$, $\omega_{\mathrm r},\omega_{\mathrm i},\omega_{\mathrm o}$
+Let $\bar u>0$, let $\omega$, $\omega_{\mathrm r},\omega_{\mathrm{inn}},\omega_{\mathrm{ou}}$
 and $h$ be as in Lemma~\ref{lem:reduction} on $[0,\bar u]$ with this $G$, put
 $w(u)=\omega_{\mathrm r}(u)-\Phi$, and let $c$ be the running coefficient of
 Equation~\eqref{eq:running} with $w_0=w(0)$. Assume:
@@ -1102,7 +1130,7 @@ $\tilde\omega(u')=\omega(t_1+u')$ is the solution of Theorem~\ref{thm:smooth} wi
 $3$-fold rotationally symmetric datum $\omega(t_1)$, by Theorem~\ref{thm:smooth}\textup{(5)}, and its
 flow is $\tilde\flow_{u'}=\flow_{t_1+u'}\circ\flow_{t_1}^{-1}$. With
 $\tilde\omega_\bullet(0)=\omega_\bullet(t_1)$ we get $\tilde\omega_\bullet(u')=\omega_\bullet(t_1+u')$,
-the same $G$ (since $\int\omega_{\mathrm i}(t_1)=2\pi G$), and the field
+the same $G$ (since $\int\omega_{\mathrm{inn}}(t_1)=2\pi G$), and the field
 $\tilde h(u')=h(t_1+u')$. So the restarted configuration satisfies the assumptions of
 Lemma~\ref{lem:reduction} on $[0,\bar u-t_1]$, and its perturbation is
 $\tilde w(u')=w(t_1+u')$. Its running coefficient is
