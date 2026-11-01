@@ -390,25 +390,35 @@ Their scalar products are therefore $3$-fold rotationally symmetric.
 
 Lemma~\ref{lem:energy} compares the deviation $w$ of a ring with an
 approximate solution $w_{\mathrm{app}}$ by an energy estimate in $H^s$.
-For each integer $s\ge3$, fix a sufficiently large rate $\Lam(s)$, depending
-only on $\Phi$, $\Gone$ and $s$, so that this estimate holds and
+In the proofs of Theorem~\ref{thm:quiet} and Lemma~\ref{lem:window},
+$w_{\mathrm{app}}$ will be a finite sum of iterated Duhamel terms, starting
+with the linear response and adding nonlinear corrections as in
+Equation~\eqref{eq:hier} below. The estimate controls the error of this
+approximation by its initial error and its residual.
+
+\begin{lemma}
+\label{lem:energy}
+Let $s\ge3$ be an integer. Fix a sufficiently large rate $\Lam(s)>0$,
+depending only on $\Phi$, $\Gone$ and $s$, and assume in addition that
 \begin{equation}
 \label{eq:Lambda}
 \Lam(s)\ge2\max_{G\in[0,\Gone]}\sigma(G).
 \end{equation}
-The latter inequality will be used in Lemma~\ref{lem:window}.
-
-\begin{lemma}
-\label{lem:energy}
-Let $s\ge3$ be an integer, and choose $\Lam(s)$ as above; it satisfies $\Lam(s)\ge2\max_{G\in[0,\Gone]}\sigma(G)$,
-where the maximum exists by Proposition~I.\ref{I-prop:U}\textup{(a)}, and it depends
-only on $\Phi$, $\Gone$ and $s$. Let $G\in[0,\Gone]$
+Let $G\in[0,\Gone]$
 and $t>0$, and let the assumptions of Lemma~\ref{lem:reduction}\textup{(3)} hold on
 $[0,t]$, with $w=\omega_{\mathrm r}-\Phi$. Let
 $w_{\mathrm{app}}\in C([0,t];X^{s+1})\cap C^1([0,t];X^s)$ be real-valued, and put
-$R_{\mathrm{app}}=\partial_tw_{\mathrm{app}}-\big(\Lin(G)w_{\mathrm{app}}+B(w_{\mathrm{app}},w_{\mathrm{app}})-h\cdot\nabla w_{\mathrm{app}}-h\cdot\nabla\Phi\big)$
-and $v=w-w_{\mathrm{app}}$. If on $[0,t]$ we have $\|w\|_{H^s}\le1$,
-$\|w_{\mathrm{app}}\|_{H^{s+1}}\le1$ and $\|h\|_{C^{s+1}(N')}\le1$, then for
+$v=w-w_{\mathrm{app}}$ and
+\[
+R_{\mathrm{app}}=\partial_tw_{\mathrm{app}}-\big(\Lin(G)w_{\mathrm{app}}+B(w_{\mathrm{app}},w_{\mathrm{app}})-h\cdot\nabla w_{\mathrm{app}}-h\cdot\nabla\Phi\big).
+\]
+If throughout $[0,t]$,
+\[
+\|w\|_{H^s}\le1,\qquad
+\|w_{\mathrm{app}}\|_{H^{s+1}}\le1,\qquad
+\|h\|_{C^{s+1}(N')}\le1,
+\]
+then for
 $\tau\in[0,t]$,
 \[
 \|v(\tau)\|_{H^s}\le e^{\Lam(s)\tau}\|v(0)\|_{H^s}+\int_0^\tau e^{\Lam(s)(\tau-\tau')}\|R_{\mathrm{app}}(\tau')\|_{H^s}\dd\tau' .
@@ -416,14 +426,34 @@ $\tau\in[0,t]$,
 \end{lemma}
 \begin{proof}
 On $N_1$ put $U=\Omega(|x|;G)x^\perp+h+\KBS\ast w$, and for $f$ supported in $N$ let
-$U\cdot\nabla f$ mean $(\chi_NU)\cdot\nabla f$. By
-Lemma~\ref{lem:reduction}\textup{(3)},
-$\partial_tw+U\cdot\nabla w=-(\KBS\ast w)\cdot\nabla\Phi-h\cdot\nabla\Phi$, and by
-the definition of $R_{\mathrm{app}}$ the same identity holds for $w_{\mathrm{app}}$,
-with $\KBS\ast w_{\mathrm{app}}$ in place of $\KBS\ast w$ in $U$ and with
-$R_{\mathrm{app}}$ added on the right. Since
-$(\KBS\ast w)\cdot\nabla w-(\KBS\ast w_{\mathrm{app}})\cdot\nabla w_{\mathrm{app}}=(\KBS\ast w)\cdot\nabla v+(\KBS\ast v)\cdot\nabla w_{\mathrm{app}}$,
-subtraction gives
+$U\cdot\nabla f$ mean $(\chi_NU)\cdot\nabla f$.
+Recall that $\Lin(G)w=-\Omega(|x|;G)\partial_\theta w-(\KBS\ast w)\cdot\nabla\Phi$
+and $\partial_\theta w=x^\perp\cdot\nabla w$. Substituting this and
+$B(w,w)=-(\KBS\ast w)\cdot\nabla w$ into the equation of
+Lemma~\ref{lem:reduction}\textup{(3)} gives
+\[
+\begin{aligned}
+\partial_tw
+&=-\Omega(|x|;G)x^\perp\cdot\nabla w-(\KBS\ast w)\cdot\nabla\Phi
+  -(\KBS\ast w)\cdot\nabla w-h\cdot\nabla w-h\cdot\nabla\Phi\\
+&=-U\cdot\nabla w-(\KBS\ast w+h)\cdot\nabla\Phi.
+\end{aligned}
+\]
+Moving the transport term to the left yields
+$\partial_tw+U\cdot\nabla w=-(\KBS\ast w)\cdot\nabla\Phi-h\cdot\nabla\Phi$.
+For the approximate solution, put
+$U_{\mathrm{app}}=\Omega(|x|;G)x^\perp+h+\KBS\ast w_{\mathrm{app}}$.
+The definition of $R_{\mathrm{app}}$ gives
+\[
+\partial_tw_{\mathrm{app}}+U_{\mathrm{app}}\cdot\nabla w_{\mathrm{app}}
+=-(\KBS\ast w_{\mathrm{app}})\cdot\nabla\Phi-h\cdot\nabla\Phi+R_{\mathrm{app}}.
+\]
+Since $U-U_{\mathrm{app}}=\KBS\ast v$ and
+\[
+U\cdot\nabla w-U_{\mathrm{app}}\cdot\nabla w_{\mathrm{app}}
+=U\cdot\nabla v+(\KBS\ast v)\cdot\nabla w_{\mathrm{app}},
+\]
+subtracting the equation for $w_{\mathrm{app}}$ from that for $w$ gives
 \[
 \partial_tv+U\cdot\nabla v=-(\KBS\ast v)\cdot\nabla(\Phi+w_{\mathrm{app}})-R_{\mathrm{app}},
 \]
@@ -469,9 +499,15 @@ the size of the data, in which $h$ and the initial value count as terms of first
 order: $w^{[1]}$ solves the linear equation driven by $-h\cdot\nabla\Phi$, with an
 initial value $w_0$ that is $0$ or $w(0)$ in our applications, and $w^{[j]}$,
 $j\ge2$, solves the linear equation with initial value $0$, driven by the terms of
-order $j$ of $B(w,w)-h\cdot\nabla w$. The
-residual of the sum then consists of terms of order larger than $J$
-(Equation~\eqref{eq:hier-res}), and Lemma~\ref{lem:energy} controls the difference
+order $j$ of $B(w,w)-h\cdot\nabla w$. For example, the order-two term of this
+nonlinear expression is $B(w^{[1]},w^{[1]})-h\cdot\nabla w^{[1]}$.
+Spatial differentiation preserves the formal order: both $w^{[j]}$ and
+$\nabla w^{[j]}$ have order $j$. Multiplying by the first-order field $h$
+therefore makes $h\cdot\nabla w^{[j]}$ of order $j+1$. The background $\Phi$
+is fixed and has order zero, so $h\cdot\nabla\Phi$ has order one and enters
+the equation for $w^{[1]}$. The residual of the sum consists of terms of
+order larger than $J$ (Lemma~\ref{lem:hier-res} below), and
+Lemma~\ref{lem:energy} controls the difference
 between $w$ and the sum. Let the assumptions of Lemma~\ref{lem:reduction} hold
 on $[0,T]$, assume $G\in[0,\Gone]$, and put $\Lin=\Lin(G)$ and $F=-h\cdot\nabla\Phi$.
 By Lemma~\ref{lem:reduction}\textup{(1)} and Lemma~\ref{lem:bilinear}, $F$ is real
@@ -494,15 +530,42 @@ Lemma~\ref{lem:bilinear} (whose bounds, with the continuity of $t\mapsto h(t)$ i
 every $C^k(N')$, give continuity in time) and Lemma~\ref{lem:duhamel} show that
 $g^{[j]}$ and $w^{[j]}$ are real, $g^{[j]}\in C([0,T];X^k)$ and
 $w^{[j]}\in C([0,T];X^k)\cap C^1([0,T];X^{k-1})$ for every $k\ge1$, and
-$\partial_tw^{[j]}=\Lin w^{[j]}+g^{[j]}$. Put $w_{\mathrm{app}}=\sum_{j=1}^Jw^{[j]}$.
-Summing the equations of the $w^{[j]}$, and using $F+h\cdot\nabla\Phi=0$,
-$\sum_{j=2}^{J}\sum_{i+l=j}B(w^{[i]},w^{[l]})=B(w_{\mathrm{app}},w_{\mathrm{app}})-\sum_{i,l\le J,\,i+l>J}B(w^{[i]},w^{[l]})$
-and $\sum_{j=2}^{J}h\cdot\nabla w^{[j-1]}=h\cdot\nabla w_{\mathrm{app}}-h\cdot\nabla w^{[J]}$,
-we find that the residual of $w_{\mathrm{app}}$ in Lemma~\ref{lem:energy} is
+$\partial_tw^{[j]}=\Lin w^{[j]}+g^{[j]}$.
+
+\begin{lemma}[Residual of the approximate solution]
+\label{lem:hier-res}
+Let $w^{[1]},\dots,w^{[J]}$ be constructed above, and put
+$w_{\mathrm{app}}=\sum_{j=1}^Jw^{[j]}$. Then $w_{\mathrm{app}}(0)=w_0$, and its
+residual, as defined in Lemma~\ref{lem:energy}, is
 \begin{equation}
 \label{eq:hier-res}
 R_{\mathrm{app}}=-\sum_{i,l\le J,\,i+l>J}B(w^{[i]},w^{[l]})+h\cdot\nabla w^{[J]} .
 \end{equation}
+Every term on the right has formal order larger than $J$.
+\end{lemma}
+\begin{proof}
+The first-order equation is
+$\partial_tw^{[1]}-\Lin w^{[1]}=F=-h\cdot\nabla\Phi$.
+Summing it with the equations for $2\le j\le J$ gives
+\[
+\partial_tw_{\mathrm{app}}-\Lin w_{\mathrm{app}}
+=F+\sum_{\substack{1\le i,l\le J\\i+l\le J}}B(w^{[i]},w^{[l]})
+  -h\cdot\nabla\sum_{j=1}^{J-1}w^{[j]}.
+\]
+By bilinearity,
+$B(w_{\mathrm{app}},w_{\mathrm{app}})=\sum_{1\le i,l\le J}B(w^{[i]},w^{[l]})$,
+and $\sum_{j=1}^{J-1}w^{[j]}=w_{\mathrm{app}}-w^{[J]}$. Substituting these
+identities into the definition of the residual yields
+\[
+R_{\mathrm{app}}=
+\underbrace{F+h\cdot\nabla\Phi}_{=\,0}
+-\sum_{i,l\le J,\,i+l>J}B(w^{[i]},w^{[l]})+h\cdot\nabla w^{[J]},
+\]
+which proves Equation~\eqref{eq:hier-res}. Thus the background-driving term
+cancels because it is already included in the first-order equation.
+The bilinear terms have order $i+l>J$, and the last term has order $J+1$.
+Finally, $w^{[1]}(0)=w_0$ and $w^{[j]}(0)=0$ for $j\ge2$ give the initial value.
+\end{proof}
 
 \subsection{A Quiet Ring}
 
