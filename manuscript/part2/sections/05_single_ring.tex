@@ -572,15 +572,15 @@ Finally, $w^{[1]}(0)=w_0$ and $w^{[j]}(0)=0$ for $j\ge2$ give the initial value.
 A ring is quiet while the instability has not reached it: it starts exactly at
 $\Phi$, so its deviation is created by the field $h$ alone, and
 Theorem~\ref{thm:quiet} shows that it stays small. We bound a norm of the field by a
-function $\eta$ of time, and its effect by the Duhamel majorant of $\eta$, defined
+function $\eta$ of time, and its effect by the Duhamel bound of $\eta$, defined
 next. Since the semigroup bound of Proposition~I.\ref{I-prop:semigroup} grows like
-$e^{\sigma(G)t}$, the majorant bounds, up to a constant factor, the linear
+$e^{\sigma(G)t}$, this integral controls, up to a constant factor, the linear
 response to a driving term of size $\eta$.
 
 \begin{definition}
 \label{def:majorant}
 Let $G\in[0,\Gone]$, $T>0$, and let $\eta\colon[0,T]\to[0,\infty)$ be integrable.
-The \textbf{Duhamel majorant} of $\eta$ is
+The \textbf{Duhamel bound} of $\eta$ is
 $\maj(t)=\int_0^te^{\sigma(G)(t-\tau)}\eta(\tau)\dd\tau$, $t\in[0,T]$.
 \end{definition}
 
@@ -600,6 +600,28 @@ gives (M2). By (M1), $\maj(\tau)\le e^{-\sigma(t-\tau)}\maj(t)$; integrating ove
 $\tau\in[0,t]$ gives (M3).
 \end{proof}
 
+Recall that $\sigb=\min_{G\in[0,\Gone]}\sigma(G)>0$ is the uniform lower
+bound on the unstable growth rate. In the next theorem, $Q$ stands for
+``quiet'': $N_Q$ is the order of the approximate solution and $C_Q$ is the
+constant in the bounds for a quiet ring; $\majst$ is the smallness threshold for the
+Duhamel bound. The subscript $h$ labels the regularity indices used in the
+field estimates: the perturbation is controlled in $H^{s_h}$ and the field
+$h$ is assumed bounded in $C^{M_h}$. Taking $M_h=s_h+N_Q+1$ supplies the derivatives needed
+by the successive Duhamel terms and the energy estimate. Section~\ref{sec:relay}
+uses these bounds to control the velocity fields induced by quiet rings,
+and Section~\ref{sec:bootstrap} keeps those rings close to $\Phi$ until activation.
+
+The condition $N_Q\sigb\ge\Lam(s_h)$ ensures that truncation at order $N_Q$
+overcomes the growth allowed by the energy estimate. Indeed, the residual
+contains a factor $\maj^{N_Q}$, and (M1) gives, for $0\le\tau\le t$,
+\[
+e^{\Lam(s_h)(t-\tau)}\maj(\tau)^{N_Q}
+\le e^{(\Lam(s_h)-N_Q\sigma(G))(t-\tau)}\maj(t)^{N_Q}
+\le\maj(t)^{N_Q}.
+\]
+Thus the remainder retains the higher-order smallness needed to compare
+$w$ with its linear response.
+
 \begin{theorem}
 \label{thm:quiet}
 Assume \textup{(N1)}--\textup{(N3)}. Let $s_h\ge3$ and $N_Q\ge2$ be integers with
@@ -610,7 +632,7 @@ $\omega_{\mathrm r},\omega_{\mathrm{inn}},\omega_{\mathrm{ou}}$, $G$ and $h$ be 
 Lemma~\ref{lem:reduction} on $[0,T]$, with $\omega_{\mathrm r}(0)=\Phi$ and
 $G\in[0,\Gone]$, and put $w=\omega_{\mathrm r}-\Phi$. Let $\eta$ be measurable with
 $\|h(t)\|_{C^{M_h}(N')}\le\eta(t)\le1$ on $[0,T]$, let $\maj$ be its Duhamel
-majorant, and assume $\maj\le\majst$ on $[0,T]$. Then for every $t\in[0,T]$:
+bound, and assume $\maj\le\majst$ on $[0,T]$. Then for every $t\in[0,T]$:
 \begin{enumerate}[label=\textup{(\alph*)}]
 \item $\supp\omega_{\mathrm r}(t)\subset\NNm$;
 \item $\|w(t)-\wlin(t)\|_{H^{s_h}}\le C_Q\maj(t)^2$, where
@@ -623,11 +645,7 @@ majorant, and assume $\maj\le\majst$ on $[0,T]$. Then for every $t\in[0,T]$:
 Throughout, $\sigma=\sigma(G)\ge\sigb$ and $\Lin=\Lin(G)$. We compare $w$ with the
 approximate solution of Equation~\eqref{eq:hier} with $J=N_Q$ and $w^{[1]}=\wlin$,
 bound its terms by powers of $\maj$, and close with Lemma~\ref{lem:energy} in a
-continuity argument on the radial displacement and on $\|w\|_{H^{s_h}}$. Both
-terms of the bound on the residual contain the factor $\maj^{N_Q}$
-(Equation~\eqref{eq:Q-res} below), and the condition $N_Q\sigb\ge\Lam(s_h)$ lets
-the growth of this factor absorb the growth $e^{\Lam(s_h)t}$ allowed by the
-energy estimate.
+continuity argument on the radial displacement and on $\|w\|_{H^{s_h}}$.
 
 \emph{Constants.} Put $\sigma'_0=\frac12(\frac9{200}+\sigb)\in(\frac9{200},\sigb)$ and
 \[
