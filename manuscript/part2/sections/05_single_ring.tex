@@ -723,9 +723,21 @@ and \eqref{eq:Q-v} give, for $t\le t_*$,
 \label{eq:Q-b}
 \|w(t)-\wlin(t)\|_{H^{s_h}}\le C_Q\maj(t)^2,\qquad\|w(t)\|_{H^{s_h}}\le C_Q\maj(t)\le\tfrac12 .
 \end{equation}
-For $y\in\supp\Phi$ and $\tau\le t\le t_*$, the point $\flow_\tau(y)$ lies in $N$, so
-by Lemma~\ref{lem:reduction}\textup{(2)}, Lemma~\ref{lem:bilinear}\textup{(4)},
-Equation~\eqref{eq:Q-b}, (M2) and (M3),
+For $y\in\supp\Phi$ and $0\le u\le t\le t_*$, the point $\flow_u(y)$ lies in $N$.
+The background velocity $\Omega(|x|;G)x^\perp$ is tangential, so
+Lemma~\ref{lem:reduction}\textup{(2)} gives
+\[
+\frac{\dd}{\dd u}|\flow_u(y)|
+=\big(h+\KBS\ast w\big)(u,\flow_u(y))\cdot\er(\flow_u(y)).
+\]
+Since $\er$ is a unit vector and $\flow_u(y)\in N\subset B_3$, the absolute
+value of the right side is at most
+$\|h(u)\|_{C^0(N')}+C_{\mathrm{BS}}\|w(u)\|_{H^1}
+\le\eta(u)+C_{\mathrm{BS}}\|w(u)\|_{H^{s_h}}$,
+by Lemma~\ref{lem:bilinear}\textup{(4)} and $s_h\ge3$.
+Integrating from $0$ to $\tau\le t$ and enlarging the integral to $[0,t]$
+gives the first inequality below; Equation~\eqref{eq:Q-b}, (M2) and (M3)
+then give the remaining bounds:
 \[
 \big||\flow_\tau(y)|-|y|\big|\le\int_0^t\big(\eta+C_{\mathrm{BS}}\|w\|_{H^{s_h}}\big)\le\maj(t)+\frac{C_{\mathrm{BS}}C_Q}{\sigb}\maj(t)\le C_\Delta\maj(t).
 \]
