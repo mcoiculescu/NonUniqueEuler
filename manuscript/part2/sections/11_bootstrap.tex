@@ -227,8 +227,8 @@ $\|w_n(0)\|_{H^{M-1}}\le\Cseed\kseed\le2\Cseed\ksh_n\le C_0\ksh_n$. By
 ($\kappa$1) at $\kappa=2\kseed$, $2\kseed<\delta_0$. So $\ksh_n\in(0,\delta_0)$,
 the clock is defined up to level $n$, and $k_{\mathrm s}<n$ if it stops.
 Recall that $\rhohat_n$ is the transient of Theorem~\ref{thm:active} for
-$(C_0,G_n)$; it equals $C_0\jap{u}^pe^{-(\sigma_n-\sigma')u}$ for
-$u<t_1(C_0,G_n)$, and $t_1(C_0,G_n)>0$ because $2^{p/2}C_0>1$, so
+$(C_0,G_n)$; it equals $C_0\jap{u}^3e^{-(\sigma_n-\sigma')u}$ for
+$u<t_1(C_0,G_n)$, and $t_1(C_0,G_n)>0$ because $2^{3/2}C_0>1$, so
 $\rhohat_n(0)=C_0$. As $s\le M-1$ and $C_2\ge1$,
 \begin{equation}
 \label{eq:boot-start}
@@ -437,11 +437,12 @@ $\tsh_k$ is the solution of Theorem~\ref{thm:smooth} with datum
 $A_k^{-1}\omega(\tsh_k,r_k\cdot)$. We apply Lemma~\ref{lem:reduction} and
 Theorem~\ref{thm:active} to it, with the parts of the vorticity on $S_k$, on
 $D_{k+1}$ and on $S_1\cup\dots\cup S_{k-1}$, with $G=G_k$, $\kappa=\ksh_k$, the
-constant $C_0$, $\eta_b=\eta_{b,k}$ and $\delta_0$; then
+constant $C_0$, $\eta_b=\eta_{b,k}$, $\delta_0$ and $\bar t=\bar u$.
+Writing the theorem's time variable as the active time $u$ here, we have
 $w(u)=w_k(\tsh_k+u/A_k)$, $h(u)=h_k(\tash_k+u)$ and $c=c_k$. The support
 hypotheses of Lemma~\ref{lem:reduction} on $[0,\bar u]$ hold by
 Lemma~\ref{lem:geometry}(b). For Theorem~\ref{thm:active}: $G_k\in[0,\Gone]$,
-$\delta_0\le\dH$ by (P1), $\eta_{b,k}\le\eta_b\le\etmax$ by (B8), and (Small)
+$\delta_0\le\dH$ by (P1), $\eta_{b,k}\le\eta_b\le1$ by (B8), and (Small)
 holds: $\ksh_k\le2\kseed\le\kappa_0(C_0)$ by Step~0 if $k=n$, by Step~3 and (B6) if
 $k<n$, and by ($\kappa$4). It remains to check (Init), (Field) and (Coef).
 
@@ -591,8 +592,8 @@ $[\tsh_k,t_*]$, and the right side $R_k(u)=2C_2\hat a_k(u)(1+\rhohat_k(u))$ of
 (BA3) is continuous except at $u=t_1(C_0,G_k)$, where it is right-continuous
 and jumps upward: the transient $\rhohat_k$ of Theorem~\ref{thm:active} takes the value
 $1$ there, while its left limit there is the value of
-$C_0\jap{u}^pe^{-(\sigma_k-\sigma')u}$ at $u=t_1(C_0,G_k)$, which is at most
-$2^{-p/2}$ by the definition of $t_1(C_0,G_k)$.
+$C_0\jap{u}^3e^{-(\sigma_k-\sigma')u}$ at $u=t_1(C_0,G_k)$, which is at most
+$2^{-3/2}$ by the definition of $t_1(C_0,G_k)$.
 So $R_k(u_*)\ge\limsup_{u\uparrow u_*}R_k(u)$ at $u_*=A_k(t_*-\tsh_k)$, and (BA3)
 at $t_*$ follows from (BA3) at earlier times. Hence $t_*\in\mathcal B$.
 

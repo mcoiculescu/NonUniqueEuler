@@ -110,14 +110,9 @@ the following \textbf{trusted base} holds.
   carry out the enclosure procedure of Section~\ref{app:procedure} and the
   certifications and runs of Section~\ref{app:runs}.
 \end{enumerate}
-We did not inspect FLINT's internal error analysis; if FLINT uses hardware
-floating-point arithmetic internally, its correctness is part of (TB1). The
-function \texttt{evans} of the module \texttt{ringcert.evans} follows steps
+The function \texttt{evans} of the module \texttt{ringcert.evans} follows steps
 (i)--(iv) of Section~\ref{app:procedure} line by line, and the part of (TB3) that
-concerns it is established by reading it against them. The tests of the package
-detect some departures from the procedure (dropping the Taylor remainder in
-step~(iii)), but not all (omitting the a priori enlargement that defines
-$P^{\rm st}$ and $P'^{\rm st}$ in step~(iii)), and do not replace this reading. A certification (Section~\ref{app:runs})
+concerns it is established by reading it against them. A certification (Section~\ref{app:runs})
 is carried out by the function \texttt{certify\_cell} of the module
 \texttt{ringcert.winding}, which follows the description of the certification in
 Section~\ref{app:runs} line by line, and a run

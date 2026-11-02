@@ -27,8 +27,8 @@ them, are defined there; the list only fixes the order in which they are chosen.
   $\sigb$ of Definition~I.\ref{I-def:eigendata}.
 \item[\textup{(P0.2)}] An integer $s$ and a number $\sigma'$ as in (SA1); then
   $c_\gamma$ of Definition~\ref{def:standing}.
-\item[\textup{(P0.3)}] $p=m$; the integers $N_G$, $M$, the constants
-  $\dH,C_2,C_3,\etmax$ and $\sigma_{\max}$, and the functions
+\item[\textup{(P0.3)}] The integers $N_G$, $M$, the constants
+  $\dH,C_2,C_3$ and $\sigma_{\max}$, and the functions
   $\kappa_0(\cdot)$, $\bar t_1(\cdot)$, $C(\cdot)$ of Theorem~\ref{thm:active};
   $\kL$ and $\Cseed$ of Lemma~\ref{lem:seed}; $\|\ellst\|$, $\Cls$ and $\Cp$ of
   Lemma~I.\ref{I-lem:uniform}.
@@ -69,8 +69,8 @@ Theorem~\ref{thm:active}, which the proof of Proposition~\ref{prop:bootstrap}
 applies to every active ring. That proof bounds the initial perturbation of the
 seeded ring by $2\Cseed\ksh_n$, that of ring $k$ at its hand-off by
 $\Chand\ksh_k$, and the inner field of the active ring $k$ by
-$C_F\ksh_k\jap{u}^m$. Since (Init) and (Field) ask for bounds $C_0\kappa$ and
-$C_0\kappa\jap{u}^p$, with $p=m$, the number $C_0$ must be at least $2\Cseed$,
+$C_F\ksh_k\jap{t}^m$. Since $m=3$, (Init) and (Field) require bounds
+$C_0\kappa$ and $C_0\kappa\jap{t}^3$, so $C_0$ must be at least $2\Cseed$,
 $\Chand$ and $C_F$, and at least $1$ as Theorem~\ref{thm:active} requires. None of
 $\Chand$, $C_F$, $\Cseed$ depends on $C_0$, so the choice of $C_0$ is not
 circular. Likewise $\Tpin$ depends only on $\sigma$ and $m$. It is chosen before
@@ -150,7 +150,7 @@ Equation~\eqref{eq:etab}.
   \label{eq:E22}
   \KO\sbar^{2m}\Big[\Tz+2\log\frac1{\sbar}+\frac1{\mu-1}\Big]\le\frac{\mu-1}{4C_OC_QC_\tau}\min\Big\{\frac12,\frac1{4\Cls K_1}\Big\}.
   \end{equation}
-\item[\textup{(B8)}] $\eta_b\le\frac12\etmax$; for every $k\ge2$,
+\item[\textup{(B8)}] $\eta_b\le\frac12$; for every $k\ge2$,
   \[
   \frac{\Cls\eta_{b,k}}{\sigma'}\Big[(m+2)\log\frac1{s_k}+\log_+\frac{\delta_0}{\Klo}\Big]\le\frac1{32};
   \]
@@ -177,7 +177,7 @@ Lemma~\ref{lem:field-bound} state them as hypotheses.
 \raggedright Quantity & Fixed at & \raggedright Determined by \tabularnewline
 \hline
 \raggedright $s$, $\sigma'$, $c_\gamma$ & (P0.2) & \raggedright $\sigb$, $\sigma$ ($s\ge3$ free) \tabularnewline
-\raggedright $N_G$, $M$, $\dH$, $C_2$, $C_3$, $\etmax$, $\sigma_{\max}$, $\kappa_0(\cdot)$, $\bar t_1(\cdot)$, $C(\cdot)$ & (P0.3) & \raggedright $\Phi$, $\Gone$, $s$, $\sigma'$ \tabularnewline
+\raggedright $N_G$, $M$, $\dH$, $C_2$, $C_3$, $\sigma_{\max}$, $\kappa_0(\cdot)$, $\bar t_1(\cdot)$, $C(\cdot)$ & (P0.3) & \raggedright $\Phi$, $\Gone$, $s$, $\sigma'$ \tabularnewline
 \raggedright $\kL$; $\Cseed$; $\|\ellst\|$, $\Cls$, $\Cp$ & (P0.3) & \raggedright $\Phi$; $\Phi$, $\Gone$, $s$; $\Phi$, $\Gone$ \tabularnewline
 \raggedright $s_h$, $N_Q$, $M_h$, $\majst$, $C_Q$ & (P0.4) & \raggedright $M$, $\Lam$, $\sigb$ \tabularnewline
 \raggedright $C_{L1}$, $C_M$, $C_O$, $\Cin$, $C_\eta$ & (P0.5) & \raggedright $a$, $m$, $M_h$, $\|\Phi\|_{L^1}$ \tabularnewline
@@ -299,13 +299,13 @@ $t_1(C_0,G)\le\bar t_1(C_0)$, and $\sigma(G)\in[\sigb,\sigma_{\max}]$, so
 $\hat T\ge\sigma_{\max}^{-1}\log(\delta_0/\kappa)$. If moreover
 $\kappa\le\delta_0e^{-\sigma_{\max}\bar t_1(C_0)}$, then $\hat T\ge\bar t_1(C_0)$, so
 $y=\hat T-t_1(C_0,G)\ge\hat T-\bar t_1(C_0)\ge0$. Hence $\hat T$ lies in the range
-$u\ge t_1$ of the second formula for the transient in Theorem~\ref{thm:active},
+$t\ge t_1$ of the second formula for the transient in Theorem~\ref{thm:active},
 and, as $\sigma(G)-\sigma'\ge c$,
 \[
-\rhohat(\hat T)=\jap{y}^pe^{-(\sigma(G)-\sigma')y}\le\jap{y}^pe^{-cy}\le K_ce^{-cy/2}
+\rhohat(\hat T)=\jap{y}^3e^{-(\sigma(G)-\sigma')y}\le\jap{y}^3e^{-cy}\le K_ce^{-cy/2}
 \le K_ce^{c\bar t_1(C_0)/2}\Big(\frac\kappa{\delta_0}\Big)^{c/(2\sigma_{\max})},
 \]
-where $K_c=\sup_{y\ge0}\jap{y}^pe^{-cy/2}<\infty$, and the last step uses
+where $K_c=\sup_{y\ge0}\jap{y}^3e^{-cy/2}<\infty$, and the last step uses
 $y\ge\hat T-\bar t_1(C_0)$ and the lower bound on $\hat T$. The right side does not depend on
 $G$ and tends to $0$ as $\kappa\to0$, and so does $\kappa^{1/2}$; so ($\kappa$5)
 holds for all small $\kappa$, uniformly in $G\in[0,\Gone]$. We take for $x_0$
