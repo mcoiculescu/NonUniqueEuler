@@ -157,15 +157,15 @@ Fix $n\ge2$ and the objects of Definition~\ref{def:approx}. For $1\le k\le n$:
   $w_k(t,y)=A_k^{-1}\omega^{(n)}(t,r_ky)\mathbf 1_{S_k(t)}(r_ky)-\Phi(y)$;
 \item the \textbf{inner circulation} $G_k$ is defined by
   $2\pi G_kA_kr_k^2=\int\omega_{\ge k+1}(0)$; we put
-  $\varepsilon_k=\mu s_k^{m+2}$, and, if $G_k\le\Gone$, $\sigma_k=\sigma(G_k)$,
+  $\varepsilon_k=\mu s_k^5$, and, if $G_k\le\Gone$, $\sigma_k=\sigma(G_k)$,
   $\lambda_k=\lamst(G_k)$, $x_k=\sigma_k/\mu$ and
-  $\beta_k=\beta(G_k)s_k^{m+2}/(2\pi)$;
+  $\beta_k=\beta(G_k)s_k^5/(2\pi)$;
 \item for $k<n$, the \textbf{normalized moment} of the inner region is
   \[
-  q_{k+1}(t)=\overline{\Qm[\omega_{\ge k+1}(t)]}/(A_{k+1}r_{k+1}^{m+2})
+  q_{k+1}(t)=\overline{Q_3[\omega_{\ge k+1}(t)]}/(A_{k+1}r_{k+1}^5)
   \]
   (the support of $\omega_{\ge k+1}(t)$ is compact and does not contain $0$, by
-  Lemma~\ref{lem:regions-basic}\textup{(2)} below, so $\Qm$ applies);
+  Lemma~\ref{lem:regions-basic}\textup{(2)} below, so $Q_3$ applies);
 \item at a time $t$ with $D_{k+1}(t)\subset B_{ar_k/8}$, the \textbf{inner field}
   of ring $k$ at ring-$k$ time $\tau=A_kt$ is
   \[
@@ -400,9 +400,16 @@ The phase clock turns the relay described in the Introduction into definite
 times. It is defined recursively, from the innermost ring outward. Ring $n$
 becomes active at time $0$. Ring $k$ becomes active at the time $\tsh_k$, and
 $T_k$ is the time at which its unstable coefficient is expected to reach the
-size $\delta_0$. Ring $k-1$ then becomes active after a pinning phase
-of length $\Tpin$ in ring-$k$ time. At the end of this pinning phase the kick
-time of ring $k-1$, defined below, equals $\Tpin$; there
+size $\delta_0$. Ring $k-1$ then waits a further $\Tpin$ units of ring-$k$
+time before being declared active. This \emph{pinning phase} allows its kick
+amplitude, with the free linear growth factored out, to settle near the value
+acquired around $T_k$. After $T_k$, the mode-$3$ moment of the inner vorticity
+has at most polynomial growth, whereas the weight in the kick integral decays
+exponentially. Choosing $\Tpin$ sufficiently large therefore makes the
+remaining contribution small: the normalized unstable coefficient of ring
+$k-1$ stays essentially stationary during its ensuing active phase
+(Lemma~\ref{lem:drift}), while its unstable mode grows. At the end of the
+pinning phase the kick time of ring $k-1$, defined below, equals $\Tpin$; there
 Lemma~\ref{lem:coupling}\textup{(2)} evaluates the kick that ring $k$ and the
 rings inside it give to ring $k-1$.
 
@@ -424,20 +431,58 @@ these $i$. Put $T_{n+1}=0$, $\tash_k=A_k\tsh_k$, $W_k=[T_{k+1},T_k]$, the
 \textbf{active phase} $\Phase_k=[\tsh_k,T_k]$ and the \textbf{pinning phase}
 $\Pin_k=[T_{k+1},\tsh_k]$ ($k<n$). Ring $k$ is \textbf{quiet} on $[0,\tsh_k]$,
 \textbf{active} on $\Phase_k$, and \textbf{debris} after $T_k$. On $\Phase_k$ we
-use the \textbf{active time} $u=A_k(t-\tsh_k)$; if $h_k$ is defined on
+use the \textbf{active time} $u=A_k(t-\tsh_k)$. This puts activation at $u=0$
+and rescales the natural time scale $1/A_k$ to unit time, so that we can apply
+the single-ring results of Section~\ref{sec:single} with initial perturbation
+$w_k(\tsh_k)$ and parameter $G_k$, uniformly in $k$. If $h_k$ is defined on
 $[\tsh_k,t]$, the running coefficient of ring $k$ is, for $0\le u\le A_k(t-\tsh_k)$,
 \begin{equation}
 \label{eq:running-k}
 c_k(u)=c_k(0)+\int_0^ue^{-\lambda_kv}\,\ellst(G_k)\big(F_k(v)\big)\dd v ,
 \end{equation}
 where $F_k(v)=-h_k(\tash_k+v)\cdot\nabla\Phi$ on $N'$ and $F_k(v)=0$ elsewhere.
-The \textbf{kick time} of ring $k<n$ is $\tauK=A_{k+1}(t-T_{k+1})$; it equals
-$\Tpin+\mu u$ on $\Phase_k$, and $\tau_0=-A_{k+1}T_{k+1}$ is the kick time of
-$t=0$.
+For ring $k<n$, the \textbf{kick-time coordinate} is
+$\tauK=A_{k+1}(t-T_{k+1})$: it measures elapsed time since the saturation of
+ring $k+1$, in ring-$(k+1)$ units. Thus $\tauK=0$ at $t=T_{k+1}$,
+$\tauK=\Tpin$ at $t=\tsh_k$, and $\tauK=\Tpin+\mu u$ on $\Phase_k$.
+We denote its value at physical time $t=0$ by $\tau_0=-A_{k+1}T_{k+1}$.
 \end{definition}
 
-The window $W_k$ is the union of the pinning phase $\Pin_k$ and the active phase
-$\Phase_k$ of ring $k$ (for $k=n$, of $\Phase_n$ alone).
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[x=1cm,y=1cm,font=\small]
+\draw[|-|] (0.5,1.15) -- (8.6,1.15)
+  node[midway,above] {quiet};
+\draw[|-|] (5.1,0.55) -- (8.6,0.55)
+  node[midway,above] {pinning $\Pin_k$};
+\draw[|-|] (8.6,0.55) -- (12.8,0.55)
+  node[midway,above] {active $\Phase_k$};
+\draw[->] (12.8,0.55) -- (15.2,0.55)
+  node[midway,above] {debris};
+\draw[->] (0.2,0) -- (15.5,0) node[right] {$t$};
+\foreach \x in {0.5,5.1,8.6,12.8}
+  \draw (\x,0.10) -- (\x,-0.10);
+\node[below] at (0.5,-0.12) {$0$};
+\node[below] at (5.1,-0.12) {$T_{k+1}$};
+\node[below] at (8.6,-0.12) {$\tsh_k$};
+\node[below] at (12.8,-0.12) {$T_k$};
+\draw[|-|] (5.1,-0.95) -- (12.8,-0.95)
+  node[midway,below] {$W_k$};
+\node[anchor=west] at (0.2,-1.65) {active time $u$};
+\node at (8.6,-1.65) {$0$};
+\node at (12.8,-1.65) {$\hat T_k$};
+\node[anchor=west] at (0.2,-2.30) {kick time $\tauK$};
+\node at (0.5,-2.85) {$\tau_0$};
+\node at (5.1,-2.85) {$0$};
+\node at (8.6,-2.85) {$\Tpin$};
+\node at (12.8,-2.85) {$\Tpin+\mu\hat T_k$};
+\end{tikzpicture}
+\caption{The phases of ring $k<n$ and the corresponding time coordinates
+(positions schematic). The window $W_k$ is the union of the pinning and active
+phases. For the seeded ring $k=n$, $\tsh_n=0$ and $W_n=\Phase_n$, with no
+pinning phase.}
+\label{fig:ring-clock}
+\end{figure}
 
 The integral in Equation~\eqref{eq:running-k} exists, so $c_k(u)$ is well
 defined: its integrand is continuous in $v$, since the map
@@ -446,11 +491,17 @@ Lemma~\ref{lem:regions-basic}) and
 $|\ellst(G_k)(-h\cdot\nabla\Phi)|\le\Cls\|h\|_{C^0(N')}$ for continuous $h$
 (Lemma~I.\ref{I-lem:uniform}).
 
-The relay lemmas of Section~\ref{sec:relay} are causal, and the bootstrap of
-Section~\ref{sec:bootstrap}, a continuity argument in time, applies them at a
-time $t$ under hypotheses on $[0,t]$. So the phase boundaries that enter them at
-time $t$ must be determined by $\omega^{(n)}$ on $[0,t]$, in the following sense, and
-Lemma~\ref{lem:clock} below shows that they are. A quantity built from $\omega^{(n)}$ by
+Lemma~\ref{lem:clock} verifies that the recursion in Definition~\ref{def:clock}
+gives well-defined, strictly ordered activation and saturation times whenever
+its support and amplitude conditions are met. At each step, knowing the
+solution through $\tsh_i$ fixes $\ksh_i$, hence $T_i$ and the next activation
+time $\tsh_{i-1}$; no later values of the solution are needed. Consequently,
+the solution on $[0,t]$ determines which rings have become active by $t$ and
+which have already reached saturation. This lets the continuity argument of
+Section~\ref{sec:bootstrap} apply the estimates of Section~\ref{sec:relay}
+using only the solution on the interval $[0,t]$ under consideration.
+
+To state this dependence precisely, a quantity built from $\omega^{(n)}$ by
 Definitions~\ref{def:regions} and \ref{def:clock} is
 \textbf{determined by $\omega^{(n)}$ on $[0,\bar t]$} if it keeps its value when
 $\omega^{(n)}$ is replaced in these definitions by any
@@ -470,17 +521,20 @@ In Definition~\ref{def:clock}, assume that the clock is defined up to level $k$.
   $\tsh_{i-1}$ is determined by $\omega^{(n)}$ on $[0,\tsh_i]$.
 \item Hence, for every $t\ge0$, the set $\mathcal J_t$ of the $i\in[k,n]$ with
   $\tsh_i\le t$, and the numbers $\tsh_i$ and $T_i$ for $i\in\mathcal J_t$, are
-  determined by $\omega^{(n)}$ on $[0,t]$. In particular, so are the phase
-  boundaries $\tsh_i$, $T_i$ ($k\le i\le n$) not exceeding $t$, and the phase of
-  each ring $i\in[k,n]$ at time $t$ in the sense of Definition~\ref{def:clock}.
+  determined by $\omega^{(n)}$ on $[0,t]$. In particular, the solution on
+  $[0,t]$ determines all activation and saturation times $\tsh_i$, $T_i$
+  ($k\le i\le n$) not exceeding $t$, and whether each ring $i\in[k,n]$ is
+  quiet, active, or debris at $t$, as defined in Definition~\ref{def:clock}.
 \end{enumerate}
 \end{lemma}
 \begin{proof}
 (1) Let $i\in[k,n]$. By Lemma~\ref{lem:inner-circ}, $G_i\ge0$, and $G_i\le\Gone$ by
 the assumption of Definition~\ref{def:clock}; so Proposition~I.\ref{I-prop:SU} gives
 $\sigma_i=\sigma(G_i)>\frac{211}{2500}$. Moreover $\ksh_i<\delta_0$, as the clock
-is defined up to level $k$, so $\hat T_i>0$
-and $T_i>\tsh_i$; if $i\ge2$, then $\tsh_{i-1}-T_i=\Tpin/A_i>0$. These inequalities, for $i=n,n-1,\dots,k$,
+is defined up to level $k$, so $\hat T_i$ is finite and positive. Thus the
+formulas in Definition~\ref{def:clock} uniquely determine $T_i>\tsh_i$ and,
+if $i\ge2$, $\tsh_{i-1}$, with $\tsh_{i-1}-T_i=\Tpin/A_i>0$.
+These inequalities, for $i=n,n-1,\dots,k$,
 give (1).
 
 (2) Let $\bar t\ge\tsh_i$, let $\tilde\omega$ be as above, and mark with a tilde
@@ -507,8 +561,8 @@ $\tsh_i$, $T_i$, $i\ge i_0$, are the same for $\tilde\omega$, so
 $[i_0,n]\subset\tilde{\mathcal J}_t$, and, if $i_0>k$,
 $\tilde t^\sharp_{i_0-1}=\tsh_{i_0-1}>t$; the proof of (1) applies to the clock
 of $\tilde\omega$ wherever it is defined, so every defined $\tilde t^\sharp_i$ with $i<i_0$ exceeds
-$t$. Hence $\tilde{\mathcal J}_t=\mathcal J_t$. These data decide the phase of
-ring $i\in[k,n]$ at $t$. If $i\notin\mathcal J_t$, then $t<\tsh_i<T_i$ and ring
+$t$. Hence $\tilde{\mathcal J}_t=\mathcal J_t$. These data determine whether
+ring $i\in[k,n]$ is quiet, active, or debris at $t$. If $i\notin\mathcal J_t$, then $t<\tsh_i<T_i$ and ring
 $i$ is quiet and neither active nor debris, and for $\tilde\omega$ the number
 $\tilde t^\sharp_i$ is either undefined or greater than $t$, so ring $i$ is
 neither active nor debris and is quiet at $t$ in the reading of

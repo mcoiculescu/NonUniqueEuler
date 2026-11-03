@@ -72,8 +72,7 @@ The monopole $G_ky^\perp/|y|^2$ is orthogonal to $\er$, so the polar form
 $v\cdot\er=-r^{-1}\partial_\theta\psi$ of the Biot-Savart law
 (Section~I.\ref{I-sec:prelim}) gives $\hin_k(\tau)\cdot\er=-r^{-1}\partial_\theta\psi$
 on $N'$. Put $p_3=\pout_3[\nu^{\mathrm{in}}_k]$, the outer mode-$3$ moment of
-Definition~I.\ref{I-def:multipole}. By Lemma~\ref{lem:exterior-mode}, with
-$m=3$ and $\varrho=\rho$, the angular mode $3$ of $\psi$ is
+Definition~I.\ref{I-def:multipole}. By Lemma~\ref{lem:exterior-mode}, at angular order $3$ and with $\varrho=\rho$, the angular mode $3$ of $\psi$ is
 $-\frac16p_3r^{-3}$ for $r>\rho$, and by integration by parts in $\theta$ that of
 $\partial_\theta\psi$ is $3i$ times that of $\psi$. Since
 $N'=\{a/4\le|y|\le3\}\subset\{|y|>\rho\}$, the mode-$3$ profile of
@@ -94,11 +93,11 @@ express $p_3$ through the normalized moment $q_{k+1}(t)$ of
 Definition~\ref{def:regions}. The change
 of variables $x=r_ky$ and the reality of $\omega_{\ge k+1}(t)$ give
 \[
-p_3=\frac1{2\pi A_k}\int\omega_{\ge k+1}(t,r_ky)\,\bar y^{\,3}\dd y
-=\frac{\overline{\Qm[\omega_{\ge k+1}(t)]}}{2\pi A_kr_k^5}
+p_3=\frac1{2\pi A_k}\int\omega_{\ge k+1}(t,r_ky)\,\bar y^3\dd y
+=\frac{\overline{Q_3[\omega_{\ge k+1}(t)]}}{2\pi A_kr_k^5}
 =\frac{A_{k+1}r_{k+1}^5}{2\pi A_kr_k^5}\,q_{k+1}(t)=\frac{\mu s_k^5}{2\pi}\,q_{k+1}(t),
 \]
-and (1) follows from $m+2=5$ (recall $m=3$) and $\beta_k=\beta(G_k)s_k^5/(2\pi)$
+and (1) follows from $\beta_k=\beta(G_k)s_k^5/(2\pi)$
 (Definition~\ref{def:regions}).
 
 \emph{(2).} By the hypothesis and the paragraph after
@@ -133,7 +132,7 @@ the last line,
 &=\beta_k\int_{\tau_0}^{\tauK}e^{\zeta_0(\tauK-\tauK')}\,q_{k+1}(\tauK')\dd\tauK'.
 \end{align*}
 By Equation~\eqref{eq:omega-ge} and area preservation,
-$\Qm[\omega_{\ge k+1}(t)]=\int\sum_{i>k}f^{(n)}_i(x')\,\flow_t(x')^m\dd x'$. The
+$Q_3[\omega_{\ge k+1}(t)]=\int\sum_{i>k}f^{(n)}_i(x')\,\flow_t(x')^3\dd x'$. The
 integrand is supported in the compact set $D_{k+1}(0)$, it is bounded uniformly
 for $t$ in compact intervals, and it is continuous in $t$, as
 $(t,x')\mapsto\flow_t(x')$ is continuous (Theorem~\ref{thm:smooth}\textup{(4)});
