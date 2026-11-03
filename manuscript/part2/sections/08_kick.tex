@@ -6,7 +6,8 @@ for $1\le k<n$. While ring $k$ is quiet, the inner field $\hin_k$ of
 Definition~\ref{def:regions} drives the unstable coefficient of ring $k$ exactly
 through the mode-$3$ moment $q_{k+1}$ of the region $D_{k+1}(t)$: the unstable
 coefficient of the part of the linear response of ring $k$ driven by $\hin_k$
-solves the scalar linear Equation~\eqref{eq:kick}, with drive $q_{k+1}$
+solves the scalar linear Equation~\eqref{eq:kick}, with drive given by
+$q_{k+1}$ in the local kick-time coordinate
 (Lemma~\ref{lem:coupling}). Proposition~\ref{prop:kick} bounds the modulus of
 the solution at the final time, with its free growth factored out, from above
 and below, and Section~\ref{sec:relay} uses these bounds to start ring $k$
@@ -17,42 +18,52 @@ and below, and Section~\ref{sec:relay} uses these bounds to start ring $k$
 Assume \textup{(N1)}--\textup{(N3)}, fix $n\ge2$ and the objects of
 Definitions~\ref{def:regions} and \ref{def:clock}, and let $1\le k<n$.
 \begin{enumerate}[label=\textup{(\arabic*)}]
-\item Let $t\ge0$ with $D_{k+1}(t)\subset B_{ar_k/8}$, and put $\tau=A_kt$. Then
-  $-\hin_k(\tau)\cdot\nabla\Phi$, extended by $0$ outside $N'$, lies in $X^s$
+\item Let $t\ge0$ with $D_{k+1}(t)\subset B_{ar_k/8}$. Then
+  $-\hin_k(t)\cdot\nabla\Phi$, extended by $0$ outside $N'$, lies in $X^s$
   for every $s\ge0$, and
   \[
-  \ellst(G_k)\big(-\hin_k(\tau)\cdot\nabla\Phi\big)=\mu\,\beta_k\,q_{k+1}(t).
+  \ellst(G_k)\big(-\hin_k(t)\cdot\nabla\Phi\big)=\mu\,\beta_k\,q_{k+1}(t).
   \]
   Moreover, with $\nu^{\mathrm{in}}_k$ of Definition~\ref{def:regions} at the
-  time $t$, the mode-$3$ profile of $\hin_k(\tau)\cdot\er$ is
+  time $t$, the mode-$3$ profile of $\hin_k(t)\cdot\er$ is
   $\frac i2\pout_3[\nu^{\mathrm{in}}_k]\,r^{-4}$ for $a/4\le r\le3$.
 \item Assume that the clock is defined up to level $k+1$ and that
   $D_{k+1}(t)\subset B_{ar_k/8}$ for every $t\in[0,\tsh_k]$. Then
-  $\tau\mapsto-\hin_k(\tau)\cdot\nabla\Phi$ is continuous from $[0,\tash_k]$ into
-  $X^s$ for every $s$, and we may put, in ring-$k$ time,
+  $t\mapsto-\hin_k(t)\cdot\nabla\Phi$ is continuous from $[0,\tsh_k]$ into
+  $X^s$ for every $s$, and the physical-time linear response is
   \[
-  \wlin_{\mathrm{in},k}(\tau)=\int_0^\tau e^{(\tau-v)\Lin(G_k)}\big(-\hin_k(v)\cdot\nabla\Phi\big)\dd v
-  \qquad(0\le\tau\le\tash_k).
+  \wlin_{\mathrm{in},k}(t)=A_k\int_0^t e^{A_k(t-s)\Lin(G_k)}\big(-\hin_k(s)\cdot\nabla\Phi\big)\dd s
+  \quad(0\le t\le\tsh_k).
   \]
-  Regard $q_{k+1}$ and $\cin=\ellst(G_k)\big(\wlin_{\mathrm{in},k}\big)$ as functions
-  of the kick time $\tauK=A_{k+1}(t-T_{k+1})\in[\tau_0,\Tpin]$. Then
+  For the scalar calculation, use the local coordinate
+  $\tauK=A_{k+1}(t-T_{k+1})\in[\tau_0,\Tpin]$, where
+  $\tau_0=-A_{k+1}T_{k+1}$, and define
+  \[
+  \begin{gathered}
+  t(\tauK)=T_{k+1}+\tauK/A_{k+1},\qquad
+  \tilde q(\tauK)=q_{k+1}(t(\tauK)),\\
+  \cin(\tauK)=\ellst(G_k)\big(\wlin_{\mathrm{in},k}(t(\tauK))\big).
+  \end{gathered}
+  \]
+  Then
   $\cin\in C^1([\tau_0,\Tpin])$ and, exactly,
   \begin{equation}
   \label{eq:kick}
-  \frac{d\cin}{d\tauK}=\zeta_0\,\cin+\beta_k\,q_{k+1},\qquad \zeta_0=\frac{\lambda_k}{\mu},\qquad
+  \frac{d\cin}{d\tauK}=\zeta_0\,\cin+\beta_k\,\tilde q,\qquad \zeta_0=\frac{\lambda_k}{\mu},\qquad
   \cin(\tau_0)=0 .
   \end{equation}
   The \textbf{kick amplitude} $\Ain(\tauK)=e^{-\zeta_0\tauK}\cin(\tauK)$ satisfies
   \[
-  \cin_k:=\ellst(G_k)\big(\wlin_{\mathrm{in},k}(\tash_k)\big)=e^{\zeta_0\Tpin}\Ain(\Tpin).
+  \cin_k:=\ellst(G_k)\big(\wlin_{\mathrm{in},k}(\tsh_k)\big)=e^{\zeta_0\Tpin}\Ain(\Tpin).
   \]
 \item If, in addition to the hypotheses of \textup{(2)}, the rings $i<k$ lie
   outside $B_{6r_k}$ for every $t\in[0,\tsh_k]$, then
-  $\tau\mapsto-\hout_k(\tau)\cdot\nabla\Phi$ is continuous from $[0,\tash_k]$ into
+  $t\mapsto-\hout_k(t)\cdot\nabla\Phi$ is continuous from $[0,\tsh_k]$ into
   $X^s$ for every $s$, and $\wlin_{\mathrm{out},k}$, defined as
   $\wlin_{\mathrm{in},k}$ with $\hout_k$ in place of $\hin_k$, satisfies $\wlin_{\mathrm{in},k}+\wlin_{\mathrm{out},k}=\wlin$ on
-  $[0,\tash_k]$, where $\wlin$ is the linear response of
-  Theorem~\ref{thm:quiet} for ring $k$, with $G=G_k$ and $h=h_k$.
+  $[0,\tsh_k]$, where $\wlin$ is the physical-time linear response obtained
+  from Theorem~\ref{thm:quiet} with $G=G_k$, using the local coordinate
+  $\tau=A_kt$ and field $h(\tau)=h_k(\tau/A_k)$.
 \end{enumerate}
 \end{lemma}
 \begin{proof}
@@ -70,28 +81,28 @@ Lemma~I.\ref{I-lem:BS-basic}(d), $\KBS\ast\nu^{\mathrm{in}}_k=\nabla^\perp\psi$ 
 $\psi=\frac1{2\pi}\log|\cdot|\ast\nu^{\mathrm{in}}_k$ smooth on $\{|y|>\rho\}$.
 The monopole $G_ky^\perp/|y|^2$ is orthogonal to $\er$, so the polar form
 $v\cdot\er=-r^{-1}\partial_\theta\psi$ of the Biot-Savart law
-(Section~I.\ref{I-sec:prelim}) gives $\hin_k(\tau)\cdot\er=-r^{-1}\partial_\theta\psi$
+(Section~I.\ref{I-sec:prelim}) gives $\hin_k(t)\cdot\er=-r^{-1}\partial_\theta\psi$
 on $N'$. Put $p_3=\pout_3[\nu^{\mathrm{in}}_k]$, the outer mode-$3$ moment of
 Definition~I.\ref{I-def:multipole}. By Lemma~\ref{lem:exterior-mode}, at angular order $3$ and with $\varrho=\rho$, the angular mode $3$ of $\psi$ is
 $-\frac16p_3r^{-3}$ for $r>\rho$, and by integration by parts in $\theta$ that of
 $\partial_\theta\psi$ is $3i$ times that of $\psi$. Since
 $N'=\{a/4\le|y|\le3\}\subset\{|y|>\rho\}$, the mode-$3$ profile of
-$\hin_k(\tau)\cdot\er$ is $\frac i2p_3r^{-4}$ for $a/4\le r\le3$, the last claim
+$\hin_k(t)\cdot\er$ is $\frac i2p_3r^{-4}$ for $a/4\le r\le3$, the last claim
 of (1). As $\Phi$ is radial and $\Phi'$ vanishes outside $[a,1]$,
-$\hin_k(\tau)\cdot\nabla\Phi=\Phi'(r)\,\hin_k(\tau)\cdot\er$, so the mode-$3$
-profile of $-\hin_k(\tau)\cdot\nabla\Phi$ is
+$\hin_k(t)\cdot\nabla\Phi=\Phi'(r)\,\hin_k(t)\cdot\er$, so the mode-$3$
+profile of $-\hin_k(t)\cdot\nabla\Phi$ is
 $-\frac i2p_3r^{-4}\Phi'(r)=p_3\,b(r)$, with $b$ of Definition~I.\ref{I-def:eigendata}.
-By Equation~\eqref{eq:BS-complex}, $\hin_k(\tau)$ is the restriction to
+By Equation~\eqref{eq:BS-complex}, $\hin_k(t)$ is the restriction to
 $N'$ of a field smooth on $\{|y|>\rho\}$, and it is $3$-fold rotationally symmetric because
-$\nu^{\mathrm{in}}_k$ is; so $-\hin_k(\tau)\cdot\nabla\Phi$ is real, smooth,
+$\nu^{\mathrm{in}}_k$ is; so $-\hin_k(t)\cdot\nabla\Phi$ is real, smooth,
 $3$-fold rotationally symmetric and supported in $\{a\le|y|\le1\}\subset N$, hence in $X^s$
 for every $s$. By Definition~I.\ref{I-def:eigendata}, $\ellst(G_k)(w)=n_*(G_k)\,\ellst(w_3)$
 depends linearly on the mode-$3$ profile $w_3$ of $w$ only, and
 $\beta(G_k)=\ellst(G_k)(b\,e^{3i\theta})=n_*(G_k)\ellst(b)$; so
-$\ellst(G_k)(-\hin_k(\tau)\cdot\nabla\Phi)=p_3\,\beta(G_k)$. It remains to
+$\ellst(G_k)(-\hin_k(t)\cdot\nabla\Phi)=p_3\,\beta(G_k)$. It remains to
 express $p_3$ through the normalized moment $q_{k+1}(t)$ of
-Definition~\ref{def:regions}. The change
-of variables $x=r_ky$ and the reality of $\omega_{\ge k+1}(t)$ give
+Definition~\ref{def:regions}. Since $\omega_{\ge k+1}(t)$ is real-valued,
+the change of variables $x=r_ky$ gives
 \[
 p_3=\frac1{2\pi A_k}\int\omega_{\ge k+1}(t,r_ky)\,\bar y^3\dd y
 =\frac{\overline{Q_3[\omega_{\ge k+1}(t)]}}{2\pi A_kr_k^5}
@@ -101,62 +112,64 @@ and (1) follows from $\beta_k=\beta(G_k)s_k^5/(2\pi)$
 (Definition~\ref{def:regions}).
 
 \emph{(2).} By the hypothesis and the paragraph after
-Lemma~\ref{lem:regions-basic}, $\tau\mapsto\hin_k(\tau)$ is continuous from
-$[0,\tash_k]$ into $C^M(N')$ for every integer $M\ge0$. Put
-$g(\tau)=-\hin_k(\tau)\cdot\nabla\Phi$. By (1), $g(\tau)\in X^s$ for every $s$,
+Lemma~\ref{lem:regions-basic}, $t\mapsto\hin_k(t)$ is continuous from
+$[0,\tsh_k]$ into $C^M(N')$ for every integer $M\ge0$. Put
+$g(t)=-\hin_k(t)\cdot\nabla\Phi$. By (1), $g(t)\in X^s$ for every $s$,
 and by Lemma~I.\ref{I-lem:uniform},
-$\|g(\tau)-g(\tau')\|_{H^M}\le\Cnab(M)\|\hin_k(\tau)-\hin_k(\tau')\|_{C^M(N')}$;
-so $g$ is continuous into $X^s$ for every $s$. Since $e^{t\Lin(G_k)}$ is a
+$\|g(t)-g(t')\|_{H^M}\le\Cnab(M)\|\hin_k(t)-\hin_k(t')\|_{C^M(N')}$;
+so $g$ is continuous into $X^s$ for every $s$. Since $e^{\theta\Lin(G_k)}$ is a
 $C_0$-semigroup on $X^s$ (Lemma~I.\ref{I-lem:semigroup-construct}), the integrand
-$v\mapsto e^{(\tau-v)\Lin(G_k)}g(v)$ is continuous into $X^s$, so
+$s\mapsto e^{A_k(t-s)\Lin(G_k)}g(s)$ is continuous into $X^s$, so
 $\wlin_{\mathrm{in},k}$ is well defined.
 
-Next we change from ring-$k$ time to kick time. Recall from
-Definition~\ref{def:clock} that $\tau_0=-A_{k+1}T_{k+1}$ is the kick time of $t=0$.
-Since $A_{k+1}=\mu A_k$ by Equation~\eqref{eq:datum}, we have
-$A_kT_{k+1}=-\tau_0/\mu$, so ring-$k$
-time and kick time are related by $\tau=(\tauK-\tau_0)/\mu$. As
+For the scalar calculation we change from physical time to the local kick
+coordinate. Since $A_{k+1}=\mu A_k$ by Equation~\eqref{eq:datum} and
 $\tsh_k=T_{k+1}+\Tpin/A_{k+1}$ (Definition~\ref{def:clock}), $\tauK$ runs over
 $[\tau_0,\Tpin]$ as $t$ runs over $[0,\tsh_k]$. As $\ellst(G_k)$ is bounded on
-$X^0$ (Lemma~I.\ref{I-lem:uniform}), it commutes with the integral that defines
-$\wlin_{\mathrm{in},k}$. In the display below, the first equality is then the
-last identity of Proposition~I.\ref{I-prop:semigroup}, by which $\ellst(G_k)$
-turns $e^{t\Lin(G_k)}$ into multiplication by $e^{\lambda_kt}$; the second is
-(1); and the third is the substitution
-$v=(\tauK'-\tau_0)/\mu$. This gives, for $\tau_0\le\tauK\le\Tpin$ and
-$\tau=(\tauK-\tau_0)/\mu$, with $q_{k+1}$ written as a function of kick time in
-the last line,
+$X^0$ (Lemma~I.\ref{I-lem:uniform}), it commutes with the integral defining
+$\wlin_{\mathrm{in},k}$. Proposition~I.\ref{I-prop:semigroup} turns the semigroup
+under this functional into multiplication by $e^{A_k\lambda_k(t-s)}$.
+Using (1), followed by the substitution $r=A_{k+1}(s-T_{k+1})$, gives
 \begin{align*}
-\cin(\tauK)&=\int_0^\tau e^{\lambda_k(\tau-v)}\,\ellst(G_k)\big(g(v)\big)\dd v
-=\mu\beta_k\int_0^\tau e^{\lambda_k(\tau-v)}\,q_{k+1}(v/A_k)\dd v\\
-&=\beta_k\int_{\tau_0}^{\tauK}e^{\zeta_0(\tauK-\tauK')}\,q_{k+1}(\tauK')\dd\tauK'.
+\cin(\tauK)
+&=A_k\int_0^{t(\tauK)}e^{A_k\lambda_k(t(\tauK)-s)}\ellst(G_k)\big(g(s)\big)\dd s\\
+&=A_k\mu\beta_k\int_0^{t(\tauK)}e^{A_k\lambda_k(t(\tauK)-s)}q_{k+1}(s)\dd s\\
+&=\beta_k\int_{\tau_0}^{\tauK}e^{\zeta_0(\tauK-r)}\tilde q(r)\dd r.
 \end{align*}
+Here the change of variables uses $\dd s=\dd r/A_{k+1}$ and
+$A_k\mu/A_{k+1}=1$.
 By Equation~\eqref{eq:omega-ge} and area preservation,
-$Q_3[\omega_{\ge k+1}(t)]=\int\sum_{i>k}f^{(n)}_i(x')\,\flow_t(x')^3\dd x'$. The
-integrand is supported in the compact set $D_{k+1}(0)$, it is bounded uniformly
-for $t$ in compact intervals, and it is continuous in $t$, as
-$(t,x')\mapsto\flow_t(x')$ is continuous (Theorem~\ref{thm:smooth}\textup{(4)});
-so, by dominated convergence, $q_{k+1}$ is continuous. Hence, taking the factor
-$e^{\zeta_0\tauK}$ out of the last integral and using the fundamental theorem of
-calculus, $\cin\in C^1([\tau_0,\Tpin])$, $\cin(\tau_0)=0$, and differentiation gives
-Equation~\eqref{eq:kick}. At $t=\tsh_k$ we have $\tau=\tash_k$ and
-$\tauK=A_{k+1}(\tsh_k-T_{k+1})=\Tpin$, so $\cin_k=\cin(\Tpin)=e^{\zeta_0\Tpin}\Ain(\Tpin)$.
+$Q_3[\omega_{\ge k+1}(t)]=\int\sum_{i>k}f^{(n)}_i(x')\,\flow_t(x')^3\dd x'$.
+The integrand is supported in the compact set $D_{k+1}(0)$, is bounded uniformly
+for $t$ in compact intervals, and is continuous in $t$, as
+$(t,x')\mapsto\flow_t(x')$ is continuous (Theorem~\ref{thm:smooth}\textup{(4)}).
+Thus $q_{k+1}$, and hence its pullback $\tilde q$, are continuous by dominated
+convergence. Taking $e^{\zeta_0\tauK}$ out of the last integral and applying the
+fundamental theorem of calculus gives $\cin\in C^1([\tau_0,\Tpin])$,
+$\cin(\tau_0)=0$, and Equation~\eqref{eq:kick}. At physical time $t=\tsh_k$,
+$\tauK=\Tpin$, so
+$\cin_k=\cin(\Tpin)=e^{\zeta_0\Tpin}\Ain(\Tpin)$.
 
 \emph{(3).} By the hypotheses and the paragraph after
-Lemma~\ref{lem:regions-basic}, $\tau\mapsto\hout_k(\tau)$ is continuous from
-$[0,\tash_k]$ into $C^M(N')$ for every $M$. By Lemma~\ref{lem:regions-basic}(3),
+Lemma~\ref{lem:regions-basic}, $t\mapsto\hout_k(t)$ is continuous from
+$[0,\tsh_k]$ into $C^M(N')$ for every $M$. By Lemma~\ref{lem:regions-basic}(3),
 $\nu^{\mathrm{out}}_k$ is real and $3$-fold rotationally symmetric, and, as the
-rings $i<k$ lie outside $B_{6r_k}$, it vanishes on $B_6$; so
-$\hout_k(\tau)$ is real, $3$-fold rotationally symmetric and smooth on $B_6$, by
-Equation~\eqref{eq:BS-complex}, and $B_6$ contains $N'$. Hence, as in (1),
-$-\hout_k(\tau)\cdot\nabla\Phi\in X^s$
-for every $s$, and it is continuous in $\tau$ into $X^s$ by
-Lemma~I.\ref{I-lem:uniform}, as in (2). By the discussion after
-Lemma~\ref{lem:regions-basic}, ring $k$ in ring-$k$ units satisfies the
-hypotheses of Lemma~\ref{lem:reduction} on $[0,\tash_k]$ with $G=G_k$ and
-$h=h_k=\hin_k+\hout_k$, so the linear response $\wlin$ of
-Theorem~\ref{thm:quiet}\textup{(b)} is defined with this $h$; the identity for
-$\wlin$ is then the linearity of the integral that defines it.
+rings $i<k$ lie outside $B_{6r_k}$, it vanishes on $B_6$. Hence
+$\hout_k(t)$ is real, $3$-fold rotationally symmetric and smooth on $B_6$, by
+Equation~\eqref{eq:BS-complex}, and $B_6$ contains $N'$. As in (1),
+$-\hout_k(t)\cdot\nabla\Phi\in X^s$ for every $s$, and this function is
+continuous in $t$ into $X^s$ by Lemma~I.\ref{I-lem:uniform}, as in (2).
+For the application of Section~\ref{sec:single}, use the local coordinate
+$\tau=A_kt$ and the explicit pullback $h(\tau)=h_k(\tau/A_k)$.
+The discussion after Lemma~\ref{lem:regions-basic} gives the hypotheses of
+Lemma~\ref{lem:reduction} on $[0,A_k\tsh_k]$ with $G=G_k$ and this $h$.
+Pulling the resulting linear response back to physical time gives
+\[
+\wlin(t)=A_k\int_0^t e^{A_k(t-s)\Lin(G_k)}
+\big(-h_k(s)\cdot\nabla\Phi\big)\dd s.
+\]
+Since $h_k=\hin_k+\hout_k$, linearity of this integral proves
+$\wlin=\wlin_{\mathrm{in},k}+\wlin_{\mathrm{out},k}$.
 \end{proof}
 
 Proposition~\ref{prop:kick} works in the following setting, which isolates
@@ -172,7 +185,7 @@ $A'=e^{-\zeta_0\tau}(c'-\zeta_0c)=\beta e^{-\zeta_0\tau}q$ and $A(\tau_0)=0$,
 A(\tau)=\beta\int_{\tau_0}^\tau e^{-\zeta_0s}\,q(s)\dd s\qquad(\tau\in I).
 \end{equation}
 Under the hypotheses of Lemma~\ref{lem:coupling}\textup{(2)}, the functions
-$\cin$, $q_{k+1}$ and $\Ain$, with $\zeta_0=\lambda_k/\mu$, $\beta=\beta_k$ and
+$\cin$, $\tilde q$ and $\Ain$, with $\zeta_0=\lambda_k/\mu$, $\beta=\beta_k$ and
 $\tau_1=\Tpin$, are an instance of this setting; here
 $\tau_0=-A_{k+1}T_{k+1}<0<\Tpin$ by Lemma~\ref{lem:clock}(1) and
 Definition~\ref{def:clock}.

@@ -278,7 +278,7 @@ input explicit and identifies the estimated field: the velocity induced by
 all the inner rings, with vorticity $\omega_{\ge k+1}(t)$, minus their monopole
 is precisely $\hin_k$ in ring-$k$ units wherever $\hin_k$ is defined. The
 inner vorticity in these units is
-$\nu^{\mathrm{in}}_k(y)=A_k^{-1}\omega_{\ge k+1}(t,r_ky)$, as defined in
+$\nu^{\mathrm{in}}_k(t,y)=A_k^{-1}\omega_{\ge k+1}(t,r_ky)$, as defined in
 Definition~\ref{def:regions} at physical time $t$. The
 constant $\Cin$ does not involve the $L^1$--$H^{s'}$ conversion factor $C_{L1}$
 in Lemma~\ref{lem:transfer}.
@@ -291,7 +291,7 @@ $\omega_{\ge k+1}(t)$ is supported in $\overline B_R$ with $R\le\frac a8r_k$ and
 $\|\omega_{\ge k+1}(t)\|_{L^1}\le\Mvort A_{k+1}r_{k+1}^2$. Let $E$ be the
 velocity field of $\omega_{\ge k+1}(t)$ minus its monopole. Then
 $\|E_{[k]}\|_{C^{M_h}(N')}\le\Cin\,\mu s_k^2\,(R/r_k)^3$. If moreover
-$D_{k+1}(t)\subset B_{ar_k/8}$, then $E_{[k]}=\hin_k(A_kt)$ on $N'$.
+$D_{k+1}(t)\subset B_{ar_k/8}$, then $E_{[k]}=\hin_k(t)$ on $N'$.
 \end{lemma}
 
 \begin{proof}
@@ -305,14 +305,14 @@ place of $2\pi A_{k+1}r_{k+1}^2$, gives
 \]
 with constants depending only on $a$ and $M_h$. Summing over $q$
 fixes $\Cin$ and proves the bound. Now let
-$D_{k+1}(t)\subset B_{ar_k/8}$, so that $\hin_k(A_kt)$ is defined. Since $\KBS$
+$D_{k+1}(t)\subset B_{ar_k/8}$, so that $\hin_k(t)$ is defined. Since $\KBS$
 is homogeneous of degree $-1$, $(\KBS\ast\omega_{\ge k+1}(t))_{[k]}=\KBS\ast\nu^{\mathrm{in}}_k$, and the
 monopole of $\omega_{\ge k+1}(t)$ is, in ring-$k$ units,
 $\frac1{2\pi}\big(\int\nu^{\mathrm{in}}_k\big)y^\perp/|y|^2$. By
 Lemma~\ref{lem:inner-circ}, $\int\omega_{\ge k+1}(t)=\int\omega_{\ge k+1}(0)$, so,
 by the definition of $G_k$ (Definition~\ref{def:regions}),
 $\int\nu^{\mathrm{in}}_k=A_k^{-1}r_k^{-2}\int\omega_{\ge k+1}(0)=2\pi G_k$. Hence
-$E_{[k]}=\KBS\ast\nu^{\mathrm{in}}_k-G_ky^\perp/|y|^2=\hin_k(A_kt)$.
+$E_{[k]}=\KBS\ast\nu^{\mathrm{in}}_k-G_ky^\perp/|y|^2=\hin_k(t)$.
 \end{proof}
 
 \subsection{Confinement on a Window}
@@ -446,21 +446,35 @@ with the confinement of
 Proposition~\ref{prop:confine}\textup{(a)}. It is a hypothesis of the relay
 lemmas of Section~\ref{sec:relay} (Proposition~\ref{prop:relay} and
 Lemma~\ref{lem:Oprime}), and Lemma~\ref{lem:geometry}\textup{(c)} verifies it in
-the bootstrap.
+the bootstrap. Since the clock is constructed recursively, these conditions
+must also cover rings whose activation or saturation time has not yet been
+assigned.
 
 \begin{definition}
 \label{def:loc}
-Let $t\ge0$. In this definition we read $t\le T_i$ and $t\le\tsh_i$ as true
-when $T_i$, respectively $\tsh_i$, is not defined by Definition~\ref{def:clock},
-and ring $j$ is \textbf{quiet at $t$} if and only if $t\le\tsh_j$. The
-\textbf{localization hypothesis} $(\mathrm{Loc})$ holds at $t$ if and only if:
+Let $t\ge0$, and consider the times assigned by the recursive clock of
+Definition~\ref{def:clock}. A ring $j$ is \textbf{quiet at $t$} if its
+activation time $\tsh_j$ has not been assigned, or if it has been assigned
+and $t\le\tsh_j$. A ring $i$ is \textbf{debris at $t$} if its saturation time
+$T_i$ has been assigned and $t>T_i$. Thus a ring with no assigned saturation
+time is included among the rings that are not debris.
+
+The \textbf{localization hypothesis} $(\mathrm{Loc})$ holds at $t$ if both
+of the following conditions hold:
 \begin{enumerate}[label=\textup{(\arabic*)}]
-\item for every ring $i$ with $t\le T_i$, $S_i(t)\subset N_i$;
-\item for every ring $j$ that is quiet at $t$: $S_i(t)\cap B_{6r_j}=\emptyset$ for
-  every $i<j$; $D_{j+1}(t)\subset B_{ar_j/8}$ (the open disk); and, if $T_{j+1}$ is defined
-  and $t\ge T_{j+1}$, $D_{j+1}(t)\subset\overline{B}_{\varrho_j(t)}$ with
-  $\varrho_j(t)=\big(2+2\Cstar A_{j+1}(t-T_{j+1})\big)r_{j+1}$, the radius of
-  Proposition~\ref{prop:confine}\textup{(a)} for $k=j$.
+\item Every ring $i$ that is not debris at $t$ satisfies $S_i(t)\subset N_i$.
+\item For every ring $j$ that is quiet at $t$, the outer rings and the inner
+  material satisfy
+  \[
+  S_i(t)\cap B_{6r_j}=\emptyset\quad(i<j),\qquad
+  D_{j+1}(t)\subset B_{ar_j/8}.
+  \]
+  If $T_{j+1}$ has been assigned and $t\ge T_{j+1}$, require in addition
+  \[
+  D_{j+1}(t)\subset\overline B_{\varrho_j(t)},\qquad
+  \varrho_j(t)=\big(2+2\Cstar A_{j+1}(t-T_{j+1})\big)r_{j+1},
+  \]
+  the confinement radius of Proposition~\ref{prop:confine}\textup{(a)}.
 \end{enumerate}
 \end{definition}
 
@@ -476,29 +490,29 @@ and $\|\Phi\|_{L^1}$, such that the following holds. Assume
 $\sbar\le a/16$ and $\sbar\le\frac12$, let $1\le j<n$ and $t\ge0$, and
 assume that $S_i(t)\subset N_i$ for every $i<j$, that $S_i(t)\cap B_{6r_j}=\emptyset$
 for every $i<j$, and that $D_{j+1}(t)\subset B_{ar_j/8}$. Then
-$\eta_j(A_jt)\le C_\eta\big(\mu\sbar^2+\sbar\big)$.
+$\eta_j(t)\le C_\eta\big(\mu\sbar^2+\sbar\big)$.
 \end{lemma}
 
 \begin{proof}
 All implicit constants in this proof depend only on $a$, $M_h$ and
 $\|\Phi\|_{L^1}$. We choose $C_\eta$ to dominate the bounds below. The hypotheses are those under which
 Definition~\ref{def:regions} defines $h_j$ at time $t$, and, by that definition,
-$\eta_j(A_jt)=\etin_j(A_jt)+\etout_j(A_jt)$. Here $\etin_j(A_jt)$ is the norm in
-$C^{M_h}(N')$ of $\hin_j(A_jt)$, which is the non-monopole field of
+$\eta_j(t)=\etin_j(t)+\etout_j(t)$. Here $\etin_j(t)$ is the norm in
+$C^{M_h}(N')$ of $\hin_j(t)$, which is the non-monopole field of
 $\omega_{\ge j+1}(t)$ in ring-$j$ units by
 Lemma~\ref{lem:inner-field}; the hypotheses of that lemma hold with $R=ar_j/8$, by
-Lemma~\ref{lem:speed}. Similarly, $\etout_j(A_jt)$ is the norm of
-$\hout_j(A_jt)$, the field of
+Lemma~\ref{lem:speed}. Similarly, $\etout_j(t)$ is the norm of
+$\hout_j(t)$, the field of
 $\omega(t)\mathbf 1_{S_1(t)\cup\dots\cup S_{j-1}(t)}$ in ring-$j$ units. By
 Lemma~\ref{lem:transfer}(3) with $R=ar_j/8$,
-$\etin_j(A_jt)\le C_M\varepsilon_j(ar_j/(8r_{j+1}))^3=(a/8)^3C_M\mu s_j^2\le(a/8)^3C_M\mu\sbar^2$;
+$\etin_j(t)\le C_M\varepsilon_j(ar_j/(8r_{j+1}))^3=(a/8)^3C_M\mu s_j^2\le(a/8)^3C_M\mu\sbar^2$;
 here we used $\varepsilon_j=\mu s_j^5$, $r_{j+1}=s_jr_j$ and $s_j\le\sbar$.
 If $j=1$, then $\etout_1=0$, as there is no ring outside ring $1$. If $j\ge2$, Lemma~\ref{lem:transfer}(4) with $k=j$ and
 Lemma~\ref{lem:regions-basic}(4) give
-$\etout_j(A_jt)\le C_O\sum_{i<j}b_{i,j}\|w_i(t)\|_{L^1}\le2\|\Phi\|_{L^1}C_O\sum_{i<j}b_{i,j}$.
+$\etout_j(t)\le C_O\sum_{i<j}b_{i,j}\|w_i(t)\|_{L^1}\le2\|\Phi\|_{L^1}C_O\sum_{i<j}b_{i,j}$.
 By Equation~\eqref{eq:sk-small}, $r_j/r_i\le\sbar^{j-i}$, and $\mu^{i-j}\le1$, so
 $b_{i,j}\le\sbar^{j-i}$ and, as $\sbar\le\frac12$,
 $\sum_{i<j}b_{i,j}\le\sum_{l\ge1}\sbar^l\le2\sbar$. Hence
-$\etout_j(A_jt)\le4\|\Phi\|_{L^1}C_O\sbar$, and adding the two bounds proves
+$\etout_j(t)\le4\|\Phi\|_{L^1}C_O\sbar$, and adding the two bounds proves
 the lemma.
 \end{proof}

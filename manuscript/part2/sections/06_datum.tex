@@ -103,21 +103,30 @@ weak solution on $[0,\infty)$, and with the convergence just proved this is the
 $2$-admissibility of Definition~I.\ref{I-def:adm}.
 \end{proof}
 
-Each ring is studied in its own scale, in which the $k$-th term of $f^{(n)}$
-becomes $\Phi$, or $\Phi^{\kseed}$ if $k=n$, so that the results of
-Section~\ref{sec:single}, stated in ring units, can be applied to it. For $A,r>0$ the function
-$\tilde\omega(\tau,y)=A^{-1}\omega^{(n)}(\tau/A,ry)$ is the solution of
-Theorem~\ref{thm:smooth} with datum $A^{-1}f^{(n)}(r\,\cdot)$, with velocity
-$(\KBS\ast\tilde\omega)(\tau,y)=(Ar)^{-1}v^{(n)}(\tau/A,ry)$ and flow
-$y\mapsto r^{-1}\flow_{\tau/A}(ry)$. Indeed, $\KBS$ is homogeneous of degree
-$-1$, which gives the velocity; then
-$\partial_\tau\tilde\omega+(\KBS\ast\tilde\omega)\cdot\nabla\tilde\omega
-=A^{-2}(\partial_t\omega^{(n)}+v^{(n)}\cdot\nabla\omega^{(n)})(\tau/A,ry)=0$, and
-Theorem~\ref{thm:smooth}\textup{(5)} identifies $\tilde\omega$ with that solution.
-With $A=A_k$ and $r=r_k$, $\tilde\omega$ is $\omega^{(n)}$ in \textbf{ring-$k$
-units}: points $x$ become $y=x/r_k$, vorticities are divided by $A_k$, and
-$\tau=A_kt$ is the \textbf{ring-$k$ time}. For a velocity field $V$ we write
-$V_{[k]}(y)=V(r_ky)/(A_kr_k)$ for $V$ in ring-$k$ units.
+Each ring is studied in its own spatial and vorticity scale, while the
+indexed quantities in the global construction all retain physical time $t$.
+Thus ring-$k$ units mean $y=x/r_k$, vorticity divided by $A_k$, and velocity
+divided by $A_kr_k$. For a velocity field $V(t,x)$ we write
+$V_{[k]}(t,y)=V(t,r_ky)/(A_kr_k)$, suppressing $t$ when it is fixed.
+
+When applying the single-ring results of Section~\ref{sec:single}, we also
+rescale time. The standard Euler rescaling, with a physical reference time
+$t_*$ and scales $A,r>0$, is
+\[
+\widetilde\omega(s,y)=A^{-1}\omega^{(n)}(t_*+s/A,ry),\qquad
+\widetilde v(s,y)=(Ar)^{-1}v^{(n)}(t_*+s/A,ry).
+\]
+The homogeneity of $\KBS$ gives $\widetilde v=\KBS\ast\widetilde\omega$, and
+\[
+\partial_s\widetilde\omega+\widetilde v\cdot\nabla_y\widetilde\omega
+=A^{-2}(\partial_t\omega^{(n)}+v^{(n)}\cdot\nabla_x\omega^{(n)})(t_*+s/A,ry)=0.
+\]
+Hence Theorem~\ref{thm:smooth}\textup{(5)} identifies $\widetilde\omega$ with
+the smooth solution whose datum is $A^{-1}\omega^{(n)}(t_*,r\,\cdot)$.
+For ring $k$ we take $A=A_k$ and $r=r_k$. A time-dependent ring profile $f_k$
+is then written locally as $\widetilde f_k(s)=f_k(t_*+s/A_k)$; this time
+substitution is stated explicitly whenever it is used. The spatially
+normalized profile $f_k(t)$ itself continues to use physical time.
 
 The next definition splits $\omega^{(n)}$ into its rings and names the
 quantities that the later sections estimate. The set $S_k(t)$ carries ring $k$
@@ -126,8 +135,8 @@ $k$ and the rings inside it. In ring-$k$ units, the perturbation $w_k$ is the
 deviation of ring $k$ from $\Phi$; $2\pi G_k$ is the circulation of the point
 vortex by which the linearization $\Lin(G_k)$ of Theorem~I.\ref{I-thm:linear}
 represents the rings inside ring $k$; and the external field $h_k$ is the field
-of all the other rings on $N'$ minus the field of this point vortex, that is,
-the field $h$ of Lemma~\ref{lem:reduction}.
+of all the other rings on $N'$ minus the field of this point vortex;
+its local time rescaling is the field $h$ of Lemma~\ref{lem:reduction}.
 
 The number $\varepsilon_k$ is the small factor in the bounds of
 Lemma~\ref{lem:transfer}\textup{(1)}--\textup{(3)} on the field, minus its
@@ -167,27 +176,27 @@ Fix $n\ge2$ and the objects of Definition~\ref{def:approx}. For $1\le k\le n$:
   (the support of $\omega_{\ge k+1}(t)$ is compact and does not contain $0$, by
   Lemma~\ref{lem:regions-basic}\textup{(2)} below, so $Q_3$ applies);
 \item at a time $t$ with $D_{k+1}(t)\subset B_{ar_k/8}$, the \textbf{inner field}
-  of ring $k$ at ring-$k$ time $\tau=A_kt$ is
+  of ring $k$ at physical time $t$ is
   \[
-  \hin_k(\tau)=\KBS\ast\nu^{\mathrm{in}}_k-G_k\frac{y^\perp}{|y|^2}\quad\text{on }N',\qquad
-  \nu^{\mathrm{in}}_k(y)=A_k^{-1}\omega_{\ge k+1}(t,r_ky);
+  \hin_k(t)=\KBS\ast\nu^{\mathrm{in}}_k(t,\cdot)-G_k\frac{y^\perp}{|y|^2}\quad\text{on }N',\qquad
+  \nu^{\mathrm{in}}_k(t,y)=A_k^{-1}\omega_{\ge k+1}(t,r_ky);
   \]
   at a time $t$ with $\big(S_1(t)\cup\dots\cup S_{k-1}(t)\big)\cap B_{6r_k}=\emptyset$
   (the rings $i<k$ lie outside $B_{6r_k}$), the \textbf{outer field} is
-  $\hout_k(\tau)=\KBS\ast\nu^{\mathrm{out}}_k$ on $N'$, with
-  $\nu^{\mathrm{out}}_k(y)=A_k^{-1}\omega^{(n)}(t,r_ky)\mathbf 1_{S_1(t)\cup\dots\cup S_{k-1}(t)}(r_ky)$;
+  $\hout_k(t)=\KBS\ast\nu^{\mathrm{out}}_k(t,\cdot)$ on $N'$, with
+  $\nu^{\mathrm{out}}_k(t,y)=A_k^{-1}\omega^{(n)}(t,r_ky)\mathbf 1_{S_1(t)\cup\dots\cup S_{k-1}(t)}(r_ky)$;
   when both are defined, $h_k=\hin_k+\hout_k$ is the \textbf{external field} of
   ring $k$;
 \item for an integer $M_h\ge1$ (from Section~\ref{sec:relay} on, $M_h$ is the
   integer of \textup{(SA2)} in Definition~\ref{def:standing}) we put
-  $\etin_k(\tau)=\|\hin_k(\tau)\|_{C^{M_h}(N')}$,
-  $\etout_k(\tau)=\|\hout_k(\tau)\|_{C^{M_h}(N')}$ and $\eta_k=\etin_k+\etout_k$,
-  as functions of ring-$k$ time;
-\item if $G_k\le\Gone$ and $\eta_k$ is defined on $[0,\tau]$ (it is then
+  $\etin_k(t)=\|\hin_k(t)\|_{C^{M_h}(N')}$,
+  $\etout_k(t)=\|\hout_k(t)\|_{C^{M_h}(N')}$ and $\eta_k=\etin_k+\etout_k$,
+  as functions of physical time;
+\item if $G_k\le\Gone$ and $\eta_k$ is defined on $[0,t]$ (it is then
   continuous there, as we show after Lemma~\ref{lem:regions-basic}), the
   \textbf{Duhamel bound} of ring $k$ is
   \[
-  \maj_k(\tau)=\int_0^\tau e^{\sigma_k(\tau-v)}\eta_k(v)\dd v ,
+  \maj_k(t)=A_k\int_0^t e^{A_k\sigma_k(t-v)}\eta_k(v)\dd v ,
   \]
   and $\maj^{\mathrm{in}}_k$ is defined in the same way from $\etin_k$.
 \end{itemize}
@@ -269,7 +278,7 @@ The last inequality is the Cauchy-Schwarz inequality on $N$.
 
 The fields of Definition~\ref{def:regions} depend continuously on time: if
 $J\subset[0,\infty)$ is a compact interval with $D_{k+1}(t)\subset B_{ar_k/8}$
-for $t\in J$, then $\tau\mapsto\hin_k(\tau)$ is continuous from $A_kJ$ into
+for $t\in J$, then $t\mapsto\hin_k(t)$ is continuous from $J$ into
 $C^M(N')$ for every integer $M\ge0$. Indeed, $\hin_n=-G_ny^\perp/|y|^2$ is
 constant, because $D_{n+1}(t)=\emptyset$. Let $k<n$ and $g=\sum_{i>k}f^{(n)}_i$, supported in the compact set
 $D_{k+1}(0)$. By Equation~\eqref{eq:omega-ge}, $\omega_{\ge k+1}(t)=g\circ\flow_t^{-1}$,
@@ -289,8 +298,8 @@ and $t\in J$, by a constant times $|g(y')|$, which is integrable. So we may
 differentiate under the integral sign, and each of these derivatives of the field is
 continuous on $J\times U$ by dominated convergence, hence uniformly continuous on
 the compact set $J\times N'_k$; since $G_ky^\perp/|y|^2$ does not depend on
-$\tau$, passing to ring-$k$ units gives the claim. In the same way, if the rings $i<k$ lie outside $B_{6r_k}$
-for $t\in J$, then $\tau\mapsto\hout_k(\tau)\in C^M(N')$ is continuous on $A_kJ$:
+$t$, passing to ring-$k$ spatial and velocity units gives the claim. In the same way, if the rings $i<k$ lie outside $B_{6r_k}$
+for $t\in J$, then $t\mapsto\hout_k(t)\in C^M(N')$ is continuous on $J$:
 replace $g$ by $\sum_{i<k}f^{(n)}_i$ and $U$ by $B_{4r_k}$, which contains $N'_k$,
 and use $|x-\flow_t(y')|\ge2r_k$ for
 $x\in B_{4r_k}$ and $y'\in S_1\cup\dots\cup S_{k-1}$, which holds because
@@ -299,19 +308,23 @@ $\eta_k$ are continuous on every interval on which they are defined, so the
 integrals that define $\maj_k$ and $\maj^{\mathrm{in}}_k$ exist.
 
 If on $[0,T]$ both $D_{k+1}(t)\subset B_{ar_k/8}$ and the rings $i<k$ lie outside
-$B_{6r_k}$, then, by Lemma~\ref{lem:regions-basic}, the solution in ring-$k$
-units, split into its parts on $S_k(t)$, on $D_{k+1}(t)$ and on
+$B_{6r_k}$, then, by Lemma~\ref{lem:regions-basic}, the fully rescaled solution
+with $A=A_k$, $r=r_k$ and $t_*=0$, split into its parts on $S_k(t)$, on $D_{k+1}(t)$ and on
 $S_1(t)\cup\dots\cup S_{k-1}(t)$ (rescaled), satisfies the hypotheses of
-Lemma~\ref{lem:reduction} on $[0,A_kT]$ with $G=G_k$, and $h_k$ is the field $h$
-there. Indeed, by Lemma~\ref{lem:regions-basic}\textup{(2)} and \textup{(3)}, the
+Lemma~\ref{lem:reduction} on $[0,A_kT]$ with $G=G_k$ and the explicitly
+rescaled field $h(s)=h_k(s/A_k)$ there. Indeed, by Lemma~\ref{lem:regions-basic}\textup{(2)} and \textup{(3)}, the
 three parts have pairwise disjoint supports, are $3$-fold rotationally symmetric
 and are transported by the flow of the solution in ring-$k$ units. The part on
 $D_{k+1}(t)$ is $\nu^{\mathrm{in}}_k$, whose integral at $t=0$ is $2\pi G_k$ by
 the definition of $G_k$, so $G=G_k$. The two conditions on $[0,T]$, read in ring-$k$
 units, imply the support conditions of Lemma~\ref{lem:reduction}. While
 $S_k(t)\subset N_k$, the function $w=\omega_{\mathrm r}-\Phi$ of
-Lemma~\ref{lem:reduction}\textup{(3)} at ring-$k$ time $A_kt$ is $w_k(t)$. This is how Lemma~\ref{lem:reduction} and Section~\ref{sec:single} are
-applied to ring $k$.
+Lemma~\ref{lem:reduction}\textup{(3)} is $w(s)=w_k(s/A_k)$. In the same
+local coordinate, its field norm and Duhamel bound are
+$\eta(s)=\eta_k(s/A_k)$ and $\maj(s)=\maj_k(s/A_k)$: the factor $A_k$ in
+Definition~\ref{def:regions} follows from the substitution $s=A_kt$. This is
+how Lemma~\ref{lem:reduction} and Section~\ref{sec:single} are applied to
+ring $k$, using the same rescaling for every time-dependent quantity.
 
 Part~I and Section~\ref{sec:single} treat the linearization $\Lin(G)$ for
 $G\in[0,\Gone]$. The next lemma shows that every inner circulation $G_k$ lies in
@@ -396,7 +409,19 @@ $R=(\|g\|_{L^1}/\|g\|_{L^4})^{2/3}$ balances these bounds and yields
 The implicit constants are absolute; choose $\Cstar$ to dominate the last one.
 \end{proof}
 
-The phase clock turns the relay described in the Introduction into definite
+The clock below records activation and saturation in physical time $t$,
+so that events on different rings can be compared directly. The other time
+coordinates are used locally for calculations: $s=A_kt$ puts ring $k$ on its
+natural unit time scale, making the estimates uniform in $k$;
+$u=A_k(t-\tsh_k)$ additionally puts activation at $u=0$, so that Section~\ref{sec:single}
+applies with datum $w_k(\tsh_k)$; and
+$\tauK=A_{k+1}(t-T_{k+1})$ measures the kick in the inner ring's units, starting
+at its saturation. These are changes of coordinate for the same evolution.
+All indexed ring quantities, including $w_k(t)$, $h_k(t)$, $\maj_k(t)$ and
+$c_k(t)$, are evaluated at physical time; their rescaled versions are
+introduced explicitly inside the calculation that uses them.
+
+The clock turns the relay described in the Introduction into definite
 times. It is defined recursively, from the innermost ring outward. Ring $n$
 becomes active at time $0$. Ring $k$ becomes active at the time $\tsh_k$, and
 $T_k$ is the time at which its unstable coefficient is expected to reach the
@@ -409,7 +434,8 @@ exponentially. Choosing $\Tpin$ sufficiently large therefore makes the
 remaining contribution small: the normalized unstable coefficient of ring
 $k-1$ stays essentially stationary during its ensuing active phase
 (Lemma~\ref{lem:drift}), while its unstable mode grows. At the end of the
-pinning phase the kick time of ring $k-1$, defined below, equals $\Tpin$; there
+pinning phase the local kick coordinate of Lemma~\ref{lem:coupling}\textup{(2)}
+for ring $k-1$ equals $\Tpin$; there
 Lemma~\ref{lem:coupling}\textup{(2)} evaluates the kick that ring $k$ and the
 rings inside it give to ring $k-1$.
 
@@ -420,32 +446,27 @@ for $1\le k\le n$. Define recursively, downward in $k$:
 \begin{itemize}
 \item $\tsh_n=0$;
 \item if $\tsh_k$ is defined and $S_k(\tsh_k)\subset N_k$:
-  $c_k(0)=\ellst(G_k)\big(w_k(\tsh_k)\big)$ and $\ksh_k=|c_k(0)|$;
+  $c_k(\tsh_k)=\ellst(G_k)\big(w_k(\tsh_k)\big)$ and $\ksh_k=|c_k(\tsh_k)|$;
 \item if moreover $\ksh_k\in(0,\delta_0)$:
   $\hat T_k=\sigma_k^{-1}\log(\delta_0/\ksh_k)$, $T_k=\tsh_k+\hat T_k/A_k$, and, if
   $k\ge2$, $\tsh_{k-1}=T_k+\Tpin/A_k$.
 \end{itemize}
+Thus $\hat T_k=A_k(T_k-\tsh_k)$ is the dimensionless active duration.
 The clock is \textbf{defined up to level $k$} if $S_i(\tsh_i)\subset N_i$ and
 $\ksh_i\in(0,\delta_0)$ for every $i\in[k,n]$, so that $T_i$ is defined for
-these $i$. Put $T_{n+1}=0$, $\tash_k=A_k\tsh_k$, $W_k=[T_{k+1},T_k]$, the
+these $i$. Put $T_{n+1}=0$, $W_k=[T_{k+1},T_k]$, the
 \textbf{active phase} $\Phase_k=[\tsh_k,T_k]$ and the \textbf{pinning phase}
 $\Pin_k=[T_{k+1},\tsh_k]$ ($k<n$). Ring $k$ is \textbf{quiet} on $[0,\tsh_k]$,
-\textbf{active} on $\Phase_k$, and \textbf{debris} after $T_k$. On $\Phase_k$ we
-use the \textbf{active time} $u=A_k(t-\tsh_k)$. This puts activation at $u=0$
-and rescales the natural time scale $1/A_k$ to unit time, so that we can apply
-the single-ring results of Section~\ref{sec:single} with initial perturbation
-$w_k(\tsh_k)$ and parameter $G_k$, uniformly in $k$. If $h_k$ is defined on
-$[\tsh_k,t]$, the running coefficient of ring $k$ is, for $0\le u\le A_k(t-\tsh_k)$,
+\textbf{active} on $\Phase_k$, and \textbf{debris} after $T_k$. If $h_k$ is
+defined on $[\tsh_k,t]$, the running coefficient at physical time $t$ is
 \begin{equation}
 \label{eq:running-k}
-c_k(u)=c_k(0)+\int_0^ue^{-\lambda_kv}\,\ellst(G_k)\big(F_k(v)\big)\dd v ,
+c_k(t)=c_k(\tsh_k)+A_k\int_{\tsh_k}^t
+ e^{-\lambda_kA_k(v-\tsh_k)}\,\ellst(G_k)\big(F_k(v)\big)\dd v,
 \end{equation}
-where $F_k(v)=-h_k(\tash_k+v)\cdot\nabla\Phi$ on $N'$ and $F_k(v)=0$ elsewhere.
-For ring $k<n$, the \textbf{kick-time coordinate} is
-$\tauK=A_{k+1}(t-T_{k+1})$: it measures elapsed time since the saturation of
-ring $k+1$, in ring-$(k+1)$ units. Thus $\tauK=0$ at $t=T_{k+1}$,
-$\tauK=\Tpin$ at $t=\tsh_k$, and $\tauK=\Tpin+\mu u$ on $\Phase_k$.
-We denote its value at physical time $t=0$ by $\tau_0=-A_{k+1}T_{k+1}$.
+where $F_k(v)=-h_k(v)\cdot\nabla\Phi$ on $N'$ and $F_k(v)=0$ elsewhere.
+The exponent removes the free linear evolution since activation; the factor
+$A_k$ comes from the change to the local coordinate $u=A_k(t-\tsh_k)$.
 \end{definition}
 
 \begin{figure}[H]
@@ -477,16 +498,17 @@ We denote its value at physical time $t=0$ by $\tau_0=-A_{k+1}T_{k+1}$.
 \node at (8.6,-2.85) {$\Tpin$};
 \node at (12.8,-2.85) {$\Tpin+\mu\hat T_k$};
 \end{tikzpicture}
-\caption{The phases of ring $k<n$ and the corresponding time coordinates
+\caption{The intervals of ring $k<n$ in physical time and the local coordinates used in calculations
 (positions schematic). The window $W_k$ is the union of the pinning and active
-phases. For the seeded ring $k=n$, $\tsh_n=0$ and $W_n=\Phase_n$, with no
+intervals; $\tau_0=-A_{k+1}T_{k+1}$ is the kick-time coordinate of $t=0$.
+For the seeded ring $k=n$, $\tsh_n=0$ and $W_n=\Phase_n$, with no
 pinning phase.}
 \label{fig:ring-clock}
 \end{figure}
 
-The integral in Equation~\eqref{eq:running-k} exists, so $c_k(u)$ is well
+The integral in Equation~\eqref{eq:running-k} exists, so $c_k(t)$ is well
 defined: its integrand is continuous in $v$, since the map
-$v\mapsto h_k(\tash_k+v)\in C^0(N')$ is continuous (as shown after
+$v\mapsto h_k(v)\in C^0(N')$ is continuous (as shown after
 Lemma~\ref{lem:regions-basic}) and
 $|\ellst(G_k)(-h\cdot\nabla\Phi)|\le\Cls\|h\|_{C^0(N')}$ for continuous $h$
 (Lemma~I.\ref{I-lem:uniform}).
@@ -565,9 +587,9 @@ $t$. Hence $\tilde{\mathcal J}_t=\mathcal J_t$. These data determine whether
 ring $i\in[k,n]$ is quiet, active, or debris at $t$. If $i\notin\mathcal J_t$, then $t<\tsh_i<T_i$ and ring
 $i$ is quiet and neither active nor debris, and for $\tilde\omega$ the number
 $\tilde t^\sharp_i$ is either undefined or greater than $t$, so ring $i$ is
-neither active nor debris and is quiet at $t$ in the reading of
-Definition~\ref{def:loc} in Section~\ref{sec:several}, which takes $t\le\tsh_i$ to
-be true when $\tsh_i$ is not defined. If $i\in\mathcal J_t$, ring $i$ is
+neither active nor debris and is quiet at $t$ by the convention of
+Definition~\ref{def:loc} in Section~\ref{sec:several}, which includes rings with
+no assigned activation time among the quiet rings. If $i\in\mathcal J_t$, ring $i$ is
 quiet if and only if $t=\tsh_i$, active if and only if $t\le T_i$, and debris if
 and only if $t>T_i$.
 \end{proof}

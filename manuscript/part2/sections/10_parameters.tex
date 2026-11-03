@@ -69,8 +69,9 @@ Theorem~\ref{thm:active}, which the proof of Proposition~\ref{prop:bootstrap}
 applies to every active ring. That proof bounds the initial perturbation of the
 seeded ring by $2\Cseed\ksh_n$, that of ring $k$ at its hand-off by
 $\Chand\ksh_k$, and the inner field of the active ring $k$ by
-$C_F\ksh_k\jap{t}^3$. Thus (Init) and (Field) require bounds
-$C_0\kappa$ and $C_0\kappa\jap{t}^3$, so $C_0$ must be at least $2\Cseed$,
+$C_F\ksh_k\jap{A_k(t-\tsh_k)}^3$. In the local active coordinate
+$u=A_k(t-\tsh_k)$ used to apply that theorem, (Init) and (Field) require bounds
+$C_0\kappa$ and $C_0\kappa\jap{u}^3$, so $C_0$ must be at least $2\Cseed$,
 $\Chand$ and $C_F$, and at least $1$ as Theorem~\ref{thm:active} requires. None of
 $\Chand$, $C_F$, $\Cseed$ depends on $C_0$, so the choice of $C_0$ is not
 circular. Likewise $\Tpin$ depends only on $\sigma$. It is chosen before
@@ -205,9 +206,10 @@ $\eta_{b,k}$ and $\theta_j$.}
 The last inequality of (B7), Equation~\eqref{eq:E22}, is used only through the
 following lemma. Recall that $\theta_j$ is the factor of Lemma~\ref{lem:O} that
 bounds the field of the outer rings on ring $j$ by the Duhamel bound
-$\maj_j$, and that $\bar\tau^\sharp_j$ of Lemma~\ref{lem:quiet-time} bounds the
-length of the quiet phase of ring $j$ in its own time. The lemma bounds their
-product, which must be at most $\frac12$ for hypothesis \textup{(H2)} of
+$\maj_j$, and that $\bar\tau^\sharp_j$ of Lemma~\ref{lem:quiet-time} bounds
+physical times in its quiet-ring estimate by $A_jt\le\bar\tau^\sharp_j$.
+Thus $\theta_jA_jt\le\theta_j\bar\tau^\sharp_j$. The lemma bounds
+this dimensionless product, which must be at most $\frac12$ for hypothesis \textup{(H2)} of
 Proposition~\ref{prop:relay} and for the corresponding hypothesis of
 Lemma~\ref{lem:Oprime}, and at most $1/(4\Cls K_1)$ for hypothesis
 \textup{(ii)} of Lemma~\ref{lem:handoff}.
