@@ -333,9 +333,9 @@ this range when $\sbar$ is small, with a bound independent of $n$.
 \begin{lemma}
 \label{lem:inner-circ}
 In Definition~\ref{def:regions}, $\int\omega_{\ge k+1}(t)$ is independent of
-$t$, and $0\le G_k\le C_G\mu s_k^2\le C_G\mu\sbar^2$ for $1\le k\le n$, with
-a constant $C_G$ depending only on $\Phi$; moreover $G_n=0$. In particular, if
-$C_G\mu\sbar^2\le\Gone$, then $G_k\in[0,\Gone]$ for $1\le k\le n$.
+$t$, and $0\le G_k\le\mu s_k^2\le\mu\sbar^2$ for $1\le k\le n$;
+moreover $G_n=0$. In particular, if $\mu\sbar^2\le\Gone$, then
+$G_k\in[0,\Gone]$ for $1\le k\le n$.
 \end{lemma}
 \begin{proof}
 Let $F\colon\R\to\R$ be continuous with $F(0)=0$. Since $\flow_t$ preserves
@@ -356,8 +356,9 @@ and $G_n=0$, as the sum is then empty. Since $A_{i+1}r_{i+1}^2=\mu s_i^2\,A_ir_i
 $\mu s_i^2\le2(a/16)^2<\frac12$, each term of the sum is less than half the
 previous one, and comparison with a geometric series shows that the sum is at most
 $2A_{k+1}r_{k+1}^2=2\mu s_k^2A_kr_k^2$; so
-$G_k\le\|\Phi\|_{L^1}\mu s_k^2/\pi\le C_G\mu s_k^2$, and
-$s_k\le\sbar$.
+$G_k\le\|\Phi\|_{L^1}\mu s_k^2/\pi\le\mu s_k^2$, because
+$0\le\Phi<1$ and $\supp\Phi\subset\overline B_1$ give
+$\|\Phi\|_{L^1}\le\pi$; and $s_k\le\sbar$.
 \end{proof}
 
 The next lemma bounds the part $\omega_{\ge k}$ of the solution formed by ring
@@ -369,11 +370,10 @@ radius there.
 
 \begin{lemma}
 \label{lem:speed}
-In Definition~\ref{def:regions}, there are absolute constants $\Mvort$
-and $\Cstar$ such that for all $1\le k\le n$, $t\ge0$ and $q\in\{1,4\}$,
+In Definition~\ref{def:regions}, there is an absolute constant $\Cstar$ such that for all $1\le k\le n$, $t\ge0$ and $q\in\{1,4\}$,
 \[
 \begin{gathered}
-\|\omega_{\ge k}(t)\|_{L^q}\le\Mvort^{1/q}A_kr_k^{2/q},\qquad
+\|\omega_{\ge k}(t)\|_{L^q}\le\Cstar^{1/q}A_kr_k^{2/q},\qquad
 \|\KBS\ast\omega_{\ge k}(t)\|_{L^\infty}\le\Cstar A_kr_k,\\
 \|\omega_{\ge k}(t)\|_{L^1}=\|\Phi\|_{L^1}\sum_{i=k}^nA_ir_i^2\le2\|\Phi\|_{L^1}A_kr_k^2 .
 \end{gathered}
@@ -389,7 +389,7 @@ because $\mu\le2$ and $\sbar\le a/16<\frac1{16}$ give $\mu^4\sbar^2<\frac1{16}$;
 so $\sum_{i=k}^nA_i^qr_i^2\le\frac87A_k^qr_k^2$. With $q=1$ this gives the
 identity and the bound for $\|\omega_{\ge k}(t)\|_{L^1}$. As $0\le\Phi<1$ and
 $\supp\Phi\subset\{a\le|y|\le1\}$ (Lemma~I.\ref{I-lem:ring-facts}), $\|\Phi\|_{L^q}^q\le\pi$, and
-$\|\omega_{\ge k}(t)\|_{L^q}^q\le\frac{8\pi}7A_k^qr_k^2\le\Mvort A_k^qr_k^2$.
+$\|\omega_{\ge k}(t)\|_{L^q}^q\le\frac{8\pi}7A_k^qr_k^2\le\Cstar A_k^qr_k^2$.
 Finally, let $g=\omega_{\ge k}(t)\in (L^1\cap L^4)(\R^2)$; we may assume $g\ne0$. Let
 $x\in\R^2$ and $R>0$; by Lemma~I.\ref{I-lem:BS-basic}(a), $2\pi|\KBS(x-y)|=|x-y|^{-1}$.
 We split the integral of $|g(y)||x-y|^{-1}$ over $y$ into the near field and the
@@ -406,7 +406,8 @@ $R=(\|g\|_{L^1}/\|g\|_{L^4})^{2/3}$ balances these bounds and yields
 \lesssim\|g\|_{L^1}^{1/3}\|g\|_{L^4}^{2/3}
 \lesssim A_kr_k.
 \]
-The implicit constants are absolute; choose $\Cstar$ to dominate the last one.
+The implicit constants are absolute, using the numerical $L^1$ and $L^4$
+bounds above. Choose $\Cstar$ to dominate this velocity coefficient and $8\pi/7$.
 \end{proof}
 
 The clock below records activation and saturation in physical time $t$,

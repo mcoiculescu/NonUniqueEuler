@@ -68,40 +68,37 @@ part (4).
 
 \begin{lemma}
 \label{lem:transfer}
-Assume $\sbar\le a/16$, and let $M_h\ge1$ and $s'\ge0$ be integers. There are
-constants $C^{\mathrm T}_M$ and $C^{\mathrm T}_O$, depending only on $a$ and
-$M_h$, such that with $C_{L1}=|N|^{1/2}$, where $|N|$ is the area of $N$,
-\[
-C_M=C^{\mathrm T}_M\max(1,C_{L1}),\qquad C_O=C^{\mathrm T}_O\max(1,C_{L1}),
-\]
-the following hold at every time $t\ge0$, for $1\le j<n$.
+Assume $\sbar\le a/16$, and let $M_h\ge1$ and $s'\ge0$ be integers. There is
+$\Cvel\ge1$, depending only on $a$ and $M_h$, such that the following hold at
+every time $t\ge0$, for $1\le j<n$. We choose this constant large enough for
+Lemmas~\ref{lem:inner-field} and~\ref{lem:field-bound} below as well.
 \begin{enumerate}[label=\textup{(\arabic*)}]
 \item Let $g\in L^1(\R^2)$ be real valued, $3$-fold rotationally symmetric and supported in
   $\overline B_{ar_{j+1}/8}$, and let $E_g$ be its velocity field minus its
   monopole. Then
   \[
   \|(E_g)_{[j]}\|_{C^{M_h}(N')}
-  \le C_M\varepsilon_j\sup_{|y|=a/4}|(E_g)_{[j+1]}(y)|.
+  \le \Cvel\varepsilon_j\sup_{|y|=a/4}|(E_g)_{[j+1]}(y)|.
   \]
 \item If $S_{j+1}(t)\subset N_{j+1}$, let
   $V=\KBS\ast\big(A_{j+1}w_{j+1}(t,\cdot/r_{j+1})\big)$. Then
   \[
   \|V_{[j]}\|_{C^{M_h}(N')}
-  \le C_M\varepsilon_j\|w_{j+1}(t)\|_{H^{s'}}.
+  \le \Cvel\varepsilon_j\|w_{j+1}(t)\|_{H^{s'}}.
   \]
 \item If $D_{j+1}(t)\subset\overline B_R$ with $R\le ar_j/8$, let $E$ be the
   velocity field of $\omega_{\ge j+1}(t)$ minus its monopole. Then
   \[
   \|E_{[j]}\|_{C^{M_h}(N')}
-  \le C_M\varepsilon_j(R/r_{j+1})^3.
+  \le \Cvel\varepsilon_j(R/r_{j+1})^3.
   \]
 \item For $1\le i<k\le n$ with $S_i(t)\subset N_i$, put
   $V_i=\KBS\ast\big(A_iw_i(t,\cdot/r_i)\big)$ and
   $b_{i,k}=\mu^{i-k}r_k/r_i$. Then
   \[
   \begin{aligned}
-  \|(V_i)_{[k]}\|_{C^{M_h}(N')}&\le C_Ob_{i,k}\|w_i(t)\|_{L^1},\\
-  \|(V_i)_{[k]}\|_{C^{M_h}(N')}&\le C_Ob_{i,k}\|w_i(t)\|_{H^{s'}}.
+  \|(V_i)_{[k]}\|_{C^{M_h}(N')}&\le \Cvel b_{i,k}\|w_i(t)\|_{L^1},\\
+  \|(V_i)_{[k]}\|_{C^{M_h}(N')}&\le \Cvel b_{i,k}\|w_i(t)\|_{H^{s'}}.
   \end{aligned}
   \]
   If $S_i(t)\subset N_i$ for every $i<k$, put
@@ -109,23 +106,23 @@ the following hold at every time $t\ge0$, for $1\le j<n$.
   On $N'_k$, $V_{\mathrm{out}}=\sum_{i<k}V_i$, and
   \[
   \|(V_{\mathrm{out}})_{[k]}\|_{C^{M_h}(N')}
-  \le C_O\sum_{i<k}b_{i,k}\|w_i(t)\|_{L^1}.
+  \le \Cvel\sum_{i<k}b_{i,k}\|w_i(t)\|_{L^1}.
   \]
 \end{enumerate}
 \end{lemma}
 
 \begin{proof}
 Throughout this proof, implicit constants depend only on $a$ and $M_h$.
-The differentiated geometric series are bounded by
+The differentiated geometric series are finite:
 \[
-\mathsf S_q=\sum_{p\ge1}(3p+q)^q2^{-3(p-1)}<\infty
+\sum_{p\ge1}(3p+q)^q2^{-3(p-1)}<\infty
 \qquad(0\le q\le M_h).
 \]
-We prove the four bounds with implicit constants and choose
-$C^{\mathrm T}_M$ and $C^{\mathrm T}_O$ to dominate them.
+We prove the four bounds with implicit constants, which are absorbed into
+$\Cvel$.
 The $H^{s'}$ bounds then follow from
-$\|w\|_{L^1}\le C_{L1}\|w\|_{L^2}\le C_{L1}\|w\|_{H^{s'}}$,
-since each perturbation is supported in $N$
+$\|w\|_{L^1}\le |N|^{1/2}\|w\|_{L^2}\le4\|w\|_{H^{s'}}$,
+since each perturbation is supported in $N\subset\overline B_2$
 (Lemma~\ref{lem:regions-basic}(4)). Put $\rho_0=a/4$, the inner radius of $N'$.
 
 \emph{Proof of (1).} We bound the coefficients of the series of the field of
@@ -155,7 +152,7 @@ $|z|\ge\rho_0/s_j$, since $(l+1)\cdots(l+q)\le(l+q)^q$ and $s_j\le\frac12$
 \begin{align*}
 |F^{(q)}(z)|&\le\mathcal M\sum_{l\in 3\N}(l+q)^q\rho_0^{l+1}\Big(\frac{s_j}{\rho_0}\Big)^{l+1+q}
 =\mathcal M\rho_0^{-q}s_j^{4+q}\sum_{p\ge1}(3p+q)^qs_j^{3(p-1)}\\
-&\le\mathcal M\Big(\frac4a\Big)^q\mathsf S_q\,s_j^{4+q}.
+&\le\mathcal M\Big(\frac4a\Big)^qC\,s_j^{4+q}.
 \end{align*}
 In ring-$j$ units
 $(E_g)_{[j]}(z)=\mu s_jV(z/s_j)$, since $A_{j+1}r_{j+1}=\mu s_jA_jr_j$, and
@@ -186,7 +183,7 @@ Equation~\eqref{eq:sk-small}, and
 \[
 \begin{aligned}
 |F^{(q)}(z)|&\le\frac{\|w_{j+1}(t)\|_{L^1}}{2\pi}\sum_{l\in 3\N}(l+q)^q2^l\Big(\frac{4s_j}a\Big)^{l+1+q}\\
-&\le\frac{\|w_{j+1}(t)\|_{L^1}}{2\pi}\Big(\frac4a\Big)^{1+q}\Big(\frac8a\Big)^3\mathsf S_q\,s_j^{4+q}.
+&\le\frac{\|w_{j+1}(t)\|_{L^1}}{2\pi}\Big(\frac4a\Big)^{1+q}\Big(\frac8a\Big)^3C\,s_j^{4+q}.
 \end{aligned}
 \]
 The second inequality follows, as in (1), by writing $l=3p$ and using
@@ -242,7 +239,7 @@ $p\ge1$, and using $l(l-1)\cdots(l-q+1)\le(3p)^q$, we get
 \[
 \begin{aligned}
 |F^{(q)}(z)|&\le\frac{\|w_i(t)\|_{L^1}}{2\pi}\sum_{p\ge1}(3p)^q\Big(\frac2a\Big)^{3p}(3s_{i,k})^{3p-1-q}\\
-&\le\frac{\|w_i(t)\|_{L^1}}{2\pi}\Big(\frac2a\Big)^{q+1}\Big(\frac{6s_{i,k}}a\Big)^{2-q}\mathsf S_q;
+&\le\frac{\|w_i(t)\|_{L^1}}{2\pi}\Big(\frac2a\Big)^{q+1}\Big(\frac{6s_{i,k}}a\Big)^{2-q}C;
 \end{aligned}
 \]
 in the second inequality, the terms with $3p-1<q$ vanish on the left and are
@@ -251,7 +248,7 @@ nonnegative on the right, and the others are bounded by means of the identity
 (2/a)^{3p}(3s_{i,k})^{3p-1-q}=(2/a)^{q+1}(6s_{i,k}/a)^{2-q}(6s_{i,k}/a)^{3(p-1)}.
 \]
 Since $6s_{i,k}/a\le\frac14$, the last factor is at most $2^{-3(p-1)}$, and
-$(3p)^q\le(3p+q)^q$; this gives the bound by $\mathsf S_q$.
+$(3p)^q\le(3p+q)^q$; this gives the bound by $C$.
 In ring-$k$ units,
 $(V_i)_{[k]}(z)=\frac{A_ir_i}{A_kr_k}(V_i)_{[i]}(s_{i,k}z)=\mu^{i-k}s_{i,k}^{-1}(V_i)_{[i]}(s_{i,k}z)$,
 and $|s_{i,k}z|\le3s_{i,k}$ for $z\in N'$. Hence, on $N'$, by the scaling rule,
@@ -280,17 +277,16 @@ is precisely $\hin_k$ in ring-$k$ units wherever $\hin_k$ is defined. The
 inner vorticity in these units is
 $\nu^{\mathrm{in}}_k(t,y)=A_k^{-1}\omega_{\ge k+1}(t,r_ky)$, as defined in
 Definition~\ref{def:regions} at physical time $t$. The
-constant $\Cin$ does not involve the $L^1$--$H^{s'}$ conversion factor $C_{L1}$
-in Lemma~\ref{lem:transfer}.
+same constant $\Cvel$ applies to this bound.
 
 \begin{lemma}
 \label{lem:inner-field}
-Let $M_h\ge1$ be an integer. There is $\Cin$, depending only on $a$ and
-$M_h$, such that the following holds. Let $1\le k<n$ and $t\ge0$ be such that
+Let $M_h\ge1$ be an integer and use the constant $\Cvel$ of
+Lemma~\ref{lem:transfer}. Let $1\le k<n$ and $t\ge0$ be such that
 $\omega_{\ge k+1}(t)$ is supported in $\overline B_R$ with $R\le\frac a8r_k$ and
-$\|\omega_{\ge k+1}(t)\|_{L^1}\le\Mvort A_{k+1}r_{k+1}^2$. Let $E$ be the
+$\|\omega_{\ge k+1}(t)\|_{L^1}\le\Cstar A_{k+1}r_{k+1}^2$. Let $E$ be the
 velocity field of $\omega_{\ge k+1}(t)$ minus its monopole. Then
-$\|E_{[k]}\|_{C^{M_h}(N')}\le\Cin\,\mu s_k^2\,(R/r_k)^3$. If moreover
+$\|E_{[k]}\|_{C^{M_h}(N')}\le\Cvel\,\mu s_k^2\,(R/r_k)^3$. If moreover
 $D_{k+1}(t)\subset B_{ar_k/8}$, then $E_{[k]}=\hin_k(t)$ on $N'$.
 \end{lemma}
 
@@ -298,13 +294,13 @@ $D_{k+1}(t)\subset B_{ar_k/8}$, then $E_{[k]}=\hin_k(t)$ on $N'$.
 The function $g=\omega_{\ge k+1}(t)$ is $3$-fold
 rotationally symmetric by Lemma~\ref{lem:regions-basic}(3), and every $x\in N'_k$ has
 $|x|\ge ar_k/4\ge2R$. The computation in the proof of
-Lemma~\ref{lem:transfer}(3), with $\|g\|_{L^1}\le\Mvort A_{k+1}r_{k+1}^2$ in
+Lemma~\ref{lem:transfer}(3), with $\|g\|_{L^1}\le\Cstar A_{k+1}r_{k+1}^2$ in
 place of $2\pi A_{k+1}r_{k+1}^2$, gives
 \[
 |\nabla^qE_{[k]}(y)|\lesssim\mu s_k^2(R/r_k)^3\qquad(y\in N',\ 0\le q\le M_h),
 \]
 with constants depending only on $a$ and $M_h$. Summing over $q$
-fixes $\Cin$ and proves the bound. Now let
+gives the bound after enlarging the common constant $\Cvel$. Now let
 $D_{k+1}(t)\subset B_{ar_k/8}$, so that $\hin_k(t)$ is defined. Since $\KBS$
 is homogeneous of degree $-1$, $(\KBS\ast\omega_{\ge k+1}(t))_{[k]}=\KBS\ast\nu^{\mathrm{in}}_k$, and the
 monopole of $\omega_{\ge k+1}(t)$ is, in ring-$k$ units,
@@ -380,8 +376,8 @@ $\kseed$.
 \end{proposition}
 
 \begin{proof}
-The constants $\Cstar$ and $\Mvort$ are absolute by Lemma~\ref{lem:speed};
-we choose $\Cmom$ below from these constants. We first bound the
+The constant $\Cstar$ is absolute by Lemma~\ref{lem:speed};
+we choose $\Cmom$ below in terms of it. We first bound the
 velocity on the disk $\overline B_{\Lambda r_{k+1}}$, and then show by a
 continuity argument that $D_{k+1}(t)$ does not leave this disk before $t_1$.
 
@@ -433,9 +429,9 @@ $\varrho(t)\le\varrho(t_1)=\Lambda s_kr_k\le\frac a8r_k$ by (iv).
 
 \emph{Proof of (b).} By the definition of $Q_3$
 (Definition~I.\ref{I-def:multipole}), (a) and Lemma~\ref{lem:speed},
-$|Q_3[\omega_{\ge k+1}(t)]|\le\varrho(t)^3\|\omega_{\ge k+1}(t)\|_{L^1}\le\Mvort A_{k+1}r_{k+1}^2\allowbreak\varrho(t)^3$,
+$|Q_3[\omega_{\ge k+1}(t)]|\le\varrho(t)^3\|\omega_{\ge k+1}(t)\|_{L^1}\le\Cstar A_{k+1}r_{k+1}^2\allowbreak\varrho(t)^3$,
 so by the definition of $q_{k+1}$ (Definition~\ref{def:regions}),
-$|q_{k+1}(t)|\le\Mvort(\varrho(t)/r_{k+1})^3=\Mvort(2+2\Cstar\tauK)^3$, and
+$|q_{k+1}(t)|\le\Cstar(\varrho(t)/r_{k+1})^3=\Cstar(2+2\Cstar\tauK)^3$, and
 $2+2\Cstar\tauK\lesssim1+\tauK$. Choosing $\Cmom$ large enough proves (b).
 \end{proof}
 
@@ -485,17 +481,18 @@ sum of the norms of $\hin_j$ and $\hout_j$ in $C^{M_h}(N')$, is at most $1$ for 
 
 \begin{lemma}
 \label{lem:field-bound}
-Let $M_h\ge1$ be an integer. There is $C_\eta$, depending only on $a$, $M_h$
-and $\|\Phi\|_{L^1}$, such that the following holds. Assume
+Let $M_h\ge1$ be an integer and use the constant $\Cvel$ of
+Lemma~\ref{lem:transfer}. Assume
 $\sbar\le a/16$ and $\sbar\le\frac12$, let $1\le j<n$ and $t\ge0$, and
 assume that $S_i(t)\subset N_i$ for every $i<j$, that $S_i(t)\cap B_{6r_j}=\emptyset$
 for every $i<j$, and that $D_{j+1}(t)\subset B_{ar_j/8}$. Then
-$\eta_j(t)\le C_\eta\big(\mu\sbar^2+\sbar\big)$.
+$\eta_j(t)\le \Cvel\big(\mu\sbar^2+\sbar\big)$.
 \end{lemma}
 
 \begin{proof}
-All implicit constants in this proof depend only on $a$, $M_h$ and
-$\|\Phi\|_{L^1}$. We choose $C_\eta$ to dominate the bounds below. The hypotheses are those under which
+All implicit constants in this proof depend only on $a$ and $M_h$, since
+$\|\Phi\|_{L^1}\le\pi$. The common constant $\Cvel$ is chosen to dominate
+these bounds as well. The hypotheses are those under which
 Definition~\ref{def:regions} defines $h_j$ at time $t$, and, by that definition,
 $\eta_j(t)=\etin_j(t)+\etout_j(t)$. Here $\etin_j(t)$ is the norm in
 $C^{M_h}(N')$ of $\hin_j(t)$, which is the non-monopole field of
@@ -505,14 +502,14 @@ Lemma~\ref{lem:speed}. Similarly, $\etout_j(t)$ is the norm of
 $\hout_j(t)$, the field of
 $\omega(t)\mathbf 1_{S_1(t)\cup\dots\cup S_{j-1}(t)}$ in ring-$j$ units. By
 Lemma~\ref{lem:transfer}(3) with $R=ar_j/8$,
-$\etin_j(t)\le C_M\varepsilon_j(ar_j/(8r_{j+1}))^3=(a/8)^3C_M\mu s_j^2\le(a/8)^3C_M\mu\sbar^2$;
+$\etin_j(t)\lesssim\varepsilon_j(ar_j/(8r_{j+1}))^3=(a/8)^3\mu s_j^2\lesssim\mu\sbar^2$;
 here we used $\varepsilon_j=\mu s_j^5$, $r_{j+1}=s_jr_j$ and $s_j\le\sbar$.
 If $j=1$, then $\etout_1=0$, as there is no ring outside ring $1$. If $j\ge2$, Lemma~\ref{lem:transfer}(4) with $k=j$ and
 Lemma~\ref{lem:regions-basic}(4) give
-$\etout_j(t)\le C_O\sum_{i<j}b_{i,j}\|w_i(t)\|_{L^1}\le2\|\Phi\|_{L^1}C_O\sum_{i<j}b_{i,j}$.
+$\etout_j(t)\lesssim\sum_{i<j}b_{i,j}\|w_i(t)\|_{L^1}\le2\|\Phi\|_{L^1}\sum_{i<j}b_{i,j}$.
 By Equation~\eqref{eq:sk-small}, $r_j/r_i\le\sbar^{j-i}$, and $\mu^{i-j}\le1$, so
 $b_{i,j}\le\sbar^{j-i}$ and, as $\sbar\le\frac12$,
 $\sum_{i<j}b_{i,j}\le\sum_{l\ge1}\sbar^l\le2\sbar$. Hence
-$\etout_j(t)\le4\|\Phi\|_{L^1}C_O\sbar$, and adding the two bounds proves
+$\etout_j(t)\lesssim\sbar$, and adding the two bounds proves
 the lemma.
 \end{proof}

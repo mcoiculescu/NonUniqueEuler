@@ -201,7 +201,7 @@ the inner part is supported in $D_{j+1}(t')/r_j\subset B_{a/8}$ and the outer pa
 $\R^2\setminus B_6$, as Lemma~\ref{lem:reduction} requires. If $j<n$, the
 hypotheses of Lemma~\ref{lem:field-bound} hold at $t'$, since (B1) holds and
 $S_i(t')\subset\Nflat_i\subset N_i$ for $i<j$; so $\eta_j(t')\le
-C_\eta(\mu\sbar^2+\sbar)\le1$ by (B9).
+\Cvel (\mu\sbar^2+\sbar)\le1$ by (B9).
 
 \emph{\textup{(c)}.} Item (1) of Definition~\ref{def:loc} holds because a ring
 $i$ with $t'\le T_i$, or with $T_i$ not defined, is not debris at $t'$, so
@@ -339,7 +339,7 @@ $\kappa=\ksh_{k+1}$, which Equation~\eqref{eq:boot-kappa} allows, and (B11). So
 $|\qs|\in[\frac{15}{16},\frac{17}{16}]2\pi|\pout_*(G_{k+1})|\delta_0$ and
 \begin{equation}
 \label{eq:boot-kick}
-\frac{|\beta_k|\,|\qs|}{10|z|(\mu-1)}\le|\Ain(\Tpin)|\le\frac{3|\beta_k|\,|\qs|\,\mu}{|z|(\mu-1)} .
+\frac{|\beta_k|\,|\qs|}{10|\lamref|(\mu-1)}\le|\Ain(\Tpin)|\le\frac{3|\beta_k|\,|\qs|\,\mu}{|\lamref|(\mu-1)} .
 \end{equation}
 
 Next we apply Proposition~\ref{prop:relay} with the constants $C_0$ and $K_1$,
@@ -390,7 +390,7 @@ the bracket in Equation~\eqref{eq:relay} with $j=k$ is at most
 $(4C_2+1)\delta_0/(\sigb(\mu-1))+C_D(\Tpin)$; with Equation~\eqref{eq:relay}
 this gives the first inequality below, and the bound on $x_k$ above with Equation~\eqref{eq:K1} gives the second:
 \[
-\maj_k(\tsh_k)\le2C_M\varepsilon_ke^{x_k\Tpin}\Big[\frac{(4C_2+1)\delta_0}{\sigb(\mu-1)}+C_D(\Tpin)\Big]\le\Abar\,\varepsilon_k .
+\maj_k(\tsh_k)\le2\Cvel \varepsilon_ke^{x_k\Tpin}\Big[\frac{(4C_2+1)\delta_0}{\sigb(\mu-1)}+C_D(\Tpin)\Big]\le\Abar\,\varepsilon_k .
 \]
 Next we bound from below the coefficient $\cin_k$ produced by the kick. By
 Lemma~\ref{lem:coupling}\textup{(2)}, $\cin_k=e^{\zeta_0\Tpin}\Ain(\Tpin)$ with
@@ -405,13 +405,12 @@ c_N\le|\beta(G_k)||\pout_*(G_{k+1})|\le C_N,\qquad
 With the lower bound in Equation~\eqref{eq:boot-kick}, $\varepsilon_k=\mu s_k^5$
 and $\frac{15}{16}\cdot\frac1{10}=\frac3{32}$,
 \[
-|\cin_k|\ge e^{x_k\Tpin}\frac{|\beta_k||\qs|}{10|z|(\mu-1)}\ge\frac{3c_N}{32\mu}\cdot\frac{\varepsilon_k\delta_0e^{x_k\Tpin}}{|z|(\mu-1)}
-=\frac{c_K\varepsilon_k\delta_0e^{x_k\Tpin}}{|z|(\mu-1)} .
+|\cin_k|\ge e^{x_k\Tpin}\frac{|\beta_k||\qs|}{10|\lamref|(\mu-1)}\ge\frac{3c_N}{32\mu}\cdot\frac{\varepsilon_k\delta_0e^{x_k\Tpin}}{|\lamref|(\mu-1)}.
 \]
 Multiplying by $\frac12K_1$, Equation~\eqref{eq:K1} and the first inequality of
 the bound on $\maj_k(\tsh_k)$ above give
 \[
-\frac12K_1|\cin_k|\ge4C_M\varepsilon_ke^{x_k\Tpin}\Big[\frac{(4C_2+1)\delta_0}{\sigb(\mu-1)}+C_D(\Tpin)\Big]\ge2\maj_k(\tsh_k).
+\frac12K_1|\cin_k|\ge4\Cvel \varepsilon_ke^{x_k\Tpin}\Big[\frac{(4C_2+1)\delta_0}{\sigb(\mu-1)}+C_D(\Tpin)\Big]\ge2\maj_k(\tsh_k).
 \]
 
 The hypotheses of Lemma~\ref{lem:handoff} hold: (i) by
@@ -422,20 +421,20 @@ and (B11). So Equation~\eqref{eq:handoff} holds at $\tsh_k$. To bound $\ksh_k$
 we use its first bound, the identity
 $|\cin_k|=e^{x_k\Tpin}|\Ain(\Tpin)|$, Equation~\eqref{eq:boot-kick} and the bounds
 on $|\beta_k||\qs|$. As $e^{x_k\Tpin}\ge1$ and $\frac{15}{320}\ge\frac1{22}$,
-$\ksh_k\ge\frac12|\Ain(\Tpin)|\ge\frac12\cdot\frac1{10}\cdot\frac{15}{16}\cdot\frac{c_N\delta_0s_k^5}{|z|(\mu-1)}\ge\Klo s_k^5$;
+$\ksh_k\ge\frac12|\Ain(\Tpin)|\ge\frac12\cdot\frac1{10}\cdot\frac{15}{16}\cdot\frac{c_N\delta_0s_k^5}{|\lamref|(\mu-1)}\ge\Klo s_k^5$;
 and as $x_k\le\frac{17}{16}\sigma$ and
 $\frac32\cdot3\cdot\frac{17}{16}=\frac{153}{32}\le5$,
 \[
-\ksh_k\le\frac32e^{x_k\Tpin}|\Ain(\Tpin)|\le\frac32\cdot3\cdot\frac{17}{16}\cdot\frac{C_N\delta_0\mu\,s_k^5}{|z|(\mu-1)}e^{17\sigma\Tpin/16}\le\Kup s_k^5.
+\ksh_k\le\frac32e^{x_k\Tpin}|\Ain(\Tpin)|\le\frac32\cdot3\cdot\frac{17}{16}\cdot\frac{C_N\delta_0\mu\,s_k^5}{|\lamref|(\mu-1)}e^{17\sigma\Tpin/16}\le\Kup s_k^5.
 \]
 Hence
 $0<\ksh_k\le\Kup\sbar^5\le\kseed<\delta_0$ by (B6) and ($\kappa$1), and
 $S_k(\tsh_k)\subset\NNm_k\subset N_k$ by Equation~\eqref{eq:boot-quiet}; so the
-clock is defined up to level $k$. Finally, as $s\le s_h=M-1$, $C_0\ge\Chand$,
+clock is defined up to level $k$. Finally, as $s\le s_h=M-1$, $C_0\ge K_1C_Q$,
 $C_2\ge1$ and $\rhohat_k(\tsh_k)=C_0$,
 \begin{equation}
 \label{eq:boot-switch}
-\|w_k(\tsh_k)\|_{H^s}\le\Chand\ksh_k\le C_0\ksh_k<C_2\hat a_k(\tsh_k)\big(1+\rhohat_k(\tsh_k)\big),
+\|w_k(\tsh_k)\|_{H^s}\le K_1C_Q\ksh_k\le C_0\ksh_k<C_2\hat a_k(\tsh_k)\big(1+\rhohat_k(\tsh_k)\big),
 \end{equation}
 which is (BA3) for ring $k$ at $t'=\tsh_k$, with a margin. Step~3 uses neither
 (BA3) for ring $k$ at $\tsh_k$ nor any time after $\tsh_k$.
@@ -471,7 +470,7 @@ holds: $\ksh_k\le2\kseed\le\kappa_0(C_0)$ by Step~0 if $k=n$, by Step~3 and (B6)
 $k<n$, and by ($\kappa$4). It remains to check (Init), (Field) and (Coef).
 
 (Init): for $k<n$, Equation~\eqref{eq:handoff} gives
-$\|w_k(\tsh_k)\|_{H^{M-1}}\le\Chand\ksh_k\le C_0\ksh_k$ and
+$\|w_k(\tsh_k)\|_{H^{M-1}}\le K_1C_Q\ksh_k\le C_0\ksh_k$ and
 $\supp(\Phi+w_k(\tsh_k))\subset\NNm$; for $k=n$ this is Step~0.
 
 (Field), inner part $h_1(u)=\hin_k(\tsh_k+u/A_k)$. For $k=n$, $h_1=0$, because
@@ -480,23 +479,22 @@ $t''=\tsh_k+u/A_k$. By Lemma~\ref{lem:geometry}(a), $\omega_{\ge k+1}(t'')$ is
 supported in $\overline B_R$ with $R=\varrho_k(t'')\le\frac a8r_k$,
 $A_{k+1}(t''-T_{k+1})=\Tpin+\mu u$, and $D_{k+1}(t'')\subset B_{ar_k/8}$, so
 $h_1(u)$ is the field $E_{[k]}$ of Lemma~\ref{lem:inner-field} at $t''$; and
-$\|\omega_{\ge k+1}(t'')\|_{L^1}\le\Mvort A_{k+1}r_{k+1}^2$ by
+$\|\omega_{\ge k+1}(t'')\|_{L^1}\le\Cstar A_{k+1}r_{k+1}^2$ by
 Lemma~\ref{lem:speed}. Lemma~\ref{lem:inner-field}, the inequalities
 $2+2\Cstar\Tpin+2\Cstar\mu u\le(2+2\Cstar\Tpin)(1+\Cstar\mu u)$ and
-$1+\Cstar\mu u\le(1+\Cstar\mu)\max(1,u)\le(1+2\Cstar)\jap{u}$, the definition of
-$C_F$ in (P3), and $\ksh_k\ge\Klo s_k^5$ (Step~3) give
+$1+\Cstar\mu u\le(1+\Cstar\mu)\max(1,u)\le(1+2\Cstar)\jap{u}$, the second inequality of (P4), and $\ksh_k\ge\Klo s_k^5$ (Step~3) give
 \begin{equation}
 \label{eq:boot-inner}
 \begin{aligned}
-\|h_1(u)\|_{C^{M_h}(N')}&\le\Cin\mu s_k^2(R/r_k)^3=\Cin\mu s_k^5\big(2+2\Cstar(\Tpin+\mu u)\big)^3\\
-&\le\Cin\mu(2+2\Cstar\Tpin)^3(1+2\Cstar)^3s_k^5\jap{u}^3\\
-&\le C_F\Klo s_k^5\jap{u}^3\le C_F\ksh_k\jap{u}^3 .
+\|h_1(u)\|_{C^{M_h}(N')}&\le\Cvel \mu s_k^2(R/r_k)^3=\Cvel \mu s_k^5\big(2+2\Cstar(\Tpin+\mu u)\big)^3\\
+&\le\Cvel \mu(2+2\Cstar\Tpin)^3(1+2\Cstar)^3s_k^5\jap{u}^3\\
+&\le C_0\Klo s_k^5\jap{u}^3\le C_0\ksh_k\jap{u}^3 .
 \end{aligned}
 \end{equation}
-As $M\le M_h$ and $C_F\le C_0$, this is the first bound of (Field).
+As $M\le M_h$, this is the first bound of (Field).
 
 (Field), outer part $h_2(u)=\hout_k(\tsh_k+u/A_k)$. We apply
-Lemma~\ref{lem:Oprime} with the constants $C_0$, $K_1$, $C_F$ at the time $t'$.
+Lemma~\ref{lem:Oprime} with the constants $C_0$, $K_1$ at the time $t'$.
 The clock is defined up to level $k$, and (Loc) holds on $[0,t']$ by
 Lemma~\ref{lem:geometry}(c). If $k\ge2$, ring $k-1$ is quiet on $[0,t']$, so
 Step~2 gives the hypotheses and conclusions of Lemma~\ref{lem:O} for $j=k-1$ and
@@ -527,7 +525,7 @@ $\ksh_k\ge\frac12|\cin_k|=\frac12e^{x_k\Tpin}|\Ain(\Tpin)|$; Step~3 gives
 the lower bound on $|\Ain(\Tpin)|$. By Step~3 and Lemma~I.\ref{I-lem:uniform},
 $|\qs|\ge\frac{15}{16}2\pi|\pout_*(G_{k+1})|\delta_0\ge\frac{15}{16}\cout\delta_0>0$,
 so $\qs\ne0$, and (P2) gives
-$\mu-1\le c'\delta_0\le|\qs|/(10|z|\Cmom\Ip{3}{\sigma/4})$. (iii) is the outer
+$\mu-1\le c'\delta_0\le|\qs|/(10|\lamref|\Cmom\Ip{3}{\sigma/4})$. (iii) is the outer
 bound of (Field), the $C^0$ norm being at most the $C^{M_h}$ norm, and (iv) is
 Lemma~\ref{lem:geometry}(b). Moreover $\rT(\Tpin)\le\frac1{64}$ by (P3), and
 $\Cls\eta_{b,k}\hat T_k\le\frac1{32}$: for $k=1$, $\eta_{b,1}=0$; for $2\le k<n$,
@@ -564,7 +562,7 @@ If $t'\le\tsh_{j+1}$, then $j+1<n$, as $\tsh_n=0<t'$, and ring $j+1$ is
 quiet at $t'$; so Proposition~\ref{prop:relay}(i), (BA2) for ring $j+1$ at the time $t'$ and
 (B10) give, as $\varepsilon_{j+1}\le\mu\sbar^5$,
 \[
-\maj_j(t')\le2C_M\Big(\frac{2C_Q}{\sigb(\mu-1)}+1\Big)\varepsilon_j\cdot2\Abar\varepsilon_{j+1}
+\maj_j(t')\le2\Cvel \Big(\frac{2C_Q}{\sigb(\mu-1)}+1\Big)\varepsilon_j\cdot2\Abar\varepsilon_{j+1}
 \le\Abar\varepsilon_j .
 \]
 If $t'>\tsh_{j+1}$, Proposition~\ref{prop:relay}(ii) or (iii) bounds
@@ -573,7 +571,7 @@ $k=j$ ($1-\gamma_j\ge\gamma'_\mu$ and $\ksh_{j+1}<\delta_0$), $\Xi_{j+1}\le\delt
 and $x_j\le\frac{17}{16}\sigma$ by Lemma~\ref{lem:detuning}; so that right side
 is at most
 \[
-2C_M\varepsilon_je^{17\sigma\Tpin/16}\Big[\frac{(4C_2+1)\delta_0}{\sigb(\mu-1)}+C_D(\Tpin)\Big]=\Abar\varepsilon_j .
+2\Cvel \varepsilon_je^{17\sigma\Tpin/16}\Big[\frac{(4C_2+1)\delta_0}{\sigb(\mu-1)}+C_D(\Tpin)\Big]=\Abar\varepsilon_j .
 \]
 Suppose now that $\tsh_j$ is not defined. Then $j<k_{\mathrm s}$, and by Step~2
 and the case just treated for ring $k_{\mathrm s}$, which is quiet at $t'$,

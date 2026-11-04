@@ -364,15 +364,12 @@ $H^s$, uniformly in $j$.
 
 \begin{lemma}
 \label{lem:iter-Hs}
-For every integer $s\ge1$ and every $T>0$, and for all $j\ge0$ and $|t|\le T$,
-$\|\omega^{[j]}(t)\|_{H^s}\le\mathcal M_s(T)$, where
-\begin{gather*}
-\mathcal M_1(T)^2=\|\omega_0\|_{L^2}^2+\pi R(T)^2\Psi(T)^2,\\
-\mathcal M_s(T)^2=\big(\|\omega_0\|_{H^s}^2+\mathcal M_{s-1}(T)^2+1\big)e^{\mathcal B_s(T)T}+\mathcal M_{s-1}(T)^2\quad(s\ge2),\\
-\mathcal B_s(T)=(s+1)2^{s+2}\big(V(T)+\mathcal M_{s-1}(T)+\mathcal M_{s-1}(T)\Psi(T)\big).
-\end{gather*}
-In particular $\mathcal M_s(T)$ depends only on $s$, $T$, $R_0$, $A$, $N_0$ and
-the norms $\|\omega_0\|_{L^1}$ and $\|\omega_0\|_{H^{s'}}$, $0\le s'\le s$.
+For every integer $s\ge1$ and every $T>0$, there is a constant $C$, depending
+only on $s$, $T$, $R_0$, $A$, $N_0$ and the norms $\|\omega_0\|_{L^1}$ and
+$\|\omega_0\|_{H^{s'}}$, $0\le s'\le s$, such that
+\[
+\|\omega^{[j]}(t)\|_{H^s}\le C\qquad(j\ge0,\ |t|\le T).
+\]
 \end{lemma}
 
 \begin{proof}
@@ -382,8 +379,9 @@ $\|\nabla\omega^{[j]}(t)\|_{L^2}^2\le|B_{R(T)}|\Psi(T)^2$, since $\nabla\omega^{
 vanishes outside $B_{R(T)}$ and $\Psi(t)\le\Psi(T)$. Adding the two bounds gives
 the claim for $s=1$, as $|B_{R(T)}|=\pi R(T)^2$.
 
-Let $s\ge2$ and assume the bound at level $s-1$ for all iterates. For $j=0$
-the bound holds because $\mathcal M_s(T)\ge\|\omega_0\|_{H^s}$. Let $j\ge0$; we
+Let $s\ge2$ and assume the bound at level $s-1$ for all iterates. Throughout
+this step, $C$ has only the dependencies stated in the lemma and is uniform
+in $j$ and $|t|\le T$. For $j=0$ the bound follows from the datum. Let $j\ge0$; we
 prove the bound for $\omega^{[j+1]}$. Let
 $|\alpha|=s$. Differentiating the equation of Lemma~\ref{lem:iterates}(iv) gives
 \[
@@ -397,11 +395,11 @@ integration by parts in $x$,
 $-\frac12\int(\divop v^{[j]})(\partial^\alpha\omega^{[j+1]})^2\dd x=0$. Put
 $\mathcal H(t)=\sum_{|\alpha|=s}\|\partial^\alpha\omega^{[j+1]}(t)\|_{L^2}^2$ and
 $Z(t)=\|\omega^{[j+1]}(t)\|_{H^s}$; there are $s+1$ multi-indices with
-$|\alpha|=s$. Put $\mathcal M=\mathcal M_{s-1}(T)$. We apply Lemma~\ref{lem:comm-R2} with
+$|\alpha|=s$. We apply Lemma~\ref{lem:comm-R2} with
 $u=v^{[j]}(t)$ and $g=\omega^{[j+1]}(t)$, using $|\nabla v^{[j]}|_{\max}\le V(T)$
 and $|\nabla\omega^{[j+1]}|\le\Psi(T)$ (Lemma~\ref{lem:iter-lip}), and
 \[
-\|\nabla v^{[j]}(t)\|_{H^{s-1}}=\|\omega^{[j]}(t)\|_{H^{s-1}}\le\mathcal M
+\|\nabla v^{[j]}(t)\|_{H^{s-1}}=\|\omega^{[j]}(t)\|_{H^{s-1}}\le C
 \]
 (Lemma~I.\ref{I-lem:BS-basic}(d) and the induction hypothesis). By the
 Cauchy-Schwarz inequality, the absolute value of the time derivative of
@@ -409,15 +407,14 @@ $\|\partial^\alpha\omega^{[j+1]}(t)\|_{L^2}^2$ is at most $2Z$ times the
 $L^2$ norm of the commutator; summing over $\alpha$ gives, for
 $|t|\le T$,
 \begin{align*}
-|\mathcal H'(t)|&\le(s+1)2^{s+2}\big[(V(T)+\mathcal M)Z+\mathcal M\Psi(T)\big]Z\\
-&\le\mathcal B_s(T)(Z^2+1)\le\mathcal B_s(T)\big(\mathcal H+\mathcal M^2+1\big),
+|\mathcal H'(t)|&\le(s+1)2^{s+2}\big[(V(T)+C)Z+C\Psi(T)\big]Z\\
+&\le C(Z^2+1)\le C(\mathcal H+1),
 \end{align*}
-because $Z\le Z^2+1$ and $Z^2\le\mathcal H+\|\omega^{[j+1]}(t)\|_{H^{s-1}}^2\le\mathcal H+\mathcal M^2$.
+because $Z\le Z^2+1$ and $Z^2\le\mathcal H+\|\omega^{[j+1]}(t)\|_{H^{s-1}}^2\le\mathcal H+C$.
 Since $\mathcal H(0)\le\|\omega_0\|_{H^s}^2$, as $\omega^{[j+1]}(0)=\omega_0$,
-Gronwall's inequality, applied to $\mathcal H+\mathcal M^2+1$, gives
-$\mathcal H(t)\le(\|\omega_0\|_{H^s}^2+\mathcal M^2+1)e^{\mathcal B_s(T)|t|}$, and
-$Z^2\le\mathcal H+\mathcal M^2\le\mathcal M_s(T)^2$ for $|t|\le T$, by the
-definition of $\mathcal M_s(T)$.
+Gronwall's inequality, applied to $\mathcal H+1$, gives
+$\mathcal H(t)\le(\|\omega_0\|_{H^s}^2+1)e^{C|t|}$. Hence $Z^2\le\mathcal H+C$
+is bounded uniformly in $j$ and $|t|\le T$, proving the induction step.
 \end{proof}
 
 \subsection{Convergence}
@@ -489,11 +486,13 @@ $2\|\omega_0\|_{L^2}\exp(2R(T)\Psi(T)T)$. Thus $(\omega^{[j]})$ is a Cauchy sequ
 for the norm $\sup_{|t|\le T}\|\cdot\|_{L^2}$, since $\omega^{[j]}-\omega^{[i]}$ is a
 sum of differences of consecutive iterates. For an integer
 $k\ge1$, (E3) of Lemma~\ref{lem:embed}, and Lemma~\ref{lem:iter-Hs} and the triangle
-inequality, which bound the $H^{2k}$ norm of $\omega^{[j]}(t)-\omega^{[i]}(t)$ by $2\mathcal M_{2k}(T)$, give
+inequality, which bound the $H^{2k}$ norm of $\omega^{[j]}(t)-\omega^{[i]}(t)$
+uniformly in $i,j$ and $|t|\le T$, give
 \[
-\sup_{|t|\le T}\|\omega^{[j]}(t)-\omega^{[i]}(t)\|_{H^k}^2\le3^k\cdot2\mathcal M_{2k}(T)\sup_{|t|\le T}\|\omega^{[j]}(t)-\omega^{[i]}(t)\|_{L^2},
+\sup_{|t|\le T}\|\omega^{[j]}(t)-\omega^{[i]}(t)\|_{H^k}^2\le C\sup_{|t|\le T}\|\omega^{[j]}(t)-\omega^{[i]}(t)\|_{L^2},
 \]
-which tends to $0$ as $i,j\to\infty$. By (E2), applied to
+where $C$ has the dependencies of Lemma~\ref{lem:iter-Hs} with $s=2k$.
+The right side tends to $0$ as $i,j\to\infty$. By (E2), applied to
 $\partial_x^\gamma(\omega^{[j]}-\omega^{[i]})(t)$ and combined with this bound for
 $k=|\gamma|+2$, for all $\gamma$ the functions
 $\partial_x^\gamma\omega^{[j]}$, which are continuous on $\R\times\R^2$, form a

@@ -331,12 +331,9 @@ supported cutoff $\chi_B$ that does not change it on $N'$, so that
 Lemma~\ref{lem:Hk-calculus}\textup{(3)} applies, and we use a cutoff $\chi_N$ around $N$ in Lemma~\ref{lem:Hk-calculus}\textup{(1)}
 and \textup{(2)}. Let $N_1=\{\frac a4<|y|<3\}$ be
 the interior of $N'$. Fix $\chi_B\in C_c^\infty(B_4)$ with $\chi_B=1$ on $B_{7/2}$,
-and $\chi_N\in C_c^\infty(N_1)$ with $\chi_N=1$ on a neighborhood of $N$. For each
-integer $j\ge0$ fix a constant $C^{\mathrm{el}}_j$ of
-Lemma~\ref{lem:Hk-calculus}\textup{(3)} for $j$, $\chi_B$ and $\rho=4$; it depends
-only on $j$. For each integer $k\ge2$ fix a constant $C_P(k)$ of
-Lemma~\ref{lem:Hk-calculus} for $\max(k,3)$, the compact set $N$, the open set
-$N_1$ and $\chi_N$; it depends only on $k$ and $a$.
+and $\chi_N\in C_c^\infty(N_1)$ with $\chi_N=1$ on a neighborhood of $N$.
+The constants in the applications of Lemma~\ref{lem:Hk-calculus} below
+depend only on the derivative order and $a$.
 
 \newpage
 In the analytic estimates that follow, $A\lesssim B$ means $A\le CB$ for
@@ -347,13 +344,13 @@ parameters whose choice depends on them.
 
 \begin{lemma}
 \label{lem:bilinear}
-Let $k\ge2$ be an integer. There are constants $C_B=C_B(k)$,
-$C_h=C_h(k)$, depending only on $k$ and $a$, and an absolute constant
+Let $k\ge2$ be an integer. There exist a constant $C_{\mathrm{bil}}(k)$,
+depending only on $k$ and $a$, and an absolute constant
 $C_{\mathrm{BS}}$, such that for $v,w\in X^{k+1}$ and every vector field
 $h\in C^k(N';\R^2)$:
 \begin{enumerate}[label=\textup{(\arabic*)}]
-\item $\|B(v,w)\|_{H^k}\le C_B\|v\|_{H^k}\|w\|_{H^{k+1}}$;
-\item $\|h\cdot\nabla w\|_{H^k}\le C_h\|h\|_{C^k(N')}\|w\|_{H^{k+1}}$;
+\item $\|B(v,w)\|_{H^k}\le C_{\mathrm{bil}}(k)\|v\|_{H^k}\|w\|_{H^{k+1}}$;
+\item $\|h\cdot\nabla w\|_{H^k}\le C_{\mathrm{bil}}(k)\|h\|_{C^k(N')}\|w\|_{H^{k+1}}$;
 \item $\|h\cdot\nabla\Phi\|_{H^k}\le\Cnab\|h\|_{C^k(N')}$, with $\Cnab=\Cnab(k)$ of
   Lemma~I.\ref{I-lem:uniform};
 \item $\sup_{|x|\le3}|(\KBS\ast v)(x)|\le C_{\mathrm{BS}}\|v\|_{H^1}$.
@@ -647,54 +644,46 @@ approximate solution of Equation~\eqref{eq:hier} with $J=N_Q$ and $w^{[1]}=\wlin
 bound its terms by powers of $\maj$, and close with Lemma~\ref{lem:energy} in a
 continuity argument on the radial displacement and on $\|w\|_{H^{s_h}}$.
 
-\emph{Constants.} Put $\sigma'_0=\frac12(\frac9{200}+\sigb)\in(\frac9{200},\sigb)$ and
+\emph{Constants.} Put $\sigma'_0=\frac12(\frac9{200}+\sigb)\in(\frac9{200},\sigb)$.
+The semigroup constants of Proposition~I.\ref{I-prop:semigroup} and the
+constants of Lemma~\ref{lem:bilinear}, through order $M_h$, are finite and
+uniform in $G$. All implicit constants in this proof depend only on
+$(\Phi,\Gone,s_h,N_Q)$. Put $k_j=M_h-j$ for $1\le j\le N_Q$, so that
+$k_{N_Q}=s_h+1$ and $k_j+1=k_{j-1}$. The finite induction below gives the
+hierarchy, residual and energy bounds with these dependencies. Choose $C_Q$
+large enough to dominate the coefficients in the resulting norm bounds,
+and then choose $\majst>0$ sufficiently small that
 \[
-C_L=\max_{0\le k\le M_h}C_S(k,\sigma'_0),\qquad
-C_{\mathrm{bil}}=\max_{2\le k\le M_h}\max\big(C_B(k),C_h(k),\Cnab(k)\big),
+\majst\le1,\qquad C_Q\majst\le\tfrac12,\qquad
+\big(1+C_{\mathrm{BS}}C_Q/\sigb\big)\majst\le a/16.
 \]
-with $C_S$ of Proposition~I.\ref{I-prop:semigroup} and the constants of
-Lemma~\ref{lem:bilinear}; so $\|e^{t\Lin}\|_{X^k\to X^k}\le C_Le^{\sigma t}$ for
-$k\le M_h$ and $t\ge0$. For $1\le j\le N_Q$ put $k_j=M_h-j$, so that
-$k_{N_Q}=s_h+1$ and $k_j+1=k_{j-1}$. Choose the constants $C^{(j)}$
-successively to bound the $j$th term of the approximate solution as in
-Equation~\eqref{eq:Q-hier}, and then choose $C_{\mathrm{res}}$ for
-Equation~\eqref{eq:Q-res}. These choices are justified by the estimates below.
-Take $C_Q$ and $C_\Delta$ large enough that
-\[
-C_Q\ge\sum_{j=1}^{N_Q}C^{(j)}+C_{\mathrm{res}}(1+\sigb^{-1}),\qquad
-C_\Delta\ge1+C_{\mathrm{BS}}C_Q/\sigb,
-\]
-and choose $\majst>0$ sufficiently small that
-$\majst\le1$, $C_Q\majst\le1/2$ and $C_\Delta\majst\le a/16$.
-All these constants depend only on $(\Phi,\Gone,s_h,N_Q)$.
-The names $C_{\mathrm{bil}}$, $C^{(j)}$ and $C_{\mathrm{res}}$ are local to this proof.
 
 \emph{Approximate solution.} Let $w^{[j]}$, $1\le j\le N_Q$, be the functions of
 Equation~\eqref{eq:hier} with $J=N_Q$ and $w^{[1]}=\wlin$ (the case $w_0=0$), so that
 they are regular by Lemmas~\ref{lem:duhamel} and \ref{lem:bilinear}. By
 Lemma~\ref{lem:bilinear}\textup{(3)},
-$\|F(\tau)\|_{H^{M_h}}\le C_{\mathrm{bil}}\eta(\tau)$. We claim that
+$\|F(\tau)\|_{H^{M_h}}\lesssim\eta(\tau)$. We claim that
 \begin{equation}
 \label{eq:Q-hier}
-\|w^{[j]}(t)\|_{H^{k_j}}\le C^{(j)}\maj(t)^j\qquad(t\in[0,T],\ 1\le j\le N_Q).
+\|w^{[j]}(t)\|_{H^{k_j}}\lesssim\maj(t)^j\qquad(t\in[0,T],\ 1\le j\le N_Q).
 \end{equation}
 For $j=1$,
-$\|\wlin(t)\|_{H^{k_1}}\le C_L\int_0^te^{\sigma(t-\tau)}C_{\mathrm{bil}}\eta(\tau)\dd\tau\le C^{(1)}\maj(t)$.
+$\|\wlin(t)\|_{H^{k_1}}\lesssim\int_0^te^{\sigma(t-\tau)}\eta(\tau)\dd\tau\le\maj(t)$.
 Let $j\ge2$ and assume Equation~\eqref{eq:Q-hier} for all indices less than $j$.
 Since $k_j+1=k_{j-1}\le k_l$ for $l\le j-1$, Lemma~\ref{lem:bilinear} gives
-$\|g^{[j]}(\tau)\|_{H^{k_j}}\le C_{\mathrm{bil}}\big(\sum_{i+l=j}C^{(i)}C^{(l)}\maj(\tau)^j+C^{(j-1)}\eta(\tau)\maj(\tau)^{j-1}\big)$.
+$\|g^{[j]}(\tau)\|_{H^{k_j}}\lesssim\maj(\tau)^j+\eta(\tau)\maj(\tau)^{j-1}$.
 By (M1), $e^{\sigma(t-\tau)}\maj(\tau)^j\le e^{-(j-1)\sigma(t-\tau)}\maj(t)^j$, whose
 integral over $[0,t]$ is at most $\maj(t)^j/((j-1)\sigb)$; and
 $e^{\sigma(t-\tau)}\eta(\tau)\maj(\tau)^{j-1}\le\eta(\tau)\maj(t)^{j-1}$, whose integral
-is at most $\maj(t)^j$ by (M2). With $\|e^{(t-\tau)\Lin}\|\le C_Le^{\sigma(t-\tau)}$ this
+is at most $\maj(t)^j$ by (M2). With $\|e^{(t-\tau)\Lin}\|\lesssim e^{\sigma(t-\tau)}$ this
 gives Equation~\eqref{eq:Q-hier} for $j$. Since $k_j\ge s_h+1$ and $\maj\le1$,
 Equations~\eqref{eq:hier-res} and \eqref{eq:Q-hier} and Lemma~\ref{lem:bilinear} give
 \begin{equation}
 \label{eq:Q-res}
-\|R_{\mathrm{app}}(\tau)\|_{H^{s_h}}\le C_{\mathrm{res}}\big(\maj(\tau)^{N_Q+1}+\eta(\tau)\maj(\tau)^{N_Q}\big),
+\|R_{\mathrm{app}}(\tau)\|_{H^{s_h}}\lesssim\big(\maj(\tau)^{N_Q+1}+\eta(\tau)\maj(\tau)^{N_Q}\big),
 \end{equation}
-and $\|w_{\mathrm{app}}\|_{H^{s_h+1}}\le\sum_jC^{(j)}\maj\le C_Q\majst\le\frac12$ on
-$[0,T]$.
+and $\|w_{\mathrm{app}}\|_{H^{s_h+1}}\lesssim\maj$ on $[0,T]$. Our choice of
+$C_Q$ gives $\|w_{\mathrm{app}}\|_{H^{s_h+1}}\le C_Q\majst\le\frac12$ there.
 
 \emph{Continuity argument.} Let $t_*$ be the largest $t\in[0,T]$ such that
 $\delta_{\mathrm r}(t)\le a/8$ and $\|w(\tau)\|_{H^{s_h}}\le1$ for $\tau\in[0,t]$; it
@@ -708,14 +697,14 @@ $\|w_{\mathrm{app}}\|_{H^{s_h+1}}\le1$ and $\|h\|_{C^{s_h+1}(N')}\le\eta\le1$ ho
 Since $v=w-w_{\mathrm{app}}$ has $v(0)=0$, Equation~\eqref{eq:Q-res} gives, for
 $t\le t_*$,
 \[
-\|v(t)\|_{H^{s_h}}\le C_{\mathrm{res}}\int_0^te^{\Lam(s_h)(t-\tau)}\maj(\tau)^{N_Q}\big(\maj(\tau)+\eta(\tau)\big)\dd\tau .
+\|v(t)\|_{H^{s_h}}\lesssim\int_0^te^{\Lam(s_h)(t-\tau)}\maj(\tau)^{N_Q}\big(\maj(\tau)+\eta(\tau)\big)\dd\tau .
 \]
 For $0\le\tau\le t$, (M1) and $N_Q\sigma\ge N_Q\sigb\ge\Lam(s_h)$ give
 $e^{\Lam(s_h)(t-\tau)}\maj(\tau)^{N_Q}\le e^{(\Lam(s_h)-N_Q\sigma)(t-\tau)}\maj(t)^{N_Q}$,
 which is at most $\maj(t)^{N_Q}$. By (M2) and (M3) we conclude, for $t\le t_*$,
 \begin{equation}
 \label{eq:Q-v}
-\|v(t)\|_{H^{s_h}}\le C_{\mathrm{res}}\maj(t)^{N_Q}\int_0^t(\maj+\eta)\le C_{\mathrm{res}}\big(1+\sigb^{-1}\big)\maj(t)^{N_Q+1}.
+\|v(t)\|_{H^{s_h}}\lesssim\maj(t)^{N_Q}\int_0^t(\maj+\eta)\lesssim\big(1+\sigb^{-1}\big)\maj(t)^{N_Q+1}.
 \end{equation}
 Since $w=\wlin+\sum_{j\ge2}w^{[j]}+v$ and $\maj\le1$, Equations~\eqref{eq:Q-hier}
 and \eqref{eq:Q-v} give, for $t\le t_*$,
@@ -739,12 +728,12 @@ Integrating from $0$ to $\tau\le t$ and enlarging the integral to $[0,t]$
 gives the first inequality below; Equation~\eqref{eq:Q-b}, (M2) and (M3)
 then give the remaining bounds:
 \[
-\big||\flow_\tau(y)|-|y|\big|\le\int_0^t\big(\eta+C_{\mathrm{BS}}\|w\|_{H^{s_h}}\big)\le\maj(t)+\frac{C_{\mathrm{BS}}C_Q}{\sigb}\maj(t)\le C_\Delta\maj(t).
+\big||\flow_\tau(y)|-|y|\big|\le\int_0^t\big(\eta+C_{\mathrm{BS}}\|w\|_{H^{s_h}}\big)\le\maj(t)+\frac{C_{\mathrm{BS}}C_Q}{\sigb}\maj(t).
 \]
-So $\delta_{\mathrm r}\le C_\Delta\maj\le a/16$ and $\|w\|_{H^{s_h}}\le\frac12$ on
+So $\delta_{\mathrm r}\le(1+C_{\mathrm{BS}}C_Q/\sigb)\maj\le a/16$ and $\|w\|_{H^{s_h}}\le\frac12$ on
 $[0,t_*]$. If $t_*<T$, continuity would give a larger $t$ with
 $\delta_{\mathrm r}(t)\le a/8$ and $\|w\|_{H^{s_h}}\le1$ on $[0,t]$; hence $t_*=T$.
-Then (a) follows from $\delta_{\mathrm r}\le C_\Delta\maj$ and Lemma~\ref{lem:annuli},
+Then (a) follows from $\delta_{\mathrm r}\le(1+C_{\mathrm{BS}}C_Q/\sigb)\maj$ and Lemma~\ref{lem:annuli},
 and (b), (c) are
 Equation~\eqref{eq:Q-b}.
 \end{proof}
@@ -843,21 +832,14 @@ constant times the cube of its confinement radius, which grows at most linearly 
 $\sigma'\in(\frac9{200},\sigb)$ we put
 \begin{equation}
 \label{eq:W-const}
-\begin{gathered}
 N_G=\min\big\{n\in\Z:n\ge2,\ n\ge\Lam(s)/\sigb+1\big\},\qquad
-M=s+N_G+2,\\ N_W=5N_G+1,\qquad
-\bar C_S=\max_{0\le k\le M}C_S(k,\sigma'),\qquad
-C_{\mathrm{lin}}=\max_{2\le k\le M}C_{\mathrm{lin}}(k),\\
-C_{\mathrm{bil}}=\max_{2\le k\le M}\max\big(C_B(k),C_h(k),\Cnab(k)\big),\\
-C_\phi=\max_{G\in[0,\Gone]}\|\phist(G)\|_{H^M},\qquad
-\bar\rho=\sup_{t\ge0}\jap{t}^3e^{-(\sigb-\sigma')t},
-\end{gathered}
+M=s+N_G+2,\qquad N_W=5N_G+1.
 \end{equation}
-with $C_S$ of Proposition~I.\ref{I-prop:semigroup}, $C_B$ and $C_h$ of
-Lemma~\ref{lem:bilinear}, $\Cnab$ of Lemma~I.\ref{I-lem:uniform} and
-$C_{\mathrm{lin}}(k)$ of Lemma~\ref{lem:linear-part}. The maximum defining $C_\phi$
-exists and is finite by Lemma~I.\ref{I-lem:uniform}, and $\bar\rho<\infty$ because
-$\sigb>\sigma'$. All these numbers depend only on $(\Phi,\Gone,s,\sigma')$. As in
+The semigroup bounds, Lemmas~\ref{lem:bilinear} and~\ref{lem:linear-part}, and
+the eigenfunction bounds of Lemma~I.\ref{I-lem:uniform} have constants
+uniform in $G$ through these derivative orders. Also
+$\sup_{t\ge0}\jap{t}^3e^{-(\sigb-\sigma')t}<\infty$ because
+$\sigb>\sigma'$. These bounds depend only on $(\Phi,\Gone,s,\sigma')$. As in
 Theorem~\ref{thm:quiet}, the order $N_G$ of the approximate solution is chosen
 large, so that its residual, which is one order higher, is small enough on the
 window of Lemma~\ref{lem:window} to absorb the growth $e^{\Lam(s)t}$ allowed by
@@ -904,16 +886,13 @@ $\Lam\ge2\sigma\ge2\sigb$ (Lemma~\ref{lem:energy}),
 (N_G+1)\sigma-\Lam\ge2\sigma,\qquad\Lam-\sigma\ge\sigma\ge\sigb,\qquad N_G+1-\Lam/\sigma\ge2 .
 \end{equation}
 
-\emph{Constants.} Using Equation~\eqref{eq:W-const}, choose $C^{(j)}$
-successively for the hierarchy bound \eqref{eq:W-hier}, then
-$C_{\mathrm{res}}$ for the residual bound \eqref{eq:W-res} and $C_{\mathrm{en}}$
-for the energy bound \eqref{eq:W-v} below. Put
-$S_W=\sum_{j=1}^{N_G}C^{(j)}+C_{\mathrm{en}}$.
-Choose $C_W\ge C_\natural$ large enough to dominate the coefficients in the
-final norm and displacement estimates below. These constants depend only on
-$(\Phi,\Gone,s,\sigma',C_\natural)$.
-Choose $\delta_W\in(0,1/2]$ so that $S_W\delta_W\le1$ and
-$C_W\delta_W\le a/64$, and $\kappa_W\in(0,1]$ so that
+\emph{Constants.} All implicit constants in this proof depend only on
+$(\Phi,\Gone,s,\sigma',C_\natural)$. The finite hierarchy, residual and energy
+estimates below produce constants with these dependencies. Choose
+$C_W\ge C_\natural$ large enough to dominate their coefficients and those in
+the final norm and displacement estimates. Then choose
+$\delta_W\in(0,1/2]$ so that $C_W\delta_W\le a/64$, and
+$\kappa_W\in(0,1]$ so that
 $C_Wx\varsigma(x)^{N_W}\le a/64$ for every $0<x\le\kappa_W$.
 To justify the latter choice, recall that $N_W=5N_G+1$ and $\sigb>0$ are
 already fixed. With $L=\log(1/x)$,
@@ -952,22 +931,22 @@ $w^{[j]}$ are regular by Lemmas~\ref{lem:duhamel} and \ref{lem:bilinear}. We
 claim that
 \begin{equation}
 \label{eq:W-hier}
-\|w^{[j]}(t)\|_{H^{k_j}}\le C^{(j)}\hat a_1(t)\,\mathfrak b(t)^{j-1}\qquad(t\in[0,\bar t],\ 1\le j\le N_G).
+\|w^{[j]}(t)\|_{H^{k_j}}\lesssim\hat a_1(t)\,\mathfrak b(t)^{j-1}\qquad(t\in[0,\bar t],\ 1\le j\le N_G).
 \end{equation}
 For $j=1$, Lemma~\ref{lem:linear-part} with $k=M-2$, $A=C_\natural\kappa_1$ and
 $\kappa=\kappa_1$ gives
-$\|(1-\Riesz)w^{[1]}(t)\|_{H^{M-2}}\le C_{\mathrm{lin}}\hat a_1(t)\big(C_\natural\rho_1(t)+\eta_b\big)$,
+$\|(1-\Riesz)w^{[1]}(t)\|_{H^{M-2}}\lesssim\hat a_1(t)\big(C_\natural\rho_1(t)+\eta_b\big)$,
 since $C_\natural\kappa_1\jap{t}^3e^{\sigma't}=C_\natural\hat a_1(t)\rho_1(t)$; and
-$\|2\Re(c(t)e^{\lambda t}\phist)\|_{H^{M-2}}\le2C_\phi C_\natural\hat a_1(t)$. As
-$\rho_1\le\bar\rho$ and $\eta_b\le1$, this is Equation~\eqref{eq:W-hier} for $j=1$.
+$\|2\Re(c(t)e^{\lambda t}\phist)\|_{H^{M-2}}\lesssim C_\natural\hat a_1(t)$. As
+$\rho_1$ is uniformly bounded and $\eta_b\le1$, this is Equation~\eqref{eq:W-hier} for $j=1$.
 Let $j\ge2$. By Lemma~\ref{lem:bilinear}, Equation~\eqref{eq:W-hier} for the
 indices less than $j$, and
 $\|h(v)\|_{C^{k_j}(N')}\le\varepsilon_W\jap{v}^3+\hat a_1(v)$,
 \[
-\|g^{[j]}(v)\|_{H^{k_j}}\le C_{\mathrm{bil}}\Big(\sum_{i+l=j}C^{(i)}C^{(l)}+C^{(j-1)}\Big)\hat a_1(v)\big(\hat a_1(v)+\varepsilon_W\jap{v}^3\big)\mathfrak b(v)^{j-2}.
+\|g^{[j]}(v)\|_{H^{k_j}}\lesssim\hat a_1(v)\big(\hat a_1(v)+\varepsilon_W\jap{v}^3\big)\mathfrak b(v)^{j-2}.
 \]
 Since $e^{\sigma(t-v)}\hat a_1(v)=\hat a_1(t)$ and
-$\|e^{(t-v)\Lin}\|\le\bar C_Se^{\sigma(t-v)}$, it suffices to show that
+$\|e^{(t-v)\Lin}\|\lesssim e^{\sigma(t-v)}$, it suffices to show that
 \[
 \int_0^t\big(\hat a_1+\varepsilon_W\jap{v}^3\big)\mathfrak b^{j-2}\dd v\le2^{j-1}\max(1,\sigb^{-1})\,\mathfrak b(t)^{j-1}.
 \]
@@ -992,9 +971,10 @@ $\hat a_1^2\mathfrak b^{i+l-2}\le\hat a_1\mathfrak b^{N_G}$ for $i+l>N_G$, and
 $\|h\|_{C^s(N')}\le\varepsilon_W\jap{t}^3+\hat a_1\le2\mathfrak b$. So
 \begin{equation}
 \label{eq:W-res}
-\|R_{\mathrm{app}}(t)\|_{H^s}\le C_{\mathrm{res}}\hat a_1(t)\mathfrak b(t)^{N_G},\qquad
-\|w_{\mathrm{app}}(t)\|_{H^{s+1}}\le\Big(\sum_jC^{(j)}\Big)\hat a_1(t)\le S_W\delta_0\le1 .
+\|R_{\mathrm{app}}(t)\|_{H^s}\lesssim\hat a_1(t)\mathfrak b(t)^{N_G},\qquad
+\|w_{\mathrm{app}}(t)\|_{H^{s+1}}\lesssim\hat a_1(t)\le\delta_0 .
 \end{equation}
+Our choice of $C_W$ gives $\|w_{\mathrm{app}}\|_{H^{s+1}}\le C_W\delta_0\le1$.
 
 \emph{Continuity argument.} Let $t_*$ be the largest $t\in[0,\bar t]$ with
 $\delta_{\mathrm r}(t)\le a/16$ and $\|w(v)\|_{H^s}\le1$ for $v\in[0,t]$; at $t=0$
@@ -1010,7 +990,7 @@ vanishes at $t=0$, and
 $\mathfrak b^{N_G}\le2^{N_G-1}\big(\hat a_1^{N_G}+(\varepsilon_W\jap{\cdot}^{5})^{N_G}\big)$,
 \[
 \begin{aligned}
-\|v(t)\|_{H^s}\le2^{N_G-1}C_{\mathrm{res}}\Big(&\int_0^te^{\Lam(t-v)}\hat a_1(v)^{N_G+1}\dd v\\
+\|v(t)\|_{H^s}\lesssim\Big(&\int_0^te^{\Lam(t-v)}\hat a_1(v)^{N_G+1}\dd v\\
 &+(\varepsilon_W\jap{t}^{5})^{N_G}\int_0^te^{\Lam(t-v)}\hat a_1(v)\dd v\Big).
 \end{aligned}
 \]
@@ -1020,7 +1000,7 @@ at most $\kappa_1e^{\Lam t}/(\Lam-\sigma)\le\kappa_1e^{\Lam t}/\sigb$. For $t\le
 $\kappa_1e^{\Lam t}\le\kappa_1^{1-\Lam/\sigma}\delta_0^{\Lam/\sigma}$. Hence, for $t\le t_*$,
 \begin{equation}
 \label{eq:W-v}
-\|v(t)\|_{H^s}\le C_{\mathrm{en}}\big(\hat a_1(t)^{N_G+1}+\Theta_W(t)\big),\qquad
+\|v(t)\|_{H^s}\lesssim\big(\hat a_1(t)^{N_G+1}+\Theta_W(t)\big),\qquad
 \Theta_W(t)=(\varepsilon_W\jap{t}^{5})^{N_G}\kappa_1^{1-\Lam/\sigma}\delta_0^{\Lam/\sigma},
 \end{equation}
 and, by Equation~\eqref{eq:W-exp}, $\kappa_1\le1$ and $\delta_0\le1$,
@@ -1051,25 +1031,27 @@ $(1-\Riesz)w^{[1]}$ above, Equation~\eqref{eq:W-hier} with $\mathfrak b\le1$,
 Equations~\eqref{eq:W-v} and \eqref{eq:W-theta}, $\hat a_1^{N_G+1}\le\hat a_1^2$ and $\Theta_W\le\hat a_1\Theta_W/\kappa_1$,
 \[
 \begin{aligned}
-\big\|w-2\Re(ce^{\lambda t}\phist)\big\|_{H^s}\le{}&C_{\mathrm{lin}}\hat a_1(C_\natural\rho_1+\eta_b)\\
-&+S_W\hat a_1\big(2\hat a_1+C_\natural\kappa_1\varsigma(\kappa_1)^{5}+C_\natural^{N_G}\kappa_1\varsigma(\kappa_1)^{N_W}\big),
+\big\|w-2\Re(ce^{\lambda t}\phist)\big\|_{H^s}\lesssim{}&\hat a_1(C_\natural\rho_1+\eta_b)\\
+&+\hat a_1\big(2\hat a_1+C_\natural\kappa_1\varsigma(\kappa_1)^{5}+C_\natural^{N_G}\kappa_1\varsigma(\kappa_1)^{N_W}\big),
 \end{aligned}
 \]
-which is at most $C_W\hat a_1\big[\rho_1+\hat a_1+\kappa_1\varsigma(\kappa_1)^{N_W}+\eta_b\big]$.
+which, after including the implicit constant in the choice of $C_W$, is at most
+$C_W\hat a_1\big[\rho_1+\hat a_1+\kappa_1\varsigma(\kappa_1)^{N_W}+\eta_b\big]$.
 Similarly,
-$\|w(t)\|_{H^s}\le S_W\big(\hat a_1(t)+\Theta_W(t)\big)\le C_W\big(\delta_0+\kappa_1\varsigma(\kappa_1)^{N_W}\big)\le\tfrac a{32}$.
+$\|w(t)\|_{H^s}\le C\big(\hat a_1(t)+\Theta_W(t)\big)\le C_W\big(\delta_0+\kappa_1\varsigma(\kappa_1)^{N_W}\big)\le\tfrac a{32}$.
 For the displacement, Lemma~\ref{lem:reduction}\textup{(2)} and
 Lemma~\ref{lem:bilinear}\textup{(4)} give, for $t\le t_*$,
 \[
 \begin{aligned}
 \delta_{\mathrm r}(t)&\le\int_0^t\big(\|h\|_{C^0(N')}+C_{\mathrm{BS}}\|w\|_{H^s}\big)\\
-&\le C_\natural\kappa_1\varsigma(\kappa_1)^{4}+\frac{\delta_0}{\sigb}+C_{\mathrm{BS}}\Big(\frac{S_W\delta_0}{\sigb}+C_{\mathrm{en}}C_\natural^{N_G}\varsigma(\kappa_1)^{N_W}\kappa_1^2\Big),
+&\lesssim C_\natural\kappa_1\varsigma(\kappa_1)^{4}+\frac{\delta_0}{\sigb}+C_{\mathrm{BS}}\Big(\frac{\delta_0}{\sigb}+C_\natural^{N_G}\varsigma(\kappa_1)^{N_W}\kappa_1^2\Big),
 \end{aligned}
 \]
-where we used $\|w\|_{H^s}\le\sum_j\|w^{[j]}\|_{H^s}+\|v\|_{H^s}\le S_W\hat a_1+C_{\mathrm{en}}\Theta_W$,
+where we used $\|w\|_{H^s}\le\sum_j\|w^{[j]}\|_{H^s}+\|v\|_{H^s}\lesssim\hat a_1+\Theta_W$,
 $\int_0^t\hat a_1\le\hat a_1(t)/\sigma\le\delta_0/\sigb$, and
 $\int_0^t\Theta_W\le\bar t\,C_\natural^{N_G}\varsigma(\kappa_1)^{5N_G}\kappa_1^2$ with
-$\bar t\le\varsigma(\kappa_1)$. The right side is at most
+$\bar t\le\varsigma(\kappa_1)$. After including the implicit constant, our choice
+of $C_W$ bounds the right side by
 $C_W\delta_0+C_W\kappa_1\varsigma(\kappa_1)^{N_W}\le a/32$. If $t_*<\bar t$, continuity
 would give a larger $t$ with $\delta_{\mathrm r}(t)\le a/16$ and $\|w\|_{H^s}\le1$ on $[0,t]$, a
 contradiction. So $t_*=\bar t$, and the bounds just proved hold on $[0,\bar t]$.
@@ -1140,38 +1122,37 @@ $\kappa$, and we control it by comparing $w$ with $\wlin$ using
 Lemma~\ref{lem:energy}. At $t_1$ the relative contribution is small enough
 to restart the problem and apply Lemma~\ref{lem:window} on the remaining interval.
 
-\emph{Constants.} Let $C_\phi$, $\bar C_S$, $C_{\mathrm{bil}}$ and
-$C_{\mathrm{lin}}$ be the numbers of Equation~\eqref{eq:W-const}, $\|\ellst\|$ and
-$\Cp$ as in Lemma~I.\ref{I-lem:uniform}. Choose $C_\natural\ge4$ sufficiently
-large for the restarted initial-data bound below, in particular
-$C_\natural\ge6C_\phi+2C_{\mathrm{lin}}+1$, so that
-Lemma~\ref{lem:window} applies. Let $\delta_W,\kappa_W,C_W$ be the
-constants of Lemma~\ref{lem:window} for this $C_\natural$, and choose
+\emph{Constants.} Fix a constant $C\ge1$, depending only on
+$(\Phi,\Gone,s,\sigma')$, that bounds the semigroup, eigenfunction and
+linear-response estimates used below. Let $\|\ellst\|$ and $\Cp$ be as in
+Lemma~I.\ref{I-lem:uniform}. Choose $C_\natural\ge4$ sufficiently large for
+the restarted initial-data bound below, in particular $C_\natural\ge8C+1$.
+Let $\delta_W,\kappa_W,C_W$ be the constants of Lemma~\ref{lem:window} for
+this $C_\natural$, and choose
 \[
 C_2\ge1,\qquad C_3\ge(1+\Cp)C_2,\qquad
 0<\dH\le\delta_W,\quad C_2\dH\le a/32,
 \]
 with $C_2$ large enough for the norm and displacement estimates below.
 These depend only on $(\Phi,\Gone,s,\sigma')$. Now let $C_0\ge1$, write
-$\bar t_1=\bar t_1(C_0)$, $\Lambda'=\Lam(M-1)$, $\Lambda''=\Lam(M-2)$,
-and choose $C_{\mathrm f}=C_{\mathrm f}(C_0)$ to bound
-$C_0\jap{t}^3+e^{\sigma_{\max}t}$ on $[0,\bar t_1]$.
-Choose $C^{\mathrm{lay}}_1$, $C^{\mathrm{lay}}_2$, $C^{\mathrm{lay}}_3$ and
-$C^{\mathrm{lay}}_4$ for the initial-layer bounds below on, respectively,
-$\|w\|_{H^{M-1}}/\kappa$, $\delta_{\mathrm r}/\kappa$,
-$\|\wlin\|_{H^{M-1}}/\kappa$ and $\|w-\wlin\|_{H^{M-2}}/\kappa^2$.
-The energy and semigroup estimates on this fixed interval show that all four
-constants depend only on $C_0$ and $(\Phi,\Gone,s,\sigma')$.
+$\bar t_1=\bar t_1(C_0)$, $\Lambda'=\Lam(M-1)$ and $\Lambda''=\Lam(M-2)$.
+On the fixed interval $[0,\bar t_1]$, the estimates below bound
+$\|h\|_{C^M}/\kappa$, $\|w\|_{H^{M-1}}/\kappa$,
+$\delta_{\mathrm r}/\kappa$, $\|\wlin\|_{H^{M-1}}/\kappa$ and
+$\|w-\wlin\|_{H^{M-2}}/\kappa^2$ by constants depending only on $C_0$ and
+$(\Phi,\Gone,s,\sigma')$. The implicit constants in these initial-layer
+estimates may also depend on $C_0$ and are obtained independently of the
+constant now chosen. Choose one fixed $C_{\mathrm{lay}}=C_{\mathrm{lay}}(C_0)\ge C_0+1$ large enough to
+dominate all these coefficients.
 The smallness of $\kappa$ is imposed by three groups of conditions: (L1) is used on
 the initial layer, (L2) to bound the terms that contain the error $v_1=w-\wlin$ of
 the initial layer, and (L3) to apply Lemma~\ref{lem:window} after the restart.
 Choose $\kappa_0(C_0)\in(0,(a/32)^2]$ sufficiently small that every
 $\kappa\in(0,\kappa_0(C_0)]$ satisfies:
 \begin{enumerate}[label=\textup{(L\arabic*)}]
-\item $C_{\mathrm f}\kappa\le1$, $C^{\mathrm{lay}}_1\kappa\le\frac12$, $C^{\mathrm{lay}}_3\kappa\le1$ and
-  $C^{\mathrm{lay}}_2\kappa\le\min(\frac a{128},\frac12\kappa^{1/2})$;
-\item $(1+\|\ellst\|)C^{\mathrm{lay}}_4\kappa\le1$ and
-  $4(1+C_\phi\|\ellst\|)C^{\mathrm{lay}}_4\kappa^{1/2}\le1$;
+\item $C_{\mathrm{lay}}\kappa\le\min(\frac12,\frac a{128},\frac12\kappa^{1/2})$;
+\item $(1+\|\ellst\|)C_{\mathrm{lay}}\kappa\le1$ and
+  $4(1+C\|\ellst\|)C_{\mathrm{lay}}\kappa^{1/2}\le1$;
 \item $e^{\sigma_{\max}\bar t_1}\kappa\le\kappa_W$ and
   $C_We^{\sigma_{\max}\bar t_1}\kappa\,\varsigma(\kappa)^{N_W}\le\frac12\kappa^{1/2}$.
 \end{enumerate}
@@ -1200,18 +1181,16 @@ Thus the triangle inequality and (Field) give
 \|h(t)\|_{C^M(N')}
 &\le C_0\kappa\jap{t}^3+\eta_b\kappa e^{\sigma t}\\
 &\le\kappa\big(C_0\jap{t}^3+e^{\sigma_{\max}t}\big)
-\le C_{\mathrm f}\kappa\le1,
+\le C_{\mathrm{lay}}\kappa\le1,
 \end{aligned}
 \]
-by the choice of $C_{\mathrm f}$ and the first inequality of (L1).
+by the choice of $C_{\mathrm{lay}}$ and (L1).
 
 Let $t_*$ be the largest $t\in[0,t_{\mathrm{in}}]$ such that
 $\delta_{\mathrm r}(t)\le a/64$ and $\|w(v)\|_{H^{M-1}}\le1$ for $v\in[0,t]$.
 At $t=0$, $\delta_{\mathrm r}(0)=0$, and (Init) gives
-$\|w(0)\|_{H^{M-1}}\le C_0\kappa<C_{\mathrm f}\kappa\le1$:
-indeed, the definition of $C_{\mathrm f}$ at $t=0$ gives
-$C_{\mathrm f}\ge C_0+1$, and the final inequality is precisely
-$C_{\mathrm f}\kappa\le1$ in (L1). Both continuity conditions therefore hold
+$\|w(0)\|_{H^{M-1}}\le C_0\kappa<C_{\mathrm{lay}}\kappa\le1$:
+indeed, $C_{\mathrm{lay}}\ge C_0+1$, and (L1) gives $C_{\mathrm{lay}}\kappa\le1/2<1$. Both continuity conditions therefore hold
 strictly at $t=0$.
 For $t\le t_*$ the support of $\omega_{\mathrm r}(t)$ lies in
 $\{(\frac78-\frac1{64})a\le|y|\le\frac54+\frac a{64}\}\subset N$
@@ -1222,51 +1201,49 @@ $w_{\mathrm{app}}=0$ in Lemma~\ref{lem:energy} makes its error equal to $w$
 and its residual equal to $h\cdot\nabla\Phi$. At level $M-1$, the lemma's
 hypotheses hold by the continuity assumption on $w$ and the bound on
 $\|h\|_{C^M(N')}$ above. Lemma~\ref{lem:bilinear}\textup{(3)} gives
-$\|R_{\mathrm{app}}\|_{H^{M-1}}\le C_{\mathrm{bil}}C_{\mathrm f}\kappa$.
+$\|R_{\mathrm{app}}\|_{H^{M-1}}\lesssim\kappa$, with a coefficient depending only on $C_0$ and the fixed data.
 Consequently,
 \[
 \begin{aligned}
 \|w(t)\|_{H^{M-1}}
-&\le e^{\Lambda't}C_0\kappa
- +C_{\mathrm{bil}}C_{\mathrm f}\kappa\int_0^te^{\Lambda'(t-v)}\dd v\\
-&\le e^{\Lambda'\bar t_1}
- \big(C_0+C_{\mathrm{bil}}C_{\mathrm f}\bar t_1\big)\kappa
- \le C^{\mathrm{lay}}_1\kappa\le\tfrac12.
+&\lesssim e^{\Lambda't}C_0\kappa
+ +\kappa\int_0^te^{\Lambda'(t-v)}\dd v\\
+&\lesssim e^{\Lambda'\bar t_1}(C_0+\bar t_1)\kappa
+ \le C_{\mathrm{lay}}\kappa\le\tfrac12.
 \end{aligned}
 \]
-Here $C^{\mathrm{lay}}_1$ is chosen to dominate the displayed coefficient,
-which is independent of $\kappa$; the last inequality is the second one in (L1).
+The displayed coefficient depends only on $C_0$ and the fixed data and is
+included in the choice of $C_{\mathrm{lay}}$; the last inequality is (L1).
 Likewise, Lemma~\ref{lem:reduction}\textup{(2)} and
 Lemma~\ref{lem:bilinear}\textup{(4)} yield
 \[
 \delta_{\mathrm r}(t)
 \le\int_0^t\big(\|h\|_{C^0(N')}+C_{\mathrm{BS}}\|w\|_{H^1}\big)
-\le\bar t_1\big(C_{\mathrm f}+C_{\mathrm{BS}}C^{\mathrm{lay}}_1\big)\kappa
-\le C^{\mathrm{lay}}_2\kappa\le a/128,
+\lesssim\bar t_1\kappa\le C_{\mathrm{lay}}\kappa\le a/128.
 \]
-by the choice of $C^{\mathrm{lay}}_2$ and the last condition in (L1).
+Here the coefficient follows from the bounds on $h$ and $w$ just proved,
+and the last inequality is again (L1).
 These strict improvements of both continuity bounds imply $t_*=t_{\mathrm{in}}$.
 
 We next compare $w$ with its linear response. Lemma~\ref{lem:duhamel} gives
 $\wlin\in C([0,\bar t];X^{M-1})\cap C^1([0,\bar t];X^{M-2})$, real-valued,
 with $\partial_t\wlin=\Lin\wlin+F$ and $\wlin(0)=w(0)$.
 In its Duhamel formula, Proposition~I.\ref{I-prop:semigroup} bounds the
-semigroup by $\bar C_Se^{\sigma t}$ at level $M-1$, while
+semigroup by $Ce^{\sigma t}$ at level $M-1$, while
 Lemma~\ref{lem:bilinear}\textup{(3)} gives
-$\|F(v)\|_{H^{M-1}}\le C_{\mathrm{bil}}C_{\mathrm f}\kappa$.
+$\|F(v)\|_{H^{M-1}}\lesssim\kappa$ with the same allowed dependencies.
 Thus, for $t\le t_{\mathrm{in}}$,
 \[
 \begin{aligned}
 \|\wlin(t)\|_{H^{M-1}}
-&\le\bar C_S\left(e^{\sigma t}C_0\kappa
- +C_{\mathrm{bil}}C_{\mathrm f}\kappa\int_0^te^{\sigma(t-v)}\dd v\right)\\
-&\le\bar C_Se^{\sigma_{\max}\bar t_1}
- \big(C_0+C_{\mathrm{bil}}C_{\mathrm f}\bar t_1\big)\kappa
- \le C^{\mathrm{lay}}_3\kappa\le1.
+&\lesssim e^{\sigma t}C_0\kappa
+ +\kappa\int_0^te^{\sigma(t-v)}\dd v\\
+&\lesssim e^{\sigma_{\max}\bar t_1}(C_0+\bar t_1)\kappa
+ \le C_{\mathrm{lay}}\kappa\le1.
 \end{aligned}
 \]
-The penultimate inequality specifies a sufficient choice of
-$C^{\mathrm{lay}}_3$; the last is the third inequality in (L1).
+The penultimate coefficient depends only on $C_0$ and the fixed data and is
+included in the choice of $C_{\mathrm{lay}}$; the last inequality is (L1).
 This bound supplies the $H^{M-1}$ hypothesis on the approximate solution
 when applying Lemma~\ref{lem:energy} at level $M-2$ with
 $w_{\mathrm{app}}=\wlin$. The required bounds on $w$ and $h$ follow from
@@ -1279,30 +1256,29 @@ The bilinear estimates of Lemma~\ref{lem:bilinear} give
 \[
 \begin{aligned}
 \|R_{\mathrm{app}}\|_{H^{M-2}}
-&\le C_{\mathrm{bil}}
+&\lesssim
  \big(\|\wlin\|_{H^{M-2}}+\|h\|_{C^{M-2}(N')}\big)
  \|\wlin\|_{H^{M-1}}\\
-&\le C_{\mathrm{bil}}\big(C^{\mathrm{lay}}_3+C_{\mathrm f}\big)
- C^{\mathrm{lay}}_3\kappa^2.
+&\lesssim\kappa^2.
 \end{aligned}
 \]
+Here we use the preceding order-$\kappa$ bounds with their coefficients
+depending only on $C_0$ and the fixed data, before bounding them by $C_{\mathrm{lay}}$.
 Since $v_1=w-\wlin$ has $v_1(0)=0$, Lemma~\ref{lem:energy} now yields
 \[
 \begin{aligned}
 \|v_1(t)\|_{H^{M-2}}
-&\le C_{\mathrm{bil}}\big(C^{\mathrm{lay}}_3+C_{\mathrm f}\big)
- C^{\mathrm{lay}}_3\kappa^2\int_0^te^{\Lambda''(t-v)}\dd v\\
-&\le\bar t_1e^{\Lambda''\bar t_1}
- C_{\mathrm{bil}}\big(C^{\mathrm{lay}}_3+C_{\mathrm f}\big)
- C^{\mathrm{lay}}_3\kappa^2
- \le C^{\mathrm{lay}}_4\kappa^2,
+&\lesssim\kappa^2\int_0^te^{\Lambda''(t-v)}\dd v\\
+&\lesssim\bar t_1e^{\Lambda''\bar t_1}\kappa^2
+ \le C_{\mathrm{lay}}\kappa^2,
 \end{aligned}
 \]
-where $C^{\mathrm{lay}}_4$ dominates the fixed coefficient in the second line.
+where the constants in the preceding bounds depend only on $C_0$ and the
+fixed data, and $C_{\mathrm{lay}}$ dominates the final coefficient.
 Together with the radial-displacement bound proved above, this gives
 \begin{equation}
 \label{eq:A-layer}
-\|v_1(t)\|_{H^{M-2}}\le C^{\mathrm{lay}}_4\kappa^2,\qquad \delta_{\mathrm r}(t)\le C^{\mathrm{lay}}_2\kappa\qquad(0\le t\le t_{\mathrm{in}}).
+\|v_1(t)\|_{H^{M-2}}\le C_{\mathrm{lay}}\kappa^2,\qquad \delta_{\mathrm r}(t)\le C_{\mathrm{lay}}\kappa\qquad(0\le t\le t_{\mathrm{in}}).
 \end{equation}
 
 \emph{Proof of (b) for $t\le\min(t_{\mathrm{in}},\hat T)$.} By
@@ -1313,15 +1289,15 @@ $2^{-3/2}\hat a(t_1)$ by the definition of $t_1$ and $\rhohat(t_1)=1$),
 \[
 \begin{gathered}
 \wlin(t)=2\Re\big(c(t)e^{\lambda t}\phist\big)+(1-\Riesz)\wlin(t),\\
-\|(1-\Riesz)\wlin(t)\|_{H^s}\le C_{\mathrm{lin}}\hat a(t)\big(\rhohat(t)+\eta_b\big).
+\|(1-\Riesz)\wlin(t)\|_{H^s}\le C\hat a(t)\big(\rhohat(t)+\eta_b\big).
 \end{gathered}
 \]
 By Equation~\eqref{eq:A-layer} and (L2),
-$\|v_1(t)\|_{H^s}\le C^{\mathrm{lay}}_4\kappa^2\le\kappa^{1/2}\kappa\le\kappa^{1/2}\hat a(t)$. Hence
-$\|w-2\Re(ce^{\lambda t}\phist)\|_{H^s}\le(C_{\mathrm{lin}}+1)\hat a\big[\rhohat+\kappa^{1/2}+\eta_b\big]$.
+$\|v_1(t)\|_{H^s}\le C_{\mathrm{lay}}\kappa^2\le\kappa^{1/2}\kappa\le\kappa^{1/2}\hat a(t)$. Hence
+$\|w-2\Re(ce^{\lambda t}\phist)\|_{H^s}\le(C+1)\hat a\big[\rhohat+\kappa^{1/2}+\eta_b\big]$.
 By (Coef), $|c(t)|e^{\sigma t}\le2\hat a(t)+C_0\kappa\jap{t}^3\le\hat a(t)(2+\rhohat(t))$,
-so $\|w(t)\|_{H^s}\le2C_\phi(2+\rhohat)\hat a+(C_{\mathrm{lin}}+1)(\rhohat+2)\hat a\le C_2\hat a(1+\rhohat)$.
-The displacement is at most $C^{\mathrm{lay}}_2\kappa\le\frac12\kappa^{1/2}$ by (L1). This
+so $\|w(t)\|_{H^s}\le2C(2+\rhohat)\hat a+(C+1)(\rhohat+2)\hat a\le C_2\hat a(1+\rhohat)$.
+The displacement is at most $C_{\mathrm{lay}}\kappa\le\frac12\kappa^{1/2}$ by (L1). This
 proves (b), and bounds the displacement by $\frac12\kappa^{1/2}$, when
 $\min(\bar t,\hat T)\le t_1$.
 
@@ -1361,26 +1337,26 @@ C_0\kappa\jap{t_1}^3e^{\sigma't_1}
 \qquad \eta_b\kappa e^{\sigma t_1}\le\kappa_1.
 \]
 We bound the three terms separately. First,
-$\|\phist\|_{H^{M-2}}\le C_\phi$, so
+$\|\phist\|_{H^{M-2}}\le C$, so
 \[
 \big\|2\Re\big(c(t_1)e^{\lambda t_1}\phist\big)\big\|_{H^{M-2}}
-\le2C_\phi|c(t_1)|e^{\sigma t_1}\le6C_\phi\kappa_1.
+\le2C|c(t_1)|e^{\sigma t_1}\le6C\kappa_1.
 \]
 Next, Lemma~\ref{lem:linear-part} with $k=M-2$ and $A=C_0\kappa$ yields
 \[
 \|(1-\Riesz)\wlin(t_1)\|_{H^{M-2}}
-\le C_{\mathrm{lin}}\big(C_0\kappa\jap{t_1}^3e^{\sigma't_1}
+\le C\big(C_0\kappa\jap{t_1}^3e^{\sigma't_1}
  +\eta_b\kappa e^{\sigma t_1}\big)
-\le2C_{\mathrm{lin}}\kappa_1.
+\le2C\kappa_1.
 \]
 Finally, in the restart case the initial interval ends at $t_1$, so
 Equation~\eqref{eq:A-layer} applies there. The first inequality of (L2),
-$(1+\|\ellst\|)C^{\mathrm{lay}}_4\kappa\le1$, implies
-$C^{\mathrm{lay}}_4\kappa^2\le\kappa\le\kappa_1$. Thus
+$(1+\|\ellst\|)C_{\mathrm{lay}}\kappa\le1$, implies
+$C_{\mathrm{lay}}\kappa^2\le\kappa\le\kappa_1$. Thus
 $\|v_1(t_1)\|_{H^{M-2}}\le\kappa_1$. Adding the three bounds gives
 \[
 \|w(t_1)\|_{H^{M-2}}
-\le(6C_\phi+2C_{\mathrm{lin}}+1)\kappa_1\le C_\natural\kappa_1,
+\le(8C+1)\kappa_1\le C_\natural\kappa_1,
 \]
 by our choice of $C_\natural$.
 Second, by Equation~\eqref{eq:A-layer} the support of $\Phi+w(t_1)$ lies in
@@ -1402,7 +1378,7 @@ Equation~\eqref{eq:A-layer} gives
 \[
 |\ellst(v_1(t_1))|
 \le\|\ellst\|\,\|v_1(t_1)\|_{L^2}
-\le\|\ellst\|C^{\mathrm{lay}}_4\kappa^2\le\kappa\le\kappa_1,
+\le\|\ellst\|C_{\mathrm{lay}}\kappa^2\le\kappa\le\kappa_1,
 \]
 where the penultimate inequality again follows from the first inequality
 of (L2). Substituting these bounds into Equation~\eqref{eq:A-restart}, and
@@ -1422,8 +1398,8 @@ $\jap{t'}^3e^{-(\sigma-\sigma')t'}=\rhohat(t)$. Since $\varsigma$ is decreasing 
 $\kappa_1\ge\kappa$, (L3) gives $C_W\kappa_1\varsigma(\kappa_1)^{N_W}\le\frac12\kappa^{1/2}$.
 By Equation~\eqref{eq:A-restart},
 $\tilde c(t')e^{\lambda t'}=c(t)e^{\lambda t}+\ellst(v_1(t_1))e^{\lambda t'}$, and
-$|\ellst(v_1(t_1))e^{\lambda t'}|\le\|\ellst\|C^{\mathrm{lay}}_4\kappa^2e^{\sigma t'}\le\|\ellst\|C^{\mathrm{lay}}_4\kappa\,\hat a(t)$.
-Since $\|2\Re(X\phist)\|_{H^s}\le2C_\phi|X|$ for $X\in\C$, (L2) gives
+$|\ellst(v_1(t_1))e^{\lambda t'}|\le\|\ellst\|C_{\mathrm{lay}}\kappa^2e^{\sigma t'}\le\|\ellst\|C_{\mathrm{lay}}\kappa\,\hat a(t)$.
+Since $\|2\Re(X\phist)\|_{H^s}\le2C|X|$ for $X\in\C$, (L2) gives
 \[
 \begin{aligned}
 \big\|w(t)-2\Re\big(c(t)e^{\lambda t}\phist\big)\big\|_{H^s}
@@ -1433,16 +1409,16 @@ Since $\|2\Re(X\phist)\|_{H^s}\le2C_\phi|X|$ for $X\in\C$, (L2) gives
 \]
 which gives the first bound of (b), since $C_W+1\le C_2$. By
 Equation~\eqref{eq:A-t1}, the main term $2\Re(c(t)e^{\lambda t}\phist)$ has $H^s$ norm
-at most $6C_\phi\hat a(t)$. Since $\hat a+\kappa^{1/2}+\eta_b\le3$, we get
+at most $6C\hat a(t)$. Since $\hat a+\kappa^{1/2}+\eta_b\le3$, we get
 \[
-\|w(t)\|_{H^s}\le6C_\phi\hat a+(C_W+1)\hat a(\rhohat+3)\le C_2\hat a(1+\rhohat).
+\|w(t)\|_{H^s}\le6C\hat a+(C_W+1)\hat a(\rhohat+3)\le C_2\hat a(1+\rhohat).
 \]
 For the displacement, a trajectory of $\omega_{\mathrm r}$ satisfies, with $z=\flow_{t_1}(y)$,
 \[
 |\flow_t(y)|-|y|=\big(|\tilde\flow_{t'}(z)|-|z|\big)+\big(|\flow_{t_1}(y)|-|y|\big),
 \]
 so by Lemma~\ref{lem:window} and Equation~\eqref{eq:A-layer} it moves radially by at
-most $C_W\delta_0+\frac12\kappa^{1/2}+C^{\mathrm{lay}}_2\kappa\le C_2\delta_0+\kappa^{1/2}$.
+most $C_W\delta_0+\frac12\kappa^{1/2}+C_{\mathrm{lay}}\kappa\le C_2\delta_0+\kappa^{1/2}$.
 
 \emph{Proof of (a).} In both cases the displacement is at most
 $C_2\delta_0+\kappa^{1/2}\le\frac a{32}+\frac a{32}=\frac a{16}$, because
@@ -1557,17 +1533,18 @@ so with $\Psi_{\mathrm s}=V\cdot\nabla(V\cdot\nabla\Phi)\in C_c^\infty(\R^2)$,
 \]
 The derivatives of $Y_t(y)-y$ of every order vanish outside $K_V$ and are
 continuous on $[-1,1]\times K_V$, hence bounded there. By the chain rule and
-$\det DY_t=1$, for every $k$ there is $C^Y_k$ with $\|g\circ Y_t\|_{H^k}\le C^Y_k\|g\|_{H^k}$
-for $g\in C_c^\infty(\R^2)$ and $|t|\le1$.
+$\det DY_t=1$, for every $k$, $\|g\circ Y_t\|_{H^k}\lesssim\|g\|_{H^k}$
+with a constant depending only on $\Phi$ and $k$, for
+$g\in C_c^\infty(\R^2)$ and $|t|\le1$.
 Equation~\eqref{eq:seed-first} and the two identities therefore give constants
-$C'_0$, depending only on $\Phi$, and $\Cseed$, depending only on $\Phi$ and $M$,
+$C$, depending only on $\Phi$, and $\Cseed$, depending only on $\Phi$ and $M$,
 such that for $0<\kappa\le1$,
-$\|\Phi^\kappa-\Phi-2\kappa\Re\phist(0)\|_{L^2}\le C'_0\kappa^2$ and
+$\|\Phi^\kappa-\Phi-2\kappa\Re\phist(0)\|_{L^2}\le C\kappa^2$ and
 $\|\Phi^\kappa-\Phi\|_{H^{M-1}}\le\Cseed\kappa$.
 
 Finally choose $\kL\in(0,1]$ sufficiently small that
 $\kL\|V\|_{L^\infty}\le a/8$ and
-$\kL\|\ellst(0)\|_{(X^0)^*}C'_0\le1/2$,
+$\kL\|\ellst(0)\|_{(X^0)^*}C\le1/2$,
 and let $\kappa\in(0,\kL]$. Since $|Y_\kappa^{-1}(x)-x|\le\kappa\|V\|_{L^\infty}\le a/8$ by
 Lemma~\ref{lem:flow}\textup{(b)}, \textup{(c)}, and
 $\supp\Phi^\kappa=Y_\kappa^{-1}(\supp\Phi)$ with $\supp\Phi\subset\{a\le|y|\le1\}$, we get
@@ -1575,6 +1552,6 @@ $\supp\Phi^\kappa\subset\{\frac78a\le|y|\le1+\frac a8\}\subset\NNm$. The functio
 $\Phi^\kappa-\Phi$ is supported in $N$ and $3$-fold rotationally symmetric, so it lies in $X^0$.
 By Definition~I.\ref{I-def:eigendata}, $\ellst(0)(2\Re\phist(0))=\ellst(0)(\phist(0))+\ellst(0)(\overline{\phist(0)})=1$.
 Hence
-$|\ellst(0)(\Phi^\kappa-\Phi)-\kappa|\le\|\ellst(0)\|_{(X^0)^*}C'_0\kappa^2\le\frac\kappa2$, and
+$|\ellst(0)(\Phi^\kappa-\Phi)-\kappa|\le\|\ellst(0)\|_{(X^0)^*}C\kappa^2\le\frac\kappa2$, and
 $|\ellst(0)(\Phi^\kappa-\Phi)|\in[\frac\kappa2,\frac{3\kappa}2]\subset[\frac\kappa2,2\kappa]$.
 \end{proof}

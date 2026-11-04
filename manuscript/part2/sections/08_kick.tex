@@ -190,66 +190,102 @@ $\tau_1=\Tpin$, are an instance of this setting; here
 $\tau_0=-A_{k+1}T_{k+1}<0<\Tpin$ by Lemma~\ref{lem:clock}(1) and
 Definition~\ref{def:clock}.
 
-Recall $z=\lamst(0)$ and $\sigma=\Re z>0$ (Definition~I.\ref{I-def:eigendata},
-Proposition~I.\ref{I-prop:U}(a)), and the integral $\Ip{p}{x}$ of
-Equation~(I.\ref{I-eq:Ip}), a decreasing function of $x$.
+Write $\lamref=\lamst(0)$ and $\sigma=\Re\lamref>0$
+(Definition~I.\ref{I-def:eigendata}, Proposition~I.\ref{I-prop:U}(a)).
+The reference eigenvalue $\lamref$ is a fixed complex number throughout this
+section and the subsequent construction. We also use
+$I_p(x)=\int_0^\infty e^{-xs}(1+s)^p\dd s$ for $x>0$
+(Equation~(I.\ref{I-eq:Ip})); it decreases as $x$ increases.
 
+The next proposition is an elementary estimate for Equation~\eqref{eq:kick-A}.
+Its purpose is to give a quantitative lower bound on the kick, which is used
+to start the next ring. The drive is close to an exponential on
+$[-T_g,0]$. After the receiving ring's free growth is removed, this gives a
+main contribution of size $|\beta\qs|/(|\lamref|(\mu-1))$, because the
+modulus of the difference between the two growth exponents is comparable to
+$|\lamref|(\mu-1)/\mu$.
+
+The assumptions below make this main contribution survive cancellation.
+The length condition \textup{(Kick2)} ensures that the exponential interval
+captures a definite part of the accumulated kick. The other three bounds
+control, respectively, the later polynomially bounded drive
+\textup{(Kick1)}, the error in the exponential approximation
+\textup{(Kick3)}, and the earlier history \textup{(Kick4)}. Their contributions
+are estimated in absolute value and kept small compared with the main term.
+
+\begin{samepage}
 \begin{proposition}
 \label{prop:kick}
-Assume \textup{(N1)}--\textup{(N3)}, work in the setting above, and let
-$1<\mu\le2$ and $G,G'\in[0,\Gone]$ with $\zeta_0=\lamst(G)/\mu$ and
-$|\lamst(G)-z|,|\lamst(G')-z|\le\sigma(\mu-1)/(8\mu)$. Put $z'=\lamst(G')$ and
-$w=z'-\zeta_0$. Let $T_g>0$ with $\tau_0<-T_g$, assume $\tau_1>0$, let $\bar Q>0$
-and let $p\ge0$ be an integer. Assume:
-\begin{description}[font=\normalfont]
-\item[\textup{(Q1)}] there are $\qs\in\C\setminus\{0\}$ and a measurable
-  $\err\colon[-T_g,0]\to[0,\infty)$ with $|q(\tau)-\qs e^{z'\tau}|\le\err(\tau)$ on
-  $[-T_g,0]$;
-\item[\textup{(Q2)}] there is a measurable function
-  $Q_{\mathrm{pre}}\colon[\tau_0,-T_g]\to[0,\infty)$ with
-  $|q(\tau)|\le Q_{\mathrm{pre}}(\tau)$ on $[\tau_0,-T_g]$;
-\item[\textup{(Q3)}] $|q(\tau)|\le\bar Q(1+\tau)^p$ for $\tau\in[0,\tau_1]$.
-\end{description}
-Put $\Errg=\int_{-T_g}^0e^{-x\tau}\err(\tau)\dd\tau$ and
-$\Errpre=\int_{\tau_0}^{-T_g}e^{-x\tau}Q_{\mathrm{pre}}(\tau)\dd\tau$, and assume
-\begin{description}[font=\normalfont]
-\item[\textup{(Kick1)}] $\mu-1\le|\qs|/\big(10|z|\,\bar Q\,\Ip{p}{\sigma/4}\big)$;
-\item[\textup{(Kick2)}] $e^{-\Re w\,T_g}\le\frac12$;
-\item[\textup{(Kick3)}] $\Errg\le|\qs|/\big(20|z|(\mu-1)\big)$;
-\item[\textup{(Kick4)}] $\Errpre\le|\qs|/\big(20|z|(\mu-1)\big)$.
-\end{description}
-Then at $\tau=\tau_1$,
+Assume \textup{(N1)}--\textup{(N3)} and the scalar setting above. Let
+$1<\mu\le2$, $G,G'\in[0,\Gone]$, and set
 \[
-\frac{|\beta|\,|\qs|}{10|z|(\mu-1)}\le|A(\tau)|\le\frac{3|\beta|\,|\qs|\,\mu}{|z|(\mu-1)} .
+\zeta_0=\frac{\lamst(G)}\mu,\qquad
+\lambda_{\mathrm{in}}=\lamst(G'),\qquad
+w=\lambda_{\mathrm{in}}-\zeta_0,\qquad x=\Re\zeta_0.
+\]
+Here $\zeta_0$ is the receiving exponent, $\lambda_{\mathrm{in}}$ is the driving
+exponent, and $w$ is their difference.
+Assume
+\[
+\max\big\{|\lamst(G)-\lamref|,|\lambda_{\mathrm{in}}-\lamref|\big\}
+\le\frac{\sigma(\mu-1)}{8\mu}.
+\]
+Let $\tau_0<-T_g<0<\tau_1$, $\bar Q>0$, and let $p\ge0$ be an integer.
+Suppose there are $\qs\in\C\setminus\{0\}$ and nonnegative measurable functions
+$\err$ on $[-T_g,0]$ and $Q_{\mathrm{pre}}$ on $[\tau_0,-T_g]$ such that
+\[
+\begin{aligned}
+|q(\tau)-\qs e^{\lambda_{\mathrm{in}}\tau}|&\le\err(\tau)
+&&(-T_g\le\tau\le0),&&\textup{(Q1)}\\
+|q(\tau)|&\le Q_{\mathrm{pre}}(\tau)
+&&(\tau_0\le\tau\le-T_g),&&\textup{(Q2)}\\
+|q(\tau)|&\le\bar Q(1+\tau)^p
+&&(0\le\tau\le\tau_1).&&\textup{(Q3)}
+\end{aligned}
+\]
+Define the weighted errors
+\[
+\Errg=\int_{-T_g}^0e^{-x\tau}\err(\tau)\dd\tau,\qquad
+\Errpre=\int_{\tau_0}^{-T_g}e^{-x\tau}Q_{\mathrm{pre}}(\tau)\dd\tau.
+\]
+Require the following length and error bounds:
+\[
+\begin{aligned}
+\bar Q\,\Ip{p}{\sigma/4}&\le\frac{|\qs|}{10|\lamref|(\mu-1)},
+&&\textup{(Kick1)}\\
+e^{-\Re w\,T_g}&\le\tfrac12,
+&&\textup{(Kick2)}\\
+\max\{\Errg,\Errpre\}&\le\frac{|\qs|}{20|\lamref|(\mu-1)}.
+&&\textup{(Kick3)--(Kick4)}
+\end{aligned}
+\]
+Then the accumulated kick satisfies
+\[
+\frac{|\beta|\,|\qs|}{10|\lamref|(\mu-1)}
+\le|A(\tau_1)|\le
+\frac{3|\beta|\,|\qs|\,\mu}{|\lamref|(\mu-1)}.
 \]
 \end{proposition}
+\end{samepage}
 
-The hypotheses describe the drive $q$ on three consecutive intervals:
-\textup{(Q2)} bounds it on $[\tau_0,-T_g]$, \textup{(Q1)} says that on $[-T_g,0]$
-it is close to the exponential $\qs e^{z'\tau}$, and \textup{(Q3)} bounds its
-growth on $[0,\tau_1]$. In Lemma~\ref{lem:kicktrue}, where $G'=G_{k+1}$ and
-$T_g=\hat T_{k+1}$, these intervals are, for $k+1<n$, the quiet phase and the
-active phase of ring $k+1$ and the pinning phase $\Pin_k$ of ring $k$, in kick
-time; at the seeded level $k+1=n$ the proof of that lemma applies
-Proposition~\ref{prop:kick} with a slightly smaller $T_g$. The proof below shows
-that $\Re w>0$ and that $|w|$ is comparable to $|z|(\mu-1)/\mu$. By
-\textup{(Q1)}, the integrand of Equation~\eqref{eq:kick-A} on $[-T_g,0]$ is
-close to $\qs e^{ws}$. \textup{(Kick2)} makes $|1-e^{-wT_g}|\ge\frac12$, so
-this interval contributes a term of modulus comparable to
-$|\beta||\qs|/(|z|(\mu-1))$, and \textup{(Kick1)}, \textup{(Kick3)} and
-\textup{(Kick4)} make the contributions of $[0,\tau_1]$, of the error in
-\textup{(Q1)} and of $[\tau_0,-T_g]$ small against it.
+In Lemma~\ref{lem:kicktrue}, $G'=G_{k+1}$ and $T_g=\hat T_{k+1}$.
+For $k+1<n$, the three intervals $[\tau_0,-T_g]$, $[-T_g,0]$ and
+$[0,\tau_1]$ describe the quiet and active intervals of ring $k+1$, followed
+by the pinning interval of ring $k$, in the local kick coordinate. At the
+seeded level $k+1=n$, that lemma uses a slightly shorter exponential
+interval. The proof below evaluates the exponential contribution exactly
+and bounds the three remaining contributions by the triangle inequality.
 
 \begin{proof}
-We first compare $w$ with $z$ and bound $x$ from below. Put
-$e_\mu=\frac{\mu-1}{8\mu}\le\frac1{16}$ and write $z'=z+d_1$,
-$\lamst(G)=z+d_2$ with $|d_1|,|d_2|\le e_\mu\sigma$. Then
-$w=z\frac{\mu-1}\mu+d_1-\frac{d_2}\mu$ with
+We first compare $w$ with $\lamref$ and bound $x$ from below. Put
+$e_\mu=\frac{\mu-1}{8\mu}\le\frac1{16}$ and write $\lambda_{\mathrm{in}}=\lamref+d_1$,
+$\lamst(G)=\lamref+d_2$ with $|d_1|,|d_2|\le e_\mu\sigma$. Then
+$w=\lamref\frac{\mu-1}\mu+d_1-\frac{d_2}\mu$ with
 $|d_1-\frac{d_2}\mu|\le2e_\mu\sigma=\frac{\sigma(\mu-1)}{4\mu}$, so, since
-$\Re z=\sigma\le|z|$,
+$\Re \lamref=\sigma\le|\lamref|$,
 \[
 \Re w\ge\frac{\sigma(\mu-1)}\mu-\frac{\sigma(\mu-1)}{4\mu}=\frac34\sigma\frac{\mu-1}\mu>0,\qquad
-\frac34\,\frac{|z|(\mu-1)}\mu\le|w|\le\frac54\,\frac{|z|(\mu-1)}\mu .
+\frac34\,\frac{|\lamref|(\mu-1)}\mu\le|w|\le\frac54\,\frac{|\lamref|(\mu-1)}\mu .
 \]
 As $\mu\le2$, $x=\Re\lamst(G)/\mu\ge(1-e_\mu)\sigma/\mu\ge\frac{15}{32}\sigma\ge\frac\sigma4>0$,
 and as $\Ip{p}{\cdot}$ is decreasing, $\Ip{p}{x}\le\Ip{p}{\sigma/4}$.
@@ -264,28 +300,26 @@ A(\tau)=\beta\int_{\tau_0}^{-T_g}e^{-\zeta_0s}q(s)\dd s+\beta\int_{-T_g}^0e^{-\z
 and $|e^{-\zeta_0s}|=e^{-xs}$. By (Q2), the
 first term on the right has modulus at most $|\beta|\Errpre$. Since
 \[
-\int_{-T_g}^0e^{-\zeta_0s}\qs e^{z's}\dd s=\qs\int_{-T_g}^0e^{ws}\dd s=\qs(1-e^{-wT_g})/w,
+\int_{-T_g}^0e^{-\zeta_0s}\qs e^{\lambda_{\mathrm{in}}s}\dd s=\qs\int_{-T_g}^0e^{ws}\dd s=\qs(1-e^{-wT_g})/w,
 \]
 the second term is $\mathsf K$ plus a remainder of modulus at most
 $|\beta|\Errg$, by (Q1). By (Q3), $x>0$ and Equation~(I.\ref{I-eq:Ip}), the third
 has modulus at most
 $|\beta|\bar Q\int_0^\infty e^{-xs}(1+s)^p\dd s=|\beta|\bar Q\,\Ip{p}{x}$.
 
-Finally we compare the main term and the three remainders with
-$\mathsf Z=\frac25|\beta||\qs|/(|z|(\mu-1))$.
+Finally set $S=|\beta||\qs|/(|\lamref|(\mu-1))$, the natural size of the kick.
 By (Kick2) and $|e^{-wT_g}|=e^{-\Re w\,T_g}$, $|1-e^{-wT_g}|\in[\frac12,\frac32]$,
 and the bounds on $|w|$ from the first paragraph give
 \[
-|\mathsf K|\ge\frac12\cdot\frac45\cdot\frac{|\beta||\qs|\mu}{|z|(\mu-1)}=\mu\,\mathsf Z,\qquad
-|\mathsf K|\le\frac32\cdot\frac43\cdot\frac{|\beta||\qs|\mu}{|z|(\mu-1)}=\frac{2|\beta||\qs|\mu}{|z|(\mu-1)} .
+|\mathsf K|\ge\tfrac12\cdot\tfrac45\mu S=\tfrac25\mu S,\qquad
+|\mathsf K|\le\tfrac32\cdot\tfrac43\mu S=2\mu S.
 \]
 By (Kick1) and $\Ip{p}{x}\le\Ip{p}{\sigma/4}$,
-$|\beta|\bar Q\,\Ip{p}{x}\le|\beta||\qs|/(10|z|(\mu-1))=\frac14\mathsf Z$, and by
-(Kick3) and (Kick4), $|\beta|\Errg,|\beta|\Errpre\le\frac18\mathsf Z$; hence
-$|A(\tau)-\mathsf K|\le\frac12\mathsf Z$. Since $\mu>1$,
+$|\beta|\bar Q\,\Ip{p}{x}\le S/10$, and by (Kick3) and (Kick4),
+$|\beta|\Errg,|\beta|\Errpre\le S/20$. Thus the three remainders have total
+modulus at most $S/5$. The triangle inequality and $\mu>1$ give
 \begin{gather*}
-|A(\tau)|\ge|\mathsf K|-\tfrac12\mathsf Z\ge\big(\mu-\tfrac12\big)\mathsf Z\ge\tfrac12\mathsf Z=\frac{|\beta||\qs|}{5|z|(\mu-1)},\\
-|A(\tau)|\le|\mathsf K|+\tfrac12\mathsf Z\le\Big(2\mu+\frac15\Big)\frac{|\beta||\qs|}{|z|(\mu-1)}
-\le\frac{3|\beta||\qs|\mu}{|z|(\mu-1)} .\qedhere
+|A(\tau)|\ge\big(\tfrac25\mu-\tfrac15\big)S\ge\tfrac15 S\ge\tfrac1{10}S,\\
+|A(\tau)|\le\big(2\mu+\tfrac15\big)S\le3\mu S.\qedhere
 \end{gather*}
 \end{proof}
