@@ -12,7 +12,8 @@ Recall that $\mu$ fixes the ratio of the amplitudes of consecutive rings and,
 with $\sbar$, the ratios $s_k$ of their radii in Equation~\eqref{eq:datum}, and
 that $\kseed$ is the seed size of Definition~\ref{def:approx}. The numbers
 $\delta_0$ and $\Tpin$ are those of the clock of Definition~\ref{def:clock}. The choices are made in the
-order recorded in Table~\ref{tab:param}, and Lemma~\ref{lem:nonempty} shows that
+order recorded in Table~\ref{tab:param} at the end of this section, and
+Lemma~\ref{lem:nonempty} shows that
 they can be made. Throughout this section we assume
 \textup{(N1)}--\textup{(N3)}.
 
@@ -170,38 +171,7 @@ The second part of (B1), and (B2), hold automatically (see the remark after
 Equation~\eqref{eq:sk-small}); they are listed because Proposition~\ref{prop:confine} and
 Lemma~\ref{lem:field-bound} state them as hypotheses.
 
-\begin{table}[!tb]
-\centering
-\small
-\begin{tabular}{@{}p{0.40\textwidth}lp{0.42\textwidth}@{}}
-\hline
-\raggedright Quantity & Fixed at & \raggedright Determined by \tabularnewline
-\hline
-\raggedright $s$, $\sigma'$, $c_\gamma$ & (P0.2) & \raggedright $\sigb$, $\sigma$ ($s\ge3$ free) \tabularnewline
-\raggedright $N_G$, $M$, $\dH$, $C_2$, $C_3$, $\sigma_{\max}$, $\kappa_0(\cdot)$, $\bar t_1(\cdot)$, $C(\cdot)$ & (P0.3) & \raggedright $\Phi$, $\Gone$, $s$, $\sigma'$ \tabularnewline
-\raggedright $\kL$; $\Cseed$; $\|\ellst\|$, $\Cls$, $\Cp$ & (P0.3) & \raggedright $\Phi$; $\Phi$, $\Gone$, $s$; $\Phi$, $\Gone$ \tabularnewline
-\raggedright $s_h$, $N_Q$, $M_h$, $\majst$, $C_Q$ & (P0.4) & \raggedright $M$, $\Lam$, $\sigb$ \tabularnewline
-\raggedright $\Cvel$ & (P0.5) & \raggedright $a$, $M_h$ \tabularnewline
-\raggedright $\Cstar$, $\Cmom$ & (P0.5) & \raggedright absolute \tabularnewline
-\raggedright $c_N$, $C_N$, $\cout$ & (P0.6) & \raggedright $\Phi$, $\Gone$ \tabularnewline
-\raggedright $\delta_0$ & (P1) & \raggedright $\dH$, $C_2$, $C_3$, $\Cp$, $\cout$, $\sigma$, $|\lamref|$ \tabularnewline
-\raggedright $c'$, $\mu_{\max}$, $\mu$; $\vartheta_\mu$, $\gamma_\mu$, $\gamma'_\mu$, $\CDuh$, $\KO$ & (P2) & \raggedright $\delta_0$, $\cout$, $|\lamref|$, $\Cmom$, $\sigma$; $c_\gamma$, $\sigb$, $\Cvel$, $C_Q$ \tabularnewline
-\raggedright $\Tpin$ & (P3) & \raggedright $\sigma$ \tabularnewline
-\raggedright $C_D(\Tpin)$, $K_1$, $\Abar$, $\Klo$, $\Kup$ & (P3) & \raggedright (P0)--(P2), $\Tpin$ \tabularnewline
-\raggedright $\Tz$, $C_\tau$ & (P3) & \raggedright (P0)--(P2), $\Tpin$, $\Klo$ \tabularnewline
-\raggedright $C_0$ & (P4) & \raggedright (P0)--(P3) \tabularnewline
-\raggedright $\kappa_0(C_0)$, $\bar t_1(C_0)$, $C(C_0)$, $\Crelay(C_0,K_1)$, $\Cerr$ & (P4) & \raggedright $C_0$, $K_1$, (P0)--(P3) \tabularnewline
-\raggedright $\kseed$ & (P5) & \raggedright (P0)--(P4) \tabularnewline
-\raggedright $\sbar$; $\eta_b$, $\eta_{b,k}$, $\theta_j$ & (P6) & \raggedright (P0)--(P5); $\Crelay$, $\sbar$, $\mu$, $\Cvel$, $C_Q$, $\KO$ \tabularnewline
-\hline
-\end{tabular}
-\caption{Where each constant of the construction is fixed, and the quantities
-that determine it. Every entry of the last column is fixed at an earlier row or
-at the same step. The depth $n$, the amplitude $A_1$ and the solution
-$\omega^{(n)}$ appear in no row; a level enters only as the index of
-$\eta_{b,k}$ and $\theta_j$.}
-\label{tab:param}
-\end{table}
+
 
 The last inequality of (B7), Equation~\eqref{eq:E22}, is used only through the
 following lemma. Recall that $\theta_j$ is the factor of Lemma~\ref{lem:O} that
@@ -359,3 +329,36 @@ Definition~\ref{def:clock} needs $\delta_0,\Tpin>0$ and $G_k\le\Gone$ for
 $1\le k\le n$, which holds by Lemma~\ref{lem:inner-circ} and (B3). Hypothesis
 (Det) is (B4).
 \end{proof}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{@{}p{0.40\textwidth}lp{0.42\textwidth}@{}}
+\hline
+\raggedright Quantity & Fixed at & \raggedright Determined by \tabularnewline
+\hline
+\raggedright $s$, $\sigma'$, $c_\gamma$ & (P0.2) & \raggedright $\sigb$, $\sigma$ ($s\ge3$ free) \tabularnewline
+\raggedright $N_G$, $M$, $\dH$, $C_2$, $C_3$, $\sigma_{\max}$, $\kappa_0(\cdot)$, $\bar t_1(\cdot)$, $C(\cdot)$ & (P0.3) & \raggedright $\Phi$, $\Gone$, $s$, $\sigma'$ \tabularnewline
+\raggedright $\kL$; $\Cseed$; $\|\ellst\|$, $\Cls$, $\Cp$ & (P0.3) & \raggedright $\Phi$; $\Phi$, $\Gone$, $s$; $\Phi$, $\Gone$ \tabularnewline
+\raggedright $s_h$, $N_Q$, $M_h$, $\majst$, $C_Q$ & (P0.4) & \raggedright $M$, $\Lam$, $\sigb$ \tabularnewline
+\raggedright $\Cvel$ & (P0.5) & \raggedright $a$, $M_h$ \tabularnewline
+\raggedright $\Cstar$, $\Cmom$ & (P0.5) & \raggedright absolute \tabularnewline
+\raggedright $c_N$, $C_N$, $\cout$ & (P0.6) & \raggedright $\Phi$, $\Gone$ \tabularnewline
+\raggedright $\delta_0$ & (P1) & \raggedright $\dH$, $C_2$, $C_3$, $\Cp$, $\cout$, $\sigma$, $|\lamref|$ \tabularnewline
+\raggedright $c'$, $\mu_{\max}$, $\mu$; $\vartheta_\mu$, $\gamma_\mu$, $\gamma'_\mu$, $\CDuh$, $\KO$ & (P2) & \raggedright $\delta_0$, $\cout$, $|\lamref|$, $\Cmom$, $\sigma$; $c_\gamma$, $\sigb$, $\Cvel$, $C_Q$ \tabularnewline
+\raggedright $\Tpin$ & (P3) & \raggedright $\sigma$ \tabularnewline
+\raggedright $C_D(\Tpin)$, $K_1$, $\Abar$, $\Klo$, $\Kup$ & (P3) & \raggedright (P0)--(P2), $\Tpin$ \tabularnewline
+\raggedright $\Tz$, $C_\tau$ & (P3) & \raggedright (P0)--(P2), $\Tpin$, $\Klo$ \tabularnewline
+\raggedright $C_0$ & (P4) & \raggedright (P0)--(P3) \tabularnewline
+\raggedright $\kappa_0(C_0)$, $\bar t_1(C_0)$, $C(C_0)$, $\Crelay(C_0,K_1)$, $\Cerr$ & (P4) & \raggedright $C_0$, $K_1$, (P0)--(P3) \tabularnewline
+\raggedright $\kseed$ & (P5) & \raggedright (P0)--(P4) \tabularnewline
+\raggedright $\sbar$; $\eta_b$, $\eta_{b,k}$, $\theta_j$ & (P6) & \raggedright (P0)--(P5); $\Crelay$, $\sbar$, $\mu$, $\Cvel$, $C_Q$, $\KO$ \tabularnewline
+\hline
+\end{tabular}
+\caption{Where each constant of the construction is fixed, and the quantities
+that determine it. Every entry of the last column is fixed at an earlier row or
+at the same step. The depth $n$, the amplitude $A_1$ and the solution
+$\omega^{(n)}$ appear in no row; a level enters only as the index of
+$\eta_{b,k}$ and $\theta_j$.}
+\label{tab:param}
+\end{table}

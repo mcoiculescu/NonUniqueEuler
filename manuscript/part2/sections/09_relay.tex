@@ -15,6 +15,16 @@ information available to the continuity argument of Section~\ref{sec:bootstrap}.
 
 \subsection{Standing Assumptions}
 
+Recall that $\sigma=\sigma(0)=\Re\lamref$ is the fixed reference growth rate,
+whereas $\sigma_i=\sigma(G_i)=\Re\lambda_i$ is the growth rate for ring $i$,
+with its inner circulation $G_i$ from Definition~\ref{def:regions}.
+The rate $\sigma_i$ is measured per unit rescaled time
+$\theta=A_i(t-t_*)$; its counterpart in physical time is $A_i\sigma_i$.
+The standing assumptions below concern all levels $1\le i\le n$, and the
+unindexed $\sigma$ in (SA1) is the same reference rate for every level.
+When applying Section~\ref{sec:single} to ring $i$, its local shorthand
+$\sigma=\sigma(G)$ is instead read with $G=G_i$, and hence as $\sigma_i$.
+
 \begin{definition}
 \label{def:standing}
 We say that the \textbf{standing assumptions (SA)} hold if \textup{(N1)}--\textup{(N3)}
@@ -112,10 +122,15 @@ $x_i=\sigma_i/\mu$ lies between $\frac{15}{16}\cdot\frac{16}{17}\sigma\ge\frac\s
 and $(1+e_\mu)\sigma\le\frac{17}{16}\sigma$. For levels $i,l$,
 $\mu\sigma_i-\sigma_l\ge\mu(1-e_\mu)\sigma-(1+e_\mu)\sigma=\sigma((\mu-1)-e_\mu(\mu+1))$,
 and $e_\mu(\mu+1)=\frac{(\mu-1)(\mu+1)}{8\mu}\le\frac14(\mu-1)$ because
-$\mu+1\le2\mu$; with $\sigma\ge\sigb$ this gives the display. For $i<j$,
-$\mu^{i-j}\le\mu^{-1}$, and the display with $(j,i)$ in place of $(i,l)$ gives
+$\mu+1\le2\mu$; with $\sigma\ge\sigb$ this gives the displayed equations. For $i<j$,
+$\mu^{i-j}\le\mu^{-1}$, and the displayed equations with $(j,i)$ in place of $(i,l)$ give
 $\sigma_i\mu^{i-j}\le\sigma_i/\mu\le\sigma_j-\sigb(\mu-1)/(2\mu)$.
 \end{proof}
+
+Recall that $\etin_k=\|\hin_k\|_{C^{M_h}(N')}$ measures the velocity field
+of the inner rings after subtracting its monopole, whereas
+$\etout_k=\|\hout_k\|_{C^{M_h}(N')}$ measures the velocity field of the outer
+rings, both in ring-$k$ units.
 
 \begin{lemma}
 \label{lem:transfer-step}
@@ -136,6 +151,9 @@ Assume (SA), and let $t\ge0$.
 \end{enumerate}
 \end{lemma}
 \begin{proof}
+We use (SA2) for the order $M_h$ and constant $\Cvel$ of
+Lemma~\ref{lem:transfer}, and (SA3) for $\sbar\le a/16$ and the ring
+construction whose properties we recall next.
 We use three facts. (a) $\omega_{\ge l}(t)$ is real and $3$-fold rotationally symmetric
 (Lemma~\ref{lem:regions-basic}(3)). (b) $\int w_l(t)=0$ if $S_l(t)\subset N_l$
 (Lemma~\ref{lem:regions-basic}(4)). (c) If $g\in L^1(\R^2)$ is real and radial
@@ -174,6 +192,10 @@ of them is bounded in $C^{M_h}(N'_k)$, in ring-$k$ units, by
 $\Cvel b_{i,k}\|w_i(t)\|_{H^{s'}}$. Sum over $i<k$; for $k=1$ the sum is empty.
 \end{proof}
 
+In the next lemma, $\bar t$ is an arbitrary terminal physical time up to
+the activation time $\tsh_j$ of ring $j$; its hypotheses are imposed on
+the whole interval $[0,\bar t]$.
+
 \begin{lemma}
 \label{lem:O}
 Assume (SA) and (Det), and put
@@ -202,25 +224,42 @@ the pulled-back functions specified above and $G=G_i$; in particular its conclus
 Put $\Pprod_{i,l}=\prod_{p=i}^{l-1}\Cvel \varepsilon_p$ for $i<l$, so that
 $\Pprod_{i,l}=(\Cvel /\KO)^{l-i}\Ptil_{i,l}$ and
 $\Ptil_{i,l}\Ptil_{l,j}=\Ptil_{i,j}$. The geometric hypotheses define $h_i$,
-$i\le j$, on $[0,\bar t]$, and in physical time
+$i\le j$, on $[0,\bar t]$. Recall that
+$\eta_i=\etin_i+\etout_i\ge0$ is the sum of the two field norms just recalled.
+Thus the Duhamel bound in physical time is
 \begin{equation}
 \label{eq:O-duh}
 \maj_i(t)=A_i\int_0^t e^{A_i\sigma_i(t-v)}\eta_i(v)\dd v.
 \end{equation}
-For $i<j$, Lemma~\ref{lem:detuning} gives
-$A_j\sigma_j-A_i\sigma_i\ge A_j\sigb(\mu-1)/(2\mu)$.
-Hence, if $F\ge0$ on $[0,\bar t]$ satisfies
-$e^{A_j\sigma_j(t-v)}F(v)\le F(t)$ for $0\le v\le t\le\bar t$, then
+For $i<j$, first factor out $A_j$ and use $A_i/A_j=\mu^{i-j}$.
+Lemma~\ref{lem:detuning} then gives
+\[
+A_j\sigma_j-A_i\sigma_i
+=A_j\big(\sigma_j-\mu^{i-j}\sigma_i\big)
+\ge\frac{A_j\sigb(\mu-1)}{2\mu}>0.
+\]
+We first record a generic integral estimate. Let $F$ be any nonnegative
+integrable function on $[0,\bar t]$ satisfying
+$e^{A_j\sigma_j(t-v)}F(v)\le F(t)$ for $0\le v\le t\le\bar t$.
+Then
 \begin{equation}
 \label{eq:O-fast}
+\begin{aligned}
 A_i\int_0^t e^{A_i\sigma_i(t-v)}F(v)\dd v
-\le\frac{A_i}{A_j\sigma_j-A_i\sigma_i}F(t)\le\CDuh F(t),
+&\le A_iF(t)\int_0^t e^{-(A_j\sigma_j-A_i\sigma_i)(t-v)}\dd v\\
+&\le\frac{A_i}{A_j\sigma_j-A_i\sigma_i}F(t)\le\CDuh F(t),
+\end{aligned}
 \end{equation}
-since $A_i\le A_j$. Also
+since $A_i\le A_j$. Separately, $\etin_j\le\eta_j$ by the definition of
+$\eta_j$, and $A_i\sigma_i\le A_j\sigma_j$ by the gap above.
+Using these inequalities and then $A_i\le A_j$ gives
 \begin{equation}
 \label{eq:O-same}
+\begin{aligned}
 A_i\int_0^t e^{A_i\sigma_i(t-v)}\etin_j(v)\dd v
-\le A_j\int_0^t e^{A_j\sigma_j(t-v)}\eta_j(v)\dd v=\maj_j(t).
+&\le A_i\int_0^t e^{A_j\sigma_j(t-v)}\eta_j(v)\dd v\\
+&\le A_j\int_0^t e^{A_j\sigma_j(t-v)}\eta_j(v)\dd v=\maj_j(t).
+\end{aligned}
 \end{equation}
 
 We prove the bound on $\maj_i$ by a continuity argument in $t$.
@@ -230,8 +269,11 @@ that its right side is positive at $t=0$, and we improve the factor to $\frac14$
 
 Fix $\epsilon\in(0,\majst e^{-A_j\sigma_j\bar t}]$ (unrelated to the numbers
 $\varepsilon_p$) and put $\maj^\epsilon_j(t)=\maj_j(t)+\epsilon e^{A_j\sigma_jt}$.
-By (M1) of Lemma~\ref{lem:majorant}, $F=\maj_j$ and $F=\maj^\epsilon_j$ satisfy
-the hypothesis of Equation~\eqref{eq:O-fast}. Let $t_\epsilon$ be the supremum of
+In applying the generic estimate~\eqref{eq:O-fast}, we take $F=\maj_j$ or
+$F=\maj^\epsilon_j$. The required inequality follows from (M1) of
+Lemma~\ref{lem:majorant}, rescaled to physical time; the added term
+$\epsilon e^{A_j\sigma_jt}$ satisfies it with equality.
+Let $t_\epsilon$ be the supremum of
 the $t_1\in[0,\bar t]$ such that
 \begin{equation}
 \label{eq:O-BH}
@@ -299,8 +341,14 @@ So, for every $t\in(0,\bar t]$, the hypotheses of Theorem~\ref{thm:quiet} hold
 for ring $i\le j$ on $[0,A_it]$, since they hold on $[0,A_i\bar t]$; and
 $\epsilon\to0$ in Equation~\eqref{eq:O-improved} gives
 $\maj_i(t)\le\frac14\Ptil_{i,j}\maj_j(t)\le\frac34\Ptil_{i,j}\maj_j(t)$.
+The identity and estimate above, now with indices $(i,j)$, read
+\[
+b_{i,j}\Ptil_{i,j}
+=\KO^{j-i}\Big(\frac{r_j}{r_i}\Big)^6
+\le(\KO\sbar^6)^{j-i}\le4^{-(j-i)}\qquad(i<j),
+\]
 Finally, Lemma~\ref{lem:transfer-step}(2) at level $j$, Equation~\eqref{eq:O-Q},
-this bound and the identity for $b_{i,j}\Ptil_{i,j}$ give
+and the bound on $\maj_i$ just proved give
 \[
 \etout_j(t)\le\tfrac14\Cvel C_Q\sum_{i<j}\KO^{j-i}\Big(\frac{r_j}{r_i}\Big)^6\maj_j(t).
 \]

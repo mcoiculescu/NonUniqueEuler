@@ -23,7 +23,7 @@ of physical time. When applying a result of Section~\ref{sec:single}, we
 explicitly pull them back to the local time coordinate used in that result.
 
 Proposition~\ref{prop:bootstrap} is proved by a continuity argument in time
-under a hypothesis (BA) bounding every ring by twice what its phase allows; the
+under the \textbf{bootstrap assumptions (BA)}, allowing twice the desired norm bounds; the
 lemmas of Section~\ref{sec:relay} return the bounds without the factor $2$. The
 clock of Definition~\ref{def:clock} is defined level by level only while the amplitudes $\ksh_k$ lie in
 $(0,\delta_0)$, which is one of the conclusions. So we run the argument up to the
@@ -49,7 +49,9 @@ defined exactly for $j\ge k_{\mathrm s}$, $T_j$ exactly for $j>k_{\mathrm s}$,
 and $S_{k_{\mathrm s}}(\tsh_{k_{\mathrm s}})\not\subset N_{k_{\mathrm s}}$ or
 $\ksh_{k_{\mathrm s}}\notin(0,\delta_0)$. In either case $\Tend<\infty$, and by
 Lemma~\ref{lem:clock}(1), $[0,\Tend]$ is the union of at most $2n-1$
-consecutive \textbf{phase intervals} $\Phase_n=[0,T_n]$, $\Pin_{n-1}$,
+consecutive \textbf{clock intervals}, each an active interval $\Phase_k$ or a
+pinning interval $\Pin_k$ of Definition~\ref{def:clock}. In chronological
+order these are $\Phase_n=[0,T_n]$, $\Pin_{n-1}$,
 $\Phase_{n-1},\dots$, ending with $\Phase_1$ if the clock does not stop, with
 $\Pin_{k_{\mathrm s}}=[T_{k_{\mathrm s}+1},\tsh_{k_{\mathrm s}}]$ if it stops at
 $k_{\mathrm s}<n$; if $k_{\mathrm s}=n$, then $\Tend=0$.
@@ -63,7 +65,8 @@ $j=k_{\mathrm s}$ and $t\le\Tend=\tsh_j$. By Lemma~\ref{lem:clock}(1), if ring
 $j$ is quiet or active at $t$, then every ring $i<j$ is quiet at $t$.
 
 \begin{definition}
-For $t\in[0,\Tend]$, \textup{(BA)}$(t)$ means that for every $t'\in[0,t]$:
+For $t\in[0,\Tend]$, the \textbf{bootstrap assumptions} \textup{(BA)}$(t)$
+are the following conditions at every $t'\in[0,t]$:
 \begin{description}[font=\normalfont]
 \item[\textup{(BA1)}] for every ring $j$ that is not debris at $t'$: $S_j(t')\subset\Nflat_j$;
 \item[\textup{(BA2)}] for every ring $j<n$ that is quiet at $t'$: the field $h_j$ is
@@ -78,14 +81,22 @@ for ring $k$ at $t'=\tsh_k$.
 \end{definition}
 
 In (BA3), $w_k(t')$ is defined, since (BA1) gives
-$S_k(t')\subset\Nflat_k\subset N_k$. Since $\NN\subset\operatorname{int}\Nflat$
+$S_k(t')\subset\Nflat_k\subset N_k$.
+The strengthened version (BA$^*$) records the bounds we aim to prove from
+the bootstrap assumptions: the norm bounds lose their factor $2$, and the
+supports lie in the smaller annuli $\NN_j$. Since $\NN\subset\operatorname{int}\Nflat$
 (Lemma~\ref{lem:annuli}) and $\hat a_k>0$, (BA$^*$)$(t)$ implies (BA)$(t)$ with
-room in each inequality. The instance of (BA3) for ring $k$ at $t'=\tsh_k$ is
-left out of (BA$^\circ$) because ring $k$ becomes active only at $\tsh_k$, so
-this bound cannot be obtained by continuity from bounds at earlier times. The
-proof of Proposition~\ref{prop:bootstrap} proves it directly: for $k<n$ in
+room in each inequality, allowing the continuity argument to extend the
+bootstrap bounds to later times.
+
+The version (BA$^\circ$) is the one used in that continuity argument.
+It omits (BA3) precisely at activation: ring $k$ becomes active only at
+$\tsh_k$, so its active bound cannot be inherited from earlier active bounds.
+The proof of Proposition~\ref{prop:bootstrap} supplies this bound directly: for $k<n$ in
 Step~3, from the hand-off of ring $k$ (Equation~\eqref{eq:boot-switch}), and for
-$k=n$ in Step~0 (Equation~\eqref{eq:boot-start}).
+$k=n$ in Step~0 (Equation~\eqref{eq:boot-start}). Thus the estimates recover
+the omitted bounds and prove (BA$^*$) from (BA$^\circ$); the resulting room in
+(BA) then extends (BA$^\circ$) forward in time.
 
 \begin{proposition}
 \label{prop:bootstrap}
@@ -108,7 +119,7 @@ on the amplitudes $\ksh_k$: for each ring $j$ that is not debris, the material
 inside ring $j$ stays in the small disk $B_{ar_j/8}$ and the rings outside it stay
 outside $B_{6r_j}$, so that its external field is defined; and (Loc) holds. Its proof
 applies Proposition~\ref{prop:confine} level by level. Step~1 of the proof of
-Proposition~\ref{prop:bootstrap} applies the lemma on each phase interval.
+Proposition~\ref{prop:bootstrap} applies the lemma on each clock interval.
 
 \begin{lemma}
 \label{lem:geometry}
@@ -243,7 +254,7 @@ $D_{j+1}(0)\subset\overline B_{5r_{j+1}/4}\subset B_{ar_j/8}$ and the rings $i<j
 lie in $\{|x|\ge ar_i\}\subset\R^2\setminus B_{6r_j}$. Hence (BA$^*$)$(0)$ holds.
 
 Now let $t\in[0,\Tend]$ and assume (BA$^\circ$)$(t)$. We prove the conclusions of
-Steps~1--6 for the times in $[0,t]$, treating the phase intervals of $[0,t]$ in
+Steps~1--6 for the times in $[0,t]$, treating the clock intervals of $[0,t]$ in
 chronological order: Steps~1, 2, 4, 5, 6 on $\Phase_n\cap[0,t]$; then, for
 $k=n-1,n-2,\dots$, Steps~1, 2 on $\Pin_k\cap[0,t]$, Step~3 at $\tsh_k$ if
 $\tsh_k\le t$, Steps~5, 6 on $\Pin_k\cap[0,t]$, and Steps~1, 2, 4, 5, 6 on
@@ -254,7 +265,7 @@ $i>k$; and the bound $\ksh_k\ge\Klo s_k^5$, which Lemma~\ref{lem:quiet-time}
 in Step~5 at the time $\tsh_k$ and Step~1 on $\Phase_k$ need, comes from Step~3
 at $\tsh_k$.
 
-\emph{Step 1 (geometry).} Let $I$ be the current phase interval and $\bar t\le t$
+\emph{Step 1 (geometry).} Let $I$ be the current clock interval and $\bar t\le t$
 the right end of $I\cap[0,t]$. Lemma~\ref{lem:geometry} applies with $\bar t$
 in place of $t$: (BA1) holds on $[0,\bar t]$, and every level $k<n$ with
 $\tsh_k<\bar t$ has $\tsh_k$ at most the left end of $I$, so Step~3 at $\tsh_k$
