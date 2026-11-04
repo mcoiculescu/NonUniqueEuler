@@ -141,7 +141,10 @@ $e_k=\tsh_k$ otherwise. Then:
   $S_i(t')\subset\Nflat_i\subset\R^2\setminus B_{6r_j}$, and
   $D_{j+1}(t')\subset B_{ar_j/8}$; hence the field $h_j$ is defined at $t'$, the
   support hypotheses of Lemma~\ref{lem:reduction} hold for ring $j$ in ring-$j$
-  units at $t'$, and, if $j<n$, $\eta_j(t')\le1$;
+  units at $t'$, and, if $j<n$, $\eta_j(t')\le1$, where
+  $\eta_j=\|\hin_j\|_{C^{M_h}(N')}+\|\hout_j\|_{C^{M_h}(N')}$ is the sum of
+  the norms of the inner velocity field minus its monopole and of the outer
+  velocity field, in ring-$j$ units;
 \item \textup{(Loc)} holds at every $t'\in[0,t]$.
 \end{enumerate}
 \end{lemma}
@@ -226,10 +229,72 @@ as above; for $j=n$ it holds as $D_{n+1}=\emptyset$.
 
 \begin{proof}[Proof of Proposition~\ref{prop:bootstrap}]
 Throughout, (SA) and (Det) hold by
-Lemma~\ref{lem:nonempty}, and the phases are ordered as in
+Lemma~\ref{lem:nonempty}, and the clock intervals are ordered as in
 Lemma~\ref{lem:clock}\textup{(1)}. Step~0 checks the bootstrap assumption at
 $t=0$, Steps~1--6 deduce (BA$^*$)$(t)$ from (BA$^\circ$)$(t)$, and Step~7 is the
 continuity argument.
+
+The proof is a \emph{locomotive induction} on the interval already covered.
+Fix a target time $t$ and assume (BA$^\circ$)$(t)$. Once the estimates have
+been proved on $[0,T_{k+1}]$, they are used together with Steps~1--2 on
+$\Pin_k$ to establish the hand-off at $\tsh_k$ (Step~3). This supplies the
+initial bounds for ring $k$: Steps~5--6 complete $\Pin_k$, and the active
+argument then covers $\Phase_k$. Thus the proved interval grows to
+$[0,T_k]$, and the same procedure is repeated on the remaining interval
+up to $t$. Step~0 starts this process at ring $n$.
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,font=\small,
+  link/.style={->,>=latex,semithick}]
+% A common physical-time axis; lengths are schematic.
+\draw[link] (0,0) -- (12.7,0);
+\foreach \x in {0,3.6,6.6,9.8,12.4}
+  {\draw (\x,.08) -- (\x,-.08);}
+\node[above] at (0,.08) {$0$};
+\node[above] at (3.6,.08) {$T_{k+1}$};
+\node[above] at (6.6,.08) {$\tsh_k$};
+\node[above] at (9.8,.08) {$T_k$};
+\node[above] at (12.4,.08) {$t$};
+\foreach \x in {3.6,6.6,9.8,12.4}
+  {\draw[black!25,dotted] (\x,-.15) -- (\x,-5.1);}
+% The already proved prefix.
+\node[anchor=east,align=right,text width=1.6cm,font=\footnotesize]
+  at (-.15,-1) {Already\\proved};
+\draw[fill=black!18] (0,-1.25) rectangle (3.6,-.75);
+\node[font=\footnotesize] at (1.8,-1) {Earlier estimates};
+\draw[dashed,black!50] (3.6,-1.25) rectangle (12.4,-.75);
+\node[font=\footnotesize] at (8,-1) {Interval still to be covered};
+% Prior history plus the next interval gives the hand-off.
+\node[anchor=east,align=right,text width=1.6cm,font=\footnotesize]
+  at (-.15,-2.9) {Obtain the\\hand-off};
+\draw[fill=black!18] (0,-3.15) rectangle (3.6,-2.65);
+\node[font=\footnotesize] at (1.8,-2.9) {Use prior bounds};
+\draw[fill=black!6] (3.6,-3.15) rectangle (6.6,-2.65);
+\node[font=\footnotesize] at (5.1,-2.9) {Steps 1, 2 on $\Pin_k$};
+\draw[dashed,black!50] (6.6,-3.15) rectangle (12.4,-2.65);
+\draw[link] (3.6,-1.25) -- (3.6,-1.7) -- (6.6,-1.7) -- (6.6,-2.65);
+\node[anchor=east,font=\footnotesize] at (6.45,-2.15) {Step 3: use both};
+\fill (6.6,-2.9) circle (1.5pt);
+% Complete the pinning interval and run the next active argument.
+\node[anchor=east,align=right,text width=1.6cm,font=\footnotesize]
+  at (-.15,-4.8) {Enlarged\\proved interval};
+\draw[fill=black!18] (0,-5.05) rectangle (3.6,-4.55);
+\node[font=\footnotesize] at (1.8,-4.8) {Earlier estimates};
+\draw[fill=black!12] (3.6,-5.05) rectangle (6.6,-4.55);
+\node[font=\footnotesize] at (5.1,-4.8) {Steps 5, 6 on $\Pin_k$};
+\draw[fill=black!12] (6.6,-5.05) rectangle (9.8,-4.55);
+\node[font=\footnotesize] at (8.2,-4.8) {Steps $1,2,4,5,6$ on $\Phase_k$};
+\draw[dashed,black!50] (9.8,-5.05) rectangle (12.4,-4.55);
+\node[font=\footnotesize] at (11.1,-4.8) {Repeat};
+\draw[link] (6.6,-3.15) -- (6.6,-4.55);
+\node[anchor=west,font=\footnotesize] at (6.75,-3.85) {Start ring $k$};
+\end{tikzpicture}
+\end{center}
+The solid prefix is the interval on which the induction has been completed;
+the dashed part is the remainder up to the fixed target time $t$.
+The picture shows $T_k\le t$; if $t$ falls earlier, the corresponding
+interval is truncated at $t$ and a hand-off is performed only if reached.
+This proves (BA$^*$)$(t)$ from (BA$^\circ$)$(t)$; Step~7 then uses the improved
+bounds to continue the bootstrap in physical time and rule out a stopped clock.
 
 \emph{Step 0 (the initial time; it does not use \textup{(BA)}).} At $t=0$, $\tsh_n=0$, $G_n=0$ and, in
 ring-$n$ units, $w_n(0)=\Phi^{\kseed}-\Phi$. By ($\kappa$6) at $\kappa=2\kseed$,

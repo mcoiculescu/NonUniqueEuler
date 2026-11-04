@@ -361,15 +361,19 @@ $\etout_j(t)\le\frac13\Cvel C_Q\KO s_{j-1}^6\maj_j(t)\le\theta_j\maj_j(t)$.
 For $j=1$ there is no outer ring and $\etout_1=0$.
 \end{proof}
 
-The next proposition estimates the Duhamel bound of a quiet ring $j$ in each phase of ring
-$j+1$, the next ring inward. Its hypothesis (H1) is the localization hypothesis
+The next proposition estimates the Duhamel bound of a quiet ring $j$ as the
+next inner ring $j+1$ becomes active and later saturates.
+Its hypothesis (H1) is the localization hypothesis
 (Loc) of Definition~\ref{def:loc}. While ring $j+1$ is quiet, (o) and (i) bound
 $\maj^{\mathrm{in}}_j$ and $\maj_j$ by a multiple of $\maj_{j+1}$. After ring $j+1$ has become active, (ii) and (iii)
 bound $\maj_j$ up to the activation time $\tsh_j$ of ring $j$; in
 Equation~\eqref{eq:relay}, the first two terms in the bracket come from the
 envelope $\hat a_{j+1}$ of the active ring $j+1$ and from its debris after
-saturation, and $\Xi_{j+1}$ collects the quiet phase of ring $j+1$ and the
-remaining terms of its active phase.
+saturation. The remainder $\Xi_{j+1}$ accounts for the driving accumulated
+before ring $j+1$ becomes active, on $[0,\tsh_{j+1}]$, together with the
+transient and polynomial inner-field terms in its active estimate on
+$[\tsh_{j+1},T_{j+1}]$. Its subscript refers to the inner ring whose
+evolution supplies these contributions.
 
 \begin{proposition}
 \label{prop:relay}
@@ -393,6 +397,12 @@ clock is defined up to level $j+1$, let $\bar t\in[0,\tsh_j]$, and assume:
   $\|w_{j+1}(t)\|_{H^s}\le2C_2\hat a_{j+1}(t)(1+\rhohat_{j+1}(t))$ and
   $\|\hin_{j+1}(t)\|_{C^{M_h}(N')}\le C_0\ksh_{j+1}\jap{A_{j+1}(t-\tsh_{j+1})}^3$.
 \end{description}
+Recall that the Duhamel bound of the inner field, with its monopole removed, is
+\[
+\maj^{\mathrm{in}}_j(t)=A_j\int_0^t
+e^{A_j\sigma_j(t-v)}\etin_j(v)\dd v,
+\qquad \etin_j=\|\hin_j\|_{C^{M_h}(N')}.
+\]
 Then $\maj_j\le2\maj^{\mathrm{in}}_j$ on $[0,\bar t]$, and:
 \begin{enumerate}[label=\textup{(\roman*)}]
 \item[\textup{(o)}] if $j+1<n$, then for every $t\in[0,\min(\bar t,\tsh_{j+1})]$,
@@ -436,7 +446,7 @@ $\maj_j(\frac{\tau'}{A_j})\le\maj^{\mathrm{in}}_j(\frac{\tau'}{A_j})+\theta_j\in
 and $\theta_j\tau'\le\frac12$, so $\maj_j\le2\maj^{\mathrm{in}}_j$. It remains to
 bound $\maj^{\mathrm{in}}_j$ by half the right sides of (i)--(iii), and to prove (o).
 
-\emph{Quiet phase of ring $j+1$.} If $j+1=n$, then $\tau^{\mathrm{act}}=0$, (o) is
+\emph{Before activation of ring $j+1$.} If $j+1=n$, then $\tau^{\mathrm{act}}=0$, (o) is
 void and (i) concerns only $\tau=0$, where $\maj_j(0)=0$. Let $j+1<n$,
 $\tau'\le\min(\tau,\tau^{\mathrm{act}})$, $v\in[0,\tau']$ and $t=v/A_j$. Then
 $t\le\tsh_{j+1}<T_{j+1}$, so ring $j+1$ is quiet at $t$: (Loc)(1) gives
