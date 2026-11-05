@@ -1,87 +1,10 @@
-\section{The Joint Bootstrap and the Proof of the Reduction}
+\section{Completion of the Bootstrap}
 \label{sec:bootstrap}
 
-We prove Proposition~\ref{prop:reduction}. The main step is
-Proposition~\ref{prop:bootstrap}: for every number $n\ge2$ of rings the clock is
-defined up to level $1$, ring $1$ completes its active phase at a time
-$T_1\le\Tstar$, where $\Tstar$ does not depend on $n$, and at $T_1$ the material
-inside ring $1$ lies in $B_{a/8}$. From this the proof of Proposition~\ref{prop:reduction} obtains a
-lower bound, independent of $n$, on a non-radial moment of $\omega^{(n)}(T_1)$,
-and applies Corollary~I.\ref{I-cor:defect}.
-
-Throughout this section we assume \textup{(N1)}--\textup{(N3)} and
-\textup{(P0)}--\textup{(P6)}, fix $A_1>0$ and an integer $n\ge2$, write
-$\omega=\omega^{(n)}$, and use the objects of
-Definitions~\ref{def:datum}--\ref{def:clock} with the parameters of
-Section~\ref{sec:param}. By Lemma~\ref{lem:nonempty}, (SA) and (Det) hold, so
-the results of Section~\ref{sec:relay} apply. We use $\hat a_k$ and $\rhohat_k$
-as in Definition~\ref{def:standing}, with the constant $C_0$ of (P4). The exact parameter conditions (P0)--(P6), including the seed-size and
-radius inequalities used below, are listed in Appendix~\ref{sec:param-lists}. All indexed ring quantities below are functions
-of physical time. When applying a result of Section~\ref{sec:single}, we
-explicitly pull them back to the local time coordinate used in that result.
-
-Proposition~\ref{prop:bootstrap} is proved by a continuity argument in time
-under the \textbf{bootstrap assumptions (BA)}, allowing twice the desired norm bounds; the
-lemmas of Section~\ref{sec:relay} return the bounds without the factor $2$. The
-clock of Definition~\ref{def:clock} is defined level by level only while the amplitudes $\ksh_k$ lie in
-$(0,\delta_0)$, which is one of the conclusions. So we run the argument up to the
-time at which the clock would stop, and show at the end that it does not stop.
-
-\begin{definition}
-\label{def:stop}
-If the clock is defined up to level $1$, put $\Tend=T_1$. Otherwise let
-$k_{\mathrm s}$ be the level $k\in\{1,\dots,n\}$ such that the clock is defined up
-to level $k+1$ but not up to level $k$ (for $k=n$ the first condition is void),
-and put $\Tend=\tsh_{k_{\mathrm s}}$; we then say that the clock \textbf{stops} at
-level $k_{\mathrm s}$.
-\end{definition}
-
-The clock is constructed from the inner rings outward, so the completed
-levels form a final block. If it stops, the next level is the unique
-$k_{\mathrm s}$ of Definition~\ref{def:stop}.
-By Definition~\ref{def:clock}, for $j<n$, $\tsh_j$
-is defined if and only if the clock is defined up to level $j+1$, and $T_j$ if
-and only if it is defined up to level $j$. So, if the clock stops, $\tsh_j$ is
-defined exactly for $j\ge k_{\mathrm s}$, $T_j$ exactly for $j>k_{\mathrm s}$,
-and $S_{k_{\mathrm s}}(\tsh_{k_{\mathrm s}})\not\subset N_{k_{\mathrm s}}$ or
-$\ksh_{k_{\mathrm s}}\notin(0,\delta_0)$. In either case $\Tend<\infty$, and by
-Lemma~\ref{lem:clock}(1), $[0,\Tend]$ is the union of at most $2n-1$
-consecutive \textbf{clock intervals}, each an active interval $\Phase_k$ or a
-pinning interval $\Pin_k$ of Definition~\ref{def:clock}. In chronological
-order these are $\Phase_n=[0,T_n]$, $\Pin_{n-1}$,
-$\Phase_{n-1},\dots$, ending with $\Phase_1$ if the clock does not stop, with
-$\Pin_{k_{\mathrm s}}=[T_{k_{\mathrm s}+1},\tsh_{k_{\mathrm s}}]$ if it stops at
-$k_{\mathrm s}<n$; if $k_{\mathrm s}=n$, then $\Tend=0$.
-
-As in Definition~\ref{def:loc}, ring $j$ is \textbf{quiet} at $t\in[0,\Tend]$ if
-$\tsh_j$ is not defined or $t\le\tsh_j$, \textbf{active} at $t$ if $T_j$ is
-defined and $\tsh_j\le t\le T_j$, and \textbf{debris} at $t$ if $T_j$ is defined
-and $t>T_j$. Every ring has at least one phase at every $t\in[0,\Tend]$: if $T_j$
-is not defined, then $j\le k_{\mathrm s}$, and either $\tsh_j$ is not defined or
-$j=k_{\mathrm s}$ and $t\le\Tend=\tsh_j$. By Lemma~\ref{lem:clock}(1), if ring
-$j$ is quiet or active at $t$, then every ring $i<j$ is quiet at $t$.
-
-\begin{definition}
-For $t\in[0,\Tend]$, the \textbf{bootstrap assumptions} \textup{(BA)}$(t)$
-are the following conditions at every $t'\in[0,t]$:
-\begin{description}[font=\normalfont]
-\item[\textup{(BA1)}] for every ring $j$ that is not debris at $t'$: $S_j(t')\subset\Nflat_j$;
-\item[\textup{(BA2)}] for every ring $j<n$ that is quiet at $t'$: the field $h_j$ is
-  defined at every time in $[0,t']$, and $\maj_j(t')\le2\Abar\varepsilon_j$;
-\item[\textup{(BA3)}] for every ring $k$ that is active at $t'>\tsh_k$:
-  $\|w_k(t')\|_{H^s}\le2C_2\hat a_k(t')(1+\rhohat_k(t'))$.
-\end{description}
-\end{definition}
-
-The estimates will improve (BA) by replacing $\Nflat_j$, $2\Abar$ and
-$2C_2$ with $\NN_j$, $\Abar$ and $C_2$. We call these the \emph{improved
-bounds}; they also include the active bound at $\tsh_k$.
-Because $\NN\subset\operatorname{int}\Nflat$ (Lemma~\ref{lem:annuli}) and
-$\hat a_k>0$, they leave room to extend the bootstrap bounds by continuity.
-The strict inequality $t'>\tsh_k$ in (BA3) matters: when a ring first
-becomes active, there are no earlier active bounds to pass to the limit.
-Its initial bound is instead proved directly by the seed estimate (Step~0)
-or the hand-off (Step~3).
+We now pass from the seed to ring $1$ by Proposition~\ref{prop:relay-step}.
+The time bound and the nonzero moment of ring $1$ will then give
+Proposition~\ref{prop:reduction} by the compactness criterion of Part~I.
+We use the setting and bootstrap assumptions of Section~\ref{sec:relay}.
 
 \begin{proposition}
 \label{prop:bootstrap}
@@ -99,396 +22,114 @@ every $A_1>0$ and every $n\ge2$:
 \end{enumerate}
 \end{proposition}
 
-The next lemma collects the geometric consequences of (BA1) and of lower bounds
-on the amplitudes $\ksh_k$: for each ring $j$ that is not debris, the material
-inside ring $j$ stays in the small disk $B_{ar_j/8}$ and the rings outside it stay
-outside $B_{6r_j}$, so that its external field is defined; and (Loc) holds. Its proof
-applies Proposition~\ref{prop:confine} level by level. Step~1 of the proof of
-Proposition~\ref{prop:bootstrap} applies the lemma on each clock interval.
-
-\begin{lemma}
-\label{lem:geometry}
-Let $t\in[0,\Tend]$. Assume that \textup{(BA1)} holds at every $t'\in[0,t]$, and
-that $\ksh_k\ge\Klo s_k^5$ for every level $k<n$ with $\tsh_k<t$. For a level
-$k<n$ such that $T_{k+1}$ is defined, put $e_k=T_k$ if $T_k$ is defined and
-$e_k=\tsh_k$ otherwise. Then:
-\begin{enumerate}[label=\textup{(\alph*)}]
-\item for every level $k<n$ such that $T_{k+1}$ is defined and $T_{k+1}\le t$, the
-  hypotheses of Proposition~\ref{prop:confine} hold with $t_0=T_{k+1}$ and
-  $t_1=\min(t,e_k)$; and for every $t'\in[T_{k+1},\min(t,e_k)]$,
-  \[
-  D_{k+1}(t')\subset\overline B_{\varrho_k(t')}\subset B_{ar_k/8},\qquad
-  |q_{k+1}(t')|\le\Cmom\big(1+A_{k+1}(t'-T_{k+1})\big)^3,
-  \]
-  where $\varrho_k(t')=\big(2+2\Cstar A_{k+1}(t'-T_{k+1})\big)r_{k+1}$;
-\item for every $t'\in[0,t]$ and every level $j$ that is not debris at $t'$, every
-  ring $i<j$ is quiet at $t'$ and satisfies
-  $S_i(t')\subset\Nflat_i\subset\R^2\setminus B_{6r_j}$, and
-  $D_{j+1}(t')\subset B_{ar_j/8}$; hence the field $h_j$ is defined at $t'$, the
-  support hypotheses of Lemma~\ref{lem:reduction} hold for ring $j$ in ring-$j$
-  units at $t'$, and, if $j<n$, $\eta_j(t')\le1$, where
-  $\eta_j=\|\hin_j\|_{C^{M_h}(N')}+\|\hout_j\|_{C^{M_h}(N')}$ is the sum of
-  the norms of the inner velocity field minus its monopole and of the outer
-  velocity field, in ring-$j$ units;
-\item \textup{(Loc)} holds at every $t'\in[0,t]$.
-\end{enumerate}
-\end{lemma}
-
 \begin{proof}
-Recall that $\Nflat_i=r_i\Nflat$, with the annulus $\Nflat$ of
-Section~\ref{sec:II-prelim}. By (BA1), a ring $i$ that is not debris at $t'\in[0,t]$ has
-$S_i(t')\subset\Nflat_i\subset\{\frac58ar_i\le|x|\le\frac74r_i\}$; and
-$s_k\le a/32$ for every $k$ by Equation~\eqref{eq:sk-small}.
-
-\emph{Outer rings in \textup{(b)}.} Let $j$ be not debris at $t'\in[0,t]$. Every
-ring $i<j$ is quiet at $t'$ (Lemma~\ref{lem:clock}(1)), so
-$S_i(t')\subset\{|x|\ge\frac58ar_i\}$, and
-$\frac58ar_i\ge\frac58ar_{j-1}=\frac{5a}{8s_{j-1}}r_j\ge20r_j$; hence
-$S_i(t')\cap B_{6r_j}=\emptyset$.
-
-The material inside ring $j$ is controlled from the inside out: the confinement
-of $D_{j+1}$ after the time $T_{j+1}$, at which the active phase of ring $j+1$
-ends, starts from the confinement of $D_{j+2}$ at $T_{j+1}$. So we argue by
-downward induction on $j=n,\dots,1$ and show that $D_{j+1}(t')\subset
-B_{ar_j/8}$ at every $t'\in[0,t]$ at which ring $j$ is not debris, and, if
-$j<n$, that (a) holds for $k=j$. For $j=n$, $D_{n+1}=\emptyset$. Let $j<n$ and
-assume the claim for $j+1$.
-
-\emph{\textup{(a)} for $k=j$.} Let $T_{j+1}\le t$ be defined and
-$t_1=\min(t,e_j)$; the clock is defined up to level $j+1$. We check the
-hypotheses of Proposition~\ref{prop:confine}.
-(i): ring $j+1$ is not debris at $T_{j+1}$, so
-$S_{j+1}(T_{j+1})\subset\overline B_{7r_{j+1}/4}$, and
-$D_{j+2}(T_{j+1})\subset B_{ar_{j+1}/8}$ by induction; so
-$D_{j+1}(T_{j+1})\subset\overline B_{2r_{j+1}}$. (ii): for
-$t''\in[T_{j+1},t_1]$ and $i\le j$, ring $i$ is not debris at $t''$, since
-$t''\le e_j$ and $T_i\ge T_j$ whenever $T_i$ is defined
-(Lemma~\ref{lem:clock}(1)); so $S_i(t'')\subset\{|x|\ge\frac a2r_i\}$. (iii) is
-(B1) and (B2). (iv): we bound the kick time $A_{j+1}(t_1-T_{j+1})$ of ring $j$
-at $t_1$. If $t_1\le\tsh_j$, then $A_{j+1}(t_1-T_{j+1})\le\Tpin$, as
-$\tsh_j=T_{j+1}+\Tpin/A_{j+1}$ (Definition~\ref{def:clock}). If $t_1>\tsh_j$,
-then $e_j=T_j$, so the clock is defined up to level $j$, and $\tsh_j<t$. So
-$\ksh_j\ge\Klo s_j^5$ by hypothesis, and $\sigma_j\ge\sigma'$ by
-Lemma~\ref{lem:detuning}. As $t_1\le T_j=\tsh_j+\hat T_j/A_j$ and
-$A_{j+1}=\mu A_j$, $A_{j+1}(t_1-T_{j+1})\le\Tpin+\mu\hat T_j$. It remains to
-bound $\hat T_j$, the length of the active phase of ring $j$ in active time: as
-$\ksh_j<\delta_0$ (the clock is defined up to level $j$), $\Klo>0$ (Definition~\ref{def:K1}; $c_N>0$ by Lemma~I.\ref{I-lem:uniform}) and
-$\sigma_j\ge\sigma'>0$ (SA1),
-$\hat T_j=\sigma_j^{-1}\log(\delta_0/\ksh_j)\le\sigma'^{-1}\log\big(\delta_0/(\Klo s_j^5)\big)\le\sigma'^{-1}\big(5\log\frac1{s_j}+\log_+\frac{\delta_0}{\Klo}\big)$.
-In both cases, as $\Tpin<\mu(\Tpin+1)$,
+\emph{The seed.}
+At $t=0$, $\tsh_n=0$, $G_n=0$, and $w_n(0)=\Phi^{\kseed}-\Phi$ in ring-$n$
+units. By ($\kappa$6), $\kseed\le\kL$. Lemma~\ref{lem:seed} and (P4) give
 \[
-A_{j+1}(t_1-T_{j+1})<\mu\Big[\Tpin+1+\frac1{\sigma'}\Big(5\log\frac1{s_j}+\log_+\frac{\delta_0}{\Klo}\Big)\Big],
+S_n(0)\subset\NNm_n,\qquad
+\tfrac12\kseed\le\ksh_n\le2\kseed,\qquad
+\|w_n(0)\|_{H^{M-1}}\le\Cseed\kseed\le C_0\ksh_n.
 \]
-so $\Lambda=2+2\Cstar A_{j+1}(t_1-T_{j+1})<\Lconf_j$, with $\Lconf_j$ of (B5).
-The two inequalities of (iv) increase with $\Lambda$, so they follow from (B5).
-Proposition~\ref{prop:confine}(a), (b) give, for $t'\in[T_{j+1},t_1]$,
-$D_{j+1}(t')\subset\overline B_{\varrho_j(t')}$ and the bound on $q_{j+1}(t')$,
-and $\varrho_j(t')\le\Lambda r_{j+1}<\Lconf_js_jr_j\le\frac a8r_j$ by (B5).
-
-\emph{The claim on $D_{j+1}$.} Let ring $j$ be not debris at $t'\in[0,t]$. If
-ring $j+1$ is not debris at $t'$, then $S_{j+1}(t')\subset\overline
-B_{7r_{j+1}/4}$, $D_{j+2}(t')\subset B_{ar_{j+1}/8}$ by induction, and
-$2r_{j+1}=2s_jr_j\le\frac a{16}r_j$; so $D_{j+1}(t')\subset B_{ar_j/8}$.
-Otherwise $T_{j+1}<t'\le t$, and $t'\le e_j$ (if $T_j$ is defined, this is
-$t'\le T_j$; otherwise $j=k_{\mathrm s}$ and $t'\le\Tend=\tsh_j$); so (a) for
-$k=j$ gives the claim. This completes the induction.
-
-\emph{End of \textup{(b)}.} Let $j$ be not debris at $t'\in[0,t]$. Then
-$D_{j+1}(t')\subset B_{ar_j/8}$ and the rings $i<j$ do not meet $B_{6r_j}$, so
-$h_j$ is defined at $t'$ (Definition~\ref{def:regions}), and in ring-$j$ units
-the inner part is supported in $D_{j+1}(t')/r_j\subset B_{a/8}$ and the outer part in
-$\R^2\setminus B_6$, as Lemma~\ref{lem:reduction} requires. If $j<n$, the
-hypotheses of Lemma~\ref{lem:field-bound} hold at $t'$, since (B1) holds and
-$S_i(t')\subset\Nflat_i\subset N_i$ for $i<j$; so $\eta_j(t')\le
-\Cvel (\mu\sbar^2+\sbar)\le1$ by (B9).
-
-\emph{\textup{(c)}.} Item (1) of Definition~\ref{def:loc} holds because a ring
-$i$ with $t'\le T_i$, or with $T_i$ not defined, is not debris at $t'$, so
-$S_i(t')\subset\Nflat_i\subset N_i$. Item (2) concerns a ring $j$ quiet at
-$t'$. Its first two conditions, on the rings $i<j$ and on $D_{j+1}(t')$, hold
-by (b). Its last clause, the confinement $D_{j+1}(t')\subset\overline
-B_{\varrho_j(t')}$ when $T_{j+1}$ is defined and $t'\ge T_{j+1}$, holds by (a)
-with $k=j<n$, since a ring $j$ quiet at $t'$ is not debris, so $t'\le e_j$
-as above; for $j=n$ it holds as $D_{n+1}=\emptyset$.
-\end{proof}
-
-\begin{proof}[Proof of Proposition~\ref{prop:bootstrap}]
-Throughout, (SA) and (Det) hold by
-Lemma~\ref{lem:nonempty}, and the clock intervals are ordered as in
-Lemma~\ref{lem:clock}\textup{(1)}. Step~0 checks the bootstrap assumption at
-$t=0$, Steps~1--6 improve (BA)$(t)$, and Step~7 is the
-continuity argument.
-
-The proof is a \emph{locomotive induction} on the interval already covered.
-Fix a target time $t$ and assume (BA)$(t)$. Once the estimates have
-been proved on $[0,T_{k+1}]$, they are used together with Steps~1--2 on
-$\Pin_k$ to establish the hand-off at $\tsh_k$ (Step~3). This supplies the
-initial bounds for ring $k$: Steps~5--6 complete $\Pin_k$, and the active
-argument then covers $\Phase_k$. Thus the proved interval grows to
-$[0,T_k]$, and the same procedure is repeated on the remaining interval
-up to $t$. Step~0 starts this process at ring $n$.
-\begin{center}
-\begin{tikzpicture}[x=1cm,y=1cm,font=\small,
-  link/.style={->,>=latex,semithick}]
-% A common physical-time axis; lengths are schematic.
-\draw[link] (0,0) -- (12.7,0);
-\foreach \x in {0,3.6,6.6,9.8,12.4}
-  {\draw (\x,.08) -- (\x,-.08);}
-\node[above] at (0,.08) {$0$};
-\node[above] at (3.6,.08) {$T_{k+1}$};
-\node[above] at (6.6,.08) {$\tsh_k$};
-\node[above] at (9.8,.08) {$T_k$};
-\node[above] at (12.4,.08) {$t$};
-\foreach \x in {3.6,6.6,9.8,12.4}
-  {\draw[black!25,dotted] (\x,-.15) -- (\x,-5.1);}
-% The already proved prefix.
-\node[anchor=east,align=right,text width=1.6cm,font=\footnotesize]
-  at (-.15,-1) {Already\\proved};
-\draw[fill=black!18] (0,-1.25) rectangle (3.6,-.75);
-\node[font=\footnotesize] at (1.8,-1) {Earlier estimates};
-\draw[dashed,black!50] (3.6,-1.25) rectangle (12.4,-.75);
-\node[font=\footnotesize] at (8,-1) {Interval still to be covered};
-% Prior history plus the next interval gives the hand-off.
-\node[anchor=east,align=right,text width=1.6cm,font=\footnotesize]
-  at (-.15,-2.9) {Obtain the\\hand-off};
-\draw[fill=black!18] (0,-3.15) rectangle (3.6,-2.65);
-\node[font=\footnotesize] at (1.8,-2.9) {Use prior bounds};
-\draw[fill=black!6] (3.6,-3.15) rectangle (6.6,-2.65);
-\node[font=\footnotesize] at (5.1,-2.9) {Steps 1, 2 on $\Pin_k$};
-\draw[dashed,black!50] (6.6,-3.15) rectangle (12.4,-2.65);
-\draw[link] (3.6,-1.25) -- (3.6,-1.7) -- (6.6,-1.7) -- (6.6,-2.65);
-\node[anchor=east,font=\footnotesize] at (6.45,-2.15) {Step 3: use both};
-\fill (6.6,-2.9) circle (1.5pt);
-% Complete the pinning interval and run the next active argument.
-\node[anchor=east,align=right,text width=1.6cm,font=\footnotesize]
-  at (-.15,-4.8) {Enlarged\\proved interval};
-\draw[fill=black!18] (0,-5.05) rectangle (3.6,-4.55);
-\node[font=\footnotesize] at (1.8,-4.8) {Earlier estimates};
-\draw[fill=black!12] (3.6,-5.05) rectangle (6.6,-4.55);
-\node[font=\footnotesize] at (5.1,-4.8) {Steps 5, 6 on $\Pin_k$};
-\draw[fill=black!12] (6.6,-5.05) rectangle (9.8,-4.55);
-\node[font=\footnotesize] at (8.2,-4.8) {Steps $1,2,4,5,6$};
-\draw[dashed,black!50] (9.8,-5.05) rectangle (12.4,-4.55);
-\node[font=\footnotesize] at (11.1,-4.8) {Repeat};
-\draw[link] (6.6,-3.15) -- (6.6,-4.55);
-\node[anchor=west,font=\footnotesize] at (6.75,-3.85) {Start ring $k$};
-\end{tikzpicture}
-\end{center}
-The solid prefix is the interval on which the induction has been completed;
-the dashed part is the remainder up to the fixed target time $t$.
-The picture shows $T_k\le t$; if $t$ falls earlier, the corresponding
-interval is truncated at $t$ and a hand-off is performed only if reached.
-This gives the improved bounds on $[0,t]$; Step~7 then uses the improved
-bounds to continue the bootstrap in physical time and rule out a stopped clock.
-
-\emph{Step 0 (the initial time; it does not use \textup{(BA)}).} At $t=0$, $\tsh_n=0$, $G_n=0$ and, in
-ring-$n$ units, $w_n(0)=\Phi^{\kseed}-\Phi$. By ($\kappa$6) at $\kappa=2\kseed$,
-$\kseed\le\kL$, so Lemma~\ref{lem:seed} and (P4) give
-$S_n(0)=S_n\subset\NNm_n\subset N_n$,
-$\ksh_n=|\ellst(0)(\Phi^{\kseed}-\Phi)|\in[\frac12\kseed,2\kseed]$ and
-$\|w_n(0)\|_{H^{M-1}}\le\Cseed\kseed\le2\Cseed\ksh_n\le C_0\ksh_n$. By
-($\kappa$1) at $\kappa=2\kseed$, $2\kseed<\delta_0$. So $\ksh_n\in(0,\delta_0)$,
-the clock is defined up to level $n$, and $k_{\mathrm s}<n$ if it stops.
-Recall that $\rhohat_n(t)$ is the transient of Theorem~\ref{thm:active} for
-$(C_0,G_n)$ evaluated at $A_nt$; it equals
-$C_0\jap{A_nt}^3e^{-(\sigma_n-\sigma')A_nt}$ for
-$A_nt<t_1(C_0,G_n)$, and $t_1(C_0,G_n)>0$ because $2^{3/2}C_0>1$, so
-$\rhohat_n(0)=C_0$. As $s\le M-1$ and $C_2\ge1$,
+By ($\kappa$1), $2\kseed<\delta_0$, so the clock is defined up to level $n$.
+The switch time of the transient is positive for every $G$ since
+$2^{3/2}C_0>1$, so $\rhohat_n(0)=C_0$. With $s\le M-1$ and $C_2\ge1$ the
+active size at the initial time satisfies
 \begin{equation}
 \label{eq:boot-start}
-\|w_n(0)\|_{H^s}\le C_0\ksh_n<C_2\ksh_n(1+C_0)=C_2\hat a_n(0)\big(1+\rhohat_n(0)\big).
+\|w_n(0)\|_{H^s}\le C_0\ksh_n
+<C_2\hat a_n(0)(1+\rhohat_n(0)).
 \end{equation}
-For $j<n$, $S_j(0)=S_j\subset\{ar_j\le|x|\le r_j\}\subset r_j\NNm$ and
-$\maj_j(0)=0$; $h_j$ is defined at $0$, since
-$D_{j+1}(0)\subset\overline B_{5r_{j+1}/4}\subset B_{ar_j/8}$ and the rings $i<j$
-lie in $\{|x|\ge ar_i\}\subset\R^2\setminus B_{6r_j}$. Thus the improved bounds hold at $t=0$.
+For $j<n$, the initial support $S_j(0)$ is contained in $\NNm_j$. Also
+$D_{j+1}(0)\subset\overline B_{5r_{j+1}/4}\subset B_{ar_j/8}$ and the outer
+rings lie outside $B_{6r_j}$. These separations define $h_j(0)$ and give
+$\maj_j(0)=0$. The same holds for $h_n(0)$ and $\maj_n(0)$, with an empty
+inner region. Thus the improved bounds hold at $0$.
 
-Now let $t\in[0,\Tend]$ and assume (BA)$(t)$. Begin with Steps~1, 2, 4, 5, 6
-on the seeded active interval $\Phase_n\cap[0,t]$, then follow the diagram
-outward, stopping the current interval at $t$.
-Each step uses only (BA)$(t)$ and the steps already carried out.
-In particular, Step~3 at $\tsh_k$ uses, besides Step~0, only
-Steps~1, 2 on $[0,\tsh_k]$, Step~4 on $[0,T_{k+1}]$ and Step~3 at the levels
-$i>k$; and the bound $\ksh_k\ge\Klo s_k^5$, which Lemma~\ref{lem:quiet-time}
-in Step~5 at the time $\tsh_k$ and Step~1 on $\Phase_k$ need, comes from Step~3
-at $\tsh_k$.
+\emph{Improvement through a fixed time.}
+Fix $t\in[0,\Tend]$ with (BA)$(t)$. Apply Proposition~\ref{prop:relay-step}
+first to the seeded interval. If $t>T_n$, take $k=n-1$ in the relay step.
+After a completed interval ending at $T_{k+1}<t$, the improved bounds,
+activation amplitudes and active estimates supplied by that interval are
+the hypotheses for the next level $k$. This is the locomotive induction
+shown in Figure~\ref{fig:relay-step}. If the current interval reaches
+$t$, we stop there, including the hand-off when $t=\tsh_k$. Otherwise the
+clock conditions have been verified
+through $k$ and we proceed to $k-1$. There are at most $n$ levels, and if
+we reach $T_1$ then $t\le\Tend=T_1$. This proves the improved bounds through
+$t$, the amplitude bounds at the activations reached by $t$, and the active
+estimates on the positive-length intervals reached by $t$.
 
-\emph{Step 1 (geometry).} Let $I$ be the current clock interval and $\bar t\le t$
-the right end of $I\cap[0,t]$. Lemma~\ref{lem:geometry} applies with $\bar t$
-in place of $t$: (BA1) holds on $[0,\bar t]$, and every level $k<n$ with
-$\tsh_k<\bar t$ has $\tsh_k$ at most the left end of $I$, so Step~3 at $\tsh_k$
-has already been carried out and has given $\ksh_k\ge\Klo s_k^5$. Below we use Lemma~\ref{lem:geometry}(a)--(c)
-on $[0,\bar t]$ without further mention.
+\emph{Continuation in time.}
+Let $t_*$ be the supremum of the times in $[0,\Tend]$ at which (BA) holds.
+The seed gives (BA)$(0)$, and (BA) holds at every time below $t_*$ by its
+interval definition. The flow is continuous on $[0,\Tend]\times\R^2$ by
+Theorem~\ref{thm:smooth}(2),(4). If a compact support lies in an open set at
+one time, its image remains in that set for nearby times. When
+$S_k(v)\subset N_k$, $w_k(v)$ is continuous in $H^s$ because
+$\omega(v)\mathbf 1_{S_k(v)}=f^{(n)}_k\circ\flow_v^{-1}$
+(Equation~\eqref{eq:omega-ge}) is smooth with support in a fixed compact
+set on a bounded time interval. When $h_j$ is defined, it and its Duhamel
+bound are continuous by Lemma~\ref{lem:reduction}(1).
 
-\emph{Step 2 (quiet rings).}
-Let $j<n$ be quiet at a time $t'$ in the current interval.
-At $t'=0$ the bounds below follow from Step~0. For $t'>0$, Step~1 supplies
-the support and field hypotheses of Lemma~\ref{lem:O}, while (BA2) and
-(B9) give $\maj_j\le2\Abar\varepsilon_j\le\majst$.
-If $\tsh_j$ is defined, apply that lemma to ring $j$ through $t'$.
-It gives the comparison with all the outer quiet rings and the feedback
-bound $\etout_j\le\theta_j\maj_j$ on $[0,t']$.
-If $\tsh_j$ is not defined, apply it instead to the stopping level
-$k_{\mathrm s}$, which is quiet on $[0,\Tend]$, and use its conclusions for
-the outer ring $j<k_{\mathrm s}$.
-In both cases, Theorem~\ref{thm:quiet}, in the local time $A_jt''$, gives,
-for every $t''\in[0,t']$,
-\begin{equation}
-\label{eq:boot-quiet}
-S_j(t'')\subset\NNm_j,\qquad \|w_j(t'')\|_{H^{s_h}}\le C_Q\maj_j(t'').
-\end{equation}
-Appendix~\ref{sec:bootstrap-quiet-control} checks the radius conditions and
-the rescaling, and records the comparison estimates used below.
+For an active ring, write
+$R_k(v)=2C_2\hat a_k(v)(1+\rhohat_k(v))$ for the right side of (BA3).
+It is continuous except at $v=\tsh_k+t_1(C_0,G_k)/A_k$, where the transient
+jumps from a left limit of at most $2^{-3/2}$ to $1$, by the definition of
+$t_1$ in Theorem~\ref{thm:active}. Thus $R_k$ is right-continuous, and at
+every point with a left limit its value is at least that limit.
 
-\emph{Step 3 (hand-off of ring $k<n$ at $\tsh_k$, if $\tsh_k\le t$).}
-At this point ring $k+1$ has completed its active interval, and Steps~1--2
-are available through $\tsh_k$. The kick lemma~\ref{lem:kicktrue} gives a
-nonzero inner response. Proposition~\ref{prop:relay} controls the total
-perturbation, and Lemma~\ref{lem:handoff} converts these two estimates into
+We first obtain (BA) at $t_*$. If $t_*>0$, a ring that is not debris at
+$t_*$ was not debris earlier. Its support is in the closed annulus
+$\Nflat_j$ at $t_*$ by continuity, so (BA1) holds. Every activation strictly
+before $t_*$ has its lower amplitude bound by the relay step at earlier
+times. Lemma~\ref{lem:geometry} then defines the fields through $t_*$ for
+all rings quiet at that time. Continuity gives (BA2) there.
+
+For a ring active at $t_*$ with $\tsh_k<t_*$, the left limit bound for
+$R_k$ and continuity of $w_k$ give (BA3) at $t_*$. This proves (BA)$(t_*)$.
+
+Suppose $t_*<\Tend$. The relay step gives the improved bounds at $t_*$,
+including the bound at any activation there. Choose $\Delta>0$ with
+$t_*+\Delta\le\Tend$ and no assigned activation or saturation time in
+$(t_*,t_*+\Delta]$. The rings that are not debris on this interval were not
+debris at $t_*$. Their supports are compact subsets of
+$\NN_j\subset\operatorname{int}\Nflat_j$, so (BA1) persists for small $\Delta$.
+All activations before $t_*+\Delta$ have their lower amplitude bounds,
+including any at $t_*$. Lemma~\ref{lem:geometry} gives the fields for the
+quiet rings through $t_*+\Delta$. Their Duhamel bounds are at most
+$\Abar\varepsilon_j$ at $t_*$, so (BA2) persists by continuity. Any ring
+active after $t_*$ in this interval is active at $t_*$ and has the strict
+margin
 \[
-\Klo s_k^5\le\ksh_k\le\Kup s_k^5,\qquad
-\maj_k(\tsh_k)\le K_1\ksh_k,\qquad
-\|w_k(\tsh_k)\|_{H^{M-1}}\le K_1C_Q\ksh_k.
+\|w_k(t_*)\|_{H^s}\le C_2\hat a_k(t_*)(1+\rhohat_k(t_*))<R_k(t_*).
 \]
-The checks of these three results, including the comparison of the
-kick with the total perturbation, are in
-Appendix~\ref{sec:bootstrap-handoff-checks}. They use the completed inner
-history and the quiet estimates through $\tsh_k$, with no later time.
-In particular, $\ksh_{k+1}\in(0,2\kseed]$, from the preceding hand-off or
-Step~0, makes all the seed-size conditions applicable.
+Continuity of $w_k$ and right-continuity of $R_k$ give (BA3) for small
+$\Delta$. Since there are finitely many rings, one $\Delta>0$ works for all
+of them, contradicting the definition of $t_*$. Thus $t_*=\Tend$ and the
+improved bounds hold through $\Tend$.
 
-By (B6), $0<\ksh_k\le\Kup\sbar^5\le\kseed<\delta_0$.
-Step~2 gives $S_k(\tsh_k)\subset\NNm_k$, so the clock extends to level $k$.
-Since $C_0\ge K_1C_Q$, $s\le M-1$ and $\rhohat_k(\tsh_k)=C_0$, we obtain
-\begin{equation}
-\label{eq:boot-switch}
-\|w_k(\tsh_k)\|_{H^s}\le K_1C_Q\ksh_k\le C_0\ksh_k<C_2\hat a_k(\tsh_k)\big(1+\rhohat_k(\tsh_k)\big).
-\end{equation}
-This supplies the active initial bound before running the active argument
-at level $k$.
+\emph{The final ring and the elapsed time.}
+If the clock stopped at $k_{\mathrm s}<n$, then
+$\Tend=\tsh_{k_{\mathrm s}}$ would be reached under (BA). The hand-off in
+Proposition~\ref{prop:relay-step} verifies the support and amplitude
+conditions at that same time. This contradicts the failure at
+$k_{\mathrm s}$ in the fixed clock. Hence $\Tend=T_1$.
+The last relay step gives $\ksh_1\le\Kup s_1^5$, the active estimates
+through $T_1$ with their saturation bound, and $D_2(T_1)\subset B_{a/8}$
+since $r_1=1$.
 
-\emph{Step 4 (the active interval of ring $k$).}
-Let $t'\in\Phase_k\cap[0,t]$ and use the local time
-$u=A_k(t''-\tsh_k)$ for $\tsh_k\le t''\le t'$.
-The initial perturbation and its support are controlled by Step~0 if $k=n$
-and by Step~3 otherwise. For $k<n$, confinement of the inner material (Step~1), together
-with $\ksh_k\ge\Klo s_k^5$, turns its velocity estimate into a polynomial
-bound. Under the current bootstrap bound, Lemma~\ref{lem:Oprime} controls
-the feedback of the outer quiet rings. More precisely,
+For each $k<n$, the lower bound on $\ksh_k$ gives
 \[
-\|\hin_k(t'')\|_{C^{M_h}(N')}\le C_0\ksh_k\jap{u}^3,\qquad
-\|\hout_k(t'')\|_{C^{M_h}(N')}\le\eta_{b,k}\ksh_ke^{\sigma_ku};
+T_k-T_{k+1}
+=\frac{\Tpin}{A_{k+1}}+\frac{\hat T_k}{A_k}
+\le\frac{1}{A_k}\left(\Tpin+
+\frac{\log_+(\delta_0/\Klo)+5\log(1/s_k)}{\sigma'}\right).
 \]
-for the seeded ring the inner field vanishes. These are the two bounds
-of (Field) in Theorem~\ref{thm:active} after rescaling.
-The drift estimate, Lemma~\ref{lem:drift}, supplies (Coef): the contribution
-from the inner material after the hand-off is small by the choice of
-$\Tpin$, and the outer contribution is small by (B8).
-Appendix~\ref{sec:bootstrap-active-checks} verifies these applications,
-the rescaling, and (Init) and (Small), using only the earlier steps and
-(BA)$(t)$.
-
-Theorem~\ref{thm:active} and Corollary~\ref{cor:active-moment} now apply
-through $t'$. In particular, on $\Phase_k\cap[0,t]$,
-\[
-S_k(t'')\subset\NN_k,\qquad
-\|w_k(t'')\|_{H^s}\le C_2\hat a_k(t'')(1+\rhohat_k(t'')).
-\]
-At $t''=\tsh_k$ these bounds already follow from Step~0 or~3.
-If $T_k\le t$, Lemma~\ref{lem:drift} also gives
-$|c_k(T_k)|e^{\sigma_k\hat T_k}\in[\frac{15}{16}\delta_0,\frac{17}{16}\delta_0]$.
-
-\emph{Step 5 (quiet size).}
-For each ring $j<n$ quiet at the current time $t'$, we improve (BA2) to
-$\maj_j(t')\le\Abar\varepsilon_j$. At $t'=0$ this follows from Step~0.
-If $\tsh_j$ has been assigned, Proposition~\ref{prop:relay} applies: its
-geometric and outer-field hypotheses come from Steps~1--2, and its inner-ring
-hypotheses come from the preceding hand-offs and the active estimates
-already established in Step~4. Before the inner ring activates, the extra
-factor $\varepsilon_{j+1}$ makes the bound small by (B10). Afterwards,
-($\kappa$7) controls the remainder $\Xi_{j+1}$ and the relay bound is at most
-$\Abar\varepsilon_j$. The feedback-time condition follows from
-Lemmas~\ref{lem:quiet-time} and~\ref{lem:theta-quiet}.
-If $\tsh_j$ has not been assigned, then $j<k_{\mathrm s}$;
-the domination estimate of Step~2 transfers the bound at the stopping level
-$k_{\mathrm s}$ to ring $j$. Appendix~\ref{sec:bootstrap-quiet-checks} gives the inequalities
-in these cases, including the last-level case if the clock stops.
-
-\emph{Step 6 (localization).} Let $j$ be not debris at $t'\in[0,t]$. If $j$ is
-quiet at $t'$, then $S_j(t')\subset\NNm_j\subset\NN_j$ by
-Equation~\eqref{eq:boot-quiet} (for $j=n$, quiet only at $t'=0$, by Step~0); if
-$j$ is active at $t'$, then $S_j(t')\subset\NN_j$ by Step~4. So (BA1) holds with
-$\NN_j$ in place of $\Nflat_j$. With Step~5, and with Step~4 and
-Equations~\eqref{eq:boot-switch}, \eqref{eq:boot-start} at activation,
-this gives all the improved bounds on $[0,t]$.
-
-\emph{Step 7 (continuity, and the clock does not stop).} Let $\mathcal B$ be the
-set of $t\in[0,\Tend]$ such that (BA)$(t)$ holds. It contains $0$ by
-Step~0, and with every $t$ it contains $[0,t]$. Let $t_*=\sup\mathcal B$. We use
-three continuity properties. The flow $\flow$ is continuous on
-$[0,\Tend]\times\R^2$ (Theorem~\ref{thm:smooth}(2),(4)), so for a compact set $S$
-and an open set $U$ with $\flow_{t_0}(S)\subset U$ we have $\flow_{t'}(S)\subset U$
-for $t'$ near $t_0$. On an interval on which $S_k(t')\subset N_k$, the map
-$t'\mapsto w_k(t')\in H^s$ is continuous, because
-$\omega\mathbf 1_{S_k(t')}=f^{(n)}_k\circ\flow_{t'}^{-1}$
-(Equation~\eqref{eq:omega-ge}) is smooth in $(t',x)$ with support in a fixed
-compact set. On an interval on which $h_j$ is defined, $t'\mapsto
-h_j(t')\in C^{M_h}(N')$ is continuous (Lemma~\ref{lem:reduction}(1)), so
-$\eta_j$ and $\maj_j$ are continuous.
-
-\emph{$t_*\in\mathcal B$.} The conditions of (BA)$(t_*)$ at times
-$t'<t_*$ hold, because $\mathcal B\supset[0,t')$; so let $t_*>0$ and consider
-$t'=t_*$. A ring $j$ that is not debris at $t_*$ is not debris on $[0,t_*]$, and
-$S_j(t'')\subset\Nflat_j$ for $t''<t_*$; as $\Nflat_j$ is closed,
-$S_j(t_*)\subset\Nflat_j$. So (BA1) holds on $[0,t_*]$. Every level $k<n$ with
-$\tsh_k<t_*$ has $\tsh_k\in\mathcal B$, so Step~3 gives $\ksh_k\ge\Klo s_k^5$,
-and Lemma~\ref{lem:geometry} applies with $t=t_*$; so, for a ring $j<n$ quiet at
-$t_*$, $h_j$ is defined and $\maj_j$ is continuous on $[0,t_*]$, and
-$\maj_j(t_*)\le2\Abar\varepsilon_j$ follows from the same bound at earlier
-times. Let $k$ be active at $t_*$ with $\tsh_k<t_*$. Then $w_k$ is continuous on
-$[\tsh_k,t_*]$, and the right side $R_k(r)=2C_2\hat a_k(r)(1+\rhohat_k(r))$ of
-(BA3) is continuous except at $r=\tsh_k+t_1(C_0,G_k)/A_k$, where it is
-right-continuous and jumps upward: in the local coordinate
-$u=A_k(r-\tsh_k)$, the transient of Theorem~\ref{thm:active} takes the value
-$1$ there, while its left limit there is the value of
-$C_0\jap{u}^3e^{-(\sigma_k-\sigma')u}$ at $u=t_1(C_0,G_k)$, which is at most
-$2^{-3/2}$ by the definition of $t_1(C_0,G_k)$.
-So $R_k(t_*)\ge\limsup_{r\uparrow t_*}R_k(r)$, and (BA3)
-at $t_*$ follows from (BA3) at earlier times. Hence $t_*\in\mathcal B$.
-
-\emph{$t_*=\Tend$.} Suppose $t_*<\Tend$. By Steps~1--6, the improved bounds hold on $[0,t_*]$.
-Choose $\Delta>0$ such that $t_*+\Delta\le\Tend$ and no $\tsh_i$ or $T_i$ lies
-in $(t_*,t_*+\Delta]$. Then a ring that is not debris (respectively quiet,
-active) at a time in $(t_*,t_*+\Delta]$ is not debris (respectively quiet, active
-with $\tsh_k\le t_*$) at $t_*$. Each $S_j(t_*)$ with $j$ not debris at $t_*$ is a
-compact subset of $\NN_j\subset\operatorname{int}\Nflat_j$, so after decreasing
-$\Delta$, (BA1) holds on $[0,t_*+\Delta]$. No $\tsh_k$ lies in
-$(t_*,t_*+\Delta]$, so Lemma~\ref{lem:geometry} applies with $t=t_*+\Delta$, and
-$h_j$ is defined on $[0,t_*+\Delta]$ for every ring $j<n$ quiet at $t_*+\Delta$;
-as $\maj_j(t_*)\le\Abar\varepsilon_j<2\Abar\varepsilon_j$ and $\maj_j$ is
-continuous, after decreasing $\Delta$, (BA2) holds on $[0,t_*+\Delta]$. For a
-ring $k$ active at times in $(t_*,t_*+\Delta]$,
-$\|w_k(t_*)\|_{H^s}\le C_2\hat a_k(t_*)(1+\rhohat_k(t_*))<R_k(t_*)$, because
-$\hat a_k>0$; as $w_k$ is continuous and $R_k$ is right-continuous, after
-decreasing $\Delta$, (BA3) holds on $(t_*,t_*+\Delta]$. So
-$t_*+\Delta\in\mathcal B$, contradicting $t_*=\sup\mathcal B$. Hence $t_*=\Tend$
-and $\mathcal B=[0,\Tend]$, and by
-Steps~1--6, the improved bounds hold on all of $[0,\Tend]$.
-
-If the clock were not defined up to level $1$, then $k_{\mathrm s}<n$ by Step~0
-and $\Tend=\tsh_{k_{\mathrm s}}\in\mathcal B$, so Step~3 for $k=k_{\mathrm s}$
-would show that the clock is defined up to level $k_{\mathrm s}$, contrary to
-Definition~\ref{def:stop}. Hence $\Tend=T_1$.
-
-We read off the items. (1): $\Tend=T_1$; the bound on $\ksh_1$ is Step~3 for
-$k=1$. (2): Step~4 at $t=T_1$ gives the conclusions of
-Theorem~\ref{thm:active} on all of $\Phase_1$, and Lemma~\ref{lem:drift} with
-$\bar t=T_1$ gives the bound on $|c_1(T_1)|e^{\sigma_1\hat T_1}$.
-(3): by (BA)$(T_1)$ and Step~3, Lemma~\ref{lem:geometry} applies with $t=T_1$,
-and its part (b) with $t'=T_1$ and $j=1$, ring $1$ being active at $T_1$, gives
-$D_2(T_1)\subset B_{ar_1/8}=B_{a/8}$, as $r_1=1$. (4): the clock is defined up to
-level $1$, $\ksh_k\ge\Klo s_k^5$ for $k<n$ (Step~3) and $\ksh_n\ge\frac12\kseed$ (Step~0); so
-Lemma~\ref{lem:time} gives $T_1\le\Tstar$.
+The numerator grows at most linearly in $k$, while $A_k=A_1\mu^{k-1}$
+grows geometrically. The seed contributes at most
+$\log(2\delta_0/\kseed)/(A_n\sigma')$. Summing these bounds as in
+Lemma~\ref{lem:time} gives $T_1\le\Tstar$ uniformly in $n$.
 \end{proof}
 
 \begin{proof}[Proof of Proposition~\ref{prop:reduction}]

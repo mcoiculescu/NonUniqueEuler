@@ -1,39 +1,12 @@
 \section{Choice of Parameters}
 \label{sec:param}
 
-The relay requires a small seed, well-separated radii, and enough time for
-the contribution of an active ring to determine the next hand-off.
-These choices are compatible because they are made in a fixed order:
-\[
-\delta_0\quad\longrightarrow\quad\mu\quad\longrightarrow\quad\Tpin
-\quad\longrightarrow\quad C_0\quad\longrightarrow\quad\kseed
-\quad\longrightarrow\quad\sbar.
-\]
-Here $\delta_0$ is the amplitude at which a ring saturates, $\mu=A_{k+1}/A_k$
-is the ratio of consecutive amplitudes, $\Tpin$ is the pinning duration in
-kick time, and $C_0$ bounds the initial perturbation and inner field in
-Theorem~\ref{thm:active}. The seed size is $\kseed$, and $\sbar$ fixes the radius
-ratios $s_k=\sbar(2\mu)^{-k}$.
-
-The exact requirements (P0)--(P6) used in the bootstrap are in
+Proposition~\ref{prop:relay-step} uses one choice of parameters for every
+ring and every depth of the construction. We first set the saturation threshold and the
+pinning time, then fix the constants in the hand-off and active estimates.
+The seed size and radius ratios are made small after those constants are
+fixed. The precise requirements (P0)--(P6) are in
 Appendix~\ref{sec:param-lists}.
-
-First fix the ring, its spectral data and the regularity orders from
-Sections~\ref{sec:single} and~\ref{sec:relay}. Choose $\delta_0>0$ small enough
-that nonlinear errors are a small fraction of the outgoing moment. Then
-choose $\mu>1$ close enough to $1$ that the kick dominates the subsequent
-moment drift. With these fixed, choose $\Tpin$ large enough to make the
-exponential tail of the kick small, and $C_0$ large enough for the seed and
-field bounds in Theorem~\ref{thm:active}. The constants in those bounds are
-already fixed when $C_0$ is chosen.
-
-Next choose $\kseed$ small. This controls the errors accumulated before
-activation and the transient part of the active evolution. The requirements
-are imposed on every starting amplitude $0<\kappa\le2\kseed$, so the same
-choice applies at every hand-off. Finally choose $\sbar$ small. This keeps
-inner material confined, makes the spectral shifts $G_k$ small, and weakens
-the feedback from the outer rings. Choosing it last also ensures that the
-new amplitudes, of size $s_k^5$, fall within the seed range already fixed.
 
 \begin{lemma}
 \label{lem:nonempty}
@@ -47,12 +20,22 @@ every $A_1>0$ the standing assumptions (SA) hold with these parameters, and
 \end{lemma}
 
 \begin{proof}
-The first choices involve finitely many fixed constants. The interval for
-$\sigma'$ is nonempty because $\sigb>211/2500>9/200$ and
-$3\sigma/4\ge3\sigb/4>9/200$. We can therefore choose the regularity orders, then
-$\delta_0$ small, $\mu-1$ small, $\Tpin$ large, and $C_0$ large in the stated
-order. In particular $\mu$ is fixed before the seed is made small, so all
-factors involving $(\mu-1)^{-1}$ are finite constants at the later stages.
+First fix the ring, its spectral data and the regularity orders. The
+interval for $\sigma'$ is nonempty because $\sigb>211/2500>9/200$ and
+$3\sigma/4\ge3\sigb/4>9/200$. Choose $\delta_0>0$ small so the quadratic
+error is a small fraction of the outgoing moment. Choose $\mu-1>0$
+small compared with $\delta_0$ so the kick dominates the subsequent
+moment drift. The bound for the coefficient drift after pinning contains
+a polynomial times a decaying exponential. Choose $\Tpin$ large enough
+to make this factor small.
+
+We now fix the constant $K_1$ in the hand-off estimate
+$\maj_k(\tsh_k)\le K_1\ksh_k$. Its formula in Definition~\ref{def:K1}
+reserves a fixed allowance for the remainder in the transmitted field
+estimate. This allows us to choose $K_1$ using the data already fixed.
+Choose $C_0$ large enough for the initial perturbation and inner field in
+Theorem~\ref{thm:active}. The constants controlling the remainder, including
+$\Crelay(C_0,K_1)$, can then be fixed.
 
 The seed conditions either bound $\kappa$ by a fixed positive threshold or
 bound expressions of the form
@@ -64,7 +47,8 @@ tends to zero at saturation, uniformly in $G\in[0,\Gone]$: its initial layer
 has uniformly bounded length, while the saturation time grows like
 $\log(1/\kappa)$ and its decay rate is at least $\sigb-\sigma'>0$.
 Thus every condition holds throughout $(0,2\kseed]$ once $\kseed$ is small
-enough.
+enough. In particular the remainder fits the allowance used to choose
+$K_1$ at every hand-off.
 
 After the seed is fixed, the radius conditions have the same form,
 $C\sbar^\alpha\log^N(1/\sbar)$, except for spectral continuity and the
@@ -73,7 +57,8 @@ shrinking interval $0\le G\le\mu\sbar^2$. For the conditions at all levels, the
 confinement radius grows at most like $\log(1/s_k)$ and the outer feedback
 has a factor $s_{k-1}^6$. Positive powers of $s_k$ dominate these logarithms,
 uniformly for $s_k\le\sbar$. Hence one sufficiently small $\sbar$ works at
-every level. The exact inequalities and these uniform estimates are checked
+every level. It also puts the new amplitudes, of size $s_k^5$, below the
+seed threshold. The exact inequalities and these uniform estimates are checked
 in Appendix~\ref{sec:param-verification}; they also give (SA) and (Det).
 No choice uses $n$, $A_1$ or the solution $\omega^{(n)}$.
 \end{proof}
@@ -88,8 +73,8 @@ Choice & Purpose & Fixed after \\
 (P0): ring and regularity & Supply the spectral, velocity and single-ring estimates & fixed data \\
 (P1): $\delta_0$ & Keep nonlinear errors below the outgoing moment & (P0) \\
 (P2): $\mu$ & Separate the kick from the later moment drift & (P1) \\
-(P3): $\Tpin$ & Make the exponential tail of the kick small & (P2) \\
-(P4): $C_0$ & Bound the seed and the polynomial inner field & (P3) \\
+(P3): $\Tpin$, $K_1$ & Control the tail of the kick and fix the hand-off constant & (P2) \\
+(P4): $C_0$, error constants & Bound the initial perturbation, inner field and remainder & (P3) \\
 (P5): $\kseed$ & Control pre-activation and transient errors uniformly & (P4) \\
 (P6): $\sbar$ & Ensure separation, confinement and small outer feedback & (P5) \\
 \hline

@@ -1,644 +1,344 @@
-\section{The Relay Lemmas}
+\section{One Step of the Relay}
 \label{sec:relay}
 
-The relay needs three estimates: the rings outside the active ring stay
-small; the unstable coefficient changes little after activation; and the
-next outer ring receives a nonzero initial coefficient. Together with the
-summability of the ring durations, these estimates let
-Section~\ref{sec:bootstrap} carry the instability outward to ring $1$.
-All times below are physical times. Ring $k$ is quiet on $[0,\tsh_k]$,
-active on $\Phase_k=[\tsh_k,T_k]$, and debris after $T_k$.
+When ring $k+1$ saturates, we have controlled the solution through
+$T_{k+1}$. The next step extends these bounds across the pinning interval
+$[T_{k+1},\tsh_k]$ and the active interval $[\tsh_k,T_k]$. The moment of ring
+$k+1$ supplies the initial amplitude of ring $k$. During the active interval,
+we confine the material inside ring $k$ and bound the feedback from the outer
+quiet rings. At saturation, the same estimates are available for the next
+step outward.
 
-The product summations and weighted error integrals are proved in
-Sections~\ref{sec:proof-O}--\ref{sec:proof-kicktrue}.
-Section~\ref{sec:param} chooses the parameters so that their smallness
-conditions hold simultaneously. Each estimate uses only the solution up
-to its current endpoint, as required by the continuity argument.
+Assume (N1)--(N3), and fix parameters satisfying (P0)--(P6), listed in
+Appendix~\ref{sec:param-lists}. Section~\ref{sec:param} shows that they can
+be chosen in order and give (SA) and (Det). Fix $n\ge2$ and $A_1>0$, write
+$\omega=\omega^{(n)}$, and use the rings and clock of
+Definitions~\ref{def:datum}--\ref{def:clock}. All ring quantities use physical
+time. The reference growth rate is $\sigma=\sigma(0)$, while ring $i$ grows
+at rate $A_i\sigma_i$ with $\sigma_i=\sigma(G_i)$.
 
-\subsection{Standing Assumptions}
-
-Here $\sigma=\sigma(0)=\Re\lamref$ is the reference rate, and
-$\sigma_i=\sigma(G_i)=\Re\lambda_i$ is the rate in ring-$i$ units
-(Definition~\ref{def:regions}). Its physical growth rate is $A_i\sigma_i$.
-All levels $1\le i\le n$ are considered. In applying
-Section~\ref{sec:single} to ring $i$, the local notation $\sigma=\sigma(G)$
-becomes $\sigma_i$ with $G=G_i$.
+With $C_0$ from (P4), let $\rhohat_{C_0,G_i}$ be the transient of
+Theorem~\ref{thm:active} in ring-$i$ time. For a ring with a positive
+assigned amplitude $\ksh_i$, the envelope and transient in physical time are
+\[
+\hat a_i(v)=\ksh_i e^{A_i\sigma_i(v-\tsh_i)},\qquad
+\rhohat_i(v)=\rhohat_{C_0,G_i}(A_i(v-\tsh_i)),\qquad v\ge\tsh_i.
+\]
+In particular, $\rhohat_i(\tsh_i)=C_0$.
 
 \begin{definition}
-\label{def:standing}
-We say that the \textbf{standing assumptions (SA)} hold if \textup{(N1)}--\textup{(N3)}
-hold and the following objects are fixed:
-\begin{enumerate}[label=\textup{(SA\arabic*)},leftmargin=*]
-\item an integer $s\ge3$ and $\sigma'\in\big(\frac9{200},\min(\sigb,\frac34\sigma)\big)$;
-  the corresponding regularity level $M$, constants and threshold functions
-  supplied by Theorem~\ref{thm:active};
-\item the integers $s_h=M-1$, $N_Q=\max(2,\lceil\Lam(s_h)/\sigb\rceil)$ and
-  $M_h=s_h+N_Q+1$, with $\Lam$ of Lemma~\ref{lem:energy}; the associated
-  quiet-ring constants of Theorem~\ref{thm:quiet} and the velocity-estimate
-  constant $\Cvel$ at order $M_h$ from Lemma~\ref{lem:transfer};
-\item numbers $\delta_0\in(0,\dH]$, $\mu\in(1,\frac{17}{16}]$ and $\Tpin>0$; a
-  number $\kseed\in(0,\kL]$, with $\kL$ of Lemma~\ref{lem:seed}; a number
-  $\sbar\in(0,a/16]$ with $\mu\sbar^2\le\Gone$
-  (Lemma~\ref{lem:inner-circ}); an integer $n\ge2$; and the objects of
-  Definitions~\ref{def:datum}--\ref{def:clock} with these parameters.
-\end{enumerate}
-Under (SA), put $\rT(T)=(1+T)^3e^{-\sigma T/4}$ for $T\ge0$.
-For every level $k$ for which $\ksh_k$ is defined, use the envelope
-$\hat a_k(t)=\ksh_ke^{\sigma_kA_k(t-\tsh_k)}$ for $t\ge\tsh_k$.
-For a constant $C_0\ge1$ named in each statement, let
-$\rhohat_{C_0,G_k}$ be the transient in Theorem~\ref{thm:active}, and put
-$\rhohat_k(t)=\rhohat_{C_0,G_k}(A_k(t-\tsh_k))$.
-We say that the
-\textbf{detuning hypothesis (Det)} holds if
-$\sup_{0\le G\le \mu\sbar^2}|\lamst(G)-\lamref|\le\sigma(\mu-1)/(8\mu)$.
+\label{def:stop}
+If the clock is defined up to level $1$, put $\Tend=T_1$. Otherwise let
+$k_{\mathrm s}$ be the level $k\in\{1,\dots,n\}$ such that the clock is defined up
+to level $k+1$ but not up to level $k$ (for $k=n$ the first condition is void),
+and put $\Tend=\tsh_{k_{\mathrm s}}$. We then say that the clock stops at
+level $k_{\mathrm s}$.
 \end{definition}
 
-Recall that
-$x_k=\sigma_k/\mu$ (Definition~\ref{def:regions}). Hypothesis (Det) keeps the unstable eigenvalues $\lamst(G)$ of all
-rings close to $\lamref=\lamst(0)$ (Definition~I.\ref{I-def:eigendata}). In the time of
-ring $k$, ring $k+1$ grows at the rate $\mu\sigma_{k+1}$ and ring $k$ at the rate
-$\sigma_k$; Lemma~\ref{lem:detuning} derives from (Det) that the first rate
-exceeds the second by at least $\frac12\sigb(\mu-1)$.
+The clock is constructed from $n$ downward. If it stops at $k_{\mathrm s}$,
+its activation times are assigned for $i\ge k_{\mathrm s}$ and its saturation
+times for $i>k_{\mathrm s}$. In particular, the failed level has an assigned
+activation time. We use the quiet, active and debris conventions of
+Definition~\ref{def:loc}, including quiet at activation and active at
+saturation. Any ring farther out than a quiet or active ring is quiet by
+Lemma~\ref{lem:clock}(1).
 
-Levels are integers in $[1,n]$; ring $1$ is the outermost ring and ring $n$,
-the seeded ring, the innermost. All indexed ring quantities in this section
-are functions of physical time. To apply Section~\ref{sec:single} on an
-interval starting at $t_*$, we use its standard rescaling
-$\theta=A_k(t-t_*)$ and the pulled-back functions
-$\theta\mapsto w_k(t_*+\theta/A_k)$,
-$\theta\mapsto h_k(t_*+\theta/A_k)$ and
-$\theta\mapsto\eta_k(t_*+\theta/A_k)$.
-For a quiet ring, $t_*=0$ and the Duhamel bound in Section~\ref{sec:single}
-is $\theta\mapsto\maj_k(\theta/A_k)$; thus Theorem~\ref{thm:quiet}(c) gives
-$\|w_k(t)\|_{H^{s_h}}\le C_Q\maj_k(t)$.
-By the paragraph after Lemma~\ref{lem:regions-basic}, the fields and their
-norms are continuous wherever defined, and so are $\maj_k$ and
-$\maj^{\mathrm{in}}_k$. By Lemma~\ref{lem:inner-circ} and (SA3),
-$0\le G_k\le \mu\sbar^2\le\Gone$ at every level, so all the eigendata
-used below are defined and $\sigma_k\ge\sigb$.
+For $t\in[0,\Tend]$, the bootstrap assumptions (BA)$(t)$ are the following
+bounds at every $v\in[0,t]$.
+\begin{description}[font=\normalfont]
+\item[(BA1)] $S_j(v)\subset\Nflat_j$ for every ring $j$ that is not debris.
+\item[(BA2)] For every quiet ring $j<n$, $h_j$ is defined on $[0,v]$ and
+$\maj_j(v)\le2\Abar\varepsilon_j$.
+\item[(BA3)] For every ring $i$ active at $v>\tsh_i$,
+$\|w_i(v)\|_{H^s}\le2C_2\hat a_i(v)(1+\rhohat_i(v))$.
+\end{description}
+Here $\varepsilon_j=\mu s_j^5$ is the scale of the mode-$3$ driving from
+the next inner ring, and $\Abar$ is the fixed constant bounding the quiet
+response at that scale.
+The improved bounds replace $\Nflat_j$ by $\NN_j$ and remove the factors $2$.
+They include the active size bound at activation, where it comes from the
+seed or the hand-off. Since $\NN\subset\operatorname{int}\Nflat$ and the
+size bounds are positive, the improvements leave room for continuation in
+physical time.
 
-\subsection{Quiet Rings}
-
-A quiet ring is driven by the velocity field of the region inside it and by
-the velocity field of the rings outside it. Lemma~\ref{lem:transfer-step} bounds these two fields by
-the perturbations of the other rings and, for the inner field, by the inner field
-of the next ring inward. With it, Lemma~\ref{lem:O} shows that,
-while ring $j$ and the rings outside it are quiet, ring $j$ dominates them:
-their Duhamel bounds are smaller than that of ring $j$ by a product of small
-factors.
-
-\begin{lemma}
-\label{lem:detuning}
-Assume (SA) and (Det). Put $e_\mu=\frac{\mu-1}{8\mu}$. Then for all levels $i,l$:
-$|\sigma_i-\sigma|\le e_\mu\sigma$, $e_\mu\le\frac1{136}$, $\sigma_i\ge\frac{15}{16}\sigma>\sigma'$,
-$\frac\sigma4\le x_i\le\frac{17}{16}\sigma$, and
+\begin{proposition}[One relay step]
+\label{prop:relay-step}
+Let $0\le t\le\Tend$ and assume (BA)$(t)$. For $1\le k<n$, suppose the clock is
+defined up to level $k+1$, with $T_{k+1}\le t$, and that the improved bounds
+hold through $T_{k+1}$. Assume the active estimates in item~(c) for ring $k+1$ through $T_{k+1}$,
+and the amplitude bounds
 \[
-\mu\sigma_i-\sigma_l\ge\sigma\big((\mu-1)-e_\mu(\mu+1)\big)\ge\tfrac34\sigma(\mu-1)\ge\tfrac12\sigb(\mu-1);
+\tfrac12\kseed\le\ksh_n\le2\kseed,\qquad
+\Klo s_i^5\le\ksh_i\le\Kup s_i^5\quad(k<i<n).
 \]
-in particular $\sigma_i\mu^{i-j}\le\sigma_j-\sigb(\mu-1)/(2\mu)$ for $i<j$.
-\end{lemma}
-\begin{proof}
-By Lemma~\ref{lem:inner-circ} and (SA3), $0\le G_i\le \mu\sbar^2$, so (Det)
-gives $|\sigma_i-\sigma|=|\Re(\lamst(G_i)-\lamref)|\le e_\mu\sigma$. As
-$1<\mu\le\frac{17}{16}$, $e_\mu=\frac18(1-\frac1\mu)\le\frac1{136}$, so
-$\sigma_i\ge(1-e_\mu)\sigma\ge\frac{15}{16}\sigma>\frac34\sigma>\sigma'$ by
-(SA1) and $\sigma=\sigma(0)\ge\sigb>0$ (Proposition~I.\ref{I-prop:U}(a)); and
-$x_i=\sigma_i/\mu$ lies between $\frac{15}{16}\cdot\frac{16}{17}\sigma\ge\frac\sigma4$
-and $(1+e_\mu)\sigma\le\frac{17}{16}\sigma$. For levels $i,l$,
-$\mu\sigma_i-\sigma_l\ge\mu(1-e_\mu)\sigma-(1+e_\mu)\sigma=\sigma((\mu-1)-e_\mu(\mu+1))$,
-and $e_\mu(\mu+1)=\frac{(\mu-1)(\mu+1)}{8\mu}\le\frac14(\mu-1)$ because
-$\mu+1\le2\mu$; with $\sigma\ge\sigb$ this gives the displayed equations. For $i<j$,
-$\mu^{i-j}\le\mu^{-1}$, and the displayed equations with $(j,i)$ in place of $(i,l)$ give
-$\sigma_i\mu^{i-j}\le\sigma_i/\mu\le\sigma_j-\sigb(\mu-1)/(2\mu)$.
-\end{proof}
-
-Recall that $\etin_k=\|\hin_k\|_{C^{M_h}(N')}$ measures the velocity field
-of the inner rings after subtracting its monopole, whereas
-$\etout_k=\|\hout_k\|_{C^{M_h}(N')}$ measures the velocity field of the outer
-rings, both in ring-$k$ units.
-
-\begin{lemma}
-\label{lem:transfer-step}
-Assume (SA), and let $t\ge0$.
-\begin{enumerate}[label=\textup{(\arabic*)}]
-\item Let $1\le i<n$. Assume that $S_{i+1}(t)\subset N_{i+1}$ and that the fields
-  $h_i$ and $h_{i+1}$ are defined at $t$ (Definition~\ref{def:regions}). Then for
-  every integer $s'\ge0$,
-  \[
-  \etin_i(t)\le \Cvel \varepsilon_i\big(\|w_{i+1}(t)\|_{H^{s'}}+\etin_{i+1}(t)\big).
-  \]
-\item Let $1\le k\le n$. Assume that $h_k$ is defined at $t$ and that
-  $S_i(t)\subset N_i$ for every $i<k$. Then for every integer $s'\ge0$,
-  \[
-  \etout_k(t)\le \Cvel \sum_{i<k}b_{i,k}\|w_i(t)\|_{H^{s'}},\qquad b_{i,k}=\mu^{i-k}r_k/r_i;
-  \]
-  in particular $\etout_1=0$.
+Then the following hold.
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item The improved bounds extend through $\min(t,\tsh_k)$.
+\item If $\tsh_k\le t$, the clock is defined up to level $k$ and the
+improved bounds hold through $b=\min(t,T_k)$. At activation,
+\[
+\begin{aligned}
+\Klo s_k^5&\le\ksh_k\le\Kup s_k^5,
+&\quad \maj_k(\tsh_k)&\le K_1\ksh_k,\\
+\|w_k(\tsh_k)\|_{H^{M-1}}&\le K_1 C_Q\ksh_k,
+& S_k(\tsh_k)&\subset\NNm_k.
+\end{aligned}
+\]
+\item In case (b), the active estimates include the initial Duhamel bound
+there. If $b>\tsh_k$, in local time $u=A_k(v-\tsh_k)$,
+Theorem~\ref{thm:active} and Corollary~\ref{cor:active-moment} hold through
+$A_k(b-\tsh_k)$ with $G=G_k$, $\kappa=\ksh_k$ and $\eta_b=\eta_{b,k}$
+of Equation~\eqref{eq:etab} (with $\eta_{b,1}=0$). The inner field satisfies
+$\|\hin_k(v)\|_{C^{M_h}(N')}\le C_0\ksh_k\jap{u}^3$ there.
+Lemma~\ref{lem:drift} applies with endpoint $b$ and $\eta=\eta_{b,k}$,
+including $(1+\Tpin)^3e^{-\sigma\Tpin/4}\le1/64$ and $\Cls\eta_{b,k}\hat T_k\le1/32$.
+In particular, at $b=T_k$,
+\[
+|c_k(T_k)|e^{\sigma_k\hat T_k}
+\in[\tfrac{15}{16}\delta_0,\tfrac{17}{16}\delta_0].
+\]
 \end{enumerate}
-\end{lemma}
+On the portion of the pinning and active intervals reached by time $t$,
+the confinement and moment bounds of Lemma~\ref{lem:geometry}(a) hold for
+$D_{k+1}$.
+
+For the seeded ring $k=n$, assume instead that the clock is defined up to
+$n$, the improved bounds hold at $0$, and
+\[
+\tfrac12\kseed\le\ksh_n\le2\kseed,\qquad
+S_n(0)\subset\NNm_n,\qquad
+\|w_n(0)\|_{H^{M-1}}\le C_0\ksh_n.
+\]
+Then the improved bounds hold through $\min(t,T_n)$, and the active
+estimates in (c) hold if this interval has positive length, with
+$\maj_n(0)=0$ as the initial Duhamel bound.
+\end{proposition}
+
+Figure~\ref{fig:relay-step} shows the extension from a completed inner
+interval. If $t$ lies within the step, the proof stops at $t$.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[x=1cm,y=1cm,font=\small]
+\draw[|-|,thick] (0,0.75) -- (4.1,0.75)
+  node[midway,above] {bounds already proved};
+\draw[|-|,thick] (4.1,0.75) -- (8.8,0.75)
+  node[midway,above,align=center] {confinement and\\quiet response};
+\draw[|-|,thick] (8.8,0.75) -- (13.4,0.75)
+  node[midway,above,align=center] {active growth and\\weak feedback};
+\draw[->] (-0.15,0) -- (13.9,0) node[right] {$v$};
+\foreach \x in {0,4.1,8.8,13.4}
+  \draw (\x,0.10) -- (\x,-0.10);
+\node[below] at (0,-0.12) {$0$};
+\node[below] at (4.1,-0.12) {$T_{k+1}$};
+\node[below,align=center] at (8.8,-0.12) {$\tsh_k$\\hand-off to ring $k$};
+\node[below,align=center] at (13.4,-0.12) {$T_k$\\next step outward};
+\end{tikzpicture}
+\caption{A relay step in physical time. The part already proved supplies the
+moment that starts ring $k$. At $T_k$ the estimates have been extended
+through the active interval of ring $k$.}
+\label{fig:relay-step}
+\end{figure}
+
 \begin{proof}
-We use (SA2) for the order $M_h$ and constant $\Cvel$ of
-Lemma~\ref{lem:transfer}, and (SA3) for $\sbar\le a/16$ and the ring
-construction whose properties we recall next.
-We use three facts. (a) $\omega_{\ge l}(t)$ is real and $3$-fold rotationally symmetric
-(Lemma~\ref{lem:regions-basic}(3)). (b) $\int w_l(t)=0$ if $S_l(t)\subset N_l$
-(Lemma~\ref{lem:regions-basic}(4)). (c) For real radial $g\in L^1(\R^2)$
-supported in $\overline B_\rho$, the radial Biot--Savart formula of
-Lemma~I.\ref{I-lem:radial-stationary} gives
-$\KBS\ast g(x)=\frac1{2\pi}(\int g)\frac{x^\perp}{|x|^2}$ for $|x|\ge2\rho$.
-For bounded $g$ this follows directly, with pointwise equality outside its
-support by continuity. Truncation of $g$ and dominated convergence give the
-general $L^1$ case, since the kernel is bounded on the support for these $x$.
+For the seed with $t=0$, the conclusion is the assumed improved bounds.
 
-(1) We split the vorticity inside ring $i$ into ring $i+1$ and the region inside
-ring $i+1$; in physical units,
-$\omega_{\ge i+1}(t)=A_{i+1}\Phi(\cdot/r_{i+1})+A_{i+1}w_{i+1}(t,\cdot/r_{i+1})+\omega_{\ge i+2}(t)$.
-The first term is radial and supported in $\overline B_{r_{i+1}}$, and
-$N'_i\subset\{|x|\ge\frac a4r_i\}$ with $2r_{i+1}=2s_ir_i\le\frac a8r_i$, so by (c)
-its velocity on $N'_i$ is a monopole; the second term has zero integral by (b).
-Hence on $N'_i$ the velocity of $\omega_{\ge i+1}(t)$ minus its monopole is the
-velocity of the second term, bounded in $C^{M_h}(N'_i)$, in ring-$i$ units, by
-$\Cvel \varepsilon_i\|w_{i+1}(t)\|_{H^{s'}}$ (Lemma~\ref{lem:transfer}(2)), plus
-$E_g$, the velocity of $g=\omega_{\ge i+2}(t)$ minus its monopole. The function
-$g$ is $3$-fold rotationally symmetric by (a) and supported in $D_{i+2}(t)\subset B_{ar_{i+1}/8}$,
-as $h_{i+1}$ is defined at $t$; so by Lemma~\ref{lem:transfer}(1), $E_g$ is
-bounded in $C^{M_h}(N'_i)$, in ring-$i$ units, by $\Cvel \varepsilon_i$ times
-$\sup|E_g|$ on $\{|x|=ar_{i+1}/4\}$ in ring-$(i+1)$ units. In these units $E_g$ is
-$\hin_{i+1}$ (its monopole is $G_{i+1}x^\perp/|x|^2$ by the definition of
-$G_{i+1}$ and Lemma~\ref{lem:inner-circ}), and $\{|y|=a/4\}\subset N'$, so the
-supremum is at most $\etin_{i+1}(t)$.
+\phantomsection\label{par:relay-geometry}
+\emph{Confinement.}
+At an endpoint $b\le t$ where the lower amplitude bounds are known for
+activations strictly before $b$, Lemma~\ref{lem:geometry} gives the support
+conditions and (Loc) on $[0,b]$. For $k<n$, the confinement estimate starts
+at $T_{k+1}$ with the material inside ring $k$ in
+$\overline B_{2r_{k+1}}$. The support of ring $k+1$ is in $\Nflat_{k+1}$ at
+saturation, and the material inside it lies in $B_{ar_{k+1}/8}$.
+Proposition~\ref{prop:confine} then bounds the radius of $D_{k+1}(v)$ by
+\[
+\big(2+2\Cstar A_{k+1}(v-T_{k+1})\big)r_{k+1}.
+\]
+On the pinning interval, $A_{k+1}(v-T_{k+1})\le\Tpin$. During the subsequent
+active interval, it is at most $\Tpin+\mu\hat T_k$, where the lower amplitude
+bound at activation gives
+\[
+\hat T_k=\frac{\log(\delta_0/\ksh_k)}{\sigma_k}
+\le\frac{\log_+(\delta_0/\Klo)+5\log(1/s_k)}{\sigma'}.
+\]
+Thus (B5) keeps this radius below $ar_k/8$ even across the active interval.
+The moment estimate in Lemma~\ref{lem:geometry}(a) has the corresponding
+cubic bound in $1+A_{k+1}(v-T_{k+1})$. For $k=n$ the inner region is empty.
 
-(2) By definition, $\hout_k$ is the velocity of
-$\sum_{i<k}\omega^{(n)}(t)\mathbf 1_{S_i(t)}$ on $N'_k$, in ring-$k$ units. By the
-last assertion of Lemma~\ref{lem:transfer}(4), this is the sum over $i<k$ of the
-fields induced on $N'_k$ by $A_iw_i(t,\cdot/r_i)$, and by its first assertion each
-of them is bounded in $C^{M_h}(N'_k)$, in ring-$k$ units, by
-$\Cvel b_{i,k}\|w_i(t)\|_{H^{s'}}$. Sum over $i<k$; for $k=1$ the sum is empty.
-\end{proof}
-
-In Lemma~\ref{lem:O}, $\bar t$ is a terminal physical time no later than
-the activation time $\tsh_j$ of ring $j$; its hypotheses hold throughout
-$[0,\bar t]$.
-
-Under (SA) and (Det), for levels $i<j$ the mode of ring $j$ grows faster in physical time.
-This lets its Duhamel bound control those of the outer rings. On an interval
-$[0,\bar t]$ on which the fields are defined, the comparison uses just two
-integral estimates.
-
-Recall that
-$\eta_i=\etin_i+\etout_i\ge0$ is the sum of the inner and outer field norms.
-Thus the Duhamel bound in physical time is
-\begin{equation}
-\label{eq:O-duh}
-\maj_i(t)=A_i\int_0^t e^{A_i\sigma_i(t-v)}\eta_i(v)\dd v.
-\end{equation}
-For $i<j$, first factor out $A_j$ and use $A_i/A_j=\mu^{i-j}$.
-Lemma~\ref{lem:detuning} then gives
+\phantomsection\label{par:relay-quiet}
+\emph{Quiet-ring comparison.}
+Suppose geometry is available on $[0,b]$ with $b>0$ and ring $j<n$ is quiet
+through $b$ with an assigned activation time. Ring $i<j$ grows more slowly:
+Lemma~\ref{lem:detuning} gives
 \[
 A_j\sigma_j-A_i\sigma_i
-=A_j\big(\sigma_j-\mu^{i-j}\sigma_i\big)
-\ge\frac{A_j\sigb(\mu-1)}{2\mu}>0.
+=A_j(\sigma_j-\mu^{i-j}\sigma_i)
+\ge\frac{A_j\sigb(\mu-1)}{2\mu}.
 \]
-We first record a generic integral estimate. Let $F$ be any nonnegative
-integrable function on $[0,\bar t]$ satisfying
-$e^{A_j\sigma_j(t-v)}F(v)\le F(t)$ for $0\le v\le t\le\bar t$.
-Then
+In the Duhamel bound for ring $i$, this gap allows us to use the endpoint
+value of $\maj_j$. By (M1) of Lemma~\ref{lem:majorant},
+\[
+A_i\int_0^b e^{A_i\sigma_i(b-v)}\maj_j(v)\dd v
+\le \frac{A_i\maj_j(b)}{A_j\sigma_j-A_i\sigma_i}
+\le\frac{2\mu}{\sigb(\mu-1)}\maj_j(b).
+\]
+Together with the radius gain in Lemma~\ref{lem:transfer-step}, this gives
+the product comparison of Lemma~\ref{lem:O}. Its hypotheses hold by
+geometry, (BA2), (B7) and (B9), the last giving
+$2\Abar\varepsilon_j\le\majst$. That lemma gives
+$\etout_j\le\theta_j\maj_j$ and applies Theorem~\ref{thm:quiet} to every
+$i\le j$, using the local time $A_iv$. Consequently, for $v\in[0,b]$,
 \begin{equation}
-\label{eq:O-fast}
-\begin{aligned}
-A_i\int_0^t e^{A_i\sigma_i(t-v)}F(v)\dd v
-&\le A_iF(t)\int_0^t e^{-(A_j\sigma_j-A_i\sigma_i)(t-v)}\dd v\\
-&\le\frac{A_i}{A_j\sigma_j-A_i\sigma_i}F(t)\le\frac{2\mu}{\sigb(\mu-1)}F(t),
-\end{aligned}
+\label{eq:boot-quiet}
+S_i(v)\subset\NNm_i,\qquad \|w_i(v)\|_{H^{s_h}}\le C_Q\maj_i(v).
 \end{equation}
-since $A_i\le A_j$. Separately, $\etin_j\le\eta_j$ by the definition of
-$\eta_j$, and $A_i\sigma_i\le A_j\sigma_j$ by the gap above.
-Using these inequalities and then $A_i\le A_j$ gives
+Appendix~\ref{sec:bootstrap-quiet-control} gives the precise rescaling and
+checks for this comparison. This argument also gives the quiet estimates
+through earlier assigned activation times, by taking their times as the
+endpoint $b$.
+
+\phantomsection\label{par:relay-handoff}
+\emph{Hand-off.}
+Let $k<n$ and first take geometry and the quiet comparison with $j=k$
+through $\min(t,\tsh_k)$. All the earlier amplitudes needed for geometry
+are in the hypotheses. If $\tsh_k\le t$, the active estimates of ring $k+1$
+give its outgoing moment
+\[
+\qs=2\pi\pout_*(G_{k+1})c_{k+1}(T_{k+1})e^{\lambda_{k+1}\hat T_{k+1}}.
+\]
+Lemma~\ref{lem:kicktrue} compares the true incoming field to this moment.
+In particular $|\qs|\ge(15/16)2\pi|\pout_*(G_{k+1})|\delta_0$, and
+Equation~\eqref{eq:boot-kick} bounds the resulting kick. To apply the lemma,
+we have the moment bound during pinning and the completed active estimates
+of ring $k+1$. Its earlier quiet estimates follow from the comparison
+above, and its confinement through saturation follows from
+Lemma~\ref{lem:geometry}(a). For the seed there is no earlier quiet
+interval. The remaining smallness conditions are checked in
+Appendix~\ref{sec:bootstrap-handoff-checks}.
+
+The factor $|\beta_k|=|\beta(G_k)|s_k^5/(2\pi)$ in the kick turns the outgoing
+moment into an incoming coefficient of size $s_k^5$. More precisely,
+Lemma~I.\ref{I-lem:uniform} and Equation~\eqref{eq:boot-kick} give
+\[
+|\cin_k|=e^{x_k\Tpin}|\Ain(\Tpin)|
+\ge \frac{3c_N}{32\mu}\,
+\frac{\varepsilon_k\delta_0 e^{x_k\Tpin}}{|\lamref|(\mu-1)}.
+\]
+Lemmas~\ref{lem:quiet-time} and~\ref{lem:theta-quiet} give the
+bound on accumulated feedback~\eqref{eq:boot-theta} using only amplitudes at levels
+$i>k$. With this bound, Proposition~\ref{prop:relay} bounds the entire
+response at $\tsh_k$. The seed-size condition ($\kappa$7) bounds the remainder
+$\Xi_{k+1}$ by $\delta_0/(\sigb(\mu-1))$. The resulting inequality is
+\[
+\maj_k(\tsh_k)\le 2\Cvel\varepsilon_k e^{x_k\Tpin}
+\left[\frac{(4C_2+1)\delta_0}{\sigb(\mu-1)}+C_D(\Tpin)\right]
+\le\Abar\varepsilon_k.
+\]
+The choice of $K_1$ in Equation~\eqref{eq:K1} therefore gives
+$4\maj_k(\tsh_k)\le K_1|\cin_k|$. With these bounds,
+Lemma~\ref{lem:handoff} compares the actual coefficient $\ksh_k$
+with $|\cin_k|$ within factors $1/2$ and $3/2$. It also gives the stated
+support, initial norm and Duhamel bound. The upper and lower bounds on
+$\ksh_k$ are the two sides of the kick estimate with these factors included,
+as checked in Appendix~\ref{sec:bootstrap-handoff-checks}.
+
+By (B6) and ($\kappa$1), $0<\ksh_k\le\Kup\sbar^5\le\kseed<\delta_0$.
+Together with $S_k(\tsh_k)\subset\NNm_k$, this verifies the next clause of
+the clock recursion. The active size bound at that time follows directly:
 \begin{equation}
-\label{eq:O-same}
-\begin{aligned}
-A_i\int_0^t e^{A_i\sigma_i(t-v)}\etin_j(v)\dd v
-&\le A_i\int_0^t e^{A_j\sigma_j(t-v)}\eta_j(v)\dd v\\
-&\le A_j\int_0^t e^{A_j\sigma_j(t-v)}\eta_j(v)\dd v=\maj_j(t).
-\end{aligned}
+\label{eq:boot-switch}
+\|w_k(\tsh_k)\|_{H^s}\le K_1C_Q\ksh_k\le C_0\ksh_k
+<C_2\hat a_k(\tsh_k)(1+\rhohat_k(\tsh_k)).
 \end{equation}
 
-Iterating Lemma~\ref{lem:transfer-step} now gains a small radius factor at
-each outward passage. The geometric product estimates in
-Lemma~\ref{lem:O}, proved in Section~\ref{sec:proof-O}, show that all the
-outer quiet rings are controlled by the innermost one under consideration.
-In particular their combined feedback satisfies
+\phantomsection\label{par:relay-active}
+\emph{Active growth and the spent inner material.}
+Consider an active interval of positive length. For $k<n$ this means
+$\tsh_k<t$ after the hand-off above. For the seed it means $t>0$. Put
+$b=\min(t,T_k)$ and apply geometry through $b$, using the new lower
+amplitude bound if $k<n$. The local active time
+is $u=A_k(v-\tsh_k)$. In the field of the spent inner material, the
+monopole is included in $L(G_k)$. By Lemma~\ref{lem:inner-field}, the
+remaining velocity is bounded by $\Cvel\mu s_k^2$ times the cube of the
+confinement radius in ring-$k$ units. This gives the polynomial field
+bound
 \[
-\etout_j(t)\le\theta_j\maj_j(t).
+\|\hin_k(v)\|_{C^{M_h}(N')}
+\le \Cvel\mu s_k^5\big(2+2\Cstar(\Tpin+\mu u)\big)^3
+\le C_0\ksh_k\jap{u}^3
 \]
-Here $\theta_j$ is the coefficient specified in that lemma; it tends to
-zero with the radius ratio $s_{j-1}$ and is zero for $j=1$.
-The lemma also verifies the hypotheses of Theorem~\ref{thm:quiet} for
-these rings. The product weights needed to make this comparison uniform
-in the number of rings are kept in its proof.
+by (P4) and the lower amplitude bound, as in Equation~\eqref{eq:boot-inner}.
+For $k=n$, $\hin_n=0$.
 
-The next proposition estimates the Duhamel bound of a quiet ring $j$ as the
-next inner ring $j+1$ becomes active and later saturates.
-Its hypothesis (H1) is the localization hypothesis
-(Loc) of Definition~\ref{def:loc}. While ring $j+1$ is quiet, (o) and (i) bound
-$\maj^{\mathrm{in}}_j$ and $\maj_j$ by a multiple of $\maj_{j+1}$. After ring $j+1$ has become active, (ii) and (iii)
-bound $\maj_j$ up to the activation time $\tsh_j$ of ring $j$; in
-Equation~\eqref{eq:relay}, the first two terms in the bracket come from the
-envelope $\hat a_{j+1}$ of the active ring $j+1$ and from its debris after
-saturation. The remainder $\Xi_{j+1}$ accounts for the driving accumulated
-before ring $j+1$ becomes active, on $[0,\tsh_{j+1}]$, together with the
-transient and polynomial inner-field terms in its active estimate on
-$[\tsh_{j+1},T_{j+1}]$. Its subscript refers to the inner ring whose
-evolution supplies these contributions.
-
-\begin{proposition}
-\label{prop:relay}
-Assume (SA) and (Det), and let $C_0\ge1$ and $K_1>0$.
-There is a constant $\Crelay=\Crelay(C_0,K_1)$ for the estimates below. It
-depends only on $C_0$, $K_1$, $\sigma$, $\sigb$ and the constants of (SA1)--(SA2), and not
-on $\mu$, $\delta_0$,
-$\Tpin$, $\sbar$, $\kseed$, $n$ or the level. Let $1\le j<n$, assume that the
-clock is defined up to level $j+1$, let $\bar t\in[0,\tsh_j]$, and assume:
-\begin{description}[font=\normalfont]
-\item[\textup{(H1)}] \textup{(Loc)} holds at every $t\in[0,\bar t]$;
-\item[\textup{(H2)}] $\etout_j\le\theta_j\maj_j$ on $[0,\bar t]$, with $\theta_j$ of
-  Lemma~\ref{lem:O}, and $\theta_jA_j\bar t\le\frac12$;
-\item[\textup{(H3)}] if $j+1<n$, the conclusions of Theorem~\ref{thm:quiet},
-  applied by the rescaling above, hold for ring $j+1$ through physical time
-  $\min(\bar t,\tsh_{j+1})$;
-\item[\textup{(H4)}] if $\bar t>\tsh_{j+1}$, then
-  $\maj_{j+1}(\tsh_{j+1})\le K_1\ksh_{j+1}$, and for
-  $t\in[\tsh_{j+1},\min(\bar t,T_{j+1})]$:
-  $D_{j+2}(t)\subset B_{ar_{j+1}/8}$,
-  $\|w_{j+1}(t)\|_{H^s}\le2C_2\hat a_{j+1}(t)(1+\rhohat_{j+1}(t))$ and
-  $\|\hin_{j+1}(t)\|_{C^{M_h}(N')}\le C_0\ksh_{j+1}\jap{A_{j+1}(t-\tsh_{j+1})}^3$.
-\end{description}
-Recall that the Duhamel bound of the inner field, with its monopole removed, is
+For $k>1$, apply the quiet comparison with $j=k-1$ through $b$. The
+feedback from these quiet rings is controlled by Lemma~\ref{lem:Oprime},
+using (BA3) for $\tsh_k<v\le b$ and the initial size bound at $\tsh_k$. The outward transfer to ring $k-1$ gains the factor
+$\varepsilon_{k-1}$. The return field carries the factor
+$\mu^{-1}s_{k-1}$. Their product is $s_{k-1}^6$, giving
 \[
-\maj^{\mathrm{in}}_j(t)=A_j\int_0^t
-e^{A_j\sigma_j(t-v)}\etin_j(v)\dd v,
-\qquad \etin_j=\|\hin_j\|_{C^{M_h}(N')}.
+\|\hout_k(v)\|_{C^{M_h}(N')}
+\le \Crelay\frac{s_{k-1}^6}{\sigb(\mu-1)}\hat a_k(v)
+=\eta_{b,k}\hat a_k(v).
 \]
-Then $\maj_j\le2\maj^{\mathrm{in}}_j$ on $[0,\bar t]$, and:
-\begin{enumerate}[label=\textup{(\roman*)}]
-\item[\textup{(o)}] if $j+1<n$, then for every $t\in[0,\min(\bar t,\tsh_{j+1})]$,
-  \[
-  \maj^{\mathrm{in}}_j(t)\le \Cvel \Big(\frac{2C_Q}{\sigb(\mu-1)}+1\Big)\varepsilon_j\,\maj_{j+1}(t);
-  \]
-\item if $\bar t\le\tsh_{j+1}$, then
-  $\maj_j(\bar t)\le2\Cvel \big(\frac{2C_Q}{\sigb(\mu-1)}+1\big)\varepsilon_j\,\maj_{j+1}(\bar t)$;
-\item if $\bar t=\tsh_j$, then
-  \begin{equation}
-  \label{eq:relay}
-  \maj_j(\tsh_j)\le2\Cvel \varepsilon_je^{x_j\Tpin}\Big[\frac{4C_2\delta_0}{\sigb(\mu-1)}+C_D(\Tpin)+\Xi_{j+1}\Big],
-  \end{equation}
-  where $C_D(T)=(2+2\Cstar T)^3T$,
-  $\gamma_j=\max(\sigma_j,\mu\sigma')/(\mu\sigma_{j+1})$, and
-  \[
-  \Xi_{j+1}=\Crelay\Big(1+\frac1{\sigb(\mu-1)}\Big)\delta_0\Big(\frac{\ksh_{j+1}}{\delta_0}\Big)^{1-\gamma_j}\Big\langle\log\frac{\delta_0}{\ksh_{j+1}}\Big\rangle^4;
-  \]
-\item if $\tsh_{j+1}<\bar t<\tsh_j$, then $\maj_j(\bar t)$ is at most the right side
-  of Equation~\eqref{eq:relay}.
-\end{enumerate}
-All times used are at most $\bar t$ or are determined by $\omega^{(n)}$ on
-$[0,\bar t]$.
-\end{proposition}
-\begin{proof}
-The outer rings contribute only a small feedback. Indeed, (H2) and (M1) of
-Lemma~\ref{lem:majorant}, in physical time, give for $t\le\bar t$
+For $k=1$ there is no outer field.
+
+We now check that $c_k$ remains close to its initial value. For $k<n$,
+the inner contribution to Equation~\eqref{eq:running-k} begins at kick
+time $\Tpin$. By the moment bound and $x_k\ge\sigma/4$, its integral is
+bounded by $e^{x_k\Tpin}|\beta_k|\Cmom$ times
 \[
-\maj_j(t)\le\maj^{\mathrm{in}}_j(t)
- +\theta_jA_j\int_0^t e^{A_j\sigma_j(t-v)}\maj_j(v)\dd v
-\le\maj^{\mathrm{in}}_j(t)+\tfrac12\maj_j(t).
+\int_{\Tpin}^{\infty} e^{-x_k\tau}(1+\tau)^3\dd\tau
+\le I_3(\sigma/4)(1+\Tpin)^3e^{-\sigma\Tpin/4}.
 \]
-Thus $\maj_j\le2\maj^{\mathrm{in}}_j$.
+The kick lower bound and (P2) make
+$e^{x_k\Tpin}|\beta_k|\Cmom I_3(\sigma/4)\le |\cin_k|\le2\ksh_k$.
+Thus the inner contribution is at most
+$2(1+\Tpin)^3e^{-\sigma\Tpin/4}\ksh_k\le\ksh_k/32$ by (P3). The outer contribution is bounded by
+$\Cls\eta_{b,k}\hat T_k\ksh_k\le\ksh_k/32$ by (B8).
+These are the bounds in Lemma~\ref{lem:drift}, with the inner term omitted
+for the seed. They give (Coef) and, at saturation, the stated interval
+for $|c_k(T_k)|e^{\sigma_k\hat T_k}$. The checks for these applications and
+for the rescaling are in Appendix~\ref{sec:bootstrap-active-checks}.
 
-It remains to estimate the field arriving from ring $j+1$. Before
-$\tsh_{j+1}$, Lemma~\ref{lem:transfer-step}(1) and Theorem~\ref{thm:quiet}
-bound it by $\Cvel\varepsilon_j(C_Q\maj_{j+1}+\eta_{j+1})$.
-The growth gap of Lemma~\ref{lem:detuning} makes the Duhamel integral of
-the first term at most $2\maj_{j+1}/(\sigb(\mu-1))$; changing from
-ring-$j$ time to ring-$(j+1)$ time bounds the integral of the second by
-$\maj_{j+1}$. These are (o) and (i).
+Theorem~\ref{thm:active} and Corollary~\ref{cor:active-moment} now apply
+through $b$. In particular, for $\tsh_k\le v\le b$,
+\[
+S_k(v)\subset\NN_k,\qquad
+\|w_k(v)\|_{H^s}\le C_2\hat a_k(v)(1+\rhohat_k(v)).
+\]
+If the interval consists of the activation time alone, these two bounds
+come from the hand-off or the seed. No positive-length active estimate is
+needed in that case.
 
-After $\tsh_{j+1}$, split the physical-time integral at
-$\tsh_{j+1}$ and $T_{j+1}$. During $[\tsh_{j+1},T_{j+1}]$, (H4) separates
-the growing mode from its transient and the polynomial inner field.
-The growing mode contributes the term $4C_2\delta_0/(\sigb(\mu-1))$ in
-\eqref{eq:relay}, again by the growth gap. During
-$[T_{j+1},\tsh_j]$, (Loc) and Lemma~\ref{lem:transfer}(3) bound the debris
-contribution by $C_D(\Tpin)$. The earlier history and the two remaining
-active terms contribute at most $\Xi_{j+1}$, after the common factor
-$\Cvel\varepsilon_je^{x_j\Tpin}$ is removed.
-The integrations establishing these bounds, including their uniformity in
-$\mu$ and in the level, are given in Section~\ref{sec:proof-relay}.
-Multiplying by $2$ gives (ii) and (iii).
-All integration intervals end at the current time; the clock times used
-when an interval is split have already been determined by then.
+\phantomsection\label{par:relay-quiet-size}
+\emph{Quiet sizes.}
+It remains to improve (BA2) on the intervals just reached. At a positive
+time $v$ on the pinning interval it suffices to bound $\maj_j(v)$ for $j=k$.
+On the active interval after activation take $j=k-1$ if $k>1$. This ring
+has an assigned activation time and is quiet through $v$. The geometric
+conditions and the quiet comparison hold through $v$. The active estimates
+of ring $j+1$ are available through $\min(v,T_{j+1})$, and its activation
+Duhamel bound comes from the seed or its hand-off. The bound on accumulated feedback
+again follows from Lemmas~\ref{lem:quiet-time} and~\ref{lem:theta-quiet}.
+
+In Proposition~\ref{prop:relay} the total Duhamel bound satisfies
+$\maj_j(v)\le\maj_j^{\mathrm{in}}(v)+\theta_j A_jv\maj_j(v)$ by (M1).
+This bound makes the last term at most half the left side. The resulting
+bound is $\maj_j(v)\le\Abar\varepsilon_j$, by the same relay estimate
+and ($\kappa$7) used at hand-off. Appendix~\ref{sec:bootstrap-quiet-checks}
+verifies this estimate at each endpoint. For every $i<j$ the product
+comparison gives
+\[
+\maj_i(v)\le\tfrac34\Abar\varepsilon_i
+\prod_{p=i+1}^{j}(K_O\varepsilon_p)
+\le\tfrac38\Abar\varepsilon_i,
+\]
+since each factor is at most $1/2$ by (B7). This includes the outer rings
+whose activation times have yet to be assigned. When $k=1$ is active
+there are no quiet rings after activation.
+
+The quiet support bound \eqref{eq:boot-quiet}, the active support bound and
+the improved sizes give all the improved bounds on the new interval.
+The improved bounds at the initial time of the seed were assumed.
 \end{proof}
-
-While ring $k$ is active, the quiet rings outside it are driven by its growing
-perturbation and act back on it through the outer field $\hout_k$. The next lemma
-bounds this field by a small multiple $\eta_{b,k}$ of the envelope $\hat a_k$; this
-is the form of the second part $h_2$ of the field in hypothesis (Field) of
-Theorem~\ref{thm:active}.
-
-\begin{lemma}
-\label{lem:Oprime}
-Assume (SA) and (Det), and let $C_0\ge1$ and $K_1>0$.
-After enlarging the common constant $\Crelay(C_0,K_1)$ of
-Proposition~\ref{prop:relay} if necessary, the estimate below holds. It
-depends only on $C_0$, $K_1$, $\sigma$, $\sigb$ and the constants of
-(SA1)--(SA2), and not on $\mu$,
-$\delta_0$, $\Tpin$, $\sbar$, $\kseed$, $n$ or the level. Let $1\le k\le n$, assume
-that the clock is defined up to level $k$, and let $t\in\Phase_k$ with $t>0$. Assume on
-$[0,t]$: \textup{(Loc)}; if $k\ge2$, the hypotheses and conclusions of
-Lemma~\ref{lem:O} for $j=k-1$ and $\bar t=t$ (ring $k-1$ is quiet on $[0,t]$,
-since $t\le T_k<\tsh_{k-1}$), and $\theta_{k-1}A_{k-1}t\le\frac12$; the active
-bound $\|w_k(t')\|_{H^s}\le2C_2\hat a_k(t')(1+\rhohat_k(t'))$ and the inner bound
-$\|\hin_k(t')\|_{C^{M_h}(N')}\le C_0\ksh_k\jap{A_k(t'-\tsh_k)}^3$ for
-$t'\in[\tsh_k,t]$; and, if $k<n$: the conclusions of
-Theorem~\ref{thm:quiet} for ring $k$, after rescaling, through physical time $\tsh_k$,
-$\maj_k(\tsh_k)\le K_1\ksh_k$, and $D_{k+1}(t')\subset B_{ar_k/8}$ for
-$t'\in[\tsh_k,t]$. Then for every $t'\in[\tsh_k,t]$,
-\begin{equation}
-\label{eq:etab}
-\|\hout_k(t')\|_{C^{M_h}(N')}\le\eta_{b,k}\,\hat a_k(t'),\qquad
-\eta_{b,k}=\Crelay\frac{s_{k-1}^6}{\sigb(\mu-1)}\le\eta_b=\Crelay\frac{\sbar^6}{\sigb(\mu-1)}
-\end{equation}
-for $k\ge2$, and $\hout_1=0$.
-\end{lemma}
-\begin{proof}
-For $k=1$ there are no outer rings. Let $k\ge2$.
-Lemma~\ref{lem:transfer-step}(2), Theorem~\ref{thm:quiet} and
-Lemma~\ref{lem:O} reduce the sum of all outer fields to the nearest quiet ring:
-\[
-\etout_k(t')\le2\Cvel C_Q\,b_{k-1,k}\maj_{k-1}(t').
-\]
-In the Duhamel bound for this ring, the mode of ring $k$ grows faster than
-the kernel, by Lemma~\ref{lem:detuning}. Its transient and polynomial
-inner field have bounded weighted integrals. Applying
-Proposition~\ref{prop:relay} and integrating these three contributions
-therefore gives
-\[
-\maj_{k-1}(t')\le
-\frac{\Crelay}{2\Cvel C_Q}
-\frac{\varepsilon_{k-1}\hat a_k(t')}{\sigb(\mu-1)}.
-\]
-Section~\ref{sec:proof-Oprime} checks the hypotheses and performs the
-integrations; the same constant $\Crelay(C_0,K_1)$ works at every level
-and is independent of $\mu$.
-Multiplying the two bounds and using
-$b_{k-1,k}\varepsilon_{k-1}=\mu^{-1}s_{k-1}\cdot\mu s_{k-1}^5=s_{k-1}^6$
-proves \eqref{eq:etab}. The bound by $\eta_b$ follows from $s_{k-1}\le\sbar$.
-For the seeded ring, the contribution before activation is zero because
-$\tsh_n=0$.
-\end{proof}
-
-\subsection{The Active Ring and the Hand-Off}
-
-This subsection provides two of the hypotheses of Theorem~\ref{thm:active} for an
-active ring $k$: hypothesis (Coef) on its running coefficient
-(Lemma~\ref{lem:drift}), and, for $k<n$, the bounds at the activation time
-$\tsh_k$ that give hypothesis (Init) (Lemma~\ref{lem:handoff}).
-
-When we say that the conclusions of Theorem~\ref{thm:active}, or of
-Corollary~\ref{cor:active-moment}, hold for ring $k$ on $\Phase_k$, we apply that
-result with $G=G_k$ and $\kappa=\ksh_k$ at time origin $\tsh_k$. More explicitly,
-with $u=A_k(t-\tsh_k)$ and $t(u)=\tsh_k+u/A_k$, its functions are
-$w(u)=w_k(t(u))$, $h(u)=h_k(t(u))$ and $c(u)=c_k(t(u))$.
-The spatial decomposition is into the vorticity on $S_k$, on $D_{k+1}$ and on
-$S_1\cup\dots\cup S_{k-1}$.
-
-By Equation~\eqref{eq:running-k}, the running coefficient $c_k(t)$ moves away
-from $c_k(\tsh_k)$ through the field $h_k=\hin_k+\hout_k$. For $k<n$, the
-inner contribution after activation corresponds to kick coordinates
-$A_{k+1}(t-T_{k+1})\ge\Tpin$, and is small when $\rT(\Tpin)$ is small.
-The outer-field hypothesis below follows from Lemma~\ref{lem:Oprime}.
-In (ii), $q'$ stands for the amplitude $\qs$ of Lemma~\ref{lem:kicktrue}.
-
-\begin{lemma}
-\label{lem:drift}
-Assume (SA) and (Det). Let $1\le k\le n$, assume that the clock is defined up to
-level $k$, and let $\bar t\in[\tsh_k,T_k]$ and $\eta\ge0$. Assume:
-\begin{enumerate}[label=\textup{(\roman*)}]
-\item if $k<n$: $|q_{k+1}(t)|\le\Cmom\big(1+A_{k+1}(t-T_{k+1})\big)^3$
-  for $t\in[\tsh_k,\bar t]$, with $\Cmom$ of Proposition~\ref{prop:confine};
-\item if $k<n$: the hypotheses of Lemma~\ref{lem:coupling}\textup{(2)} hold,
-  $\ksh_k\ge\frac12e^{x_k\Tpin}|\Ain(\Tpin)|$, and there is
-  $q'\in\C\setminus\{0\}$ with
-  $|\Ain(\Tpin)|\ge|\beta_k||q'|/(10|\lamref|(\mu-1))$ and
-  $\mu-1\le|q'|/(10|\lamref|\Cmom\Ip{3}{\sigma/4})$;
-\item $\|\hout_k(t)\|_{C^0(N')}\le\eta\,\hat a_k(t)$ for $t\in[\tsh_k,\bar t]$;
-\item for every $t\in[\tsh_k,\bar t]$, $D_{k+1}(t)\subset B_{ar_k/8}$
-  and the rings $i<k$ lie outside $B_{6r_k}$, so that $h_k$ and $c_k$ are
-  defined there.
-\end{enumerate}
-Then for $\tsh_k\le t\le t'\le\bar t$,
-\begin{equation}
-\label{eq:drift-interval}
-|c_k(t')-c_k(t)|\le2\rT\big(\Tpin+A_{k+1}(t-\tsh_k)\big)\,\ksh_k
-+\Cls\,\eta\,A_k(t'-t)\,\ksh_k,
-\end{equation}
-without the first term when $k=n$. If $\rT(\Tpin)\le\frac1{64}$ and
-$\Cls\eta\hat T_k\le\frac1{32}$, then hypothesis \textup{(Coef)} of
-Theorem~\ref{thm:active} holds on $[0,A_k(\bar t-\tsh_k)]$ for the pulled-back
-functions with $G=G_k$ and $\kappa=\ksh_k$. If $\bar t=T_k$, then
-$|c_k(T_k)|e^{\sigma_k\hat T_k}\in[\frac{15}{16}\delta_0,\frac{17}{16}\delta_0]$.
-\end{lemma}
-
-\begin{proof}
-Write $\kappa=\ksh_k$, $\lambda=\lambda_k$, $t(v)=\tsh_k+v/A_k$,
-$u=A_k(t-\tsh_k)$ and $u'=A_k(t'-\tsh_k)$. By (iv), the fields are defined
-on the required interval. Changing variables in Equation~\eqref{eq:running-k}
-shows that $c_k(t')-c_k(t)$ is the sum of
-\[
-\int_u^{u'}e^{-\lambda v}\ellst(G_k)
-\big(-h^\bullet_k(t(v))\cdot\nabla\Phi\big)\dd v,
-\qquad \bullet\in\{\mathrm{in},\mathrm{out}\}.
-\]
-By Lemma~I.\ref{I-lem:uniform} and (iii),
-$|\ellst(G_k)(-\hout_k(t(v))\cdot\nabla\Phi)|
-\le\Cls\eta\kappa e^{\sigma_kv}$.
-The outer integral is therefore at most
-$\Cls\eta\kappa(u'-u)=\Cls\eta\kappa A_k(t'-t)$.
-
-If $k=n$, then $D_{n+1}=\emptyset$ and $G_n=0$, so $\hin_n=0$.
-For $k<n$, Lemma~\ref{lem:coupling}\textup{(1)} gives
-$\ellst(G_k)(-\hin_k(t(v))\cdot\nabla\Phi)=\mu\beta_kq_{k+1}(t(v))$.
-With $\zeta_0=\lambda/\mu$ and $\tau_a=\Tpin+\mu u$, the substitution
-$\tauK=\Tpin+\mu v=A_{k+1}(t(v)-T_{k+1})$ gives the inner integral as
-\[
-e^{\zeta_0\Tpin}\beta_k\int_{\tau_a}^{\Tpin+\mu u'}
-e^{-\zeta_0\tauK}q_{k+1}\big(T_{k+1}+\tauK/A_{k+1}\big)\dd\tauK.
-\]
-By (i), its modulus is at most
-\begin{align*}
-e^{x_k\Tpin}|\beta_k|\Cmom\int_{\tau_a}^\infty e^{-x_k\tauK}(1+\tauK)^3\dd\tauK
-&\le e^{x_k\Tpin}|\beta_k|\Cmom(1+\tau_a)^3e^{-x_k\tau_a}\Ip{3}{x_k}\\
-&\le e^{x_k\Tpin}|\beta_k|\Cmom\Ip{3}{\sigma/4}\,\rT(\tau_a).
-\end{align*}
-Here the first inequality uses $1+\tau_a+y\le(1+\tau_a)(1+y)$, and the second
-uses $x_k\ge\sigma/4$ and the monotonicity of $I_3$. By (ii),
-\[
-|\beta_k|\Cmom\Ip{3}{\sigma/4}\le\frac{|\beta_k||q'|}{10|\lamref|(\mu-1)}
-\le|\Ain(\Tpin)|\le2\kappa e^{-x_k\Tpin}.
-\]
-The inner integral is at most $2\kappa\rT(\tau_a)$, proving
-Equation~\eqref{eq:drift-interval}.
-
-Apply this bound to the pair $(\tsh_k,t)$, with $t\le\bar t\le T_k$.
-The two smallness conditions give
-$|c_k(t)-c_k(\tsh_k)|\le(2/64+1/32)\kappa=\kappa/16$.
-Since $|c_k(\tsh_k)|=\kappa$, we obtain $|c_k(t)|\le17\kappa/16\le2\kappa$,
-which gives (Coef) for $u\mapsto c_k(t(u))$.
-Finally, at $t=T_k$ this gives
-$|c_k(T_k)|\in[15\kappa/16,17\kappa/16]$, and
-$\kappa e^{\sigma_k\hat T_k}=\delta_0$ by Definition~\ref{def:clock}.
-\end{proof}
-
-At the activation time $\tsh_k$ of ring $k<n$, its unstable coefficient has
-modulus $\ksh_k$ (Definition~\ref{def:clock}). The next lemma compares $\ksh_k$
-with the modulus of the coefficient $\cin_k$ produced by the kick from the region
-inside ring $k$ (Lemma~\ref{lem:coupling}\textup{(2)}), and bounds the perturbation
-of ring $k$ at $\tsh_k$ by $\ksh_k$.
-
-\begin{lemma}
-\label{lem:handoff}
-Assume (SA) and (Det), let $K_1>0$, let $1\le k<n$, and assume that the clock is
-defined up to level $k+1$. Assume:
-\begin{enumerate}[label=\textup{(\roman*)}]
-\item for every $t\in[0,\tsh_k]$, $D_{k+1}(t)\subset B_{ar_k/8}$ and the rings
-  $i<k$ lie outside $B_{6r_k}$, so that $\eta_k$ is defined on $[0,\tsh_k]$
-  (Definition~\ref{def:regions}); and the hypotheses of Theorem~\ref{thm:quiet}
-  hold for ring $k$ through physical time $\tsh_k$, using the pulled-back functions;
-\item for some $\theta_k\ge0$, $\etout_k\le\theta_k\maj_k$ on $[0,\tsh_k]$ and
-  $\Cls\theta_kA_k\tsh_kK_1\le\frac14$;
-\item $\maj_k(\tsh_k)\le\frac12K_1|\cin_k|$, with $\cin_k$ of Lemma~\ref{lem:coupling};
-\item $\|\ellst\|C_QK_1\maj_k(\tsh_k)\le\frac12$.
-\end{enumerate}
-Then, in ring-$k$ units,
-\begin{equation}
-\label{eq:handoff}
-\begin{gathered}
-\tfrac12|\cin_k|\le\ksh_k\le\tfrac32|\cin_k|,\qquad \maj_k(\tsh_k)\le K_1\ksh_k,\\
-\|w_k(\tsh_k)\|_{H^{s_h}}\le K_1C_Q\ksh_k,\qquad \supp(\Phi+w_k(\tsh_k))\subset\NNm .
-\end{gathered}
-\end{equation}
-\end{lemma}
-
-\begin{proof}
-Write $\maj=\maj_k$ and $c=\cin_k$. By (i) and
-Theorem~\ref{thm:quiet}(a), for $t\in[0,\tsh_k]$, $D_{k+1}(t)\subset B_{ar_k/8}$,
-the rings $i<k$ lie outside $B_{6r_k}$ and $S_k(t)\subset N_k$. So the hypotheses
-of Lemma~\ref{lem:coupling}\textup{(2)} and \textup{(3)} hold, $c$ is defined,
-and by Lemma~\ref{lem:coupling}\textup{(3)} the physical-time linear response corresponding to
-Theorem~\ref{thm:quiet} for ring $k$ is
-$\wlin=\wlin_{\mathrm{in},k}+\wlin_{\mathrm{out},k}$; at physical time $\tsh_k$,
-\[
-\ellst(G_k)\big(w_k(\tsh_k)\big)=c+\ellst(G_k)\big(\wlin_{\mathrm{out},k}(\tsh_k)\big)+\ellst(G_k)\big(w_k(\tsh_k)-\wlin(\tsh_k)\big),
-\]
-and $\ksh_k$ is the modulus of the left side (Definition~\ref{def:clock}). As
-$G_k\in[0,\Gone]$ (Lemma~\ref{lem:inner-circ} and (SA3)), $\ellst(G_k)$ is bounded on $X^0$ (Lemma~I.\ref{I-lem:uniform}), so
-it commutes with the integral defining $\wlin_{\mathrm{out},k}$, and
-Proposition~I.\ref{I-prop:semigroup} gives
-$\ellst(G_k)(\wlin_{\mathrm{out},k}(\tsh_k))=A_k\int_0^{\tsh_k}e^{A_k\lambda_k(\tsh_k-v)}\ellst(G_k)(-\hout_k(v)\cdot\nabla\Phi)\dd v$.
-By Lemma~I.\ref{I-lem:uniform}, $\|\hout_k\|_{C^0(N')}\le\etout_k$, (ii), (M1) of
-Lemma~\ref{lem:majorant} and (iii),
-\[
-\big|\ellst(G_k)\big(\wlin_{\mathrm{out},k}(\tsh_k)\big)\big|
-\le\Cls\theta_kA_k\int_0^{\tsh_k}e^{A_k\sigma_k(\tsh_k-v)}\maj(v)\dd v
-\le\Cls\theta_kA_k\tsh_k\maj(\tsh_k)\le\frac1{4K_1}\cdot\frac{K_1|c|}2=\frac{|c|}8 .
-\]
-Since $\ellst(G_k)$ has norm at most $\|\ellst\|$ on $X^0$
-(Lemma~I.\ref{I-lem:uniform}) and $\|\cdot\|_{L^2}\le\|\cdot\|_{H^{s_h}}$,
-Theorem~\ref{thm:quiet}(b), (iv) and (iii) give
-\[
-\big|\ellst(G_k)\big(w_k(\tsh_k)-\wlin(\tsh_k)\big)\big|\le\|\ellst\|C_Q\maj(\tsh_k)^2
-\le\frac{\maj(\tsh_k)}{2K_1}\le\frac{|c|}4 .
-\]
-Hence $|\ksh_k-|c||\le\frac38|c|$, which gives the first claim. Then (iii) and
-$|c|\le2\ksh_k$ give $\maj(\tsh_k)\le K_1\ksh_k$, and
-Theorem~\ref{thm:quiet}(c) and (a) (the ring part is $\Phi+w_k(\tsh_k)$) give
-$\|w_k(\tsh_k)\|_{H^{s_h}}\le C_Q\maj(\tsh_k)\le K_1C_Q\ksh_k$ and
-$\supp(\Phi+w_k(\tsh_k))\subset\NNm$.
-\end{proof}
-
-Four constants will enter the bootstrap: $\Klo$ and $\Kup$ bound the
-coefficient with which a ring starts, $K_1$ compares its initial Duhamel
-bound with that coefficient, and $\Abar$ bounds the size of a quiet ring.
-Their choices, made before the seed and radius ratios are chosen, are
-specified in Definition~\ref{def:K1} in
-Section~\ref{sec:relay-constants}.
-
-\subsection{The Kick on the True Field}
-
-We apply the scalar kick estimate of Proposition~\ref{prop:kick} to the
-moment $q_{k+1}$ of the whole region inside ring $k$.
-
-The sets $S_1,\dots,S_n$ are pairwise disjoint
-(Lemma~\ref{lem:regions-basic}\textup{(1)}) and each $\flow_t$ is a bijection, so
-$D_j(t)$ is the disjoint union of $S_j(t)$ and $D_{j+1}(t)$ for $j\le n$, $t\ge0$.
-
-The quantitative comparison is Lemma~\ref{lem:kicktrue} in
-Section~\ref{sec:proof-kicktrue}. Its inputs are the active estimates for
-ring $k+1$, its earlier quiet-ring estimates when $k+1<n$, and confinement
-of the deeper rings. Under its smallness conditions, the amplitude
-\[
-\qs=2\pi\pout_*(G_{k+1})c_{k+1}(T_{k+1})
-       e^{\lambda_{k+1}\hat T_{k+1}}
-\]
-satisfies
-$|\qs|\in[\frac{15}{16},\frac{17}{16}]\,2\pi|\pout_*(G_{k+1})|\delta_0$,
-and the kick delivered to ring $k$ obeys
-\[
-\frac{|\beta_k|\,|\qs|}{10|\lamref|(\mu-1)}
-\le|\Ain(\Tpin)|
-\le\frac{3|\beta_k|\,|\qs|\,\mu}{|\lamref|(\mu-1)}.
-\]
-Thus a completed active interval of the inner ring supplies a nonzero
-coefficient for the next outer ring.
-
-The proof uses the scalar calculation of Proposition~\ref{prop:kick}.
-The moment of the region inside ring $k$ splits into the moment of ring
-$k+1$ and that of the deeper rings. Corollary~\ref{cor:active-moment}
-approximates the first by the unstable mode, and Lemma~\ref{lem:drift}
-replaces its coefficient by the value at $T_{k+1}$. This gives the principal
-term $\qs e^{\lambda_{k+1}\tau}$ in kick time.
-Theorem~\ref{thm:quiet} bounds the earlier history, and
-Proposition~\ref{prop:confine} bounds the deeper moment and the
-post-saturation field. The error estimates in
-Section~\ref{sec:proof-kicktrue} show that their weighted integrals are
-small enough for Proposition~\ref{prop:kick}. They also treat the seeded
-ring, where the earlier-history interval is empty, by a short endpoint
-limit. No later evolution of the receiving ring is used.
-
-\subsection{The total time}
-
-A ring starts with a coefficient of order $s_k^5$ and grows exponentially
-until that coefficient reaches $\delta_0$. More precisely, if
-$\ksh_k\ge\Klo s_k^5$ for $k<n$, Definition~\ref{def:clock} and
-$\sigma_k>\sigma'$ give
-\[
-\begin{aligned}
-T_k-T_{k+1}
-&=\frac{\Tpin}{A_{k+1}}
-  +\frac{\log(\delta_0/\ksh_k)}{A_k\sigma_k}\\
-&\le\frac1{A_k}\left(\Tpin+
-  \frac{\log_+(\delta_0/\Klo)+5\log(1/s_k)}{\sigma'}\right).
-\end{aligned}
-\]
-The numerator grows at most linearly in $k$, because
-$s_k=\sbar(2\mu)^{-k}$, whereas $A_k=A_1\mu^{k-1}$ grows geometrically.
-These durations are therefore summable over all rings. The seeded ring
-contributes at most $\log(2\delta_0/\kseed)/(A_n\sigma')$ when
-$\ksh_n\ge\kseed/2$.
-Lemma~\ref{lem:time} in Section~\ref{sec:proof-time} gives the resulting
-bound $T_1\le\Tstar$, uniform in the number of rings.
-
-The bootstrap also needs a time bound before a ring activates, so that
-its weak outer field cannot accumulate for too long.
-Lemma~\ref{lem:quiet-time}, in the same subsection, proves this bound using
-only the lower coefficient bounds for rings that have already started.
-Together with Lemma~\ref{lem:theta-quiet}, it controls the products
-$\theta_jA_jt$ in Proposition~\ref{prop:relay} and
-$\theta_kA_k\tsh_k$ in Lemma~\ref{lem:handoff}.

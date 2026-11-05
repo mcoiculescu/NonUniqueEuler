@@ -1,0 +1,46 @@
+\subsection{Fixed data for the estimates}
+\label{sec:relay-data}
+
+The parameter choices in Section~\ref{sec:param} use the following data.
+The estimates below are stated with their individual hypotheses, so their
+constants can be chosen in the order required there.
+Here $\sigma=\sigma(0)=\Re\lamref$ is the reference growth rate, and
+$\sigma_i=\sigma(G_i)=\Re\lambda_i$ is the rate in ring-$i$ units.
+Its physical growth rate is $A_i\sigma_i$.
+
+\begin{definition}
+\label{def:standing}
+We say that the \textbf{standing assumptions (SA)} hold if \textup{(N1)}--\textup{(N3)}
+hold and the following objects are fixed:
+\begin{enumerate}[label=\textup{(SA\arabic*)},leftmargin=*]
+\item an integer $s\ge3$ and $\sigma'\in\big(\frac9{200},\min(\sigb,\frac34\sigma)\big)$;
+  the corresponding regularity level $M$, constants and threshold functions
+  supplied by Theorem~\ref{thm:active};
+\item the integers $s_h=M-1$, $N_Q=\max(2,\lceil\Lam(s_h)/\sigb\rceil)$ and
+  $M_h=s_h+N_Q+1$, with $\Lam$ of Lemma~\ref{lem:energy}; the associated
+  quiet-ring constants of Theorem~\ref{thm:quiet} and the velocity-estimate
+  constant $\Cvel$ at order $M_h$ from Lemma~\ref{lem:transfer};
+\item numbers $\delta_0\in(0,\dH]$, $\mu\in(1,\frac{17}{16}]$ and $\Tpin>0$; a
+  number $\kseed\in(0,\kL]$, with $\kL$ of Lemma~\ref{lem:seed}; a number
+  $\sbar\in(0,a/16]$ with $\mu\sbar^2\le\Gone$
+  (Lemma~\ref{lem:inner-circ}); an integer $n\ge2$; and the objects of
+  Definitions~\ref{def:datum}--\ref{def:clock} with these parameters.
+\end{enumerate}
+Under (SA), put $\rT(T)=(1+T)^3e^{-\sigma T/4}$ for $T\ge0$.
+We use the envelopes $\hat a_k$ and $\rhohat_k$ of Section~\ref{sec:relay},
+with the constant $C_0\ge1$ named in each estimate when it is allowed to vary.
+We say that the
+\textbf{detuning hypothesis (Det)} holds if
+$\sup_{0\le G\le \mu\sbar^2}|\lamst(G)-\lamref|\le\sigma(\mu-1)/(8\mu)$.
+\end{definition}
+
+For applications of Section~\ref{sec:single} beginning at physical time $t_*$,
+we set $\theta=A_k(t-t_*)$ and pull back $w_k,h_k,\eta_k$ by
+$t=t_*+\theta/A_k$. For a quiet ring $t_*=0$, and its Duhamel bound is
+$\theta\mapsto\maj_k(\theta/A_k)$. Thus Theorem~\ref{thm:quiet}(c) gives
+$\|w_k(t)\|_{H^{s_h}}\le C_Q\maj_k(t)$ whenever its hypotheses hold.
+The fields and their norms, and hence their Duhamel bounds, are continuous
+wherever defined, by the paragraph after Lemma~\ref{lem:regions-basic}.
+Lemma~\ref{lem:inner-circ} and (SA3) give
+$0\le G_k\le\mu\sbar^2\le\Gone$ at every level. All the eigendata are
+therefore defined, and $\sigma_k\ge\sigb$.

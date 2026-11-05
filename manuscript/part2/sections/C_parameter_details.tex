@@ -1,9 +1,9 @@
 \subsection{The parameter inequalities}
 \label{sec:param-lists}
 
-These are the exact choices (P0)--(P6) used in Section~\ref{sec:bootstrap}.
-They are made in the order of Table~\ref{tab:param}; each inequality is a
-hypothesis or an error bound from the preceding sections.
+The common setting in Section~\ref{sec:relay} uses the choices (P0)--(P6)
+below. They are made in the order of Table~\ref{tab:param}. The inequalities
+ensure the hypotheses of the estimates used in the relay.
 
 \begin{definition}
 \label{def:P0-P4}
@@ -57,17 +57,16 @@ The auxiliary constants are defined at the cited locations.
 \end{description}
 \end{definition}
 
-The number $C_0$ of (P4) is the constant of hypotheses (Init) and (Field) of
-Theorem~\ref{thm:active}, which the proof of Proposition~\ref{prop:bootstrap}
-applies to every active ring. That proof bounds the initial perturbation of the
-seeded ring by $2\Cseed\ksh_n$, that of ring $k$ at its hand-off by
-$K_1C_Q\ksh_k$, and the inner field by the coefficient in the second
-inequality of (P4) times $\ksh_k\jap{A_k(t-\tsh_k)}^3$. In the local coordinate
-$u=A_k(t-\tsh_k)$, these are exactly the bounds required by (Init) and (Field).
-All coefficients that $C_0$ must dominate are fixed before (P4), so its choice
-is not circular. Likewise $\Tpin$ is chosen using only $\sigma$, before the
-inner-field coefficient involving it. Finally $\Crelay$ and $\Cerr$ are fixed
-at (P4), before the small seed size and radius ratios are chosen.
+The constant $C_0$ serves (Init) and (Field) in Theorem~\ref{thm:active}.
+The seed estimate bounds the initial perturbation by $2\Cseed\ksh_n$.
+The hand-off estimate in Appendix~\ref{sec:bootstrap-handoff-checks}
+bounds it by $K_1C_Q\ksh_k$ at ring $k$'s activation. The inner-field bound
+in Appendix~\ref{sec:bootstrap-active-checks} is the coefficient in the
+second inequality of (P4) times $\ksh_k\jap{A_k(t-\tsh_k)}^3$. These are
+the bounds required in the local coordinate $u=A_k(t-\tsh_k)$.
+The coefficients that $C_0$ must dominate are fixed at (P0)--(P3).
+The constants $\Crelay$ and $\Cerr$ are fixed after $C_0$ at (P4), before
+choosing the seed and radius ratios.
 
 \begin{definition}
 \label{def:P5}
@@ -98,18 +97,19 @@ Conditions ($\kappa$1)--($\kappa$3) are hypotheses (c)--(e) of
 Lemma~\ref{lem:kicktrue}, ($\kappa$4) is hypothesis (Small) of
 Theorem~\ref{thm:active}, ($\kappa$5) is used in the proof of
 Proposition~\ref{prop:reduction}, and ($\kappa$6) makes the seed of
-Definition~\ref{def:approx} admissible. Every amplitude $\ksh_k$ lies in
-$(0,2\kseed]$ (Steps~0 and~3 of the proof of Proposition~\ref{prop:bootstrap}),
-so the conditions are imposed on that whole interval.
+Definition~\ref{def:approx} admissible. The seed estimate
+\eqref{eq:boot-start} and the hand-off estimates of
+Appendix~\ref{sec:bootstrap-handoff-checks} put every starting amplitude
+in $(0,2\kseed]$, so the conditions are imposed on that whole interval.
 
-Condition ($\kappa$7) is imposed after $C_0$ and $K_1$ are fixed. Here $K_1$
-(Definition~\ref{def:K1}) is an explicit function of quantities fixed at
-(P0)--(P3); it does not involve $C_0$, $\kseed$ or the deeper rings. In the Duhamel estimate of Proposition~\ref{prop:relay}, the contribution
-from the pre-activation and transient history of ring $j+1$ is bounded by
-$\Xi_{j+1}$, and ($\kappa$7) at $\kappa=\ksh_{j+1}$ makes
-$\Xi_{j+1}$ at most $\delta_0/(\sigb(\mu-1))$ at every level (Step~3 of the
-proof of Proposition~\ref{prop:bootstrap}). So the bound on ring $j$ at its
-hand-off holds with the same constants $K_1$ and $\Abar$ at every level.
+The formula for $K_1$ in Definition~\ref{def:K1} uses quantities fixed at
+(P0)--(P3). The $+1$ in $4C_2+1$ allows the remainder $\Xi_{j+1}$ in
+Proposition~\ref{prop:relay} to be as large as $\delta_0/(\sigb(\mu-1))$.
+After $C_0$ and $\Crelay(C_0,K_1)$ are fixed, ($\kappa$7) ensures that this
+allowance suffices for every $\kappa=\ksh_{j+1}\in(0,2\kseed]$.
+The comparison of exponents is checked in
+Appendix~\ref{sec:bootstrap-handoff-checks}. The same $K_1$ and $\Abar$
+therefore work at every hand-off.
 
 The number $\sbar$, which fixes the ratios $s_k$ of consecutive radii, is chosen
 last, because the conditions (B1)--(B11) on it involve constants fixed at all the
