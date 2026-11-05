@@ -19,9 +19,9 @@ that, without force in the plane, uniqueness fails among renormalized weak
 solutions with vorticity in $L^\infty_t(L^1\cap L^q)_x$, for every
 $q\in(4/3,\infty)$ at once and for an explicit radial datum. Numbers with the
 prefix I refer to statements, sections and equations of Part~I. Section~1 of
-Part~I states the question and discusses the literature, including the
-non-uniqueness with a radial force of Vishik \cite{Vishik1}, \cite{Vishik2}, in
-the account of \cite{ABCDGJK}, and the results obtained without force by convex
+Part~I states the question and discusses the literature, including Vishik's
+non-uniqueness result with a radial force \cite{Vishik1,Vishik2} (see the
+account of \cite{ABCDGJK}) and the results obtained without force by convex
 integration. It also describes the construction heuristically.
 
 For $T>0$ and $1\le q\le\infty$ we write $X_q(T)$ for the space
@@ -66,6 +66,9 @@ More precisely, there is $t_0\in[0,\Tstar)$ such that $\omega_\infty$ and $f$
 are distinct elements of $X_q(T')$ for every $T'>t_0$ and every
 $q\in(4/3,\infty)$.
 \end{theorem}
+
+Taking the last time up to which $\omega_\infty$ agrees with $f$ as the new time
+origin gives non-uniqueness on every interval $[0,T]$ with $T>0$.
 
 We do not treat $q\le4/3$. No symmetry is
 imposed on the class; the $3$-fold rotational symmetry of $\omega_\infty$ comes from the
@@ -199,8 +202,13 @@ inside it advects the radial vorticity of ring $k-1$ and drives its unstable
 coefficient. In ring-$(k-1)$ units, this coupling carries the factor
 $\mu s_{k-1}^5$, where $s_{k-1}=r_k/r_{k-1}$ and
 $\mu=A_k/A_{k-1}$ (Lemma~\ref{lem:coupling}). In ring-$k$ time $\tau=A_kt$,
-this velocity component grows at rate $\sigma(G_k)$, while ring $k-1$ grows
-freely at rate $\sigma(G_{k-1})/\mu$. The parameter choices give
+this velocity component grows at rate $\sigma(G_k)$. Ring $k-1$ grows freely
+at physical rate $A_{k-1}\sigma(G_{k-1})$, so its rate in $\tau$ is
+$(A_{k-1}/A_k)\sigma(G_{k-1})=\sigma(G_{k-1})/\mu$.
+Once $\mu$ is fixed, we separate the rings to make the central circulations
+small. By continuity of $\sigma$ at zero, the change in each growth rate is
+then only a small fraction of the gap at $G_k=G_{k-1}=0$
+(Lemma~\ref{lem:detuning}). Thus
 \[
 \sigma(G_k)-\frac{\sigma(G_{k-1})}{\mu}
 \asymp\sigma(0)\frac{\mu-1}{\mu}>0.
@@ -213,9 +221,9 @@ $k$ and the rings inside it (Lemma~\ref{lem:coupling},
 Equation~\eqref{eq:kick-A}). The positive difference of growth rates makes
 this integral dominated by the contribution near the saturation of ring $k$.
 The resulting amplitude remains essentially stationary during the subsequent
-handoff to ring $k-1$. Its modulus lies between two multiples of the size of
-the mode-$3$ driving at saturation divided by $\mu-1$, with constants
-independent of $k$ and $n$ (Proposition~\ref{prop:kick} and its proof).
+handoff to ring $k-1$. Its modulus is comparable to the size of the mode-$3$
+driving at saturation divided by $\mu-1$, with constants independent of $k$
+and $n$ (Proposition~\ref{prop:kick} and its proof).
 
 As $\mu$ is fixed, ring $k-1$ therefore starts with a coefficient of order
 $s_{k-1}^5$ (Step~3 in the proof of Proposition~\ref{prop:bootstrap}), and it
@@ -226,9 +234,12 @@ summable over infinitely many rings. Thus the total time for the relay remains
 bounded even as the number of rings tends to infinity: every finite relay
 finishes by a time $\Tstar$ independent of $n$ (Lemma~\ref{lem:time}).
 
-The phase clock of Definition~\ref{def:clock} fixes, from $\omega^{(n)}$
-itself, the time at which each ring becomes active and the time at which it is
-expected to saturate. Until it becomes active, a ring stays close to $\Phi$,
+The timing of the relay depends on the solution itself. At each handoff we
+allow time for the inner ring's contribution to accumulate, then read off the
+next ring's starting amplitude from $\omega^{(n)}$. The clock of
+Definition~\ref{def:clock} uses this amplitude to predict when free growth
+will bring the ring to $\delta_0$ and to schedule the next handoff.
+Until it becomes active, a ring stays close to $\Phi$,
 although driven by the velocity fields of the vorticity inside and outside it
 (Theorem~\ref{thm:quiet}).
 The active ring follows its unstable eigenfunction (Theorem~\ref{thm:active}).
@@ -465,7 +476,7 @@ $\tfrac12\bar w^{\,m}r^{-m}$. Hence
 \end{proof}
 
 In Lemma~\ref{lem:ext-multipole} below, we estimate the exterior velocity after
-subtracting its axisymmetric circulation field, or \emph{monopole},
+subtracting its rotationally invariant circulation field, or \emph{monopole},
 $\frac{\Gamma}{2\pi}\frac{(-\Im z,\Re z)}{|z|^2}$, where
 $\Gamma=\int g$ is the total circulation, or zeroth vorticity moment.
 This is the velocity of a point vortex at the origin with circulation
