@@ -22,8 +22,7 @@ prefix I refer to statements, sections and equations of Part~I. Section~1 of
 Part~I states the question and discusses the literature, including the
 non-uniqueness with a radial force of Vishik \cite{Vishik1}, \cite{Vishik2}, in
 the account of \cite{ABCDGJK}, and the results obtained without force by convex
-integration. It also describes the construction heuristically. We do not
-repeat this discussion.
+integration. It also describes the construction heuristically.
 
 For $T>0$ and $1\le q\le\infty$ we write $X_q(T)$ for the space
 $L^\infty_t(L^1\cap L^q)_x$ of functions on $(0,T)\times\R^2$. Renormalized weak solutions in $X_q(T)$, $4/3<q<\infty$ (after
@@ -252,23 +251,16 @@ moment bound passes to the limit and separates $\omega_\infty$ from $f$
 (Corollary~I.\ref{I-cor:defect}).
 
 Section~\ref{sec:II-prelim} collects notation and preliminaries.
-Section~\ref{sec:single} studies, in ring units, one ring of the approximate
-solutions, driven by the field of the vorticity inside and outside it: the quiet
-ring, the active ring and the seeded ring.
-Section~\ref{sec:datum} defines the datum, the approximants $f^{(n)}$ and the
-phase clock. Section~\ref{sec:several} bounds the fields that the rings induce
-on one another, and it confines the material inside a ring after the ring just
-inside it has saturated. Section~\ref{sec:kick} computes the kick that a ring
-receives from the rings inside it. Section~\ref{sec:relay} proves the relay
-lemmas, which are the estimates on the rings that the bootstrap combines, each
-under explicit hypotheses; it also proves the time bound of Lemma~\ref{lem:time}.
-Section~\ref{sec:param} chooses the parameters so that the conditions of the
-relay lemmas on them hold; the choices are made in the order of
-Table~\ref{tab:param}, and none of them depends on $n$, $A_1$ or
-$\omega^{(n)}$ (Lemma~\ref{lem:nonempty}). Section~\ref{sec:bootstrap} proves
-the joint bootstrap (Proposition~\ref{prop:bootstrap}) and
-Proposition~\ref{prop:reduction}. Appendices~\ref{app:verify}
-and~\ref{app:smooth} prove Theorems~\ref{thm:N-holds} and~\ref{thm:smooth}, respectively.
+Section~\ref{sec:single} gives the quiet, active and seeded ring estimates.
+Section~\ref{sec:datum} defines the datum, its approximants and the clock,
+and Section~\ref{sec:several} controls the fields between rings and the
+confinement of the inner material. Sections~\ref{sec:kick} and~\ref{sec:relay}
+give the kick and relay estimates. Section~\ref{sec:param} chooses the
+parameters, and Section~\ref{sec:bootstrap} proves the joint bootstrap and
+Proposition~\ref{prop:reduction}. Appendices~\ref{app:verify} and~\ref{app:smooth}
+prove Theorems~\ref{thm:N-holds} and~\ref{thm:smooth};
+Appendix~\ref{sec:construction-details} gives the exact parameter conditions
+and quantitative verifications used in Sections~\ref{sec:relay}--\ref{sec:bootstrap}.
 
 The main idea of a linear instability in physical coordinates driving the
 non-uniqueness mechanism, the use of non-monotone unstable radial vortices and of
@@ -289,8 +281,8 @@ other projects.
 
 This subsection collects the notation that we take from Part~I and the
 preliminaries used only in this paper. We use all notation and conventions of
-Section~I.\ref{I-sec:prelim}, among them the convention on constants and
-$O(\cdot)$, which we follow. From
+Section~I.\ref{I-sec:prelim}, including the convention on constants and
+$O(\cdot)$. From
 Section~I.\ref{I-sec:ring} we use the convention $m=3$, the ring units and the
 number $\Gone$ of Definition~I.\ref{I-def:ring}, the annuli $N$ and $N'$ of
 Section~I.\ref{I-sec:ring-def}, the spaces $X^s$ and the operators $\Lin(G)$ on
@@ -346,8 +338,7 @@ $V(z)=V(\Re z,\Im z)$, and use the same convention for scalar functions.
 The notation $\nabla^qV(z)$ always means the tensor of ordinary Cartesian
 derivatives evaluated at $(\Re z,\Im z)$; it does not denote complex
 differentiation. We call $F(z)=V_1(z)-iV_2(z)$ the \textbf{complex form} of
-$V$. The spatial variable $z$ here is distinct from the constant
-$\lamst(0)$ of Definition~I.\ref{I-def:eigendata}.
+$V$.
 Since $(\KBS)_1(z)-i(\KBS)_2(z)=1/(2\pi iz)$,
 the velocity of every $g\in L^1(\R^2)$ has the complex form
 \begin{equation}
@@ -521,11 +512,7 @@ nondecreasing in $\rho$ and finite at $\rho=\frac12$.
 The approximate solutions $\omega^{(n)}$ of Definition~\ref{def:approx} are the
 global smooth solutions with the smooth, compactly supported data $f^{(n)}$,
 given by the following classical theorem, which is proved in
-Appendix~\ref{app:smooth}. Besides the properties (1)--(3) of the solution, the
-proof of Theorem~\ref{thm:main} uses the flow of item~(4), the uniqueness of
-item~(5), which identifies a rescaled or time-translated solution with the
-solution of its datum, the symmetry of item~(6), and item~(7), by which these solutions are renormalized weak solutions
-in the sense of Part~I.
+Appendix~\ref{app:smooth}.
 
 \begin{theorem}[cf. \cite{Wolibner}, \cite{Holder}, \cite{Kato1967}]
 \label{thm:smooth}

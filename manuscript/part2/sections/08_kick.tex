@@ -3,15 +3,12 @@
 
 We compute the kick that ring $k$ receives from the rings inside it,
 for $1\le k<n$. While ring $k$ is quiet, the inner field $\hin_k$ of
-Definition~\ref{def:regions} drives the unstable coefficient of ring $k$ exactly
-through the mode-$3$ moment $q_{k+1}$ of the region $D_{k+1}(t)$: the unstable
-coefficient of the part of the linear response of ring $k$ driven by $\hin_k$
-solves the scalar linear Equation~\eqref{eq:kick}, with drive given by
-$q_{k+1}$ in the local kick-time coordinate
-(Lemma~\ref{lem:coupling}). Proposition~\ref{prop:kick} bounds the modulus of
-the solution at the final time, with its free growth factored out, from above
-and below, and Section~\ref{sec:relay} uses these bounds to start ring $k$
-(Lemmas~\ref{lem:handoff} and~\ref{lem:kicktrue}).
+Definition~\ref{def:regions} drives its unstable linear response through the
+mode-$3$ moment $q_{k+1}$ of the region $D_{k+1}(t)$.
+Lemma~\ref{lem:coupling} gives the scalar Equation~\eqref{eq:kick} in the local
+kick-time coordinate. Proposition~\ref{prop:kick} bounds the accumulated kick
+from above and below; these bounds are used to start ring $k$ in
+Section~\ref{sec:relay} (Lemmas~\ref{lem:handoff} and~\ref{lem:kicktrue}).
 
 \begin{lemma}
 \label{lem:coupling}
@@ -273,8 +270,7 @@ For $k+1<n$, the three intervals $[\tau_0,-T_g]$, $[-T_g,0]$ and
 $[0,\tau_1]$ describe the quiet and active intervals of ring $k+1$, followed
 by the pinning interval of ring $k$, in the local kick coordinate. At the
 seeded level $k+1=n$, that lemma uses a slightly shorter exponential
-interval. The proof below evaluates the exponential contribution exactly
-and bounds the three remaining contributions by the triangle inequality.
+interval.
 
 \begin{proof}
 We first compare $w$ with $\lamref$ and bound $x$ from below. Put

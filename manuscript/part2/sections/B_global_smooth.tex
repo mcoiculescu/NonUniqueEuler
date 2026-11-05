@@ -1,20 +1,14 @@
 \section{Global Smooth Solutions}
 \label{app:smooth}
 
-In this appendix we prove Theorem~\ref{thm:smooth}, stated in
-Section~\ref{sec:II-prelim}: global existence and uniqueness of smooth
-solutions with smooth, compactly supported data, and the properties (4)--(7) of
-these solutions. Definition~\ref{def:approx} takes the approximate solutions
-$\omega^{(n)}$ from this theorem. The argument is a Picard
-iteration through linear transport: each iterate is transported by the
-velocity field of the previous one, the iterates obey bounds that are uniform
-in the iteration index on every bounded time interval, and they converge
-together with all their spatial derivatives. The uniform bounds rest on a
-pointwise bound for the velocity gradient that loses only a logarithm of the
-vorticity gradient (Lemma~\ref{lem:grad-bound}); it gives a bound on the
-vorticity gradient that grows double exponentially in time but is finite for
-every time. We write the iteration in
-$L^2$-Sobolev form, so that, besides elementary real analysis, it uses only
+We prove Theorem~\ref{thm:smooth}: global existence and uniqueness for smooth,
+compactly supported data, and properties (4)--(7) of the solution. The argument
+is a Picard iteration through linear transport. The iterates obey uniform
+bounds on every bounded time interval and converge with all their spatial
+derivatives. Lemma~\ref{lem:grad-bound} bounds the velocity gradient by a
+logarithm of the vorticity gradient. This gives a double-exponential bound on
+the latter, finite at every time. We use $L^2$-Sobolev estimates and, besides
+elementary real analysis, only
 Section~I.\ref{I-sec:prelim}, Section~\ref{sec:II-prelim} and the facts on ordinary differential equations
 collected in Lemma~\ref{lem:ode}. For
 the classical theory of smooth solutions see \cite{Wolibner}, \cite{Holder} and
@@ -22,9 +16,7 @@ the classical theory of smooth solutions see \cite{Wolibner}, \cite{Holder} and
 
 \subsection{Ordinary Differential Equations}
 
-The following facts are used without proof. We quote them from the textbook
-\cite{Teschl}; Lemma~\ref{lem:flow} below derives from them the properties of
-the flow of a smooth velocity field that the iteration needs.
+We use the following ODE facts from \cite{Teschl} to construct the smooth flow.
 
 \begin{lemma}[Theorems 2.2, 2.10, 2.13 and 2.17 in \cite{Teschl}]
 \label{lem:ode}
@@ -129,7 +121,7 @@ constant in $t$ and equal to $\det Y(s)=1$.
 
 \subsection{Two Estimates on the Plane}
 
-We need two estimates on the plane. Lemma~\ref{lem:grad-bound} is a pointwise
+Lemma~\ref{lem:grad-bound} is a pointwise
 bound for the velocity gradient, which Lemma~\ref{lem:iter-lip} uses to bound
 the gradients of the iterates for all times. Lemma~\ref{lem:comm-R2} is a
 commutator estimate, which the energy estimate of Lemma~\ref{lem:iter-Hs} uses.
@@ -249,11 +241,9 @@ let $\flow^{[j]}=\flow_{v^{[j]}}$ and put
 $\omega^{[j+1]}(t,x)=\omega_0\big(\flow^{[j]}(0,t,x)\big)$.
 \end{definition}
 
-Thus $\omega^{[j+1]}$ is the datum $\omega_0$ carried along the flow of
-$v^{[j]}$, that is, the solution of a linear transport equation with field
-$v^{[j]}$ (Lemma~\ref{lem:iterates}(iv)). The next lemma shows, among other
-things, that the hypotheses of Lemma~\ref{lem:flow} hold at every step, so
-that every iterate is defined.
+Each iterate is transported by the preceding velocity field. The next lemma
+shows that Lemma~\ref{lem:flow} applies at every step, so the construction is
+well-defined.
 
 \begin{lemma}
 \label{lem:iterates}
@@ -419,11 +409,9 @@ is bounded uniformly in $j$ and $|t|\le T$, proving the induction step.
 
 \subsection{Convergence}
 
-We show that the iterates converge to a smooth solution. The differences of
-consecutive iterates obey a linear transport equation with a source, whose
-energy estimate gives convergence in $L^2$ uniformly on bounded time intervals
-(Lemma~\ref{lem:iter-cauchy}); the uniform bounds of Lemma~\ref{lem:iter-Hs}
-and the interpolation inequality (E3) of Lemma~\ref{lem:embed} upgrade it to
+An energy estimate for differences of consecutive iterates gives convergence
+in $L^2$, uniformly on bounded time intervals (Lemma~\ref{lem:iter-cauchy}).
+The higher Sobolev bounds of Lemma~\ref{lem:iter-Hs} and interpolation then give
 convergence of all spatial derivatives.
 
 \begin{lemma}
@@ -594,18 +582,16 @@ uniqueness in Theorem~\ref{thm:smooth}, and the proof of (6) uses it. Let $\tild
 be as in (5), and fix a compact interval $J\subset I$ containing $0$. Let
 $\rho>0$ be such that $\omega(t)$ and $\tilde\omega(t)$ vanish outside $B_\rho$ for
 $t\in J$; this is possible by (1) and the hypothesis on $\tilde\omega$. Put
-$\delta=\omega-\tilde\omega\in C^1(J\times\R^2)$. By the equation for $\tilde\omega$,
-$\partial_t\tilde\omega=-v\cdot\nabla\tilde\omega+(v-\KBS\ast\tilde\omega)\cdot\nabla\tilde\omega$,
-and $v-\KBS\ast\tilde\omega=\KBS\ast\delta$.
-Subtracting the first of these identities from the equation in (3), and using the second, gives
+$\delta=\omega-\tilde\omega\in C^1(J\times\R^2)$. Subtracting the two
+vorticity equations and using $v-\KBS\ast\tilde\omega=\KBS\ast\delta$ gives
 \[
 \partial_t\delta+v\cdot\nabla\delta=-(\KBS\ast\delta)\cdot\nabla\tilde\omega
 \qquad\text{on }J\times\R^2 .
 \]
 We multiply by $\delta$ and integrate in $x$. The transport term vanishes,
 because $\divop v=0$ and $\delta(t)$ has compact support. The function
-$\nabla\tilde\omega$ is continuous and vanishes outside $J\times B_\rho$, so it is
-bounded on $J\times\R^2$ by some $L<\infty$, and
+$\nabla\tilde\omega$ is continuous on $J\times\R^2$ and vanishes there for
+$|x|\ge\rho$, so it is bounded by some $L<\infty$, and
 Lemma~I.\ref{I-lem:BS-basic}(c) gives $\|\KBS\ast\delta(t)\|_{L^2(B_\rho)}\le2\rho\|\delta(t)\|_{L^2}$.
 Hence, by the Cauchy-Schwarz inequality, as $\nabla\tilde\omega(t)$ vanishes
 outside $B_\rho$,

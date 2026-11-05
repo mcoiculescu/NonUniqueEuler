@@ -4,12 +4,9 @@
 We define the datum $f$ of Theorem~\ref{thm:main} and its approximants
 $f^{(n)}$; the solutions $\omega^{(n)}$ with these data form the
 $2$-admissible sequence to which Corollary~I.\ref{I-cor:defect} is applied in
-the proof of Proposition~\ref{prop:reduction}. We then split each $\omega^{(n)}$
-into its rings, describe each ring in its own units by its perturbation and by
-the field that the other rings exert on it, and define the phase clock, which
-fixes, from $\omega^{(n)}$ itself, the time at which each ring becomes active and
-the time at which its unstable coefficient is expected to reach the size
-$\delta_0$.
+the proof of Proposition~\ref{prop:reduction}. We then describe each ring in
+its own units and define the phase clock, which fixes activation and
+saturation times from $\omega^{(n)}$ itself.
 
 \begin{definition}
 \label{def:datum}
@@ -128,10 +125,7 @@ is then written locally as $\widetilde f_k(s)=f_k(t_*+s/A_k)$; this time
 substitution is stated explicitly whenever it is used. The spatially
 normalized profile $f_k(t)$ itself continues to use physical time.
 
-The next definition splits $\omega^{(n)}$ into its rings and names the
-quantities that the later sections estimate. The set $S_k(t)$ carries ring $k$
-along the flow, and $\omega_{\ge k}$ is the part of $\omega^{(n)}$ formed by ring
-$k$ and the rings inside it. In ring-$k$ units, the perturbation $w_k$ is the
+In ring-$k$ units, the perturbation $w_k$ is the
 deviation of ring $k$ from $\Phi$; $2\pi G_k$ is the circulation of the point
 vortex by which the linearization $\Lin(G_k)$ of Theorem~I.\ref{I-thm:linear}
 represents the rings inside ring $k$; and the external field $h_k$ is the field
@@ -322,9 +316,7 @@ $S_k(t)\subset N_k$, the function $w=\omega_{\mathrm r}-\Phi$ of
 Lemma~\ref{lem:reduction}\textup{(3)} is $w(s)=w_k(s/A_k)$. In the same
 local coordinate, its field norm and Duhamel bound are
 $\eta(s)=\eta_k(s/A_k)$ and $\maj(s)=\maj_k(s/A_k)$: the factor $A_k$ in
-Definition~\ref{def:regions} follows from the substitution $s=A_kt$. This is
-how Lemma~\ref{lem:reduction} and Section~\ref{sec:single} are applied to
-ring $k$, using the same rescaling for every time-dependent quantity.
+Definition~\ref{def:regions} follows from the substitution $s=A_kt$.
 
 Part~I and Section~\ref{sec:single} treat the linearization $\Lin(G)$ for
 $G\in[0,\Gone]$. The next lemma shows that every inner circulation $G_k$ lies in
@@ -361,12 +353,9 @@ $0\le\Phi<1$ and $\supp\Phi\subset\overline B_1$ give
 $\|\Phi\|_{L^1}\le\pi$; and $s_k\le\sbar$.
 \end{proof}
 
-The next lemma bounds the part $\omega_{\ge k}$ of the solution formed by ring
-$k$ and the rings inside it, uniformly in $n$ and $t$. Its velocity bound controls the
-velocity field of $\omega_{\ge k}$ itself; in the proof of
-Proposition~\ref{prop:confine} it is one of the two terms of the speed bound for
-the material inside a ring, and its constant $\Cstar$ enters the confinement
-radius there.
+The next lemma bounds the vorticity and velocity of ring $k$ and the rings
+inside it, uniformly in $n$ and $t$. The velocity estimate supplies the inner
+contribution to the confinement bound of Proposition~\ref{prop:confine}.
 
 \begin{lemma}
 \label{lem:speed}
@@ -434,11 +423,8 @@ has at most polynomial growth, whereas the weight in the kick integral decays
 exponentially. Choosing $\Tpin$ sufficiently large therefore makes the
 remaining contribution small: the normalized unstable coefficient of ring
 $k-1$ stays essentially stationary during its ensuing active phase
-(Lemma~\ref{lem:drift}), while its unstable mode grows. At the end of the
-pinning phase the local kick coordinate of Lemma~\ref{lem:coupling}\textup{(2)}
-for ring $k-1$ equals $\Tpin$; there
-Lemma~\ref{lem:coupling}\textup{(2)} evaluates the kick that ring $k$ and the
-rings inside it give to ring $k-1$.
+(Lemma~\ref{lem:drift}), while its unstable mode grows. For ring $k-1$, the kick
+of Lemma~\ref{lem:coupling}\textup{(2)} is evaluated at $\tauK=\Tpin$.
 
 \begin{definition}
 \label{def:clock}
@@ -514,15 +500,12 @@ Lemma~\ref{lem:regions-basic}) and
 $|\ellst(G_k)(-h\cdot\nabla\Phi)|\le\Cls\|h\|_{C^0(N')}$ for continuous $h$
 (Lemma~I.\ref{I-lem:uniform}).
 
-Lemma~\ref{lem:clock} verifies that the recursion in Definition~\ref{def:clock}
-gives well-defined, strictly ordered activation and saturation times whenever
-its support and amplitude conditions are met. At each step, knowing the
-solution through $\tsh_i$ fixes $\ksh_i$, hence $T_i$ and the next activation
-time $\tsh_{i-1}$; no later values of the solution are needed. Consequently,
-the solution on $[0,t]$ determines which rings have become active by $t$ and
-which have already reached saturation. This lets the continuity argument of
-Section~\ref{sec:bootstrap} apply the estimates of Section~\ref{sec:relay}
-using only the solution on the interval $[0,t]$ under consideration.
+Lemma~\ref{lem:clock} verifies that the recursion gives well-defined,
+strictly ordered times whenever its support and amplitude conditions are met.
+Knowing the solution through $\tsh_i$ fixes $\ksh_i$, hence $T_i$ and the next
+activation time $\tsh_{i-1}$. This lets the continuity argument of
+Section~\ref{sec:bootstrap} use the estimates of Section~\ref{sec:relay}
+on $[0,t]$ without using later evolution.
 
 To state this dependence precisely, a quantity built from $\omega^{(n)}$ by
 Definitions~\ref{def:regions} and \ref{def:clock} is

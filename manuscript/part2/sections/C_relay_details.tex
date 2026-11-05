@@ -1,0 +1,752 @@
+\subsection{Comparison of quiet rings}
+\label{sec:proof-O}
+
+\begin{lemma}
+\label{lem:O}
+Assume (SA) and (Det). Put $\CDuh=2\mu/(\sigb(\mu-1))$ and
+\[
+\KO=8\Cvel (C_Q\CDuh+1)+32\Cvel C_Q\CDuh .
+\]
+Let $1\le j<n$, assume that the clock is
+defined up to level $j+1$, and let $\bar t\in(0,\tsh_j]$. Assume
+that for every $t\in[0,\bar t]$ and every $i\le j$: $S_l(t)\cap B_{6r_i}=\emptyset$
+for every $l<i$, $D_{i+1}(t)\subset B_{ar_i/8}$, and $\eta_i(t)\le1$. Assume
+moreover $\maj_j\le\majst$ on $[0,\bar t]$, $\KO\sbar^6\le\frac14$,
+$16\Cvel C_Q\CDuh\KO\sbar^6\le1$ and $\KO\mu\sbar^5\le\frac12$. Then for every
+$t\in[0,\bar t]$ and every $i<j$:
+\[
+\maj_i(t)\le\tfrac34\Ptil_{i,j}\,\maj_j(t),\qquad \Ptil_{i,j}=\prod_{p=i}^{j-1}\KO\varepsilon_p ,
+\]
+and $\etout_j(t)\le\theta_j\maj_j(t)$ with
+$\theta_j=4\Cvel C_Q\KO s_{j-1}^6$ for $j\ge2$ and $\theta_1=0$. Moreover, for
+every $t\in(0,\bar t]$ and every $i\le j$, the hypotheses of
+Theorem~\ref{thm:quiet} hold for ring $i$ on $[0,A_it]$, in ring-$i$ units, with
+the pulled-back functions of Section~\ref{sec:relay} and $G=G_i$; in particular its conclusions
+\textup{(a)}--\textup{(c)} hold there.
+\end{lemma}
+
+\begin{proof}[Quantitative proof of Lemma~\ref{lem:O}]
+The geometric hypotheses define $h_i$, $i\le j$, on $[0,\bar t]$, so the
+integral estimates~\eqref{eq:O-duh}--\eqref{eq:O-same} apply.
+Put $\Pprod_{i,l}=\prod_{p=i}^{l-1}\Cvel \varepsilon_p$ for $i<l$, so that
+$\Pprod_{i,l}=(\Cvel /\KO)^{l-i}\Ptil_{i,l}$ and
+$\Ptil_{i,l}\Ptil_{l,j}=\Ptil_{i,j}$.
+We prove the bound on $\maj_i$ by a continuity argument in $t$.
+Equation~\eqref{eq:O-BH} below is this bound with the factor $1$ in place of
+$\frac34$ and with a small term $\epsilon e^{A_j\sigma_jt}$ added to $\maj_j$, so
+that its right side is positive at $t=0$, and we improve the factor to $\frac14$.
+
+Fix $\epsilon\in(0,\majst e^{-A_j\sigma_j\bar t}]$ (unrelated to the numbers
+$\varepsilon_p$) and put $\maj^\epsilon_j(t)=\maj_j(t)+\epsilon e^{A_j\sigma_jt}$.
+In applying the generic estimate~\eqref{eq:O-fast}, we take $F=\maj_j$ or
+$F=\maj^\epsilon_j$. The required inequality follows from (M1) of
+Lemma~\ref{lem:majorant}, rescaled to physical time; the added term
+$\epsilon e^{A_j\sigma_jt}$ satisfies it with equality.
+Let $t_\epsilon$ be the supremum of
+the $t_1\in[0,\bar t]$ such that
+\begin{equation}
+\label{eq:O-BH}
+\maj_i(t)\le\Ptil_{i,j}\,\maj^\epsilon_j(t)\qquad\text{for every }t\in[0,t_1]\text{ and every }i<j .
+\end{equation}
+Both sides are continuous in $t$, since $h_i$, $i\le j$, is defined on
+$[0,\bar t]$; at $t=0$ the left side vanishes and the right side is
+$\Ptil_{i,j}\epsilon>0$. So Equation~\eqref{eq:O-BH} holds on $[0,t_\epsilon]$, and
+$t_\epsilon>0$.
+
+We first verify the hypotheses of Theorem~\ref{thm:quiet} on $[0,t_\epsilon]$.
+Every factor of $\Ptil_{i,j}$ satisfies
+$\KO\varepsilon_p=\KO\mu s_p^5\le\KO\mu\sbar^5\le\frac12$, so
+$\Ptil_{i,j}\le\frac12$, and Equation~\eqref{eq:O-BH} with $\maj_j\le\majst$ gives
+$\maj_i(t)\le\frac12(\majst+\epsilon e^{A_j\sigma_j\bar t})\le\majst$ for
+$t\in[0,t_\epsilon]$ and $i<j$. Ring $i<n$ starts at $\Phi$ in ring-$i$ units,
+$G_i\in[0,\Gone]$, the geometric hypotheses are those of
+Lemma~\ref{lem:reduction} for ring $i$, and
+$\|h_i\|_{C^{M_h}(N')}\le\etin_i+\etout_i=\eta_i\le1$ with $\eta_i$ continuous. So
+Theorem~\ref{thm:quiet} applies to ring $i<j$ on $[0,A_it_\epsilon]$ and to ring
+$j$ on $[0,A_j\bar t]$ by the hypothesis $\maj_j\le\majst$; in particular, for $t\in[0,t_\epsilon]$ and $i\le j$,
+$S_i(t)\subset\NNm_i\subset N_i$ and
+\begin{equation}
+\label{eq:O-Q}
+\|w_i(t)\|_{H^{s_h}}\le C_Q\maj_i(t).
+\end{equation}
+
+Let $t\in[0,t_\epsilon]$ and $i<j$. Lemma~\ref{lem:transfer-step}(1)
+at the levels $i,\dots,j-1$ with $s'=s_h$ gives by induction
+$\etin_i(t)\le\sum_{l=i+1}^{j}\Pprod_{i,l}\|w_l(t)\|_{H^{s_h}}+\Pprod_{i,j}\etin_j(t)$,
+and Lemma~\ref{lem:transfer-step}(2) gives
+$\etout_i(t)\le \Cvel \sum_{l<i}b_{l,i}\|w_l(t)\|_{H^{s_h}}$. We insert
+Equations~\eqref{eq:O-Q} and \eqref{eq:O-BH} into these two bounds and group the
+terms of $\eta_i(t)=\etin_i(t)+\etout_i(t)$ by the ring they come from.
+Ring $j$ and the region inside it (the terms with $\|w_j(t)\|_{H^{s_h}}$ and
+$\etin_j(t)$) give
+at most $\frac{\Cvel}{\KO}\Ptil_{i,j}(C_Q\maj^\epsilon_j(t)+\etin_j(t))$, and the
+rings $l\in(i,j)$ give
+$C_Q\Ptil_{i,j}\maj^\epsilon_j(t)\sum_{l=i+1}^{j-1}(\Cvel /\KO)^{l-i}\le\frac87C_Q\frac{\Cvel}{\KO}\Ptil_{i,j}\maj^\epsilon_j(t)$,
+as $\Cvel /\KO\le\frac18$. For the rings $l<i$ we have
+$b_{l,i}\Ptil_{l,j}=b_{l,i}\Ptil_{l,i}\Ptil_{i,j}$ and
+\[
+b_{l,i}\Ptil_{l,i}=\mu^{l-i}\frac{r_i}{r_l}\KO^{i-l}\mu^{i-l}\prod_{p=l}^{i-1}s_p^5
+=\KO^{i-l}\Big(\frac{r_i}{r_l}\Big)^6\le\big(\KO\sbar^6\big)^{i-l}\le4^{l-i}
+\]
+because $s_l\cdots s_{i-1}=r_i/r_l\le\sbar^{i-l}$ and $\KO\sbar^6\le\frac14$;
+summing the geometric series, these rings give at most $\frac43\Cvel C_Q\KO\sbar^6$ times $\Ptil_{i,j}\maj^\epsilon_j(t)$. We insert
+these bounds into Equation~\eqref{eq:O-duh} and use Equation~\eqref{eq:O-fast}
+with $F=\maj^\epsilon_j$ and Equation~\eqref{eq:O-same}:
+\[
+\maj_i(t)\le\Big[\frac{\Cvel}{\KO}\big(C_Q\CDuh+1\big)+\frac87\cdot\frac{\Cvel C_Q\CDuh}{\KO}+\frac43\Cvel C_Q\CDuh\KO\sbar^6\Big]\Ptil_{i,j}\,\maj^\epsilon_j(t).
+\]
+As $\KO\ge8\Cvel (C_Q\CDuh+1)$, $\KO\ge32\Cvel C_Q\CDuh$ and
+$16\Cvel C_Q\CDuh\KO\sbar^6\le1$, the bracket is at most
+$\frac18+\frac1{28}+\frac1{12}<\frac14$, so
+\begin{equation}
+\label{eq:O-improved}
+\maj_i(t)\le\tfrac14\Ptil_{i,j}\,\maj^\epsilon_j(t)\qquad(t\in[0,t_\epsilon],\ i<j).
+\end{equation}
+The right side is positive, so Equation~\eqref{eq:O-BH} is strict at
+$t=t_\epsilon$ and, by continuity, holds beyond $t_\epsilon$ unless
+$t_\epsilon=\bar t$. Hence $t_\epsilon=\bar t$ for every admissible $\epsilon$.
+
+So, for every $t\in(0,\bar t]$, the hypotheses of Theorem~\ref{thm:quiet} hold
+for ring $i\le j$ on $[0,A_it]$, since they hold on $[0,A_i\bar t]$; and
+$\epsilon\to0$ in Equation~\eqref{eq:O-improved} gives
+$\maj_i(t)\le\frac14\Ptil_{i,j}\maj_j(t)\le\frac34\Ptil_{i,j}\maj_j(t)$.
+The identity and estimate above, now with indices $(i,j)$, read
+\[
+b_{i,j}\Ptil_{i,j}
+=\KO^{j-i}\Big(\frac{r_j}{r_i}\Big)^6
+\le(\KO\sbar^6)^{j-i}\le4^{-(j-i)}\qquad(i<j),
+\]
+Finally, Lemma~\ref{lem:transfer-step}(2) at level $j$, Equation~\eqref{eq:O-Q},
+and the bound on $\maj_i$ just proved give
+\[
+\etout_j(t)\le\tfrac14\Cvel C_Q\sum_{i<j}\KO^{j-i}\Big(\frac{r_j}{r_i}\Big)^6\maj_j(t).
+\]
+The term $i=j-1$ is $\KO s_{j-1}^6$, and the term $i<j-1$ is
+\[
+\KO s_{j-1}^6\KO^{j-1-i}(r_{j-1}/r_i)^6\le\KO s_{j-1}^6(\KO\sbar^6)^{j-1-i}\le\KO s_{j-1}^6\,4^{-(j-1-i)} .
+\]
+So the sum is at most $\frac43\KO s_{j-1}^6$, and
+$\etout_j(t)\le\frac13\Cvel C_Q\KO s_{j-1}^6\maj_j(t)\le\theta_j\maj_j(t)$.
+For $j=1$ there is no outer ring and $\etout_1=0$.
+\end{proof}
+
+\subsection{The field transmitted by the next inner ring}
+\label{sec:proof-relay}
+
+We use the hypotheses and notation of Proposition~\ref{prop:relay}.
+
+\begin{proof}[Quantitative proof of Proposition~\ref{prop:relay}]
+For this calculation set $\tau=A_j\bar t$, and write $\tau^{\mathrm{act}}=A_j\tsh_{j+1}$ and $\tau^{\mathrm{sat}}=A_jT_{j+1}$
+(the ring-$j$ times at which ring $j+1$ becomes active and saturates),
+$\kappa=\ksh_{j+1}$ and $\hat T=\hat T_{j+1}=\sigma_{j+1}^{-1}\log(\delta_0/\kappa)$.
+As the clock is defined up to level $j+1$, $\kappa\in(0,\delta_0)$,
+$\tau^{\mathrm{sat}}=\tau^{\mathrm{act}}+\hat T/\mu$ and
+$A_j\tsh_j=\tau^{\mathrm{sat}}+\Tpin/\mu$; at a ring-$j$ time $v\ge\tau^{\mathrm{act}}$
+the active time of ring $j+1$ is $\mu(v-\tau^{\mathrm{act}})$. Every ring-$j$ time
+$v\le\tau$ corresponds to $v/A_j\le\tsh_j$, where ring $j$ is quiet; so by
+(Loc)(2) the rings $i<j$ lie outside $B_{6r_j}$, $D_{j+1}(v/A_j)\subset B_{ar_j/8}$,
+and $h_j$ is defined there.
+
+We first reduce the claims to bounds on $\maj^{\mathrm{in}}_j$, the Duhamel bound of
+the inner field. Let $\tau'\in[0,\tau]$. As $\eta_j=\etin_j+\etout_j$, (H2) and (M1) of
+Lemma~\ref{lem:majorant} for $\maj_j$ give
+$\maj_j(\frac{\tau'}{A_j})\le\maj^{\mathrm{in}}_j(\frac{\tau'}{A_j})+\theta_j\int_0^{\tau'}e^{\sigma_j(\tau'-v)}\maj_j(\frac{v}{A_j})\dd v
+\le\maj^{\mathrm{in}}_j(\frac{\tau'}{A_j})+\theta_j\tau'\maj_j(\frac{\tau'}{A_j})$,
+and $\theta_j\tau'\le\frac12$, so $\maj_j\le2\maj^{\mathrm{in}}_j$. It remains to
+bound $\maj^{\mathrm{in}}_j$ by half the right sides of (i)--(iii), and to prove (o).
+
+\emph{Before activation of ring $j+1$.} If $j+1=n$, then $\tau^{\mathrm{act}}=0$, (o) is
+void and (i) concerns only $\tau=0$, where $\maj_j(0)=0$. Let $j+1<n$,
+$\tau'\le\min(\tau,\tau^{\mathrm{act}})$, $v\in[0,\tau']$ and $t=v/A_j$. Then
+$t\le\tsh_{j+1}<T_{j+1}$, so ring $j+1$ is quiet at $t$: (Loc)(1) gives
+$S_{j+1}(t)\subset N_{j+1}$, and (Loc)(2) for ring $j+1$ gives
+$D_{j+2}(t)\subset B_{ar_{j+1}/8}$ and $S_i(t)\cap B_{6r_{j+1}}=\emptyset$ for $i\le j$;
+so $h_{j+1}$ is defined at $t$. Lemma~\ref{lem:transfer-step}(1) with $s'=s_h$
+and Theorem~\ref{thm:quiet}(c) for ring $j+1$, which holds by (H3), give
+$\etin_j(\frac{v}{A_j})\le \Cvel \varepsilon_j(C_Q\maj_{j+1}(v/A_j)+\eta_{j+1}(v/A_j))$. By (M1),
+$\maj_{j+1}(v/A_j)\le e^{-\mu\sigma_{j+1}(\tau'-v)}\maj_{j+1}(\tau'/A_j)$, and
+$\mu\sigma_{j+1}-\sigma_j\ge\frac12\sigb(\mu-1)$ (Lemma~\ref{lem:detuning}), so
+$\int_0^{\tau'}e^{\sigma_j(\tau'-v)}\maj_{j+1}(v/A_j)\dd v\le2\maj_{j+1}(\tau'/A_j)/(\sigb(\mu-1))$.
+As $\sigma_j/\mu\le\sigma_{j+1}$, the substitution $v'=\mu v$ gives
+\[
+\int_0^{\tau'}e^{\sigma_j(\tau'-v)}\eta_{j+1}(v/A_j)\dd v=\frac1\mu\int_0^{\mu\tau'}e^{\frac{\sigma_j}\mu(\mu\tau'-v')}\eta_{j+1}(\frac{v'}{A_{j+1}})\dd v'\le\maj_{j+1}(\tau'/A_j) .
+\]
+Together,
+\begin{equation}
+\label{eq:relay-quiet}
+\maj^{\mathrm{in}}_j(\frac{\tau'}{A_j})\le \Cvel \Big(\frac{2C_Q}{\sigb(\mu-1)}+1\Big)\varepsilon_j\,\maj_{j+1}(\tau'/A_j)\qquad\big(0\le\tau'\le\min(\tau,\tau^{\mathrm{act}})\big),
+\end{equation}
+which is (o). If $\tau\le\tau^{\mathrm{act}}$, (o) at $\tau'=\tau$ and $\maj_j\le2\maj^{\mathrm{in}}_j$
+give (i).
+
+Let now $\tau^{\mathrm{act}}<\tau\le A_j\tsh_j$, and split
+$\maj^{\mathrm{in}}_j(\frac{\tau}{A_j})=\int_0^\tau e^{\sigma_j(\tau-v)}\etin_j(\frac{v}{A_j})\dd v$ over
+$\Iint_1=[0,\tau^{\mathrm{act}}]$, $\Iint_2=[\tau^{\mathrm{act}},\tau^{\mathrm{sat}}]$ and
+$\Iint_3=[\tau^{\mathrm{sat}},A_j\tsh_j]$ (intersected with $[0,\tau]$), on which ring
+$j+1$ is quiet, active and debris, respectively. In each part we use
+$e^{\sigma_j(\tau-v)}\le e^{\sigma_j(A_j\tsh_j-v)}$ and
+\begin{equation}
+\label{eq:relay-id}
+e^{\sigma_j(A_j\tsh_j-\tau^{\mathrm{sat}})}=e^{x_j\Tpin},\qquad
+\kappa\,e^{\sigma_j(\tau^{\mathrm{sat}}-\tau^{\mathrm{act}})}=\kappa\Big(\frac{\delta_0}\kappa\Big)^{\frac{\sigma_j}{\mu\sigma_{j+1}}}\le\delta_0\Big(\frac\kappa{\delta_0}\Big)^{1-\gamma_j},
+\end{equation}
+where the inequality holds as $\sigma_j/(\mu\sigma_{j+1})\le\gamma_j$ and $\kappa<\delta_0$.
+
+\emph{The part over $\Iint_1$} vanishes if $j+1=n$. Otherwise it equals
+$e^{\sigma_j(\tau-\tau^{\mathrm{act}})}\maj^{\mathrm{in}}_j(\frac{\tau^{\mathrm{act}}}{A_j})$. We
+bound the exponential factor by its value at $\tau=A_j\tsh_j$ and split its exponent
+at $\tau^{\mathrm{sat}}$, so that both parts of Equation~\eqref{eq:relay-id} apply. With
+Equation~\eqref{eq:relay-quiet} at $\tau'=\tau^{\mathrm{act}}$, the bound
+$\maj_{j+1}(\tsh_{j+1})\le K_1\kappa$ of (H4) and
+Equation~\eqref{eq:relay-id}, this bounds the part over $\Iint_1$ by
+$\Cvel \varepsilon_je^{x_j\Tpin}K_1\big(\frac{2C_Q}{\sigb(\mu-1)}+1\big)\delta_0(\kappa/\delta_0)^{1-\gamma_j}$.
+
+\emph{The part over $\Iint_2$.} Let $v\in[\tau^{\mathrm{act}},\min(\tau,\tau^{\mathrm{sat}})]$,
+$t=v/A_j$ and $u=\mu(v-\tau^{\mathrm{act}})\in[0,\hat T]$. Then $t\le T_{j+1}$, so
+$S_{j+1}(t)\subset N_{j+1}$ by (Loc)(1). The field $h_{j+1}$ is defined at $t$:
+$D_{j+2}(t)\subset B_{ar_{j+1}/8}$ by (H4), the rings $i<j$ lie outside
+$B_{6r_j}\supset B_{6r_{j+1}}$, and ring $j$ lies in $N_j\subset\{|x|\ge\frac a2r_j\}$
+by (Loc)(1), which misses $B_{6r_{j+1}}$ as $6s_j\le\frac{6a}{16}<\frac a2$.
+Lemma~\ref{lem:transfer-step}(1) with $s'=s$ and (H4) give
+$\etin_j(\frac{v}{A_j})\le \Cvel \varepsilon_j(2C_2\hat a_{j+1}(t)+2C_2\hat a_{j+1}(t)\rhohat_{j+1}(t)+C_0\kappa\jap{u}^3)$.
+As $\hat a_{j+1}(t)=\kappa e^{\sigma_{j+1}u}=\delta_0e^{-\mu\sigma_{j+1}(\tau^{\mathrm{sat}}-v)}$,
+Lemma~\ref{lem:detuning} bounds the contribution of the first term by
+$2C_2\Cvel \varepsilon_je^{x_j\Tpin}\delta_0\int_{-\infty}^{\tau^{\mathrm{sat}}}e^{-(\mu\sigma_{j+1}-\sigma_j)(\tau^{\mathrm{sat}}-v)}\dd v
+\le \Cvel \varepsilon_je^{x_j\Tpin}\cdot4C_2\delta_0/(\sigb(\mu-1))$.
+For the second term, the last assertion of Theorem~\ref{thm:active} (with
+$G=G_{j+1}$) gives $\hat a_{j+1}(t)\rhohat_{j+1}(t)\le C(C_0)\kappa\jap{u}^3e^{\sigma'u}$;
+moreover $e^{\sigma_j(A_j\tsh_j-v)}=e^{x_j\Tpin}e^{\frac{\sigma_j}\mu(\hat T-u)}$ and,
+for $u\in[0,\hat T]$,
+$\frac{\sigma_j}\mu(\hat T-u)+\sigma'u\le\max(\frac{\sigma_j}\mu,\sigma')\hat T=\gamma_j\sigma_{j+1}\hat T=\gamma_j\log\frac{\delta_0}\kappa$.
+With $\dd v=\dd u/\mu\le\dd u$, the second term contributes at most $2C_2C(C_0)$
+times the left side of the following display, and the third (in the same way,
+with $e^{\sigma'u}$ replaced by $1$) at most $C_0$ times it:
+\[
+\Cvel \varepsilon_je^{x_j\Tpin}\kappa\Big(\frac{\delta_0}\kappa\Big)^{\gamma_j}\int_0^{\hat T}\jap{u}^3\dd u
+\le \Cvel \varepsilon_je^{x_j\Tpin}\delta_0\Big(\frac\kappa{\delta_0}\Big)^{1-\gamma_j}\hat T\jap{\hat T}^3 .
+\]
+Finally $\hat T\le\sigb^{-1}\log(\delta_0/\kappa)$, as $\sigma_{j+1}\ge\sigb$, and
+$\jap{cx}\le\max(1,c)\jap{x}$ for $c>0$, so
+$\hat T\jap{\hat T}^3\le\langle\log(\delta_0/\kappa)\rangle^4/(\sigb\min(1,\sigb)^3)$.
+
+\emph{The part over $\Iint_3$} matters only if $\tau>\tau^{\mathrm{sat}}$. Let
+$v\in[\tau^{\mathrm{sat}},\tau]$ and $t=v/A_j$, so that $T_{j+1}\le t\le\tsh_j$ and
+$\tauK=A_{j+1}(t-T_{j+1})=\mu(v-\tau^{\mathrm{sat}})\le\mu(A_j\tsh_j-\tau^{\mathrm{sat}})=\Tpin$. Ring $j$ is quiet at
+$t$, so by (Loc)(2) $D_{j+1}(t)\subset B_{ar_j/8}\cap\overline B_{\varrho_j(t)}$ with
+$\varrho_j(t)=(2+2\Cstar\tauK)r_{j+1}$. Hence $R_t=\max\{|x|:x\in D_{j+1}(t)\}$
+satisfies $R_t<ar_j/8$ and $R_t\le(2+2\Cstar\Tpin)r_{j+1}$, and
+Lemma~\ref{lem:transfer}(3) with $R=R_t$ gives
+$\etin_j(\frac{v}{A_j})\le \Cvel \varepsilon_j(R_t/r_{j+1})^3\le \Cvel \varepsilon_j(2+2\Cstar\Tpin)^3$. As
+$e^{\sigma_j(\tau-v)}\le e^{\sigma_j(A_j\tsh_j-\tau^{\mathrm{sat}})}=e^{x_j\Tpin}$ (as
+$v\ge\tau^{\mathrm{sat}}$, $\tau\le A_j\tsh_j$, and by Equation~\eqref{eq:relay-id}) and the
+interval has length at most $\Tpin/\mu\le\Tpin$, this part is at most
+$\Cvel \varepsilon_je^{x_j\Tpin}C_D(\Tpin)$.
+
+Adding the three parts, with $\langle\log(\delta_0/\kappa)\rangle\ge1$ for the
+part over $\Iint_1$, $\maj^{\mathrm{in}}_j(\frac{\tau}{A_j})$ is at most
+$\Cvel \varepsilon_je^{x_j\Tpin}[\frac{4C_2\delta_0}{\sigb(\mu-1)}+C_D(\Tpin)
++C(C_0,K_1)\big(1+(\sigb(\mu-1))^{-1}\big)\delta_0(\frac\kappa{\delta_0})^{1-\gamma_j}\langle\log\frac{\delta_0}\kappa\rangle^4]$
+where $C(C_0,K_1)$ depends only on the stated fixed data. Taking
+$\Crelay(C_0,K_1)$ large enough absorbs this coefficient.
+So $\maj^{\mathrm{in}}_j(\frac{\tau}{A_j})$ is at most half the right side of
+Equation~\eqref{eq:relay}, and $\maj_j\le2\maj^{\mathrm{in}}_j$ gives (ii) and (iii).
+
+Finally, if $\tau\le\tau^{\mathrm{act}}$, the proof used the solution on
+$[0,\tau/A_j]$ and the fact that ring $j+1$ is quiet there, which is determined by
+$\omega^{(n)}$ on $[0,\tau/A_j]$ (Lemma~\ref{lem:clock}); otherwise
+$\tsh_{j+1}<\tau/A_j$, and $\ksh_{j+1}$, $T_{j+1}$ and $\tsh_j$ are determined by
+$\omega^{(n)}$ on $[0,\tsh_{j+1}]$ (Lemma~\ref{lem:clock}).
+\end{proof}
+
+\subsection{The feedback of the outer rings}
+\label{sec:proof-Oprime}
+
+We use the hypotheses and notation of Lemma~\ref{lem:Oprime}.
+
+\begin{proof}[Quantitative proof of Lemma~\ref{lem:Oprime}]
+For $k=1$, $\hout_1=0$ by Lemma~\ref{lem:transfer-step}(2). Let $k\ge2$. We use
+ring-$(k-1)$ time $\tau'=A_{k-1}t'$ and put $\tau^{\mathrm{act}}=A_{k-1}\tsh_k$; at
+$\tau'\ge\tau^{\mathrm{act}}$ the active time of ring $k$ is
+$u=\mu(\tau'-\tau^{\mathrm{act}})$, and $\mu\tau^{\mathrm{act}}=A_k\tsh_k$.
+
+\emph{Reduction to $\maj_{k-1}$.} Let $t'\in[\tsh_k,t]$. By (Loc) and the
+hypotheses of Lemma~\ref{lem:O}, $h_k$ is defined at $t'$:
+$D_{k+1}(t')\subset B_{ar_k/8}$ by hypothesis (trivially if $k=n$), the rings
+$i<k-1$ lie outside $B_{6r_{k-1}}\supset B_{6r_k}$, and ring $k-1$ lies in
+$N_{k-1}$, which misses $B_{6r_k}$. Lemma~\ref{lem:transfer-step}(2) with
+$s'=s_h$, the bound $\|w_i(t')\|_{H^{s_h}}\le C_Q\maj_i(t')$ of
+Theorem~\ref{thm:quiet}(c) for $i\le k-1$ (its hypotheses hold by
+Lemma~\ref{lem:O} if $t'>0$, and $w_i(0)=0$ as these rings start at $\Phi$), and
+$\maj_i\le\frac34\Ptil_{i,k-1}\maj_{k-1}$ (Lemma~\ref{lem:O}) give
+$\etout_k(t')\le \Cvel C_Q[b_{k-1,k}+\frac34\sum_{i<k-1}b_{i,k}\Ptil_{i,k-1}]\maj_{k-1}(t')$.
+As $b_{i,k}=b_{k-1,k}\,b_{i,k-1}$ and $b_{i,k-1}\Ptil_{i,k-1}\le4^{-(k-1-i)}$ (proof
+of Lemma~\ref{lem:O}), the bracket is at most $b_{k-1,k}(1+\frac34\cdot\frac13)=\frac54b_{k-1,k}$, and
+\begin{equation}
+\label{eq:Op-red}
+\etout_k(t')\le2\Cvel C_Q\,b_{k-1,k}\,\maj_{k-1}(t') .
+\end{equation}
+
+\emph{Bound on $\maj_{k-1}$.} Proposition~\ref{prop:relay} applies with $j=k-1$,
+$\bar t=t$ and the present $C_0$, $K_1$: the clock is defined up to level
+$k$, and $A_{k-1}t\le A_{k-1}\tsh_{k-1}$ as $t\le T_k<\tsh_{k-1}$; (H1) is assumed; (H2)
+follows from $\etout_{k-1}\le\theta_{k-1}\maj_{k-1}$ on $[0,t]$
+(Lemma~\ref{lem:O}) and $\theta_{k-1}A_{k-1}t\le\frac12$; (H3) is assumed, through physical time $\min(t,\tsh_k)=\tsh_k$; for (H4), let $t>\tsh_k$: the bound
+$\maj_k(\tsh_k)\le K_1\ksh_k$ is assumed if $k<n$ and holds as
+$\maj_n(\tsh_n)=\maj_n(0)=0$ if $k=n$, and on $[\tsh_k,\min(t,T_k)]=[\tsh_k,t]$
+the inclusion $D_{k+1}\subset B_{ar_k/8}$, the active bound and the inner bound
+ are assumed. So $\maj_{k-1}\le2\maj^{\mathrm{in}}_{k-1}$ on
+$[0,t]$, and, if $k<n$, (o) holds at physical time $\tsh_k$.
+
+We split $\maj^{\mathrm{in}}_{k-1}$ at $\tau^{\mathrm{act}}$. For
+$\tau'\in[\tau^{\mathrm{act}},A_{k-1}t]$,
+$\maj^{\mathrm{in}}_{k-1}(\frac{\tau'}{A_{k-1}})=e^{\sigma_{k-1}(\tau'-\tau^{\mathrm{act}})}\maj^{\mathrm{in}}_{k-1}(\tsh_k)
++\int_{\tau^{\mathrm{act}}}^{\tau'}e^{\sigma_{k-1}(\tau'-v)}\etin_{k-1}(\frac{v}{A_{k-1}})\dd v$, and $e^{\sigma_{k-1}(\tau'-\tau^{\mathrm{act}})}\le e^{\sigma_ku}$, as
+$\sigma_{k-1}\le\mu\sigma_k$ (Lemma~\ref{lem:detuning}); recall
+$\ksh_ke^{\sigma_ku}=\hat a_k(t')$. The first term vanishes if $k=n$, as then
+$\tau^{\mathrm{act}}=0$; if $k<n$, (o) at physical time $\tsh_k$,
+$\mu\tau^{\mathrm{act}}=A_k\tsh_k$ and $\maj_k(\tsh_k)\le K_1\ksh_k$ bound it by
+$\Cvel \big(\frac{2C_Q}{\sigb(\mu-1)}+1\big)K_1\varepsilon_{k-1}\hat a_k(t')$.
+
+For the second term, let $v\in[\tau^{\mathrm{act}},\tau']$ and
+$u_v=\mu(v-\tau^{\mathrm{act}})$. At physical time $v/A_{k-1}\in[\tsh_k,t]$, ring $k$ lies in
+$N_k$ by (Loc)(1), $h_{k-1}$ is defined by (Loc)(2) for the quiet ring $k-1$, and
+$h_k$ is defined, as shown above; so Lemma~\ref{lem:transfer-step}(1) with $s'=s$
+and the hypotheses on ring $k$ give
+$\etin_{k-1}(\frac{v}{A_{k-1}})\le \Cvel \varepsilon_{k-1}(2C_2\hat a_k(v/A_{k-1})+2C_2\hat a_k(v/A_{k-1})\rhohat_k(v/A_{k-1})+C_0\ksh_k\jap{u_v}^3)$.
+As $\hat a_k(v/A_{k-1})=\ksh_ke^{\mu\sigma_k(v-\tau^{\mathrm{act}})}$ and
+$\mu\sigma_k-\sigma_{k-1}\ge\frac12\sigb(\mu-1)$, the first part contributes at most
+$4C_2\Cvel \varepsilon_{k-1}\hat a_k(t')/(\sigb(\mu-1))$. For the other two we write
+$e^{\sigma_{k-1}(\tau'-v)}=e^{\sigma_{k-1}(\tau'-\tau^{\mathrm{act}})}e^{-\sigma_{k-1}v'}$
+with $v'=v-\tau^{\mathrm{act}}$, so $u_v=\mu v'$, and use
+$\jap{\mu v'}\le\mu(1+v')$ and $\mu^3\le2$. By the last assertion of
+Theorem~\ref{thm:active},
+$\hat a_k(v/A_{k-1})\rhohat_k(v/A_{k-1})\le C(C_0)\ksh_k\jap{\mu v'}^3e^{\mu\sigma'v'}$, and
+$\sigma_{k-1}-\mu\sigma'>\frac{15}{16}\sigma-\frac{17}{16}\cdot\frac34\sigma=\frac{9\sigma}{64}$
+by Lemma~\ref{lem:detuning} and (SA1). Hence, by Equation~(I.\ref{I-eq:Ip}), the
+transient part contributes at most
+$2C_2C(C_0)\Cvel \varepsilon_{k-1}\ksh_ke^{\sigma_ku}\mu^3\int_0^\infty(1+v')^3e^{-\frac{9\sigma}{64}v'}\dd v'
+\le4C_2C(C_0)\Ip{3}{\frac{9\sigma}{64}}\Cvel \varepsilon_{k-1}\hat a_k(t')$,
+and, as $\sigma_{k-1}\ge\frac{9\sigma}{64}$, $\Ip{3}{\cdot}$ is decreasing and the inner part contributes at most
+$2C_0\Ip{3}{\frac{9\sigma}{64}}\Cvel \varepsilon_{k-1}\hat a_k(t')$.
+
+Using $\sigb(\mu-1)\le\sigb$ and choosing $\Crelay(C_0,K_1)$ sufficiently large, the coefficients of
+$\Cvel \varepsilon_{k-1}\hat a_k(t')$ found above add up to at most
+$\Crelay/(4\Cvel^2 C_Q\sigb(\mu-1))$; so, for $\tau'\in[\tau^{\mathrm{act}},A_{k-1}t]$,
+\[
+\maj_{k-1}(t')\le2\maj^{\mathrm{in}}_{k-1}(\frac{\tau'}{A_{k-1}})\le\frac{\Crelay}{2\Cvel C_Q}\cdot\frac{\varepsilon_{k-1}\hat a_k(t')}{\sigb(\mu-1)} .
+\]
+Finally $b_{k-1,k}\varepsilon_{k-1}=\mu^{-1}s_{k-1}\cdot\mu s_{k-1}^5=s_{k-1}^6$,
+so Equation~\eqref{eq:Op-red} gives
+\[
+\etout_k(t')\le\Crelay s_{k-1}^6\hat a_k(t')/(\sigb(\mu-1))=\eta_{b,k}\hat a_k(t')
+\]
+for $u=A_k(t'-\tsh_k)$; this is Equation~\eqref{eq:etab}, since
+$\|\hout_k(t')\|_{C^{M_h}(N')}=\etout_k(t')$.
+Also $\eta_{b,k}\le\eta_b$ as $s_{k-1}\le\sbar$. Every bound used at $t'$ involves
+the solution on $[0,t']$ only.
+\end{proof}
+
+\subsection{Constants and error exponents}
+\label{sec:relay-constants}
+
+The four error exponents below are used only to express the smallness
+conditions in Lemma~\ref{lem:kicktrue} and Section~\ref{sec:param}. Under
+(SA), put
+\[
+\begin{gathered}
+c_\gamma=1-\frac{16\sigma'}{15\sigma},\qquad
+\vartheta_\mu=\frac{\mu-1}3,\qquad
+\gamma_\mu=\min(\vartheta_\mu,c_\gamma),\\
+\gamma'_\mu=\min\Big(\frac{13}{20}\cdot\frac{\mu-1}\mu,c_\gamma\Big).
+\end{gathered}
+\]
+Under (Det), Lemma~\ref{lem:detuning} shows that $c_\gamma$ bounds
+$1-\sigma'/\sigma_k$ from below.
+The assumptions on $\sigma'$ and $\mu$ make all four numbers positive.
+
+\begin{definition}
+\label{def:K1}
+Under (SA), with $c_N,C_N$ of Lemma~I.\ref{I-lem:uniform}, put
+\begin{equation}
+\label{eq:K1}
+\begin{gathered}
+K_1=\frac{256\mu \Cvel |\lamref|}{3c_N}\Big[\frac{4C_2+1}{\sigb}+\frac{C_D(\Tpin)(\mu-1)}{\delta_0}\Big],\\
+\Abar=2\Cvel e^{17\sigma\Tpin/16}\Big[\frac{(4C_2+1)\delta_0}{\sigb(\mu-1)}+C_D(\Tpin)\Big],
+\end{gathered}
+\end{equation}
+with $C_D$ of Proposition~\ref{prop:relay}, and
+\[
+\Klo=\frac{c_N\delta_0}{22|\lamref|(\mu-1)},\qquad \Kup=\frac{5C_N\delta_0\mu}{|\lamref|(\mu-1)}e^{17\sigma\Tpin/16}.
+\]
+\end{definition}
+
+\subsection{Comparison of the true moment with the scalar kick}
+\label{sec:proof-kicktrue}
+
+\begin{lemma}
+\label{lem:kicktrue}
+Assume (SA) and (Det), and let $C_0\ge1$ and $K_1>0$.
+Choose one constant $\Cerr\ge1$, large enough for all the error bounds below.
+It may depend on $C_0$, $K_1$, $\mu$, $\Tpin$, $\Klo$ and the fixed ring data,
+but is independent of $\kappa$, $\sbar$, $n$ and the level. In particular, it
+also absorbs the fixed prefactor in the estimate of the earlier history.
+Let $1\le k<n$, assume that
+the clock is defined up to level $k+1$, put $\kappa=\ksh_{k+1}$,
+$T_g=\hat T_{k+1}$ and
+\[
+\qs=2\pi\pout_*(G_{k+1})\,c_{k+1}(T_{k+1})\,e^{\lambda_{k+1}\hat T_{k+1}} .
+\]
+Assume the following.
+\begin{itemize}
+\item $D_{k+1}(t)\subset B_{ar_k/8}$ for every $t\in[0,\tsh_k]$ (the hypotheses
+  of Lemma~\ref{lem:coupling}\textup{(2)}).
+\item The conclusions of Theorem~\ref{thm:active} and
+  Corollary~\ref{cor:active-moment} hold for ring $k+1$ on $\Phase_{k+1}$ with
+  $G=G_{k+1}$, $\kappa=\ksh_{k+1}$, the constant $C_0$ and $\eta_b$ of
+  Equation~\eqref{eq:etab}.
+\item The hypotheses \textup{(i)}--\textup{(iv)} of Lemma~\ref{lem:drift} hold for
+  ring $k+1$ with $\bar t=T_{k+1}$ and some $\eta\in[0,\eta_b]$, and
+  $\rT(\Tpin)\le\frac1{64}$ and $\Cls\eta\hat T_{k+1}\le\frac1{32}$.
+\item If $k+1<n$: for every $t\in[0,\tsh_{k+1}]$, $D_{k+2}(t)\subset B_{ar_{k+1}/8}$
+  and the rings $i\le k$ lie outside $B_{6r_{k+1}}$, so that $\eta_{k+1}$ is
+  defined on $[0,\tsh_{k+1}]$ (Definition~\ref{def:regions}); the hypotheses of
+  Theorem~\ref{thm:quiet} hold for ring $k+1$ through physical time $\tsh_{k+1}$, using the pulled-back functions; $\maj_{k+1}(\tsh_{k+1})\le K_1\kappa$;
+  the hypotheses of Proposition~\ref{prop:confine} hold with $k+1$ in place of $k$
+  and $t_1=T_{k+1}$; and $\kappa\ge\Klo s_{k+1}^5$.
+\item $|q_{k+1}(t)|\le\Cmom\big(1+A_{k+1}(t-T_{k+1})\big)^3$ for
+  $t\in[T_{k+1},\tsh_k]$ (also if $k+1=n$).
+\item The following inequalities hold:
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item $\frac{16}{15}\cdot\frac{2\pi C_3\delta_0^2}{\sigma}\le\frac14\cdot\frac{15}{16}\cdot\frac{\cout\delta_0}{20|\lamref|}$;
+\item $\mu-1\le\frac{15}{16}\cdot\cout\delta_0/\big(10|\lamref|\Cmom\Ip{3}{\sigma/4}\big)$;
+\item $\kappa\le\delta_04^{-\mu/(\mu-1)}$;
+\item \begin{multline*}
+  \frac{2\pi C_3\kappa^{1/2}\mu}{\frac34\sigma(\mu-1)}+\Cerr\Big(\frac\kappa{\delta_0}\Big)^{\gamma_\mu}\log^4\frac{\delta_0}\kappa\\
+  +\Cerr\big[1+\rT(\Tpin)\Ip{3}{\tfrac\sigma8}\big]\Big(\frac\kappa{\delta_0}\Big)^{\vartheta_\mu}\log^3\frac{\delta_0}\kappa
+  \le\frac12\cdot\frac{15}{16}\cdot\frac{\cout}{20|\lamref|(\mu-1)};
+  \end{multline*}
+\item $\Cerr\big(\frac\kappa{\delta_0}\big)^{\vartheta_\mu}\le\frac{15}{16}\cdot\frac{\cout}{20|\lamref|(\mu-1)}$;
+\item $\Cerr\eta_b\delta_0\frac{\mu^2}{\sigma^2(\mu-1)^2}+2\pi C_3\eta_b\frac{4\mu\delta_0}{3\sigma(\mu-1)}
+  \le\frac14\cdot\frac{15}{16}\cdot\frac{\cout\delta_0}{20|\lamref|(\mu-1)}$.
+\end{enumerate}
+\end{itemize}
+Then $|\qs|\in[\frac{15}{16},\frac{17}{16}]\,2\pi|\pout_*(G_{k+1})|\delta_0$, and the
+kick amplitude $\Ain$ of Lemma~\ref{lem:coupling}\textup{(2)} satisfies
+\[
+\frac{|\beta_k|\,|\qs|}{10|\lamref|(\mu-1)}\le|\Ain(\Tpin)|\le\frac{3|\beta_k|\,|\qs|\,\mu}{|\lamref|(\mu-1)} .
+\]
+\end{lemma}
+
+\begin{proof}[Quantitative proof of Lemma~\ref{lem:kicktrue}]
+Recall the local pullback $\tilde q(\tau)=q_{k+1}(T_{k+1}+\tau/A_{k+1})$
+from Lemma~\ref{lem:coupling}. We apply Proposition~\ref{prop:kick} to the instance described after
+Lemma~\ref{lem:coupling} (an instance of its setting by
+Lemma~\ref{lem:coupling}\textup{(2)}): $G=G_k$, $G'=G_{k+1}$, $\beta=\beta_k$,
+$q=\tilde q$, $c=\cin$, $A=\Ain$, $\tau_0=-A_{k+1}T_{k+1}$, $\tau_1=\Tpin$ and
+$(\bar Q,p)=(\Cmom,3)$. We verify its hypotheses (Q1)--(Q3) and (Kick1)--(Kick4),
+and then the remaining ones; (a)--(f) refer to the inequalities in the statement
+above. Write $\sigma_+=\sigma_{k+1}$, $x=x_k=\sigma_k/\mu$,
+$L=\log(\delta_0/\kappa)$, $\lambda_{\mathrm{in}}=\lambda_{k+1}$, $\zeta_0=\lambda_k/\mu$ and
+$w=\lambda_{\mathrm{in}}-\zeta_0$, so that $\Re w=\sigma_+-x$ and $T_g=L/\sigma_+$, and let
+$\mathsf B=\frac{15}{16}\cout\delta_0/(20|\lamref|(\mu-1))$ be the common budget of (d),
+(e) and (f).
+
+By Lemma~\ref{lem:detuning} and its proof,
+$\frac{15}{16}\sigma\le\sigma_+\le\frac{17}{16}\sigma$, $x\ge\frac\sigma4$,
+$\mu\sigma_+-\sigma_k\ge\frac34\sigma(\mu-1)$, $e_\mu(\mu+1)\le\frac14(\mu-1)$ and
+$|\sigma_i-\sigma|\le e_\mu\sigma$ for $i\in\{k,k+1\}$, so
+$\mu\sigma_+-\sigma_k\le\mu(1+e_\mu)\sigma-(1-e_\mu)\sigma=\sigma((\mu-1)+e_\mu(\mu+1))\le\frac54\sigma(\mu-1)$; as
+$\mu-1\le\frac1{16}$,
+\begin{equation}
+\label{eq:Rew}
+\frac34\sigma\,\frac{\mu-1}\mu\le\Re w=\frac{\mu\sigma_+-\sigma_k}\mu\le\frac54\sigma(\mu-1)\le\frac\sigma8 .
+\end{equation}
+By the bounds on $\mu\sigma_+-\sigma_k$ and $\sigma_+$ above and $\mu\le\frac{36}{17}$,
+$1-x/\sigma_+=\Re w/\sigma_+=(\mu\sigma_+-\sigma_k)/(\mu\sigma_+)\ge\frac{12}{17}\cdot\frac{\mu-1}\mu\ge\frac{\mu-1}3=\vartheta_\mu$;
+also $1-\sigma'/\sigma_+\ge1-\frac{16\sigma'}{15\sigma}=c_\gamma$, and
+$\gamma_\mu=\min(\vartheta_\mu,c_\gamma)$. By (c), $L\ge\frac\mu{\mu-1}\log4\ge1$;
+and $T_g\le\frac{16}{15\sigma}L$. As $e^{\sigma_+T_g}=\delta_0/\kappa$,
+$\kappa e^{yT_g}=\delta_0(\kappa/\delta_0)^{1-y/\sigma_+}$ for every real $y$.
+
+\emph{The amplitude $\qs$ and (Kick1).} By the hypotheses on ring $k+1$,
+Lemma~\ref{lem:drift} applies to ring
+$k+1$ with $\bar t=T_{k+1}$ and the given $\eta$, and gives
+$|c_{k+1}(T_{k+1})|e^{\sigma_+\hat T_{k+1}}\in[\frac{15}{16}\delta_0,\frac{17}{16}\delta_0]$;
+as $|e^{\lambda_{k+1}\hat T_{k+1}}|=e^{\sigma_+\hat T_{k+1}}$, this is the claimed
+range of $|\qs|$. As
+$G_{k+1}\in[0,\Gone]$ (Lemma~\ref{lem:inner-circ} and (SA3)), $2\pi|\pout_*(G_{k+1})|\ge\cout$ (Lemma~I.\ref{I-lem:uniform}),
+so $|\qs|\ge\frac{15}{16}\cout\delta_0>0$, hence $\qs\ne0$, and $\mathsf B\le|\qs|/(20|\lamref|(\mu-1))$. Then
+(b) gives $\mu-1\le|\qs|/(10|\lamref|\Cmom\Ip{3}{\sigma/4})$, which is (Kick1).
+
+\emph{(Kick2) and (Q3).} By Equation~\eqref{eq:Rew}, $\sigma_+\le\frac{17}{16}\sigma$
+and (c),
+$\Re w\,T_g\ge\frac34\cdot\frac{16}{17}\cdot\frac{\mu-1}\mu\,L\ge\frac{12}{17}\log4\ge\log2$,
+so $e^{-\Re w\,T_g}\le\frac12$. (Q3) on $[0,\Tpin]$ is the assumed
+bound on $q_{k+1}$, expressed in the local coordinate $\tauK$.
+
+\emph{(Q1).} Let $\tau\in[-T_g,0]$ and $t=T_{k+1}+\tau/A_{k+1}$. By
+Definition~\ref{def:clock}, $T_{k+1}-\tsh_{k+1}=T_g/A_{k+1}$, so
+$t\in\Phase_{k+1}$, and $u=\tau+T_g=A_{k+1}(t-\tsh_{k+1})\in[0,T_g]$ is the
+active time of ring $k+1$.
+We split $q_{k+1}$ into the moment of ring $k+1$ and that of the region inside it.
+As $D_{k+1}(t)$ is the disjoint union of $S_{k+1}(t)$ and $D_{k+2}(t)$ and $Q_3$ is
+linear,
+$Q_3[\omega_{\ge k+1}(t)]=Q_3[\omega^{(n)}(t)\mathbf 1_{S_{k+1}(t)}]+Q_3[\omega_{\ge k+2}(t)]$;
+the second term vanishes if $k+1=n$, as $D_{n+1}=\emptyset$. Otherwise, dividing by
+$A_{k+1}r_{k+1}^5$ and using
+$A_{k+2}r_{k+2}^5=\mu s_{k+1}^5A_{k+1}r_{k+1}^5$, the second term
+becomes $\mu s_{k+1}^5q_{k+2}(t)$. As $T_{k+1}-T_{k+2}=\Tpin/A_{k+2}+T_g/A_{k+1}$
+(Definition~\ref{def:clock}) and $A_{k+2}=\mu A_{k+1}$, the kick time of ring $k+1$ is
+$\tau'=A_{k+2}(t-T_{k+2})=\mu A_{k+1}(t-T_{k+1})+A_{k+2}(T_{k+1}-T_{k+2})=\mu\tau+\Tpin+\mu T_g$.
+So $\tilde q(\tau)=q^{\mathrm{ring}}(\tau)+q^{\mathrm{deep}}(\tau)$ with
+\[
+q^{\mathrm{ring}}(\tau)=\frac{\overline{Q_3[\omega^{(n)}(t)\mathbf 1_{S_{k+1}(t)}]}}{A_{k+1}r_{k+1}^5},\qquad
+q^{\mathrm{deep}}(\tau)=\mu s_{k+1}^5\,q_{k+2}(t),
+\]
+where $t=T_{k+1}+\tau/A_{k+1}$, and
+$q^{\mathrm{deep}}\equiv0$ if $k+1=n$.
+By the assumed conclusions of Theorem~\ref{thm:active}, $w_{k+1}(t)$ is defined and
+$\supp(\Phi+w_{k+1}(t))\subset\NN$, and in ring-$(k+1)$ units
+$\omega^{(n)}(t)\mathbf 1_{S_{k+1}(t)}=A_{k+1}(\Phi+w_{k+1}(t))$
+(Definition~\ref{def:regions}). As $\Phi$ is radial and $w_{k+1}(t)$ is real,
+$q^{\mathrm{ring}}(\tau)=\overline{Q_3[w_{k+1}(t)]}=2\pi\pout_3[w_{k+1}(t)]$, which
+is the function $q(u)$ of Corollary~\ref{cor:active-moment} for ring $k+1$, as
+$w(u)=w_{k+1}(t)$. As $\qs e^{\lambda_{\mathrm{in}}\tau}=2\pi\pout_*(G_{k+1})c_{k+1}(T_{k+1})e^{\lambda_{\mathrm{in}}u}$,
+\begin{align*}
+\tilde q(\tau)-\qs e^{\lambda_{\mathrm{in}}\tau}&=\big[q^{\mathrm{ring}}(\tau)-2\pi\pout_*(G_{k+1})c_{k+1}(t)e^{\lambda_{\mathrm{in}}u}\big]\\
+&\quad+2\pi\pout_*(G_{k+1})\big(c_{k+1}(t)-c_{k+1}(T_{k+1})\big)e^{\lambda_{\mathrm{in}}u}+q^{\mathrm{deep}}(\tau).
+\end{align*}
+Corollary~\ref{cor:active-moment} bounds the bracket, and
+Equation~\eqref{eq:drift-interval} for ring $k+1$, with the physical-time pair $(t,T_{k+1})$ and
+$\eta=\eta_b$, bounds the drift (hypothesis (iii) of Lemma~\ref{lem:drift} with
+$\eta\le\eta_b$ implies (iii) with $\eta_b$, and
+Equation~\eqref{eq:drift-interval} does not use the bound on
+$\Cls\eta\hat T_{k+1}$). With $\hat a(u)=\kappa e^{\sigma_+u}$,
+$\rhohat(u)=\rhohat_{k+1}(\tsh_{k+1}+u/A_{k+1})$ and $P=\max_{G\in[0,\Gone]}|\pout_*(G)|$, (Q1) holds with
+\begin{align*}
+\err(\tau)&=2\pi C_3\hat a(u)\big[\rhohat(u)+\hat a(u)+\kappa^{1/2}+\eta_b\big]\\
+&\quad+2\pi P\big(2\kappa\,\rT(\Tpin+\mu u)\,\mathbf 1_{k+1<n}+\Cls\eta_b\kappa(T_g-u)\big)e^{\sigma_+u}
++|q^{\mathrm{deep}}(\tau)| .
+\end{align*}
+
+\emph{(Kick3).} We bound
+$\Errg=\int_{-T_g}^0e^{-x\tau}\err(\tau)\dd\tau=\int_0^{T_g}e^{x(T_g-u)}\err(u-T_g)\dd u$
+term by term. In the order in which they appear in $\err$, the terms are the
+transient term, the $\hat a^2$-term, the $\kappa^{1/2}$-term and the $\eta_b$-term,
+which come from Corollary~\ref{cor:active-moment}; the inner and the outer drift
+terms, which come from Equation~\eqref{eq:drift-interval}; and the deep term
+$|q^{\mathrm{deep}}|$. As $x<\sigma_+$, $2\sigma_+-x\ge\sigma_+\ge\frac{15}{16}\sigma$, so by
+(a) and $\mu-1\le1$ the $\hat a^2$-term contributes
+$2\pi C_3\kappa^2e^{xT_g}\int_0^{T_g}e^{(2\sigma_+-x)u}\dd u\le\frac{2\pi C_3\kappa^2e^{2\sigma_+T_g}}{2\sigma_+-x}
+\le\frac{16}{15}\cdot\frac{2\pi C_3\delta_0^2}{\sigma}\le\frac{\mathsf B}4$.
+In the same way, by Equation~\eqref{eq:Rew}, the $\kappa^{1/2}$-term and the
+$\eta_b$-term contribute at most
+$2\pi C_3\kappa^{1/2}\kappa e^{\sigma_+T_g}/\Re w\le\delta_0\cdot2\pi C_3\kappa^{1/2}\mu/(\frac34\sigma(\mu-1))$
+and $2\pi C_3\eta_b\delta_0/\Re w\le2\pi C_3\eta_b\cdot4\mu\delta_0/(3\sigma(\mu-1))$.
+For the transient term, Theorem~\ref{thm:active} gives
+$\hat a(u)\rhohat(u)\le C(C_0)\kappa\jap{u}^3e^{\sigma'u}$; as
+$x(T_g-u)+\sigma'u\le\max(x,\sigma')T_g$ on $[0,T_g]$,
+$\jap{T_g}\le(1+\frac{16}{15\sigma})L$, $1-\max(x,\sigma')/\sigma_+\ge\gamma_\mu$ and
+$\kappa<\delta_0$, it contributes at most
+\[
+2\pi C_3C(C_0)\,T_g\jap{T_g}^3\kappa e^{\max(x,\sigma')T_g}
+\le \Cerr\,\delta_0
+\Big(\frac\kappa{\delta_0}\Big)^{\gamma_\mu}L^4,
+\]
+where the coefficient is bounded by $\Cerr$ by its choice.
+The inner drift term is absent if $k+1=n$. If $k+1<n$, we use
+$\rT(\Tpin+\mu u)\le\rT(\Tpin)(1+\mu u)^3e^{-\sigma\mu u/4}$,
+$(1+\mu u)^3\le\mu^3(1+u)^3$, $\mu\le\frac{17}{16}$, $1-x/\sigma_+\ge\vartheta_\mu$ and
+$\sigma_+-x-\frac{\mu\sigma}4\le\frac\sigma8-\frac\sigma4=-\frac\sigma8$
+(Equation~\eqref{eq:Rew}); it contributes at most
+\[
+4\pi P\kappa e^{xT_g}\rT(\Tpin)\mu^3\int_0^{\infty}(1+u)^3e^{-\sigma u/8}\dd u
+\le \Cerr\,\rT(\Tpin)\,\Ip{3}{\tfrac\sigma8}\,\delta_0\Big(\frac\kappa{\delta_0}\Big)^{\vartheta_\mu}.
+\]
+With $u=T_g-v$ and Equation~\eqref{eq:Rew}, the outer drift term contributes at
+most
+$2\pi P\Cls\eta_b\kappa e^{\sigma_+T_g}\allowbreak\int_0^{T_g}v\,e^{-\Re w\,v}\dd v
+\le\frac{2\pi P\Cls\eta_b\delta_0}{(\Re w)^2}
+\le \Cerr\eta_b\delta_0\frac{\mu^2}{\sigma^2(\mu-1)^2}$.
+The deep term vanishes if $k+1=n$. Let $k+1<n$. As
+$\tsh_{k+1}=T_{k+2}+\Tpin/A_{k+2}\ge T_{k+2}$, $\Phase_{k+1}$ lies in
+$[T_{k+2},T_{k+1}]$, and Proposition~\ref{prop:confine}(b) at level $k+1$,
+with $t_0=T_{k+2}$ and $t_1=T_{k+1}$, gives $|q_{k+2}(t)|\le\Cmom(1+\tau')^3$
+there; with $\tau'=\Tpin+\mu(\tau+T_g)$,
+$|q^{\mathrm{deep}}(\tau)|\le\mu s_{k+1}^5\Cmom\big(1+\Tpin+\mu(\tau+T_g)\big)^3$
+on $[-T_g,0]$. As $x\ge\frac\sigma4$,
+$\int_{-T_g}^0e^{-x\tau}\dd\tau\le4e^{xT_g}/\sigma$. On $[-T_g,0]$,
+$1+\Tpin+\mu(\tau+T_g)\le1+\Tpin+2T_g\le(1+\Tpin+\frac{32}{15\sigma})L$, as
+$\mu\le2$, $T_g\le\frac{16}{15\sigma}L$ and $L\ge1$. With
+$s_{k+1}^5\le\kappa/\Klo$, $\kappa e^{xT_g}=\delta_0(\kappa/\delta_0)^{1-x/\sigma_+}$,
+$1-x/\sigma_+\ge\vartheta_\mu$ and $\kappa<\delta_0$, the deep term contributes at most
+\[
+\frac{4\mu\Cmom}{\sigma\Klo}\Big(1+\Tpin+\frac{32}{15\sigma}\Big)^3L^3\,\kappa e^{xT_g}
+\le\Cerr\,\delta_0\Big(\frac\kappa{\delta_0}\Big)^{1-x/\sigma_+}L^3
+\le\Cerr\,\delta_0\Big(\frac\kappa{\delta_0}\Big)^{\vartheta_\mu}L^3 .
+\]
+As $L\ge1$, the $\kappa^{1/2}$-, transient,
+inner drift and deep terms add up to at most $\delta_0$ times the left side of
+(d), hence to at most $\frac{\mathsf B}2$; the $\eta_b$-term and the outer drift
+term add up to at most $\frac{\mathsf B}4$ by (f). With the $\hat a^2$-term,
+$\Errg\le\frac{\mathsf B}4+\frac{\mathsf B}2+\frac{\mathsf B}4=\mathsf B\le|\qs|/(20|\lamref|(\mu-1))$, which is (Kick3).
+
+\emph{(Q2) and (Kick4) when $k+1<n$.} By Definition~\ref{def:clock},
+$\tau_0=-A_{k+1}T_{k+1}=-A_{k+1}\tsh_{k+1}-T_g<-T_g$, as $A_{k+1}\tsh_{k+1}>0$
+(Lemma~\ref{lem:clock}(1)). On $[\tau_0,-T_g]$ we take $Q_{\mathrm{pre}}=|\tilde q|$,
+so (Q2) holds. In the ring-$(k+1)$ time $v=\tau-\tau_0\in[0,A_{k+1}\tsh_{k+1}]$,
+$-x\tau=xT_g+x(A_{k+1}\tsh_{k+1}-v)$, and the time of $\omega^{(n)}$ is $v/A_{k+1}$, the
+argument of $q_{k+1}$ in Definition~\ref{def:regions}.
+
+To bound $\Errpre$ we bound $q_{k+1}$ on the quiet phase of ring $k+1$ by the
+perturbation and the inner field of that ring.
+Put $j=k+1$, let $t\in[0,\tsh_j]$ and work in ring-$j$ units. As
+$D_{j+1}(t)\subset B_{ar_j/8}$, $\hin_j(t)$ is defined, and
+Theorem~\ref{thm:quiet}(a) gives $S_j(t)\subset N_j$, so $w_j(t)$ is defined. As
+$D_j(t)$ is the disjoint union of $S_j(t)$ and $D_{j+1}(t)$,
+$Q_3[\omega_{\ge j}(t)]=A_jr_j^5(Q_3[\Phi+w_j(t)]+Q_3[g])$ with
+$g(y)=A_j^{-1}\omega_{\ge j+1}(t,r_jy)$. Here $Q_3[\Phi]=0$ as $\Phi$ is radial,
+and $\Phi$ and $\Phi+w_j(t)$ are supported in $\NNm\subset N\subset\overline B_2$
+(Lemmas~I.\ref{I-lem:ring-facts} and~\ref{lem:annuli} and Theorem~\ref{thm:quiet}(a)), so
+$|Q_3[w_j(t)]|\le8\|w_j(t)\|_{L^1}$. The real function $g$ is
+$\nu^{\mathrm{in}}_j$ at physical time $t$ (Definition~\ref{def:regions}); put
+$p_3=\pout_3[g]=\frac1{2\pi}\int g(y')\,\bar y'^3\dd y'$
+(Definition~I.\ref{I-def:multipole}). As $D_{j+1}(t)\subset B_{ar_j/8}$,
+Lemma~\ref{lem:coupling}\textup{(1)} with $j$ in place of $k$ shows that the
+mode-$3$ profile of $\hin_j(t)\cdot\er$ is $\frac i2p_3r^{-4}$ for
+$a/4\le r\le3$; at $r=1$,
+$\frac1{2\pi}\int_0^{2\pi}\hin_j(t)(e^{i\theta})\cdot\er\,e^{-3i\theta}\dd\theta=\frac i2p_3$,
+so $|p_3|\le2\max_{|y|=1}|\hin_j(t)(y)|\le2\etin_j(t)$, the unit circle
+lying in $N'$. As $g$ is real, $\overline{Q_3[g]}=\int g(y)\,\bar y^3\dd y=2\pi p_3$,
+so $|Q_3[g]|\le4\pi\etin_j(t)$. Dividing by $A_jr_j^5$ gives
+$|q_j(t)|\le C(\|w_j(t)\|_{L^1}+\etin_j(t))$, with $C$ depending only
+on the fixed ring data.
+
+For $v\in[0,A_j\tsh_j]$, $w_j(v/A_j)$ is supported in $N$, so the
+Cauchy-Schwarz inequality, Theorem~\ref{thm:quiet}(c) and (M1) of
+Lemma~\ref{lem:majorant} give, using $|N|^{1/2}\le4$,
+\[
+\|w_j(v/A_j)\|_{L^1}\le 4\|w_j(v/A_j)\|_{H^{s_h}}\le 4C_Q\maj_j(\frac{v}{A_j})\le 4C_Qe^{-\sigma_+(A_j\tsh_j-v)}\maj_j(\tsh_j).
+\]
+Since $\int_0^{A_j\tsh_j}e^{-(\sigma_+-x)(A_j\tsh_j-v)}\dd v\le(\sigma_+-x)^{-1}$, the
+part of $\int_0^{A_j\tsh_j}e^{x(A_j\tsh_j-v)}|q_j(v/A_j)|\dd v$ coming from
+$\|w_j\|_{L^1}$ is at most $4CC_Q\maj_j(\tsh_j)/(\sigma_+-x)$.
+As $x<\sigma_+$ and $\etin_j\le\eta_j$,
+$\int_0^{A_j\tsh_j}e^{x(A_j\tsh_j-v)}\etin_j(\frac{v}{A_j})\dd v\le\maj_j(\tsh_j)$.
+These two bounds, $\maj_{k+1}(\tsh_{k+1})\le K_1\kappa$,
+Equation~\eqref{eq:Rew} for $\sigma_+-x=\Re w$, and $1-x/\sigma_+\ge\vartheta_\mu$ give
+\[
+\begin{aligned}
+\Errpre&=e^{xT_g}\int_0^{A_{k+1}\tsh_{k+1}}e^{x(A_{k+1}\tsh_{k+1}-v)}|q_{k+1}(v/A_{k+1})|\dd v\\
+&\le C\Big(\frac{16\mu C_Q}{3\sigma(\mu-1)}+1\Big)K_1\,\delta_0\Big(\frac\kappa{\delta_0}\Big)^{\vartheta_\mu}
+\le\Cerr\,\delta_0\Big(\frac\kappa{\delta_0}\Big)^{\vartheta_\mu},
+\end{aligned}
+\]
+which is at most $\mathsf B\le|\qs|/(20|\lamref|(\mu-1))$ by (e); this is (Kick4). The
+remaining hypotheses of Proposition~\ref{prop:kick} hold: $G_k,G_{k+1}\in[0,\Gone]$
+(Lemma~\ref{lem:inner-circ} and (SA3)),
+$|\lamst(G_i)-\lamref|\le\sigma(\mu-1)/(8\mu)$ for $i\in\{k,k+1\}$ by (Det),
+$1<\mu\le2$, $T_g>0$ and $\tau_1=\Tpin>0$. So Proposition~\ref{prop:kick} applies,
+and its conclusion at $\tau_1$ is the claimed bound on $|\Ain|$.
+
+\emph{The seeded level $k+1=n$.} Here $\tsh_n=0$, so $\tau_0=-T_g$, while
+Proposition~\ref{prop:kick} asks for $\tau_0<-T_g$. We apply it with $T_g$
+replaced by some $T'_g\in[\frac{17}{24}T_g,T_g)$ and the same $\qs$, $\lambda_{\mathrm{in}}$ and
+$\err$. (Q1) and $\Errg\le\mathsf B$ hold on the shorter interval $[-T'_g,0]$, so
+(Kick3) holds; (Kick1) and (Q3) do not involve $T_g$; and
+$\Re w\,T'_g\ge\frac{17}{24}\Re w\,T_g\ge\log2$, because the computation for (Kick2)
+gives $\Re w\,T_g\ge\frac{12}{17}\log4=\frac{24}{17}\log2$.
+On $[\tau_0,-T'_g]=[-T_g,-T'_g]$ we take $Q_{\mathrm{pre}}=|\tilde q|$; then (Q2) holds
+and $\Errpre\le(T_g-T'_g)e^{xT_g}\max_{[-T_g,0]}|\tilde q|$, as $\tilde q$ is continuous.
+This bound tends to $0$ as $T'_g\to T_g$, so $T'_g$ close enough to $T_g$ gives
+(Kick4). The remaining hypotheses hold as in
+the case $k+1<n$, and Proposition~\ref{prop:kick} gives the claimed bound.
+\end{proof}
+
+\subsection{Summability of the relay times}
+\label{sec:proof-time}
+
+The first estimate bounds the total relay duration. The second applies to
+an unfinished relay and uses only the amplitudes already handed off.
+
+\begin{lemma}
+\label{lem:time}
+Assume (SA) and (Det). Put $\Tz=\Tpin+1+\sigma'^{-1}\log_+(\delta_0/\Klo)$ and
+\[
+\Tstar=\frac1{A_1}\Big[\frac{\mu}{\mu-1}\Big(\Tz+\frac{5}{\sigma'}\log\frac1{\sbar}\Big)
++\frac{5\log(2\mu)}{\sigma'}\cdot\frac{\mu^2}{(\mu-1)^2}+1+\frac{1}{\sigma'}\log\frac{2\delta_0}{\kseed}\Big].
+\]
+If the clock is defined up to level $1$, $\ksh_k\ge\Klo s_k^5$ for $k<n$,
+and $\ksh_n\ge\frac12\kseed$, then $T_1\le\Tstar$.
+\end{lemma}
+
+\begin{proof}
+By Lemma~\ref{lem:detuning} and (SA1), $\sigma_k\ge\frac{15}{16}\sigma>\frac34\sigma>\sigma'$
+for every $k$. Since the clock is defined up to level $1$, $\ksh_k\in(0,\delta_0)$,
+so $\log(\delta_0/\ksh_k)>0$ and $\hat T_k\le\sigma'^{-1}\log(\delta_0/\ksh_k)$. For
+$k<n$, the hypothesis gives
+$\hat T_k\le\sigma'^{-1}\big[\log_+(\delta_0/\Klo)+5\log(1/s_k)\big]$, and by
+Definition~\ref{def:clock}, with $A_{k+1}=\mu A_k\ge A_k$,
+\[
+T_k-T_{k+1}=\frac{\Tpin}{A_{k+1}}+\frac{\hat T_k}{A_k}\le\frac1{A_k}\Big[\Tz+\frac{5}{\sigma'}\log\frac1{s_k}\Big].
+\]
+For $k=n$, $\tsh_n=0$ and $\ksh_n\ge\frac12\kseed$ give
+$T_n=\hat T_n/A_n\le\sigma'^{-1}\log(2\delta_0/\kseed)/A_1$. We sum over $k$, using
+$T_1=T_n+\sum_{k=1}^{n-1}(T_k-T_{k+1})$, $\log(1/s_k)=\log(1/\sbar)+k\log(2\mu)$,
+$A_k=A_1\mu^{k-1}$, and
+\[
+\sum_{k\ge1}\mu^{1-k}=\frac\mu{\mu-1},\qquad\sum_{k\ge1}k\mu^{1-k}=\frac{\mu^2}{(\mu-1)^2}.
+\]
+All terms are nonnegative, so $T_1$ is at most $\Tstar$ minus $1/A_1$.
+\end{proof}
+
+\begin{lemma}
+\label{lem:quiet-time}
+Assume (SA), (Det) and $\Kup\sbar^5\le\kseed$, and let $\Tz$ be as
+in Lemma~\ref{lem:time}. Let $1\le j<n$ and put
+\[
+\bar\tau^\sharp_j=\frac{3\Tz+11\sigma'^{-1}\log(1/s_j)}{\mu-1}+\frac{5\mu\log(2\mu)}{\sigma'(\mu-1)^2}.
+\]
+Let $t\ge0$, and assume: for every $i\in(j,n]$ such that $\tsh_i$ is defined and
+$\tsh_i\le t$, the clock is defined up to level $i$, and moreover
+$\ksh_i\ge\Klo s_i^5$ if $i<n$; $t\le\tsh_j$ whenever $\tsh_j$ is defined;
+and $\ksh_n\ge\frac12\kseed$. Then $A_jt\le\bar\tau^\sharp_j$.
+\end{lemma}
+
+\begin{proof}
+Recall (Definition~\ref{def:clock}) that $\tsh_i$ is defined once the clock is
+defined up to level $i+1$, and then $\tsh_{i+1}\le T_{i+1}\le\tsh_i$, as
+$\hat T_{i+1}\ge0$. Let $i_*$ be the least $i\in(j,n]$ such that $\tsh_i$ is
+defined and $\tsh_i\le t$; it exists as $\tsh_n=0$. For $i\in[i_*,n]$, $\tsh_i$ is
+defined and $\tsh_i\le\tsh_{i_*}\le t$, so by hypothesis the clock is defined up to level $i$,
+and $\ksh_i\ge\Klo s_i^5$ if $i<n$; in particular $T_{i_*}$ is defined. If
+$i_*-1>j$, then $\tsh_{i_*-1}=T_{i_*}+\Tpin/A_{i_*}$ is defined and, by the
+minimality of $i_*$, larger than $t$; if $i_*-1=j$, then
+$t\le\tsh_j=T_{j+1}+\Tpin/A_{j+1}$ by hypothesis. In both cases, by
+Definition~\ref{def:clock},
+\[
+t\le T_{i_*}+\frac{\Tpin}{A_{i_*}}=\frac{\hat T_n}{A_n}+\sum_{i=i_*}^{n-1}\Big(\frac{\Tpin}{A_{i+1}}+\frac{\hat T_i}{A_i}\Big)+\frac{\Tpin}{A_{i_*}}.
+\]
+We multiply by $A_j$ and use $A_j/A_i=\mu^{j-i}$. The pinning terms contribute at
+most $\Tpin\sum_{i>j}\mu^{j-i}=\Tpin/(\mu-1)$. For $j<i<n$ with $i\ge i_*$, as in
+the proof of Lemma~\ref{lem:time},
+$\hat T_i\le\sigma'^{-1}[5\log(1/s_i)+\log_+(\delta_0/\Klo)]$ with
+$\log(1/s_i)=\log(1/s_j)+(i-j)\log(2\mu)$; with $\sum_{i>j}\mu^{j-i}=\frac1{\mu-1}$
+and $\sum_{i>j}(i-j)\mu^{j-i}=\frac\mu{(\mu-1)^2}$, these active phases
+contribute at most
+\[
+\frac{\sigma'^{-1}\log_+(\delta_0/\Klo)+5\sigma'^{-1}\log(1/s_j)}{\mu-1}+\frac{5\mu\log(2\mu)}{\sigma'(\mu-1)^2}.
+\]
+The seeded phase contributes $\mu^{j-n}\hat T_n\le\hat T_n$. As $c_N\le C_N$ and
+$\frac1{22}\le5\mu e^{17\sigma\Tpin/16}$, $\Klo\le\Kup$, so
+$\ksh_n\ge\frac12\kseed\ge\frac12\Kup\sbar^5\ge\frac12\Klo\sbar^5$ and
+\[
+\hat T_n\le\frac1{\sigma'}\Big[\log2+\log_+\frac{\delta_0}{\Klo}+5\log\frac1{\sbar}\Big]
+\le\Tz+\frac{6}{\sigma'}\log\frac1{s_j},
+\]
+because $\log2\le\log(1/\sbar)\le\log(1/s_j)$, by $\sbar\le a/16<\frac12$ and
+$s_j\le\sbar$. Adding the three groups and using $\mu-1\le1$,
+\[
+A_jt\le\frac{2\Tz+11\sigma'^{-1}\log(1/s_j)}{\mu-1}+\frac{5\mu\log(2\mu)}{\sigma'(\mu-1)^2}\le\bar\tau^\sharp_j .\qedhere
+\]
+\end{proof}

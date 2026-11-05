@@ -50,10 +50,6 @@ counterclockwise.
 \subsection{Ball Arithmetic and the Trusted Base}
 \label{app:arith}
 
-This subsection fixes the arithmetic in which the computations are made and
-states exactly what the proof of Proposition~\ref{prop:runs} assumes about the
-software that carries them out.
-
 The computations use \textbf{ball arithmetic}: a real number is enclosed in a
 ball $[m\pm r]=[m-r,m+r]$ whose midpoint $m$ and radius $r\ge0$ are binary
 floating-point numbers, and a complex number in a box $X+iY$, the product of two
@@ -121,13 +117,8 @@ else in this paper has a written proof that uses no machine computation.
 
 \subsection{Two Elementary Lemmas}
 
-The first lemma bounds by $3e^{-50}$ the total variation of $\prof$ on
-$(-\infty,\xia]$ and on $[\xib,\infty)$, and compares $\psi_\ell$ on the end regions
-$[\xiL,\xia]$ and $[\xib,\xiR]$ with a solution of $\psi''=\ell^2\psi$;
-Lemma~\ref{lem:apriori} and steps (ii) and (iv) of the enclosure procedure of
-Section~\ref{app:procedure} use it. The second confines the zeros of
-$\Evans_3(\cdot;G)$ with $\Re\lambda\ge\frac9{200}$ to the rectangle $\Rect$, for
-$0\le G\le\Gmax'$.
+The first estimate controls the end regions in the enclosure procedure;
+the second confines the relevant zeros to $\Rect$.
 
 \begin{lemma}
 \label{lem:end-regions}
@@ -263,12 +254,7 @@ $h_j=s_{j+1}-s_j$ are exact dyadic rationals.
 The input is an integer $\ell\ge1$, a box $\Lambda^{\rm b}=\mathsf X+i\mathsf Y$ and a
 real ball $\mathcal G^{\rm b}$. Each operation below is a ball operation; the
 procedure \textbf{fails} if a comparison that it requires is not certified as
-true, or if its output is not a box of finite radius. Step (i) encloses the Taylor
-coefficients of $\prof$, of $\prof'$ and of the term
-$e^{-2\xi}\int_{-\infty}^{\xi}\prof(\xi')e^{2\xi'}\dd\xi'$ of $\Omega_G$; step (ii)
-crosses the left end region; step (iii) carries enclosures of $\psi_\ell$ and
-$\psi_\ell'$ across $[\xia,\xib]$, one step $[s_j,s_{j+1}]$ at a time; and step (iv)
-crosses the right end region and forms the enclosure of $\Evans_\ell$.
+true, or if its output is not a box of finite radius.
 \begin{enumerate}[label=\textup{(\roman*)}]
 \item \emph{Coefficient data, independent of $\lambda$ and $G$.} For each $j<n$,
   and for $S=\{s_j\}$ (the \emph{point data}) and for $S=[s_j,s_{j+1}]$ (the

@@ -5,18 +5,12 @@ In this section we study, in ring units, one ring of the approximate solutions: 
 ring close to $\Phi$, whose deviation from $\Phi$ is driven by its own
 nonlinearity and by the field $h$ of the vorticity inside and outside it, apart
 from the point-vortex part of the inner vorticity, which enters the linearization
-$\Lin(G)$ (Lemma~\ref{lem:reduction}). We prove three results. A ring that the
-instability has not yet reached stays close to $\Phi$, and its deviation equals
-the linear response to $h$ up to an error of second order
-(Theorem~\ref{thm:quiet}). A ring whose component along
-the unstable eigenfunction grows follows that eigenfunction until the envelope of
-this component reaches a small size (Theorem~\ref{thm:active}). And the innermost ring of
-the approximate datum can be given a small component along the unstable
-eigenfunction by a rearrangement of $\Phi$ (Lemma~\ref{lem:seed}).
+$\Lin(G)$ (Lemma~\ref{lem:reduction}). We prove estimates for a quiet ring
+(Theorem~\ref{thm:quiet}) and an active ring (Theorem~\ref{thm:active}), and
+construct the seeded innermost ring by rearranging $\Phi$
+(Lemma~\ref{lem:seed}).
 Sections~\ref{sec:relay} and~\ref{sec:bootstrap} apply Theorems~\ref{thm:quiet}
-and~\ref{thm:active} to every ring, in its own units, and Section~\ref{sec:kick} also uses
-Theorem~\ref{thm:quiet}. Lemma~\ref{lem:seed} gives the innermost ring of the
-datum of Definition~\ref{def:approx}.
+and~\ref{thm:active} to every ring in its own units.
 
 Throughout this section we assume \textup{(N1)}--\textup{(N3)}, we work in ring
 units, and we use the objects of Definition~I.\ref{I-def:eigendata}: the unstable
@@ -320,11 +314,10 @@ above extend it to $\R^2$, with the products involving $h$ extended by zero
 as in the statement.
 \end{proof}
 
-In the setting of Lemma~\ref{lem:reduction}, put $w=\omega_{\mathrm r}-\Phi$. Then
-$t\mapsto\|w(t)\|_{H^k}$ is continuous
-on $[0,T]$ for every $k$, since $\omega_{\mathrm r}$ is smooth and its support stays
-in a fixed compact set (Theorem~\ref{thm:smooth}\textup{(1)}). We fix once and for
-all the auxiliary objects of the estimates below. The functions we estimate are
+By Theorem~\ref{thm:smooth}\textup{(1)}, $\omega_{\mathrm r}$ is smooth with
+support in a fixed compact set on $[0,T]$, so
+$t\mapsto\|\omega_{\mathrm r}(t)-\Phi\|_{H^k}$ is continuous for every $k$.
+We fix the cutoffs used in the estimates below. The functions we estimate are
 supported in $N$, and the velocities that act on them are needed only on a
 neighborhood of $N$. We therefore multiply the Biot-Savart velocity by a compactly
 supported cutoff $\chi_B$ that does not change it on $N'$, so that
@@ -644,10 +637,11 @@ approximate solution of Equation~\eqref{eq:hier} with $J=N_Q$ and $w^{[1]}=\wlin
 bound its terms by powers of $\maj$, and close with Lemma~\ref{lem:energy} in a
 continuity argument on the radial displacement and on $\|w\|_{H^{s_h}}$.
 
-\emph{Constants.} Put $\sigma'_0=\frac12(\frac9{200}+\sigb)\in(\frac9{200},\sigb)$.
-The semigroup constants of Proposition~I.\ref{I-prop:semigroup} and the
-constants of Lemma~\ref{lem:bilinear}, through order $M_h$, are finite and
-uniform in $G$. All implicit constants in this proof depend only on
+\emph{Constants.} Fix the semigroup constants of
+Proposition~I.\ref{I-prop:semigroup} at the rate
+$\frac12(\frac9{200}+\sigb)\in(\frac9{200},\sigb)$, and the constants of
+Lemma~\ref{lem:bilinear} through order $M_h$. They are finite and uniform
+in $G$. All implicit constants in this proof depend only on
 $(\Phi,\Gone,s_h,N_Q)$. Put $k_j=M_h-j$ for $1\le j\le N_Q$, so that
 $k_{N_Q}=s_h+1$ and $k_j+1=k_{j-1}$. The finite induction below gives the
 hierarchy, residual and energy bounds with these dependencies. Choose $C_Q$
@@ -1242,8 +1236,6 @@ Thus, for $t\le t_{\mathrm{in}}$,
  \le C_{\mathrm{lay}}\kappa\le1.
 \end{aligned}
 \]
-The penultimate coefficient depends only on $C_0$ and the fixed data and is
-included in the choice of $C_{\mathrm{lay}}$; the last inequality is (L1).
 This bound supplies the $H^{M-1}$ hypothesis on the approximate solution
 when applying Lemma~\ref{lem:energy} at level $M-2$ with
 $w_{\mathrm{app}}=\wlin$. The required bounds on $w$ and $h$ follow from
@@ -1297,9 +1289,8 @@ $\|v_1(t)\|_{H^s}\le C_{\mathrm{lay}}\kappa^2\le\kappa^{1/2}\kappa\le\kappa^{1/2
 $\|w-2\Re(ce^{\lambda t}\phist)\|_{H^s}\le(C+1)\hat a\big[\rhohat+\kappa^{1/2}+\eta_b\big]$.
 By (Coef), $|c(t)|e^{\sigma t}\le2\hat a(t)+C_0\kappa\jap{t}^3\le\hat a(t)(2+\rhohat(t))$,
 so $\|w(t)\|_{H^s}\le2C(2+\rhohat)\hat a+(C+1)(\rhohat+2)\hat a\le C_2\hat a(1+\rhohat)$.
-The displacement is at most $C_{\mathrm{lay}}\kappa\le\frac12\kappa^{1/2}$ by (L1). This
-proves (b), and bounds the displacement by $\frac12\kappa^{1/2}$, when
-$\min(\bar t,\hat T)\le t_1$.
+The displacement is at most $C_{\mathrm{lay}}\kappa\le\frac12\kappa^{1/2}$ by (L1).
+This proves (b) when $\min(\bar t,\hat T)\le t_1$.
 
 \emph{Restart.} Assume now that $t_1<t_e:=\min(\bar t,\hat T)$. The function
 $\tilde\omega(t')=\omega(t_1+t')$ is the solution of Theorem~\ref{thm:smooth} with the

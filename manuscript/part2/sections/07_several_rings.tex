@@ -4,11 +4,6 @@
 We bound the velocity fields that the rings of $\omega^{(n)}$ induce on one
 another, and we show that, on a time window after ring $k+1$ saturates, the
 material inside ring $k$ stays in the disk $\overline B_{ar_k/8}$.
-Lemmas~\ref{lem:transfer} and~\ref{lem:inner-field} bound, by multipole
-expansions, the fields on $N'$ that make up the inner and outer fields $\hin_k$
-and $\hout_k$ of Definition~\ref{def:regions}, and Proposition~\ref{prop:confine}
-gives the confinement. Sections~\ref{sec:relay} and~\ref{sec:bootstrap} use these
-results.
 
 We assume \textup{(N1)}--\textup{(N3)} of Hypothesis~I.\ref{I-hyp:N}, fix
 $n\ge2$, and use the datum and its approximations $\omega^{(n)}$, the ring
@@ -28,12 +23,10 @@ among the hypotheses of Lemmas~\ref{lem:transfer} and~\ref{lem:field-bound} and 
 Proposition~\ref{prop:confine} so that these can be quoted on
 their own; under the standing assumptions of this section they always hold.
 
-In this section $q$, without an index, is the order of a derivative, and $i$ is a ring index or
-the imaginary unit. For a velocity field $V$, $V_{[j]}$ is $V$ in ring-$j$ units,
+In this section $q$, without an index, is the order of a derivative.
+For a velocity field $V$, $V_{[j]}$ is $V$ in ring-$j$ units,
 that is, $V_{[j]}(y)=V(r_jy)/(A_jr_j)$ (defined before
-Definition~\ref{def:regions}), and $V$ is \emph{bounded on
-$N'_j$ in $C^k$, in ring-$j$ units, by} a number if and only if
-$\|V_{[j]}\|_{C^k(N')}$ is at most that number. As in
+Definition~\ref{def:regions}). As in
 Section~I.\ref{I-sec:prelim}, $\|h\|_{C^k(U)}$ is the sum over $q\le k$ of
 $\sup_U|\nabla^qh|$, so the proofs below bound each $\nabla^q$ and then sum over
 $q$. We use the \textbf{scaling
@@ -313,8 +306,8 @@ $E_{[k]}=\KBS\ast\nu^{\mathrm{in}}_k-G_ky^\perp/|y|^2=\hin_k(t)$.
 
 \subsection{Confinement on a Window}
 
-Ring $k+1$ saturates at the time $T_{k+1}$ of Definition~\ref{def:clock}, and
-from then on it is debris: the bootstrap of Section~\ref{sec:bootstrap} no
+After ring $k+1$ saturates at the time $T_{k+1}$ of Definition~\ref{def:clock},
+it is debris: the bootstrap of Section~\ref{sec:bootstrap} no
 longer keeps its support near the annulus $N_{k+1}$. The next proposition shows
 that, on a window $[T_{k+1},t_1]$, the material inside ring $k$ nevertheless
 stays in the disk $\overline B_{ar_k/8}$, because its speed is at most of
@@ -340,8 +333,7 @@ $\hat T_k=O(1+\log(1/s_k))$. Thus this interval can be long in kick-time
 units; its physical length is divided by $A_{k+1}$. Condition \textup{(iv)}
 allows this logarithmic duration: the corresponding $\Lambda$ is
 $O(1+\log(1/s_k))$, so both $\Lambda s_k$ and $\Lambda^2s_k$ tend to zero as
-$s_k\to0$, with the other parameters fixed. More generally, the proposition
-gives control up to any $t_1$ satisfying its hypotheses.
+$s_k\to0$, with the other parameters fixed.
 
 Assumption \textup{(ii)} keeps ring $k$ and the rings outside it away from
 the origin throughout $[T_{k+1},t_1]$, allowing Lemma~\ref{lem:hollow} to
@@ -439,10 +431,9 @@ The following definition collects the support conditions under which the
 perturbation $w_i$ of every ring that is not debris, and the external field
 $h_j$ of every quiet ring, are defined (Definition~\ref{def:regions}), together
 with the confinement of
-Proposition~\ref{prop:confine}\textup{(a)}. It is a hypothesis of the relay
-lemmas of Section~\ref{sec:relay} (Proposition~\ref{prop:relay} and
-Lemma~\ref{lem:Oprime}), and Lemma~\ref{lem:geometry}\textup{(c)} verifies it in
-the bootstrap. Since the clock is constructed recursively, these conditions
+Proposition~\ref{prop:confine}\textup{(a)}.
+Lemma~\ref{lem:geometry}\textup{(c)} verifies these conditions in the bootstrap.
+Since the clock is constructed recursively, they
 must also cover rings whose activation or saturation time has not yet been
 assigned.
 
@@ -493,14 +484,11 @@ $\eta_j(t)\le \Cvel\big(\mu\sbar^2+\sbar\big)$.
 All implicit constants in this proof depend only on $a$ and $M_h$, since
 $\|\Phi\|_{L^1}\le\pi$. The common constant $\Cvel$ is chosen to dominate
 these bounds as well. The hypotheses are those under which
-Definition~\ref{def:regions} defines $h_j$ at time $t$, and, by that definition,
-$\eta_j(t)=\etin_j(t)+\etout_j(t)$. Here $\etin_j(t)$ is the norm in
-$C^{M_h}(N')$ of $\hin_j(t)$, which is the non-monopole field of
+Definition~\ref{def:regions} defines $h_j$ at time $t$, with
+$\eta_j(t)=\etin_j(t)+\etout_j(t)$. The inner field is the non-monopole field of
 $\omega_{\ge j+1}(t)$ in ring-$j$ units by
 Lemma~\ref{lem:inner-field}; the hypotheses of that lemma hold with $R=ar_j/8$, by
-Lemma~\ref{lem:speed}. Similarly, $\etout_j(t)$ is the norm of
-$\hout_j(t)$, the field of
-$\omega(t)\mathbf 1_{S_1(t)\cup\dots\cup S_{j-1}(t)}$ in ring-$j$ units. By
+Lemma~\ref{lem:speed}. By
 Lemma~\ref{lem:transfer}(3) with $R=ar_j/8$,
 $\etin_j(t)\lesssim\varepsilon_j(ar_j/(8r_{j+1}))^3=(a/8)^3\mu s_j^2\lesssim\mu\sbar^2$;
 here we used $\varepsilon_j=\mu s_j^5$, $r_{j+1}=s_jr_j$ and $s_j\le\sbar$.
