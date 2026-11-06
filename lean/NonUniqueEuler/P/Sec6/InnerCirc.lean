@@ -12,7 +12,7 @@ constant and statement below are unchanged.
 
 Proof of `I/Sec6/InnerCirc.lean` (Part II Lemma 3.7 (`lem:inner-circ`) and its proof); the formal interface is unchanged.
 
-* Part II Equation (27) (`eq:conserved`): by `eq:omega-ge` (`regions_basic_three`),
+* Part II Equation (29) (`eq:conserved`): by `eq:omega-ge` (`regions_basic_three`),
   `ω_{≥k}(t) = g ∘ Φ_t⁻¹` with `g = Σ_{i=k}^n f^{(n)}_i`; `Φ_t⁻¹` preserves area
   (`Smooth.flow_measurePreserving`, applied to the datum `f^{(n)}`, which is `C_c^∞` by `lem:adm`),
   so `∫ F(ω_{≥k}(t)) = ∫ F(g)`. Since `f^{(n)}_i = f^{(n)} 1_{S_i}` and the `S_i` are pairwise
@@ -158,7 +158,7 @@ end InnerCircAux
 
 open InnerCircAux
 
-/-- **Part II Equation (27) (`eq:conserved`)**: for every continuous `F` with `F(0) = 0`, every
+/-- **Part II Equation (29) (`eq:conserved`)**: for every continuous `F` with `F(0) = 0`, every
 `1 ≤ k ≤ n + 1` and every `t ≥ 0`, `∫ F(ω_{≥k}(t)) dx = Σ_{i=k}^n ∫ F(f^{(n)}_i) dx`. -/
 theorem conserved (P : Approx) (hP : P.Valid) (hN : NumericalHypothesis P.χ) {F : ℝ → ℝ}
     (hF : Continuous F) (hF0 : F 0 = 0) {k : ℕ} (hk : 1 ≤ k) (hkn : k ≤ P.n + 1) {t : ℝ}

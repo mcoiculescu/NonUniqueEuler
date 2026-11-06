@@ -16,7 +16,7 @@ steps are in the helpers
   `k < n`, `κ♯_n ≤ 2κ_seed` (Lean step 0), and (κ4);
 * `thm:active`, `cor:active-moment` for ring `k` on `[0, ū]` (`active_ring`).
 The hypothesis `t' ≤ T_end` is not used (it only places `t'` in the range of the bootstrap).
-Lean retains the auxiliary inner-field constant `C_F`. Current Equation (56)
+Lean retains the auxiliary inner-field constant `C_F`. Current Equation (145)
 (`eq:boot-inner`, Appendix C.17) states the consequence with `C₀`, using `C_F ≤ C₀`.
 -/
 

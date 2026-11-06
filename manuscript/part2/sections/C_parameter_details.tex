@@ -44,12 +44,13 @@ The auxiliary constants are defined at the cited locations.
   $\Tz$ (Lemma~\ref{lem:time}) and
   choose $C_\tau\ge\max\{3,\frac{15}{\sigma'}\}$.
 \item[\textup{(P4)}] Choose $C_0$ so that
-  \[
+  \begin{equation}
+  \label{eq:param-C0}
   \begin{gathered}
   C_0\ge\max\{1,2\Cseed,K_1C_Q\},\\
   C_0\ge\Cvel \,\mu\,(2+2\Cstar\Tpin)^3(1+2\Cstar)^3/\Klo.
   \end{gathered}
-  \]
+  \end{equation}
   Then fix $\kappa_0(C_0)$, $\bar t_1(C_0)$ and $C(C_0)$ of
   Theorem~\ref{thm:active}, the common constant $\Crelay(C_0,K_1)$ of
   Proposition~\ref{prop:relay} and Lemma~\ref{lem:Oprime}, and $\Cerr$ of
@@ -59,11 +60,11 @@ The auxiliary constants are defined at the cited locations.
 
 The constant $C_0$ serves (Init) and (Field) in Theorem~\ref{thm:active}.
 The seed estimate bounds the initial perturbation by $2\Cseed\ksh_n$.
-The hand-off estimate in Appendix~\ref{sec:bootstrap-handoff-checks}
-bounds it by $K_1C_Q\ksh_k$ at ring $k$'s activation. The inner-field bound
-in Appendix~\ref{sec:bootstrap-active-checks} is the coefficient in the
-second inequality of (P4) times $\ksh_k\jap{A_k(t-\tsh_k)}^3$. These are
-the bounds required in the local coordinate $u=A_k(t-\tsh_k)$.
+Equation~\eqref{eq:relay-startup}
+bounds it by $K_1C_Q\ksh_k$ at ring $k$'s activation.
+Equation~\eqref{eq:boot-inner} bounds the inner field using the second
+inequality of (P4). These give (Init) and the inner-field bound in (Field) in the local coordinate
+$u=A_k(t-\tsh_k)$.
 The coefficients that $C_0$ must dominate are fixed at (P0)--(P3).
 The constants $\Crelay$ and $\Cerr$ are fixed after $C_0$ at (P4), before
 choosing the seed and radius ratios.
@@ -98,8 +99,8 @@ Lemma~\ref{lem:kicktrue}, ($\kappa$4) is hypothesis (Small) of
 Theorem~\ref{thm:active}, ($\kappa$5) is used in the proof of
 Proposition~\ref{prop:reduction}, and ($\kappa$6) makes the seed of
 Definition~\ref{def:approx} admissible. The seed estimate
-\eqref{eq:boot-start} and the hand-off estimates of
-Appendix~\ref{sec:bootstrap-handoff-checks} put every starting amplitude
+\eqref{eq:boot-start} and the amplitude bounds in Equation~\eqref{eq:relay-startup}
+put every starting amplitude
 in $(0,2\kseed]$, so the conditions are imposed on that whole interval.
 
 The formula for $K_1$ in Definition~\ref{def:K1} uses quantities fixed at
@@ -161,23 +162,23 @@ Lemma~\ref{lem:field-bound} state them as hypotheses.
 \subsection{The accumulated outer field}
 \label{sec:param-feedback}
 
-The last inequality of (B7), Equation~\eqref{eq:E22}, is used only through the
-following lemma. Recall that $\theta_j$ is the factor of Lemma~\ref{lem:O} that
-bounds the field of the outer rings on ring $j$ by the Duhamel bound
-$\maj_j$, and that $\bar\tau^\sharp_j$ of Lemma~\ref{lem:quiet-time} bounds
-physical times in its quiet-ring estimate by $A_jt\le\bar\tau^\sharp_j$.
-Thus $\theta_jA_jt\le\theta_j\bar\tau^\sharp_j$. The lemma bounds
-this dimensionless product, which must be at most $\frac12$ for hypothesis \textup{(H2)} of
-Proposition~\ref{prop:relay} and for the corresponding hypothesis of
-Lemma~\ref{lem:Oprime}, and at most $1/(4\Cls K_1)$ for hypothesis
-\textup{(ii)} of Lemma~\ref{lem:handoff}.
+The outer-field bound \eqref{eq:O-feedback} has the small factor $\theta_j$,
+but its effect accumulates throughout the quiet interval. The next lemma
+uses (B7), Equation~\eqref{eq:E22}, to bound $\theta_jA_jt$ for
+$A_jt\le\bar\tau^\sharp_j$. The two thresholds are those required by
+Proposition~\ref{prop:relay}\textup{(H2)} and Lemma~\ref{lem:Oprime}, and by
+Lemma~\ref{lem:handoff}\textup{(ii)}, respectively.
 
 \begin{lemma}
 \label{lem:theta-quiet}
 Assume (SA) and \textup{(B7)}, and let $K_1$ be as in Definition~\ref{def:K1},
 $\Tz$ and $C_\tau$ as in \textup{(P3)}, $\theta_j$ as in Lemma~\ref{lem:O} and
-$\bar\tau^\sharp_j$ as in Lemma~\ref{lem:quiet-time}. Then $\theta_j\bar\tau^\sharp_j\le\min\{\frac12,\frac1{4\Cls K_1}\}$
-for every level $1\le j<n$.
+$\bar\tau^\sharp_j$ as in Lemma~\ref{lem:quiet-time}. Then
+\begin{equation}
+\label{eq:theta-quiet}
+\theta_j\bar\tau^\sharp_j\le\min\Big\{\frac12,\frac1{4\Cls K_1}\Big\}
+\qquad(1\le j<n).
+\end{equation}
 \end{lemma}
 
 \begin{proof}

@@ -50,10 +50,18 @@ Definitions~\ref{def:regions} and \ref{def:clock}, and let $1\le k<n$.
   \frac{d\cin}{d\tauK}=\zeta_0\,\cin+\beta_k\,\tilde q,\qquad \zeta_0=\frac{\lambda_k}{\mu},\qquad
   \cin(\tau_0)=0 .
   \end{equation}
-  The \textbf{kick amplitude} $\Ain(\tauK)=e^{-\zeta_0\tauK}\cin(\tauK)$ satisfies
-  \[
+  The \textbf{kick amplitude}, the accumulated inner driving with free growth
+  removed, is
+  \begin{equation}
+  \label{eq:kick-amplitude}
+  \Ain(\tauK)=e^{-\zeta_0\tauK}\cin(\tauK)
+  =\beta_k\int_{\tau_0}^{\tauK}e^{-\zeta_0s}\tilde q(s)\dd s.
+  \end{equation}
+  Thus its contribution at activation is
+  \begin{equation}
+  \label{eq:kick-coefficient}
   \cin_k:=\ellst(G_k)\big(\wlin_{\mathrm{in},k}(\tsh_k)\big)=e^{\zeta_0\Tpin}\Ain(\Tpin).
-  \]
+  \end{equation}
 \item If, in addition to the hypotheses of \textup{(2)}, the rings $i<k$ lie
   outside $B_{6r_k}$ for every $t\in[0,\tsh_k]$, then
   $t\mapsto-\hout_k(t)\cdot\nabla\Phi$ is continuous from $[0,\tsh_k]$ into

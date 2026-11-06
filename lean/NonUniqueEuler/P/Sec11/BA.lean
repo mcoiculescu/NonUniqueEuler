@@ -5,7 +5,9 @@ import NonUniqueEuler.I.Sec10.ConstantsPos
 /-!
 # Improved bootstrap bounds and their strict margins
 
-Current source: the unnumbered bounds in Part II §6 (`sec:relay`) and the continuation
+Current source: the bounds in Part II §6 (`sec:relay`, `eq:BA-support`, `eq:BA-quiet`,
+`eq:BA-active`), their improved forms (`eq:improved-support`, `eq:improved-quiet`,
+`eq:improved-active`), and the continuation
 argument for Proposition 8.1 (`prop:bootstrap`) in §8. Lean keeps three bundles:
 `BAcirc` is the current manuscript's (BA), `BA` also includes activation, and `BAstar`
 is the improved bundle. See `Defs/Sec11/Bootstrap.lean` for the endpoint correspondence.

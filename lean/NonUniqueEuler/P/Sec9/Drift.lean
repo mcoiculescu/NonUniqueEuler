@@ -13,7 +13,7 @@ import NonUniqueEuler.H.Sec9.Drift.EllLinear
 /-!
 # Proof: `lem:drift`, `eq:drift-interval`, `eq:drift` (historical) (the drift of the running coefficient)
 
-Current counterpart: Part II Lemma C.11 (`lem:drift`) and Equation (49)
+Current counterpart: Part II Lemma C.11 (`lem:drift`) and Equation (110)
 (`eq:drift-interval`), Appendix C.9 (`sec:relay-coefficient`). The historical
 `eq:drift` is the specialization starting at activation, which the current
 proof uses without a separate equation label. The formal statement describes

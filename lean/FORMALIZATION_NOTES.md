@@ -84,8 +84,8 @@ current statement boundaries.
   the constructed quiet hierarchy, with `NQ ≥ 2`, as an a.e. equality. The current paper
   combines a general `J ≥ 1` residual identity and initial values in one statement. The
   window proof uses Picard increments with a different residual representation.
-- **Relay and bootstrap (Part II, Propositions 6.2 and 8.1).** The current unnumbered
-  (BA3), following Definition 6.1, applies strictly after activation; Lean's `BAcirc`
+- **Relay and bootstrap (Part II, Propositions 6.2 and 8.1).** The current (BA3)
+  (`eq:BA-active`), following Definition 6.1, applies strictly after activation; Lean's `BAcirc`
   captures that convention. The endpoint-inclusive `BA` is a stronger auxiliary used in
   the continuation proof. The legacy `prop:relay` is the transmitted-field estimate now
   numbered Proposition C.9, not the new one-step relay proposition. The parameter lists,

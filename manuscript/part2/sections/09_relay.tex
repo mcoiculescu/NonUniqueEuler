@@ -20,10 +20,11 @@ at rate $A_i\sigma_i$ with $\sigma_i=\sigma(G_i)$.
 With $C_0$ from (P4), let $\rhohat_{C_0,G_i}$ be the transient of
 Theorem~\ref{thm:active} in ring-$i$ time. For a ring with a positive
 assigned amplitude $\ksh_i$, the envelope and transient in physical time are
-\[
+\begin{equation}
+\label{eq:relay-envelope}
 \hat a_i(v)=\ksh_i e^{A_i\sigma_i(v-\tsh_i)},\qquad
 \rhohat_i(v)=\rhohat_{C_0,G_i}(A_i(v-\tsh_i)),\qquad v\ge\tsh_i.
-\]
+\end{equation}
 In particular, $\rhohat_i(\tsh_i)=C_0$.
 
 \begin{definition}
@@ -46,71 +47,130 @@ Lemma~\ref{lem:clock}(1).
 For $t\in[0,\Tend]$, the bootstrap assumptions (BA)$(t)$ are the following
 bounds at every $v\in[0,t]$.
 \begin{description}[font=\normalfont]
-\item[(BA1)] $S_j(v)\subset\Nflat_j$ for every ring $j$ that is not debris.
-\item[(BA2)] For every quiet ring $j<n$, $h_j$ is defined on $[0,v]$ and
-$\maj_j(v)\le2\Abar\varepsilon_j$.
-\item[(BA3)] For every ring $i$ active at $v>\tsh_i$,
-$\|w_i(v)\|_{H^s}\le2C_2\hat a_i(v)(1+\rhohat_i(v))$.
+\item[(BA1)] Rings that have not finished their active interval stay in their
+prescribed annuli:
+\begin{equation}
+\label{eq:BA-support}
+S_j(v)\subset\Nflat_j\qquad\text{if ring $j$ is not debris at $v$}.
+\end{equation}
+\item[(BA2)] The accumulated driving of each quiet ring stays on the scale
+of the incoming signal. For every quiet ring $j<n$, $h_j$ is defined on
+$[0,v]$ and
+\begin{equation}
+\label{eq:BA-quiet}
+\maj_j(v)\le2\Abar\varepsilon_j.
+\end{equation}
+\item[(BA3)] After activation, the perturbation grows no faster than its
+unstable envelope, with the initial transient allowed. For every ring $i$
+active at $v>\tsh_i$,
+\begin{equation}
+\label{eq:BA-active}
+\|w_i(v)\|_{H^s}\le2C_2\hat a_i(v)(1+\rhohat_i(v)).
+\end{equation}
 \end{description}
 Here $\varepsilon_j=\mu s_j^5$ is the scale of the mode-$3$ driving from
 the next inner ring, and $\Abar$ is the fixed constant bounding the quiet
 response at that scale.
-The improved bounds replace $\Nflat_j$ by $\NN_j$ and remove the factors $2$.
-They include the active size bound at activation, where it comes from the
-seed or the hand-off. Since $\NN\subset\operatorname{int}\Nflat$ and the
-size bounds are positive, the improvements leave room for continuation in
+By the \emph{improved bounds through $t$} we mean the following estimates
+at every $v\in[0,t]$:
+\begin{align}
+S_j(v)&\subset\NN_j
+&&\text{if ring $j$ is not debris at $v$},\label{eq:improved-support}\\
+\maj_j(v)&\le\Abar\varepsilon_j
+&&\text{if ring $j<n$ is quiet at $v$},\label{eq:improved-quiet}\\
+\|w_i(v)\|_{H^s}&\le C_2\hat a_i(v)(1+\rhohat_i(v))
+&&\text{if ring $i$ is active or }v=\tsh_i.\label{eq:improved-active}
+\end{align}
+In \eqref{eq:improved-quiet}, $h_j$ must still be defined on $[0,v]$.
+Equation~\eqref{eq:improved-active} also includes every assigned activation
+time in $[0,t]$, with $\ksh_i$ defined and positive. The seed or the hand-off
+supplies this amplitude and bound before the clock assigns $T_i$. Since
+$\NN\subset\operatorname{int}\Nflat$ and the size bounds are positive,
+these strict improvements of (BA1)--(BA3) leave room for continuation in
 physical time.
 
 \begin{proposition}[One relay step]
 \label{prop:relay-step}
 Let $0\le t\le\Tend$ and assume (BA)$(t)$. For $1\le k<n$, suppose the clock is
-defined up to level $k+1$, with $T_{k+1}\le t$, and that the improved bounds
-hold through $T_{k+1}$. Assume the active estimates in item~(c) for ring $k+1$ through $T_{k+1}$,
-and the amplitude bounds
-\[
+defined up to level $k+1$, with $T_{k+1}\le t$, and that
+\eqref{eq:improved-support}--\eqref{eq:improved-active} hold through $T_{k+1}$.
+Assume the conclusions in item~(c) for ring $k+1$ through $T_{k+1}$,
+and the following bounds on the amplitudes at the completed activations:
+\begin{equation}
+\label{eq:relay-amplitudes}
 \tfrac12\kseed\le\ksh_n\le2\kseed,\qquad
 \Klo s_i^5\le\ksh_i\le\Kup s_i^5\quad(k<i<n).
-\]
+\end{equation}
 Then the following hold.
 \begin{enumerate}[label=\textup{(\alph*)}]
 \item The improved bounds extend through $\min(t,\tsh_k)$.
 \item If $\tsh_k\le t$, the clock is defined up to level $k$ and the
 improved bounds hold through $b=\min(t,T_k)$. At activation,
-\[
+\begin{equation}
+\label{eq:relay-startup}
 \begin{aligned}
 \Klo s_k^5&\le\ksh_k\le\Kup s_k^5,
 &\quad \maj_k(\tsh_k)&\le K_1\ksh_k,\\
 \|w_k(\tsh_k)\|_{H^{M-1}}&\le K_1 C_Q\ksh_k,
 & S_k(\tsh_k)&\subset\NNm_k.
 \end{aligned}
-\]
-\item In case (b), the active estimates include the initial Duhamel bound
-there. If $b>\tsh_k$, in local time $u=A_k(v-\tsh_k)$,
-Theorem~\ref{thm:active} and Corollary~\ref{cor:active-moment} hold through
-$A_k(b-\tsh_k)$ with $G=G_k$, $\kappa=\ksh_k$ and $\eta_b=\eta_{b,k}$
-of Equation~\eqref{eq:etab} (with $\eta_{b,1}=0$). The inner field satisfies
-$\|\hin_k(v)\|_{C^{M_h}(N')}\le C_0\ksh_k\jap{u}^3$ there.
-Lemma~\ref{lem:drift} applies with endpoint $b$ and $\eta=\eta_{b,k}$,
-including $(1+\Tpin)^3e^{-\sigma\Tpin/4}\le1/64$ and $\Cls\eta_{b,k}\hat T_k\le1/32$.
+\end{equation}
+\item In case (b), retain the initial Duhamel bound in
+\eqref{eq:relay-startup}. If $b>\tsh_k$, Theorem~\ref{thm:active} and
+Corollary~\ref{cor:active-moment} apply with $G=G_k$, $\kappa=\ksh_k$ and
+$\eta_b=\eta_{b,k}$ of \eqref{eq:etab} (with $\eta_{b,1}=0$).
+More explicitly, for $\tsh_k\le v\le b$ and $u=A_k(v-\tsh_k)$, besides
+\eqref{eq:improved-support} and \eqref{eq:improved-active} for ring $k$,
+\begin{equation}
+\label{eq:relay-active}
+\begin{aligned}
+&\big\|w_k(v)-2\Re\big(c_k(v)e^{\lambda_k u}\phist(G_k)\big)\big\|_{H^s}\\
+&\qquad\le C_2\hat a_k(v)
+\big[\rhohat_k(v)+\hat a_k(v)+(\ksh_k)^{1/2}+\eta_{b,k}\big],
+\end{aligned}
+\end{equation}
+\begin{equation}
+\label{eq:relay-active-moment}
+\begin{aligned}
+&\big|2\pi\pout_3[w_k(v)]-2\pi\pout_*(G_k)c_k(v)e^{\lambda_k u}\big|\\
+&\qquad\le2\pi C_3\hat a_k(v)
+\big[\rhohat_k(v)+\hat a_k(v)+(\ksh_k)^{1/2}+\eta_{b,k}\big].
+\end{aligned}
+\end{equation}
+The inner velocity field satisfies
+\begin{equation}
+\label{eq:relay-inner-field}
+\|\hin_k(v)\|_{C^{M_h}(N')}\le C_0\ksh_k\jap{u}^3
+\qquad(\tsh_k\le v\le b).
+\end{equation}
+All hypotheses of Lemma~\ref{lem:drift} hold with endpoint $b$ and
+$\eta=\eta_{b,k}$, and its two smallness conditions are
+\begin{equation}
+\label{eq:relay-drift-small}
+(1+\Tpin)^3e^{-\sigma\Tpin/4}\le\frac1{64},\qquad
+\Cls\eta_{b,k}\hat T_k\le\frac1{32}.
+\end{equation}
 In particular, at $b=T_k$,
-\[
+\begin{equation}
+\label{eq:relay-saturation}
 |c_k(T_k)|e^{\sigma_k\hat T_k}
 \in[\tfrac{15}{16}\delta_0,\tfrac{17}{16}\delta_0].
-\]
+\end{equation}
 \end{enumerate}
 On the portion of the pinning and active intervals reached by time $t$,
-the confinement and moment bounds of Lemma~\ref{lem:geometry}(a) hold for
-$D_{k+1}$.
+the confinement and moment estimates
+\eqref{eq:geometry-confinement}--\eqref{eq:geometry-moment} hold for $D_{k+1}$.
 
 For the seeded ring $k=n$, assume instead that the clock is defined up to
 $n$, the improved bounds hold at $0$, and
-\[
+\begin{equation}
+\label{eq:relay-seed}
 \tfrac12\kseed\le\ksh_n\le2\kseed,\qquad
 S_n(0)\subset\NNm_n,\qquad
 \|w_n(0)\|_{H^{M-1}}\le C_0\ksh_n.
-\]
-Then the improved bounds hold through $\min(t,T_n)$, and the active
-estimates in (c) hold if this interval has positive length, with
+\end{equation}
+Then \eqref{eq:improved-support}--\eqref{eq:improved-active} hold through
+$\min(t,T_n)$, and the conclusions in (c) hold if this interval has positive length, with
 $\maj_n(0)=0$ as the initial Duhamel bound.
 \end{proposition}
 
@@ -141,106 +201,123 @@ through the active interval of ring $k$.}
 \end{figure}
 
 \begin{proof}
-For the seed with $t=0$, the conclusion is the assumed improved bounds.
+For the seed with $t=0$, the conclusion is the assumed
+\eqref{eq:improved-support}--\eqref{eq:improved-active} at $0$.
 
 \phantomsection\label{par:relay-geometry}
 \emph{Confinement.}
-At an endpoint $b\le t$ where the lower amplitude bounds are known for
-activations strictly before $b$, Lemma~\ref{lem:geometry} gives the support
-conditions and (Loc) on $[0,b]$. For $k<n$, the confinement estimate starts
+At an endpoint $b\le t$ where $\ksh_i\ge\Klo s_i^5$ is known for every
+$i<n$ activated strictly before $b$, (BA1) and Lemma~\ref{lem:geometry}
+give the support separations
+\eqref{eq:geometry-quiet-support}--\eqref{eq:geometry-quiet-inner}, the
+field bound \eqref{eq:geometry-field}, and (Loc) in
+\eqref{eq:geometry-loc} on $[0,b]$. For $k<n$, the confinement estimate starts
 at $T_{k+1}$ with the material inside ring $k$ in
 $\overline B_{2r_{k+1}}$. The support of ring $k+1$ is in $\Nflat_{k+1}$ at
 saturation, and the material inside it lies in $B_{ar_{k+1}/8}$.
-Proposition~\ref{prop:confine} then bounds the radius of $D_{k+1}(v)$ by
-\[
-\big(2+2\Cstar A_{k+1}(v-T_{k+1})\big)r_{k+1}.
-\]
+Proposition~\ref{prop:confine} then gives \eqref{eq:geometry-confinement},
+with radius $\varrho_k(v)=\big(2+2\Cstar A_{k+1}(v-T_{k+1})\big)r_{k+1}$.
 On the pinning interval, $A_{k+1}(v-T_{k+1})\le\Tpin$. During the subsequent
 active interval, it is at most $\Tpin+\mu\hat T_k$, where the lower amplitude
 bound at activation gives
-\[
+\begin{equation}
+\label{eq:relay-duration}
 \hat T_k=\frac{\log(\delta_0/\ksh_k)}{\sigma_k}
 \le\frac{\log_+(\delta_0/\Klo)+5\log(1/s_k)}{\sigma'}.
-\]
+\end{equation}
 Thus (B5) keeps this radius below $ar_k/8$ even across the active interval.
-The moment estimate in Lemma~\ref{lem:geometry}(a) has the corresponding
-cubic bound in $1+A_{k+1}(v-T_{k+1})$. For $k=n$ the inner region is empty.
+Equation~\eqref{eq:geometry-moment} bounds $|q_{k+1}(v)|$ cubically in
+$1+A_{k+1}(v-T_{k+1})$. For $k=n$ the inner region is empty.
 
 \phantomsection\label{par:relay-quiet}
-\emph{Quiet-ring comparison.}
-Suppose geometry is available on $[0,b]$ with $b>0$ and ring $j<n$ is quiet
-through $b$ with an assigned activation time. Ring $i<j$ grows more slowly:
+\emph{Control of the quiet rings.}
+Suppose the support separations and field bound
+\eqref{eq:geometry-quiet-support}--\eqref{eq:geometry-field} hold on
+$[0,b]$, with $b>0$, and ring $j<n$ is quiet through $b$ with an assigned
+activation time. Ring $i<j$ grows more slowly:
 Lemma~\ref{lem:detuning} gives
-\[
+\begin{equation}
+\label{eq:relay-growth-gap}
 A_j\sigma_j-A_i\sigma_i
 =A_j(\sigma_j-\mu^{i-j}\sigma_i)
 \ge\frac{A_j\sigb(\mu-1)}{2\mu}.
-\]
+\end{equation}
 In the Duhamel bound for ring $i$, this gap allows us to use the endpoint
 value of $\maj_j$. By (M1) of Lemma~\ref{lem:majorant},
-\[
+\begin{equation}
+\label{eq:relay-duhamel-comparison}
 A_i\int_0^b e^{A_i\sigma_i(b-v)}\maj_j(v)\dd v
 \le \frac{A_i\maj_j(b)}{A_j\sigma_j-A_i\sigma_i}
 \le\frac{2\mu}{\sigb(\mu-1)}\maj_j(b).
-\]
+\end{equation}
 Together with the radius gain in Lemma~\ref{lem:transfer-step}, this gives
-the product comparison of Lemma~\ref{lem:O}. Its hypotheses hold by
-geometry, (BA2), (B7) and (B9), the last giving
-$2\Abar\varepsilon_j\le\majst$. That lemma gives
-$\etout_j\le\theta_j\maj_j$ and applies Theorem~\ref{thm:quiet} to every
+the product comparison \eqref{eq:O-comparison} of Lemma~\ref{lem:O}.
+Its support and field hypotheses are exactly \eqref{eq:O-support}, supplied
+by \eqref{eq:geometry-quiet-support}--\eqref{eq:geometry-field}.
+The remaining hypotheses \eqref{eq:O-smallness} follow from (BA2), (B7)
+and (B9), the last giving $2\Abar\varepsilon_j\le\majst$.
+The outer-field estimate \eqref{eq:O-feedback} gives
+$\etout_j\le\theta_j\maj_j$, and Lemma~\ref{lem:O} applies Theorem~\ref{thm:quiet} to every
 $i\le j$, using the local time $A_iv$. Consequently, for $v\in[0,b]$,
 \begin{equation}
 \label{eq:boot-quiet}
 S_i(v)\subset\NNm_i,\qquad \|w_i(v)\|_{H^{s_h}}\le C_Q\maj_i(v).
 \end{equation}
 Appendix~\ref{sec:bootstrap-quiet-control} gives the precise rescaling and
-checks for this comparison. This argument also gives the quiet estimates
-through earlier assigned activation times, by taking their times as the
-endpoint $b$.
+checks for \eqref{eq:O-feedback} and \eqref{eq:boot-quiet}.
+These estimates also hold through earlier assigned activation times, by
+taking each such time as the endpoint $b$.
 
 \phantomsection\label{par:relay-handoff}
 \emph{Hand-off.}
-Let $k<n$ and first take geometry and the quiet comparison with $j=k$
-through $\min(t,\tsh_k)$. All the earlier amplitudes needed for geometry
-are in the hypotheses. If $\tsh_k\le t$, the active estimates of ring $k+1$
-give its outgoing moment
-\[
+Let $k<n$. Apply Lemma~\ref{lem:geometry} through $\min(t,\tsh_k)$,
+using the lower bounds in \eqref{eq:relay-amplitudes}, and then
+Lemma~\ref{lem:O} with $j=k$ as just verified. This gives
+\eqref{eq:O-feedback} and \eqref{eq:boot-quiet} on that interval.
+If $\tsh_k\le t$, \eqref{eq:relay-active-moment} for ring $k+1$ identifies
+the leading outgoing moment
+\begin{equation}
+\label{eq:relay-outgoing}
 \qs=2\pi\pout_*(G_{k+1})c_{k+1}(T_{k+1})e^{\lambda_{k+1}\hat T_{k+1}}.
-\]
+\end{equation}
 Lemma~\ref{lem:kicktrue} compares the true incoming field to this moment.
 In particular $|\qs|\ge(15/16)2\pi|\pout_*(G_{k+1})|\delta_0$, and
 Equation~\eqref{eq:boot-kick} bounds the resulting kick. To apply the lemma,
-we have the moment bound during pinning and the completed active estimates
-of ring $k+1$. Its earlier quiet estimates follow from the comparison
-above, and its confinement through saturation follows from
-Lemma~\ref{lem:geometry}(a). For the seed there is no earlier quiet
+we use \eqref{eq:geometry-moment} during pinning and the conclusions of
+item~(c) already assumed for ring $k+1$ through $T_{k+1}$.
+Its earlier quiet-ring bounds are \eqref{eq:O-feedback} and
+\eqref{eq:boot-quiet}, and its inner support satisfies
+\eqref{eq:geometry-confinement} through saturation. For the seed there is no earlier quiet
 interval. The remaining smallness conditions are checked in
 Appendix~\ref{sec:bootstrap-handoff-checks}.
 
 The factor $|\beta_k|=|\beta(G_k)|s_k^5/(2\pi)$ in the kick turns the outgoing
 moment into an incoming coefficient of size $s_k^5$. More precisely,
 Lemma~I.\ref{I-lem:uniform} and Equation~\eqref{eq:boot-kick} give
-\[
+\begin{equation}
+\label{eq:relay-incoming-lower}
 |\cin_k|=e^{x_k\Tpin}|\Ain(\Tpin)|
 \ge \frac{3c_N}{32\mu}\,
 \frac{\varepsilon_k\delta_0 e^{x_k\Tpin}}{|\lamref|(\mu-1)}.
-\]
+\end{equation}
 Lemmas~\ref{lem:quiet-time} and~\ref{lem:theta-quiet} give the
 bound on accumulated feedback~\eqref{eq:boot-theta} using only amplitudes at levels
 $i>k$. With this bound, Proposition~\ref{prop:relay} bounds the entire
 response at $\tsh_k$. The seed-size condition ($\kappa$7) bounds the remainder
 $\Xi_{k+1}$ by $\delta_0/(\sigb(\mu-1))$. The resulting inequality is
-\[
+\begin{equation}
+\label{eq:relay-startup-duhamel}
 \maj_k(\tsh_k)\le 2\Cvel\varepsilon_k e^{x_k\Tpin}
 \left[\frac{(4C_2+1)\delta_0}{\sigb(\mu-1)}+C_D(\Tpin)\right]
 \le\Abar\varepsilon_k.
-\]
+\end{equation}
 The choice of $K_1$ in Equation~\eqref{eq:K1} therefore gives
 $4\maj_k(\tsh_k)\le K_1|\cin_k|$. With these bounds,
 Lemma~\ref{lem:handoff} compares the actual coefficient $\ksh_k$
-with $|\cin_k|$ within factors $1/2$ and $3/2$. It also gives the stated
-support, initial norm and Duhamel bound. The upper and lower bounds on
-$\ksh_k$ are the two sides of the kick estimate with these factors included,
+with $|\cin_k|$ within factors $1/2$ and $3/2$. It also gives the support,
+initial norm and Duhamel inequalities in \eqref{eq:relay-startup}.
+The upper and lower bounds on $\ksh_k$ in \eqref{eq:relay-startup} are
+the two sides of \eqref{eq:boot-kick} with these factors included,
 as checked in Appendix~\ref{sec:bootstrap-handoff-checks}.
 
 By (B6) and ($\kappa$1), $0<\ksh_k\le\Kup\sbar^5\le\kseed<\delta_0$.
@@ -256,58 +333,65 @@ the clock recursion. The active size bound at that time follows directly:
 \emph{Active growth and the spent inner material.}
 Consider an active interval of positive length. For $k<n$ this means
 $\tsh_k<t$ after the hand-off above. For the seed it means $t>0$. Put
-$b=\min(t,T_k)$ and apply geometry through $b$, using the new lower
-amplitude bound if $k<n$. The local active time
+$b=\min(t,T_k)$ and apply Lemma~\ref{lem:geometry} through $b$,
+using the new lower bound in \eqref{eq:relay-startup} if $k<n$.
+This gives \eqref{eq:geometry-confinement}--\eqref{eq:geometry-loc}
+on their stated time intervals. The local active time
 is $u=A_k(v-\tsh_k)$. In the field of the spent inner material, the
 monopole is included in $L(G_k)$. By Lemma~\ref{lem:inner-field}, the
 remaining velocity is bounded by $\Cvel\mu s_k^2$ times the cube of the
 confinement radius in ring-$k$ units. This gives the polynomial field
 bound
-\[
+\begin{equation}
+\label{eq:relay-inner-calculation}
 \|\hin_k(v)\|_{C^{M_h}(N')}
 \le \Cvel\mu s_k^5\big(2+2\Cstar(\Tpin+\mu u)\big)^3
 \le C_0\ksh_k\jap{u}^3
-\]
-by (P4) and the lower amplitude bound, as in Equation~\eqref{eq:boot-inner}.
+\end{equation}
+by (P4) and the lower bound in \eqref{eq:relay-startup}, as in
+Equation~\eqref{eq:boot-inner}.
 For $k=n$, $\hin_n=0$.
 
-For $k>1$, apply the quiet comparison with $j=k-1$ through $b$. The
-feedback from these quiet rings is controlled by Lemma~\ref{lem:Oprime},
-using (BA3) for $\tsh_k<v\le b$ and the initial size bound at $\tsh_k$. The outward transfer to ring $k-1$ gains the factor
+For $k>1$, apply Lemma~\ref{lem:O} with $j=k-1$ through $b$, obtaining
+\eqref{eq:O-feedback} and \eqref{eq:boot-quiet} for the outer quiet rings.
+Lemma~\ref{lem:Oprime} then bounds their feedback, using (BA3) for
+$\tsh_k<v\le b$ and \eqref{eq:boot-switch} at $\tsh_k$ (or
+\eqref{eq:relay-seed} for $k=n$). The outward transfer to ring $k-1$ gains the factor
 $\varepsilon_{k-1}$. The return field carries the factor
 $\mu^{-1}s_{k-1}$. Their product is $s_{k-1}^6$, giving
-\[
+\begin{equation}
+\label{eq:relay-outer-field}
 \|\hout_k(v)\|_{C^{M_h}(N')}
 \le \Crelay\frac{s_{k-1}^6}{\sigb(\mu-1)}\hat a_k(v)
 =\eta_{b,k}\hat a_k(v).
-\]
+\end{equation}
 For $k=1$ there is no outer field.
 
 We now check that $c_k$ remains close to its initial value. For $k<n$,
 the inner contribution to Equation~\eqref{eq:running-k} begins at kick
-time $\Tpin$. By the moment bound and $x_k\ge\sigma/4$, its integral is
+time $\Tpin$. By \eqref{eq:geometry-moment} and $x_k\ge\sigma/4$, its integral is
 bounded by $e^{x_k\Tpin}|\beta_k|\Cmom$ times
-\[
+\begin{equation}
+\label{eq:relay-moment-tail}
 \int_{\Tpin}^{\infty} e^{-x_k\tau}(1+\tau)^3\dd\tau
 \le I_3(\sigma/4)(1+\Tpin)^3e^{-\sigma\Tpin/4}.
-\]
-The kick lower bound and (P2) make
+\end{equation}
+The lower bound in \eqref{eq:boot-kick} and (P2) give
 $e^{x_k\Tpin}|\beta_k|\Cmom I_3(\sigma/4)\le |\cin_k|\le2\ksh_k$.
 Thus the inner contribution is at most
 $2(1+\Tpin)^3e^{-\sigma\Tpin/4}\ksh_k\le\ksh_k/32$ by (P3). The outer contribution is bounded by
 $\Cls\eta_{b,k}\hat T_k\ksh_k\le\ksh_k/32$ by (B8).
-These are the bounds in Lemma~\ref{lem:drift}, with the inner term omitted
-for the seed. They give (Coef) and, at saturation, the stated interval
-for $|c_k(T_k)|e^{\sigma_k\hat T_k}$. The checks for these applications and
+These are the two contributions in \eqref{eq:drift-interval}, with the
+inner term omitted for the seed. The smallness conditions
+\eqref{eq:relay-drift-small} give (Coef) and the saturation estimate
+\eqref{eq:relay-saturation}. The checks for these applications and
 for the rescaling are in Appendix~\ref{sec:bootstrap-active-checks}.
 
-Theorem~\ref{thm:active} and Corollary~\ref{cor:active-moment} now apply
-through $b$. In particular, for $\tsh_k\le v\le b$,
-\[
-S_k(v)\subset\NN_k,\qquad
-\|w_k(v)\|_{H^s}\le C_2\hat a_k(v)(1+\rhohat_k(v)).
-\]
-If the interval consists of the activation time alone, these two bounds
+Theorem~\ref{thm:active} and Corollary~\ref{cor:active-moment} now give
+\eqref{eq:relay-active}--\eqref{eq:relay-active-moment}, as well as
+\eqref{eq:improved-support} and \eqref{eq:improved-active} for ring $k$
+through $b$. If the interval consists of the activation time alone,
+\eqref{eq:improved-support} and \eqref{eq:improved-active}
 come from the hand-off or the seed. No positive-length active estimate is
 needed in that case.
 
@@ -316,29 +400,40 @@ needed in that case.
 It remains to improve (BA2) on the intervals just reached. At a positive
 time $v$ on the pinning interval it suffices to bound $\maj_j(v)$ for $j=k$.
 On the active interval after activation take $j=k-1$ if $k>1$. This ring
-has an assigned activation time and is quiet through $v$. The geometric
-conditions and the quiet comparison hold through $v$. The active estimates
-of ring $j+1$ are available through $\min(v,T_{j+1})$, and its activation
-Duhamel bound comes from the seed or its hand-off. The bound on accumulated feedback
+has an assigned activation time and is quiet through $v$.
+Equations~\eqref{eq:geometry-quiet-support}--\eqref{eq:geometry-field},
+\eqref{eq:O-feedback} and \eqref{eq:boot-quiet} hold through $v$.
+The conclusions in item~(c) for ring $j+1$ have been proved through
+$\min(v,T_{j+1})$; its initial Duhamel bound is
+\eqref{eq:relay-startup}, or $\maj_n(0)=0$ for the seed.
+The bound on accumulated feedback \eqref{eq:boot-theta}
 again follows from Lemmas~\ref{lem:quiet-time} and~\ref{lem:theta-quiet}.
 
-In Proposition~\ref{prop:relay} the total Duhamel bound satisfies
-$\maj_j(v)\le\maj_j^{\mathrm{in}}(v)+\theta_j A_jv\maj_j(v)$ by (M1).
-This bound makes the last term at most half the left side. The resulting
-bound is $\maj_j(v)\le\Abar\varepsilon_j$, by the same relay estimate
-and ($\kappa$7) used at hand-off. Appendix~\ref{sec:bootstrap-quiet-checks}
-verifies this estimate at each endpoint. For every $i<j$ the product
-comparison gives
-\[
+By (M1) of Lemma~\ref{lem:majorant} and \eqref{eq:O-feedback},
+\begin{equation}
+\label{eq:relay-quiet-absorption}
+\maj_j(v)\le\maj_j^{\mathrm{in}}(v)+\theta_j A_jv\maj_j(v)
+\le\maj_j^{\mathrm{in}}(v)+\tfrac12\maj_j(v),
+\end{equation}
+where the last inequality is \eqref{eq:boot-theta}.
+Proposition~\ref{prop:relay} and ($\kappa$7) then give
+\eqref{eq:improved-quiet} for $j$, as at the hand-off in
+\eqref{eq:relay-startup-duhamel}. Appendix~\ref{sec:bootstrap-quiet-checks}
+checks the endpoint cases. For every $i<j$, \eqref{eq:O-comparison} gives
+\begin{equation}
+\label{eq:relay-quiet-outer}
 \maj_i(v)\le\tfrac34\Abar\varepsilon_i
 \prod_{p=i+1}^{j}(K_O\varepsilon_p)
 \le\tfrac38\Abar\varepsilon_i,
-\]
+\end{equation}
 since each factor is at most $1/2$ by (B7). This includes the outer rings
 whose activation times have yet to be assigned. When $k=1$ is active
 there are no quiet rings after activation.
 
-The quiet support bound \eqref{eq:boot-quiet}, the active support bound and
-the improved sizes give all the improved bounds on the new interval.
-The improved bounds at the initial time of the seed were assumed.
+Equation~\eqref{eq:boot-quiet} for quiet rings and Theorem~\ref{thm:active}(a)
+for active rings prove \eqref{eq:improved-support} on the new interval;
+Theorem~\ref{thm:active}(b) and
+\eqref{eq:relay-quiet-absorption}--\eqref{eq:relay-quiet-outer} prove
+\eqref{eq:improved-quiet}--\eqref{eq:improved-active} there.
+These three estimates at the initial time of the seed were assumed.
 \end{proof}

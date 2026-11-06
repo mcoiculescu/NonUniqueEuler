@@ -4,8 +4,10 @@ import NonUniqueEuler.Defs.Sec11.Stop
 /-!
 # Bootstrap and geometry bundles (legacy `Sec11` modules)
 
-Current sources are the unnumbered bootstrap bounds in Part II §6 (`sec:relay`),
-Lemma C.17 (`lem:geometry`, Appendix C.14), Equation (50) (`eq:handoff`, Appendix C.10),
+Current sources are the bootstrap bounds in Part II §6 (`sec:relay`,
+`eq:BA-support`, `eq:BA-quiet`, `eq:BA-active`) and their improved forms
+(`eq:improved-support`, `eq:improved-quiet`, `eq:improved-active`),
+Lemma C.17 (`lem:geometry`, Appendix C.14), Equation (113) (`eq:handoff`, Appendix C.10),
 and Proposition 8.1 (`prop:bootstrap`, §8).
 
 The Lean bundles retain the earlier decomposition. `S.BAcirc t` corresponds to the current
@@ -94,9 +96,9 @@ structure BAcirc (t : ℝ) : Prop where
   ba2 : ∀ t' ∈ Icc (0 : ℝ) t, S.BA2At (2 * S.Abar) t'
   ba3 : ∀ t' ∈ Icc (0 : ℝ) t, ∀ k ∈ Finset.Icc 1 S.P.n, t' ≠ S.P.tsh k → S.BA3At (2 * S.C2) k t'
 
-/-! ### Equation (50) (`eq:handoff`) at activation -/
+/-! ### Equation (113) (`eq:handoff`) at activation -/
 
-/-- **Equation (50) (`eq:handoff`, Part II Appendix C.10) at `t♯_k`**, with
+/-- **Equation (113) (`eq:handoff`, Part II Appendix C.10) at `t♯_k`**, with
 `K₁ = S.K1` from Definition C.13 (`def:K1`): in ring-`k` units,
 `½|c^in_k| ≤ κ♯_k ≤ (3/2)|c^in_k|`, `maj_k(t̄♯_k) ≤ K₁κ♯_k`,
 `‖w_k(t♯_k)‖_{H^{s_h}} ≤ C_hand κ♯_k`, where `C_hand = K₁C_Q = S.Chand`, and

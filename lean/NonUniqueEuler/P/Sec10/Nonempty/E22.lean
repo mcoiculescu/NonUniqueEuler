@@ -7,7 +7,7 @@ import NonUniqueEuler.I.Sec10.ConstantsPos
 
 Proof of `I/Sec10/Nonempty/E22.lean` (`Relay.e22_small`), the condition `eq:E22` of (B7) in the
 proof of Lemma 7.1 (`lem:nonempty`), Part II Appendix C.4 (`sec:param-verification`).
-The condition is Equation (37) (`eq:E22`), in Definition C.4 (`def:P6`).
+The condition is Equation (77) (`eq:E22`), in Definition C.4 (`def:P6`).
 
 `Standing.CondE22` is the multiplicative form
 `4C_OC_QC_τ · K_O s̄^{2m}[T_z + 2log(1/s̄) + 1/(μ-1)] ≤ (μ-1) · min{1/2, 1/(4C_lsK₁)}`.

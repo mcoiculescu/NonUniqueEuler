@@ -3,7 +3,9 @@
 
 Proposition~\ref{prop:relay-step} uses one choice of parameters for every
 ring and every depth of the construction. We first set the saturation threshold and the
-pinning time, then fix the constants in the hand-off and active estimates.
+pinning time, then fix the constants in the activation bounds
+\eqref{eq:relay-startup} and the active-ring estimates
+\eqref{eq:relay-active}--\eqref{eq:relay-inner-field}.
 The seed size and radius ratios are made small after those constants are
 fixed. The precise requirements (P0)--(P6) are in
 Appendix~\ref{sec:param-lists}.
@@ -29,12 +31,14 @@ moment drift. The bound for the coefficient drift after pinning contains
 a polynomial times a decaying exponential. Choose $\Tpin$ large enough
 to make this factor small.
 
-We now fix the constant $K_1$ in the hand-off estimate
-$\maj_k(\tsh_k)\le K_1\ksh_k$. Its formula in Definition~\ref{def:K1}
+We now fix the constant $K_1$ in the Duhamel bound
+$\maj_k(\tsh_k)\le K_1\ksh_k$ of Equation~\eqref{eq:relay-startup}.
+Its formula in Definition~\ref{def:K1}
 reserves a fixed allowance for the remainder in the transmitted field
 estimate. This allows us to choose $K_1$ using the data already fixed.
-Choose $C_0$ large enough for the initial perturbation and inner field in
-Theorem~\ref{thm:active}. The constants controlling the remainder, including
+Choose $C_0$ to satisfy Equation~\eqref{eq:param-C0}, which bounds the initial
+perturbation and inner field required by Theorem~\ref{thm:active}.
+The constants controlling the remainder, including
 $\Crelay(C_0,K_1)$, can then be fixed.
 
 The seed conditions either bound $\kappa$ by a fixed positive threshold or

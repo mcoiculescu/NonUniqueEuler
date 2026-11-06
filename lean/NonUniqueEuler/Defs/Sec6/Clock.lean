@@ -3,7 +3,7 @@ import NonUniqueEuler.Defs.Sec6.Regions
 /-!
 # Part II Section 3: the phase clock (definitions)
 
-**Time convention.** The current Part II Equation (28) (`eq:running-k`) writes
+**Time convention.** The current Part II Equation (30) (`eq:running-k`) writes
 `c_k` in physical time. `runCoefK k u` here uses active time
 `u = A_k(t - t♯_k)`; in particular, `c0 k` is the manuscript value `c_k(t♯_k)`.
 

@@ -13,7 +13,7 @@ import Mathlib.Analysis.Calculus.ContDiff.Deriv
 # Proof: Part II Lemma A.1 (`lem:end-regions`)
 
 Proof of the interface `NonUniqueEuler/I/Verify/EndRegions.lean` (same declarations, same
-statements). Manuscript: `lem:end-regions`, Part II Equation (35) (`eq:xayb`).
+statements). Manuscript: `lem:end-regions`, Part II Equation (72) (`eq:xayb`).
 
 **Deviation (a variant of restructuring T3).** For `w = AB` we use the exact
 identity `w' = A'B + AB' = (2/d) A B (Ā - B̄)` (from `A' = (2/d)AĀ`, `B' = -(2/d)BB̄`), so
@@ -38,11 +38,11 @@ open RingData
 
 /-! ### Numerics -/
 
-/-- Part II Equation (35) (`eq:xayb`), first half: `-25 < x_a < -25 + 4·10^{-15}`. -/
+/-- Part II Equation (72) (`eq:xayb`), first half: `-25 < x_a < -25 + 4·10^{-15}`. -/
 theorem xa_bounds : -25 < xa ∧ xa < -25 + 4 / 10 ^ 15 := by
   constructor <;> norm_num [xa, ξa, a₀, d]
 
-/-- Part II Equation (35) (`eq:xayb`), second half: `-25 < y_b < -25 + 10^{-15}`. -/
+/-- Part II Equation (72) (`eq:xayb`), second half: `-25 < y_b < -25 + 10^{-15}`. -/
 theorem yb_bounds : -25 < yb ∧ yb < -25 + 1 / 10 ^ 15 := by
   constructor <;> norm_num [yb, ξb, d]
 

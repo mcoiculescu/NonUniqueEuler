@@ -1,7 +1,8 @@
 \section{Completion of the Bootstrap}
 \label{sec:bootstrap}
 
-We now pass from the seed to ring $1$ by Proposition~\ref{prop:relay-step}.
+It remains to iterate the bootstrap through all scales, from the seeded ring
+$n$ to ring $1$, using Proposition~\ref{prop:relay-step} at each step.
 The time bound and the nonzero moment of ring $1$ will then give
 Proposition~\ref{prop:reduction} by the compactness criterion of Part~I.
 We use the setting and bootstrap assumptions of Section~\ref{sec:relay}.
@@ -26,11 +27,12 @@ every $A_1>0$ and every $n\ge2$:
 \emph{The seed.}
 At $t=0$, $\tsh_n=0$, $G_n=0$, and $w_n(0)=\Phi^{\kseed}-\Phi$ in ring-$n$
 units. By ($\kappa$6), $\kseed\le\kL$. Lemma~\ref{lem:seed} and (P4) give
-\[
+\begin{equation}
+\label{eq:boot-seed-data}
 S_n(0)\subset\NNm_n,\qquad
 \tfrac12\kseed\le\ksh_n\le2\kseed,\qquad
 \|w_n(0)\|_{H^{M-1}}\le\Cseed\kseed\le C_0\ksh_n.
-\]
+\end{equation}
 By ($\kappa$1), $2\kseed<\delta_0$, so the clock is defined up to level $n$.
 The switch time of the transient is positive for every $G$ since
 $2^{3/2}C_0>1$, so $\rhohat_n(0)=C_0$. With $s\le M-1$ and $C_2\ge1$ the
@@ -44,21 +46,26 @@ For $j<n$, the initial support $S_j(0)$ is contained in $\NNm_j$. Also
 $D_{j+1}(0)\subset\overline B_{5r_{j+1}/4}\subset B_{ar_j/8}$ and the outer
 rings lie outside $B_{6r_j}$. These separations define $h_j(0)$ and give
 $\maj_j(0)=0$. The same holds for $h_n(0)$ and $\maj_n(0)$, with an empty
-inner region. Thus the improved bounds hold at $0$.
+inner region. Thus Equations~\eqref{eq:improved-support}--\eqref{eq:improved-active}
+hold at $0$.
 
 \emph{Improvement through a fixed time.}
 Fix $t\in[0,\Tend]$ with (BA)$(t)$. Apply Proposition~\ref{prop:relay-step}
 first to the seeded interval. If $t>T_n$, take $k=n-1$ in the relay step.
-After a completed interval ending at $T_{k+1}<t$, the improved bounds,
-activation amplitudes and active estimates supplied by that interval are
-the hypotheses for the next level $k$. This is the locomotive induction
+After a completed interval ending at $T_{k+1}<t$, we have
+Equations~\eqref{eq:improved-support}--\eqref{eq:improved-active}, the amplitudes
+in Equation~\eqref{eq:relay-amplitudes}, and the conclusions of
+Proposition~\ref{prop:relay-step}(c) for ring $k+1$. These are the hypotheses
+for the next level $k$. This is the locomotive induction
 shown in Figure~\ref{fig:relay-step}. If the current interval reaches
 $t$, we stop there, including the hand-off when $t=\tsh_k$. Otherwise the
 clock conditions have been verified
 through $k$ and we proceed to $k-1$. There are at most $n$ levels, and if
-we reach $T_1$ then $t\le\Tend=T_1$. This proves the improved bounds through
-$t$, the amplitude bounds at the activations reached by $t$, and the active
-estimates on the positive-length intervals reached by $t$.
+we reach $T_1$ then $t\le\Tend=T_1$. This proves
+Equations~\eqref{eq:improved-support}--\eqref{eq:improved-active} through $t$,
+Equation~\eqref{eq:relay-startup} at each nonseed activation reached by $t$,
+and Proposition~\ref{prop:relay-step}(c) on each positive-length active
+interval reached by $t$. The seed satisfies Equation~\eqref{eq:boot-seed-data}.
 
 \emph{Continuation in time.}
 Let $t_*$ be the supremum of the times in $[0,\Tend]$ at which (BA) holds.
@@ -72,8 +79,12 @@ $\omega(v)\mathbf 1_{S_k(v)}=f^{(n)}_k\circ\flow_v^{-1}$
 set on a bounded time interval. When $h_j$ is defined, it and its Duhamel
 bound are continuous by Lemma~\ref{lem:reduction}(1).
 
-For an active ring, write
-$R_k(v)=2C_2\hat a_k(v)(1+\rhohat_k(v))$ for the right side of (BA3).
+For a ring that has activated, write
+\begin{equation}
+\label{eq:boot-continuation-envelope}
+R_k(v)=2C_2\hat a_k(v)(1+\rhohat_k(v)),\qquad v\ge\tsh_k,
+\end{equation}
+for the right side of Equation~\eqref{eq:BA-active}.
 It is continuous except at $v=\tsh_k+t_1(C_0,G_k)/A_k$, where the transient
 jumps from a left limit of at most $2^{-3/2}$ to $1$, by the definition of
 $t_1$ in Theorem~\ref{thm:active}. Thus $R_k$ is right-continuous, and at
@@ -81,55 +92,75 @@ every point with a left limit its value is at least that limit.
 
 We first obtain (BA) at $t_*$. If $t_*>0$, a ring that is not debris at
 $t_*$ was not debris earlier. Its support is in the closed annulus
-$\Nflat_j$ at $t_*$ by continuity, so (BA1) holds. Every activation strictly
-before $t_*$ has its lower amplitude bound by the relay step at earlier
-times. Lemma~\ref{lem:geometry} then defines the fields through $t_*$ for
-all rings quiet at that time. Continuity gives (BA2) there.
+$\Nflat_j$ at $t_*$ by continuity, so Equation~\eqref{eq:BA-support} holds.
+Every nonseed activation strictly before $t_*$ satisfies
+$\ksh_k\ge\Klo s_k^5$ by Equation~\eqref{eq:relay-startup} at earlier times.
+Lemma~\ref{lem:geometry}(b) therefore gives the separation of the outer supports
+in Equation~\eqref{eq:geometry-quiet-support} and the inner confinement in
+Equation~\eqref{eq:geometry-quiet-inner} through $t_*$. These define $h_j$ for all
+rings quiet at $t_*$, and continuity gives Equation~\eqref{eq:BA-quiet} there.
 
 For a ring active at $t_*$ with $\tsh_k<t_*$, the left limit bound for
-$R_k$ and continuity of $w_k$ give (BA3) at $t_*$. This proves (BA)$(t_*)$.
+$R_k$ and continuity of $w_k$ give Equation~\eqref{eq:BA-active} at $t_*$.
+This proves (BA)$(t_*)$.
 
-Suppose $t_*<\Tend$. The relay step gives the improved bounds at $t_*$,
-including the bound at any activation there. Choose $\Delta>0$ with
+Suppose $t_*<\Tend$. The relay step gives
+Equations~\eqref{eq:improved-support}--\eqref{eq:improved-active} at $t_*$,
+including Equation~\eqref{eq:improved-active} at any activation there.
+Choose $\Delta>0$ with
 $t_*+\Delta\le\Tend$ and no assigned activation or saturation time in
 $(t_*,t_*+\Delta]$. The rings that are not debris on this interval were not
 debris at $t_*$. Their supports are compact subsets of
-$\NN_j\subset\operatorname{int}\Nflat_j$, so (BA1) persists for small $\Delta$.
-All activations before $t_*+\Delta$ have their lower amplitude bounds,
-including any at $t_*$. Lemma~\ref{lem:geometry} gives the fields for the
-quiet rings through $t_*+\Delta$. Their Duhamel bounds are at most
-$\Abar\varepsilon_j$ at $t_*$, so (BA2) persists by continuity. Any ring
-active after $t_*$ in this interval is active at $t_*$ and has the strict
-margin
-\[
+$\NN_j\subset\operatorname{int}\Nflat_j$, so Equation~\eqref{eq:BA-support}
+persists for small $\Delta$. Equation~\eqref{eq:relay-startup} gives
+$\ksh_k\ge\Klo s_k^5$ at every nonseed activation before $t_*+\Delta$,
+including any at $t_*$. Lemma~\ref{lem:geometry}(b), through
+Equations~\eqref{eq:geometry-quiet-support}--\eqref{eq:geometry-quiet-inner},
+defines the fields for the quiet rings through $t_*+\Delta$.
+Equation~\eqref{eq:improved-quiet} gives
+$\maj_j(t_*)\le\Abar\varepsilon_j$, so Equation~\eqref{eq:BA-quiet}
+persists by continuity. Any ring active on $(t_*,t_*+\Delta]$ has activated
+by $t_*$ and satisfies, by Equation~\eqref{eq:improved-active},
+\begin{equation}
+\label{eq:boot-continuation-margin}
 \|w_k(t_*)\|_{H^s}\le C_2\hat a_k(t_*)(1+\rhohat_k(t_*))<R_k(t_*).
-\]
-Continuity of $w_k$ and right-continuity of $R_k$ give (BA3) for small
-$\Delta$. Since there are finitely many rings, one $\Delta>0$ works for all
-of them, contradicting the definition of $t_*$. Thus $t_*=\Tend$ and the
-improved bounds hold through $\Tend$.
+\end{equation}
+Continuity of $w_k$ and right-continuity of $R_k$ give
+Equation~\eqref{eq:BA-active} for small $\Delta$.
+Since there are finitely many rings, one $\Delta>0$ works for all
+of them, contradicting the definition of $t_*$. Thus $t_*=\Tend$ and
+Equations~\eqref{eq:improved-support}--\eqref{eq:improved-active} hold through
+$\Tend$.
 
 \emph{The final ring and the elapsed time.}
 If the clock stopped at $k_{\mathrm s}<n$, then
 $\Tend=\tsh_{k_{\mathrm s}}$ would be reached under (BA). The hand-off in
-Proposition~\ref{prop:relay-step} verifies the support and amplitude
-conditions at that same time. This contradicts the failure at
+Proposition~\ref{prop:relay-step}, through Equation~\eqref{eq:relay-startup},
+verifies the support and amplitude conditions at that same time. This
+contradicts the failure at
 $k_{\mathrm s}$ in the fixed clock. Hence $\Tend=T_1$.
-The last relay step gives $\ksh_1\le\Kup s_1^5$, the active estimates
-through $T_1$ with their saturation bound, and $D_2(T_1)\subset B_{a/8}$
+For ring $1$, Equation~\eqref{eq:relay-startup} gives $\ksh_1\le\Kup s_1^5$,
+Proposition~\ref{prop:relay-step}(c) gives Theorem~\ref{thm:active} through
+$T_1$ and the coefficient bound \eqref{eq:relay-saturation}, and
+Equation~\eqref{eq:geometry-confinement} gives $D_2(T_1)\subset B_{a/8}$,
 since $r_1=1$.
 
-For each $k<n$, the lower bound on $\ksh_k$ gives
-\[
+For each $k<n$, Equation~\eqref{eq:relay-startup} gives
+\begin{equation}
+\label{eq:boot-duration}
 T_k-T_{k+1}
 =\frac{\Tpin}{A_{k+1}}+\frac{\hat T_k}{A_k}
 \le\frac{1}{A_k}\left(\Tpin+
 \frac{\log_+(\delta_0/\Klo)+5\log(1/s_k)}{\sigma'}\right).
-\]
-The numerator grows at most linearly in $k$, while $A_k=A_1\mu^{k-1}$
-grows geometrically. The seed contributes at most
-$\log(2\delta_0/\kseed)/(A_n\sigma')$. Summing these bounds as in
-Lemma~\ref{lem:time} gives $T_1\le\Tstar$ uniformly in $n$.
+\end{equation}
+The numerator in Equation~\eqref{eq:boot-duration} grows at most linearly
+in $k$, while $A_k=A_1\mu^{k-1}$ grows geometrically. The seed satisfies
+\begin{equation}
+\label{eq:boot-seed-duration}
+T_n\le\frac{\log(2\delta_0/\kseed)}{A_n\sigma'}.
+\end{equation}
+Summing Equations~\eqref{eq:boot-duration}--\eqref{eq:boot-seed-duration}
+as in Lemma~\ref{lem:time} gives $T_1\le\Tstar$ uniformly in $n$.
 \end{proof}
 
 \begin{proof}[Proof of Proposition~\ref{prop:reduction}]
@@ -193,24 +224,33 @@ defined up to level $1$, Definition~\ref{def:clock}), gives
 $\Cp C_2(\rhohat_1(T_1)+\ksh_1{}^{1/2})\le\cout/(16\pi)$. As
 $\hat a_1(T_1)=\delta_0$, Lemma~I.\ref{I-lem:uniform},
 Theorem~\ref{thm:active}(b) with $\eta_b=0$ and these two inequalities give
-\begin{align*}
+\begin{equation}
+\label{eq:boot-observable-error}
+\begin{aligned}
 \big|\pout_3[w_1(T_1)]-ce^{\lambda\hat T_1}\pout_*(G_1)\big|
 &\le\Cp\big\|w_1(T_1)-2\Re(ce^{\lambda\hat T_1}\phist)\big\|_{H^s}\\
 &\le\Cp C_2\delta_0\big[\rhohat_1(T_1)+\delta_0+\ksh_1{}^{1/2}\big]
 \le\frac{\cout\delta_0}{8\pi}.
-\end{align*}
+\end{aligned}
+\end{equation}
 As $G_1\in[0,\Gone]$, $|\pout_*(G_1)|\ge\cout/(2\pi)$ (Lemma~I.\ref{I-lem:uniform}), and
 $|ce^{\lambda\hat T_1}|=|c_1(T_1)|e^{\sigma_1\hat T_1}\ge\frac{15}{16}\delta_0$
-by Proposition~\ref{prop:bootstrap}(2). Hence
+by Proposition~\ref{prop:bootstrap}(2). Hence Equation~\eqref{eq:boot-observable-error} gives
 $|\pout_3[w_1(T_1)]|\ge\frac{\cout}{2\pi}\cdot\frac{15}{16}\delta_0-\frac{\cout\delta_0}{8\pi}
 =\frac{11}{16}\cdot\frac{\cout\delta_0}{2\pi}\ge\frac{\cout\delta_0}{4\pi}$, and
 multiplying by $2\pi A_1$ gives
-$|\int\omega^{(n)}(T^{(n)})\Psione|\ge c_0:=\frac12A_1\cout\delta_0>0$. The number $c_0$
+\begin{equation}
+\label{eq:boot-observable-defect}
+\left|\int\omega^{(n)}(T^{(n)})\Psione\right|
+\ge c_0:=\frac12A_1\cout\delta_0>0.
+\end{equation}
+The number $c_0$
 involves only $A_1$, $\cout$ and $\delta_0$, and $\Tstar$ only $A_1$, $\mu$,
 $\sbar$, $\sigma'$, $\Tz$, $\delta_0$ and $\kseed$; none of them depends on $n$.
 Moreover $\Psione$ has the form required in
 Corollary~I.\ref{I-cor:defect}, because $\chiout\in C_c^\infty((a/4,3))$ is real.
-Corollary~I.\ref{I-cor:defect} with $\bar T=\Tstar$ gives a renormalized weak
+Corollary~I.\ref{I-cor:defect}, using Equation~\eqref{eq:boot-observable-defect}
+and $\bar T=\Tstar$, gives a renormalized weak
 solution $\omega_\infty$ on $[0,\infty)$ with datum $f$, in the sense of
 Definition~I.\ref{I-def:weak} with $q=2$, such that
 $\omega_\infty\in C([0,\infty);L^p(\R^2))$ for every $p\in[1,\infty)$ and, for

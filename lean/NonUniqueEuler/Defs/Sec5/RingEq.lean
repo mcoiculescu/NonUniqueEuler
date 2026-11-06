@@ -118,7 +118,7 @@ def Rapp (χ : ℝ → ℝ) (G : ℝ) (h : ℝ → ℂ → ℂ) (wapp wapp' : �
 
 /-- The forcing `F(τ) = -h(τ)·∇Φ` (`hGrad`; `= -Eig.hGradPhi χ (h τ)`, `forcing_eq`) of the
 linear response
-(`thm:quiet`(b), Part II Theorem 2.8; `lem:running`, Part II Lemma 2.9; Part II Equation (28) (`eq:running-k`)). -/
+(`thm:quiet`(b), Part II Theorem 2.8; `lem:running`, Part II Lemma 2.9; Part II Equation (30) (`eq:running-k`)). -/
 def forcing (χ : ℝ → ℝ) (h : ℝ → ℂ → ℂ) (τ : ℝ) (x : ℂ) : ℂ :=
   -hGrad (h τ) (PhiC χ) x
 

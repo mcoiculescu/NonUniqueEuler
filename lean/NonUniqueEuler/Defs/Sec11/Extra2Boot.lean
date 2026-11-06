@@ -9,15 +9,15 @@ estimates around Proposition 6.2 (`prop:relay-step`) and the proof of Propositio
 with its present chronological hypotheses.
 
 The current counterparts of the bundles are:
-* `S.BootStartConcl` (Lean step 0): §8, “The seed”, including Equation (34) (`eq:boot-start`);
+* `S.BootStartConcl` (Lean step 0): §8, “The seed”, including Equation (65) (`eq:boot-start`);
 * `S.QuietStep j t'`, `S.QuietStepAt t'` (Lean step 2): §6 (`par:relay-quiet`,
-  Equation (32), `eq:boot-quiet`) and Appendix C.15 (`sec:bootstrap-quiet-control`);
+  Equation (54), `eq:boot-quiet`) and Appendix C.15 (`sec:bootstrap-quiet-control`);
 * `S.HandoffStep k` (Lean step 3): §6 (`par:relay-handoff`) and Appendix C.16
-  (`sec:bootstrap-handoff-checks`), including Equations (53)–(55)
-  (`eq:boot-kappa`, `eq:boot-kick`, `eq:boot-theta`), (50) (`eq:handoff`) and (33)
+  (`sec:bootstrap-handoff-checks`), including Equations (133), (135)–(136)
+  (`eq:boot-kappa`, `eq:boot-kick`, `eq:boot-theta`), (113) (`eq:handoff`) and (58)
   (`eq:boot-switch`);
 * `S.ActiveStep k ū` (Lean step 4): §6 (`par:relay-active`) and Appendix C.17
-  (`sec:bootstrap-active-checks`), including Equation (56) (`eq:boot-inner`);
+  (`sec:bootstrap-active-checks`), including Equation (145) (`eq:boot-inner`);
 * `S.BootStepsConcl t` (Lean steps 1–6): the all-history improvement used in §8,
   “Improvement through a fixed time”, with the individual checks in Appendices C.14–C.18.
 
@@ -96,7 +96,7 @@ with `C₀ = S.C0`, `K₁ = S.K1`:
 * `eq:boot-kappa`: `0 < κ♯_{k+1} ≤ 2κ_seed`;
 * the Lean kick bundle: `|q_s| ∈ [15/16, 17/16]·2π|pout_*(G_{k+1})|δ₀` and
   `|β_k||q_s|/(10|z|(μ-1)) ≤ |A^in(τ_K)| ≤ 3|β_k||q_s|μ/(|z|(μ-1))` for `τ_K ∈ [0, T_pin]`.
-  Current Lemma C.14 (`lem:kicktrue`) and Equation (54) (`eq:boot-kick`) state the endpoint
+  Current Lemma C.14 (`lem:kicktrue`) and Equation (135) (`eq:boot-kick`) state the endpoint
   consequence at `τ_K = T_pin`; they do not state this full-interval clause;
 * `eq:boot-theta`: `θ_k t̄♯_k ≤ θ_k τ̄♯_k ≤ min{1/2, 1/(4C_lsK₁)}`;
 * `eq:relay` at `t̄♯_k` (`prop:relay`), and (the `K₁` comparison in §6 (`par:relay-handoff`))
@@ -134,7 +134,7 @@ structure HandoffStep (k : ℕ) : Prop where
 (Part II Appendix C.17 (`sec:bootstrap-active-checks`); the real time is `t' = t♯_k + ū/A_k ∈ Ph_k`), with `C₀ = S.C0`,
 `K₁ = S.K1`, `C_F = S.CF`, `η_{b,k} = S.etabK S.C0 S.K1 k`; for `u ∈ [0, ū]`:
 * the inner bound underlying `eq:boot-inner`: `h^in_k(t̄♯_k + u) ∈ C^{M_h}(N')` with norm
-  `≤ C_F κ♯_k ⟨u⟩^m`; current Equation (56) uses `C₀ ≥ C_F` (for `k = n`, `h^in_n = 0`);
+  `≤ C_F κ♯_k ⟨u⟩^m`; current Equation (145) uses `C₀ ≥ C_F` (for `k = n`, `h^in_n = 0`);
 * (`lem:Oprime`) `h^out_k(t̄♯_k + u) ∈ C^{M_h}(N')` with norm `≤ η_{b,k} â_k(u)`;
 * (Field) of `thm:active` on `[0, ū]` with `C₀` and `η_{b,k}` (`ActiveFieldK`);
 * the hypotheses (i)–(iv) of `lem:drift` for ring `k`, `ū` and `η = η_{b,k}` (`DriftHyp`), and

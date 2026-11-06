@@ -8,7 +8,7 @@ Current counterpart: Part II Lemma C.8 (`lem:O`), Appendix C.6 (`sec:proof-O`).
 The formal statement uses separate velocity constants and allows a zero
 endpoint; the current statement uses the common `C_vel` and a positive
 physical endpoint. The generic Duhamel comparisons used in this proof are now
-Equations (38)–(40) (`eq:O-duh`, `eq:O-fast`, `eq:O-same`) in Appendix C.5.
+Equations (84)–(86) (`eq:O-duh`, `eq:O-fast`, `eq:O-same`) in Appendix C.5.
 
 Proof of `I/Sec9/O.lean` (`lem:O`, Part II Lemma C.8). The steps:
 * `OProof.bootstrap_eps` (`lem:O`, Part II Lemma C.8): for the regularized majorant

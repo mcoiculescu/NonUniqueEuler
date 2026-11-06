@@ -23,7 +23,7 @@ Deviations: `κ₀(C₀)` is an admissible value (the current Part II Theorem 2.
 is existential). The explicit constants `C♮`, `C₂` use `C_L = C_lin(M-2)` and `C_φ`
 at level `M-2`. This retains the Lean decomposition; the current proof chooses a
 uniform constant `C` large enough for these estimates. The bound of `(1-R)wlin`
-and Equation (23) (`eq:A-layer`) are packaged in
+and Equation (24) (`eq:A-layer`) are packaged in
 the interface `active_layer`, and the coefficient bound `|c(u)e^{λu}| ≤ â(3 + ρ̂)` is used in both
 cases (the manuscript uses `â(2 + ρ̂)` and `3â` separately).
 -/

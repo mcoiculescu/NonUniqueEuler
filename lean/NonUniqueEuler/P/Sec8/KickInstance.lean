@@ -6,7 +6,7 @@ import NonUniqueEuler.I.Sec6.InnerCirc
 import NonUniqueEuler.I.Sec6.Clock
 
 /-!
-# Proof: the kick instance of `lem:coupling` (the scalar setting around Part II Equation (31) (`eq:kick-A`))
+# Proof: the kick instance of `lem:coupling` (the scalar setting around Part II Equation (35) (`eq:kick-A`))
 
 Proof of `I/Sec8/KickInstance.lean` (`kick_instance`), following the proof sketch there:
 1. `G_k ∈ [0,G₁]` (`inner_circ`, `GSmall`), so `Re λ_k > 211/2500 > 0` (`lam_SU`) and
@@ -46,7 +46,7 @@ private lemma tau0_neg (P : Approx) (hP : P.Valid) (hN : NumericalHypothesis P.�
   simp only [Approx.tau0, neg_lt_zero]
   exact mul_pos hA hT
 
-/-- **The kick instance** (the scalar setting around Part II Equation (31) (`eq:kick-A`)). Under (N1)–(N3), `G_i ≤ G₁` for all levels, the
+/-- **The kick instance** (the scalar setting around Part II Equation (35) (`eq:kick-A`)). Under (N1)–(N3), `G_i ≤ G₁` for all levels, the
 clock defined up to level `k+1` (`1 ≤ k < n`) and `D_{k+1}(t) ⊂ B_{a r_k/8}` on `[0,t♯_k]`: the kick
 time functions of ring `k` form an instance of the setting of Part II Section 5 with `ζ₀ = λ_k/μ`,
 `β = β_k`, `τ₀ = -A_{k+1}T_{k+1} < 0`, `τ₁ = T_pin`, `q = q_{k+1}`; `Re ζ₀ = σ_k/μ > 0`; and the

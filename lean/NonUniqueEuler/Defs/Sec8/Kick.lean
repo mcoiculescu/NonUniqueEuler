@@ -4,7 +4,7 @@ import NonUniqueEuler.Defs.Infra.Ip
 /-!
 # Part II Section 5: the kick setting (definitions)
 
-Current manuscript: the scalar setting around Part II Equation (31) (`eq:kick-A`)
+Current manuscript: the scalar setting around Part II Equation (35) (`eq:kick-A`)
 and Proposition 5.2 (`prop:kick`). The pinning and kick-lower estimates remain
 separate Lean helpers for the integral estimates now contained in that proof.
 
@@ -32,24 +32,24 @@ namespace Kick
 
 open RingData
 
-/-! ### The setting (the scalar setting around Part II Equation (31) (`eq:kick-A`)) -/
+/-! ### The setting (the scalar setting around Part II Equation (35) (`eq:kick-A`)) -/
 
 /-- The interval `I = {τ : τ₀ ≤ τ ≤ τ₁}`: `[τ₀, τ₁]` if `τ₁ < ∞`, `[τ₀, ∞)` if `τ₁ = ∞`
-(the scalar setting around Part II Equation (31) (`eq:kick-A`)). -/
+(the scalar setting around Part II Equation (35) (`eq:kick-A`)). -/
 def interval (τ₀ : ℝ) (τ₁ : EReal) : Set ℝ := {τ : ℝ | τ₀ ≤ τ ∧ (τ : EReal) ≤ τ₁}
 
-/-- **The setting of Part II Section 5** (the scalar setting around Part II Equation (31) (`eq:kick-A`)): `x = Re ζ₀ > 0`, `τ₀ < τ₁ ≤ ∞`, and `q`
+/-- **The setting of Part II Section 5** (the scalar setting around Part II Equation (35) (`eq:kick-A`)): `x = Re ζ₀ > 0`, `τ₀ < τ₁ ≤ ∞`, and `q`
 continuous on `I`. -/
 structure IsSetting (ζ₀ β : ℂ) (τ₀ : ℝ) (τ₁ : EReal) (q : ℝ → ℂ) : Prop where
   re_pos : 0 < ζ₀.re
   lt : (τ₀ : EReal) < τ₁
   continuousOn : ContinuousOn q (interval τ₀ τ₁)
 
-/-- The kick amplitude `A(τ) = β ∫_{τ₀}^τ e^{-ζ₀ s} q(s) ds` (`eq:kick-A`, the scalar setting around Part II Equation (31) (`eq:kick-A`)). -/
+/-- The kick amplitude `A(τ) = β ∫_{τ₀}^τ e^{-ζ₀ s} q(s) ds` (`eq:kick-A`, the scalar setting around Part II Equation (35) (`eq:kick-A`)). -/
 def amp (ζ₀ β : ℂ) (τ₀ : ℝ) (q : ℝ → ℂ) (τ : ℝ) : ℂ :=
   β * ∫ s in τ₀..τ, Complex.exp (-(ζ₀ * s)) * q s
 
-/-- The solution `c(τ) = e^{ζ₀τ} A(τ)` of `c' = ζ₀ c + β q`, `c(τ₀) = 0` (the scalar setting around Part II Equation (31) (`eq:kick-A`);
+/-- The solution `c(τ) = e^{ζ₀τ} A(τ)` of `c' = ζ₀ c + β q`, `c(τ₀) = 0` (the scalar setting around Part II Equation (35) (`eq:kick-A`);
 variation of constants). -/
 def coef (ζ₀ β : ℂ) (τ₀ : ℝ) (q : ℝ → ℂ) (τ : ℝ) : ℂ :=
   Complex.exp (ζ₀ * τ) * amp ζ₀ β τ₀ q τ
@@ -122,7 +122,7 @@ structure KickHyp (χ : ℝ → ℝ) (μ G G' : ℝ) (β : ℂ) (τ₀ : ℝ) (�
 
 /-! ### Basic lemmas (fully proved) -/
 
-/-- `A(τ) = e^{-ζ₀τ} c(τ)` (the scalar setting around Part II Equation (31) (`eq:kick-A`)). -/
+/-- `A(τ) = e^{-ζ₀τ} c(τ)` (the scalar setting around Part II Equation (35) (`eq:kick-A`)). -/
 theorem amp_eq_exp_mul_coef (ζ₀ β : ℂ) (τ₀ : ℝ) (q : ℝ → ℂ) (τ : ℝ) :
     amp ζ₀ β τ₀ q τ = Complex.exp (-(ζ₀ * τ)) * coef ζ₀ β τ₀ q τ := by
   rw [coef, ← mul_assoc, ← Complex.exp_add, neg_add_cancel, Complex.exp_zero, one_mul]

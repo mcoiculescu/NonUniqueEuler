@@ -4,7 +4,7 @@ import NonUniqueEuler.Defs.Sec9.All
 # Part II Section 7 and Appendices C.2–C.4: the parameter lists (P0)–(P6) (definitions)
 
 Current manuscript: Part II Definitions C.2–C.4 (`def:P0-P4`, `def:P5`, `def:P6`)
-and Equation (37) (`eq:E22`), in `sections/C_parameter_details.tex`. Section 7
+and Equation (77) (`eq:E22`), in `sections/C_parameter_details.tex`. Section 7
 (`sec:param`) gives the choice order and Lemma 7.1 (`lem:nonempty`). The module path
 `Sec10` retains the historical numbering.
 
@@ -103,7 +103,7 @@ structure CondP3 : Prop where
 
 /-- `C_F = C_in μ (2 + 2C_* T_pin)^m (1 + 2C_*)^m / K_lo`: the retained detailed
 inner-field coefficient. Its current counterpart uses `C_vel` in (P4), Part II
-Definition C.2 (`def:P0-P4`), and Equation (56) (`eq:boot-inner`), Appendix C.17. -/
+Definition C.2 (`def:P0-P4`), and Equation (145) (`eq:boot-inner`), Appendix C.17. -/
 def CF : ℝ := S.Cin * S.P.μ * (2 + 2 * Cstar * S.P.Tpin) ^ 3 * (1 + 2 * Cstar) ^ 3 / S.Klo
 
 /-- **`C₀ = max{1, 2C_seed, C_hand, C_F}`** ((P4), Part II Definition C.2, `def:P0-P4`), with `C_seed` of
@@ -166,7 +166,7 @@ def Lconf (k : ℕ) : ℝ :=
   2 + 2 * Cstar * (S.P.μ * (S.P.Tpin + 1 + 1 / S.σ' *
     ((3 + 2) * Real.log (1 / S.P.s k) + Real.posLog (S.P.δ₀ / S.Klo))))
 
-/-- **The detailed form of Part II Equation (37), `eq:E22`**, in Definition C.4:
+/-- **The detailed form of Part II Equation (77), `eq:E22`**, in Definition C.4:
 `K_O s̄^{2m}[T_z + 2 log(1/s̄) + 1/(μ-1)] ≤ (μ-1)/(4C_OC_QC_τ) · min{1/2, 1/(4C_ls K_1)}`,
 written multiplicatively:
 `4C_OC_QC_τ · K_O s̄^{2m}[T_z + 2 log(1/s̄) + 1/(μ-1)] ≤ (μ-1) · min{1/2, 1/(4C_ls K_1)}`.

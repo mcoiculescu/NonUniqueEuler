@@ -4,7 +4,7 @@ import Mathlib.Analysis.SpecialFunctions.Integrals.Basic
 # Helpers for `P/Sec9/O`: the Duhamel comparisons of `lem:O` on the real line
 
 Generic real-analysis estimates used by `lem:O` (Part II Lemma C.8), now recorded
-in Appendix C.5 (`sec:relay-transmission`), Equations (38)–(40), over named real
+in Appendix C.5 (`sec:relay-transmission`), Equations (84)–(86), over named real
 functions:
 * `OProof.duh_subst`: the substitution `v = v'/c` of `eq:O-duh`;
 * `OProof.integral_exp_decay_le`: `∫₀^{τ'} e^{-δ(τ'-v)} dv ≤ 1/δ`;
@@ -19,7 +19,7 @@ open Set MeasureTheory
 
 namespace NonUniqueEuler.Relay.OProof
 
-/-- The substitution `v = v'/c` of `eq:O-duh` (Part II Equation (38), Appendix C.5):
+/-- The substitution `v = v'/c` of `eq:O-duh` (Part II Equation (84), Appendix C.5):
 `∫₀^{τ'/c} e^{σ(τ'/c-v)} η(v) dv = c⁻¹ ∫₀^{τ'} e^{(σ/c)(τ'-v')} η(v'/c) dv'`. -/
 theorem duh_subst {c : ℝ} (hc : c ≠ 0) (σ τ' : ℝ) (η : ℝ → ℝ) :
     ∫ v in (0 : ℝ)..τ' / c, Real.exp (σ * (τ' / c - v)) * η v =
@@ -57,7 +57,7 @@ private theorem ii_of_contOn {τ' : ℝ} (hτ : 0 ≤ τ') {f : ℝ → ℝ} (hf
     IntervalIntegrable f volume 0 τ' :=
   (uIcc_of_le hτ ▸ hf).intervalIntegrable
 
-/-- **`eq:O-fast` and `eq:O-same`** (Part II Equations (39)–(40), Appendix C.5), combined with the pointwise bound
+/-- **`eq:O-fast` and `eq:O-same`** (Part II Equations (85)–(86), Appendix C.5), combined with the pointwise bound
 of the forcing. Let `τ' ≥ 0`, `c ≥ 1`, `δ > 0`, `σ̂ ≤ σ - δ`, `P, a₁, a₂ ≥ 0`, and let `f, m, g, e`
 be continuous on `[0,τ']` with `f ≤ P(a₁m + a₂g)`, `m ≥ 0`, `e^{σ(τ'-v)}m(v) ≤ m(τ')`,
 `0 ≤ g ≤ e` there. Then

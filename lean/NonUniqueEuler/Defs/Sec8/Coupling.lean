@@ -5,7 +5,7 @@ import NonUniqueEuler.Defs.Sec8.Kick
 # Part II Section 5: the coupling of ring `k` to its inner region (definitions)
 
 Manuscript Part II Lemma 5.1 (`lem:coupling`) and the instance of the kick setting described before the legacy pinning helper for the proof of `prop:kick`
-(the scalar setting around Part II Equation (31) (`eq:kick-A`), Part II Proposition 5.2 (`prop:kick`)).
+(the scalar setting around Part II Equation (35) (`eq:kick-A`), Part II Proposition 5.2 (`prop:kick`)).
 
 For an approximation `P` and a level `1 ≤ k < n` (ring-`k` time `τ = A_k t`, kick time
 `τ_K = A_{k+1}(t - T_{k+1}) = μτ + τ₀`):

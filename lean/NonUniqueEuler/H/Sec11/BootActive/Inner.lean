@@ -24,7 +24,7 @@ The identity `h^in_k(A_kt) = E_{[k]}` as functions on `ℂ` (`hIn_eq_unitsField_
 from `P/Sec7/FieldBound.lean` (`Rings.hIn_eq_unitsField_extField`, same proof): `inner_field_eq`
 gives it only on `N'`, while `C^{M_h}(N')` norms need it near `N'`; both sides differ by a constant
 multiple of `y^⊥/|y|²`, and the identity at the point `1 ∈ N'` kills the constant. All proved.
-Lean retains the auxiliary inner-field constant `C_F`. Current Equation (56)
+Lean retains the auxiliary inner-field constant `C_F`. Current Equation (145)
 (`eq:boot-inner`, Appendix C.17) states the consequence with `C₀`, using `C_F ≤ C₀`.
 -/
 

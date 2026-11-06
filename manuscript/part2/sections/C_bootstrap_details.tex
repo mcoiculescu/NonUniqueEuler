@@ -2,8 +2,10 @@
 \label{sec:bootstrap-geometry}
 
 We use the common parameter choices and bootstrap bounds of
-Section~\ref{sec:relay}. Confinement on a current interval needs only the
-amplitude bounds for rings activated strictly before its endpoint.
+Section~\ref{sec:relay}. A lower bound on each activation amplitude bounds
+its active duration. The inner material therefore has only a limited time
+to spread, and the separation of radii keeps it inside the next ring.
+Only amplitudes assigned strictly before the current endpoint are needed.
 
 \begin{lemma}
 \label{lem:geometry}
@@ -15,21 +17,40 @@ $e_k=\tsh_k$ otherwise. Then:
 \item for every level $k<n$ such that $T_{k+1}$ is defined and $T_{k+1}\le t$, the
   hypotheses of Proposition~\ref{prop:confine} hold with $t_0=T_{k+1}$ and
   $t_1=\min(t,e_k)$; and for every $t'\in[T_{k+1},\min(t,e_k)]$,
-  \[
-  D_{k+1}(t')\subset\overline B_{\varrho_k(t')}\subset B_{ar_k/8},\qquad
-  |q_{k+1}(t')|\le\Cmom\big(1+A_{k+1}(t'-T_{k+1})\big)^3,
-  \]
-  where $\varrho_k(t')=\big(2+2\Cstar A_{k+1}(t'-T_{k+1})\big)r_{k+1}$;
+  \begin{equation}
+  \label{eq:geometry-confinement}
+  \begin{gathered}
+  D_{k+1}(t')\subset\overline B_{\varrho_k(t')}\subset B_{ar_k/8},\\
+  \varrho_k(t')=\big(2+2\Cstar A_{k+1}(t'-T_{k+1})\big)r_{k+1},
+  \end{gathered}
+  \end{equation}
+  \begin{equation}
+  \label{eq:geometry-moment}
+  |q_{k+1}(t')|\le\Cmom\big(1+A_{k+1}(t'-T_{k+1})\big)^3;
+  \end{equation}
 \item for every $t'\in[0,t]$ and every level $j$ that is not debris at $t'$, every
-  ring $i<j$ is quiet at $t'$ and satisfies
-  $S_i(t')\subset\Nflat_i\subset\R^2\setminus B_{6r_j}$, and
-  $D_{j+1}(t')\subset B_{ar_j/8}$; hence the field $h_j$ is defined at $t'$, the
-  support hypotheses of Lemma~\ref{lem:reduction} hold for ring $j$ in ring-$j$
-  units at $t'$, and, if $j<n$, $\eta_j(t')\le1$, where
-  $\eta_j=\|\hin_j\|_{C^{M_h}(N')}+\|\hout_j\|_{C^{M_h}(N')}$ is the sum of
-  the norms of the inner velocity field minus its monopole and of the outer
-  velocity field, in ring-$j$ units;
-\item \textup{(Loc)} holds at every $t'\in[0,t]$.
+  ring $i<j$ is quiet at $t'$, and
+  \begin{equation}
+  \label{eq:geometry-quiet-support}
+  S_i(t')\subset\Nflat_i\subset\R^2\setminus B_{6r_j}\qquad(i<j),
+  \end{equation}
+  \begin{equation}
+  \label{eq:geometry-quiet-inner}
+  D_{j+1}(t')\subset B_{ar_j/8}.
+  \end{equation}
+  Hence $h_j$ is defined at $t'$ and the support hypotheses of
+  Lemma~\ref{lem:reduction} hold in ring-$j$ units. If $j<n$, then
+  \begin{equation}
+  \label{eq:geometry-field}
+  \eta_j(t')=\|\hin_j(t')\|_{C^{M_h}(N')}+\|\hout_j(t')\|_{C^{M_h}(N')}\le1;
+  \end{equation}
+  the two terms are the norms of the inner velocity field minus its monopole
+  and of the outer velocity field, in ring-$j$ units;
+\item the localization conditions of Definition~\ref{def:loc} hold throughout:
+  \begin{equation}
+  \label{eq:geometry-loc}
+  \textup{(Loc)}\text{ holds at }t'\qquad(t'\in[0,t]).
+  \end{equation}
 \end{enumerate}
 \end{lemma}
 
@@ -46,7 +67,7 @@ $\frac58ar_i\ge\frac58ar_{j-1}=\frac{5a}{8s_{j-1}}r_j\ge20r_j$; hence
 $S_i(t')\cap B_{6r_j}=\emptyset$.
 
 The material inside ring $j$ is controlled from the inside out: the confinement
-of $D_{j+1}$ after the time $T_{j+1}$, at which the active phase of ring $j+1$
+of $D_{j+1}$ after the time $T_{j+1}$, at which the active interval of ring $j+1$
 ends, starts from the confinement of $D_{j+2}$ at $T_{j+1}$. So we argue by
 downward induction on $j=n,\dots,1$ and show that $D_{j+1}(t')\subset
 B_{ar_j/8}$ at every $t'\in[0,t]$ at which ring $j$ is not debris, and, if
@@ -70,7 +91,7 @@ then $e_j=T_j$, so the clock is defined up to level $j$, and $\tsh_j<t$. So
 $\ksh_j\ge\Klo s_j^5$ by hypothesis, and $\sigma_j\ge\sigma'$ by
 Lemma~\ref{lem:detuning}. As $t_1\le T_j=\tsh_j+\hat T_j/A_j$ and
 $A_{j+1}=\mu A_j$, $A_{j+1}(t_1-T_{j+1})\le\Tpin+\mu\hat T_j$. It remains to
-bound $\hat T_j$, the length of the active phase of ring $j$ in active time: as
+bound $\hat T_j$, the length of the active interval of ring $j$ in ring-$j$ time: as
 $\ksh_j<\delta_0$ (the clock is defined up to level $j$), $\Klo>0$ (Definition~\ref{def:K1}; $c_N>0$ by Lemma~I.\ref{I-lem:uniform}) and
 $\sigma_j\ge\sigma'>0$ (SA1),
 $\hat T_j=\sigma_j^{-1}\log(\delta_0/\ksh_j)\le\sigma'^{-1}\log\big(\delta_0/(\Klo s_j^5)\big)\le\sigma'^{-1}\big(5\log\frac1{s_j}+\log_+\frac{\delta_0}{\Klo}\big)$.
@@ -81,7 +102,7 @@ A_{j+1}(t_1-T_{j+1})<\mu\Big[\Tpin+1+\frac1{\sigma'}\Big(5\log\frac1{s_j}+\log_+
 so $\Lambda=2+2\Cstar A_{j+1}(t_1-T_{j+1})<\Lconf_j$, with $\Lconf_j$ of (B5).
 The two inequalities of (iv) increase with $\Lambda$, so they follow from (B5).
 Proposition~\ref{prop:confine}(a), (b) give, for $t'\in[T_{j+1},t_1]$,
-$D_{j+1}(t')\subset\overline B_{\varrho_j(t')}$ and the bound on $q_{j+1}(t')$,
+$D_{j+1}(t')\subset\overline B_{\varrho_j(t')}$ and Equation~\eqref{eq:geometry-moment},
 and $\varrho_j(t')\le\Lambda r_{j+1}<\Lconf_js_jr_j\le\frac a8r_j$ by (B5).
 
 \emph{The claim on $D_{j+1}$.} Let ring $j$ be not debris at $t'\in[0,t]$. If
@@ -114,12 +135,12 @@ as above; for $j=n$ it holds as $D_{n+1}=\emptyset$.
 \subsection{Verification of quiet-ring control}
 \label{sec:bootstrap-quiet-control}
 
-We check the estimates used in the proof of Proposition~\ref{prop:relay-step}.
-Fix its target time $t$, assume (BA)$(t)$ and retain the completed inner
-history from that proposition. The support argument has supplied
-Lemma~\ref{lem:geometry} on the current pinning or active interval.
-
-Let $b$ be the endpoint reached by the support argument, let $t'\in[0,b]$,
+We verify the hypotheses of the quiet-ring theorem used in
+Proposition~\ref{prop:relay-step}. Fix its target time $t$, assume (BA)$(t)$,
+and retain the conclusions of its preceding relay steps. Let $b\le t$ be an
+endpoint through which Lemma~\ref{lem:geometry} has established
+Equations~\eqref{eq:geometry-quiet-support}--\eqref{eq:geometry-field}.
+Let $t'\in[0,b]$,
 and let $j<n$ be quiet at $t'$. This includes earlier activation times
 needed in the hand-off calculation. For Theorem~\ref{thm:quiet}, the
 local ring-$i$ coordinate is $s=A_it''$, and its inputs are the pullbacks
@@ -131,21 +152,27 @@ local ring-$i$ coordinate is $s=A_it''$, and its inputs are the pullbacks
 \end{aligned}
 \]
 In particular, $s\in[0,A_it']$ corresponds to the physical interval $[0,t']$.
-If $t'=0$, Equation~\eqref{eq:boot-quiet} holds at $t''=0$ by
-the seed estimates in Section~\ref{sec:bootstrap}, as $\maj_j(0)=0$ and $w_j(0)=0$ (ring $j$ starts at $\Phi$ in ring-$j$
-units); let $t'>0$. Suppose first that $\tsh_j$ is defined;
+If $t'=0$, Equation~\eqref{eq:boot-quiet} holds since every ring $i\le j<n$
+starts at $\Phi$ in ring-$i$ units, with $\maj_i(0)=0$ and $w_i(0)=0$
+(Definition~\ref{def:approx}). Let $t'>0$. Suppose first that $\tsh_j$ is defined;
 then the clock is defined up to level $j+1$ and $t'\le\tsh_j$. We apply
 Lemma~\ref{lem:O} to $j$ and $t'$: at every $t''\in[0,t']$ every ring $i\le j$
-is quiet, so Lemma~\ref{lem:geometry}(b) gives its geometric hypotheses and
-$\eta_i(t'')\le1$; (BA2) and (B9) give, as $\varepsilon_j=\mu s_j^5$ and
+is quiet. The outer and inner support conditions are
+Equations~\eqref{eq:geometry-quiet-support} and~\eqref{eq:geometry-quiet-inner},
+and $\eta_i(t'')\le1$ is Equation~\eqref{eq:geometry-field}.
+Equation~\eqref{eq:BA-quiet} and (B9) give, since $\varepsilon_j=\mu s_j^5$ and
 $s_j\le\sbar$,
-$\maj_j\le2\Abar\varepsilon_j\le2\Abar\mu\sbar^5\le\majst$ on $[0,t']$; and
-(B7) gives the three smallness conditions on $\sbar$ in Lemma~\ref{lem:O}. So, for $t''\in[0,t']$ and $i<j$,
-$\maj_i(t'')\le\frac34\Ptil_{i,j}\maj_j(t'')$, the hypotheses of
-Theorem~\ref{thm:quiet} hold after rescaling for ring $i$ on the physical
-interval $[0,t']$ (for $i=j$ as well), and
-$\etout_j\le\theta_j\maj_j$ on $[0,t']$. If $\tsh_j$ is not defined, apply
-the same comparison to the innermost quiet ring at $t'$. Its activation
+\begin{equation}
+\label{eq:boot-quiet-smallness}
+\maj_j(t'')\le2\Abar\varepsilon_j\le2\Abar\mu\sbar^5\le\majst
+\qquad(0\le t''\le t');
+\end{equation}
+and
+(B7) gives the three smallness conditions on $\sbar$ in Lemma~\ref{lem:O}.
+That lemma gives Equations~\eqref{eq:O-comparison} and~\eqref{eq:O-feedback}
+on $[0,t']$ and verifies the hypotheses of Theorem~\ref{thm:quiet} for every
+$i\le j$, after rescaling to ring-$i$ time. If $\tsh_j$ is not defined, apply
+Lemma~\ref{lem:O} instead to the innermost quiet ring at $t'$. Its activation
 time was assigned when the ring just inside it became active, and its
 outer rings include ring $j$. The conclusions of Lemma~\ref{lem:O} therefore
 give Theorem~\ref{thm:quiet} for ring $j$ on the physical interval $[0,t']$.
@@ -155,12 +182,13 @@ for every $t''\in[0,t']$.
 \subsection{Verification at a hand-off}
 \label{sec:bootstrap-handoff-checks}
 
-At a hand-off $\tsh_k\le t$, $k<n$, support and quiet-ring control have been
-proved through $\tsh_k$. The active estimates hold through $T_{k+1}$, and
-the hand-offs at the inner levels have already been performed.
-
-The clock is defined up to level $k+1$, and the active estimates are available on the whole
-of $\Phase_{k+1}$. No ring is active on $(T_{k+1},\tsh_k)$.
+At a hand-off $\tsh_k\le t$, $k<n$, Equations~\eqref{eq:geometry-confinement}--\eqref{eq:geometry-loc}
+and~\eqref{eq:boot-quiet} hold through $\tsh_k$ on their stated intervals.
+The preceding relay step has supplied item~(c) of
+Proposition~\ref{prop:relay-step} for ring $k+1$ through $T_{k+1}$, and the
+hand-offs at the inner levels have already been performed.
+The clock is defined up to level $k+1$, and no ring is active on
+$(T_{k+1},\tsh_k)$.
 By the hand-off argument for ring $k+1$ and
 (B6), or by the seed estimates if $k+1=n$,
 \begin{equation}
@@ -170,27 +198,34 @@ By the hand-off argument for ring $k+1$ and
 We apply Lemma~\ref{lem:kicktrue} with the constants $C_0$ and $K_1$, and check
 its hypotheses in the order in which it lists them. First,
 $D_{k+1}\subset B_{ar_k/8}$ on $[0,\tsh_k]$ by
-Lemma~\ref{lem:geometry}(b). Second, the conclusions of Theorem~\ref{thm:active} and
-Corollary~\ref{cor:active-moment} for ring $k+1$ on $\Phase_{k+1}$ hold by
-the active argument with $\eta_{b,k+1}$, hence with $\eta_b\ge\eta_{b,k+1}$, as the bounds
-increase with $\eta_b$. Third, the active argument for ring $k+1$ verified hypotheses (i)--(iv) of
+Equation~\eqref{eq:geometry-quiet-inner}. Second, item~(c) of
+Proposition~\ref{prop:relay-step} for ring $k+1$ supplies the conclusions of
+Theorem~\ref{thm:active} and Corollary~\ref{cor:active-moment}, including
+Equations~\eqref{eq:relay-active} and~\eqref{eq:relay-active-moment}, on
+$\Phase_{k+1}$ with $\eta_{b,k+1}$. They hold also with
+$\eta_b\ge\eta_{b,k+1}$, since the bounds increase with $\eta_b$.
+Third, the same item verifies hypotheses (i)--(iv) of
 Lemma~\ref{lem:drift} for ring $k+1$ with $\bar t=T_{k+1}$ and
-$\eta=\eta_{b,k+1}\in[0,\eta_b]$, together with $\rT(\Tpin)\le\frac1{64}$ and
-$\Cls\eta_{b,k+1}\hat T_{k+1}\le\frac1{32}$. Fourth, if $k+1<n$: on $[0,\tsh_{k+1}]$
+$\eta=\eta_{b,k+1}\in[0,\eta_b]$, together with
+Equation~\eqref{eq:relay-drift-small}. Fourth, if $k+1<n$: on $[0,\tsh_{k+1}]$
 $D_{k+2}\subset B_{ar_{k+1}/8}$ and the rings $i\le k$ lie outside $B_{6r_{k+1}}$
-by Lemma~\ref{lem:geometry}(b); the hypotheses of Theorem~\ref{thm:quiet} hold for
-ring $k+1$, after rescaling, on the physical interval $[0,\tsh_{k+1}]$
-by the quiet-ring argument; $\maj_{k+1}(\tsh_{k+1})\le K_1\ksh_{k+1}$ is
+by Equations~\eqref{eq:geometry-quiet-inner} and~\eqref{eq:geometry-quiet-support};
+the hypotheses of Theorem~\ref{thm:quiet} for ring $k+1$ on the physical
+interval $[0,\tsh_{k+1}]$ were checked in
+Appendix~\ref{sec:bootstrap-quiet-control}; $\maj_{k+1}(\tsh_{k+1})\le K_1\ksh_{k+1}$ is
 Equation~\eqref{eq:handoff} for ring $k+1$; the hypotheses of
 Proposition~\ref{prop:confine} with $k+1$ in place of $k$ and $t_1=T_{k+1}$ hold
 by Lemma~\ref{lem:geometry}(a) for $k+1$; and
-$\ksh_{k+1}\ge\Klo s_{k+1}^5$ by the hand-off argument for ring $k+1$. Fifth, the bound
-$|q_{k+1}(s)|\le\Cmom(1+A_{k+1}(s-T_{k+1}))^3$ for
-$s\in[T_{k+1},\tsh_k]$ is
-Lemma~\ref{lem:geometry}(a) on $\Pin_k$. Finally, conditions (a)--(f) of
+$\ksh_{k+1}\ge\Klo s_{k+1}^5$ by Equation~\eqref{eq:relay-amplitudes}. Fifth, the bound
+on $q_{k+1}$ for $s\in[T_{k+1},\tsh_k]$ is
+Equation~\eqref{eq:geometry-moment} on $\Pin_k$. Finally, conditions (a)--(f) of
 Lemma~\ref{lem:kicktrue} are (P1), (P2), ($\kappa$1), ($\kappa$2), ($\kappa$3) at
 $\kappa=\ksh_{k+1}$, which Equation~\eqref{eq:boot-kappa} allows, and (B11). So
-$|\qs|\in[\frac{15}{16},\frac{17}{16}]2\pi|\pout_*(G_{k+1})|\delta_0$ and
+\begin{equation}
+\label{eq:boot-qstar}
+|\qs|\in[\tfrac{15}{16},\tfrac{17}{16}]2\pi|\pout_*(G_{k+1})|\delta_0,
+\end{equation}
+and
 \begin{equation}
 \label{eq:boot-kick}
 \frac{|\beta_k|\,|\qs|}{10|\lamref|(\mu-1)}\le|\Ain(\Tpin)|\le\frac{3|\beta_k|\,|\qs|\,\mu}{|\lamref|(\mu-1)} .
@@ -207,27 +242,29 @@ the seed estimates) and Lemma~\ref{lem:theta-quiet},
 \theta_k A_k\tsh_k\le\theta_k\bar\tau^\sharp_k\le\min\Big\{\frac12,\frac1{4\Cls K_1}\Big\}.
 \end{equation}
 The hypotheses (H1)--(H4) of Proposition~\ref{prop:relay} hold. (H1): (Loc) holds on
-$[0,\tsh_k]$ by Lemma~\ref{lem:geometry}(c). (H2): $\etout_k\le\theta_k\maj_k$ on
-$[0,\tsh_k]$ by the quiet-ring argument, and $\theta_k A_k\tsh_k\le\frac12$ by
+$[0,\tsh_k]$ by Equation~\eqref{eq:geometry-loc}. (H2):
+Equation~\eqref{eq:O-feedback} holds on $[0,\tsh_k]$ by the application of
+Lemma~\ref{lem:O} in Appendix~\ref{sec:bootstrap-quiet-control}, and $\theta_k A_k\tsh_k\le\frac12$ by
 Equation~\eqref{eq:boot-theta}. (H3): if $k+1<n$, the
 conclusions of Theorem~\ref{thm:quiet} for ring $k+1$ hold on
-$[0,\tsh_{k+1}]$, after rescaling, by the quiet-ring argument.
+$[0,\tsh_{k+1}]$, after rescaling, by the verification in
+Appendix~\ref{sec:bootstrap-quiet-control}.
 (H4): $\maj_{k+1}(\tsh_{k+1})\le K_1\ksh_{k+1}$ by
 the hand-off argument for ring $k+1$; if $k+1=n$, then $\tsh_n=0$ and $\maj_n(0)=0$. The
-other conditions of (H4), on $\Phase_{k+1}$, hold: $D_{k+2}\subset B_{ar_{k+1}/8}$ by Lemma~\ref{lem:geometry}(b);
+other conditions of (H4), on $\Phase_{k+1}$, hold: $D_{k+2}\subset B_{ar_{k+1}/8}$ by Equation~\eqref{eq:geometry-quiet-inner};
 (BA3) for ring $k+1$ holds by (BA)$(t)$, and at $\tsh_{k+1}$ by
 Equation~\eqref{eq:boot-switch} for ring $k+1$ or by
 Equation~\eqref{eq:boot-start}; and
-$\|\hin_{k+1}(s)\|_{C^{M_h}(N')}\le
-C_0\ksh_{k+1}\jap{A_{k+1}(s-\tsh_{k+1})}^3$ on $\Phase_{k+1}$ by the active argument for ring
-$k+1$. Hence, by Proposition~\ref{prop:relay}(ii), Equation~\eqref{eq:relay}
+Equation~\eqref{eq:relay-inner-field} holds on $\Phase_{k+1}$ by the
+preceding relay step. Hence, by Proposition~\ref{prop:relay}(ii), Equation~\eqref{eq:relay}
 holds at $\tsh_k$.
 
 We bound the right side of Equation~\eqref{eq:relay}. Its last term
 $\Xi_{k+1}$ contains the driving before ring $k+1$ activates and the
 transient and polynomial inner-field contributions during its active interval. We bound it by ($\kappa$7), after bounding the exponent
 $1-\gamma_k$ from below. By
-Lemma~\ref{lem:detuning} and its proof, $(1-e_\mu)\sigma\le\sigma_i\le(1+e_\mu)\sigma$
+Equation~\eqref{eq:detuning-rates} and the proof of
+Lemma~\ref{lem:detuning}, $(1-e_\mu)\sigma\le\sigma_i\le(1+e_\mu)\sigma$
 for $i\in\{k,k+1\}$, $e_\mu(\mu+1)\le\frac14(\mu-1)$, $\frac{15}{16}\le1-e_\mu\le1$
 and $x_k\le\frac{17}{16}\sigma$. Hence
 \begin{gather*}
@@ -236,64 +273,86 @@ and $x_k\le\frac{17}{16}\sigma$. Hence
 1-\frac{\sigma'}{\sigma_{k+1}}\ge1-\frac{16\sigma'}{15\sigma}=c_\gamma ,
 \end{gather*}
 and, as $\gamma_k$ is the larger of $\sigma_k/(\mu\sigma_{k+1})$ and
-$\sigma'/\sigma_{k+1}$, $1-\gamma_k\ge\min(\frac34\frac{\mu-1}\mu,c_\gamma)\ge\gamma'_\mu$.
+$\sigma'/\sigma_{k+1}$,
+\begin{equation}
+\label{eq:boot-remainder-exponent}
+1-\gamma_k\ge\min\Big(\tfrac34\tfrac{\mu-1}\mu,c_\gamma\Big)\ge\gamma'_\mu.
+\end{equation}
 As $\ksh_{k+1}<\delta_0$,
 $(\ksh_{k+1}/\delta_0)^{1-\gamma_k}\le(\ksh_{k+1}/\delta_0)^{\gamma'_\mu}$, and
-($\kappa$7) at $\kappa=\ksh_{k+1}$ gives $\Xi_{k+1}\le\delta_0/(\sigb(\mu-1))$. So
+($\kappa$7) at $\kappa=\ksh_{k+1}$ gives
+\begin{equation}
+\label{eq:boot-relay-remainder}
+\Xi_{k+1}\le\frac{\delta_0}{\sigb(\mu-1)}.
+\end{equation}
+So
 the bracket in Equation~\eqref{eq:relay} with $j=k$ is at most
 $(4C_2+1)\delta_0/(\sigb(\mu-1))+C_D(\Tpin)$; with Equation~\eqref{eq:relay}
-this gives the first inequality below, and the bound on $x_k$ above with Equation~\eqref{eq:K1} gives the second:
-\[
+this gives the first inequality below, and
+Equations~\eqref{eq:detuning-rates} and~\eqref{eq:K1} give the second:
+\begin{equation}
+\label{eq:boot-quiet-activation}
 \maj_k(\tsh_k)\le2\Cvel \varepsilon_ke^{x_k\Tpin}\Big[\frac{(4C_2+1)\delta_0}{\sigb(\mu-1)}+C_D(\Tpin)\Big]\le\Abar\,\varepsilon_k .
-\]
+\end{equation}
 Next we bound from below the coefficient $\cin_k$ produced by the kick. By
 Lemma~\ref{lem:coupling}\textup{(2)}, $\cin_k=e^{\zeta_0\Tpin}\Ain(\Tpin)$ with
 $\Re\zeta_0=\sigma_k/\mu=x_k$, so that $|\cin_k|=e^{x_k\Tpin}|\Ain(\Tpin)|$. As
 $G_k,G_{k+1}\in[0,\Gone]$, Lemma~I.\ref{I-lem:uniform} gives the first bounds below,
 and they give the second with $\beta_k=\beta(G_k)s_k^5/(2\pi)$ and the bound
-on $|\qs|$:
-\[
+in Equation~\eqref{eq:boot-qstar}:
+\begin{equation}
+\label{eq:boot-coupling-size}
 c_N\le|\beta(G_k)||\pout_*(G_{k+1})|\le C_N,\qquad
 \tfrac{15}{16}c_Ns_k^5\delta_0\le|\beta_k||\qs|\le\tfrac{17}{16}C_Ns_k^5\delta_0 .
-\]
+\end{equation}
 With the lower bound in Equation~\eqref{eq:boot-kick}, $\varepsilon_k=\mu s_k^5$
 and $\frac{15}{16}\cdot\frac1{10}=\frac3{32}$,
-\[
+\begin{equation}
+\label{eq:boot-driven-lower}
 |\cin_k|\ge e^{x_k\Tpin}\frac{|\beta_k||\qs|}{10|\lamref|(\mu-1)}\ge\frac{3c_N}{32\mu}\cdot\frac{\varepsilon_k\delta_0e^{x_k\Tpin}}{|\lamref|(\mu-1)}.
-\]
+\end{equation}
 Multiplying by $\frac12K_1$, Equation~\eqref{eq:K1} and the first inequality of
-the bound on $\maj_k(\tsh_k)$ above give
-\[
+Equation~\eqref{eq:boot-quiet-activation} give
+\begin{equation}
+\label{eq:boot-driven-dominates}
 \frac12K_1|\cin_k|\ge4\Cvel \varepsilon_ke^{x_k\Tpin}\Big[\frac{(4C_2+1)\delta_0}{\sigb(\mu-1)}+C_D(\Tpin)\Big]\ge2\maj_k(\tsh_k).
-\]
+\end{equation}
 
-The hypotheses of Lemma~\ref{lem:handoff} hold: (i) by
-Lemma~\ref{lem:geometry}(b) and the quiet-ring argument; (ii), with the $\theta_k$ of
-Lemma~\ref{lem:O}, by the quiet-ring argument and Equation~\eqref{eq:boot-theta}; (iii) by the
-last inequality; (iv) by $\maj_k(\tsh_k)\le\Abar\varepsilon_k\le\Abar\mu\sbar^5$
-and (B11). So Equation~\eqref{eq:handoff} holds at $\tsh_k$. To bound $\ksh_k$
+The hypotheses of Lemma~\ref{lem:handoff} hold. For (i), the support
+conditions are Equations~\eqref{eq:geometry-quiet-support} and~\eqref{eq:geometry-quiet-inner},
+and the hypotheses of Theorem~\ref{thm:quiet} were checked in
+Appendix~\ref{sec:bootstrap-quiet-control}. Condition (ii) is given by
+Equations~\eqref{eq:O-feedback} and~\eqref{eq:boot-theta}; (iii) is
+Equation~\eqref{eq:boot-driven-dominates}; and (iv) follows from
+Equation~\eqref{eq:boot-quiet-activation}, $\varepsilon_k\le\mu\sbar^5$ and (B11). So Equation~\eqref{eq:handoff} holds at $\tsh_k$. To bound $\ksh_k$
 we use its first bound, the identity
-$|\cin_k|=e^{x_k\Tpin}|\Ain(\Tpin)|$, Equation~\eqref{eq:boot-kick} and the bounds
-on $|\beta_k||\qs|$. As $e^{x_k\Tpin}\ge1$ and $\frac{15}{320}\ge\frac1{22}$,
-$\ksh_k\ge\frac12|\Ain(\Tpin)|\ge\frac12\cdot\frac1{10}\cdot\frac{15}{16}\cdot\frac{c_N\delta_0s_k^5}{|\lamref|(\mu-1)}\ge\Klo s_k^5$;
+$|\cin_k|=e^{x_k\Tpin}|\Ain(\Tpin)|$ and
+Equations~\eqref{eq:boot-kick} and~\eqref{eq:boot-coupling-size}. As $e^{x_k\Tpin}\ge1$ and $\frac{15}{320}\ge\frac1{22}$,
+\begin{equation}
+\label{eq:boot-amplitude-lower}
+\ksh_k\ge\tfrac12|\Ain(\Tpin)|\ge\tfrac12\cdot\tfrac1{10}\cdot\tfrac{15}{16}\cdot\frac{c_N\delta_0s_k^5}{|\lamref|(\mu-1)}\ge\Klo s_k^5;
+\end{equation}
 and as $x_k\le\frac{17}{16}\sigma$ and
 $\frac32\cdot3\cdot\frac{17}{16}=\frac{153}{32}\le5$,
-\[
+\begin{equation}
+\label{eq:boot-amplitude-upper}
 \ksh_k\le\frac32e^{x_k\Tpin}|\Ain(\Tpin)|\le\frac32\cdot3\cdot\frac{17}{16}\cdot\frac{C_N\delta_0\mu\,s_k^5}{|\lamref|(\mu-1)}e^{17\sigma\Tpin/16}\le\Kup s_k^5.
-\]
+\end{equation}
 Hence
 $0<\ksh_k\le\Kup\sbar^5\le\kseed<\delta_0$ by (B6) and ($\kappa$1), and
 $S_k(\tsh_k)\subset\NNm_k\subset N_k$ by Equation~\eqref{eq:boot-quiet}; so the
 clock is defined up to level $k$. Since $s\le s_h=M-1$, $C_0\ge K_1C_Q$,
 $C_2\ge1$ and $\rhohat_k(\tsh_k)=C_0$, these inequalities also give the
 activation estimate~\eqref{eq:boot-switch}.
-It initializes the active bound with a margin, using no time after $\tsh_k$.
+It gives Equation~\eqref{eq:improved-active} at activation, using no time
+after $\tsh_k$.
 
 \subsection{Verification on an active interval}
 \label{sec:bootstrap-active-checks}
 
-We retain the target time $t$, hypothesis (BA)$(t)$ and chronological order
-above. The seed or hand-off estimates have supplied the initial bounds for ring $k$.
+We retain the target time $t$ and hypothesis (BA)$(t)$ of
+Proposition~\ref{prop:relay-step}. Equation~\eqref{eq:relay-seed} or~\eqref{eq:relay-startup} supplies
+the initial support, norm and amplitude bounds for ring $k$.
 
 This step verifies the hypotheses
 (Init), (Field), (Coef) and (Small) of Theorem~\ref{thm:active} for ring $k$ on
@@ -319,8 +378,8 @@ h(u)=h_k(\tsh_k+u/A_k),\qquad
 c(u)=c_k(\tsh_k+u/A_k).
 \]
 The support
-hypotheses of Lemma~\ref{lem:reduction} on $[0,\bar u]$ hold by
-Lemma~\ref{lem:geometry}(b). For Theorem~\ref{thm:active}: $G_k\in[0,\Gone]$,
+hypotheses of Lemma~\ref{lem:reduction} on $[0,\bar u]$ are
+Equations~\eqref{eq:geometry-quiet-support} and~\eqref{eq:geometry-quiet-inner}. For Theorem~\ref{thm:active}: $G_k\in[0,\Gone]$,
 $\delta_0\le\dH$ by (P1), $\eta_{b,k}\le\eta_b\le1$ by (B8), and (Small)
 holds: $\ksh_k\le2\kseed\le\kappa_0(C_0)$ by the seed estimates if $k=n$, by the hand-off argument and (B6) if
 $k<n$, and by ($\kappa$4). It remains to check (Init), (Field) and (Coef).
@@ -331,14 +390,14 @@ $\supp(\Phi+w_k(\tsh_k))\subset\NNm$; for $k=n$ this is the seed estimates.
 
 (Field), inner part $h_1(u)=\hin_k(\tsh_k+u/A_k)$. For $k=n$, $h_1=0$, because
 $D_{n+1}=\emptyset$ and $G_n=0$. Let $k<n$, $u\in[0,\bar u]$ and
-$t''=\tsh_k+u/A_k$. By Lemma~\ref{lem:geometry}(a), $\omega_{\ge k+1}(t'')$ is
+$t''=\tsh_k+u/A_k$. By Equation~\eqref{eq:geometry-confinement}, $\omega_{\ge k+1}(t'')$ is
 supported in $\overline B_R$ with $R=\varrho_k(t'')\le\frac a8r_k$,
 $A_{k+1}(t''-T_{k+1})=\Tpin+\mu u$, and $D_{k+1}(t'')\subset B_{ar_k/8}$, so
 $h_1(u)$ is the field $E_{[k]}$ of Lemma~\ref{lem:inner-field} at $t''$; and
 $\|\omega_{\ge k+1}(t'')\|_{L^1}\le\Cstar A_{k+1}r_{k+1}^2$ by
 Lemma~\ref{lem:speed}. Lemma~\ref{lem:inner-field}, the inequalities
 $2+2\Cstar\Tpin+2\Cstar\mu u\le(2+2\Cstar\Tpin)(1+\Cstar\mu u)$ and
-$1+\Cstar\mu u\le(1+\Cstar\mu)\max(1,u)\le(1+2\Cstar)\jap{u}$, the second inequality of (P4), and $\ksh_k\ge\Klo s_k^5$ (the hand-off argument) give
+$1+\Cstar\mu u\le(1+\Cstar\mu)\max(1,u)\le(1+2\Cstar)\jap{u}$, the second inequality of (P4), and Equation~\eqref{eq:boot-amplitude-lower} give
 \begin{equation}
 \label{eq:boot-inner}
 \begin{aligned}
@@ -352,9 +411,10 @@ As $M\le M_h$, this is the first bound of (Field).
 (Field), outer part $h_2(u)=\hout_k(\tsh_k+u/A_k)$. We apply
 Lemma~\ref{lem:Oprime} with the constants $C_0$, $K_1$ at the time $t'$.
 The clock is defined up to level $k$, and (Loc) holds on $[0,t']$ by
-Lemma~\ref{lem:geometry}(c). If $k\ge2$, ring $k-1$ is quiet on $[0,t']$, so
-the quiet-ring argument gives the hypotheses and conclusions of Lemma~\ref{lem:O} for $j=k-1$ and
-physical endpoint $t'$; and $\theta_{k-1}A_{k-1}t'\le\theta_{k-1}A_{k-1}\tsh_{k-1}\le\frac12$
+Equation~\eqref{eq:geometry-loc}. If $k\ge2$, ring $k-1$ is quiet on $[0,t']$,
+so the verification in Appendix~\ref{sec:bootstrap-quiet-control} gives the
+hypotheses and conclusions of Lemma~\ref{lem:O} for $j=k-1$ and physical
+endpoint $t'$; and $\theta_{k-1}A_{k-1}t'\le\theta_{k-1}A_{k-1}\tsh_{k-1}\le\frac12$
 (as ring $k-1$ is quiet at $t'$) by Lemma~\ref{lem:quiet-time} at the time
 $\tsh_{k-1}$ and Lemma~\ref{lem:theta-quiet}; the hypotheses of
 Lemma~\ref{lem:quiet-time} besides (B6) concern the levels $i\ge k$, whose amplitudes are
@@ -363,39 +423,48 @@ the seed estimates. (BA3) for ring $k$ holds on $(\tsh_k,t']$ by (BA)$(t)$ and a
 $\tsh_k$ by Equation~\eqref{eq:boot-switch} or \eqref{eq:boot-start}; the inner
 bound is Equation~\eqref{eq:boot-inner}. If $k<n$, the conclusions of
 Theorem~\ref{thm:quiet} for ring $k$, after rescaling, on the physical
-interval $[0,\tsh_k]$ hold by the quiet-ring argument,
-$\maj_k(\tsh_k)\le K_1\ksh_k$ by the hand-off argument, and $D_{k+1}\subset B_{ar_k/8}$ on
-$[\tsh_k,t']$ by Lemma~\ref{lem:geometry}(a). So
-$\|h_2(u)\|_{C^{M_h}(N')}\le\eta_{b,k}\hat a_k(\tsh_k+u/A_k)
-=\eta_{b,k}\ksh_ke^{\sigma_ku}$ on $[0,\bar u]$, which is the
-second bound of (Field).
+interval $[0,\tsh_k]$ hold by the verification in
+Appendix~\ref{sec:bootstrap-quiet-control},
+$\maj_k(\tsh_k)\le K_1\ksh_k$ is Equation~\eqref{eq:relay-startup}, and the
+inner support condition is Equation~\eqref{eq:geometry-confinement} on
+$[\tsh_k,t']$. Equation~\eqref{eq:etab} therefore gives
+\begin{equation}
+\label{eq:boot-outer}
+\|h_2(u)\|_{C^{M_h}(N')}\le\eta_{b,k}\hat a_k(\tsh_k+u/A_k)
+=\eta_{b,k}\ksh_ke^{\sigma_ku}\qquad(0\le u\le\bar u),
+\end{equation}
+which is the second bound of (Field).
 
 (Coef): we apply Lemma~\ref{lem:drift} to ring $k$ with physical endpoint
 $\bar t=t'$ and
 $\eta=\eta_{b,k}$. Hypotheses (i) and (ii) concern only $k<n$. (i) is
-Lemma~\ref{lem:geometry}(a) on $W_k$, since the kick time is $\tauK=\Tpin+\mu u$.
+Equation~\eqref{eq:geometry-moment} on $W_k$, since the kick time is
+$\tauK=\Tpin+\mu u$.
 (ii), with $q'=\qs$ of the hand-off argument: the hypotheses of Lemma~\ref{lem:coupling}(2) hold
-by Lemma~\ref{lem:geometry}(b), so Equation~\eqref{eq:handoff} and
+by Equations~\eqref{eq:geometry-quiet-support} and~\eqref{eq:geometry-quiet-inner},
+so Equation~\eqref{eq:handoff} and
 Lemma~\ref{lem:coupling}(2) give
-$\ksh_k\ge\frac12|\cin_k|=\frac12e^{x_k\Tpin}|\Ain(\Tpin)|$; the hand-off argument gives
-the lower bound on $|\Ain(\Tpin)|$. By the hand-off argument and Lemma~I.\ref{I-lem:uniform},
+$\ksh_k\ge\frac12|\cin_k|=\frac12e^{x_k\Tpin}|\Ain(\Tpin)|$; Equation~\eqref{eq:boot-kick} gives the lower bound on $|\Ain(\Tpin)|$.
+By Equation~\eqref{eq:boot-qstar} and Lemma~I.\ref{I-lem:uniform},
 $|\qs|\ge\frac{15}{16}2\pi|\pout_*(G_{k+1})|\delta_0\ge\frac{15}{16}\cout\delta_0>0$,
 so $\qs\ne0$, and (P2) gives
-$\mu-1\le c'\delta_0\le|\qs|/(10|\lamref|\Cmom\Ip{3}{\sigma/4})$. (iii) is the outer
-bound of (Field), the $C^0$ norm being at most the $C^{M_h}$ norm, and (iv) is
-Lemma~\ref{lem:geometry}(b). Moreover $\rT(\Tpin)\le\frac1{64}$ by (P3), and
+$\mu-1\le c'\delta_0\le|\qs|/(10|\lamref|\Cmom\Ip{3}{\sigma/4})$.
+Condition (iii) follows from Equation~\eqref{eq:boot-outer}, since the $C^0$
+norm is at most the $C^{M_h}$ norm. Condition (iv) is
+Equations~\eqref{eq:geometry-quiet-support} and~\eqref{eq:geometry-quiet-inner}. Moreover $\rT(\Tpin)\le\frac1{64}$ by (P3), and
 $\Cls\eta_{b,k}\hat T_k\le\frac1{32}$: for $k=1$, $\eta_{b,1}=0$; for $2\le k<n$,
 $\hat T_k\le\sigma'^{-1}\big(5\log\frac1{s_k}+\log_+\frac{\delta_0}{\Klo}\big)$,
 as $\sigma_k\ge\sigma'$ and $\ksh_k\ge\Klo s_k^5$, and (B8) applies; for
 $k=n$, $\hat T_n\le\sigma'^{-1}\log(2\delta_0/\kseed)$ by the seed estimates and
-$\eta_{b,n}\le\eta_b$, and (B8) applies. So Lemma~\ref{lem:drift} gives (Coef) on
-$[0,\bar u]$ and, if $\bar u=\hat T_k$,
-$|c_k(T_k)|e^{\sigma_k\hat T_k}\in[\frac{15}{16}\delta_0,\frac{17}{16}\delta_0]$.
+$\eta_{b,n}\le\eta_b$, and (B8) applies. These are precisely
+Equation~\eqref{eq:drift-smallness} with $\eta=\eta_{b,k}$.
+Lemma~\ref{lem:drift} gives (Coef) on $[0,\bar u]$ and, if
+$\bar u=\hat T_k$, Equation~\eqref{eq:drift-saturation}.
 
 Theorem~\ref{thm:active} and Corollary~\ref{cor:active-moment} therefore hold on
-$[0,\bar u]$: in particular $S_k(t'')\subset\NN_k$ and
-$\|w_k(t'')\|_{H^s}\le C_2\hat a_k(t'')(1+\rhohat_k(t''))$ for
-$t''=\tsh_k+u/A_k\in[\tsh_k,t']$.
+$[0,\bar u]$, giving Equations~\eqref{eq:relay-active} and~\eqref{eq:relay-active-moment}.
+In particular, Equations~\eqref{eq:improved-support} and~\eqref{eq:improved-active}
+hold for ring $k$ at every $t''=\tsh_k+u/A_k\in[\tsh_k,t']$.
 
 \subsection{Verification of the quiet-size improvement}
 \label{sec:bootstrap-quiet-checks}
@@ -406,48 +475,55 @@ put $j=k$. On an active interval $\Phase_k$ with $k\ge2$ and $t'>\tsh_k$, put $j
 The activation endpoint of ring $k$ is included in $\Pin_k$ for this
 argument. There are no outer quiet rings during $\Phase_1$.
 Thus ring $j$ is the innermost quiet ring, and $\tsh_j$ is already assigned.
-We first bound $\maj_j(t')$ and then use the quiet-ring comparison to
-control all $i<j$.
+We first bound $\maj_j(t')$ and then use Equation~\eqref{eq:O-comparison}
+to control all $i<j$.
 
 Apply Proposition~\ref{prop:relay} to $j$ through $t'$.
-The support argument gives (Loc), and the quiet-ring argument gives
-$\etout_j\le\theta_j\maj_j$ on $[0,t']$.
+Equation~\eqref{eq:geometry-loc} gives (Loc). The application of
+Lemma~\ref{lem:O} in Appendix~\ref{sec:bootstrap-quiet-control} gives
+Equation~\eqref{eq:O-feedback} on $[0,t']$.
 Lemmas~\ref{lem:quiet-time} and~\ref{lem:theta-quiet} give
 $\theta_jA_jt'\le\theta_j\bar\tau^\sharp_j\le1/2$.
 Their amplitude hypotheses concern only levels $i>j$ that have already
 activated. During $\Pin_k$ these are inner levels $i>k$; during $\Phase_k$
 they include ring $k$, whose amplitude has just been obtained at the hand-off.
-The seed supplies the innermost bound.
-The earlier quiet-ring estimate for ring $j+1$ supplies (H3), and its
-hand-off supplies $\maj_{j+1}(\tsh_{j+1})\le K_1\ksh_{j+1}$ in (H4).
+Equation~\eqref{eq:relay-seed} supplies the amplitude of the seeded ring.
+The verification of Theorem~\ref{thm:quiet} in
+Appendix~\ref{sec:bootstrap-quiet-control} for ring $j+1$ supplies (H3), and
+Equation~\eqref{eq:relay-startup} supplies the initial Duhamel bound in (H4).
 For the seed the earlier interval is empty and $\maj_n(0)=0$.
-The remaining bounds in (H4) come from the completed inner history on
-$\Pin_k$, and from the active estimates just proved on $\Phase_k$.
-In particular its active norm hypothesis follows
-from (BA3) strictly after activation and from the initial estimate at activation.
+The inner support condition in (H4) is Equation~\eqref{eq:geometry-quiet-inner}.
+Its inner-field bound is Equation~\eqref{eq:relay-inner-field}, supplied by
+the preceding relay step on $\Pin_k$ and by Equation~\eqref{eq:boot-inner}
+on $\Phase_k$. Its active norm hypothesis follows from
+Equation~\eqref{eq:BA-active} strictly after activation and from
+Equation~\eqref{eq:boot-start} or~\eqref{eq:boot-switch} at activation.
 
 In both cases $t'>\tsh_{j+1}$. Proposition~\ref{prop:relay}(ii) or (iii) gives
 Equation~\eqref{eq:relay} as an upper bound.
-As in the hand-off calculation,
-$1-\gamma_j\ge\gamma'_\mu$, $0<\ksh_{j+1}\le2\kseed$ and ($\kappa$7)
-give $\Xi_{j+1}\le\delta_0/(\sigb(\mu-1))$.
-Since $x_j\le17\sigma/16$, that bound is at most
-\[
-2\Cvel\varepsilon_je^{17\sigma\Tpin/16}
+Equations~\eqref{eq:boot-remainder-exponent} and~\eqref{eq:boot-kappa}, with
+$j$ in place of $k$, and ($\kappa$7) give Equation~\eqref{eq:boot-relay-remainder}.
+Using $x_j\le17\sigma/16$ from Equation~\eqref{eq:detuning-rates} in
+Equation~\eqref{eq:relay} yields
+\begin{equation}
+\label{eq:boot-quiet-innermost}
+\maj_j(t')\le2\Cvel\varepsilon_je^{17\sigma\Tpin/16}
 \Big[\frac{(4C_2+1)\delta_0}{\sigb(\mu-1)}+C_D(\Tpin)\Big]
 =\Abar\varepsilon_j.
-\]
+\end{equation}
 This argument applies at every time up to the current endpoint.
 
-For every outer ring $i<j$, Lemma~\ref{lem:O} now gives
-\[
+For every outer ring $i<j$, Equations~\eqref{eq:O-comparison} and~\eqref{eq:boot-quiet-innermost} give
+\begin{equation}
+\label{eq:boot-quiet-outer}
 \begin{aligned}
 \maj_i(t')&\le\tfrac34\Ptil_{i,j}\maj_j(t')\\
 &\le\tfrac34\Abar\varepsilon_i
        \prod_{p=i+1}^{j}\KO\varepsilon_p
 \le\tfrac38\Abar\varepsilon_i,
 \end{aligned}
-\]
+\end{equation}
 because $\KO\varepsilon_p\le\KO\mu\sbar^5\le1/2$ by (B7).
 This includes outer rings whose activation time has not yet been assigned.
-It proves the improved quiet-size bound for every quiet ring.
+Together with Equation~\eqref{eq:boot-quiet-innermost}, this proves
+Equation~\eqref{eq:improved-quiet} for every quiet ring.

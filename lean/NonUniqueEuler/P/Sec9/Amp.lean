@@ -10,7 +10,7 @@ import NonUniqueEuler.I.Sec9.Detuning
 
 The label `cor:amp` is historical. Its current counterpart is the final
 two-sided amplitude calculation in Appendix C.16 (`sec:bootstrap-handoff-checks`),
-using the kick estimate (54) (`eq:boot-kick`) and the hand-off estimate (50)
+using the kick estimate (135) (`eq:boot-kick`) and the hand-off estimate (113)
 (`eq:handoff`).
 
 Proof of `I/Sec9/Amp.lean` (`sec:bootstrap-handoff-checks`, Part II, Appendix C.16).
