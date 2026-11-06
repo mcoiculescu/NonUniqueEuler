@@ -52,10 +52,11 @@ def qball(q):
 
 
 def box(rho):
-    """The acb box [-r, r] x [-r, r] with r = upper(rho) >= rho; rho is an arb ball >= 0.
+    """An acb box containing [-r, r] x [-r, r], with r = upper(rho); rho is an arb ball >= 0.
 
-    The box contains the closed disk of radius rho, which is how disk-shaped error bounds of the
-    method (Lemma A.1 perturbations, a priori enclosures, end-region errors) are added to boxes.
+    The box contains the closed disk of every nonnegative radius represented by rho.
+    Disk-shaped error bounds (Lemma A.1 perturbations, a priori enclosures,
+    end-region errors) are added to boxes this way.
     """
     r = arb(0, rho.upper())
     return acb(r, r)
@@ -67,16 +68,16 @@ def hull(lo, hi):
 
 
 def frac_of_exact(x):
-    """The exact Fraction of an exact arb (for example an endpoint ``x.lower()`` or ``x.upper()``)."""
+    """The exact Fraction of an exact arb (for example an outward bound ``x.lower()`` or ``x.upper()``)."""
     man, e = x.man_exp()
     return Fraction(int(man)) * Fraction(2) ** int(e)
 
 
 def lower_q(x):
-    """Exact Fraction of the lower endpoint of the ball x (a number <= every point of x)."""
+    """Exact Fraction of an outward dyadic lower bound (a number <= every point of x)."""
     return frac_of_exact(x.lower())
 
 
 def upper_q(x):
-    """Exact Fraction of the upper endpoint of the ball x (a number >= every point of x)."""
+    """Exact Fraction of an outward dyadic upper bound (a number >= every point of x)."""
     return frac_of_exact(x.upper())

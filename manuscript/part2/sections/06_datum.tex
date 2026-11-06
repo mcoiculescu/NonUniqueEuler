@@ -136,10 +136,10 @@ The number $\varepsilon_k$ is the small factor in the bounds of
 Lemma~\ref{lem:transfer}\textup{(1)}--\textup{(3)} on the field, minus its
 monopole, that the material inside ring $k$ induces on ring $k$. The
 normalized moment $q_{k+1}$ is the mode-$3$ moment through which this material
-drives the unstable coefficient of ring $k$ (Lemma~\ref{lem:coupling}), and the
-Duhamel bound $\maj_k$ bounds, up to a constant factor, the $H^{s_h}$ norm
-of $w_k$ while ring $k$ is quiet and $\maj_k$ is small
-(Theorem~\ref{thm:quiet}\textup{(c)}).
+drives the unstable coefficient of ring $k$ (Lemma~\ref{lem:coupling}).
+For an unseeded quiet ring $k<n$, Theorem~\ref{thm:quiet}\textup{(c)} gives
+$\|w_k(t)\|_{H^{s_h}}\le C_Q\maj_k(t)$ under its hypotheses, after rescaling
+to ring-$k$ units.
 
 \begin{definition}
 \label{def:regions}
@@ -153,6 +153,7 @@ Fix $n\ge2$ and the objects of Definition~\ref{def:approx}. For $1\le k\le n$:
   D_{n+1}(t)=\emptyset,
   \]
   and $\omega_{\ge k}(t)=\omega^{(n)}(t)\mathbf 1_{D_k(t)}$;
+  we set $\omega_{\ge n+1}(t)=0$;
 \item $N_k=r_kN$, $N'_k=r_kN'$, $\Nflat_k=r_k\Nflat$, $\NN_k=r_k\NN$,
   $\NNm_k=r_k\NNm$ (the annuli of Section~I.\ref{I-sec:ring-def} and of Section~\ref{sec:II-prelim} dilated by $r_k$);
 \item while $S_k(t)\subset N_k$, the \textbf{perturbation} of ring $k$ at the

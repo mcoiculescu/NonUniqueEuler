@@ -57,10 +57,11 @@ real balls. We use the implementation of Johansson \cite{Johansson2017}, part of
 FLINT \cite{FLINT} from version~3 on, in FLINT~3.6.0 as bundled with
 version~0.9.0 of its Python interface python-flint \cite{pythonflint}, at a
 working precision of $128$ bits. For a real ball $X$, $\mathrm{lo}(X)$ and
-$\mathrm{up}(X)$ are its endpoints, which are dyadic rationals; for a box $Z$,
+$\mathrm{up}(X)$ are outward dyadic lower and upper bounds; for a box $Z$,
 $|Z|^{\rm up}$ is a dyadic upper bound of $|z|$ over $z\in Z$; for a ball $\rho$,
-$\mathrm{box}(\rho)=[-\mathrm{up}(\rho),\mathrm{up}(\rho)]
-+i[-\mathrm{up}(\rho),\mathrm{up}(\rho)]$, which contains the closed disk of
+$\mathrm{box}(\rho)$ is a computed box containing
+$[-\mathrm{up}(\rho),\mathrm{up}(\rho)]+i[-\mathrm{up}(\rho),\mathrm{up}(\rho)]$,
+and hence the closed disk of
 radius $\rho'$ about $0$ for every $\rho'\in\rho$ with $\rho'\ge0$;
 $\mathrm{hull}(X,X')$ is a ball computed from $\mathrm{lo}(X)$ and
 $\mathrm{up}(X')$; and $X\cup X'$ is the computed union of two real balls, again
@@ -73,7 +74,7 @@ a ball. Every enclosure rests on the following \textbf{containment property}.
   $f(x_1,\dots,x_k)$ for every choice of $x_j\in X_j$ at which $f$ is defined; a
   ball with infinite radius, or with an undefined midpoint, is regarded as the
   whole real line. A ball built from an integer contains that integer, a ball
-  built from an exact midpoint $m$ and an exact radius $r$ is $[m-r,m+r]$, and a
+  built from an exact midpoint $m$ and an exact radius $r$ contains $[m-r,m+r]$, and a
   box built from two real balls is their product. Moreover
   $\mathrm{lo}(X)\le x\le\mathrm{up}(X)$ for every $x\in X$, $|z|\le|Z|^{\rm up}$ for
   every $z\in Z$, $\mathrm{hull}(X,X')$ contains every real number between
