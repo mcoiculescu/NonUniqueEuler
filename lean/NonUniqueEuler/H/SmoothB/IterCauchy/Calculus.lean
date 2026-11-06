@@ -7,7 +7,7 @@ import NonUniqueEuler.Defs.Sec2.Conventions
 /-!
 # Helper for `lem:iter-cauchy`: the calculus of the energy estimate
 
-`B_global_smooth.tex:368-370`: "We multiply by `δ` and integrate; the transport term vanishes,
+Part II, Lemma B.9 (`lem:iter-cauchy`): "We multiply by `δ` and integrate; the transport term vanishes,
 because `div v^{[j]} = 0` and `δ(t)` has compact support." This file proves, for smooth real
 data on `ℂ = ℝ²` (classical derivatives):
 
@@ -29,7 +29,7 @@ namespace NonUniqueEuler.Smooth.IterCauchyAux
 /-! ### The transport term -/
 
 /-- `∫ g (v · ∇g) = 0` for `g ∈ C¹_c(ℝ²)` real and `v ∈ C¹(ℝ²; ℝ²)` with `div v = 0`
-(`B_global_smooth.tex:368-370`). -/
+(Part II, Lemma B.9 (`lem:iter-cauchy`)). -/
 theorem integral_mul_fderiv_apply_eq_zero {g : ℂ → ℝ} (hg : ContDiff ℝ 1 g)
     (hgc : HasCompactSupport g) {v : ℂ → ℂ} (hv : ContDiff ℝ 1 v)
     (hdiv : ∀ x, Prelim.divergence v x = 0) :

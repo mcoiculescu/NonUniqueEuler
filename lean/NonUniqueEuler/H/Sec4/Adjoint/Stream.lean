@@ -9,13 +9,13 @@ import Mathlib.MeasureTheory.Measure.OpenPos
 import Mathlib.MeasureTheory.Measure.Haar.Unique
 
 /-!
-# Helper for `lem:adjoint`(3): the stream function of `g_* e^{iℓθ}` off `supp ω̄'`
+# Helper for Part I Lemma 4.9(2) (`lem:adjoint`): the stream function of `g_* e^{iℓθ}` off `supp ω̄'`
 
-Helper of `P/Sec4/Adjoint.lean` (`04_ring.tex:620-629`).
+Helper of `P/Sec4/Adjoint.lean` (proof of Part I Lemma 4.9 (`lem:adjoint`)).
 * The sector function `f = g_*e^{iℓθ}` is continuous with compact support, so its log potential
   `(2π)⁻¹ log|·| * f` is continuous (`continuous_logPotential`, Mathlib's convolution with the
   locally integrable `log|·|`).
-* By `lem:sector`(1) (`green_eq_logPotential`) the log potential is a.e. `(𝒢_ℓ g_*)e^{iℓθ}`; both
+* By Part I Lemma 4.5(1) (`lem:sector`) (`green_eq_logPotential`) the log potential is a.e. `(𝒢_ℓ g_*)e^{iℓθ}`; both
   are continuous on `ℂ \ {0}`, so they agree there; at `0` by continuity.
 * `𝒢_ℓ g_*` off `[r₁,r₂]` (`green_eq_exterior`, `green_eq_interior`), evaluated at `r₁`, `r₂`
   with `𝒢_ℓ g_* = ψ_*(log r)`, gives `pin_*`, `pout_*`.

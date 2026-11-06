@@ -15,7 +15,7 @@ import Mathlib.MeasureTheory.Measure.Lebesgue.Complex
 /-!
 # Proof of `I/SmoothB/FlowFacts.lean` (I-FLOW): standard consequences of `lem:flow`
 
-All facts follow from `lem:flow` (`I/SmoothB/Flow.lean`) and the uniqueness built into
+All facts follow from Part II, Lemma B.2 (`lem:flow`; `I/SmoothB/Flow.lean`) and the uniqueness built into
 `IsMaxSol`:
 * `flowOf_measurePreserving`: change of variables (`lintegral_abs_det_fderiv_eq_addHaar_image`)
   with `det DΦ = 1` (`det_fderiv_flowOf`) and bijectivity (`flowOf_diffeo`);

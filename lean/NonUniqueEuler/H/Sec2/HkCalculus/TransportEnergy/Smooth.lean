@@ -7,7 +7,7 @@ import NonUniqueEuler.H.Sec2.HkCalculus.TransportEnergy.Bounds
 /-!
 # Helper for `P/Sec2/HkCalculus/TransportEnergy`: the smooth case
 
-Step 1 of the proof of `lem:Hk-calculus`(1), second claim (`02_prelim.tex:735-745`): for a test
+Step 1 of the proof of `lem:Hk-calculus`(1), second claim (Part II, Lemma 1.10 (`lem:Hk-calculus`)): for a test
 function `φ` and a real vector field `U ∈ W^{1,∞}` with weak derivatives `G₁ = ∂₁U`,
 `G₂ = ∂₂U`,
 `Re ∫ (U·∇φ) φ̄ = ½ ∫ U·∇|φ|² = -½ ∫ (Re G₁ + Im G₂) |φ|² = -½ ∫ (div U) |φ|²`.

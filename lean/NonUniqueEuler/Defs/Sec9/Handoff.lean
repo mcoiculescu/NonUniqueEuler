@@ -1,17 +1,23 @@
 import NonUniqueEuler.Defs.Sec9.QuietRings
 
 /-!
-# Section 9.3: the active ring and the hand-off — `lem:drift`, `lem:handoff`, `def:K1` (definitions)
+# Active coefficient and hand-off — `lem:drift`, `lem:handoff`, `def:K1` (definitions)
 
-Manuscript `09_relay.tex:741-1023`.
+Current correspondence: Part II Lemmas C.11–C.12 (`lem:drift`, `lem:handoff`)
+and Definition C.13 (`def:K1`). The historical `lem:K1` and `cor:amp` are now
+calculations in Appendix C.16 (`sec:bootstrap-handoff-checks`). The formulas
+below retain the separate velocity constant `C_M`; the manuscript uses the
+common `C_vel`. The auxiliary `c_K` and `C_hand` remain Lean abbreviations.
 
-* `lem:drift` (`:769-801`): the hypotheses (i)–(iv) `S.DriftHyp k ū η` (used again by
+Definitions for the coefficient and hand-off estimates in `C_relay_details.tex`.
+
+* `lem:drift` (Part II Lemma C.11): the hypotheses (i)–(iv) `S.DriftHyp k ū η` (used again by
   `lem:kicktrue` for ring `k+1`);
-* `lem:handoff` (`:863-885`): the hypotheses (i)–(iv) `S.HandoffHyp θ K₁ k`;
-* `def:K1` (`:931-945`): `S.cK` (`c_K`), `S.K1` (`K_1`), `S.Abar` (`Ā`), `S.Klo` (`K_lo`), `S.Kup`
+* `lem:handoff` (Part II Lemma C.12): the hypotheses (i)–(iv) `S.HandoffHyp θ K₁ k`;
+* `def:K1` (Part II Definition C.13): `S.cK` (`c_K`), `S.K1` (`K_1`), `S.Abar` (`Ā`), `S.Klo` (`K_lo`), `S.Kup`
   (`K_up`), `S.Chand` (`C_hand = K₁C_Q`).
 
-`lem:K1` and `cor:amp` need no new definition. Here `m = 3`. All lemmas here are fully proved.
+`lem:K1` (historical) and `cor:amp` (historical) need no new definition. Here `m = 3`. All lemmas here are fully proved.
 -/
 
 noncomputable section
@@ -28,10 +34,10 @@ namespace Standing
 
 variable (S : Standing)
 
-/-! ### `lem:drift` (`09_relay.tex:769-801`) -/
+/-! ### `lem:drift` (Part II Lemma C.11) -/
 
 /-- **The hypotheses (i)–(iv) of `lem:drift`** for the level `k`, `ū` and `η`
-(`09_relay.tex:772-785`; (SA), (Det), `1 ≤ k ≤ n`, the clock defined up to level `k`,
+(`lem:drift`, Part II Lemma C.11; (SA), (Det), `1 ≤ k ≤ n`, the clock defined up to level `k`,
 `0 ≤ ū ≤ T̂_k` and `η ≥ 0` are separate):
 * (i) if `k < n`: `|q_{k+1}| ≤ C_mom(1 + τ_K)^m` for kick times `τ_K ∈ [T_pin, T_pin + μū]`;
 * (ii) if `k < n`: the hypotheses of `lem:coupling`(2) (`D_{k+1}(t) ⊂ B_{ar_k/8}` for
@@ -55,10 +61,10 @@ structure DriftHyp (k : ℕ) (ubar η : ℝ) : Prop where
     normCk 0 annN' (S.P.hOut k (S.P.tash k + u)) ≤ η * S.ahatK k u
   geom : ∀ t ∈ Icc (S.P.tsh k) (S.P.tsh k + ubar / S.P.A k), S.P.HDefined k t
 
-/-! ### `lem:handoff` (`09_relay.tex:863-885`) -/
+/-! ### `lem:handoff` (Part II Lemma C.12) -/
 
 /-- **The hypotheses (i)–(iv) of `lem:handoff`** for the level `k`, a number `θ` (the `θ_k` of the
-lemma) and `K₁` (`09_relay.tex:866-876`; (SA), (Det), `K₁ > 0`, `1 ≤ k < n` and the clock defined
+lemma) and `K₁` (`lem:handoff`, Part II Lemma C.12; (SA), (Det), `K₁ > 0`, `1 ≤ k < n` and the clock defined
 up to level `k+1` are separate):
 * (i) the hypotheses of `thm:quiet` hold for ring `k` on `[0, t̄♯_k]` (`QuietHyp`; it contains
   `D_{k+1}(t) ⊂ B_{ar_k/8}` and the rings `i < k` outside `B_{6r_k}` for `t ∈ [0, t♯_k]`);
@@ -74,29 +80,29 @@ structure HandoffHyp (θ K₁ : ℝ) (k : ℕ) : Prop where
   maj_le_cin : S.maj k (S.P.tash k) ≤ 1 / 2 * K₁ * ‖S.P.cinK k‖
   maj_small : Eig.ellNorm S.P.χ * S.CQ * K₁ * S.maj k (S.P.tash k) ≤ 1 / 2
 
-/-! ### `def:K1` (`09_relay.tex:931-945`) -/
+/-! ### `def:K1` (Part II Definition C.13) -/
 
-/-- `c_K = 3c_N/(32μ)` (`def:K1`, `09_relay.tex:933`). -/
+/-- `c_K = 3c_N/(32μ)` (`def:K1`, Part II Definition C.13). -/
 def cK : ℝ := 3 * Eig.cN S.P.χ / (32 * S.P.μ)
 
-/-- `K_1 = (8C_M|z|/c_K)[(4C₂+1)/σ_b + C_D(T_pin)(μ-1)/δ₀]` (`eq:K1`, `09_relay.tex:937`). -/
+/-- `K_1 = (8C_M|z|/c_K)[(4C₂+1)/σ_b + C_D(T_pin)(μ-1)/δ₀]` (`eq:K1`, `def:K1`, Part II Definition C.13). -/
 def K1 : ℝ :=
   8 * S.CM * ‖S.z‖ / S.cK * ((4 * S.C2 + 1) / S.sigb + CD S.P.Tpin * (S.P.μ - 1) / S.P.δ₀)
 
-/-- `Ā = 2C_M e^{17σT_pin/16}[(4C₂+1)δ₀/(σ_b(μ-1)) + C_D(T_pin)]` (`eq:K1`, `09_relay.tex:938`). -/
+/-- `Ā = 2C_M e^{17σT_pin/16}[(4C₂+1)δ₀/(σ_b(μ-1)) + C_D(T_pin)]` (`eq:K1`, `def:K1`, Part II Definition C.13). -/
 def Abar : ℝ :=
   2 * S.CM * Real.exp (17 * S.sigma0 * S.P.Tpin / 16) *
     ((4 * S.C2 + 1) * S.P.δ₀ / (S.sigb * (S.P.μ - 1)) + CD S.P.Tpin)
 
-/-- `K_lo = c_N δ₀/(22|z|(μ-1))` (`def:K1`, `09_relay.tex:943`). -/
+/-- `K_lo = c_N δ₀/(22|z|(μ-1))` (`def:K1`, Part II Definition C.13). -/
 def Klo : ℝ := Eig.cN S.P.χ * S.P.δ₀ / (22 * ‖S.z‖ * (S.P.μ - 1))
 
-/-- `K_up = (5C_N δ₀ μ/(|z|(μ-1))) e^{17σT_pin/16}` (`def:K1`, `09_relay.tex:943`). -/
+/-- `K_up = (5C_N δ₀ μ/(|z|(μ-1))) e^{17σT_pin/16}` (`def:K1`, Part II Definition C.13). -/
 def Kup : ℝ :=
   5 * Eig.CN S.P.χ * S.P.δ₀ * S.P.μ / (‖S.z‖ * (S.P.μ - 1)) *
     Real.exp (17 * S.sigma0 * S.P.Tpin / 16)
 
-/-- `C_hand = K_1 C_Q` with the `K_1` of `def:K1` (`09_relay.tex:943`; in `lem:handoff` the same
+/-- `C_hand = K_1 C_Q` with the `K_1` of `def:K1` (Part II Definition C.13; in `lem:handoff` the same
 formula is used with the lemma's `K₁`). -/
 def Chand : ℝ := S.K1 * S.CQ
 

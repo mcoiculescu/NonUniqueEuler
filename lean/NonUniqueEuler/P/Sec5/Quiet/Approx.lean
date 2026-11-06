@@ -5,10 +5,10 @@ import NonUniqueEuler.H.Sec5.Quiet.Approx.Residual
 /-!
 # Proof: the approximate solution of `thm:quiet` (`eq:Q-hier`, `eq:Q-res`)
 
-Proof of `I/Sec5/Quiet/Approx.lean` (`05_single_ring.tex:440-513`). Helpers:
+Proof of `I/Sec5/Quiet/Approx.lean` (Part II Theorem 2.8). Helpers:
 `H/Sec5/Quiet/Approx/*.lean` (namespace `NonUniqueEuler.OneRing.QAppH`).
 
-1. Constants (`:440-461`): `σ'_0 = (9/200 + σ_b)/2`, `C_L = Σ_{k ≤ M_h} C_S(k,σ'_0)` (`prop:semigroup`,
+1. Constants (Part II Theorem 2.8): `σ'_0 = (9/200 + σ_b)/2`, `C_L = Σ_{k ≤ M_h} C_S(k,σ'_0)` (`prop:semigroup`,
    `QAppH.exists_CL`), `C_bil = Σ_{2 ≤ k ≤ M_h} (C_B(k) + C_h(k) + C_∇(k))` (`lem:bilinear`,
    `QAppH.exists_Cbil`), `A = C_L C_bil`, `R = A(N_Q A/σ_b + 1) + 1`, `C^{(j)} = A R^{j-1}`
    (deviation: a closed form satisfying the recursion inequality of the manuscript instead of the
@@ -115,7 +115,7 @@ theorem wdiff_bound {k NQ : ℕ} {W : ℕ → ℂ → ℂ} {c : ℕ → ℝ} {m 
   exact mul_le_mul_of_nonneg_left (pow_le_pow_of_le_one hm0 hm1 hj2) (hc j)
 
 /-- `eq:Q-res` at a fixed time, for `-Σ_{i,l ≤ N_Q, i+l > N_Q} B(W_i,W_l) + h·∇W_{N_Q}`
-(`05_single_ring.tex:506-511`). -/
+(Part II Theorem 2.8 (`thm:quiet`)). -/
 theorem res_bound {sh NQ : ℕ} (hs : 2 ≤ sh) (hQ : 1 ≤ NQ) {W : ℕ → ℂ → ℂ} {c : ℕ → ℝ}
     {hf : ℂ → ℂ} {m e Cbil : ℝ} (hm0 : 0 ≤ m) (hm1 : m ≤ 1) (he : 0 ≤ e) (hCbil : 0 ≤ Cbil)
     (hc : ∀ j, 0 ≤ c j) (hCB : CB sh ≤ Cbil) (hCh : Ch sh ≤ Cbil)
@@ -214,7 +214,7 @@ theorem hier_at {χ : ℝ → ℝ} {sh NQ : ℕ} {G T : ℝ} {h : ℝ → ℂ �
     (((hP j hj).1.1 t ht).1.normH_mono hle).trans ((hP j hj).2.2.2.2.1 t ht)⟩
 
 /-- Regularity, realness and initial value of `w_app = Σ_{j ≤ N_Q} w^{[j]}`, with
-`w_app' = L(G)w_app + Σ_j g^{[j]}` (`05_single_ring.tex:494-497`). -/
+`w_app' = L(G)w_app + Σ_j g^{[j]}` (Part II Theorem 2.8 (`thm:quiet`)). -/
 theorem approx_paths (χ : ℝ → ℝ) (hχ : IsAdmissibleCutoff χ) {sh NQ : ℕ} {G T : ℝ}
     {h : ℝ → ℂ → ℂ} {η : ℝ → ℝ} {A R : ℝ}
     (hP : ∀ j ∈ Finset.Icc 1 NQ, HierProp χ (Mh sh NQ) G T h η A R j) :
@@ -245,7 +245,7 @@ theorem approx_paths (χ : ℝ → ℝ) (hχ : IsAdmissibleCutoff χ) {sh NQ : �
     simp only [Finset.sum_apply, Pi.zero_apply]
     exact Finset.sum_eq_zero hx
 
-/-- `‖w_app(t)‖_{H^{s_h+1}} ≤ (Σ_j C^{(j)}) maj(t)` (`05_single_ring.tex:512-513`). -/
+/-- `‖w_app(t)‖_{H^{s_h+1}} ≤ (Σ_j C^{(j)}) maj(t)` (Part II Theorem 2.8 (`thm:quiet`)). -/
 theorem bound_wapp {χ : ℝ → ℝ} {sh NQ : ℕ} {G T : ℝ} {h : ℝ → ℂ → ℂ} {η : ℝ → ℝ} {A R : ℝ}
     (hA : 0 ≤ A) (hR : 0 ≤ R)
     (hP : ∀ j ∈ Finset.Icc 1 NQ, HierProp χ (Mh sh NQ) G T h η A R j)
@@ -294,7 +294,7 @@ theorem bound_diff (χ : ℝ → ℝ) (hχ : IsAdmissibleCutoff χ) {sh NQ : ℕ
     (fun j hj => (((hier_at hP ht j hj).1.1.normH_mono (Nat.le_succ sh))).trans
       (hier_at hP ht j hj).2)
 
-/-- `eq:Q-res` for `w_app` (`05_single_ring.tex:494-511`). -/
+/-- `eq:Q-res` for `w_app` (Part II Theorem 2.8 (`thm:quiet`)). -/
 theorem bound_res (χ : ℝ → ℝ) {sh NQ : ℕ} (hs : 3 ≤ sh) (hQ : 2 ≤ NQ)
     {G T : ℝ} {h : ℝ → ℂ → ℂ} {η : ℝ → ℝ} {A R Cbil : ℝ} (hA : 0 ≤ A) (hR : 0 ≤ R)
     (hCbil : 0 ≤ Cbil) (hCB : CB sh ≤ Cbil) (hCh : Ch sh ≤ Cbil)
@@ -325,7 +325,7 @@ theorem bound_res (χ : ℝ → ℝ) {sh NQ : ℕ} (hs : 3 ≤ sh) (hQ : 2 ≤ N
 
 end QAppH
 
-/-- **The approximate solution of `thm:quiet`** (`05_single_ring.tex:440-513`, `eq:Q-hier`,
+/-- **The approximate solution of `thm:quiet`** (Part II Theorem 2.8, `eq:Q-hier`,
 `eq:Q-res`). Assume (N1)–(N3), `s_h ≥ 3`, `N_Q ≥ 2`. There is `C_app ≥ 0` (depending only on
 `Φ, G₁, s_h, N_Q`) such that for `G ∈ [0,G₁]`, `T > 0`, every field path `h` with
 `h ∈ C([0,T];C^{M_h}(N'))`, `h(t)` `3`-fold symmetric on `N'`, and every measurable `η` with

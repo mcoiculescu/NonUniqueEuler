@@ -16,7 +16,7 @@ import NonUniqueEuler.I.Infra.Sobolev.WeakDeriv
   orders form a first-order chain;
 * `hasWeakDerivOn_nil_self`, `derivList_succ_eq`.
 
-These are the manuscript's identities `∂_x = r ∂_r`, `∂_r = e^{-x} ∂_x` (`04_ring.tex:888-897`)
+These are the manuscript's identities `∂_x = r ∂_r`, `∂_r = e^{-x} ∂_x` (Part I, Corollary 4.13 (`cor:K-bound`), elliptic estimate in the proof)
 for weak derivatives. All proofs are complete.
 -/
 

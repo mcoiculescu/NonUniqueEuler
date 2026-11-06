@@ -5,7 +5,7 @@ import NonUniqueEuler.H.Sec4.LargeSectors.Norms
 /-!
 # Proof: `prop:large-sectors` and the uniform exponential bounds `ExpBounded`
 
-Proof of `I/Sec4/LargeSectors.lean` (`04_ring.tex:1014-1040`).
+Proof of `I/Sec4/LargeSectors.lean` (Part I Proposition 4.15 (`prop:large-sectors`)).
 
 Structure (deviation): the manuscript runs the
 bootstrap `Y_T ≤ C_s c_s(γ) + Y_T/2` in the profile norm `‖·‖_{s,ℓ}`; here it is run in the
@@ -18,7 +18,7 @@ abstract bootstrap is `LargeSectorsH.norm_exp_add_le` (`H/Sec4/LargeSectors/Boot
 
 `ExpBounded`: for `|ℓ| ≥ M_1` the bound of `prop:large-sectors` with `γ = 1`; for each of the
 finitely many `|ℓ| < M_1` the same bootstrap with `κ = ‖k_ℓ𝒢_ℓ‖` and a `γ_ℓ` with
-`C_s κ I_s(γ_ℓ) ≤ 1/2` (instead of the manuscript's sketch `‖exp(tL_ℓ)‖ ≤ e^{t‖L_ℓ‖}`, which would
+`C_s κ I_s(γ_ℓ) ≤ 1/2` (instead of the earlier manuscript's finite-mode sketch `‖exp(tL_ℓ)‖ ≤ e^{t‖L_ℓ‖}`, which would
 need a bound of `‖-iℓΩ(·;G)‖` uniform in `|G| ≤ G₊`; the bootstrap only uses the transport bound,
 which is already uniform in `G`, and `k_ℓ𝒢_ℓ`, which does not depend on `G`).
 -/
@@ -66,7 +66,7 @@ namespace SectorSetting
 
 open Sect
 
-/-- **`prop:large-sectors`** (`04_ring.tex:1014-1022`): for `γ > 0` and `G₊ ≥ 0` there are
+/-- **`prop:large-sectors`** (Part I Proposition 4.15 (`prop:large-sectors`)): for `γ > 0` and `G₊ ≥ 0` there are
 `M_γ ≥ 1` and `C` (the manuscript's `2C_s c_s(γ)`) such that
 `‖e^{tL_ℓ(G)}‖_{s,ℓ → s,ℓ} ≤ C e^{γt}` for every `ℓ ∈ ℤ` with `|ℓ| ≥ M_γ`, every `|G| ≤ G₊` and
 every `t ≥ 0`. -/

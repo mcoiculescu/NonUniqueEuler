@@ -4,8 +4,8 @@ import Mathlib.Algebra.BigOperators.Group.Finset.Basic
 /-!
 # Winding numbers of curves avoiding `0` (definitions)
 
-Manuscript: the definition of `wind(c, 0)` at the start of Appendix A
-(`A_verification.tex:42-46`): for a continuous closed curve `c` avoiding `0`,
+Manuscript: the definition of `wind(c, 0)` at the start of Part II Appendix A
+(`app:verify`): for a continuous closed curve `c` avoiding `0`,
 `wind(c, 0) = (θ(1) - θ(0)) / 2π` for any continuous `θ` with `c = |c| e^{iθ}`.
 Mathlib has no winding number, so we define it through continuous argument lifts.
 
@@ -16,13 +16,13 @@ Mathlib has no winding number, so we define it through continuous argument lifts
   So `HasWinding` contains the facts "continuous" and "does not vanish on `[a, b]`".
 * `windingNumber c a b`: the integer `n`, if it exists (uniqueness is an interface lemma).
 
-Proposition A.4 (`prop:winding`, `A_verification.tex:470-512`): the segment types and the
+Part II Proposition A.4 (`prop:winding`): the segment types and the
 indicator sum.
 * `SegKind.P.Admits z ↔ z ∈ slitPlane` (misses `(-∞, 0]`), `SegKind.N.Admits z ↔ -z ∈ slitPlane`
   (misses `[0, ∞)`); `SegKind.AdmitsSet κ B` for a set `B` ("`B` is of type `κ`").
 * `negImInd z = 1[Im z < 0]`, and `argN z = arg z + 2π·1[Im z < 0]` (the continuous argument on
-  `ℂ \ [0, ∞)` of the proof of Proposition A.4).
-* `segIndicatorSum n κ x = Σ_{i < n, κ i = N} (x (i+1) - x i)`: the formula of Proposition A.4
+  `ℂ \ [0, ∞)` of the proof of Part II Proposition A.4).
+* `segIndicatorSum n κ x = Σ_{i < n, κ i = N} (x (i+1) - x i)`: the formula of Part II Proposition A.4
   (with `x i = 1[Im E(p_i) < 0]`).
 * `junctionSum n κ x`: the same sum as the package evaluates it (`ringcert.winding.certify_cell`):
   only the values at *junctions* (indices where a type-N segment meets a non-type-N segment,
@@ -55,7 +55,7 @@ structure HasArgChange (c : ℝ → ℂ) (a b : ℝ) (Δ : ℝ) : Prop where
   exists_lift : ∃ θ : ℝ → ℝ, IsArgLift c a b θ ∧ θ b - θ a = Δ
 
 /-- **Winding number.** The closed curve `c : [a, b] → ℂ \ {0}` winds `n` times around `0`:
-`c a = c b`, and the argument of `c` changes by `2πn` (`A_verification.tex:42-46`). This
+`c a = c b`, and the argument of `c` changes by `2πn` (`app:verify`). This
 includes continuity of `c` on `[a, b]` and `c ≠ 0` there. -/
 structure HasWinding (c : ℝ → ℂ) (a b : ℝ) (n : ℤ) : Prop where
   closed : c a = c b
@@ -78,9 +78,9 @@ theorem HasWinding.ne_zero {c : ℝ → ℂ} {a b : ℝ} {n : ℤ} (h : HasWindi
     ∀ t ∈ Icc a b, c t ≠ 0 :=
   h.argChange.ne_zero
 
-/-! ### Segment types and indicators (Proposition A.4) -/
+/-! ### Segment types and indicators (Part II Proposition A.4) -/
 
-/-- The two segment types of Proposition A.4. -/
+/-- The two segment types of Part II Proposition A.4. -/
 inductive SegKind
   | P
   | N
@@ -92,7 +92,7 @@ def SegKind.Admits : SegKind → ℂ → Prop
   | .P, z => z ∈ Complex.slitPlane
   | .N, z => -z ∈ Complex.slitPlane
 
-/-- A set `B ⊆ ℂ` is of type `κ` (`A_verification.tex:468-469`): every point of `B` is allowed
+/-- A set `B ⊆ ℂ` is of type `κ` (`prop:winding`): every point of `B` is allowed
 for `κ`. -/
 def SegKind.AdmitsSet (κ : SegKind) (B : Set ℂ) : Prop :=
   ∀ z ∈ B, κ.Admits z
@@ -123,7 +123,7 @@ def IsJunction (n : ℕ) (κ : ℕ → SegKind) (i : ℕ) : Prop :=
 instance (n : ℕ) (κ : ℕ → SegKind) (i : ℕ) : Decidable (IsJunction n κ i) := by
   unfold IsJunction; infer_instance
 
-/-- The indicator sum of Proposition A.4: `Σ_{i < n, κ i = N} (x (i+1) - x i)`. With
+/-- The indicator sum of Part II Proposition A.4: `Σ_{i < n, κ i = N} (x (i+1) - x i)`. With
 `x i = 1[Im E(p_i) < 0]` and `p_n = p_0` this is the winding number. -/
 def segIndicatorSum (n : ℕ) (κ : ℕ → SegKind) (x : ℕ → ℤ) : ℤ :=
   ∑ i ∈ Finset.range n, if (κ i).isN then x (i + 1) - x i else 0
@@ -146,7 +146,7 @@ theorem SegKind.Admits.ne_zero {κ : SegKind} {z : ℂ} (h : κ.Admits z) : z �
   cases κ <;> simp [SegKind.Admits, Complex.slitPlane] at h
 
 /-- At a point shared by a type-N and a type-P segment the value is not real
-(`A_verification.tex:483-485`). -/
+(`prop:winding`). -/
 theorem SegKind.im_ne_zero_of_admits_P_N {z : ℂ} (hP : SegKind.P.Admits z)
     (hN : SegKind.N.Admits z) : z.im ≠ 0 := by
   intro h

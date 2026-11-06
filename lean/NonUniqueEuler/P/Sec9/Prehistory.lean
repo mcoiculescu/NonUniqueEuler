@@ -12,10 +12,15 @@ import NonUniqueEuler.H.Sec9.Prehistory.Moment
 import NonUniqueEuler.H.Sec9.Prehistory.Inner
 
 /-!
-# Proof: `lem:prehistory` (the moment `q_j` before ring `j` becomes active)
+# Proof: `lem:prehistory` (historical) (the moment `q_j` before ring `j` becomes active)
 
-Proof of `I/Sec9/Prehistory.lean` (same declaration, statement copied verbatim). Manuscript
-`09_relay.tex:1042-1101`.
+The label `lem:prehistory` is historical. Its current counterpart is the
+quiet-phase moment estimate in the (Q2)/(Kick4) part of the proof of Part II
+Lemma C.14 (`lem:kicktrue`), Appendix C.12. Lean retains its separate hypothesis
+bundle and explicit `C_qr`; the manuscript absorbs the coefficient in `C_err`.
+
+Proof of `I/Sec9/Prehistory.lean` (with the existing Lean interface statement). Manuscript
+`lem:kicktrue`, Part II Lemma C.14, proof of (Q2) and (Kick4).
 
 1. Pointwise bound (`PrehistoryAux.pointwise`), `t ∈ [0,t♯_j]`, `τ = A_jt ∈ [0,t̄♯_j]`:
    `thm:quiet`(a) for ring `j` (`quiet_ring`) gives `S_j(t) ⊂ 𝒩₋_j ⊂ N_j`; the hypotheses give
@@ -110,7 +115,7 @@ theorem integral_exp_neg_le {c T : ℝ} (hc : 0 < c) :
   rw [e1]
   linarith
 
-/-- **The pointwise bound of `lem:prehistory`** (`09_relay.tex:1059-1085`): for `t ∈ [0,t♯_j]`,
+/-- **The pointwise bound of `lem:prehistory` (historical)** (`lem:kicktrue`, Part II Lemma C.14, proof of (Q2) and (Kick4)): for `t ∈ [0,t♯_j]`,
 `S_j(t) ⊂ N_j` and `|q_j(t)| ≤ C_qr(‖w_j(t)‖_{L¹} + η^in_j(A_jt))`. -/
 theorem pointwise (S : Standing) (hS : S.Holds) {j : ℕ} (h : S.PrehistoryHyp j) {t : ℝ}
     (ht : t ∈ Icc (0 : ℝ) (S.P.tsh j)) :
@@ -150,7 +155,7 @@ theorem pointwise (S : Standing) (hS : S.Holds) {j : ℕ} (h : S.PrehistoryHyp j
         add_le_add (mul_le_mul_of_nonneg_right h8 hL) (mul_le_mul_of_nonneg_right h4 hE)
     _ = Cqr * ((eLpNorm (S.P.wR j t) 1 volume).toReal + S.etaIn j (S.P.A j * t)) := by ring
 
-/-- **The integral bound of `lem:prehistory`** (`09_relay.tex:1086-1101`). -/
+/-- **The integral bound of `lem:prehistory` (historical)** (`lem:kicktrue`, Part II Lemma C.14, proof of (Q2) and (Kick4)). -/
 theorem integral_bound (S : Standing) (hS : S.Holds) {j : ℕ} (h : S.PrehistoryHyp j) {σo : ℝ}
     (hσo : σo < S.P.sigma j) :
     IntegrableOn (fun τ => Real.exp (σo * (S.P.tash j - τ)) * ‖S.P.q j (τ / S.P.A j)‖)
@@ -295,7 +300,7 @@ theorem integral_bound (S : Standing) (hS : S.Holds) {j : ℕ} (h : S.Prehistory
 
 end PrehistoryAux
 
-/-- **`lem:prehistory`** (`09_relay.tex:1042-1057`). Assume (SA) and the hypotheses
+/-- **`lem:prehistory` (historical)** (`lem:kicktrue`, Part II Lemma C.14, proof of (Q2) and (Kick4)). Assume (SA) and the hypotheses
 `S.PrehistoryHyp j` (`2 ≤ j < n`, clock up to level `j+1`, `thm:quiet` hypotheses for ring `j` on
 `[0, t̄♯_j]`). Then `|q_j(t)| ≤ C_qr(‖w_j(t)‖_{L¹} + η^in_j(A_jt))` on `[0, t♯_j]`, and for every
 `σ_o < σ_j` the weighted integral of `|q_j(τ/A_j)|` over `[0, t̄♯_j]` (integrable) is at most

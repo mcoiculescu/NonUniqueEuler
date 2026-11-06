@@ -4,7 +4,7 @@ import Mathlib.MeasureTheory.Integral.DominatedConvergence
 /-!
 # Helpers for `P/Sec3/WeakCont/Restart.lean`: the two limits `h → 0⁺`
 
-Manuscript: proof of `lem:weak-cont`(c), `03_compactness.tex:216-225`. With
+Manuscript: proof of `lem:weak-cont`(c), Part I Lemma 3.2 (`lem:weak-cont`). With
 `ϰ_h(t) = ϰ((t - t₀)/h)` and `0 < t₀ < T`:
 * `tendsto_integral_kappaShift_mul`: `∫_0^T ϰ_h I → ∫_{t₀}^T I` for `I ∈ L¹(0,T)`, by dominated
   convergence (`ϰ_h → 1_{(t₀,∞)}` pointwise, `|ϰ_h I| ≤ |I|`);

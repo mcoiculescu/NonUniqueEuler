@@ -4,10 +4,12 @@ import NonUniqueEuler.I.Sec10.ConstantsPos
 /-!
 # Helper for `P/Sec11/BootActive.lean`: elementary facts
 
-Helper of the proof of Step 4 of `prop:bootstrap` (`11_bootstrap.tex:390-484`): the active time
+Helper of the proof of Lean step 4 of the historical bootstrap decomposition (Part II Appendix C.17
+(`sec:bootstrap-active-checks`)): the active time
 `ū = A_k(t' - t♯_k) ∈ (0, T̂_k]`, the times `t'' = t♯_k + u/A_k`, the signs of `θ_j`, `η_{b,k}`,
 `C_*`, the Japanese bracket, and the algebraic inequality of `eq:boot-inner`
-(`2 + 2C_*(T_pin + μu) ≤ (2 + 2C_*T_pin)(1 + 2C_*)⟨u⟩`, `11_bootstrap.tex:425-428`).
+(`2 + 2C_*(T_pin + μu) ≤ (2 + 2C_*T_pin)(1 + 2C_*)⟨u⟩`, Part II Appendix C.17
+(`sec:bootstrap-active-checks`)).
 All proved.
 -/
 
@@ -161,7 +163,8 @@ theorem le_jap (u : ℝ) : u ≤ Prelim.jap u := by
   · calc u = Real.sqrt (u ^ 2) := (Real.sqrt_sq h.le).symm
       _ ≤ Real.sqrt (1 + u ^ 2) := Real.sqrt_le_sqrt (by nlinarith [sq_nonneg u])
 
-/-- The algebraic step of `eq:boot-inner` (`11_bootstrap.tex:425-428`): for `C ≥ 0`, `T ≥ 0`,
+/-- The algebraic step of `eq:boot-inner` (Part II Appendix C.17 (`sec:bootstrap-active-checks`)):
+for `C ≥ 0`, `T ≥ 0`,
 `0 ≤ μ ≤ 2`, `u ≥ 0`: `2 + 2C(T + μu) ≤ (2 + 2CT)(1 + 2C)⟨u⟩`. -/
 theorem inner_alg {C T μ u : ℝ} (hC : 0 ≤ C) (hT : 0 ≤ T) (hμ0 : 0 ≤ μ) (hμ : μ ≤ 2)
     (hu : 0 ≤ u) : 2 + 2 * C * (T + μ * u) ≤ (2 + 2 * C * T) * (1 + 2 * C) * Prelim.jap u := by

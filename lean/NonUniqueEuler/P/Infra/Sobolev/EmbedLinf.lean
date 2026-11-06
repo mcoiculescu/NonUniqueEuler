@@ -10,7 +10,7 @@ import NonUniqueEuler.H.Infra.Sobolev.EmbedLinf.TestFn
 /-!
 # Proof: `lem:embed` (E2), `H^2(ℝ²) ⊂ C₀ ∩ L^∞` with constant `1` (library I-HK)
 
-Proof of `I/Infra/Sobolev/EmbedLinf.lean`. Manuscript: `02_prelim.tex:604-606, 624-630`.
+Proof of `I/Infra/Sobolev/EmbedLinf.lean`. Manuscript: Part II, Lemma 1.9(E2) (`lem:embed`), proof.
 
 For test functions the bound `|g(x)| ≤ ‖g‖_{H²}` is
 `EmbedLinfAux.norm_le_normH_two_of_testFn` (`H/Infra/Sobolev/EmbedLinf/TestFn.lean`, by the

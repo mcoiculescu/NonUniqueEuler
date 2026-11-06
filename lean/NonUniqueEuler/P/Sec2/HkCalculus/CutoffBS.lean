@@ -10,7 +10,7 @@ import NonUniqueEuler.H.Sec2.HkCalculus.CutoffBS.Smooth
 /-!
 # Proof of `I/Sec2/HkCalculus/CutoffBS`: `lem:Hk-calculus`(3) for real vorticities
 
-Manuscript: `lem:Hk-calculus`(3), statement `02_prelim.tex:663-666`, proof `02_prelim.tex:748-766`.
+Manuscript: the statement and proof of Part II, Lemma 1.10(3) (`lem:Hk-calculus`).
 
 1. Smooth case (`CutoffBSAux.exists_cutoffBS_smooth`, `H/Sec2/HkCalculus/CutoffBS/Smooth.lean`):
    for real `h ∈ C_c^∞` with `tsupport h ⊆ B_{2ρ}`, `‖χ (K ∗ h)‖_{H^{j+1}} ≤ C ‖h‖_{H^j}`.

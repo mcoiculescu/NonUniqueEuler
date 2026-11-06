@@ -8,7 +8,7 @@ import NonUniqueEuler.H.Sec5.Active.Layer.LinPath.Forcing
 /-!
 # Proof: the linear response `wlin₀` as an approximate solution for `lem:energy`
 
-Proof of `I/Sec5/Active/Layer/LinPath.lean` (`05_single_ring.tex:976-981`: "Lemma
+Proof of `I/Sec5/Active/Layer/LinPath.lean` (Part II Theorem 2.12 (`thm:active`): "Lemma
 `lem:duhamel` with `k = M-1` shows that `wlin ∈ C([0,ū];X^{M-1}) ∩ C¹([0,ū];X^{M-2})` is real
 with `∂_u wlin = L wlin + F`", here at a general level `k + 1`).
 
@@ -32,7 +32,7 @@ namespace OneRing
 
 open RingData
 
-/-- **The linear response as a `C¹` path** (`05_single_ring.tex:976-981`, `lem:duhamel` at level
+/-- **The linear response as a `C¹` path** (Part II Theorem 2.12 (`thm:active`), `lem:duhamel` at level
 `k + 1`): `wapp(u) = (wlin0 χ (k+1) G w₀ h u).fn` lies in `C([0,T];X^{k+1}) ∩ C¹([0,T];X^k)`
 with derivative `L(G)wapp + F`, is real, and starts at `w₀`. -/
 theorem wlin0_path (χ : ℝ → ℝ) (hχ : IsAdmissibleCutoff χ) (hN : NumericalHypothesis χ)

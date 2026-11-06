@@ -14,7 +14,7 @@ import NonUniqueEuler.I.Infra.CkNorm.Continuity
 # Proof of `I/Infra/AngularFourier/Derivatives/RotPath.lean`: rotations act continuously on `H^k`
 
 For `g ∈ H^k`, the path `θ ↦ g ∘ O_θ` is continuous into the Hilbert space `Sob.Hk k`.
-Manuscript: `04_ring.tex:181-185` ("rotations act on `H^s(ℝ²)`").
+Manuscript: Part I, Definition 4.3 (`def:sector-setting`) and the following mode-profile discussion ("rotations act on `H^s(ℝ²)`").
 
 Proof (the sketch of the interface file).
 1. Test functions `ψ` (`continuous_toHk_comp_rot_testFn`): the family `h θ = ψ ∘ O_θ` is jointly

@@ -15,13 +15,12 @@ import NonUniqueEuler.I.Sec3.VelocityField
 /-!
 # Proof of `lem:renorm-all-t` (conservation at every time, strong continuity, tail bound)
 
-Proof of the interface `I/Sec3/RenormAllT.lean` (`03_compactness.tex:576-689`): same
-declarations, statements copied verbatim.
+Proof of the interface `I/Sec3/RenormAllT.lean` (Part I Lemma 3.5 (`lem:renorm-all-t`) and its proof): same
+declarations, the interface and proof statements agree.
 
-**Restructured argument** (deviation from the manuscript's proof, `03_compactness.tex:601-656`;
-correct, and shorter). With `lem:transport` in its `(a,b) = (2,2)` form (R7), the transport lemma
-applies to `ω` itself, so the bounded truncations `U_k = T_k(ω)` and their identification are not
-needed:
+**Proof decomposition.** As in the current proof of Part I Lemma 3.5
+(`lem:renorm-all-t`), the `L²` transport lemma applies to `ω` itself. The bounded
+truncations `U_k = T_k(ω)` belonged to the legacy proof and are not used here:
 1. eq:conservation (`H/Sec3/RenormAllT/Conservation.lean`): `lem:weak-cont`(c) for `u = ω` and
    the uniqueness of weakly continuous representatives give `(te)` on `[t₀,T)` with datum `ω(t₀)`;
    `lem:transport`(ii) on `[0,T)` and on `[t₀,T)`, compared at a common good time `t > t₀`, give
@@ -30,8 +29,7 @@ needed:
    (`Equimeasurable.eLpNorm_eq`), in place of the monotone convergence with `Υ_{q,k}` and
    `min{1,(z-s)₊/δ}` (which is what I-EQM proves).
 3. Strong continuity into `L²` on `[0,T)` (`H/Sec3/RenormAllT/Continuity.lean`): weak continuity
-   and `‖ω(t)‖₂ = ‖ω^in‖₂` with `lem:RR` (`radonRiesz_filter`); this replaces the Cauchy argument
-   for `ω(t_j)` in `L¹(B_R)` through `U_k`.
+   and `‖ω(t)‖₂ = ‖ω^in‖₂` with legacy `lem:RR` (`radonRiesz_filter`); the current proof uses the same Hilbert-space argument directly.
 4. eq:tail (`H/Sec3/RenormAllT/Tail.lean`) exactly as in the manuscript (`|ω|`, `lem:weak-cont`(b)
    with `ψ = ς_R`), the identification of the representative of `|ω|` with `|ω(t)|` using step 3.
 5. `C([0,T);L^q)`, `q ∈ [1,2)` (`H/Sec3/RenormAllT/LqCont.lean`): `L²` continuity plus the uniform
@@ -62,7 +60,7 @@ theorem eLpNorm_two_eq {T : ℝ} {ωin : ℂ → ℝ} {ω : ℝ → ℂ → ℝ}
     ∀ t ∈ Ico 0 T, eLpNorm (ω t) 2 volume = eLpNorm ωin 2 volume :=
   fun t ht => (equimeasurable_of_conservation h hc t ht).eLpNorm_eq 2
 
-/-- `ω ∈ C([0,T);L²)` (weak continuity, constant norm, `lem:RR`). -/
+/-- `ω ∈ C([0,T);L²)` (weak continuity, constant norm, legacy `lem:RR`). -/
 theorem tendsto_eLpNorm_two {T : ℝ} {ωin : ℂ → ℝ} {ω : ℝ → ℂ → ℝ}
     (h : IsRenormalizedWeakSolution 2 T ωin ω) (hc : IsWeakContL2On (Icc 0 T) ω) :
     ∀ t₀ ∈ Ico 0 T,
@@ -80,7 +78,7 @@ theorem tail_of_renorm {T : ℝ} {ωin : ℂ → ℝ} {ω : ℝ → ℂ → ℝ}
 
 end RenormAllTH
 
-/-- `lem:renorm-all-t`, eq:conservation (`03_compactness.tex:576-583`): for a renormalized weak
+/-- `lem:renorm-all-t`, eq:conservation (Part I Lemma 3.5 (`lem:renorm-all-t`) and its proof): for a renormalized weak
 solution in `X₂(T)`, weakly continuous on `[0,T]`, for every `t ∈ [0,T)` and every `Υ ∈ Lip₀`,
 `Υ(ω(t))` is integrable and `∫Υ(ω(t)) = ∫Υ(ω^in)`. -/
 theorem renormAllT_conservation {T : ℝ} {ωin : ℂ → ℝ} {ω : ℝ → ℂ → ℝ}
@@ -89,7 +87,7 @@ theorem renormAllT_conservation {T : ℝ} {ωin : ℂ → ℝ} {ω : ℝ → ℂ
       Integrable (fun x => β (ω t x)) volume ∧ ∫ x, β (ω t x) = ∫ x, β (ωin x) :=
   RenormAllTH.conservation h.toIsWeakSolution hc
 
-/-- `lem:renorm-all-t` (`03_compactness.tex:584-585`): `‖ω(t)‖_{L^q} = ‖ω^in‖_{L^q}` for every
+/-- Part I Lemma 3.5 (`lem:renorm-all-t`): `‖ω(t)‖_{L^q} = ‖ω^in‖_{L^q}` for every
 `t ∈ [0,T)` and `q ∈ [1,2]`. -/
 theorem renormAllT_eLpNorm_eq {T : ℝ} {ωin : ℂ → ℝ} {ω : ℝ → ℂ → ℝ}
     (h : IsRenormalizedWeakSolution 2 T ωin ω) (hc : IsWeakContL2On (Icc 0 T) ω) :
@@ -97,14 +95,14 @@ theorem renormAllT_eLpNorm_eq {T : ℝ} {ωin : ℂ → ℝ} {ω : ℝ → ℂ �
       eLpNorm (ω t) (ENNReal.ofReal q) volume = eLpNorm ωin (ENNReal.ofReal q) volume :=
   fun t ht _ _ _ => (RenormAllTH.equimeasurable_of_conservation h hc t ht).eLpNorm_eq _
 
-/-- `lem:renorm-all-t` (`03_compactness.tex:585`): `ω(t)` is equimeasurable with `ω^in` for every
+/-- Part I Lemma 3.5 (`lem:renorm-all-t`): `ω(t)` is equimeasurable with `ω^in` for every
 `t ∈ [0,T)`. -/
 theorem renormAllT_equimeasurable {T : ℝ} {ωin : ℂ → ℝ} {ω : ℝ → ℂ → ℝ}
     (h : IsRenormalizedWeakSolution 2 T ωin ω) (hc : IsWeakContL2On (Icc 0 T) ω) :
     ∀ t ∈ Ico 0 T, Equimeasurable (ω t) ωin :=
   RenormAllTH.equimeasurable_of_conservation h hc
 
-/-- `lem:renorm-all-t` (`03_compactness.tex:586`): `ω ∈ C([0,T);L^q(ℝ²))` for every
+/-- Part I Lemma 3.5 (`lem:renorm-all-t`): `ω ∈ C([0,T);L^q(ℝ²))` for every
 `q ∈ [1,2)`. -/
 theorem renormAllT_continuousIntoLpOn {T : ℝ} {ωin : ℂ → ℝ} {ω : ℝ → ℂ → ℝ}
     (h : IsRenormalizedWeakSolution 2 T ωin ω) (hc : IsWeakContL2On (Icc 0 T) ω) :
@@ -120,8 +118,8 @@ theorem renormAllT_continuousIntoLpOn {T : ℝ} {ωin : ℂ → ℝ} {ω : ℝ �
   exact RenormAllTH.continuousIntoLpOn_of_one_two (RenormAllTH.datum_memLp_two hws).eLpNorm_ne_top
     hm1 hm2 (fun t ht => (RenormAllTH.eLpNorm_two_eq h hc t ht).le) hL1
 
-/-- `lem:renorm-all-t`, the flux bound after eq:tail (`03_compactness.tex:592-593`, `:597-600`;
-`C_v = C(2,1)` of `lem:velocity`(a), `:37-41`): there is `C_v > 0` such that for every weak
+/-- `lem:renorm-all-t`, the flux bound after eq:tail (Part I Lemma 3.5 (`lem:renorm-all-t`) and its proof;
+`C_v = C(2,1)` of `lem:velocity`(a)): there is `C_v > 0` such that for every weak
 solution in `X₂(T)`, weakly continuous on `[0,T]`, with `‖ω(t)‖_{L¹∩L²} ≤ M` on `[0,T]`,
 `‖ωv‖_{L¹((0,T)×ℝ²)} ≤ C_v T M²`. -/
 theorem renormAllT_flux_bound :
@@ -132,7 +130,7 @@ theorem renormAllT_flux_bound :
         ENNReal.ofReal (Cv * T * M ^ 2) :=
   RenormAllTH.flux_bound
 
-/-- `lem:renorm-all-t`, eq:tail (`03_compactness.tex:587-592`): for every `R > 0` and
+/-- `lem:renorm-all-t`, eq:tail (Part I Lemma 3.5 (`lem:renorm-all-t`) and its proof): for every `R > 0` and
 `t ∈ [0,T)`,
 `∫_{|x|≥2R}|ω(t)| ≤ ∫_{|x|≥R}|ω^in| + (‖∇ς‖_∞/R) ‖ωv‖_{L¹((0,T)×ℝ²)}`. -/
 theorem renormAllT_tail {T : ℝ} {ωin : ℂ → ℝ} {ω : ℝ → ℂ → ℝ}

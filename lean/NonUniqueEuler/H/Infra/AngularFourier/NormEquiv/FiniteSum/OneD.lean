@@ -8,7 +8,7 @@ import NonUniqueEuler.I.Infra.SobolevOneD.Multiplier
 # Helper for `P/Infra/AngularFourier/NormEquiv/FiniteSum`: profiles on `(0, ∞)`
 
 One-dimensional facts used in the induction step of `exists_normH_sum_ofProfile_le`
-(`04_ring.tex:843-864`, upper bound of `lem:norm-equiv`).
+(Part I, Lemma 4.12 (`lem:norm-equiv`), upper bound in the proof).
 
 * `memH1On_spec`: the chosen weak derivatives of `g ∈ H^k(V)` are `L²(V)` weak derivatives;
 * `memH1On_deriv`: for `g ∈ H^{k+1}(V)`, `g' ∈ H^k(V)` and `∂^j g' = ∂^{j+1} g`;

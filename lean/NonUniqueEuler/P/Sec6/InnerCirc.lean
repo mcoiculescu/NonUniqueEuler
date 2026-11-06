@@ -6,10 +6,13 @@ import NonUniqueEuler.I.SmoothB.SmoothFlow
 /-!
 # Proof: `lem:inner-circ` (the inner circulations) and `eq:conserved`
 
-Proof of `I/Sec6/InnerCirc.lean` (`06_datum.tex:332-338`, proof `:339-359`); same declarations,
-statements copied verbatim.
+The encoded circulation estimate retains `C_G = ‖Φ‖₁/π`. Current Part II
+Lemma 3.7 (`lem:inner-circ`) instead records the bound `G_k ≤ μ s_k²`; the
+constant and statement below are unchanged.
 
-* `eq:conserved` (`06_datum.tex:343-346`): by `eq:omega-ge` (`regions_basic_three`),
+Proof of `I/Sec6/InnerCirc.lean` (Part II Lemma 3.7 (`lem:inner-circ`) and its proof); the formal interface is unchanged.
+
+* Part II Equation (27) (`eq:conserved`): by `eq:omega-ge` (`regions_basic_three`),
   `ω_{≥k}(t) = g ∘ Φ_t⁻¹` with `g = Σ_{i=k}^n f^{(n)}_i`; `Φ_t⁻¹` preserves area
   (`Smooth.flow_measurePreserving`, applied to the datum `f^{(n)}`, which is `C_c^∞` by `lem:adm`),
   so `∫ F(ω_{≥k}(t)) = ∫ F(g)`. Since `f^{(n)}_i = f^{(n)} 1_{S_i}` and the `S_i` are pairwise
@@ -155,7 +158,7 @@ end InnerCircAux
 
 open InnerCircAux
 
-/-- **`eq:conserved`** (`06_datum.tex:343-346`): for every continuous `F` with `F(0) = 0`, every
+/-- **Part II Equation (27) (`eq:conserved`)**: for every continuous `F` with `F(0) = 0`, every
 `1 ≤ k ≤ n + 1` and every `t ≥ 0`, `∫ F(ω_{≥k}(t)) dx = Σ_{i=k}^n ∫ F(f^{(n)}_i) dx`. -/
 theorem conserved (P : Approx) (hP : P.Valid) (hN : NumericalHypothesis P.χ) {F : ℝ → ℝ}
     (hF : Continuous F) (hF0 : F 0 = 0) {k : ℕ} (hk : 1 ≤ k) (hkn : k ≤ P.n + 1) {t : ℝ}
@@ -210,7 +213,7 @@ theorem conserved (P : Approx) (hP : P.Valid) (hN : NumericalHypothesis P.χ) {F
           rw [this]
           exact hint.indicator (h1 i (hsub i hi)).1.isClosed.measurableSet
 
-/-- **`lem:inner-circ`** (`06_datum.tex:332-338`): `∫ ω_{≥k+1}(t)` is independent of `t ≥ 0`;
+/-- **Part II Lemma 3.7 (`lem:inner-circ`)**: `∫ ω_{≥k+1}(t)` is independent of `t ≥ 0`;
 `2πG_kA_kr_k² = ‖Φ‖_{L¹} Σ_{i=k+1}^n A_ir_i²`; `0 ≤ G_k ≤ C_G μ s_k² ≤ C_G μ s̄²` for `1 ≤ k ≤ n`;
 and if `C_G μ s̄² ≤ G₁`, then `G_k ∈ [0, G₁]` for `1 ≤ k ≤ n` (so `P.GSmall`). -/
 theorem inner_circ (P : Approx) (hP : P.Valid) (hN : NumericalHypothesis P.χ) :

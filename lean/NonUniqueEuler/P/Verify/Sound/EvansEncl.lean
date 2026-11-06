@@ -5,11 +5,11 @@ import NonUniqueEuler.I.Verify.Sound.EndBoxes
 import NonUniqueEuler.I.Evans.ODE
 
 /-!
-# Proof: Proposition A.3 (`prop:enclosure`), the soundness of `evansEncl`
+# Proof: Part II Proposition A.3 (`prop:enclosure`), the soundness of `evansEncl`
 
 Proof of the interface `I/Verify/Sound/EvansEncl.lean` (same declarations, same statements).
 
-**Manuscript.** Proposition A.3 and its proof (`A_verification.tex:339-455`).
+**Manuscript.** Part II Proposition A.3 and its proof (`prop:enclosure`).
 
 The proof is an assembly of the stage lemmas: unfold `evansEncl`, split its guards, and chain
 * `evansEncl_re_pos` (`Re λ > 0`), `exists_global_evansSolution` (`I/Evans/ODE`);
@@ -35,7 +35,7 @@ private theorem isFin_of_leDy_evansEncl {U : UB} {c : Dy} (h : U.leDy c = true) 
   | inf => simp [UB.leDy] at h
   | fin m e => rfl
 
-/-- **Proposition A.3** for a sound grid: if `evansEncl` returns a box `B` for the `λ`-box `lam`
+/-- **Part II Proposition A.3** for a sound grid: if `evansEncl` returns a box `B` for the `λ`-box `lam`
 and the `G`-ball `Gb`, then `B` contains `E_ℓ(λ; G)` for every `λ ∈ lam` and every real
 `G ∈ Gb`. -/
 theorem evansEncl_sound_of_gridSound {p ℓ : ℕ} (hℓ : 1 ≤ ℓ) {χ : ℝ → ℝ}
@@ -78,7 +78,7 @@ theorem evansEncl_sound_of_gridSound {p ℓ : ℕ} (hℓ : 1 ≤ ℓ) {χ : ℝ 
             · simp at h
     · simp at h
 
-/-- **Proposition A.3** (`prop:enclosure`): if `evansEncl` on the grid `Grid.build q hpow N`
+/-- **Part II Proposition A.3** (`prop:enclosure`): if `evansEncl` on the grid `Grid.build q hpow N`
 (`N ≥ 1`) returns a box `B` for the `λ`-box `lam` and the `G`-ball `Gb`, then
 `E_ℓ(λ; G) ∈ B` for every `λ ∈ lam`, every real `G ∈ Gb` and every admissible cutoff `χ`. -/
 theorem evansEncl_sound {p q hpow N ℓ : ℕ} (hN : 1 ≤ N) (hℓ : 1 ≤ ℓ) {χ : ℝ → ℝ}

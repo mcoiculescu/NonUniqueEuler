@@ -4,14 +4,20 @@ import NonUniqueEuler.I.Infra.Continuity.Bootstrap
 /-!
 # Proof: `lem:O` (the quiet outer rings stay below ring `j`)
 
-Proof of `I/Sec9/O.lean` (`09_relay.tex:264-387`). The steps:
-* `OProof.bootstrap_eps` (`09_relay.tex:300-357`): for the regularized majorant
+Current counterpart: Part II Lemma C.8 (`lem:O`), Appendix C.6 (`sec:proof-O`).
+The formal statement uses separate velocity constants and allows a zero
+endpoint; the current statement uses the common `C_vel` and a positive
+physical endpoint. The generic Duhamel comparisons used in this proof are now
+Equations (38)–(40) (`eq:O-duh`, `eq:O-fast`, `eq:O-same`) in Appendix C.5.
+
+Proof of `I/Sec9/O.lean` (`lem:O`, Part II Lemma C.8). The steps:
+* `OProof.bootstrap_eps` (`lem:O`, Part II Lemma C.8): for the regularized majorant
   `maj^ε_j = maj_j + εe^{σ_j·}`, `0 < ε ≤ maj_*e^{-σ_jτ}`, the continuity argument
   (`Continuity.bootstrap_le`, the quantities `maj_i(A_i·)`, `i < j`) with the improvement step
   `OProof.improve` (`eq:O-improved`) gives `maj_i(A_it) ≤ (1/4)P̃_{i,j}maj^ε_j(A_jt)` on
   `[0, τ/A_j]`;
-* `OProof.quarter_bound` (`09_relay.tex:362-366`): `ε → 0`;
-* `OProof.etaOut_bound` (`09_relay.tex:367-387`): `lem:transfer-step`(2) at level `j`, `eq:O-Q`
+* `OProof.quarter_bound` (`lem:O`, Part II Lemma C.8): `ε → 0`;
+* `OProof.etaOut_bound` (`lem:O`, Part II Lemma C.8): `lem:transfer-step`(2) at level `j`, `eq:O-Q`
   and the quarter bound give `η^out_j ≤ (1/3)C_OC_QK_Os_{j-1}^{2m}maj_j ≤ θ_jmaj_j`;
 * the hypotheses and conclusions of `thm:quiet` for the rings `i ≤ j` (`OProof.quietHyp_of`,
   `quiet_ring`).
@@ -52,7 +58,7 @@ theorem maj_zero (S : Standing) (k : ℕ) : S.maj k 0 = 0 := by
   show (∫ v in (0 : ℝ)..0, Real.exp (S.P.sigma k * (0 - v)) * S.P.eta S.Mh k v) = 0
   exact intervalIntegral.integral_same
 
-/-- **The continuity argument of `lem:O`** (`09_relay.tex:300-357`) for the regularized
+/-- **The continuity argument of `lem:O`** (`lem:O`, Part II Lemma C.8) for the regularized
 majorant `maj^ε_j = maj_j + εe^{σ_j·}`, `0 < ε ≤ maj_*e^{-σ_jτ}`: for `t ∈ [0, τ/A_j]` and
 `i < j`, `maj_i(A_it) ≤ (1/4)P̃_{i,j}maj^ε_j(A_jt)` (`eq:O-improved` on the whole interval). -/
 theorem bootstrap_eps (S : Standing) (hS : S.Holds) (hDet : S.Det) {j : ℕ} {τ : ℝ}
@@ -105,7 +111,7 @@ theorem bootstrap_eps (S : Standing) (hS : S.Holds) (hDet : S.Det) {j : ℕ} {τ
   intro t ht i hi
   exact key t ht ⟨i, hi⟩
 
-/-- **`ε → 0`** (`09_relay.tex:362-366`): for `t ∈ [0, τ/A_j]` and `i < j`,
+/-- **`ε → 0`** (`lem:O`, Part II Lemma C.8): for `t ∈ [0, τ/A_j]` and `i < j`,
 `maj_i(A_it) ≤ (1/4)P̃_{i,j}maj_j(A_jt)`. -/
 theorem quarter_bound (S : Standing) (hS : S.Holds) (hDet : S.Det) {j : ℕ} {τ : ℝ}
     (h : S.OHyp j τ) : ∀ t ∈ Icc (0 : ℝ) (τ / S.P.A j), ∀ i ∈ Finset.Ico 1 j,
@@ -126,7 +132,7 @@ theorem quarter_bound (S : Standing) (hS : S.Holds) (hDet : S.Det) {j : ℕ} {τ
           ε * (1 / 4 * S.Ptil i j * Real.exp (S.P.sigma j * (S.P.A j * t))) := by ring
 
 /-- `maj_l(A_ls) ≤ maj_*` for `s ∈ [0, τ/A_j]` and `1 ≤ l ≤ j`, from the quarter bound and
-`P̃_{l,j} ≤ 1/2` (`09_relay.tex:310-312`). -/
+`P̃_{l,j} ≤ 1/2` (`lem:O`, Part II Lemma C.8). -/
 theorem maj_le_majst (S : Standing) (hS : S.Holds) (hDet : S.Det) {j : ℕ} {τ : ℝ}
     (h : S.OHyp j τ) {s : ℝ} (hs : s ∈ Icc (0 : ℝ) (τ / S.P.A j)) {l : ℕ}
     (hl : l ∈ Finset.Icc 1 j) : S.maj l (S.P.A l * s) ≤ S.majst := by
@@ -151,7 +157,7 @@ theorem maj_le_majst (S : Standing) (hS : S.Holds) (hDet : S.Det) {j : ℕ} {τ 
     exact hmj
 
 /-- **`thm:quiet` for the rings `l ≤ j`** on `[0, A_lt]`, `t ∈ [0, τ/A_j]`
-(`09_relay.tex:310-322`, `:384-387`). -/
+(`lem:O`, Part II Lemma C.8). -/
 theorem quiet_all (S : Standing) (hS : S.Holds) (hDet : S.Det) {j : ℕ} {τ : ℝ}
     (h : S.OHyp j τ) {t : ℝ} (ht : t ∈ Icc (0 : ℝ) (τ / S.P.A j)) {l : ℕ}
     (hl : l ∈ Finset.Icc 1 j) :
@@ -161,7 +167,7 @@ theorem quiet_all (S : Standing) (hS : S.Holds) (hDet : S.Det) {j : ℕ} {τ : �
   exact ⟨hq, quiet_ring S hS hq⟩
 
 /-- `b_{l,j}P̃_{l,j} ≤ K_Os_{j-1}^{2m}(K_Os̄^{2m})^{j-1-l}` for `1 ≤ l < j`
-(`09_relay.tex:338-343`, `:370-376`). -/
+(`lem:O`, Part II Lemma C.8). -/
 theorem b_mul_Ptil_le (S : Standing) (hS : S.Holds) {l j : ℕ} (hl : 1 ≤ l) (hlj : l < j) :
     S.P.b l j * S.Ptil l j ≤
       S.KO * S.P.s (j - 1) ^ 6 * (S.KO * S.P.sbar ^ 6) ^ (j - 1 - l) := by
@@ -181,7 +187,7 @@ theorem b_mul_Ptil_le (S : Standing) (hS : S.Holds) {l j : ℕ} (hl : 1 ≤ l) (
         mul_le_mul_of_nonneg_right h1 hq
     _ = _ := by ring
 
-/-- **The outer field of ring `j`** (`09_relay.tex:367-387`): for `t ∈ [0, τ/A_j]`,
+/-- **The outer field of ring `j`** (`lem:O`, Part II Lemma C.8): for `t ∈ [0, τ/A_j]`,
 `η^out_j(A_jt) ≤ θ_jmaj_j(A_jt)`. -/
 theorem etaOut_bound (S : Standing) (hS : S.Holds) (hDet : S.Det) {j : ℕ} {τ : ℝ}
     (h : S.OHyp j τ) {t : ℝ} (ht : t ∈ Icc (0 : ℝ) (τ / S.P.A j)) :
@@ -253,7 +259,7 @@ theorem etaOut_bound (S : Standing) (hS : S.Holds) (hDet : S.Det) {j : ℕ} {τ 
 
 end OProof
 
-/-- **`lem:O`** (`09_relay.tex:228-250`): under (SA), (Det) and the hypotheses `S.OHyp j τ`
+/-- **`lem:O`** (`lem:O`, Part II Lemma C.8): under (SA), (Det) and the hypotheses `S.OHyp j τ`
 (`1 ≤ j < n`, clock up to `j+1`, `τ ∈ [0, t̄♯_j]`, the geometric hypotheses and `η_i ≤ 1` for the rings
 `i ≤ j` on `[0, τ/A_j]`, `maj_j ≤ maj_*` on `[0,τ]`, the smallness conditions `S.OSmall`), the
 conclusions `S.OConcl j τ` hold: `maj_i(A_it) ≤ (3/4)P̃_{i,j}maj_j(A_jt)` for `i < j`,

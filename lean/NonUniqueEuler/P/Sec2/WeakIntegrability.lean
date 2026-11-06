@@ -16,7 +16,7 @@ import Mathlib.MeasureTheory.Function.L1Space.Integrable
 /-!
 # Proof: the integrals of the weak formulation converge (the remark after `def:weak`)
 
-Proof of `I/Sec2/WeakIntegrability.lean` (`02_prelim.tex:545-550`). Same declarations, same
+Proof of `I/Sec2/WeakIntegrability.lean` (the integrability remark after Part I, Definition 2.5 (`def:weak`)). Same declarations, same
 statements.
 
 * `ae_ae_integrable_velocity_of_memX`: `lem:BS-basic`(e) (`BS.ae_integrable_biotSavart_of_L1`)
@@ -194,7 +194,7 @@ theorem ae_ae_integrable_velocity_of_memX {q T : ℝ} {ω : ℝ → ℂ → ℝ}
   filter_upwards [hM] with t ht
   exact BS.ae_integrable_biotSavart_of_L1 ht.1
 
-/-- `02_prelim.tex:548-550`: for `4/3 < q < ∞` there is `C = C(q)` such that, whenever
+/-- The integrability remark after Part I, Definition 2.5 (`def:weak`): for `4/3 < q < ∞` there is `C = C(q)` such that, whenever
 `‖ω(t)‖_{L¹∩L^q} ≤ M` for a.e. `t ∈ (0,T)`, also `∫ |ω(t)| (|K| ∗ |ω(t)|) dx ≤ C M²` for a.e.
 `t ∈ (0,T)` (in particular `‖ω(t) v(t)‖_{L¹} ≤ C M²`). -/
 theorem exists_bound_convAbs_of_memX {q : ℝ} (hq : 4 / 3 < q) :
@@ -265,7 +265,7 @@ end WeakInt
 -- `hT` is part of the interface statement; the proof does not need it (the slab is empty for
 -- `T ≤ 0`).
 set_option linter.unusedVariables false in
-/-- `02_prelim.tex:545-547`: for `ω ∈ X_q(T)`, `4/3 < q`, and every test function `φ ∈ 𝒟_T`, the
+/-- The integrability remark after Part I, Definition 2.5 (`def:weak`): for `ω ∈ X_q(T)`, `4/3 < q`, and every test function `φ ∈ 𝒟_T`, the
 integrands `ω (∂_tφ + v·∇φ)` and `Υ(ω) (∂_tφ + v·∇φ)` (`Υ` a renormalization) of `(eq:weak)` and
 `(eq:renorm)` are integrable on `(0,T) × ℝ²`. -/
 theorem integrableOn_transportIntegrand_of_memX {q T : ℝ} (hq : 4 / 3 < q) (hT : 0 < T)

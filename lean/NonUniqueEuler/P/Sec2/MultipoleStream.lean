@@ -6,8 +6,10 @@ import Mathlib.MeasureTheory.Function.SpecialFunctions.Basic
 /-!
 # Proof: the multipole coefficients and the angular sectors of the stream function
 
-Proof of `I/Sec2/MultipoleStream.lean` (manuscript `02_prelim.tex:460-468`, the paragraph after
-`def:multipole`). Both identities are the I-MULT lemmas
+Proof of `I/Sec2/MultipoleStream.lean`: the stream expansions after Part I,
+Definition 2.3 (`def:multipole`); the exterior mode is also Part II, Lemma 1.6
+(`lem:exterior-mode`). The Lean identities allow complex `g`, whereas the current manuscript's
+stream expansions and Lemma 1.6 are stated for real `g`. Both identities are the I-MULT lemmas
 `Multipole.angularSector_logPotential_exterior_pos` (with `ρ = ρ₂`) and
 `Multipole.angularSector_logPotential_interior_pos` (with `ρ = ρ₁`), rewritten with the bridges
 `BS.pout_eq_conjMoment`, `BS.pin_eq_moment`. The interior identity needs the integrability of
@@ -49,7 +51,7 @@ private theorem integrable_log_norm_mul_of_annulus {g : ℂ → ℂ} (hg : Integ
       exact hgy (hy (Or.inr (lt_of_not_ge h)))
     exact mul_le_mul_of_nonneg_right (abs_log_le_of_annulus hρ₁ h₁ h₂) (norm_nonneg _)
 
-/-- Exterior sectors (`02_prelim.tex:465-466`): for `r > ρ₂` the angular sector `m` of the
+/-- Exterior sectors (the complex-valued extension of Part II, Lemma 1.6 (`lem:exterior-mode`)): for `r > ρ₂` the angular sector `m` of the
 stream function of `g` is `-(2m)⁻¹ pout_m[g] r^{-m}`. -/
 theorem angularSector_stream_exterior {m : ℕ} (hm : 1 ≤ m) {g : ℂ → ℂ} (hg : Integrable g volume)
     {ρ₁ ρ₂ : ℝ} (hρ₁ : 0 < ρ₁) (hρ₁₂ : ρ₁ ≤ ρ₂)
@@ -61,7 +63,7 @@ theorem angularSector_stream_exterior {m : ℕ} (hm : 1 ≤ m) {g : ℂ → ℂ}
   rw [Multipole.angularSector_logPotential_exterior_pos hg (hρ₁.le.trans hρ₁₂) hsupp' hm hr,
     pout_eq_conjMoment, div_eq_mul_inv]
 
-/-- Interior sectors (`02_prelim.tex:466-467`): for `0 < r < ρ₁` the angular sector `m` of the
+/-- Interior sectors (the discussion after Part I, Definition 2.3 (`def:multipole`)): for `0 < r < ρ₁` the angular sector `m` of the
 stream function of `g` is `-(2m)⁻¹ pin_m[g] r^m`. -/
 theorem angularSector_stream_interior {m : ℕ} (hm : 1 ≤ m) {g : ℂ → ℂ} (hg : Integrable g volume)
     {ρ₁ ρ₂ : ℝ} (hρ₁ : 0 < ρ₁) (hρ₁₂ : ρ₁ ≤ ρ₂)

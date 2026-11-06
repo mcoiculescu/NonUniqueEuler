@@ -4,7 +4,7 @@ import Mathlib.Topology.Order.OrderClosed
 /-!
 # Helper for `lem:grad-bound`: the limit `a → δ` and the choice of `δ`
 
-Helper of `P/SmoothB/GradBound.lean` (`B_global_smooth.tex:144-147`). Pure real-number facts:
+Helper of `P/SmoothB/GradBound.lean` (Part II, Lemma B.3 (`lem:grad-bound`)). Pure real-number facts:
 * `le_of_forall_cutoff`: a bound `X ≤ δN + A + A log(1/a) + L` for every `a ∈ (0, δ)` gives the
   same bound at `a = δ` (the cutoff of `Core.lean` tends to the sharp cut at `δ`);
 * `le_of_forall_delta`: the bound `X ≤ δN + A(1 + log(1/δ)) + L` for every `δ ∈ (0, 1]` gives
@@ -30,7 +30,7 @@ theorem le_of_forall_cutoff {X N A L δ : ℝ} (hδ : 0 < δ)
   refine ge_of_tendsto ht ?_
   filter_upwards [Ioo_mem_nhdsLT hδ] with a ha using h a ha.1 ha.2
 
-/-- The choice `δ = min(1, A/N)` (`B_global_smooth.tex:146-147`). -/
+/-- The choice `δ = min(1, A/N)` (Part II, Lemma B.3 (`lem:grad-bound`)). -/
 theorem le_of_forall_delta {X N A L : ℝ} (hA : 0 < A)
     (h : ∀ δ, 0 < δ → δ ≤ 1 → X ≤ δ * N + A + A * Real.log (1 / δ) + L) :
     X ≤ A * (2 + Real.posLog (N / A)) + L := by

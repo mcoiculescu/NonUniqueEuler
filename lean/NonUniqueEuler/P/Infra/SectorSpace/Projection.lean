@@ -9,8 +9,10 @@ import NonUniqueEuler.H.Infra.SectorSpace.Projection.Basic
 /-!
 # Proof: the sector projections on `Y^s(K)` (library I-SECT)
 
-Proof of `I/Infra/SectorSpace/Projection.lean` (`04_ring.tex:181-185`, with the norm bound
-corrected to `2^s`, see `I/Infra/Sobolev/Symmetry.lean`).
+Proof of `I/Infra/SectorSpace/Projection.lean` (Part I, the mode-profile discussion
+following Definition 4.3, `def:sector-setting`). The current manuscript gives
+a bound `C_s` and explicitly excludes an isometry claim for `s ≥ 2`. Lean
+uses the concrete bound `2^s`; see `I/Infra/Sobolev/Symmetry.lean`.
 
 The operator `w ↦ toHk s (P_ℓ w.fn)` lands in `Y^s_ℓ(K)` (`Sob.MemH.sectorProj`,
 `Ang.sectorProj_eq_zero_outside`, `Ang.sectorProj_rot`), is linear (a.e. linearity of `P_ℓ` on

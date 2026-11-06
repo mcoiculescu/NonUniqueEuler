@@ -9,7 +9,7 @@ import Mathlib.LinearAlgebra.Complex.FiniteDimensional
 # Helpers for `lem:velocity`(b): weak convergence of the vorticity
 
 Helper file of `P/Sec2/Velocity.lean` (namespace `NonUniqueEuler.BS.VelH`), following
-`02_prelim.tex:345-374`. For `0 < ε ≤ L` the kernel splits as
+Part I, Lemma 2.2 (`lem:velocity`). For `0 < ε ≤ L` the kernel splits as
 `K = 1_{B_ε} K + 1_{B_L ∖ B_ε} K + 1_{ℝ²∖B_L} K` (`kBall`, `kAnn`, `kOut`):
 
 * the small-ball part is handled by Young's inequality and `‖1_{B_ε} K‖_{L^{s_p}} → 0`

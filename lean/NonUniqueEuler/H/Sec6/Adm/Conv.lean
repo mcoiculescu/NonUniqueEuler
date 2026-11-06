@@ -3,7 +3,7 @@ import NonUniqueEuler.H.Sec6.Adm.Basic
 /-!
 # Helpers for `lem:adm`: `f^{(n)} → f` in `L^q`
 
-Helper of `P/Sec6/Adm.lean`, second paragraph of the proof of `lem:adm` (`06_datum.tex:101-113`).
+Helper of `P/Sec6/Adm.lean`, second paragraph of the proof of Part II Lemma 3.4 (`lem:adm`).
 
 Write `T_k = A_k Φ(·/r_k)`, `S_n = Σ_{k ≤ n} T_k`, `U_n = A_n Φ^κ(·/r_n)` and
 `g_m = 1_{B̄_{r_m}} f`. Then (pointwise, `n ≥ 1`)
@@ -121,7 +121,7 @@ theorem approxDatum_eq {n : ℕ} (hn : 1 ≤ n) (x : ℂ) :
   rw [e]
   ring
 
-/-- **`f^{(n)} → f` in `L^q`** for every `q ∈ [1, ∞)` (`06_datum.tex:101-113`). -/
+/-- **`f^{(n)} → f` in `L^q`** for every `q ∈ [1, ∞)` (Part II Lemma 3.4 (`lem:adm`)). -/
 theorem tendsto_eLpNorm_approxDatum_sub (hR : RingFacts χ) (hp : DatumParams A₁ μ sbar)
     (hdisj : ∀ (x : ℂ) (j l : ℕ), j ≠ l → ringPhi χ (x / ((radius sbar μ (j + 1) : ℝ) : ℂ)) ≠ 0 →
       ringPhi χ (x / ((radius sbar μ (l + 1) : ℝ) : ℂ)) = 0)

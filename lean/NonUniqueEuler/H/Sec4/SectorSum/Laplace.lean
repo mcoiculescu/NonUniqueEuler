@@ -6,9 +6,9 @@ import Mathlib.MeasureTheory.Integral.IntegralEqImproper
 import Mathlib.MeasureTheory.Integral.ExpDecay
 
 /-!
-# Helper for `lem:sector-sum`(2): the resolvent as a Laplace transform
+# Helper for Part I Lemma 4.16(2) (`lem:sector-sum`): the resolvent as a Laplace transform
 
-Generic Banach-algebra fact (`04_ring.tex:1087-1093`): if a bounded operator `A` on a complex
+Generic Banach-algebra fact (proof of Part I Lemma 4.16 (`lem:sector-sum`)): if a bounded operator `A` on a complex
 Banach space satisfies `‖exp(tA)‖ ≤ C e^{γt}` for `t ≥ 0`, then every `z` with `Re z > γ` lies in
 the resolvent set of `A`, and `‖(z - A)⁻¹‖ ≤ C/(Re z - γ)`.
 

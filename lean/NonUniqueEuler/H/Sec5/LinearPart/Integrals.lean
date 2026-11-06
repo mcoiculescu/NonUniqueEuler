@@ -6,7 +6,7 @@ import Mathlib.Analysis.SpecialFunctions.ExpDeriv
 # Helpers for `lem:linear-part`: the elementary integrals
 
 Helper of `P/Sec5/LinearPart.lean` (fully proved). Namespace
-`NonUniqueEuler.OneRing.LinearPartH`. Manuscript `05_single_ring.tex:646-649`:
+`NonUniqueEuler.OneRing.LinearPartH`. Manuscript Part II Lemma 2.10:
 `∫₀ᵘ e^{σ'(u-v)}⟨v⟩^p dv ≤ ⟨u⟩^pe^{σ'u}/σ'` and
 `∫₀ᵘ e^{σ'(u-v)}e^{σv} dv ≤ e^{σu}/(σ - σ') ≤ e^{σu}/(σ_b - σ')`.
 
@@ -61,7 +61,7 @@ theorem integral_exp_mul {c : ℝ} (hc : c ≠ 0) (u : ℝ) :
     ring
   · exact (by fun_prop : Continuous fun v => Real.exp (c * v)).intervalIntegrable _ _
 
-/-- The pointwise bound of the Duhamel integrand (`05_single_ring.tex:646-649`). -/
+/-- The pointwise bound of the Duhamel integrand (Part II Lemma 2.10 (`lem:linear-part`)). -/
 theorem pointwise_bound {σ' σ u v A E : ℝ} (p : ℕ) (hv : 0 ≤ v) (hvu : v ≤ u) (hA : 0 ≤ A) :
     Real.exp (σ' * (u - v)) * (A * Prelim.jap v ^ p + E * Real.exp (σ * v)) ≤
       A * Prelim.jap u ^ p * Real.exp (σ' * (u - v)) +
@@ -85,7 +85,7 @@ theorem pointwise_bound {σ' σ u v A E : ℝ} (p : ℕ) (hv : 0 ≤ v) (hvu : v
         rw [he]
         linarith
 
-/-- The integral of the majorant of `pointwise_bound` (`05_single_ring.tex:646-649`): for
+/-- The integral of the majorant of `pointwise_bound` (Part II Lemma 2.10 (`lem:linear-part`)): for
 `0 < σ' < σ_b ≤ σ`, `0 ≤ u`, `A, E ≥ 0`,
 `∫₀ᵘ (A⟨u⟩^pe^{σ'(u-v)} + E e^{σ'u}e^{(σ-σ')v}) dv ≤ A⟨u⟩^pe^{σ'u}/σ' + E e^{σu}/(σ_b - σ')`. -/
 theorem scalar_bound {σ' σb σ u A E : ℝ} (p : ℕ) (h1 : 0 < σ') (h2 : σ' < σb) (h3 : σb ≤ σ)

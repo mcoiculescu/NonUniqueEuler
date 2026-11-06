@@ -4,14 +4,16 @@ import Mathlib.Analysis.Normed.Group.Bounded
 import Mathlib.Order.Filter.ENNReal
 
 /-!
-# Proof of `I/Sec3/Equiv.lean`: `prop:equiv`, (d) ⇒ (a) and (a) ⇒ (e)
+# Proof of `I/Sec3/Equiv.lean`: legacy `prop:equiv`, (d) ⇒ (a) and (a) ⇒ (e)
 
-Manuscript: `prop:equiv`, `03_compactness.tex:1079-1097`, proof `03_compactness.tex:1099-1128`.
+These implications retain the legacy `prop:equiv` decomposition. There is no current
+standalone equivalence proposition. The related current criterion and moment argument
+are Part I Theorem 3.8 (`thm:criterion`) and Corollary 3.9 (`cor:defect`).
 
-* (d) ⇒ (a) (`03_compactness.tex:1111-1112`): `|∫ g ψ| ≤ ‖ψ‖_{L^∞} ‖g‖_{L¹}` for every `n`, `t`
+* (d) ⇒ (a): `|∫ g ψ| ≤ ‖ψ‖_{L^∞} ‖g‖_{L¹}` for every `n`, `t`
   (`pairing_le`), hence `defectPairing T ωs f ψ ≤ C · defectLp 1 T ωs f`
   (`defectPairing_le_mul_defectLp`) with `C = sup |ψ| < ∞`.
-* (a) ⇒ (e) (`03_compactness.tex:1101-1103`): `thm:criterion` (`I/Sec3/Criterion.lean`), fields
+* (a) ⇒ (e): `thm:criterion` (`I/Sec3/Criterion.lean`), fields
   (i), the weak continuity, (iv) and (v) (`𝒪 ∩ (0, T] ≠ ∅`).
 -/
 
@@ -52,9 +54,9 @@ private theorem defectPairing_le_mul_defectLp {T : ℝ} {ωs : ℕ → ℝ → �
         gcongr
         exact eLpNorm_le_supDist (ω₁ := ωs n) (ω₂ := stationary f) ht
 
--- The hypotheses of `prop:equiv` other than (d) are not needed for this implication.
+-- The hypotheses of legacy `prop:equiv` other than (d) are not needed for this implication.
 set_option linter.unusedVariables false in
-/-- **`prop:equiv`, (d) ⇒ (a)** (`03_compactness.tex:1111-1112`): if some real `ψ ∈ C_c^∞(ℝ²)` has
+/-- **legacy `prop:equiv`, (d) ⇒ (a)** (legacy implication; current criterion and moment arguments cited above): if some real `ψ ∈ C_c^∞(ℝ²)` has
 `limsup_n sup_{t≤T} |∫ (ω⁽ⁿ⁾(t) - f) ψ| > 0`, then
 `limsup_n sup_{t≤T} ‖ω⁽ⁿ⁾(t) - f‖_{L¹} > 0`. -/
 theorem equiv_d_imp_a {T₀ : ℝ≥0∞} {T : ℝ} {f : ℂ → ℝ} {fs : ℕ → ℂ → ℝ}
@@ -69,7 +71,7 @@ theorem equiv_d_imp_a {T₀ : ℝ≥0∞} {T : ℝ} {f : ℂ → ℝ} {fs : ℕ 
   rw [h0, mul_zero] at hle
   exact (lt_of_lt_of_le hpos hle).false
 
-/-- **`prop:equiv`, (a) ⇒ (e)** (`03_compactness.tex:1101-1103`, from `thm:criterion`): if
+/-- **legacy `prop:equiv`, (a) ⇒ (e)** (legacy implication; current criterion and moment arguments cited above, from `thm:criterion`): if
 `limsup_n sup_{t≤T} ‖ω⁽ⁿ⁾(t) - f‖_{L¹} > 0`, then some subsequence converges in the sense of
 `thm:criterion`(iv) to a renormalized weak solution `ω_∞` on `[0, T₀)` with datum `f` such that
 `ω_∞(t) ≠ f` for some `t ∈ (0, T]`. -/

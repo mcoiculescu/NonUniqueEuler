@@ -6,7 +6,7 @@ import Mathlib.MeasureTheory.Group.Integral
 /-!
 # Helper for `lem:embed` (E2): the fundamental theorem of calculus on lines, and Fubini
 
-Helper of `P/Infra/Sobolev/EmbedLinf.lean` (manuscript `02_prelim.tex:604-606, 624-630`).
+Helper of `P/Infra/Sobolev/EmbedLinf.lean` (manuscript Part II, Lemma 1.9(E2) (`lem:embed`), proof).
 
 * `integral_Iic_fderiv_line`: for `H : ℂ → E` of class `C¹` with compact support and `v ≠ 0`,
   `H x = ∫_{t ≤ 0} DH(x + t v) v dt`;

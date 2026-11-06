@@ -4,11 +4,11 @@ import NonUniqueEuler.I.Verify.Comparison
 import Mathlib.Analysis.SpecialFunctions.Exponential
 
 /-!
-# Proof: Lemma A.1(2) in the form used by steps (ii) and (iv) of the enclosure procedure
+# Proof: Part II Lemma A.1(2) in the form used by steps (ii) and (iv) of the enclosure procedure
 
 Proof of `NonUniqueEuler/I/Verify/EndRegionCorollaries.lean` (same declarations, statements
-copied verbatim). Manuscript: proof of Proposition A.3, steps (ii) and (iv)
-(`A_verification.tex:385-392`, `:436-447`).
+copied verbatim). Manuscript: proof of Part II Proposition A.3, steps (ii) and (iv)
+(`prop:enclosure`).
 
 Used black boxes: `endRegion_comparison` (`I/Verify/EndRegions.lean`), `cmpSol_one_ell` and
 `cmpSol'_add_mul_cmpSol` (`I/Verify/Comparison.lean`).

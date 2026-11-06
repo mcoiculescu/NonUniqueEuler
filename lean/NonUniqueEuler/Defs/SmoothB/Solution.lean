@@ -5,8 +5,8 @@ import NonUniqueEuler.Defs.SmoothB.Flow
 /-!
 # Global smooth solutions (`thm:smooth`): the solution class and `Smooth.sol`
 
-Definitions for Theorem `thm:smooth` (`02_prelim.tex:553-595`, proved in
-Appendix B, `B_global_smooth.tex:493-566`).
+Definitions for Part II, Theorem 1.8 (`thm:smooth`), proved in Appendix B, §B.5
+(`app:smooth`).
 
 * `Amax ω₀ = ‖ω₀‖_{L^∞}`, `l1 ω₀ = ‖ω₀‖_{L¹}`, `Ustar ω₀ = (2‖ω₀‖_{L^∞}‖ω₀‖_{L¹}/π)^{1/2}`, and
   `suppRadius ω₀ R₀ t = R(t) = R₀ + U_* |t|` (thm:smooth(1));
@@ -20,7 +20,7 @@ Appendix B, `B_global_smooth.tex:493-566`).
 * `sol ω₀`: the solution, chosen by `Classical.choose` among the `ω` with `IsSmoothSolAll ω₀ ω`
   (junk `0` if none; for `IsSmoothDatum ω₀ R₀` existence and uniqueness are `thm:smooth`);
 * `vel ω₀ = K_BS ∗ sol ω₀`, `flow ω₀ t = Φ_t = Φ_v(t, 0, ·)` and `flowInv ω₀ t = Φ_t⁻¹ =
-  Φ_v(0, t, ·)` (thm:smooth(4); `B_global_smooth.tex:522-526`);
+  Φ_v(0, t, ·)` (thm:smooth(4); Part II, §B.5, proof of Theorem 1.8 (`thm:smooth`));
 * `IsC1SolOn I ω₀ ω̃`: the class of thm:smooth(5) (`C¹(I × ℝ²)` solutions with locally bounded
   support).
 
@@ -39,7 +39,7 @@ open scoped ENNReal
 
 namespace NonUniqueEuler.Smooth
 
-/-- `A = ‖ω₀‖_{L^∞}` (`B_global_smooth.tex:186`; `‖ω₀‖_{L^∞}` in thm:smooth(1)). -/
+/-- `A = ‖ω₀‖_{L^∞}` (Part II, §B.3, before Definition B.5 (`def:iterates`); `‖ω₀‖_{L^∞}` in thm:smooth(1)). -/
 def Amax (ω₀ : ℂ → ℝ) : ℝ :=
   (eLpNorm ω₀ ⊤ volume).toReal
 
@@ -47,24 +47,25 @@ def Amax (ω₀ : ℂ → ℝ) : ℝ :=
 def l1 (ω₀ : ℂ → ℝ) : ℝ :=
   (eLpNorm ω₀ 1 volume).toReal
 
-/-- `U_* = (2A‖ω₀‖_{L¹}/π)^{1/2}` (`B_global_smooth.tex:187`), the speed bound
+/-- `U_* = (2A‖ω₀‖_{L¹}/π)^{1/2}` (Part II, §B.3, before Definition B.5 (`def:iterates`)), the speed bound
 `|v| ≤ U_*` (`lem:iterates`(iii)). -/
 def Ustar (ω₀ : ℂ → ℝ) : ℝ :=
   Real.sqrt (2 * Amax ω₀ * l1 ω₀ / Real.pi)
 
 /-- The support radius `R(t) = R₀ + (2‖ω₀‖_{L^∞}‖ω₀‖_{L¹}/π)^{1/2} |t| = R₀ + U_* |t|` of
-thm:smooth(1) (`02_prelim.tex:566-567`, `B_global_smooth.tex:193`). -/
+Part II, Theorem 1.8(1) (`thm:smooth`); also used in §B.3 before Definition B.5
+(`def:iterates`). -/
 def suppRadius (ω₀ : ℂ → ℝ) (R₀ t : ℝ) : ℝ :=
   R₀ + Ustar ω₀ * |t|
 
-/-- The hypotheses on the datum in thm:smooth (`02_prelim.tex:563`): `ω₀ ∈ C_c^∞(ℝ²)` is real
+/-- The hypotheses on the datum in Part II, Theorem 1.8 (`thm:smooth`): `ω₀ ∈ C_c^∞(ℝ²)` is real
 (by its type) with `supp ω₀ ⊂ B_{R₀}`. Compactness of the support follows
 (`IsSmoothDatum.hasCompactSupport`). -/
 structure IsSmoothDatum (ω₀ : ℂ → ℝ) (R₀ : ℝ) : Prop where
   contDiff : ContDiff ℝ ((⊤ : ℕ∞) : WithTop ℕ∞) ω₀
   tsupport_subset : tsupport ω₀ ⊆ ball 0 R₀
 
-/-- Properties (2)–(3) of thm:smooth (`02_prelim.tex:568-570`) together with `ω ∈ C^∞(ℝ × ℝ²)`:
+/-- Properties (2)–(3) of Part II, Theorem 1.8 (`thm:smooth`) together with `ω ∈ C^∞(ℝ × ℝ²)`:
 `v = K_BS ∗ ω ∈ C^∞(ℝ × ℝ²)`; `v` and every derivative of `v` are bounded on `[-T, T] × ℝ²` for
 every `T > 0`; `div v = 0`; `∂_t ω + v · ∇ω = 0` on `ℝ × ℝ²`; `ω(0) = ω₀`. -/
 structure SolCore (ω₀ : ℂ → ℝ) (ω : ℝ → ℂ → ℝ) : Prop where
@@ -76,7 +77,7 @@ structure SolCore (ω₀ : ℂ → ℝ) (ω : ℝ → ℂ → ℝ) : Prop where
   transport : ∀ t x, deriv (fun s => ω s x) t + fderiv ℝ (ω t) x (velocityField ω t x) = 0
   init : ω 0 = ω₀
 
-/-- Properties (1)–(3) of thm:smooth for the radius `R₀` (`02_prelim.tex:564-570`): `SolCore`
+/-- Properties (1)–(3) of Part II, Theorem 1.8 (`thm:smooth`) for the radius `R₀`: `SolCore`
 and `supp ω(t) ⊂ B_{R(t)}` for every `t ∈ ℝ`. thm:smooth asserts that exactly one `ω` has them
 when `IsSmoothDatum ω₀ R₀`. -/
 structure IsSmoothSol (ω₀ : ℂ → ℝ) (R₀ : ℝ) (ω : ℝ → ℂ → ℝ) : Prop extends SolCore ω₀ ω where
@@ -89,7 +90,7 @@ structure IsSmoothSolAll (ω₀ : ℂ → ℝ) (ω : ℝ → ℂ → ℝ) : Prop
   tsupport_subset : ∀ R₀ : ℝ, tsupport ω₀ ⊆ ball 0 R₀ →
     ∀ t : ℝ, tsupport (ω t) ⊆ ball 0 (suppRadius ω₀ R₀ t)
 
-/-- **The global smooth solution** `ω` of thm:smooth with datum `ω₀` (`02_prelim.tex:563-570`),
+/-- **The global smooth solution** `ω` of Part II, Theorem 1.8 (`thm:smooth`), with datum `ω₀`,
 chosen among the functions with `IsSmoothSolAll ω₀`; the junk value `0` if there is none.
 For `IsSmoothDatum ω₀ R₀` the choice is the unique solution (thm:smooth, `I/SmoothB/…`). -/
 @[irreducible] def sol (ω₀ : ℂ → ℝ) : ℝ → ℂ → ℝ :=
@@ -101,16 +102,16 @@ def vel (ω₀ : ℂ → ℝ) : ℝ → ℂ → ℂ :=
   velocityField (sol ω₀)
 
 /-- The flow `Φ_t = Φ(t, ·)` of `v`: `∂_t Φ(t,y) = v(t, Φ(t,y))`, `Φ(0,y) = y`
-(thm:smooth(4), `02_prelim.tex:573-576`; `Φ(t,y) = Φ_v(t,0,y)`, `B_global_smooth.tex:522`). -/
+(Part II, Theorem 1.8(4), `thm:smooth`; `Φ(t,y) = Φ_v(t,0,y)` in its proof in §B.5). -/
 def flow (ω₀ : ℂ → ℝ) (t : ℝ) (y : ℂ) : ℂ :=
   flowOf (vel ω₀) t 0 y
 
 /-- The inverse `Φ_t⁻¹ = Φ_v(0, t, ·)` of the flow map (thm:smooth(4),
-`B_global_smooth.tex:523-524`). -/
+Part II, §B.5, proof of Theorem 1.8 (`thm:smooth`)). -/
 def flowInv (ω₀ : ℂ → ℝ) (t : ℝ) (x : ℂ) : ℂ :=
   flowOf (vel ω₀) 0 t x
 
-/-- The class of thm:smooth(5) (`02_prelim.tex:580-585`) on an interval `I ∋ 0`:
+/-- The class of Part II, Theorem 1.8(5) (`thm:smooth`) on an interval `I ∋ 0`:
 `ω̃ ∈ C¹(I × ℝ²)`, `ω̃(0) = ω₀`, `∂_t ω̃ + (K_BS ∗ ω̃) · ∇ω̃ = 0` on `I × ℝ²`, and for each compact
 subinterval `[a, b] ⊆ I` the supports of `ω̃(t)`, `t ∈ [a, b]`, lie in one disk `B_R̃`.
 The left side of the equation is the derivative of `(t, x) ↦ ω̃(t, x)` within `I × ℝ²` in the
@@ -168,7 +169,7 @@ theorem velocityField_zero : velocityField (fun _ _ => (0 : ℝ)) = fun _ _ => (
 theorem isSmoothDatum_zero (R₀ : ℝ) : IsSmoothDatum (fun _ => (0 : ℝ)) R₀ :=
   ⟨contDiff_const, by simp⟩
 
-/-- Non-vacuity: `ω ≡ 0` is the smooth solution with datum `0` (`B_global_smooth.tex:517-518`),
+/-- Non-vacuity: `ω ≡ 0` is the smooth solution with datum `0` (Part II, §B.5, proof of Theorem 1.8 (`thm:smooth`)),
 so `IsSmoothSolAll` is satisfiable and `sol_spec` applies to the zero datum. -/
 theorem isSmoothSolAll_zero : IsSmoothSolAll (fun _ => (0 : ℝ)) (fun _ _ => 0) := by
   have hv := velocityField_zero

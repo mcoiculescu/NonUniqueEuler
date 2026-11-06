@@ -7,16 +7,16 @@ import Mathlib.Topology.Instances.ENNReal.Lemmas
 import Mathlib.Topology.Order.LiminfLimsup
 
 /-!
-# Helpers for `P/Sec3/EquivRemaining.lean` (`prop:equiv`, the remaining implications)
+# Helpers for `P/Sec3/EquivRemaining.lean` (legacy `prop:equiv`, the remaining implications)
 
-Generic lemmas used in the proof of `prop:equiv` (`03_compactness.tex:1099-1128`):
+Generic lemmas used in the proof of legacy `prop:equiv` (related current treatments: Part I Theorem 3.8 (`thm:criterion`) and Corollary 3.9 (`cor:defect`)):
 
 * `lintegral_enorm_mul_le`, `enorm_integral_mul_le`: Hölder's inequality for the pairing
-  `|∫ g ψ| ≤ ‖g‖_{L^p} ‖ψ‖_{L^{p'}}` (`03_compactness.tex:1111-1112`);
+  `|∫ g ψ| ≤ ‖g‖_{L^p} ‖ψ‖_{L^{p'}}`;
 * `tendsto_of_enorm_sub_le`: real convergence from an `ℝ≥0∞` bound tending to `0`;
 * `tendsto_zero_of_limsup_eq_zero`: in `ℝ≥0∞`, `limsup uₙ = 0` gives `uₙ → 0`;
 * `tendsto_integral_mul_of_eLpNorm_one`: `L¹` convergence plus a uniform `L²` bound gives
-  weak `L²` convergence (`03_compactness.tex:1119-1121`), along any filter;
+  weak `L²` convergence, along any filter;
 * `tendsto_eLpNorm_of_tendsto_eLpNorm_sub`: `‖gᵢ - g‖_{L^p} → 0` gives `‖gᵢ‖_{L^p} → ‖g‖_{L^p}`;
 * `tendsto_iSup_of_tendsto_comap_fst`: convergence along `comap Prod.fst atTop` on `ℕ × s` is
   uniform convergence on `s`.
@@ -63,7 +63,7 @@ theorem tendsto_zero_of_limsup_eq_zero {ι : Type*} {l : Filter ι} {u : ι → 
   tendsto_of_le_liminf_of_limsup_le (zero_le) h.le
 
 /-- **`L¹` convergence plus a uniform `L²` bound gives weak `L²` convergence**
-(`03_compactness.tex:1119-1121`): if `gᵢ, g ∈ L²`, `‖gᵢ - g‖_{L¹} → 0` and eventually
+(legacy implication; current criterion and moment arguments cited above): if `gᵢ, g ∈ L²`, `‖gᵢ - g‖_{L¹} → 0` and eventually
 `‖gᵢ - g‖_{L²} ≤ M < ∞`, then `∫ gᵢ ψ → ∫ g ψ` for every `ψ ∈ L²`. Proof: approximate `ψ` in `L²`
 by a continuous compactly supported `φ` (`MemLp.exists_hasCompactSupport_eLpNorm_sub_le`); then
 `|∫ (gᵢ - g) ψ| ≤ ‖gᵢ - g‖_{L¹} ‖φ‖_{L^∞} + ‖gᵢ - g‖_{L²} ‖ψ - φ‖_{L²}`. -/

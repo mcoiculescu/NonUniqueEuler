@@ -7,9 +7,9 @@ import Mathlib.MeasureTheory.Integral.Bochner.Set
 import Mathlib.MeasureTheory.Function.LocallyIntegrable
 
 /-!
-# Helper for `lem:adjoint`: basic facts on the eigendata of a sector setting
+# Helper for Part I Lemma 4.9 (`lem:adjoint`): basic facts on the eigendata of a sector setting
 
-Helper of `P/Sec4/Adjoint.lean` (`04_ring.tex:602-651`). With `X(r) = ψ_*(log r) M_*(r)`:
+Helper of `P/Sec4/Adjoint.lean` (proof of Part I Lemma 4.9 (`lem:adjoint`)). With `X(r) = ψ_*(log r) M_*(r)`:
 * `denom_ne_zero`: `λ + iℓΩ ≠ 0` for `Re λ > 0` (`Ω` is real);
 * `psi_eq_denom_mul_X`: `ψ_*(log r) = (λ_* + iℓΩ(r)) X(r)`;
 * `kcoef_mul_X`: `k_ℓ X = g_*`;

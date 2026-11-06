@@ -1,24 +1,33 @@
 import NonUniqueEuler.Defs.Sec3.Criterion
 
 /-!
-# Section 3: the conclusions of `thm:criterion` and the conditions of `prop:equiv`
+# Part I Section 3: the conclusions of `thm:criterion` and the conditions of legacy `prop:equiv`
 
-Manuscript sources: `thm:criterion` (`03_compactness.tex:933-968`), `prop:equiv`
-(`03_compactness.tex:1079-1097`).
+The current manuscript specializes to `T₀ = ∞`. Lean retains arbitrary `T₀`,
+uniform convergence on compact time intervals in every `L^q`, `q ∈ [1,2]`,
+and signed orthogonal symmetries. Current Theorem 3.8(iv) states `L¹` convergence
+on the defect interval, and (vi) states three-fold rotational symmetry. For `q > 2`,
+Lean still requires a higher finite moment `f ∈ L^r`, `r > q` (R8), while the
+current theorem proves continuity assuming only `f ∈ L^q`.
+
+Current manuscript: Part I Theorem 3.8 (`thm:criterion`). The predicates below also retain
+the conditions of the former `prop:equiv`; that equivalence proposition is not a current
+manuscript result. Its criterion and moment applications are now treated in Theorem 3.8
+and Corollary 3.9 (`cor:defect`).
 
 * `IsCriterionLimit T₀ T f ωs φ ωinf`: the conclusions (i)–(vi) of `thm:criterion` for the
   subsequence `φ` (`n ↦ ωs (φ n)`) and the limit `ωinf` (the manuscript's `ω_∞`). The criterion
   reads `∃ φ ωinf, IsCriterionLimit T₀ T f ωs φ ωinf` (`I/Sec3/Criterion.lean`). Conventions:
   - `ωinf` is identified with its weakly continuous representative on `[0, T₀)`
-    (`weakCont`; the manuscript's `ω_∞ : [0, T₀) → L¹ ∩ L²`, `03_compactness.tex:943-944`,
-    and the convention `03_compactness.tex:238-247`);
+    (`weakCont`; the Lean path `ω_∞ : [0, T₀) → L¹ ∩ L²`, Part I Theorem 3.8 (`thm:criterion`) and its proof,
+    and the convention Part I §3.2 (`sec:weak-rep`));
   - (iii) for `q > 2` is in the form of restructuring **R8**:
     continuity into `L^q` for `q ∈ (2, r)` when `f ∈ L^r`, instead of "for `q` with `f ∈ L^q`";
   - (v): `𝒪 = departureSet T₀ ωinf f`, `t₀ = departureTime T₀ ωinf f`; "distinct elements of
     `X_q(T')`" is `DistinctInX T' …` (it does not depend on `q`), and "both are renormalized
     weak solutions with datum `f`" is stated for every `q ∈ (4/3, ∞)` with `f ∈ L^q`;
   - (vi): orthogonal maps of `ℝ²` are linear isometries `ℂ ≃ₗᵢ[ℝ] ℂ`.
-* The conditions (c), (d), (e) of `prop:equiv` (`03_compactness.tex:1086-1096`):
+* The conditions (c), (d), (e) of legacy `prop:equiv`:
   `NotDistribTendsto T ωs f` ((c): for some `t ∈ (0, T]`, `ω⁽ⁿ⁾(t) ↛ f` in `𝒟'(ℝ²)`, i.e. for
   some `ψ ∈ C_c^∞(ℝ²)` the pairings `∫ ω⁽ⁿ⁾(t) ψ` do not converge to `∫ f ψ`),
   `HasPairingDefect T ωs f` ((d)), `HasNonstationaryLimit T₀ T ωs f` ((e); the limit is
@@ -38,7 +47,7 @@ namespace NonUniqueEuler.Compact
 
 open Weak
 
-/-- The conclusions (i)–(vi) of `thm:criterion` (`03_compactness.tex:942-967`) for the
+/-- The retained Lean formulation of the conclusions (i)–(vi) of Part I Theorem 3.8 (`thm:criterion`) for the
 subsequence `φ` of the `2`-admissible sequence `ωs` and the limit `ωinf` (`ω_∞`), with
 `T ∈ (0, T₀)` the time of eq:defect. -/
 structure IsCriterionLimit (T₀ : ℝ≥0∞) (T : ℝ) (f : ℂ → ℝ) (ωs : ℕ → ℝ → ℂ → ℝ) (φ : ℕ → ℕ)
@@ -93,20 +102,20 @@ structure IsCriterionLimit (T₀ : ℝ≥0∞) (T : ℝ) (f : ℂ → ℝ) (ωs 
     (∀ n, ∀ t ∈ timeInterval T₀, IsSymmetricUnder Q ι (ωs n t)) →
     ∀ t ∈ timeInterval T₀, IsSymmetricUnder Q ι (ωinf t)
 
-/-- `prop:equiv`(c) (`03_compactness.tex:1088-1089`): there is `t ∈ (0, T]` such that `ω⁽ⁿ⁾(t)`
+/-- legacy `prop:equiv`(c) (legacy implication; current criterion and moment arguments cited above): there is `t ∈ (0, T]` such that `ω⁽ⁿ⁾(t)`
 does not converge to `f` in `𝒟'(ℝ²)`, i.e. for some real `ψ ∈ C_c^∞(ℝ²)` the pairings
 `∫ ω⁽ⁿ⁾(t) ψ` do not converge to `∫ f ψ`. -/
 def NotDistribTendsto (T : ℝ) (ωs : ℕ → ℝ → ℂ → ℝ) (f : ℂ → ℝ) : Prop :=
   ∃ t ∈ Ioc 0 T, ∃ ψ : ℂ → ℝ, ContDiff ℝ ((⊤ : ℕ∞) : WithTop ℕ∞) ψ ∧ HasCompactSupport ψ ∧
     ¬ Tendsto (fun n => ∫ x, ωs n t x * ψ x) atTop (𝓝 (∫ x, f x * ψ x))
 
-/-- `prop:equiv`(d) (`03_compactness.tex:1090-1091`): there is a real `ψ ∈ C_c^∞(ℝ²)` with
+/-- legacy `prop:equiv`(d) (legacy implication; current criterion and moment arguments cited above): there is a real `ψ ∈ C_c^∞(ℝ²)` with
 `limsup_n sup_{t ≤ T} |∫ (ω⁽ⁿ⁾(t) - f) ψ| > 0`. -/
 def HasPairingDefect (T : ℝ) (ωs : ℕ → ℝ → ℂ → ℝ) (f : ℂ → ℝ) : Prop :=
   ∃ ψ : ℂ → ℝ, ContDiff ℝ ((⊤ : ℕ∞) : WithTop ℕ∞) ψ ∧ HasCompactSupport ψ ∧
     0 < defectPairing T ωs f ψ
 
-/-- `prop:equiv`(e) (`03_compactness.tex:1092-1096`): some subsequence converges, in the sense of
+/-- legacy `prop:equiv`(e) (legacy implication; current criterion and moment arguments cited above): some subsequence converges, in the sense of
 `thm:criterion`(iv), to a renormalized weak solution `ω_∞` on `[0, T₀)` with datum `f`
 (exponent `2`, identified with its weakly continuous representative) such that `ω_∞(t) ≠ f` for
 some `t ∈ (0, T]`. -/

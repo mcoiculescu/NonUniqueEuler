@@ -7,7 +7,7 @@ import Mathlib.Analysis.Complex.Trigonometric
 /-!
 # Helpers for the seed field (`lem:seed`, step 1): calculus of `∇^⊥ψ` and radial cutoffs
 
-Helper of `P/Sec5/Seed/Field.lean` (`05_single_ring.tex:1152-1191`). Configuration-free facts:
+Helper of `P/Sec5/Seed/Field.lean` (Part II Lemma 2.14). Configuration-free facts:
 * `divergence_perpGrad`: `div ∇^⊥ψ = 0` where `ψ` is `C²` (symmetry of second derivatives;
   copied, namespace renamed, from `H/Sec5/ReductionField/Basic.lean` of the proof
   `Sec5/ReductionField`, which this proof may not import (import rules, `README.md`));

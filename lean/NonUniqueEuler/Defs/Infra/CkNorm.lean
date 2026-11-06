@@ -6,7 +6,7 @@ import Mathlib.Analysis.Complex.Basic
 
 Manuscript-independent infrastructure (library I-CK).
 
-The manuscript (`02_prelim.tex:72-79`) puts, for an integer `k ≥ 0`, a closed set `U ⊆ ℝ²` and
+The manuscript (Part I, Section 2.1, conventions in `sec:prelim`) puts, for an integer `k ≥ 0`, a closed set `U ⊆ ℝ²` and
 `h` of class `C^k` on a neighbourhood of `U`,
 `‖h‖_{C^k(U)} = ∑_{q=0}^k sup_{x∈U} |∇^q h(x)|`,
 where `|∇^q h(x)|` is the Euclidean norm of the array of all partial derivatives of order `q`.
@@ -51,7 +51,7 @@ def supIterDerivE (q : ℕ) (U : Set E) (h : E → F) : ℝ≥0∞ :=
 def normCkE (k : ℕ) (U : Set E) (h : E → F) : ℝ≥0∞ :=
   ∑ q ∈ Finset.range (k + 1), supIterDerivE q U h
 
-/-- The `C^k(U)` norm as a real number (`02_prelim.tex:76`). It is `0` when `normCkE` is
+/-- The `C^k(U)` norm as a real number (Part I, Section 2.1, conventions in `sec:prelim`). It is `0` when `normCkE` is
 infinite; use it together with `MemCk`. -/
 def normCk (k : ℕ) (U : Set E) (h : E → F) : ℝ :=
   (normCkE k U h).toReal

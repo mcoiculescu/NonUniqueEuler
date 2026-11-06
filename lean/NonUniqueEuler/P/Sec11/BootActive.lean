@@ -1,20 +1,23 @@
 import NonUniqueEuler.H.Sec11.BootActive.DriftStep
 
 /-!
-# Proof: Step 4 of the proof of `prop:bootstrap` (the active phase of ring `k`) and
+# Proof: Lean step 4 of the historical bootstrap decomposition (the active phase of ring `k`) and
 `eq:boot-inner`
 
-Proof of `I/Sec11/BootActive.lean` (`11_bootstrap.tex:390-484`). The steps are in the helpers
+Proof of `I/Sec11/BootActive.lean` (Part II Appendix C.17 (`sec:bootstrap-active-checks`)). The
+steps are in the helpers
 `H/Sec11/BootActive/*.lean`:
 * `ū = A_k(t' - t♯_k) ∈ (0, T̂_k]` (`Basic.lean`);
 * (Field), inner part, `eq:boot-inner` (`Inner.lean`, `boot_inner`);
 * (Init) (`Outer.lean`, `boot_init`), (Field), outer part, by `lem:Oprime` (`boot_outer`);
 * (Coef): the hypotheses of `lem:drift` (`DriftStep.lean`, `boot_driftHyp`) and
   `C_ls η_{b,k} T̂_k ≤ 1/32` (`boot_cls`), then `lem:drift` (`drift`) with `r_T(T_pin) ≤ 1/64` of (P3);
-* (Small) `κ♯_k ≤ 2κ_seed ≤ κ₀(C₀)`: `κ♯_k ≤ K_up s_k^{m+2} ≤ K_up s̄^{m+2} ≤ κ_seed` (Step 3, (B6)) for
-  `k < n`, `κ♯_n ≤ 2κ_seed` (Step 0), and (κ4);
+* (Small) `κ♯_k ≤ 2κ_seed ≤ κ₀(C₀)`: `κ♯_k ≤ K_up s_k^{m+2} ≤ K_up s̄^{m+2} ≤ κ_seed` (Lean step 3, (B6)) for
+  `k < n`, `κ♯_n ≤ 2κ_seed` (Lean step 0), and (κ4);
 * `thm:active`, `cor:active-moment` for ring `k` on `[0, ū]` (`active_ring`).
 The hypothesis `t' ≤ T_end` is not used (it only places `t'` in the range of the bootstrap).
+Lean retains the auxiliary inner-field constant `C_F`. Current Equation (56)
+(`eq:boot-inner`, Appendix C.17) states the consequence with `C₀`, using `C_F ≤ C₀`.
 -/
 
 noncomputable section
@@ -35,7 +38,8 @@ theorem s_le_sbar {S : Standing} (hS : S.Holds) (k : ℕ) : S.P.s k ≤ S.P.sbar
   have hμ := hS.one_lt_μ
   exact div_le_self hS.sbar_pos.le (one_le_pow₀ (by linarith))
 
-/-- (Small) of `thm:active` for ring `k`: `κ♯_k ≤ κ₀(C₀)` (`11_bootstrap.tex:406-409`). -/
+/-- (Small) of `thm:active` for ring `k`: `κ♯_k ≤ κ₀(C₀)` (Part II Appendix C.17
+(`sec:bootstrap-active-checks`)). -/
 theorem boot_small {S : Standing} (hS : S.Holds) (hL : S.ParamLists) {k : ℕ}
     (hk : k ∈ Finset.Icc 1 S.P.n) (hc : S.P.ClockUpTo k) (h0 : S.BootStartConcl)
     (hlev : ∀ i ∈ Finset.Ico k S.P.n, S.HandoffStep i) : S.P.ksh k ≤ S.kappa0 S.C0 := by
@@ -57,10 +61,12 @@ theorem boot_small {S : Standing} (hS : S.Holds) (hL : S.ParamLists) {k : ℕ}
 
 end BootActiveH
 
-/-- **Step 4 of the proof of `prop:bootstrap`** (`11_bootstrap.tex:390-484`), with `eq:boot-inner`:
-the active phase of ring `k` up to the time `t' ∈ Ph_k`, `t♯_k < t' ≤ T_end`. Given Step 0, (BA°)(t'),
-`lem:geometry` with `t'`, Step 2 on `[0, t']` and Step 3 at the levels `i ∈ [k, n)`, the conclusions of
-Step 4 hold for ring `k` with `ū = A_k(t' - t♯_k)` (`S.ActiveStep k ū`). -/
+/-- **Lean step 4 of the historical bootstrap decomposition** (Part II Appendix C.17
+(`sec:bootstrap-active-checks`)), with `eq:boot-inner`:
+the active phase of ring `k` up to the time `t' ∈ Ph_k`, `t♯_k < t' ≤ T_end`. Given Lean step 0, (BA°)(t'),
+`lem:geometry` with `t'`, Lean step 2 on `[0, t']` and Lean step 3 at the levels `i ∈ [k, n)`, the
+conclusions of
+Lean step 4 hold for ring `k` with `ū = A_k(t' - t♯_k)` (`S.ActiveStep k ū`). -/
 theorem boot_active (S : Standing) (hS : S.Holds) (hL : S.ParamLists) {k : ℕ}
     (hk : k ∈ Finset.Icc 1 S.P.n) (hc : S.P.ClockUpTo k) {t' : ℝ} (ht' : t' ∈ S.P.Phase k)
     (htsh : S.P.tsh k < t') (hTend : t' ≤ S.P.Tend) (h0 : S.BootStartConcl)

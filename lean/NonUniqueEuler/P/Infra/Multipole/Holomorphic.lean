@@ -13,8 +13,8 @@ import Mathlib.Topology.Algebra.InfiniteSum.TsumUniformlyOn
 # Proof: real derivatives of holomorphic functions; the exterior Laurent series (I-MULT)
 
 Proves the declarations of `NonUniqueEuler/I/Infra/Multipole/Holomorphic.lean`
-(eq:derivative-norm of `07_several_rings.tex`; derivative count in the proof of
-`lem:ext-multipole`, `02_prelim.tex:493-505`).
+(Part II, Equation (4), `eq:BS-complex-deriv`, and the derivative count in
+the proof of Lemma 1.7, `lem:ext-multipole`).
 
 * Real vs complex derivatives: `ContDiffAt.restrictScalars_iteratedFDeriv` and
   `iteratedFDeriv_apply_eq_iteratedDeriv_mul_prod`; conjugation via `Complex.conjCLE`

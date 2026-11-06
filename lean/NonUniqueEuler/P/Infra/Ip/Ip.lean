@@ -9,8 +9,11 @@ import Mathlib.Data.Nat.Factorial.Basic
 /-!
 # Proof: the integrals `I_p(x) = ∫₀^∞ e^{-xu} (1+u)^p du` (eq:Ip)
 
-Proof of the interface `NonUniqueEuler/I/Infra/Ip/Ip.lean` (`02_prelim.tex:84-92`,
-`04_ring.tex:1038`, `lem:pinning` in `08_kick.tex:181-190`).
+Proof of the interface `NonUniqueEuler/I/Infra/Ip/Ip.lean` (Part I, Equation (3),
+`eq:Ip`). The integral bounds occur in the proof of Part I, Proposition 4.15
+(`prop:large-sectors`) and in the polynomial-drive estimate in the proof of
+Part II, Proposition 5.2 (`prop:kick`); Lean retains the former `lem:pinning`
+as a separate utility.
 
 * Integrability: `(1+u)^p = O(e^{xu/2})` at `+∞` (`isLittleO_pow_exp_pos_mul_atTop`), then
   `integrableOn_exp_neg_mul_of_isBigO_exp`.
@@ -19,7 +22,7 @@ Proof of the interface `NonUniqueEuler/I/Infra/Ip/Ip.lean` (`02_prelim.tex:84-92
   `U = (1+s)^{p+1}`, `V = -e^{-xs}/x`.
 * Closed form: induction with the recursion. Positivity and strict monotonicity follow from the
   closed form (every summand is positive and strictly decreasing in `x > 0`).
-* Bounds: `setIntegral_mono_set` (nonnegative integrand), and for `lem:pinning` the
+* Bounds: `setIntegral_mono_set` (nonnegative integrand), and for the retained pinning utility the
   substitution `s = τ + u` and `1 + τ + u ≤ (1+τ)(1+u)`.
 -/
 
@@ -154,7 +157,7 @@ theorem Ip_pos (p : ℕ) {x : ℝ} (hx : 0 < x) : 0 < Ip p x := by
   refine Finset.sum_pos (fun j _ => ?_) ⟨0, by simp⟩
   positivity
 
-/-- `I_p` is decreasing on `(0, ∞)` (`02_prelim.tex:90`). -/
+/-- `I_p` is decreasing on `(0, ∞)` (Part I, Equation (3) (`eq:Ip`)). -/
 theorem Ip_strictAntiOn (p : ℕ) : StrictAntiOn (Ip p) (Ioi 0) := by
   intro x hx y hy hxy
   have hx' : 0 < x := hx
@@ -168,7 +171,7 @@ theorem Ip_strictAntiOn (p : ℕ) : StrictAntiOn (Ip p) (Ioi 0) := by
 theorem Ip_antitoneOn (p : ℕ) : AntitoneOn (Ip p) (Ioi 0) := by
   exact (Ip_strictAntiOn p).antitoneOn
 
-/-- `∫₀ᵗ (1+u)^p e^{-xu} du ≤ I_p(x)` for `t ≥ 0` (`04_ring.tex:1038`). -/
+/-- `∫₀ᵗ (1+u)^p e^{-xu} du ≤ I_p(x)` for `t ≥ 0` (Part I, Proposition 4.15 (`prop:large-sectors`), proof). -/
 theorem intervalIntegral_le_Ip (p : ℕ) {x : ℝ} (hx : 0 < x) {t : ℝ} (ht : 0 ≤ t) :
     ∫ u in (0 : ℝ)..t, (1 + u) ^ p * Real.exp (-x * u) ≤ Ip p x := by
   rw [intervalIntegral.integral_of_le ht]
@@ -181,7 +184,7 @@ theorem intervalIntegral_le_Ip (p : ℕ) {x : ℝ} (hx : 0 < x) {t : ℝ} (ht : 
   have hu' : 0 ≤ 1 + u := by have : (0 : ℝ) < u := hu; linarith
   exact mul_nonneg (Real.exp_pos _).le (pow_nonneg hu' p)
 
-/-- `∫_τ^{τ'} e^{-xs}(1+s)^p ds ≤ (1+τ)^p e^{-xτ} I_p(x)` for `0 ≤ τ ≤ τ'` (`lem:pinning`). -/
+/-- `∫_τ^{τ'} e^{-xs}(1+s)^p ds ≤ (1+τ)^p e^{-xτ} I_p(x)` for `0 ≤ τ ≤ τ'` (retained pinning utility; see Part II, Proposition 5.2, `prop:kick`). -/
 theorem intervalIntegral_le_mul_Ip (p : ℕ) {x : ℝ} (hx : 0 < x) {τ τ' : ℝ} (hτ : 0 ≤ τ)
     (hττ' : τ ≤ τ') :
     ∫ s in τ..τ', Real.exp (-x * s) * (1 + s) ^ p ≤ (1 + τ) ^ p * Real.exp (-x * τ) * Ip p x := by

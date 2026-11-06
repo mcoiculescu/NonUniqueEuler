@@ -4,7 +4,7 @@ import Mathlib.Topology.Algebra.GroupWithZero
 /-!
 # Helpers for `lem:adm`: the terms of `f^{(n)}` (smooth, compact support, `≥ 0`, symmetric)
 
-Helper of `P/Sec6/Adm.lean`, first paragraph of the proof of `lem:adm` (`06_datum.tex:94-99`):
+Helper of `P/Sec6/Adm.lean`, first paragraph of the proof of Part II Lemma 3.4 (`lem:adm`):
 `f^{(n)}` is a finite sum of nonnegative `3`-fold symmetric `C_c^∞` functions.
 
 * `AdmH.IsGoodProfile θ G`: `G ∈ C_c^∞`, `G ≥ 0`, `G ∘ O_θ = G` pointwise;
@@ -64,7 +64,7 @@ theorem isGoodProfile_sum {θ : ℝ} {ι : Type*} (s : Finset ι) {F : ι → �
       (ih fun j hj => hF j (Finset.mem_insert_of_mem hj))
 
 /-- **`f^{(n)}` is a finite sum of nonnegative `3`-fold symmetric `C_c^∞` functions**
-(`06_datum.tex:94-98`), given `lem:ring-facts` and the properties of `Φ^{κ_seed}`. -/
+(Part II Lemma 3.4 (`lem:adm`)), given `lem:ring-facts` and the properties of `Φ^{κ_seed}`. -/
 theorem isGoodProfile_approxDatum {χ : ℝ → ℝ} (hR : RingFacts χ) {A₁ μ sbar κs : ℝ}
     (hp : DatumParams A₁ μ sbar)
     (hS : IsGoodProfile (2 * Real.pi / 3) (OneRing.PhiSeed χ κs)) (n : ℕ) :

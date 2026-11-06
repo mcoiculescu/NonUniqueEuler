@@ -13,7 +13,7 @@ import NonUniqueEuler.H.SmoothB.IterLimit.Basic
 /-!
 # Proof: `prop:iter-limit` and `eq:limit-bounds` (the limit of the iterates)
 
-Proof of `I/SmoothB/IterLimit.lean` (`B_global_smooth.tex:381-473`). The limit is the pointwise
+Proof of `I/SmoothB/IterLimit.lean` (Part II, Proposition B.10 (`prop:iter-limit`)). The limit is the pointwise
 limit `IterLimitAux.lim ω₀ t x = lim_j ω^{[j]}(t, x)`. The analytic steps are interface files:
 * step 1 (`I/SmoothB/IterLimit/Cauchy.lean`): `∂_x^γ ω^{[j]}` is uniformly Cauchy on slabs;
 * step 2 (`I/Infra/Sobolev/UniformLimit.lean`): for each `t`, the limit `ω(t)` is smooth and
@@ -37,7 +37,7 @@ namespace IterLimitAux
 
 variable {ω₀ : ℂ → ℝ} {R₀ : ℝ}
 
-/-- The pointwise limit `ω(t, x) = lim_j ω^{[j]}(t, x)` (`B_global_smooth.tex:401-416`). -/
+/-- The pointwise limit `ω(t, x) = lim_j ω^{[j]}(t, x)` (Part II, Proposition B.10 (`prop:iter-limit`)). -/
 def lim (ω₀ : ℂ → ℝ) (t : ℝ) (x : ℂ) : ℝ :=
   limUnder atTop (fun j => iter ω₀ j t x)
 

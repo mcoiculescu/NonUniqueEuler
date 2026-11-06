@@ -6,10 +6,10 @@ import NonUniqueEuler.I.Sec3.RR
 
 Helper file of `P/Sec3/RenormAllT.lean` (fully proved).
 
-Restructured argument (deviation from `03_compactness.tex:640-656`).
+Restructured argument (deviation from Part I Lemma 3.5 (`lem:renorm-all-t`) and its proof).
 Once `‖ω(t)‖₂ = ‖ω^in‖₂` for every `t ∈ [0,T)` (from eq:conservation), weak continuity and
-`lem:RR` (`radonRiesz_filter`) give `ω ∈ C([0,T);L²)` directly
-(`tendsto_eLpNorm_two_of_norm_eq`); the manuscript's argument shows the same thing for `U_k`.
+legacy `lem:RR` (`radonRiesz_filter`) give `ω ∈ C([0,T);L²)` directly
+(`tendsto_eLpNorm_two_of_norm_eq`); the current proof of Part I Lemma 3.5 (`lem:renorm-all-t`) uses the same `L²` argument.
 Then `|ω|` is continuous into `L²` on `[0,T)`, hence weakly continuous on every `[0,T']`,
 `T' < T` (`isWeakContL2On_abs`).
 -/
@@ -38,7 +38,7 @@ theorem abs_integral_mul_sub_le {f g ψ : ℂ → ℝ} (hf : MemLp f 2 volume) (
   exact abs_integral_mul_le (hf.sub hg) hψ
 
 /-- Weak continuity on `[0,T]` and constant `L²` norm on `[0,T)` give strong continuity into `L²`
-on `[0,T)` (`lem:RR`). -/
+on `[0,T)` (legacy `lem:RR`). -/
 theorem tendsto_eLpNorm_two_of_norm_eq {T : ℝ} {ω : ℝ → ℂ → ℝ} {g : ℂ → ℝ}
     (hc : IsWeakContL2On (Icc 0 T) ω)
     (hn : ∀ t ∈ Ico 0 T, eLpNorm (ω t) 2 volume = eLpNorm g 2 volume) :

@@ -11,7 +11,12 @@ import NonUniqueEuler.H.Sec7.Confine.Trajectory
 /-!
 # Proof: `prop:confine` (confinement on a window)
 
-Proof of `I/Sec7/Confine.lean` (`07_several_rings.tex:285-314`, proof `:316-380`).
+The proof retains the legacy three-part decomposition: (a) confinement,
+(b) the speed estimate, and (c) all moments. In the current proposition the
+speed estimate is inside the proof, and its conclusion (b) is the normalized
+mode-3 moment bound supplied by the formal part (c).
+
+Proof of `I/Sec7/Confine.lean` (Part II Proposition 4.3 (`prop:confine`) and its proof).
 
 * (b) is `ConfineH.confine_speed` (`H/Sec7/Confine/Speed.lean`): the velocity splits into the
   inner part (`lem:speed`) and the outer rings `j ≤ k` (`lem:hollow` under (Cl), `eq:sk-small`,
@@ -77,7 +82,7 @@ theorem confRadius_nonneg (hP : P.Valid) {k : ℕ} {t : ℝ} (ht : P.T (k + 1) �
   have := hP.r_pos (k + 1)
   positivity
 
-/-- **`prop:confine`(a), support** (`07_several_rings.tex:351-368`):
+/-- **`prop:confine`(a), support** (Part II Proposition 4.3 (`prop:confine`)):
 `D_{k+1}(t) ⊂ \bar B_{ϱ(t)}` for `t ∈ [T_{k+1}, t₁]`. -/
 theorem confine_supp (hP : P.Valid) (hN : NumericalHypothesis P.χ) (hG : P.GSmall) {k : ℕ}
     {t₁ : ℝ} (h : P.ConfineHyp k t₁) {t : ℝ} (ht : t ∈ Icc (P.T (k + 1)) t₁) :
@@ -114,7 +119,7 @@ theorem confine_supp (hP : P.Valid) (hN : NumericalHypothesis P.χ) (hG : P.GSma
   rw [confRadius_def]
   ring
 
-/-- **`prop:confine`(a), radius** (`07_several_rings.tex:367-368`): `ϱ(t) ≤ ϱ(t₁) = Λ s_k r_k ≤ a r_k/8`. -/
+/-- **`prop:confine`(a), radius** (Part II Proposition 4.3 (`prop:confine`)): `ϱ(t) ≤ ϱ(t₁) = Λ s_k r_k ≤ a r_k/8`. -/
 theorem confRadius_le (hP : P.Valid) {k : ℕ} {t₁ : ℝ} (h : P.ConfineHyp k t₁) {t : ℝ}
     (ht : t ∈ Icc (P.T (k + 1)) t₁) : P.confRadius k t ≤ a / 8 * P.r k := by
   have hC := Cstar_pos
@@ -174,10 +179,10 @@ theorem omegaGe_facts (hP : P.Valid) (hN : NumericalHypothesis P.χ) (hG : P.GSm
     have hA := hP.A_pos (k + 1)
     exact ENNReal.toReal_le_of_le_ofReal (by have := Mvort_pos; positivity) hL1
 
-/-- **`prop:confine`** (`07_several_rings.tex:285-314`). Assume (N1)–(N3) and `G_k ≤ G₁` for all
+/-- **Part II Proposition 4.3 (`prop:confine`)**. Assume (N1)–(N3) and `G_k ≤ G₁` for all
 levels. Under the hypotheses (i)–(iv) of the proposition for the level `k` (`1 ≤ k < n`, clock
 defined up to level `k+1`, `t₀ = T_{k+1}`) and the end time `t₁ ≥ t₀` (`P.ConfineHyp k t₁`), the
-conclusions (a)–(c) hold at every `t ∈ [t₀,t₁]` (`P.ConfineConcl k t₁ t`): `D_{k+1}(t) ⊂ \bar B_{ϱ(t)}`
+retained formal conclusions (a)–(c) hold at every `t ∈ [t₀,t₁]` (`P.ConfineConcl k t₁ t`): `D_{k+1}(t) ⊂ \bar B_{ϱ(t)}`
 with `ϱ(t) ≤ (a/8)r_k`; the speed bound `2C_*A_{k+1}r_{k+1}` on `\bar B_{Λr_{k+1}}`; the moments of
 `ω_{≥k+1}(t)` vanish off `mℕ` and are `≤ M_vort A_{k+1}r_{k+1}²ϱ(t)^l`; `|q_{k+1}(t)| ≤ C_mom(1+τ_K)^m`. -/
 theorem confine_aux (hP : P.Valid) (hN : NumericalHypothesis P.χ) (hG : P.GSmall)
@@ -223,10 +228,10 @@ end ConfineP
 
 open RingData Datum
 
-/-- **`prop:confine`** (`07_several_rings.tex:285-314`). Assume (N1)–(N3) and `G_k ≤ G₁` for all
+/-- **Part II Proposition 4.3 (`prop:confine`)**. Assume (N1)–(N3) and `G_k ≤ G₁` for all
 levels. Under the hypotheses (i)–(iv) of the proposition for the level `k` (`1 ≤ k < n`, clock
 defined up to level `k+1`, `t₀ = T_{k+1}`) and the end time `t₁ ≥ t₀` (`P.ConfineHyp k t₁`), the
-conclusions (a)–(c) hold at every `t ∈ [t₀,t₁]` (`P.ConfineConcl k t₁ t`): `D_{k+1}(t) ⊂ \bar B_{ϱ(t)}`
+retained formal conclusions (a)–(c) hold at every `t ∈ [t₀,t₁]` (`P.ConfineConcl k t₁ t`): `D_{k+1}(t) ⊂ \bar B_{ϱ(t)}`
 with `ϱ(t) ≤ (a/8)r_k`; the speed bound `2C_*A_{k+1}r_{k+1}` on `\bar B_{Λr_{k+1}}`; the moments of
 `ω_{≥k+1}(t)` vanish off `mℕ` and are `≤ M_vort A_{k+1}r_{k+1}²ϱ(t)^l`; `|q_{k+1}(t)| ≤ C_mom(1+τ_K)^m`. -/
 theorem confine (P : Approx) (hP : P.Valid) (hN : NumericalHypothesis P.χ) (hG : P.GSmall)

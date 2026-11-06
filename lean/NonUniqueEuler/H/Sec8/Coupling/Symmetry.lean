@@ -5,8 +5,8 @@ import NonUniqueEuler.I.Sec6.RegionsBasic
 # Helper for `lem:coupling`: the inner and outer fields are `3`-fold symmetric; `ν^in_k`
 
 Helper of `P/Sec8/Coupling.lean` (fully proved, modulo the interface files it imports).
-Manuscript `08_kick.tex:95-98` ("`h^in_k(τ)` … is `3`-fold symmetric because `ν^in_k` is") and
-`:141-144` (the same for `h^out_k`).
+Manuscript Part II Lemma 5.1 (`lem:coupling`) ("`h^in_k(τ)` … is `3`-fold symmetric because `ν^in_k` is") and
+Part II Lemma 5.1 (`lem:coupling`) (the same for `h^out_k`).
 
 * `biotSavartKernel_rot`, `velocity_rot`: `K_BS(O z) = O K_BS(z)`, hence
   `(K_BS * g)(O x) = O (K_BS * g)(x)` for a rotation `O` and a vorticity with `g ∘ O = g`
@@ -94,7 +94,7 @@ theorem nuOut_rot (hP : P.Valid) (hN : NumericalHypothesis P.χ) {k : ℕ} (hk :
   congr 1
   exact Finset.sum_congr rfl fun i hi => hring i hi _
 
-/-- **`h^in_k(τ)` is a `3`-fold symmetric field** (`08_kick.tex:95-98`), for `τ ≥ 0`. -/
+/-- **`h^in_k(τ)` is a `3`-fold symmetric field** (Part II Lemma 5.1 (`lem:coupling`)), for `τ ≥ 0`. -/
 theorem isSymFieldOn_hIn (hP : P.Valid) (hN : NumericalHypothesis P.χ) {k : ℕ} (hk : 1 ≤ k)
     (hkn : k < P.n) {τ : ℝ} (hτ : 0 ≤ τ) (U : Set ℂ) : IsSymFieldOn U (P.hIn k τ) := by
   intro x _
@@ -108,7 +108,7 @@ theorem isSymFieldOn_hIn (hP : P.Valid) (hN : NumericalHypothesis P.χ) {k : ℕ
   simp only [rot]
   ring
 
-/-- **`h^out_k(τ)` is a `3`-fold symmetric field** (`08_kick.tex:141-144`), for `τ ≥ 0`. -/
+/-- **`h^out_k(τ)` is a `3`-fold symmetric field** (Part II Lemma 5.1 (`lem:coupling`)), for `τ ≥ 0`. -/
 theorem isSymFieldOn_hOut (hP : P.Valid) (hN : NumericalHypothesis P.χ) {k : ℕ} (hk : 1 ≤ k)
     (hkn : k ≤ P.n) {τ : ℝ} (hτ : 0 ≤ τ) (U : Set ℂ) : IsSymFieldOn U (P.hOut k τ) := by
   intro x _

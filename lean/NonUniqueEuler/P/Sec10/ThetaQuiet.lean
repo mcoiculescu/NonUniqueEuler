@@ -5,7 +5,10 @@ import NonUniqueEuler.I.Sec10.ConstantsPos
 /-!
 # Proof: `lem:theta-quiet` (the outer feedback over a quiet phase)
 
-Proof of `I/Sec10/ThetaQuiet.lean` (`10_parameters.tex:233-273`).
+Proof of `I/Sec10/ThetaQuiet.lean` (Part II Lemma C.5, `lem:theta-quiet`,
+Appendix C.3). Lean retains the detailed outer-field constant `C_O`, whose role
+is taken by the common `C_vel` in the current manuscript. The interface packages
+the preliminary bound for `τ̄♯_j` together with the lemma's stated product bound.
 
 * The first claim is `Relay.quiet_time_bound` (`I/Sec9/QuietTime.lean`), rewritten from
   `C_τ[…]/(μ-1)` to `(C_τ/(μ-1))[…]`.
@@ -47,7 +50,7 @@ theorem pow_six_mul_log_le {s t : ℝ} (hs : 0 < s) (hst : s ≤ t) :
       _ = t ^ 6 := by ring
   linarith
 
-/-- **Monotonicity of `g(s) = s⁶[B₀ + 2 log(1/s)]`** (`10_parameters.tex:262-268`): for
+/-- **Monotonicity of `g(s) = s⁶[B₀ + 2 log(1/s)]`** (Part II Lemma C.5 (`lem:theta-quiet`), Appendix C.3): for
 `0 < s ≤ t ≤ 1` and `B₀ ≥ 2`, `g(s) ≤ g(t)`. -/
 theorem g_mono {s t B₀ : ℝ} (hs : 0 < s) (hst : s ≤ t) (ht1 : t ≤ 1) (hB : 2 ≤ B₀) :
     s ^ 6 * (B₀ + 2 * Real.log (1 / s)) ≤ t ^ 6 * (B₀ + 2 * Real.log (1 / t)) := by
@@ -73,7 +76,7 @@ theorem g_mono {s t B₀ : ℝ} (hs : 0 < s) (hst : s ≤ t) (ht1 : t ≤ 1) (hB
 end ThetaQuietAux
 
 open ThetaQuietAux in
-/-- **`lem:theta-quiet`** (`10_parameters.tex:233-243`). Assume (SA) and (B7). For every level
+/-- **Part II Lemma C.5 (`lem:theta-quiet`)**, Appendix C.3. Assume (SA) and (B7). For every level
 `1 ≤ j < n`: `τ̄♯_j ≤ (C_τ/(μ-1))[T_z + log(1/s_j) + 1/(μ-1)]`, and
 `θ_j τ̄♯_j ≤ min{1/2, 1/(4 C_ls K₁)}`. -/
 theorem theta_quiet (S : Standing) (hS : S.Holds) (hB7 : S.CondB7) {j : ℕ} (hj : 1 ≤ j)

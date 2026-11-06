@@ -2,9 +2,9 @@ import NonUniqueEuler.I.Infra.WeakL2.Compact
 import NonUniqueEuler.I.Infra.WeakL2.LpNorm
 
 /-!
-# Helpers for `prop:stable`, step 1a: weak limits in `L²(μ)` of functions
+# Helpers for legacy `prop:stable`, step 1a: weak limits in `L²(μ)` of functions
 
-Helper file of `P/Sec3/Stable/WeakLimit.lean` (`03_compactness.tex:743-755`, restructuring R5:
+Helper file of `P/Sec3/Stable/WeakLimit.lean` (related current criterion proof: Part I Theorem 3.8 (`thm:criterion`), restructuring R5:
 weak limits in `L²((0,T) × ℝ²)` instead of weak-* limits in `L^∞`).
 
 Weak convergence of functions `fₙ ⇀ F` in `L²(μ)` is written in the function form

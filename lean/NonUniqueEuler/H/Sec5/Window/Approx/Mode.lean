@@ -9,7 +9,7 @@ import NonUniqueEuler.I.Infra.Sobolev.ReIm
 /-!
 # Helpers for `window_approx`: the mode and the first term `w^{[1]}`
 
-Helper of `P/Sec5/Window/Approx.lean` (`05_single_ring.tex:758-764`, the case `j = 1` of
+Helper of `P/Sec5/Window/Approx.lean` (Part II Lemma 2.11 (`lem:window`), the case `j = 1` of
 `eq:W-hier`). Namespace `NonUniqueEuler.OneRing.WAppH`.
 
 * `modeFn_bound` (copy of `ActiveH.modeFn_bound`): `‖2Re(Xφ_*)‖_{H^k} ≤ 2C_φ|X|`;
@@ -125,7 +125,7 @@ theorem Clin_nonneg {χ : ℝ → ℝ} {k : ℕ} {σ' CS : ℝ} (hσ' : σ' ∈ 
     exact mul_nonneg (mul_nonneg (by positivity) (Real.sqrt_nonneg _)) (normH_nonneg _ _)
   positivity
 
-/-- **The first term of the hierarchy** (`05_single_ring.tex:758-764`). -/
+/-- **The first term of the hierarchy** (Part II Lemma 2.11 (`lem:window`)). -/
 theorem wlin0_bound (χ : ℝ → ℝ) (hχ : IsAdmissibleCutoff χ) (hN : NumericalHypothesis χ)
     {σ' : ℝ} (hσ' : σ' ∈ Ioo (9 / 200 : ℝ) (Eig.sigb χ)) {K : ℕ} (hK : 2 ≤ K)
     {CS : ℝ} (hCS0 : 0 ≤ CS) (hCS : IsSemigroupConst χ K σ' CS) {Cn : ℝ} (hCn : 1 ≤ Cn)

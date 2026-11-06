@@ -13,8 +13,7 @@ import Mathlib.Topology.MetricSpace.Pseudo.Defs
 /-!
 # Proof: approximate identities in `L¹_loc(ℝ²)` (library I-CONV)
 
-Proof of `I/Infra/ConvMinkowski/ApproxIdentity.lean`. Manuscript: the proof of `lem:commutator`,
-`03_compactness.tex:425-431` (convergence `g ⋆ ψ_ε → (∫ψ) g` in `L¹(B_R)`: for continuous `g` by
+Proof of `I/Infra/ConvMinkowski/ApproxIdentity.lean`. Manuscript: the proof of Part I, Lemma 3.3 (`lem:commutator`) (convergence `g ⋆ ψ_ε → (∫ψ) g` in `L¹(B_R)`: for continuous `g` by
 uniform continuity, in general by density and the bound `‖g ⋆ ψ_ε‖_{1,R} ≤ ‖ψ‖_{L¹} ‖g‖_{1,R+1}`).
 
 **Structure (density on the whole operator, as in the manuscript).**
@@ -293,7 +292,7 @@ private lemma tendsto_aux_of_measurable {g : ℂ → ℝ} (hgm : Measurable g)
             _ ≤ d / 2 := this
         linarith
 
-/-- Approximate identity in `L¹_loc(ℝ²)` (`03_compactness.tex:425-431`): for `g ∈ L¹_loc` and a
+/-- Approximate identity in `L¹_loc(ℝ²)` (Part I, Lemma 3.3 (`lem:commutator`), proof): for `g ∈ L¹_loc` and a
 continuous `ψ`, `∫_{B₁} g(· - εz) ψ(z) dz → (∫_{B₁} ψ) g` in `L¹(B_R)` as `ε → 0⁺`. -/
 theorem tendsto_lintegral_ball_integral_comp_sub_smul {g : ℂ → ℝ}
     (hg : LocallyIntegrable g volume) {ψ : ℂ → ℝ} (hψ : Continuous ψ) (R : ℝ) :

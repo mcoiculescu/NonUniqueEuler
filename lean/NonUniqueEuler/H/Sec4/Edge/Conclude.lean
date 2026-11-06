@@ -1,13 +1,13 @@
 import NonUniqueEuler.H.Sec4.Edge.Core
 
 /-!
-# Helpers for `P/Sec4/Edge`: the energy identity and the conclusion of `lem:edge`
+# Helpers for `P/Sec4/Edge`: the energy identity and the conclusion of Part I Lemma 4.10 (`lem:edge`)
 
-Manuscript `04_ring.tex:745-769`. With the notation of `H/Sec4/Edge/Core.lean`:
-* `energy`: `Re λ · ‖g‖²_W = -ℓ Im ∫ ς ψ ḡ r` (`04_ring.tex:752-757`), i.e.
+See the proof of Part I Lemma 4.10 (`lem:edge`). With the notation of `H/Sec4/Edge/Core.lean`:
+* `energy`: `Re λ · ‖g‖²_W = -ℓ Im ∫ ς ψ ḡ r` (proof of Part I Lemma 4.10 (`lem:edge`)), i.e.
   `Re λ · N = -ℓ Im T`, from `iℓψ = r(λ + iℓΩ)e` (the first term `-iℓ∫Ω|g|²Wr` is imaginary);
 * `core`: `Re λ ≤ ½ Z_n^{1/2}` whenever `ψ` reproduces itself through the kernel on `I` and
-  `N > 0` (`04_ring.tex:758-769`).
+  `N > 0` (proof of Part I Lemma 4.10 (`lem:edge`)).
 -/
 
 noncomputable section
@@ -67,7 +67,7 @@ theorem energy (hS : S.Valid) {ℓ : ℤ} {z : ℂ} (hz : 0 < z.re) (G : ℝ) {�
   rw [hT] at h2
   linarith
 
-/-- The conclusion of `lem:edge` in terms of `ψ`. -/
+/-- The conclusion of Part I Lemma 4.10 (`lem:edge`) in terms of `ψ`. -/
 theorem core (hS : S.Valid) (hsplit : S.EdgeSplit) {ℓ : ℤ} (hℓ : ℓ ≠ 0) {z : ℂ}
     (hz : 0 < z.re) (G : ℝ) {ψ : ℝ → ℂ} (hψc : ContinuousOn ψ (Ioi 0))
     (hψ : ∀ r ∈ Icc S.r₁ S.r₂, ψ r = -(((2 * |(ℓ : ℝ)|)⁻¹ : ℝ) : ℂ) *

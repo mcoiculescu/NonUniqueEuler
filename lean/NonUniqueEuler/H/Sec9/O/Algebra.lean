@@ -5,15 +5,15 @@ import Mathlib.Algebra.Order.Field.GeomSum
 /-!
 # Helpers for `P/Sec9/O`: constants, ring parameters, `P̃`, geometric sums
 
-Algebraic facts used in the proof of `lem:O` (`09_relay.tex:264-387`):
+Algebraic facts used in the proof of `lem:O` (Part II Lemma C.8):
 * signs of the constants: `C_M, C_O > 0`, `maj_* ∈ (0,1]`, `C_Q ≥ 0` (unconditional: the chosen
   constants satisfy their specification, and the junk values have the same signs), `C_Duh > 0`,
   `K_O > 0`;
 * `A_j = μ^{j-i}A_i`, `μ^{i-j} = (μ^{j-i})⁻¹`, `s_p ≤ s̄`, `r_i = r_l ∏_{p=l}^{i-1} s_p`;
 * `P̃_{i,j} > 0`, `P̃_{i,j} ≤ 1/2` (`i < j`), `b_{l,i}P̃_{l,i} = ∏_{p=l}^{i-1} K_O s_p^{2m}`
-  (`09_relay.tex:338-343`);
+  (`lem:O`, Part II Lemma C.8);
 * finite geometric sums and the final numerical inequality (the bracket `≤ 1/4`,
-  `09_relay.tex:352-357`).
+  `lem:O`, Part II Lemma C.8).
 -/
 
 noncomputable section
@@ -159,7 +159,7 @@ theorem KO_eps_le_half (S : Standing) (hS : S.Holds) (hsm : S.OSmall) (p : ℕ) 
     _ = S.KO * S.P.μ * S.P.sbar ^ (3 + 2) := by ring
     _ ≤ 1 / 2 := h
 
-/-- `P̃_{i,j} ≤ 1/2` for `i < j` (`09_relay.tex:310-312`). -/
+/-- `P̃_{i,j} ≤ 1/2` for `i < j` (`lem:O`, Part II Lemma C.8). -/
 theorem Ptil_le_half (S : Standing) (hS : S.Holds) (hsm : S.OSmall) {i j : ℕ} (hij : i < j) :
     S.Ptil i j ≤ 1 / 2 := by
   calc S.Ptil i j ≤ ∏ _p ∈ Finset.Ico i j, (1 / 2 : ℝ) :=
@@ -176,7 +176,7 @@ theorem prod_CM_eps_eq (S : Standing) (hS : S.Holds) (i l : ℕ) :
   refine Finset.prod_congr rfl fun p _ => ?_
   field_simp
 
-/-- `b_{l,i} P̃_{l,i} = ∏_{p=l}^{i-1} K_O s_p^{2m}` for `1 ≤ l ≤ i` (`09_relay.tex:338-341`). -/
+/-- `b_{l,i} P̃_{l,i} = ∏_{p=l}^{i-1} K_O s_p^{2m}` for `1 ≤ l ≤ i` (`lem:O`, Part II Lemma C.8). -/
 theorem b_mul_Ptil (S : Standing) (hS : S.Holds) {l i : ℕ} (hl : 1 ≤ l) (hli : l ≤ i) :
     S.P.b l i * S.Ptil l i = ∏ p ∈ Finset.Ico l i, S.KO * S.P.s p ^ 6 := by
   have hμ : 0 < S.P.μ := by linarith [hS.one_lt_μ]
@@ -275,7 +275,7 @@ theorem CM_div_KO_le (S : Standing) (hS : S.Holds) :
     nlinarith
   linarith
 
-/-- **The bracket of `lem:O` is `< 1/4`** (`09_relay.tex:352-357`): with `X = C_M/K_O`,
+/-- **The bracket of `lem:O` is `< 1/4`** (`lem:O`, Part II Lemma C.8): with `X = C_M/K_O`,
 `a₁ = (8/7)XC_Q + (4/3)C_OC_QK_Os̄^{2m}` and `a₂ = X`, `a₁C_Duh + a₂ ≤ 1/4`. -/
 theorem bracket_le (S : Standing) (hS : S.Holds) (hsm : S.OSmall) :
     (8 / 7 * (S.CM / S.KO) * S.CQ + 4 / 3 * (S.CO * S.CQ * S.KO * S.P.sbar ^ 6)) * S.CDuh +

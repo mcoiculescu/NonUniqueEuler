@@ -6,10 +6,12 @@ import NonUniqueEuler.H.Sec4.Elliptic.GreenLog
 import NonUniqueEuler.H.Sec4.Elliptic.Membership
 
 /-!
-# Proof: `lem:elliptic` (elliptic estimate for `𝒢_ℓ`, uniform in `ℓ`)
+# Proof: the uniform elliptic estimate for `𝒢_ℓ`
 
-Proof of `NonUniqueEuler/I/Sec4/Elliptic.lean` (`04_ring.tex:867-898`), with restructuring R4
-(energy identity in place of the Fourier transform).
+The retained interface `I/Sec4/Elliptic.lean` extends the elliptic estimate in the proof of
+Part I Corollary 4.13 (`cor:K-bound`) to any compact target interval in `(0,∞)`, and includes
+global `H^{k+2}((0,∞))` membership. The proof uses an energy identity in place of the
+manuscript's Fourier-transform argument (R4).
 
 With `x = log r`, `g̃ = g ∘ exp`, `f = e^{2x} g̃`, `ψ̃ = yukawa ℓ f`:
 * `𝒢_ℓ g = ψ̃ ∘ log` on `(0, ∞)` (`EllipticH.green_eq_yukawa_log`);
@@ -31,7 +33,7 @@ namespace NonUniqueEuler
 
 namespace SectorSetting
 
-/-- `lem:elliptic`: for `k ≥ 0`, radii `0 < ρ₋ < ρ₊` and a compact interval `[α, β] ⊂ (0,∞)`
+/-- Retained extension of the elliptic estimate in the proof of Part I Corollary 4.13 (`cor:K-bound`): for `k ≥ 0`, radii `0 < ρ₋ < ρ₊` and a compact interval `[α, β] ⊂ (0,∞)`
 there is `C` such that for every `ℓ ≠ 0` and every `g ∈ H^k((0,∞))` supported in `[ρ₋, ρ₊]`,
 `𝒢_ℓ g ∈ H^{k+2}((0,∞))` and `‖𝒢_ℓ g‖²_{k+2,ℓ;[α,β]} ≤ C ‖g‖²_{k,ℓ}`. -/
 theorem elliptic (k : ℕ) {ρm ρp : ℝ} (hρm : 0 < ρm) (hρ : ρm < ρp) {α β : ℝ} (hα : 0 < α)

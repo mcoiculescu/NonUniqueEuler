@@ -4,9 +4,9 @@ import NonUniqueEuler.I.Infra.SectorSpace.BanachExp
 import NonUniqueEuler.I.Infra.Ip.Ip
 
 /-!
-# Helpers for `P/Sec4/LargeSectors`: the abstract bootstrap of `prop:large-sectors`
+# Helpers for `P/Sec4/LargeSectors`: the abstract bootstrap of Part I Proposition 4.15 (`prop:large-sectors`)
 
-The argument of `prop:large-sectors` (`04_ring.tex:1023-1040`) for bounded operators `A`, `B` on
+The argument of Part I Proposition 4.15 (`prop:large-sectors`) for bounded operators `A`, `B` on
 a complex Banach space `E` (`A = -iℓΩ`, `B = k_ℓ𝒢_ℓ`): if `‖exp(tA)‖ ≤ C(1+t)^s` for `t ≥ 0`,
 `‖B‖ ≤ κ`, `(1+t)^s e^{-γt} ≤ c` for `t ≥ 0` and `Cκ I_s(γ) ≤ 1/2`, then
 `‖exp(t(A+B))‖ ≤ 2Cc e^{γt}` for `t ≥ 0`. Proof: first Duhamel formula
@@ -76,7 +76,8 @@ theorem exists_Ip_small (s : ℕ) {K : ℝ} (hK : 0 ≤ K) :
         rw [div_le_iff₀ hγ0]
         linarith
 
-/-- **The bootstrap of `prop:large-sectors`** (`04_ring.tex:1023-1040`), for bounded operators. -/
+/-- **The bootstrap in the proof of Part I Proposition 4.15 (`prop:large-sectors`)**,
+for bounded operators. -/
 theorem norm_exp_add_le (A B : E →L[ℂ] E) (s : ℕ) {C κ γ c : ℝ}
     (hC : 0 ≤ C) (hκ : 0 ≤ κ) (hγ : 0 < γ)
     (hA : ∀ t : ℝ, 0 ≤ t → ‖NormedSpace.exp ((t : ℂ) • A)‖ ≤ C * (1 + t) ^ s)

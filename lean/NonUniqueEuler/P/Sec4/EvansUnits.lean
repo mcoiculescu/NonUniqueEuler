@@ -7,10 +7,11 @@ import NonUniqueEuler.I.Sec4.RingFacts
 /-!
 # Proof: `eq:evans-units` (the Evans function in ring units)
 
-Proof of `I/Sec4/EvansUnits.lean` (`04_ring.tex:1167-1170`, and `:1426-1427` for the
-derivative). `ringPhiSetting χ = (ringRefSetting χ).dilate R_c` (`ringPhiSetting_eq_dilate`),
-`lem:dilation`(2) (`SectorSetting.dilate_evans`, with `R = R_c > 0` and the validity
-`ringRefSetting_valid`) and `lem:evans-basic`, last assertion (`ringRefSetting_evans`). The
+Proof of Part I Equation 13 (`eq:evans-units`) and its differentiated form, as exposed by
+`I/Sec4/EvansUnits.lean`. The proof combines
+`ringPhiSetting χ = (ringRefSetting χ).dilate R_c` (`ringPhiSetting_eq_dilate`) with
+`SectorSetting.dilate_evans`, using `R_c > 0` and `ringRefSetting_valid`, and the last assertion
+of Part I Lemma 4.6 (`lem:evans-basic`), formalized as `ringRefSetting_evans`. The
 derivative statement follows because the two functions of `λ` agree on the open half-plane
 `{Re λ > 0}`, a neighbourhood of `λ` (`Filter.EventuallyEq.deriv_eq`).
 -/
@@ -29,7 +30,8 @@ theorem evans_units {χ : ℝ → ℝ} (hχ : IsAdmissibleCutoff χ) (ℓ : ℕ)
     SectorSetting.dilate_evans (ringRefSetting χ) (ringRefSetting_valid hχ) hRc ℓ hℓ z hz G]
   exact ringRefSetting_evans hχ ℓ hℓ z hz (Rc ^ 2 * G)
 
-/-- The `λ`-derivatives agree as well: `∂_λE^Φ_ℓ(λ;G) = ∂_λE_ℓ(λ;R_c²G)` (`04_ring.tex:1426-1427`). -/
+/-- Differentiating Part I Equation 13 (`eq:evans-units`) in the open half-plane gives
+`∂_λE^Φ_ℓ(λ;G) = ∂_λE_ℓ(λ;R_c²G)`. -/
 theorem evans_units_deriv {χ : ℝ → ℝ} (hχ : IsAdmissibleCutoff χ) (ℓ : ℕ) (hℓ : 1 ≤ ℓ) (z : ℂ)
     (hz : 0 < z.re) (G : ℝ) :
     deriv (fun w => (ringPhiSetting χ).evans ℓ w G) z =

@@ -10,9 +10,10 @@ import NonUniqueEuler.I.Sec6.RegionsBasic
 /-!
 # Helpers for `P/Sec11/BootContinuity`: the extension step `t_* = T_end`
 
-Step 7 of the proof of `prop:bootstrap`, first part (`11_bootstrap.tex:576-591`): if (BA°) holds at
+Lean step 7 of the historical bootstrap decomposition, first part (Part II §8 (`prop:bootstrap`),
+“Continuation in time”): if (BA°) holds at
 every time of `[0, t]`, `0 ≤ t < T_end`, then (BA°) holds on `(t, t + δ]` for some `δ > 0`
-(`boot_extend`). By Steps 1–6, (BA*)(t) holds; then
+(`boot_extend`). By Lean steps 1–6, (BA*)(t) holds; then
 * (BA1): each `S_j(t)` is a compact subset of `𝒩_j ⊂ int N♭_j`, and the flow is continuous
   (`ext_ba1`, via `flow_image_eventually`);
 * `δ₁ > 0` with no phase boundary `t♯_i`, `T_i` in `(t, t + δ₁]`, `t + δ₁ ≤ T_end`, and (BA1) on
@@ -36,7 +37,8 @@ open RingData Datum
 
 variable (S : Standing)
 
-/-- **(BA1) just after `t`** (`11_bootstrap.tex:580-582`): `S_j(t) ⊂ 𝒩_j ⊂ int N♭_j` for the rings
+/-- **(BA1) just after `t`** (Part II §8 (`prop:bootstrap`), “Continuation in time”):
+`S_j(t) ⊂ 𝒩_j ⊂ int N♭_j` for the rings
 not debris at `t`, `S_j` is compact and the flow is continuous; a ring debris at `t` stays debris. -/
 theorem ext_ba1 (hS : S.Holds) {t : ℝ} (ht : 0 ≤ t) (hstar : S.BA1At S.P.Nnk t)
     (hroom : ∀ j ∈ Finset.Icc 1 S.P.n, S.P.Nnk j ⊆ interior (S.P.Nflatk j)) :
@@ -65,9 +67,10 @@ theorem ext_boundaries {t : ℝ} (b : ℕ → ℝ) (I : Finset ℕ) :
     exact hs
   · exact Eventually.of_forall fun s h' => absurd h' hti
 
-/-- **`lem:geometry` at `t + δ₁`** (`11_bootstrap.tex:582-584`): (BA1) on `[0, t + δ₁]`, and no
-`t♯_k` lies in `(t, t + δ₁]`, so the levels with `t♯_k < t + δ₁` have `t♯_k ≤ t` and Step 3 at
-`t♯_k` (from Steps 1–6 at `t`) gives `κ♯_k ≥ K_lo s_k^{m+2}`. -/
+/-- **`lem:geometry` at `t + δ₁`** (Part II §8 (`prop:bootstrap`), “Continuation in time”): (BA1)
+on `[0, t + δ₁]`, and no
+`t♯_k` lies in `(t, t + δ₁]`, so the levels with `t♯_k < t + δ₁` have `t♯_k ≤ t` and Lean step 3 at
+`t♯_k` (from Lean steps 1–6 at `t`) gives `κ♯_k ≥ K_lo s_k^{m+2}`. -/
 theorem ext_geometry (hS : S.Holds) (hL : S.ParamLists) {t δ₁ : ℝ} (ht : 0 ≤ t)
     (hδ₁ : 0 < δ₁) (hTend : t + δ₁ ≤ S.P.Tend) (hsteps : S.BootStepsConcl t)
     (hGtsh : ∀ i ∈ Finset.Icc 1 S.P.n, t < S.P.tsh i → t + δ₁ < S.P.tsh i)
@@ -83,7 +86,8 @@ theorem ext_geometry (hS : S.Holds) (hL : S.ParamLists) {t δ₁ : ℝ} (ht : 0 
     linarith
   exact (hsteps.handoff k hk hc hle).amp_lo
 
-/-- **(BA2) just after `t` for the ring `j < n`** (`11_bootstrap.tex:582-586`): if ring `j` is quiet
+/-- **(BA2) just after `t` for the ring `j < n`** (Part II §8 (`prop:bootstrap`), “Continuation in
+time”): if ring `j` is quiet
 up to `t + δ₁`, `h_j` is defined on `[0, t + δ₁]` (`lem:geometry`(b)), `maj_j` is continuous and
 `maj_j(A_jt) ≤ Āε_j < 2Āε_j`; otherwise ring `j` is not quiet after `t`. -/
 theorem ext_ba2_ring (hS : S.Holds) {t δ₁ : ℝ} (ht : 0 ≤ t) (hδ₁ : 0 < δ₁)
@@ -129,7 +133,8 @@ theorem ext_ba2_ring (hS : S.Holds) {t δ₁ : ℝ} (ht : 0 ≤ t) (hδ₁ : 0 <
     · have hs' : t < s := hs
       linarith
 
-/-- **(BA3) just after `t` for the ring `k`** (`11_bootstrap.tex:586-589`): if ring `k` is active at
+/-- **(BA3) just after `t` for the ring `k`** (Part II §8 (`prop:bootstrap`), “Continuation in
+time”): if ring `k` is active at
 `t` with `t < T_k`, then `‖w_k(t)‖_{H^s} ≤ C₂â_k(1 + ρ̂_k) < R_k` at `u_* = A_k(t - t♯_k)`, `w_k` is
 continuous on `[t, t + δ₁]` (`w_continuous`) and `R_k` is right-continuous
 (`rhoHat_semicontinuous`); otherwise ring `k` is not active on `(t, t + δ₁]`. -/
@@ -179,7 +184,8 @@ theorem ext_ba3_ring (hS : S.Holds) {t δ₁ : ℝ} (ht : 0 ≤ t) (hδ₁ : 0 <
       linarith
     exact ⟨⟨hc, htsh, by linarith⟩, by linarith⟩
 
-/-- **The extension step of Step 7** (`11_bootstrap.tex:576-591`): if (BA°) holds at every time of
+/-- **The extension step of Lean step 7** (Part II §8 (`prop:bootstrap`), “Continuation in time”):
+if (BA°) holds at every time of
 `[0, t]`, `0 ≤ t < T_end`, then (BA°) holds on `(t, t + δ]` for some `δ > 0`. -/
 theorem boot_extend (hS : S.Holds) (hL : S.ParamLists) {t : ℝ}
     (ht : t ∈ Ico (0 : ℝ) S.P.Tend) (h : ∀ s ∈ Icc (0 : ℝ) t, S.BAcirc s) :
@@ -188,7 +194,7 @@ theorem boot_extend (hS : S.Holds) (hL : S.ParamLists) {t : ℝ}
   have hsteps := boot_steps S hS hL ⟨ht.1, ht.2.le⟩ (boot_start S hS hL) hBAt
   have hstar : S.BAstar t := hsteps.ba_star
   have hroom := BAstar_room S hS hL
-  -- Step 1: `δ₁` (no phase boundary in `(t, t + δ₁]`, `t + δ₁ ≤ T_end`, (BA1) on `(t, t + δ₁]`)
+  -- Lean step 1: `δ₁` (no phase boundary in `(t, t + δ₁]`, `t + δ₁ ≤ T_end`, (BA1) on `(t, t + δ₁]`)
   obtain ⟨δ₁, hδ₁, hG⟩ : ∃ δ₁ > 0, ∀ s ∈ Ioc t (t + δ₁), s ≤ S.P.Tend ∧
       (∀ i ∈ Finset.Icc 1 S.P.n, t < S.P.tsh i → s < S.P.tsh i) ∧
       (∀ i ∈ Finset.Icc 1 S.P.n, t < S.P.T i → s < S.P.T i) ∧
@@ -207,7 +213,7 @@ theorem boot_extend (hS : S.Holds) (hL : S.ParamLists) {t : ℝ}
     · exact hBAt.ba1 s ⟨hs.1, hst⟩
     · exact (hG s ⟨lt_of_not_ge hst, hs.2⟩).2.2.2
   have hgeom := ext_geometry S hS hL ht.1 hδ₁ hGδ.1 hsteps hGδ.2.1 hba1
-  -- Steps 2–3: (BA2) and (BA3) just after `t`
+  -- Lean steps 2–3: (BA2) and (BA3) just after `t`
   have e2 : ∀ᶠ s in 𝓝[>] t, ∀ j ∈ Finset.Ico 1 S.P.n, s ≤ t + δ₁ → S.P.QuietAt j s →
       (∀ t'' ∈ Icc (0 : ℝ) s, S.P.HDefined j t'') ∧
         S.maj j (S.P.A j * s) ≤ 2 * S.Abar * S.P.eps j :=

@@ -6,7 +6,7 @@ import Mathlib.MeasureTheory.Integral.Lebesgue.DominatedConvergence
 /-!
 # Helper for `P/Sec3/Transport`: the three limits `ε → 0`
 
-Proof of `lem:transport`(i) (`03_compactness.tex:503-518`), the passage to the limit in the
+Proof of `lem:transport`(i) (Part I Lemma 3.4 (`lem:transport`) and its proof), the passage to the limit in the
 mollified renormalized identity (`I/Sec3/Transport/Mollified.lean`) along `ε_n = 1/(n+1)`:
 
 * `tendsto_lintegral_transportIntegrand_mollify`: `Υ(u_ε)(∂_tφ + w·∇φ) → Υ(u)(∂_tφ + w·∇φ)` in

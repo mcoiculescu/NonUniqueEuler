@@ -12,7 +12,7 @@ Proof of `NonUniqueEuler/I/Verify/WindingHomotopy.lean` (same declarations, stat
 verbatim).
 
 **Manuscript.** Background for the argument principle and for the reading of
-`wind(E_3(Γ; G), 0)` as a well-defined integer (`A_verification.tex:42-50`).
+`wind(E_3(Γ; G), 0)` as a well-defined integer (`app:verify`).
 
 * `HasWinding.of_norm_sub_lt`: the quotient `w = c₂ / c₁` satisfies `‖w - 1‖ < 1`, so
   `Re w > 0`, `arg ∘ w` is a continuous lift and `w` has winding `0`; then `HasWinding.mul`

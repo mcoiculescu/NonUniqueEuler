@@ -13,8 +13,8 @@ import Mathlib.Analysis.SpecificLimits.Basic
 /-!
 # Proof of the interface (I-WEAKL2): a countable test family in `C_c^∞(ℂ)`
 
-Proof of `NonUniqueEuler/I/Infra/WeakL2/TestFamily.lean` (the family `𝓕` of the proof of
-`lem:weak-cont`, `03_compactness.tex:146-153`).
+Proof of `NonUniqueEuler/I/Infra/WeakL2/TestFamily.lean` (the family `𝓕` in the proof of
+Part I, Lemma 3.2, `lem:weak-cont`).
 
 * `exists_isTestFamily`: for each rational `q`, the set `suppSet q` of `C_c^∞` functions with
   `tsupport ⊆ B_q` is mapped by the `C¹` jet `ψ ↦ (x ↦ (ψ x, Dψ x))` into the separable metric

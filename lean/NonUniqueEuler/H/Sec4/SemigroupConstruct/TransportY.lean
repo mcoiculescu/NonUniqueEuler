@@ -3,9 +3,9 @@ import NonUniqueEuler.I.Infra.SectorSpace.BanachExp
 import Mathlib.MeasureTheory.Integral.IntervalIntegral.Periodic
 
 /-!
-# Helpers for `lem:semigroup-construct`(1): the transport group `e^{tL^tr}` on `Y^s`
+# Helpers for Part I Lemma 4.14(1) (`lem:semigroup-construct`): the transport group `e^{tL^tr}` on `Y^s`
 
-Helper file of `P/Sec4/SemigroupConstruct.lean` (fully proved). Manuscript `04_ring.tex:963-981`
+Helper file of `P/Sec4/SemigroupConstruct.lean` (fully proved). Part I Lemma 4.14 (`lem:semigroup-construct`)
 (R1 form: `e^{tL^tr} = S.transportY s G t = ⊕_ℓ exp(t(-iℓΩ))`).
 
 * `measurePreserving_rot_radial`: `x ↦ O_{φ(|x|)} x` preserves Lebesgue measure (polar Fubini and

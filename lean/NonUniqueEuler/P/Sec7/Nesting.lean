@@ -4,9 +4,13 @@ import NonUniqueEuler.I.Sec6.RingConfig
 import NonUniqueEuler.I.Sec7.SkSmall
 
 /-!
-# Proof of `lem:nesting` (confinement of the inner material propagates outward)
+# Proof of the legacy nesting helper for the proof of `lem:geometry` (confinement of the inner material propagates outward)
 
-Proof of the interface `NonUniqueEuler/I/Sec7/Nesting.lean` (`07_several_rings.tex:420-457`).
+This is a retained support-separation helper, not a separately numbered
+current lemma. The corresponding geometric reasoning is now in the proof
+of Part II Lemma C.17 (`lem:geometry`), under the bootstrap hypotheses there.
+
+Proof of the interface `NonUniqueEuler/I/Sec7/Nesting.lean` (the support-separation argument in the proof of Part II Lemma C.17 (`lem:geometry`)).
 
 * (a) `D_{j+1}(t) = ⋃_{i>j} S_i(t)`: for `j < i ≤ k`, `S_i(t) ⊂ N_i ⊂ \bar B_{2r_i}` and
   `2r_i ≤ (a/16) r_j` (`eq:sk-small`, `Rings.sk_small`); for `i > k`, `S_i(t) ⊂ D_{k+1}(t) ⊂
@@ -79,7 +83,7 @@ theorem mem_D {P : Approx} {k : ℕ} {t : ℝ} {x : ℂ} :
 end NestingAux
 
 open NestingAux in
-/-- **`lem:nesting`** (`07_several_rings.tex:420-433`). Assume (N1)–(N3), `s̄ ≤ a/16`,
+/-- **the legacy nesting helper for the proof of `lem:geometry`** (the support-separation argument in the proof of Part II Lemma C.17 (`lem:geometry`)). Assume (N1)–(N3), `s̄ ≤ a/16`,
 `s̄^{m-2} ≤ 1/2`; let `1 ≤ k ≤ n`, `t ≥ 0`, `S_j(t) ⊂ N_j` for `1 ≤ j ≤ k`, and
 `D_{k+1}(t) ⊂ \bar B_{a r_k/8}`. Then for every `1 ≤ j ≤ k`: (a) `D_{j+1}(t) ⊂ \bar B_{a r_j/8}`;
 (b) `S_i(t) ∩ B_{8r_j} = ∅` for `i < j`; all vorticity outside `S_j(t)` lies in

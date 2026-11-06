@@ -5,7 +5,7 @@ import NonUniqueEuler.I.Infra.Sobolev.ReIm
 /-!
 # Helper for `P/Sec2/HkCalculus`: the energy claims of `lem:Hk-calculus`(1)
 
-`02_prelim.tex:732-747`.
+Part II, Lemma 1.10 (`lem:Hk-calculus`).
 * `energy_main`: with `g = ∂^α w`, `∂^α(U·∇w) = [∂^α, U·∇]w + Ũ·∇g` (a.e., extended by `0`
   outside `N₁`) and `Re ⟨Ũ·∇g, g⟩ = 0` (`re_innerL2_dotGrad_self_eq_zero`,
   `I/Sec2/HkCalculus/TransportEnergy.lean`, for `div Ũ = 0` on `N`), so

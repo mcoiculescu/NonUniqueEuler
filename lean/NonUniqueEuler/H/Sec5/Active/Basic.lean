@@ -5,8 +5,8 @@ import Mathlib.Analysis.SpecialFunctions.Pow.Asymptotics
 /-!
 # Helpers for `thm:active`: elementary facts (`⟨·⟩`, small `κ`)
 
-Helper of `P/Sec5/Active.lean` (fully proved). Manuscript `05_single_ring.tex:941-952`,
-`:1037-1047`. The facts on `t₁` are `tOneOf_spec`, `active_tOne` (`I/Sec5/ActiveT1.lean`).
+Helper of `P/Sec5/Active.lean` (fully proved). Manuscript Part II Theorem 2.12,
+Part II Theorem 2.12. The facts on `t₁` are `tOneOf_spec`, `active_tOne` (`I/Sec5/ActiveT1.lean`).
 
 * `poly_exp_eventually_le`: `K(1+x)^n e^{-bx} ≤ 1` for large `x` (`b > 0`);
 * `jap_add_pow_le` (Peetre): `⟨t+u⟩^3 ≤ 2^{3/2}⟨t⟩^3⟨u⟩^3`;
@@ -53,7 +53,7 @@ theorem jap_mono {t u : ℝ} (ht : 0 ≤ t) (htu : t ≤ u) : Prelim.jap t ≤ P
   apply Real.sqrt_le_sqrt
   nlinarith
 
-/-- Peetre's inequality in the form used in `thm:active` (`05_single_ring.tex:1040`):
+/-- Peetre's inequality in the form used in Part II Theorem 2.12 (`thm:active`):
 `⟨t + u⟩ ≤ √2 ⟨t⟩⟨u⟩`, hence `⟨t+u⟩^3 ≤ 2^{3/2}⟨t⟩^3⟨u⟩^3`. -/
 theorem jap_add_pow_le (t u : ℝ) :
     Prelim.jap (t + u) ^ pW ≤ (2 : ℝ) ^ ((pW : ℝ) / 2) * Prelim.jap t ^ pW * Prelim.jap u ^ pW := by
@@ -98,7 +98,7 @@ theorem small_sqrt {A : ℝ} (hA : 0 ≤ A) :
       _ ≤ Real.sqrt κ / 2 := by nlinarith
 
 /-- For `B ≥ 0`, `σ_b > 0` and `N : ℕ` there is `ε ∈ (0,1]` with
-`Bκ(1 + σ_b⁻¹ log(1/κ))^N ≤ ½√κ` on `(0,ε]` (`05_single_ring.tex:945-946`, (L3)). -/
+`Bκ(1 + σ_b⁻¹ log(1/κ))^N ≤ ½√κ` on `(0,ε]` (Part II Theorem 2.12 (`thm:active`), (L3)). -/
 theorem small_varsigma {B σb : ℝ} (hB : 0 ≤ B) (hσb : 0 < σb) (N : ℕ) :
     ∃ ε : ℝ, 0 < ε ∧ ε ≤ 1 ∧ ∀ κ : ℝ, 0 < κ → κ ≤ ε →
       B * κ * (1 + σb⁻¹ * Real.log (1 / κ)) ^ N ≤ Real.sqrt κ / 2 := by

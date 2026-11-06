@@ -2,9 +2,9 @@ import NonUniqueEuler.Statement.WeakSolution
 import Mathlib.Data.Real.ConjExponents
 
 /-!
-# Section 2 conventions: spaces of functions of `(t, x)`
+# Part I, Section 2 conventions: spaces of functions of `(t, x)`
 
-Definitions for the convention on Bochner spaces of `02_prelim.tex:101-120`.
+Definitions for the convention on Bochner spaces of Part I, §2.1, Conventions (`sec:prelim`).
 
 The manuscript identifies elements of `L^∞(I; L^b(Ω))` and `L¹(I; L^b(Ω))` with measurable
 functions on `I × Ω`, and (for `b < ∞`) characterizes membership by essential boundedness,
@@ -25,7 +25,7 @@ For `b = ∞` the manuscript writes `L^∞(I; L^∞(Ω))` for `L^∞(I × Ω)` a
 every `b`. For `b = ∞` and `L^∞`, they agree with `u ∈ L^∞(I × Ω)` for a.e.-measurable `u`
 (Tonelli applied to `{|u| > M}`); this equivalence is not needed and is not
 proved here. Intersections (`L^∞(I; L¹ ∩ L^q)`) are conjunctions. The `W^{1,a}` and `loc`
-variants of `02_prelim.tex:112-116` are not defined (restructuring R7: Section 3 uses exponent 2
+variants of Part I, §2.1, Conventions (`sec:prelim`) are not defined (restructuring R7: Part I, Section 3 uses exponent 2
 and explicit approximations instead).
 
 `memX_iff` relates the statement layer's `MemX q T` (`X_q(T) = L^∞(0,T; L¹ ∩ L^q)`) to these
@@ -41,14 +41,14 @@ namespace NonUniqueEuler.Prelim
 
 variable {E : Type*} [NormedAddCommGroup E]
 
-/-- `u ∈ L^∞(I; L^b(Ω))` (`02_prelim.tex:101-120`): `u` is a.e. strongly measurable on `I × Ω`,
+/-- `u ∈ L^∞(I; L^b(Ω))` (Part I, §2.1, Conventions (`sec:prelim`)): `u` is a.e. strongly measurable on `I × Ω`,
 and for a.e. `t ∈ I`, `u(t) ∈ L^b(Ω)` with `‖u(t)‖_{L^b(Ω)} ≤ M` for one constant `M`. -/
 structure MemLinfLp (I : Set ℝ) (Ω : Set ℂ) (b : ℝ≥0∞) (u : ℝ → ℂ → E) : Prop where
   aestronglyMeasurable : AEStronglyMeasurable (Function.uncurry u) (volume.restrict (I ×ˢ Ω))
   essBounded : ∃ M : ℝ, ∀ᵐ t ∂(volume.restrict I),
     MemLp (u t) b (volume.restrict Ω) ∧ (eLpNorm (u t) b (volume.restrict Ω)).toReal ≤ M
 
-/-- `u ∈ L¹(I; L^b(Ω))` (`02_prelim.tex:101-120`): `u` is a.e. strongly measurable on `I × Ω`,
+/-- `u ∈ L¹(I; L^b(Ω))` (Part I, §2.1, Conventions (`sec:prelim`)): `u` is a.e. strongly measurable on `I × Ω`,
 `u(t) ∈ L^b(Ω)` for a.e. `t ∈ I`, and `t ↦ ‖u(t)‖_{L^b(Ω)}` is integrable on `I`. -/
 structure MemL1Lp (I : Set ℝ) (Ω : Set ℂ) (b : ℝ≥0∞) (u : ℝ → ℂ → E) : Prop where
   aestronglyMeasurable : AEStronglyMeasurable (Function.uncurry u) (volume.restrict (I ×ˢ Ω))
@@ -56,12 +56,12 @@ structure MemL1Lp (I : Set ℝ) (Ω : Set ℂ) (b : ℝ≥0∞) (u : ℝ → ℂ
   integrable : Integrable (fun t => (eLpNorm (u t) b (volume.restrict Ω)).toReal)
     (volume.restrict I)
 
-/-- `v ∈ L¹ + L^∞(ℝ²)` (`lem:velocity`(a), `02_prelim.tex:312`): `v = v₁ + v₂` a.e. with
+/-- `v ∈ L¹ + L^∞(ℝ²)` (Part I, Lemma 2.2(a) (`lem:velocity`)): `v = v₁ + v₂` a.e. with
 `v₁ ∈ L¹`, `v₂ ∈ L^∞`. -/
 def MemL1AddLinf (v : ℂ → E) : Prop :=
   ∃ v₁ v₂ : ℂ → E, MemLp v₁ 1 volume ∧ MemLp v₂ ⊤ volume ∧ v =ᵐ[volume] v₁ + v₂
 
-/-- `ωₙ ⇀ ω` weakly in `L^p(ℝ²)` (`lem:velocity`(b), `02_prelim.tex:316-318`), for real
+/-- `ωₙ ⇀ ω` weakly in `L^p(ℝ²)` (Part I, Lemma 2.2(b) (`lem:velocity`)), for real
 functions and `1 < p < ∞`: all `ωₙ` and `ω` lie in `L^p`, and `∫ ωₙ φ → ∫ ω φ` for every
 `φ ∈ L^{p'}`, `p' = p/(p-1)` (the dual of `L^p`). -/
 def WeakTendstoLp (p : ℝ) (ωs : ℕ → ℂ → ℝ) (ω : ℂ → ℝ) : Prop :=
@@ -79,7 +79,7 @@ theorem MemLinfLp.mono_set {I I' : Set ℝ} {Ω : Set ℂ} {b : ℝ≥0∞} {u :
   exact ⟨M, ae_restrict_of_ae_restrict_of_subset hI hM⟩
 
 /-- `X_q(T) = L^∞(0,T; L¹ ∩ L^q(ℝ²))`: the statement layer's `MemX q T` is the conjunction of
-`L^∞(0,T; L¹)` and `L^∞(0,T; L^q)` (`02_prelim.tex:122-124`). -/
+`L^∞(0,T; L¹)` and `L^∞(0,T; L^q)` (Part I, §2.1, Conventions (`sec:prelim`)). -/
 theorem memX_iff {q T : ℝ} {ω : ℝ → ℂ → ℝ} :
     MemX q T ω ↔ MemLinfLp (Ioo 0 T) univ 1 ω ∧ MemLinfLp (Ioo 0 T) univ (ENNReal.ofReal q) ω := by
   constructor

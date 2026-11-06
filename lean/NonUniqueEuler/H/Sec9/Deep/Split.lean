@@ -4,13 +4,13 @@ import NonUniqueEuler.I.Sec6.RegionsBasic
 /-!
 # Helpers for `P/Sec9/Deep`: the splitting `q_{k+1} = q^ring + q^deep`
 
-Helper file of `P/Sec9/Deep.lean` (`lem:deep`(1), `09_relay.tex:1134-1150`).
+Helper file of `P/Sec9/Deep.lean` (`lem:deep`(1) (historical), `lem:kicktrue`, Part II Lemma C.14, proof of (Q1) and the deep term in (Kick3)).
 * `integrable_moment`, `Qm_add`: `Q_3` is additive on continuous compactly supported real functions;
 * `omegaGe_split`: `ω_{≥j}(t) = ω(t)1_{S_j(t)} + ω_{≥j+1}(t)` for `1 ≤ j ≤ n`, `t ≥ 0`
   (`lem:regions-basic`(3)), with the regularity of both parts;
 * `qKick_split`: `q_{k+1}(t) = q^ring + conj Q_3[ω_{≥k+2}(t)]/(A_{k+1}r_{k+1}^5)`;
 * `kick_time_succ`: `T_{k+2} + (T_pin + μ(τ_K + T̂_{k+1}))/A_{k+2} = T_{k+1} + τ_K/A_{k+1}`
-  (the kick time of ring `k+1` is `T_pin + μ(τ_K + T_g)`, `09_relay.tex:1144-1149`);
+  (the kick time of ring `k+1` is `T_pin + μ(τ_K + T_g)`, `lem:kicktrue`, Part II Lemma C.14, proof of (Q1) and the deep term in (Kick3));
 * `deepTerm_eq`, `deepTerm_eq_of_succ_eq_n`: the second term is `q^deep(τ_K)`.
 Everything here is proved.
 -/
@@ -47,7 +47,7 @@ theorem Qm_add {g h : ℂ → ℝ} (hg : Integrable (fun y : ℂ => ((g y : ℝ)
   push_cast
   ring
 
-/-- `ω_{≥j}(t) = ω(t)1_{S_j(t)} + ω_{≥j+1}(t)` for `1 ≤ j ≤ n` and `t ≥ 0` (`09_relay.tex:1036-1039`,
+/-- `ω_{≥j}(t) = ω(t)1_{S_j(t)} + ω_{≥j+1}(t)` for `1 ≤ j ≤ n` and `t ≥ 0` (`lem:kicktrue`, Part II Lemma C.14, proof of (Q2) and (Kick4),
 from `lem:regions-basic`(3)); both parts are continuous with compact support (`ω_{≥n+1} = 0`). -/
 theorem omegaGe_split (P : Approx) (hP : P.Valid) (hN : NumericalHypothesis P.χ) {j : ℕ}
     (hj : 1 ≤ j) (hjn : j ≤ P.n) {t : ℝ} (ht : 0 ≤ t) :
@@ -72,7 +72,7 @@ theorem omegaGe_split (P : Approx) (hP : P.Valid) (hN : NumericalHypothesis P.χ
   rw [hsum, hnsum, ← Finset.insert_Icc_add_one_left_eq_Icc hjn]
   exact Finset.sum_insert (by simp)
 
-/-- `conj Q_3[ω_{≥j}(t)] = conj Q_3[ω(t)1_{S_j(t)}] + conj Q_3[ω_{≥j+1}(t)]` (`09_relay.tex:1139-1141`). -/
+/-- `conj Q_3[ω_{≥j}(t)] = conj Q_3[ω(t)1_{S_j(t)}] + conj Q_3[ω_{≥j+1}(t)]` (`lem:kicktrue`, Part II Lemma C.14, proof of (Q1) and the deep term in (Kick3)). -/
 theorem conjQm_split (P : Approx) (hP : P.Valid) (hN : NumericalHypothesis P.χ) {j : ℕ}
     (hj : 1 ≤ j) (hjn : j ≤ P.n) {t : ℝ} (ht : 0 ≤ t) :
     conj (BS.Qm 3 fun x => ((P.omegaGe j t x : ℝ) : ℂ)) =
@@ -97,7 +97,7 @@ theorem qKick_split (P : Approx) (hP : P.Valid) (hN : NumericalHypothesis P.χ) 
   rw [conjQm_split P hP hN (by omega) hkn ht, add_div]
 
 /-- The kick time of ring `k+1`: `T_{k+2} + (T_pin + μ(τ_K + T̂_{k+1}))/A_{k+2} = T_{k+1} + τ_K/A_{k+1}`
-for `1 ≤ k`, `k + 1 < n` (`09_relay.tex:1144-1149`: `T_{k+1} - T_{k+2} = T_pin/A_{k+2} + T_g/A_{k+1}`). -/
+for `1 ≤ k`, `k + 1 < n` (`lem:kicktrue`, Part II Lemma C.14, proof of (Q1) and the deep term in (Kick3): `T_{k+1} - T_{k+2} = T_pin/A_{k+2} + T_g/A_{k+1}`). -/
 theorem kick_time_succ (P : Approx) (hP : P.Valid) {k : ℕ} (hk : 1 ≤ k) (hkn1 : k + 1 < P.n)
     (τK : ℝ) :
     P.T (k + 1 + 1) + (P.Tpin + P.μ * (τK + P.That (k + 1))) / P.A (k + 1 + 1) =
@@ -112,7 +112,7 @@ theorem kick_time_succ (P : Approx) (hP : P.Valid) {k : ℕ} (hk : 1 ≤ k) (hkn
   ring
 
 /-- For `k + 1 < n`: `conj Q_3[ω_{≥k+2}(t)]/(A_{k+1}r_{k+1}^5) = q^deep(τ_K)`, using
-`A_{k+2}r_{k+2}^5 = μ s_{k+1}^5 A_{k+1}r_{k+1}^5` (`09_relay.tex:1141-1143`) and `kick_time_succ`. -/
+`A_{k+2}r_{k+2}^5 = μ s_{k+1}^5 A_{k+1}r_{k+1}^5` (`lem:kicktrue`, Part II Lemma C.14, proof of (Q1) and the deep term in (Kick3)) and `kick_time_succ`. -/
 theorem deepTerm_eq (P : Approx) (hP : P.Valid) {k : ℕ} (hk : 1 ≤ k) (hkn1 : k + 1 < P.n)
     (τK : ℝ) :
     conj (BS.Qm 3 fun x =>

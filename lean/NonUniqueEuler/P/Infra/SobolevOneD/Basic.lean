@@ -122,7 +122,7 @@ theorem secNormSq_mono_set {k : ℕ} (ℓ : ℤ) {I I' : Set ℝ} (hIm : Measura
   filter_upwards [hmemI'] with r hr0
   exact mul_nonneg (sq_nonneg _) (le_of_lt hr0)
 
-/-- `2^{-p}(1+x)^p ≤ ∑_{n ≤ p} x^n ≤ (1+x)^p` for `x ≥ 0` (`04_ring.tex:862`). -/
+/-- `2^{-p}(1+x)^p ≤ ∑_{n ≤ p} x^n ≤ (1+x)^p` for `x ≥ 0` (Part I, Lemma 4.12 (`lem:norm-equiv`), proof). -/
 theorem pow_weights {x : ℝ} (hx : 0 ≤ x) (p : ℕ) :
     (2 : ℝ)⁻¹ ^ p * (1 + x) ^ p ≤ ∑ n ∈ Finset.range (p + 1), x ^ n ∧
       ∑ n ∈ Finset.range (p + 1), x ^ n ≤ (1 + x) ^ p := by
@@ -149,7 +149,7 @@ theorem pow_weights {x : ℝ} (hx : 0 ≤ x) (p : ℕ) :
       _ ≤ x ^ n * (p.choose n : ℝ) := mul_le_mul_of_nonneg_left h1 (pow_nonneg hx n)
 
 /-- `∑_{j ≤ k} A^{k-j} B^j ≤ (A+B)^k ≤ 2^k ∑_{j ≤ k} A^{k-j} B^j` for `A, B ≥ 0`
-(`04_ring.tex:883`). -/
+(Part I, Corollary 4.13 (`cor:K-bound`), elliptic estimate in the proof). -/
 theorem binomial_weights {A B : ℝ} (hA : 0 ≤ A) (hB : 0 ≤ B) (k : ℕ) :
     ∑ j ∈ Finset.range (k + 1), A ^ (k - j) * B ^ j ≤ (A + B) ^ k ∧
       (A + B) ^ k ≤ 2 ^ k * ∑ j ∈ Finset.range (k + 1), A ^ (k - j) * B ^ j := by

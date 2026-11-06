@@ -12,9 +12,9 @@ import Mathlib.MeasureTheory.Function.LpSeminorm.TriangleInequality
 /-!
 # Proof of `lem:hollow`, the velocity inside a hollow region
 
-Proof of the interface `NonUniqueEuler/I/Sec2/Hollow.lean` (`02_prelim.tex:408-444`).
+Proof of the interface `NonUniqueEuler/I/Sec2/Hollow.lean` (Part II, Lemma 1.5 (`lem:hollow`)).
 
-Structure (following the manuscript proof, `02_prelim.tex:420-444`).
+Structure (following the manuscript proof, Part II, Lemma 1.5 (`lem:hollow`)).
 * `integrable_biotSavart_of_hollow`: for `|x| < R`, `ν = 0` a.e. on `ball x (R - |x|)`, so the
   Biot–Savart integral converges absolutely (`Multipole.integrable_biotSavart_of_vanishing`).
 * `velocity_angAvg_eq_zero_of_hollow`: the interior expansion of the Cauchy transform of `ν̄`

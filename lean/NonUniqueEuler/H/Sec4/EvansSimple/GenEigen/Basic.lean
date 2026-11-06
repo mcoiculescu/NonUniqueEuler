@@ -8,7 +8,8 @@ import Mathlib.Analysis.SpecialFunctions.Log.Deriv
 /-!
 # Helpers for `P/Sec4/EvansSimple/GenEigen`: `M_*`, `k_ℓ`, `g_*` and the forcing `F_*`
 
-Elementary facts used in the proof of `thm:evans-simple`(3), first half (`04_ring.tex:536-555`):
+Elementary facts for the retained generalized-eigenvector construction. This construction
+is not a claim of the current Part I Theorem 4.8 (`thm:evans-simple`):
 * `denom_ne_zero`, `denom_mul_Mres`: `(λ + iℓΩ) M_λ = 1` for `Re λ > 0`;
 * `contDiffOn_kcoef`, `contDiffOn_Mres`: `k_ℓ`, `M_λ` are smooth on `(0,∞)`;
 * `kcoef_eq_zero`: `k_ℓ = 0` on `(0,∞) \ [r₁,r₂]`;
@@ -16,7 +17,7 @@ Elementary facts used in the proof of `thm:evans-simple`(3), first half (`04_rin
 * `contDiff_Fstar`, `Fstar_eq_zero`: the forcing
   `F_*(ξ) = e^{2ξ} M_*(e^ξ) (-g_*(e^ξ)) = S.Fres ℓ z G (-g_*)` is smooth on `ℝ` and vanishes when
   `e^ξ ∉ [r₁,r₂]`;
-* `J_eq_neg_integral`: `J = -∫_ℝ ψ_* F_*` (the substitution `r = e^ξ`, `04_ring.tex:546-548`).
+* `J_eq_neg_integral`: `J = -∫_ℝ ψ_* F_*` (the substitution `r = e^ξ`).
 
 Several of these are copies of the corresponding lemmas of `H/Sec4/Resolvent/Profile.lean` and
 `H/Sec4/EvansSimple/Basic.lean` (helpers of other proofs, which may not be imported here).
@@ -100,7 +101,7 @@ theorem isProfileL2_neg_gStar (S : SectorSetting) (hS : S.Valid) (ℓ : ℕ) (h�
   · filter_upwards [ae_restrict_mem measurableSet_Ioi] with r hr hr'
     rw [gStar_eq_zero S hS ℓ z G hr fun h => hr' (hsub h), neg_zero]
 
-/-- The forcing `F_* = -e^{2ξ} M_* g_*` (`04_ring.tex:537`) is smooth on `ℝ`. -/
+/-- The forcing `F_* = -e^{2ξ} M_* g_*` used in the retained generalized-eigenvector construction is smooth on `ℝ`. -/
 theorem contDiff_Fstar (S : SectorSetting) (hS : S.Valid) (ℓ : ℕ) (hℓ : 1 ≤ ℓ) {z : ℂ}
     (hz : 0 < z.re) (G : ℝ) (hE : S.evans ℓ z G = 0) :
     ContDiff ℝ ∞ (S.Fres ℓ z G (fun r => -S.gStar ℓ z G r)) := by
@@ -121,7 +122,7 @@ theorem Fstar_eq_zero (S : SectorSetting) (hS : S.Valid) (ℓ : ℕ) (z : ℂ) (
     S.Fres ℓ z G (fun r => -S.gStar ℓ z G r) ξ = 0 := by
   simp only [Fres, gStar_eq_zero S hS ℓ z G (Real.exp_pos ξ) hξ, neg_zero, mul_zero]
 
-/-- **`J = -∫_ℝ ψ_* F_*`** (`04_ring.tex:546-548`; substitution `r = e^ξ`). -/
+/-- **`J = -∫_ℝ ψ_* F_*`** (substitution `r = e^ξ`; a retained auxiliary identity). -/
 theorem J_eq_neg_integral (S : SectorSetting) (ℓ : ℕ) (z : ℂ) (G : ℝ) :
     S.J ℓ z G = -∫ ξ : ℝ, S.psi ℓ z G ξ * S.Fres ℓ z G (fun r => -S.gStar ℓ z G r) ξ := by
   have himg : Real.exp '' univ = Ioi (0 : ℝ) := by rw [image_univ, Real.range_exp]

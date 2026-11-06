@@ -5,7 +5,7 @@ import NonUniqueEuler.I.Infra.Sobolev.WeakDeriv
 # Proof: the bridge between `MemH`/`normH` and the Hilbert space `Hk` (library I-HK)
 
 Proof of `I/Infra/Sobolev/Space.lean`. Manuscript-independent infrastructure (the manuscript's
-`H^k` norm is `02_prelim.tex:58-66`).
+`H^k` norm is defined in Part I, Section 2.1, conventions in `sec:prelim`).
 
 * The key step is `weakPartial_ae_eq_der`: if `F.fn = f` a.e., then the chosen weak derivative
   `weakPartial γ f` agrees a.e. with the stored derivative `F.der γ` (transport the weak

@@ -6,15 +6,24 @@ import NonUniqueEuler.H.Sec9.KickTrue.Hyp
 /-!
 # Proof: `lem:kicktrue` (the kick on the true field)
 
-Proof of `I/Sec9/KickTrue.lean` (`09_relay.tex:1179-1231`, proof `:1233-1397`). We apply `prop:kick`
+Current counterpart: Part II Lemma C.14 (`lem:kicktrue`), Appendix C.12
+(`sec:proof-kicktrue`). Lean retains the explicit error coefficients and the
+separate prehistory/deep-moment lemmas; the current statement and proof combine
+them with a common `C_err`. The local kick-time pullback is explicit below.
+
+Proof of `I/Sec9/KickTrue.lean` (`lem:kicktrue`, Part II Lemma C.14). We apply `prop:kick`
 (`Kick.kick`) to the instance of `lem:coupling`(2) (`Kick.kick_instance`) with `(Q̄, p) = (C_mom, 3)`,
 `err = errE(· + T_g) + |q^deep|` and `Q_pre = |q_{k+1}|`; its hypotheses are `KickTrueAux.kickHyp_of`
 (helpers `H/Sec9/KickTrue/*`). For `k + 1 < n` we use `T_g` itself (`τ₀ = -t̄♯_{k+1} - T_g < -T_g`,
-(Kick4) by `lem:prehistory` and (e)); at the seeded level `k + 1 = n` (`τ₀ = -T_g`) we use a
+(Kick4) by `lem:prehistory` (historical) and (e)); at the seeded level `k + 1 = n` (`τ₀ = -T_g`) we use a
 `T'_g ∈ [17T_g/24, T_g)` close to `T_g` (`KickTrueAux.pre_seeded`), as in the manuscript.
 
 Deviation (harmless): in `err` the transient term `2πC₃â(u)ρ̂(u)` is replaced by its upper bound
 `2πC₃C(C₀)κ⟨u⟩³e^{σ'u}` of `thm:active` ("Moreover"), so that `err` is continuous up to `|q^deep|`.
+
+The formal conclusion bounds `A^in(τ_K)` for every `τ_K ∈ [0,T_pin]`.
+Current Lemma C.14 states only the endpoint `τ_K = T_pin`, which follows
+from that interval conclusion; the two statements are not identical.
 -/
 
 noncomputable section
@@ -27,7 +36,8 @@ namespace Relay
 
 open RingData Datum
 
-/-- **`lem:kicktrue`** (`09_relay.tex:1179-1231`). Assume (SA), (Det), `C₀ ≥ 1`, `K₁ > 0`,
+/-- **The retained interval version of `lem:kicktrue`** (current counterpart: Part II
+Lemma C.14, which states the endpoint conclusion). Assume (SA), (Det), `C₀ ≥ 1`, `K₁ > 0`,
 `1 ≤ k < n`, the clock defined up to level `k+1`, and the hypotheses `S.KickTrueHyp C₀ K₁ k`. Then
 `|q_s| ∈ [15/16, 17/16]·2π|pout_*(G_{k+1})|δ₀` and, for every `τ_K ∈ [0, T_pin]`,
 `|β_k||q_s|/(10|z|(μ-1)) ≤ |A^in(τ_K)| ≤ 3|β_k||q_s|μ/(|z|(μ-1))`. -/
@@ -59,7 +69,7 @@ theorem kicktrue (S : Standing) (hS : S.Holds) (hDet : S.Det) {C₀ K₁ : ℝ} 
       (fun τ => KickTrueAux.kickErrE S C₀ K₁ k (τ + S.P.That (k + 1)) + ‖S.P.qDeep k τ‖)
       (fun τ => ‖S.P.qKick k τ‖) := by
     by_cases hlt : k + 1 < S.P.n
-    · -- `k + 1 < n`: `T'_g = T_g`, (Kick4) by `lem:prehistory` and (e)
+    · -- `k + 1 < n`: `T'_g = T_g`, (Kick4) by `lem:prehistory` (historical) and (e)
       refine ⟨S.P.That (k + 1), KickTrueAux.kickHyp_of S hS hDet hC₀ hk hkn hc h hset
         (by linarith) le_rfl ?_ ?_⟩
       · rw [hτ₀]; linarith [htashpos hlt]

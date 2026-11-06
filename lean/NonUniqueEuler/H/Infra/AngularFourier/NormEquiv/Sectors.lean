@@ -9,7 +9,7 @@ import NonUniqueEuler.I.Infra.AngularFourier.Derivatives.ProfileDeriv
 For `w ∈ H^k` supported in `N_*` with sectors `g_ℓ` and `i + n ≤ k`:
 the `ℓ`-th sector of `∂_θ^n ∂_r^i w` is `(iℓ)^n ∂_r^i g_ℓ` a.e. on `(0, ∞)`
 (`angularSector_polar`), and `∂_r^i g_ℓ` vanishes outside `[ρ₋, ρ₊]` (`weakDeriv1On_supp`).
-This is the manuscript's "by Parseval's identity in `θ`" step (`04_ring.tex:858-860`):
+This is the manuscript's "by Parseval's identity in `θ`" step (Part I, Lemma 4.12 (`lem:norm-equiv`), proof):
 `∂_θ` acts as `iℓ` on sector `ℓ` (`sectorProj_thetaDeriv`) and `∂_r` commutes with taking
 sectors (`hasWeakDerivOn_angularSector`, `I/Infra/AngularFourier/Derivatives/ProfileDeriv.lean`).
 -/

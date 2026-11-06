@@ -7,7 +7,7 @@ import NonUniqueEuler.I.Sec5.Active
 /-!
 # Proof: `thm:active` applied to ring `k` with time origin `t♯_k` (bridges)
 
-Proof of `I/Sec9/ActiveRing.lean` (`09_relay.tex:759-767`).
+Proof of `I/Sec9/ActiveRing.lean` (`sec:bootstrap-active-checks`, Part II, Appendix C.17, active-time pullback).
 
 * `activeConfig_units`: `t♯_k ≥ 0` (`lem:clock`(1), `clock_order`, with `P.GSmall` from
   `lem:inner-circ` and (SA3)); the rest is `ActiveRingAux.active_parts`, `active_scale`, `active_G`,
@@ -44,7 +44,7 @@ end ActiveRingAux
 
 open ActiveRingAux
 
-/-- **Ring `k` in ring-`k` units with time origin `t♯_k`** (`09_relay.tex:759-767`): `t♯_k ≥ 0`,
+/-- **Ring `k` in ring-`k` units with time origin `t♯_k`** (`sec:bootstrap-active-checks`, Part II, Appendix C.17, active-time pullback): `t♯_k ≥ 0`,
 `P.activeConfig k` has inner circulation `G_k` and initial perturbation `w_k(t♯_k)`, and for every
 active time `u ≥ 0` its ring part, perturbation, field and flow are the rescaled ones of
 `ω^{(n)}` at the real time `t♯_k + u/A_k` (`h(u) = h_k(t̄♯_k + u)`), and its running coefficient is
@@ -75,7 +75,7 @@ theorem activeConfig_units (S : Standing) (hS : S.Holds) {k : ℕ} (hk : 1 ≤ k
   · rw [(active_scale hP hN hk hkn ht).1 u y, flowOf_eq hP hN]
 
 /-- **Ring `k` with time origin `t♯_k` satisfies the hypotheses of `lem:reduction` on `[0, ū]`**
-(`09_relay.tex:759-767`, `06_datum.tex:323-330`) if `ū > 0` and `h_k` is defined at every real time
+(`sec:bootstrap-active-checks`, Part II, Appendix C.17, active-time pullback, `lem:regions-basic`, Part II Lemma 3.6 and the following continuity discussion) if `ū > 0` and `h_k` is defined at every real time
 `t ∈ [t♯_k, t♯_k + ū/A_k]`. -/
 theorem activeConfig_hyp (S : Standing) (hS : S.Holds) {k : ℕ} (hk : 1 ≤ k) (hkn : k ≤ S.P.n)
     (hc : S.P.ClockUpTo k) {ubar : ℝ} (hu : 0 < ubar)
@@ -98,7 +98,7 @@ theorem activeConfig_hyp (S : Standing) (hS : S.Holds) {k : ℕ} (hk : 1 ≤ k) 
   · rw [(active_parts hP hN hk hkn ht hu'.1).2.2]
     exact nuOut_tsupport hP hN hkn (ht.trans (htime u hu').1) (hdef _ (htime u hu')).2
 
-/-- **`thm:active` and `cor:active-moment` for ring `k`** (`09_relay.tex:759-767`): with `G = G_k`,
+/-- **`thm:active` and `cor:active-moment` for ring `k`** (`sec:bootstrap-active-checks`, Part II, Appendix C.17, active-time pullback): with `G = G_k`,
 `κ = κ♯_k`, the constants of (SA1), `C₀ ≥ 1` and `η_b ∈ [0, η_max]`, if `h_k` is defined on
 `[t♯_k, t♯_k + ū/A_k]` and (Init), (Field), (Coef) on `[0,ū]` and (Small) `κ♯_k ≤ κ₀(C₀)` hold for
 ring `k`, then the conclusions (a), (b) of `thm:active` and that of `cor:active-moment` hold for ring

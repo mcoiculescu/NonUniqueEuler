@@ -19,7 +19,7 @@ Proves the declarations of `NonUniqueEuler/I/Infra/Polar/LogLaplacian.lean`.
   `∫₀^R log r · (r A')' dr = F(R) - F(0)` with `F(r) = log r · r A'(r) - A(r)`; here
   `F' = log r · (r A')'` on `(0, R)`, `F` is continuous on `[0, R]` (`r log r → 0`, `A'` continuous),
   `F(0) = -A(0) = -h(0)` and `F(R) = 0` (`supp h ⊆ B_R`). This replaces the manuscript's limit
-  `ε → 0` of Green's second identity on `{|y| > ε}` (`02_prelim.tex:226-239`).
+  `ε → 0` of Green's second identity on `{|y| > ε}` (Part I, Lemma 2.1(d) (`lem:BS-basic`), proof).
 * `integral_log_norm_mul_fderiv`: `H/Infra/Polar/LogLaplacian/WeakDeriv.lean` (integration by
   parts on horizontal lines after a rotation taking `v` to `‖v‖`).
 -/

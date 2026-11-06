@@ -6,7 +6,7 @@ import NonUniqueEuler.I.Infra.Sobolev.NormDeriv
 /-!
 # Helpers for `R_app ∈ C([0,t];X^s)`: bridges between plane functions, `Y^s(N)` and paths
 
-Helper of `P/Sec5/Energy/RappPath.lean` (proof of `lem:energy`, `05_single_ring.tex:331`).
+Helper of `P/Sec5/Energy/RappPath.lean` (proof of `lem:energy`, Part II Lemma 2.4).
 Namespace `NonUniqueEuler.OneRing.RappPathH`. The first lemmas are copies of proved helpers of
 other proofs (`H/Sec5/Active/Layer/Bridge.lean`, `H/Sec5/Energy/ToY.lean`), which a proof file
 may not import (import rules, `README.md`).

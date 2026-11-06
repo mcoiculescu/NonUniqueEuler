@@ -7,7 +7,7 @@ import NonUniqueEuler.H.Sec5.Energy.RappPath.Terms
 # Proof (step of `P/Sec5/Energy`): `R_app ∈ C([0,t]; X^s)`
 
 Proof of `I/Sec5/Energy/RappPath.lean`: the sentence "Every term lies in `C([0,t];H^s)`" of the
-proof of `lem:energy` (`05_single_ring.tex:331`).
+proof of Part II Lemma 2.4 (`lem:energy`).
 
 `R_app = w_app' - (L(G)w_app + B(w_app,w_app) - h·∇w_app - h·∇Φ)`, and each term is a path in
 `C([0,t];X^s)`:
@@ -32,7 +32,7 @@ namespace OneRing
 
 open RingData
 
-/-- **`R_app ∈ C([0,t];X^s)`** (proof of `lem:energy`, `05_single_ring.tex:331`). -/
+/-- **`R_app ∈ C([0,t];X^s)`** (proof of `lem:energy`, Part II Lemma 2.4). -/
 theorem rapp_pathC (χ : ℝ → ℝ) (hχ : IsAdmissibleCutoff χ) (hN : NumericalHypothesis χ)
     {s : ℕ} (hs : 3 ≤ s) {c : RingConfig} {t : ℝ} (hc : c.Hyp t) {wapp wapp' : ℝ → ℂ → ℂ}
     (happ : PathC (s + 1) t wapp) (happ' : PathC1 s t wapp wapp') :

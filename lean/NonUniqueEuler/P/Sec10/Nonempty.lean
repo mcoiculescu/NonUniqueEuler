@@ -5,8 +5,10 @@ import NonUniqueEuler.I.Sec10.Nonempty.E22
 /-!
 # Proof of `lem:nonempty` (the parameter lists can be satisfied)
 
-Proof of `I/Sec10/Nonempty.lean` (`10_parameters.tex:278-290`, proof `:292-375`). Same declaration,
-statement copied verbatim.
+Proof of `I/Sec10/Nonempty.lean`, corresponding to Part II Lemma 7.1
+(`lem:nonempty`) and its detailed verification in Appendix C.4
+(`sec:param-verification`). The encoded lists retain the detailed constant choices
+documented in `Defs/Sec10/Lists.lean`.
 
 * (P0)–(P4): `NonemptyH.exists_structural` (`H/Sec10/Nonempty/Structural.lean`).
 * (P5): each of (κ1)–(κ7) holds for all small `κ` (`H/Sec10/Nonempty/Kappa.lean`, `KappaFive.lean`),
@@ -32,7 +34,7 @@ namespace Relay
 open RingData Datum
 
 open NonemptyH in
-/-- **`lem:nonempty`** (`10_parameters.tex:278-290`). Assume (N1)–(N3) for the admissible cutoff
+/-- **Part II Lemma 7.1 (`lem:nonempty`)**. Assume (N1)–(N3) for the admissible cutoff
 `χ`. The choices (P0)–(P6) can be made in this order: there are parameters `p` with cutoff `χ`
 satisfying the structural list (P0)–(P4) such that the set of admissible seed sizes in (P5)
 contains an interval `(0, κ†]` with `κ† > 0`, and for every admissible seed size `κ` the set of

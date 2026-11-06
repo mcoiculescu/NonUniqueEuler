@@ -7,8 +7,8 @@ import NonUniqueEuler.H.Sec5.Energy.FieldBounds.Velocity
 /-!
 # Proof (step of `I/Sec5/Energy`): the transporting field `U` on `N₁`
 
-Proof of `I/Sec5/Energy/FieldBounds.lean` (step 2 of the proof of `lem:energy`,
-`05_single_ring.tex:333-346`). Same declaration, statement copied verbatim.
+Proof of `I/Sec5/Energy/FieldBounds.lean` (step 2 of the Lean proof decomposition for `lem:energy`,
+Part II Lemma 2.4). Same declaration, statement copied verbatim.
 
 Let `U = Ω(|x|;G)x^⊥ + h + K_BS*Re w` on `N₁`.
 1. `Ω(|x|;G)x^⊥`: membership and `‖·‖_{W^{1,∞}(N₁)} + ‖·‖_{H^s(N₁)} ≤ C_Ω` from `lambda_consts`
@@ -34,7 +34,7 @@ namespace OneRing
 open RingData
 
 /-- **The field `U = Ω(|x|;G)x^⊥ + h + K_BS*w` on `N₁`** (proof of `lem:energy`,
-`05_single_ring.tex:333-346`): `U ∈ W^{1,∞}(N₁) ∩ H^s(N₁)`, `div U = 0` on `N₁`, and
+Part II Lemma 2.4): `U ∈ W^{1,∞}(N₁) ∩ H^s(N₁)`, `div U = 0` on `N₁`, and
 `‖U‖_{W^{1,∞}(N₁)} + ‖U‖_{H^s(N₁)} ≤ A_s`. -/
 theorem energy_field (χ : ℝ → ℝ) (hχ : IsAdmissibleCutoff χ) (hN : NumericalHypothesis χ)
     {s : ℕ} (hs : 3 ≤ s) {G : ℝ} (hG : G ∈ Icc (0 : ℝ) Gbar) {hf : ℂ → ℂ} {O : Set ℂ}

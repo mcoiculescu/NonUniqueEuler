@@ -24,7 +24,7 @@ Setting: `f, g₁, g₂ : ℂ → ℂ` integrable on the plane (`g₁, g₂` str
 * `DiffQuotAux.eLpNorm_sub_comp_sub_le_of_integrable`: `‖f - f(·-h)‖_{L²(B_R)} ≤ ‖G‖_{L²(B_r)}`.
 
 This is the manuscript's `w(x) - w(x - εz) = ε ∫_0^1 ∇w(x - sεz) z ds`
-(`03_compactness.tex:388-397`), proved directly for weak derivatives (in the weak form, by
+(Part I, Lemma 3.3 (`lem:commutator`), proof), proved directly for weak derivatives (in the weak form, by
 duality against test functions) instead of by mollification.
 -/
 

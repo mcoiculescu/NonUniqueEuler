@@ -5,13 +5,13 @@ import NonUniqueEuler.H.Sec5.Window.Real
 
 Helper file of `P/Sec5/Window.lean`. Fully proved.
 Notation: `â(τ) = ahat κ σ τ = κe^{στ}`, `𝔟 = â + C♮κ⟨τ⟩^{p+2}`, `V = ς(κ₁)`, `N = N_G`.
-* `v_integral_le`: `eq:W-v` and `eq:W-theta` (`05_single_ring.tex:807-829`):
+* `v_integral_le`: `eq:W-v` and `eq:W-theta` (Part II Lemma 2.11):
   `∫₀^τ e^{Λ(τ-τ')} C_app â 𝔟^N ≤ C_v(â(τ)^{N+1} + κ²V^{(p+2)N})`, with
   `C_v = C_app 2^N C♮^N/σ_b`. Deviation: instead of `κ₁e^{Λu} ≤ κ₁^{1-Λ/σ}δ₀^{Λ/σ}` (real powers)
   we use `e^{Λτ} ≤ e^{(N-1)στ}` (from `Λ ≤ (N-1)σ_b`), so that
   `κ^{N+1}e^{Λτ} ≤ κ²â(τ)^{N-1} ≤ κ²`; same bound.
-* `collect_mode`, `collect_w`: the collection step (`05_single_ring.tex:830-845`).
-* `disp_integral_le`: the displacement integral (`05_single_ring.tex:846-855`).
+* `collect_mode`, `collect_w`: the collection step (Part II Lemma 2.11).
+* `disp_integral_le`: the displacement integral (Part II Lemma 2.11).
 -/
 
 noncomputable section
@@ -48,7 +48,7 @@ theorem exp_pow_eq (σ τ : ℝ) (n : ℕ) :
   rw [← Real.exp_nat_mul]
   ring_nf
 
-/-- **`eq:W-v` with `eq:W-theta`** (`05_single_ring.tex:807-829`). -/
+/-- **`eq:W-v` with `eq:W-theta`** (Part II Lemma 2.11 (`lem:window`)). -/
 theorem v_integral_le {σ σb Λ κ δ₀ Cn Capp V τ : ℝ} {N : ℕ}
     (hσb : 0 < σb) (hσ : σb ≤ σ) (hΛσ : 2 * σ ≤ Λ) (hNG : Λ / σb + 1 ≤ N) (hκ : 0 < κ)
     (hδ1 : δ₀ ≤ 1) (hCn : 1 ≤ Cn) (hCapp : 0 ≤ Capp) (hτ : 0 ≤ τ) (hexp : ahat κ σ τ ≤ δ₀)
@@ -212,7 +212,7 @@ theorem v_integral_le {σ σb Λ κ δ₀ Cn Capp V τ : ℝ} {N : ℕ}
     _ = Capp * 2 ^ (M + 1) * Cn ^ (M + 1) / σb *
         (ahat κ σ τ ^ (M + 1 + 1) + κ ^ 2 * V ^ ((pW + 2) * (M + 1))) := by ring
 
-/-- **Collection of the bound on `w - 2Re(ce^{λu}φ_*)`** (`05_single_ring.tex:830-841`). -/
+/-- **Collection of the bound on `w - 2Re(ce^{λu}φ_*)`** (Part II Lemma 2.11 (`lem:window`)). -/
 theorem collect_mode {Capp Cv CW Cn A κ V ρ ηb J E : ℝ} {N NW : ℕ}
     (hCapp : 0 ≤ Capp) (hCv : 0 ≤ Cv) (hCW : Cv + Capp + Capp * Cn ≤ CW) (hCn : 1 ≤ Cn)
     (hA0 : 0 ≤ A) (hA1 : A ≤ 1) (hκA : κ ≤ A) (hκ0 : 0 < κ) (hV1 : 1 ≤ V) (hρ : 0 ≤ ρ)
@@ -258,7 +258,7 @@ theorem collect_mode {Capp Cv CW Cn A κ V ρ ηb J E : ℝ} {N NW : ℕ}
     mul_nonneg (mul_nonneg hCapp hCn0) (mul_nonneg hA0 hηb)]
 
 /-- The bound `‖w‖_{H^s} ≤ (C_v + C_app)â + C_v κ²V^{(p+2)N}` and its consequence
-`≤ C_Wδ₀ + C_Wκ V^{N_W}` (`05_single_ring.tex:842-845`). -/
+`≤ C_Wδ₀ + C_Wκ V^{N_W}` (Part II Lemma 2.11 (`lem:window`)). -/
 theorem collect_w {Capp Cv CW A κ V δ₀ E : ℝ} {N NW : ℕ}
     (hCapp : 0 ≤ Capp) (hCv : 0 ≤ Cv) (hCW : Cv + Capp ≤ CW) (hA0 : 0 ≤ A) (hA1 : A ≤ 1)
     (hAδ : A ≤ δ₀) (hκ0 : 0 < κ) (hκ1 : κ ≤ 1) (hV1 : 1 ≤ V) (hNW2 : (pW + 2) * N ≤ NW)
@@ -281,7 +281,7 @@ theorem collect_w {Capp Cv CW A κ V δ₀ E : ℝ} {N NW : ℕ}
     nlinarith
   linarith
 
-/-- **The displacement integral** (`05_single_ring.tex:846-855`). -/
+/-- **The displacement integral** (Part II Lemma 2.11 (`lem:window`)). -/
 theorem disp_integral_le {σ σb κ δ₀ Cn Capp Cv CW CB V τ : ℝ} {N NW : ℕ}
     (hσb : 0 < σb) (hσ : σb ≤ σ) (hκ0 : 0 < κ) (hκ1 : κ ≤ 1) (hτV : τ ≤ V)
     (hV1 : 1 ≤ V) (hexp : ahat κ σ τ ≤ δ₀) (hCn : 0 ≤ Cn) (hCapp : 0 ≤ Capp) (hCv : 0 ≤ Cv)

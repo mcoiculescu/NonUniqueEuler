@@ -8,7 +8,7 @@ import NonUniqueEuler.H.Sec8.Coupling.Bridge
 # Helper for `lem:coupling`(1): `ℓ_*(G)(-h·∇Φ) = p_3 β(G)` from the sector-`3` profile of `h·e_r`
 
 Helper of `P/Sec8/Coupling.lean` (fully proved, modulo the interface files it imports).
-Manuscript `08_kick.tex:86-110`: "Since `Φ` is radial, `h·∇Φ = Φ'(r) h·e_r`, and `Φ'` vanishes
+Manuscript Part II Lemma 5.1 (`lem:coupling`): "Since `Φ` is radial, `h·∇Φ = Φ'(r) h·e_r`, and `Φ'` vanishes
 outside `[a,1]`. Hence the sector-`3` profile of `-h·∇Φ` is `-(i/2)p_3r^{-4}Φ'(r) = p_3 b(r)` …
 `ℓ_*(G_k)(w) = n_*(G_k)ℓ_*(w_3)` depends linearly on the sector-`3` profile `w_3` of `w` only, and
 `β(G_k) = ℓ_*(G_k)(b e^{3iθ}) = n_*(G_k)ℓ_*(b)`."
@@ -177,7 +177,7 @@ theorem Icc_a_one_subset : Icc a 1 ⊆ Icc (a / 4) 3 := by
   intro r hr
   exact ⟨by linarith [hr.1], by linarith [hr.2]⟩
 
-/-- **`ℓ_*(G)(-h·∇Φ) = p β(G)`** (`08_kick.tex:86-110`) if the sector-`3` profile of `h·e_r` is
+/-- **`ℓ_*(G)(-h·∇Φ) = p β(G)`** (Part II Lemma 5.1 (`lem:coupling`)) if the sector-`3` profile of `h·e_r` is
 `(i/2) p r^{-4}` on `[a/4,3]`. -/
 theorem ellFn_forcing {χ : ℝ → ℝ} (hχ : IsAdmissibleCutoff χ) (G : ℝ) {h : ℂ → ℂ} {p : ℂ}
     (hprof : ∀ r ∈ Icc (a / 4) 3,

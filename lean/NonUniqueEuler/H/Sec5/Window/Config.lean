@@ -19,13 +19,13 @@ interface files (`I/Sec5/Setting`, `I/Sec5/ReductionVelocity`, `I/Sec5/Reduction
 `I/Sec5/ReductionEq`, `I/Sec5/Bilinear`, `I/SmoothB/SmoothFlow`, `I/Sec4/RingFacts`,
 `I/Infra/Sobolev/*`):
 * `w(t) = ω_r(t) - Φ` is smooth with compact support, in every `H^k`, and
-  `t ↦ ‖w(t)‖_{H^k}` is continuous (`thm:smooth`; `05_single_ring.tex:858-860`);
+  `t ↦ ‖w(t)‖_{H^k}` is continuous (`thm:smooth`; Part II Lemma 2.11);
 * the largest radial displacement `δ_r(t)` at time `t` (`dispFn`) is continuous, and its relation
-  to `RingConfig.MovesRadially` (`05_single_ring.tex:800-802`);
+  to `RingConfig.MovesRadially` (Part II Lemma 2.11);
 * `w(0) = ω_r(0) - Φ ∈ X^k` when `supp ω_r(0) ⊂ N`;
-* the support bookkeeping of `lem:window` (`05_single_ring.tex:803-806`: a radial displacement
+* the support bookkeeping of `lem:window` (Part II Lemma 2.11: a radial displacement
   `≤ a/16` keeps `supp ω_r(u)` in `{51a/64 ≤ |y| ≤ 5/4 + 5a/64} ⊂ N`);
-* the displacement bound (`05_single_ring.tex:846-855`, `lem:reduction`(2) and
+* the displacement bound (Part II Lemma 2.11, `lem:reduction`(2) and
   `lem:bilinear`(4)): `|Φ_τ(y)| - |y|` is bounded by `∫₀^τ (‖h‖_{C^0(N')} + C_BS‖w‖_{H^1})`.
 -/
 
@@ -124,7 +124,7 @@ theorem continuousOn_normH_w {χ : ℝ → ℝ} (hχ : IsAdmissibleCutoff χ) (h
 /-! ### The radial displacement -/
 
 /-- `δ_r(t) = sup_{y ∈ supp ω_r(0)} ||Φ_t(y)| - |y||`, the largest radial displacement of a
-trajectory of `ω_r` at time `t` (`05_single_ring.tex:800-801`; `0` if `ω_r(0) = 0`). -/
+trajectory of `ω_r` at time `t` (Part II Lemma 2.11 (`lem:window`); `0` if `ω_r(0) = 0`). -/
 def dispFn (c : RingConfig) (t : ℝ) : ℝ :=
   sSup ((fun y => |‖c.flow t y‖ - ‖y‖|) '' tsupport c.ring0)
 
@@ -168,7 +168,7 @@ theorem window_annulus_subset_annN :
   simp only [annN, Sect.closedAnnulus, mem_ofPred_eq] at hx ⊢
   constructor <;> nlinarith [hx.1, hx.2]
 
-/-- A radial displacement `≤ a/16` keeps `supp ω_r(τ)` inside `N` (`05_single_ring.tex:803-806`:
+/-- A radial displacement `≤ a/16` keeps `supp ω_r(τ)` inside `N` (Part II Lemma 2.11 (`lem:window`):
 `(7/8 - 1/64 - 1/16)a = 51a/64 ≥ a/2` and `5/4 + 5a/64 ≤ 2`). -/
 theorem ringSupportedIn_of_moves (hc : c.Hyp T) {t : ℝ}
     (hr : tsupport c.ring0 ⊆ Sect.closedAnnulus ((7 / 8 - 1 / 64) * a) (5 / 4 + a / 64))
@@ -246,7 +246,7 @@ theorem win_bsNorm_w (χ : ℝ → ℝ) (t : ℝ) (x : ℂ) :
   rw [bsNorm, h1, h2]
   simp [Real.sqrt_sq (norm_nonneg _)]
 
-/-- **The displacement bound** (`05_single_ring.tex:846-855`): if `supp ω_r(τ) ⊂ N` on `[0,t]`,
+/-- **The displacement bound** (Part II Lemma 2.11 (`lem:window`)): if `supp ω_r(τ) ⊂ N` on `[0,t]`,
 `‖h(τ)‖_{C^0(N')} ≤ A(τ)` and `‖w(τ)‖_{H^1} ≤ B(τ)` with `A, B` continuous, then every trajectory
 of `ω_r` satisfies `||Φ_τ(y)| - |y|| ≤ ∫₀^τ (A + C_BS B)` for `τ ∈ [0,t]`. -/
 theorem displacement_le {χ : ℝ → ℝ} (hχ : IsAdmissibleCutoff χ) (hc : c.Hyp T) {t : ℝ}

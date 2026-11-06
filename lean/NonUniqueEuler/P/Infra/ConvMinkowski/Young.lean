@@ -254,7 +254,8 @@ theorem ae_convAbs_lt_top_of_split {E₁ E₂ : Type*} [NormedAddCommGroup E₁]
     _ < ∞ := ENNReal.add_lt_top.2 ⟨hx, (convAbs_le_eLpNorm_top_mul hK₂.1 hg.1 x).trans_lt
         (ENNReal.mul_lt_top hK₂.2 hg.2)⟩
 
-/-- Split kernel, pointwise (`lem:LpLinf`, `lem:BS-basic`(b)): for Hölder conjugates `p, q`,
+/-- Split kernel, pointwise (used for Part I, Lemma 2.1(b), `lem:BS-basic`,
+and the retained auxiliary `lem:LpLinf`, which has no current numbered counterpart): for Hölder conjugates `p, q`,
 `(|K| ⋆ |g|)(x) ≤ ‖K₁‖_p ‖g‖_q + ‖K₂‖_∞ ‖g‖₁` for every `x`. -/
 theorem convAbs_le_of_split_holder {E₁ E₂ : Type*} [NormedAddCommGroup E₁]
     [NormedAddCommGroup E₂] {K : ℂ → E} {K₁ : ℂ → E₁} {K₂ : ℂ → E₂}

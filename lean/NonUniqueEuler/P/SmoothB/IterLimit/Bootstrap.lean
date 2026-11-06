@@ -5,9 +5,9 @@ import NonUniqueEuler.H.SmoothB.IterLimit.Bootstrap.Good
 import NonUniqueEuler.H.SmoothB.IterLimit.Bootstrap.Partial
 
 /-!
-# Proof: `prop:iter-limit`, step 5 — space–time smoothness by bootstrapping the equation
+# Proof: formal decomposition of `prop:iter-limit`, step 5 — space–time smoothness by bootstrapping the equation
 
-Proof of `I/SmoothB/IterLimit/Bootstrap.lean` (`B_global_smooth.tex:449-472`).
+Proof of `I/SmoothB/IterLimit/Bootstrap.lean` (Part II, Proposition B.10 (`prop:iter-limit`)).
 
 Write `φ_t = ω(t)` viewed as complex valued, `F_γ(t, x) = ∂_x^γ φ_t(x)`, `v = K_BS ∗ ω`. We show by
 induction on `n` that `Good n (ofRealST ω)`: every `F_γ` is `C^n` on `ℝ × ℝ²`
@@ -145,7 +145,7 @@ theorem good_succ {n : ℕ} (hsm : ∀ t, ContDiff ℝ ((⊤ : ℕ∞) : WithTop
 end BootstrapAux
 
 open BootstrapAux in
-/-- `prop:iter-limit`, step 5 (`B_global_smooth.tex:449-472`): a function whose spatial
+/-- formal decomposition of `prop:iter-limit`, step 5 (Part II, Proposition B.10 (`prop:iter-limit`)): a function whose spatial
 derivatives are jointly continuous, with locally bounded supports, satisfying
 `∂_t ∂_x^γ ω = -∂_x^γ(v · ∇ω)` for all `γ` (`v = K_BS ∗ ω`), is `C^∞` on `ℝ × ℝ²`. -/
 theorem contDiff_uncurry_of_transport {ω : ℝ → ℂ → ℝ}

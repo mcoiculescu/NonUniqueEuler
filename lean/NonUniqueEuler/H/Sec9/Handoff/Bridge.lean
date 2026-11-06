@@ -13,7 +13,7 @@ import Mathlib.MeasureTheory.Integral.Prod
 /-!
 # Helper for `lem:handoff`: `ℓ_*(G)` on linear responses and on differences
 
-Helper of `P/Sec9/Handoff.lean` (`09_relay.tex:887-924`). Generic facts on `Y^s(N)` and on the
+Helper of `P/Sec9/Handoff.lean` (`lem:handoff`, Part II Lemma C.12). Generic facts on `Y^s(N)` and on the
 functional `ℓ_*(G)` on functions (`Eig.ellFn`).
 
 The first group is copied, in the namespace `Relay.HandoffAux` (to avoid clashes), from the helpers
@@ -31,7 +31,7 @@ New here:
 * `ellFn_wlin_eq`: for a forcing `F = -h·∇Φ ∈ C([0,T];X^s)` (`OneRing.PathC`), at every level `s`,
   `ℓ_*(G)(wlin(u)) = ∫₀ᵘ e^{λ_*(u-v)} ℓ_*(G)(F(v)) dv` (`ℓ_*(G)` is bounded, so it commutes with the
   Duhamel integral, and `prop:semigroup` gives `ℓ_*(e^{τL}f) = e^{λ_*τ}ℓ_*(f)`;
-  `09_relay.tex:905-908`). In particular the value does not depend on the level `s`.
+  `lem:handoff`, Part II Lemma C.12). In particular the value does not depend on the level `s`.
 -/
 
 noncomputable section
@@ -319,7 +319,7 @@ theorem norm_ellFn_sub_le (χ : ℝ → ℝ) (hχ : IsAdmissibleCutoff χ)
 
 /-! ### `ℓ_*(G)` of a linear response (new) -/
 
-/-- **`ℓ_*(G)` of the linear response** (`09_relay.tex:905-908`, `lem:running` with `w₀ = 0`):
+/-- **`ℓ_*(G)` of the linear response** (`lem:handoff`, Part II Lemma C.12, `lem:running` with `w₀ = 0`):
 if the forcing `F = -h·∇Φ` lies in `C([0,T];X^s)` (`PathC s T (forcing χ h)`) and `G ∈ [0,G₁]`,
 then for `u ∈ [0,T]`, `ℓ_*(G)(wlin(u)) = ∫₀ᵘ e^{λ_*(u-v)} ℓ_*(G)(F(v)) dv`, at every level `s`.
 `ℓ_*(G)` is bounded on `Y^s(N)` (`exists_ell`), so it commutes with the (integrable) Duhamel

@@ -10,7 +10,7 @@ import NonUniqueEuler.I.Infra.Sobolev.Norm
 /-!
 # Helper for `lem:energy`: the energy inequality at a fixed time
 
-Helper of `P/Sec5/Energy.lean` (`05_single_ring.tex:356-365`). Under the hypotheses of
+Helper of `P/Sec5/Energy.lean` (Part II Lemma 2.4). Under the hypotheses of
 `lem:energy`, for `τ ∈ [0,t]`, with `V = toY s N (w - w_app)` and
 `V' = toY s N (∂_t w) - toY s N (∂_t w_app)` (the derivative of `V` in `Y^s(N)`),
 `Re ⟪V, V'⟫_{H^s} ≤ Λ(s)‖v‖²_{H^s} + ‖R_app‖_{H^s}‖v‖_{H^s}`, i.e.
@@ -29,7 +29,7 @@ namespace NonUniqueEuler.OneRing.EnergyH
 
 open Sect Sob RingData
 
-/-- **The energy inequality at a fixed time** (`05_single_ring.tex:356-365`). -/
+/-- **The energy inequality at a fixed time** (Part II Lemma 2.4 (`lem:energy`)). -/
 theorem energy_pointwise (χ : ℝ → ℝ) (hχ : IsAdmissibleCutoff χ) (hN : NumericalHypothesis χ)
     {s : ℕ} (hs : 3 ≤ s) {c : RingConfig} {t : ℝ} (hc : c.Hyp t)
     (hG : c.G ∈ Icc (0 : ℝ) Gbar) (hsupp : c.RingSupportedIn t annN)

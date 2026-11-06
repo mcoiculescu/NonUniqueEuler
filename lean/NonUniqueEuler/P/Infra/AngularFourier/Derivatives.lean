@@ -8,8 +8,8 @@ import NonUniqueEuler.H.Infra.AngularFourier.Derivatives.Profile
 # Proof: sector projections and derivatives (library I-ANG)
 
 Proof of `NonUniqueEuler/I/Infra/AngularFourier/Derivatives.lean` (same declarations, statements
-copied verbatim). Manuscript: `04_ring.tex:174-185` (`P_ℓ`), `04_ring.tex:424-425` (profiles in
-`H^s((0,∞))`), `04_ring.tex:851-853` (`∂_θ`, `∂_r`).
+copied verbatim). Manuscript: Part I, Definition 4.3 (`def:sector-setting`) and the following mode-profile discussion (`P_ℓ`), Part I, Lemma 4.7 (`lem:resolvent`), proof (profiles in
+`H^s((0,∞))`), Part I, Lemma 4.12 (`lem:norm-equiv`), proof (`∂_θ`, `∂_r`).
 
 Structure (helpers in `H/Infra/AngularFourier/Derivatives/*`, steps in
 `I/Infra/AngularFourier/Derivatives/*`):

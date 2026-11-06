@@ -6,11 +6,16 @@ import NonUniqueEuler.I.Sec9.Standing
 import NonUniqueEuler.I.Sec9.Detuning
 
 /-!
-# Proof: `cor:amp` (two-sided bound on the amplitude `κ♯_k`)
+# Proof: `cor:amp` (historical) (two-sided bound on the amplitude `κ♯_k`)
 
-Proof of `I/Sec9/Amp.lean` (`09_relay.tex:996-1023`).
+The label `cor:amp` is historical. Its current counterpart is the final
+two-sided amplitude calculation in Appendix C.16 (`sec:bootstrap-handoff-checks`),
+using the kick estimate (54) (`eq:boot-kick`) and the hand-off estimate (50)
+(`eq:handoff`).
 
-Steps (following `09_relay.tex:1009-1023`):
+Proof of `I/Sec9/Amp.lean` (`sec:bootstrap-handoff-checks`, Part II, Appendix C.16).
+
+Steps (following `sec:bootstrap-handoff-checks`, Part II, Appendix C.16):
 1. `|c^in_k| = e^{x_kT_pin}|A^in(T_pin)|` (`coupling_two`, `kick_instance`: `Re ζ₀ = x_k > 0`);
 2. `G_k, G_{k+1} ∈ [0,G₁]` (`standing_levels`), so `c_N ≤ |β(G_k)||pout_*(G_{k+1})| ≤ C_N`
    (`uniform_constants`, via the attained extrema), hence
@@ -31,7 +36,7 @@ open RingData Datum
 
 namespace AmpAux
 
-/-- Real core of the lower bound of `cor:amp`: with `u = (|z|(μ-1))⁻¹`,
+/-- Real core of the lower bound of `cor:amp` (historical): with `u = (|z|(μ-1))⁻¹`,
 `c_Nδ₀s⁵u/22 ≤ (15/320)c_Nδ₀s⁵u ≤ ½|A| ≤ ½|c| ≤ κ`. -/
 theorem lower_core {κ c e a bq cN δ s5 Z m : ℝ} (hκ : 1 / 2 * c ≤ κ) (hc : c = e * a)
     (he : 1 ≤ e) (ha : 0 ≤ a) (hA : bq / (10 * Z * m) ≤ a) (hbq : 15 / 16 * cN * s5 * δ ≤ bq)
@@ -51,7 +56,7 @@ theorem lower_core {κ c e a bq cN δ s5 Z m : ℝ} (hκ : 1 / 2 * c ≤ κ) (hc
   rw [e3] at h1
   linarith
 
-/-- Real core of the upper bound of `cor:amp`: with `u = (|z|(μ-1))⁻¹` and `E = e^{17σT_pin/16}`,
+/-- Real core of the upper bound of `cor:amp` (historical): with `u = (|z|(μ-1))⁻¹` and `E = e^{17σT_pin/16}`,
 `κ ≤ (3/2)e|A| ≤ (3/2)·3·(17/16)C_Nδ₀μs⁵uE ≤ 5C_Nδ₀μs⁵uE`. -/
 theorem upper_core {κ c e a b q CN δ s5 Z m μ E : ℝ} (hκ : κ ≤ 3 / 2 * c) (hc : c = e * a)
     (he : e ≤ E) (ha : 0 ≤ a) (hA : a ≤ 3 * b * q * μ / (Z * m))
@@ -80,7 +85,7 @@ theorem upper_core {κ c e a b q CN δ s5 Z m μ E : ℝ} (hκ : κ ≤ 3 / 2 * 
 
 end AmpAux
 
-/-- **`cor:amp`** (`09_relay.tex:996-1007`). Assume (SA), (Det), `1 ≤ k < n`, the clock defined up
+/-- **`cor:amp` (historical)** (`sec:bootstrap-handoff-checks`, Part II, Appendix C.16). Assume (SA), (Det), `1 ≤ k < n`, the clock defined up
 to level `k+1`, `D_{k+1}(t) ⊂ B_{ar_k/8}` on `[0, t♯_k]`, `S_k(t♯_k) ⊂ N_k`,
 `½|c^in_k| ≤ κ♯_k ≤ (3/2)|c^in_k|`, and for some `q_s` with
 `|q_s| ∈ [15/16, 17/16]·2π|pout_*(G_{k+1})|δ₀` the two-sided bound

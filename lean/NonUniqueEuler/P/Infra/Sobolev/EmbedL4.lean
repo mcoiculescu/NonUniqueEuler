@@ -8,7 +8,7 @@ import NonUniqueEuler.H.Infra.Sobolev.EmbedL4.Smooth
 /-!
 # Proof of `lem:embed` (E1), the Ladyzhenskaya inequality (library I-HK)
 
-Manuscript: `02_prelim.tex:597-622`. Proof of `I/Infra/Sobolev/EmbedL4.lean`.
+Manuscript: Part II, Lemma 1.9(E1) (`lem:embed`), proof. Proof of `I/Infra/Sobolev/EmbedL4.lean`.
 
 * The smooth case `∫ |φ|⁴ ≤ 2 ‖φ‖₂² (‖∂₁φ‖₂² + ‖∂₂φ‖₂²)` for `φ ∈ C¹_c` is
   `EmbedL4H.lintegral_enorm_pow_four_le_ofReal` (`H/Infra/Sobolev/EmbedL4/Smooth.lean`), following

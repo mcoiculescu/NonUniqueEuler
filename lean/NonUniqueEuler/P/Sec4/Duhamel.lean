@@ -11,8 +11,8 @@ import NonUniqueEuler.H.Sec4.Duhamel.Deriv
 # Proof: `lem:duhamel`, its converse, and the semigroup on `X^k` in ring units
 
 Proof of `I/Sec4/Duhamel.lean` (same declarations, statements copied verbatim). Manuscript
-`05_single_ring.tex:41-80`. Restructuring R1: the proof is sector-wise with bounded operators
-(no generator, no `lem:mild`).
+the semigroup discussion preceding Part II Lemma 2.1 (`lem:duhamel`). Restructuring R1: the proof is sector-wise with bounded operators
+(no generator, no the former general mild-solution lemma).
 
 * `S_memX`: `X^k = Y^k_{3ℤ}` (`YsymSub_eq_YZSub`) is invariant (`semigroup_mem_YZSub`).
 * `S_isReal`: `semigroup_isReal`.
@@ -37,7 +37,7 @@ namespace Lin
 
 open RingData Sect
 
-/-- `05_single_ring.tex:41-45`: `e^{tL(G)}` preserves `X^k` (it preserves each sector). -/
+/-- the semigroup discussion preceding Part II Lemma 2.1 (`lem:duhamel`): `e^{tL(G)}` preserves `X^k` (it preserves each sector). -/
 theorem S_memX (χ : ℝ → ℝ) (hχ : IsAdmissibleCutoff χ) (k : ℕ) (G : ℝ) {t : ℝ} (ht : 0 ≤ t)
     {w : Y k annN} (hw : MemX w) : MemX (S χ k G t w) := by
   have hK : IsRotInvariant annN := isRotInvariant_closedAnnulus (a / 2) 2
@@ -46,13 +46,13 @@ theorem S_memX (χ : ℝ → ℝ) (hχ : IsAdmissibleCutoff χ) (k : ℕ) (G : �
   rw [memX_iff, e] at hw ⊢
   exact SectorSetting.semigroup_mem_YZSub (ringPhiSetting χ) (ringPhiSetting_valid hχ) k G ht _ hw
 
-/-- `05_single_ring.tex:45-47`: `e^{tL(G)}` maps real-valued functions to real-valued functions. -/
+/-- the semigroup discussion preceding Part II Lemma 2.1 (`lem:duhamel`): `e^{tL(G)}` maps real-valued functions to real-valued functions. -/
 theorem S_isReal (χ : ℝ → ℝ) (hχ : IsAdmissibleCutoff χ) (k : ℕ) (G : ℝ) {t : ℝ} (ht : 0 ≤ t)
     {w : Y k annN} (hw : w.IsReal) : (S χ k G t w).IsReal :=
   SectorSetting.semigroup_isReal (ringPhiSetting χ) (ringPhiSetting_valid hχ) k G ht hw
 
 set_option linter.unusedVariables false in
-/-- **`lem:duhamel`** (`05_single_ring.tex:52-57`), with the manuscript's `k ≥ 1` written `k + 1`:
+/-- **Part II Lemma 2.1 (`lem:duhamel`)**, with the manuscript's `k ≥ 1` written `k + 1`:
 for `G ∈ [0,G₁]`, `T > 0`, `f₀ ∈ X^{k+1}` and `g ∈ C([0,T];X^{k+1})`, the Duhamel integral
 `u(t) = e^{tL(G)}f₀ + ∫₀ᵗ e^{(t-τ)L(G)}g(τ)dτ` lies in `C([0,T];X^{k+1}) ∩ C¹([0,T];X^k)`,
 `∂_t u = L(G)u + g` on `[0,T]` (one-sided at the ends), and `u` is real if `f₀` and `g` are. -/

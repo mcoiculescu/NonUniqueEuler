@@ -7,7 +7,7 @@ import Mathlib.Analysis.SpecialFunctions.Pow.Real
 /-!
 # Helpers for `P/Sec4/Edge`: generic integral lemmas
 
-Manuscript-independent facts used in the proof of `lem:edge` (`04_ring.tex:730-769`):
+Manuscript-independent facts used in the proof of Part I Lemma 4.10 (`lem:edge`):
 
 * `integral_kernel_conj_symm`: a real symmetric kernel gives a Hermitian form,
   `∫∫ K(x,y) f(y) conj(g(x)) = conj ∫∫ K(x,y) g(y) conj(f(x))` (Fubini);

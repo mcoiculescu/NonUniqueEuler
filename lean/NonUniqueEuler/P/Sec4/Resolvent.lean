@@ -8,7 +8,7 @@ import Mathlib.Algebra.Algebra.Spectrum.Basic
 /-!
 # Proof of `lem:resolvent` (`I/Sec4/Resolvent.lean`)
 
-Manuscript `04_ring.tex:366-448`. Structure of the proof:
+Manuscript Part I Lemma 4.7 (`lem:resolvent`). Structure of the proof:
 * profile level (`H/Sec4/Resolvent/Profile.lean`), from the reduction to `eq:bvp`
   (`I/Sec4/Resolvent/Reduction.lean`), the Wronskian formula (`I/Sec4/Resolvent/PsiG.lean`) and
   `lem:evans-basic`: the resolvent formula solves the equation, injectivity for `E ≠ 0`,
@@ -17,7 +17,7 @@ Manuscript `04_ring.tex:366-448`. Structure of the proof:
   `Y^s_ℓ` and surjective (the profile solution lies in `H^s`, `I/Sec4/Resolvent/Regularity.lean`,
   so it is an element of `Y^s_ℓ`, `Sect.exists_Ysec_ofProfile`); the open mapping theorem
   (`ContinuousLinearMap.isUnit_iff_bijective`) gives invertibility. **Deviation:** the manuscript
-  proves boundedness of `(λ - L_ℓ)⁻¹` on `Y^s_ℓ` by explicit estimates (`04_ring.tex:423-433`);
+  proves boundedness of `(λ - L_ℓ)⁻¹` on `Y^s_ℓ` by explicit estimates (Part I Lemma 4.7 (`lem:resolvent`));
   here bijectivity and the open mapping theorem replace them.
 * conjugation (`H/Sec4/Resolvent/Conj.lean`): `g ↦ ḡ` is a real-linear isometry
   `Y^s_ℓ ≃ Y^s_{-ℓ}`, conjugate-linear over `ℂ`, intertwining `L_ℓ` and `L_{-ℓ}`; it transports
@@ -269,7 +269,7 @@ theorem spectrum_re_pos_eigen (S : SectorSetting) (hS : S.Valid) (ℓ : ℤ) (h�
     exact ⟨S.gStarY 0 n z G, hne, heig⟩
 
 open ResolventAux in
-/-- Proof of `lem:resolvent`, last assertion (`04_ring.tex:446-448`), with `lem:sector`(2)
+/-- Proof of `lem:resolvent`, last assertion (Part I Lemma 4.7 (`lem:resolvent`)), with `lem:sector`(2)
 (`L_{-ℓ}(G) ḡ = conj(L_ℓ(G) g)`): complex conjugation `g ↦ ḡ` is a conjugate-linear isometry of
 `Y^s_ℓ` onto `Y^s_{-ℓ}` (for every `s` and every `ℓ ∈ ℤ`) that intertwines `L_ℓ(G)` and
 `L_{-ℓ}(G)`. -/

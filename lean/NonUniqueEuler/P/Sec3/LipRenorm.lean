@@ -3,9 +3,12 @@ import NonUniqueEuler.H.Sec3.LipRenorm.Steklov
 import Mathlib.MeasureTheory.Integral.DominatedConvergence
 
 /-!
-# Proof: `lem:lip-renorm` (renormalization extends from `C¹` to `Lip₀`)
+# Proof: legacy `lem:lip-renorm` (renormalization extends from `C¹` to `Lip₀`)
 
-Proof of `I/Sec3/LipRenorm.lean` (`lem:lip-renorm`, `03_compactness.tex:92-118`).
+There is no current standalone `lem:lip-renorm`. The corresponding extension from `C¹`
+to `Lip₀` is in the proof of Part I Lemma 3.4(i) (`lem:transport`).
+
+Proof of `I/Sec3/LipRenorm.lean` (legacy `lem:lip-renorm`, the Lipschitz-extension step in the proof of Part I Lemma 3.4 (`lem:transport`)).
 
 **Argument.** Let `β ∈ Lip₀` with constant `K`. By `exists_seq_isRenormalization_tendsto`
 (`H/Sec3/LipRenorm/Steklov.lean`) there are renormalizations `Υ_n` with `|Υ_n(s)| ≤ K|s|` and
@@ -97,7 +100,7 @@ theorem solvesTE_of_tendsto {t₀ T : ℝ} {u : ℝ → ℂ → ℝ} {w : ℝ �
   rw [integral_Ioo_integral_eq (hS φ hφ).1]
   exact tendsto_nhds_unique ht tendsto_const_nhds
 
-/-- `lem:lip-renorm` without the standing assumptions (which are not needed once `(te)`
+/-- legacy `lem:lip-renorm` without the standing assumptions (which are not needed once `(te)`
 includes the integrability of its integrands, decision D5). -/
 theorem lipRenorm_core {t₀ T : ℝ} {u : ℝ → ℂ → ℝ} {w : ℝ → ℂ → ℂ} {u₀ : ℂ → ℝ}
     (hren : ∀ Υ : ℝ → ℝ, IsRenormalization Υ →
@@ -117,10 +120,10 @@ end LipRenormAux
 open LipRenormAux
 
 set_option linter.unusedVariables false in
-/-- `lem:lip-renorm` (`03_compactness.tex:92-99`): under the standing assumptions of `(te)`, if
+/-- legacy `lem:lip-renorm` (the Lipschitz-extension step in the proof of Part I Lemma 3.4 (`lem:transport`)): under the standing assumptions of `(te)`, if
 `Υ(u)` satisfies `(te)` on `[t₀,T)` with field `w` and datum `Υ(u₀)` for every renormalization
 `Υ` (`C¹`, `Υ'` bounded, `Υ(0) = 0`), then the same holds for every `β ∈ Lip₀`.
-(The hypotheses `hT`, `ht₀`, `hdata` of the manuscript statement are not needed by the proof;
+(The hypotheses `hT`, `ht₀`, `hdata` of the legacy statement are not needed by the proof;
 see `lipRenorm_core`.) -/
 theorem lipRenorm {t₀ T : ℝ} (hT : 0 < T) (ht₀ : t₀ ∈ Ico 0 T) {u : ℝ → ℂ → ℝ}
     {w : ℝ → ℂ → ℂ} {u₀ : ℂ → ℝ} (hdata : IsTEData t₀ T u w u₀)
@@ -130,8 +133,7 @@ theorem lipRenorm {t₀ T : ℝ} (hT : 0 < T) (ht₀ : t₀ ∈ Ico 0 T) {u : �
       SolvesTE t₀ T (fun t x => β (u t x)) w (fun x => β (u₀ x)) := by
   exact lipRenorm_core hren
 
-/-- `lem:lip-renorm` for renormalized weak solutions (`03_compactness.tex:607-608`, `:677-678`,
-`:740-742`): if `ω` is a renormalized weak solution in `X_q(T)` with datum `ωin`, then for every
+/-- legacy `lem:lip-renorm` for renormalized weak solutions (Part I Lemma 3.5 (`lem:renorm-all-t`) and its proof): if `ω` is a renormalized weak solution in `X_q(T)` with datum `ωin`, then for every
 `β ∈ Lip₀`, `β(ω)` satisfies `(te)` on `[0,T)` with field `v = K ∗ ω` and datum `β(ωin)`. -/
 theorem _root_.NonUniqueEuler.IsRenormalizedWeakSolution.solvesTE_lipO {q T : ℝ}
     {ωin : ℂ → ℝ} {ω : ℝ → ℂ → ℝ} (h : IsRenormalizedWeakSolution q T ωin ω) :

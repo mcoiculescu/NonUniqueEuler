@@ -8,7 +8,7 @@ import Mathlib.Analysis.SpecialFunctions.PolarCoord
 # Proof: `m`-fold symmetry, radial symmetry and reality in terms of sectors (library I-ANG)
 
 Proves the declarations of `NonUniqueEuler/I/Infra/AngularFourier/Symmetry.lean`
-(`02_prelim.tex:34-35`).
+(Part I, Section 2.1, conventions in `sec:prelim`).
 
 Proof. `P_ℓ (g ∘ O_α) = (P_ℓ g) ∘ O_α = e^{iℓα} P_ℓ g` pointwise (`sectorProj_rot`), so
 `g ∘ O_α = g` a.e. forces `(e^{iℓα} - 1) P_ℓ g = 0` a.e. Conversely, `P_ℓ` is linear on `L²`

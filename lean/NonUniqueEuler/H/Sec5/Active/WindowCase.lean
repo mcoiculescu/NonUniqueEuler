@@ -8,12 +8,12 @@ import NonUniqueEuler.I.Sec5.Active.RunCoefShift
 # Helpers for `thm:active`: the case `u > t₁` (restart and `lem:window`)
 
 Helper of `P/Sec5/Active.lean` (fully proved, modulo the interface files it imports).
-Manuscript `05_single_ring.tex:1022-1094`.
+Manuscript Part II Theorem 2.12.
 
 * `WindowProp`: the property of the constants of `lem:window` (`I/Sec5/Window.lean`);
 * `moves_compose`: displacements add over the restart;
 * `restart_field_bound`: the field hypothesis of `lem:window` for the restarted problem
-  (Peetre's inequality and the definition of `t₁`, `05_single_ring.tex:1039-1045`);
+  (Peetre's inequality and the definition of `t₁`, Part II Theorem 2.12);
 * `coef_after`: `|c(v)| ≤ 3κ` for `v ≥ t₁` (`eq:A-t1` and (Coef));
 * `concl_window`: the case `u > t₁`.
 -/
@@ -45,7 +45,7 @@ def WindowProp (χ : ℝ → ℝ) (s : ℕ) (σ' Cn δW κW CW : ℝ) : Prop :=
             (rhoOne (Eig.sigma χ c.G) σ' u + ahat κ₁ (Eig.sigma χ c.G) u +
               κ₁ * varsigma χ κ₁ ^ NW χ s + ηb)
 
-/-- Radial displacements add over a restart at `t₁` (`05_single_ring.tex:1085-1090`). -/
+/-- Radial displacements add over a restart at `t₁` (Part II Theorem 2.12 (`thm:active`)). -/
 theorem moves_compose {c c' : RingConfig} {T t₁ u δ₁ δ₂ : ℝ} (hc : c.Hyp T) (ht₁ : 0 ≤ t₁)
     (hring' : c'.ring0 = c.ringPart t₁)
     (hflow' : ∀ (τ : ℝ) (y : ℂ), c'.flow τ (c.flow t₁ y) = c.flow (t₁ + τ) y)
@@ -77,7 +77,7 @@ theorem ahat_add (κ σ t v : ℝ) : ahat κ σ (t + v) = ahat (ahat κ σ t) σ
   congr 2
   ring
 
-/-- **The field of the restarted problem** (`05_single_ring.tex:1039-1045`): from
+/-- **The field of the restarted problem** (Part II Theorem 2.12 (`thm:active`)): from
 `‖h(t₁+v)‖ ≤ C₀κ⟨t₁+v⟩^p + η_b â(t₁+v)` one gets `‖h̃(v)‖ ≤ C♮κ₁⟨v⟩^p + η_b κ₁e^{σv}`,
 `κ₁ = â(t₁)`. -/
 theorem restart_field_bound {σ σ' C₀ κ ηb v Cn B : ℝ} (hσ : σ' < σ) (hσ'0 : 0 ≤ σ')
@@ -116,7 +116,7 @@ theorem restart_field_bound {σ σ' C₀ κ ηb v Cn B : ℝ} (hσ : σ' < σ) (
   rw [← ahat_add]
   linarith
 
-/-- `|c(v)| ≤ 3κ` for `t₁ ≤ v ≤ ū` (`eq:A-t1` and (Coef), `05_single_ring.tex:953-956`). -/
+/-- `|c(v)| ≤ 3κ` for `t₁ ≤ v ≤ ū` (`eq:A-t1` and (Coef), Part II Theorem 2.12 (`thm:active`)). -/
 theorem coef_after {χ : ℝ → ℝ} {c : RingConfig} {ubar C₀ κ σ' : ℝ}
     (hCoef : c.ActiveCoef χ ubar C₀ κ) (hσ : σ' < Eig.sigma χ c.G) (hσ'0 : 0 ≤ σ')
     (hC₀ : 1 ≤ C₀) (hκ : 0 < κ) {v : ℝ} (hv1 : tOne χ σ' C₀ c.G ≤ v) (hv2 : v ≤ ubar)
@@ -128,7 +128,7 @@ theorem coef_after {χ : ℝ → ℝ} {c : RingConfig} {ubar C₀ κ σ' : ℝ}
     _ = 3 * κ := by ring
 
 set_option maxHeartbeats 1000000 in
-/-- **The case `u > t₁`** (`05_single_ring.tex:1022-1094`): restart at `t₁`, apply
+/-- **The case `u > t₁`** (Part II Theorem 2.12 (`thm:active`)): restart at `t₁`, apply
 `lem:window` with `κ₁ = â(t₁)`, and add the displacements. -/
 theorem concl_window (χ : ℝ → ℝ) (hχ : IsAdmissibleCutoff χ) (hN : NumericalHypothesis χ)
     {s : ℕ} {σ' : ℝ} (hσ' : σ' ∈ Ioo (9 / 200 : ℝ) (Eig.sigb χ))

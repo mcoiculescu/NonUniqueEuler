@@ -7,7 +7,7 @@ import NonUniqueEuler.H.Sec8.Coupling.PartThree
 # Proof: `lem:coupling` and `eq:kick` (the coupling of ring `k` to its inner region)
 
 Proof of `I/Sec8/Coupling.lean` (`coupling_one`, `coupling_two`, `coupling_three`), following the
-manuscript proof `08_kick.tex:65-154`. The work is in the helpers `H/Sec8/Coupling/*.lean`
+manuscript proof Part II Lemma 5.1 (`lem:coupling`). The work is in the helpers `H/Sec8/Coupling/*.lean`
 (namespace `NonUniqueEuler.CouplingAux`):
 
 1. (`PartOne.lean`, `coupling_one_aux`) `h^in_k(τ)` is a `3`-fold symmetric field in every
@@ -35,7 +35,7 @@ namespace Kick
 
 open RingData Datum
 
-/-- **`lem:coupling`(1)** (`08_kick.tex:26-33`). For `1 ≤ k < n` and `t ≥ 0` with
+/-- **`lem:coupling`(1)** (Part II Lemma 5.1 (`lem:coupling`)). For `1 ≤ k < n` and `t ≥ 0` with
 `D_{k+1}(t) ⊂ B_{a r_k/8}`, `τ = A_k t`: `-h^in_k(τ)·∇Φ ∈ X^s` for every `s`,
 `ℓ_*(G_k)(-h^in_k(τ)·∇Φ) = μβ_kq_{k+1}(t)`, and the sector-`3` profile of `h^in_k(τ)·e_r` is
 `(i/2)pout_3[ν^in_k]r^{-4}` on `a/4 ≤ r ≤ 3`. -/
@@ -49,7 +49,7 @@ theorem coupling_one (P : Approx) (hP : P.Valid) (hN : NumericalHypothesis P.χ)
         Complex.I / 2 * BS.pout 3 (fun y => ((P.nuIn k t y : ℝ) : ℂ)) * (r : ℂ) ^ (-4 : ℤ) :=
   CouplingAux.coupling_one_aux P hP hN hk hkn ht hin
 
-/-- **`lem:coupling`(2) and `eq:kick`** (`08_kick.tex:34-53`). Assume `G_i ≤ G₁` for all levels,
+/-- **`lem:coupling`(2) and `eq:kick`** (Part II Lemma 5.1 (`lem:coupling`)). Assume `G_i ≤ G₁` for all levels,
 the clock defined up to level `k+1` (`1 ≤ k < n`) and `D_{k+1}(t) ⊂ B_{a r_k/8}` on `[0,t♯_k]`. Then
 `τ ↦ -h^in_k(τ)·∇Φ ∈ C([0,t̄♯_k];X^s)` for every `s`; in kick time `τ_K ∈ [τ₀,T_pin]`, `q_{k+1}` is
 continuous and `c^in = ℓ_*(G_k)(wlin_{in,k})` solves `dc^in/dτ_K = ζ₀c^in + β_kq_{k+1}`,
@@ -66,7 +66,7 @@ theorem coupling_two (P : Approx) (hP : P.Valid) (hN : NumericalHypothesis P.χ)
   CouplingAux.coupling_two_aux P hP hN hG hk hkn hc hin
 
 set_option linter.unusedVariables false in
-/-- **`lem:coupling`(3)** (`08_kick.tex:54-63`). Under the hypotheses of (2) and if moreover the
+/-- **`lem:coupling`(3)** (Part II Lemma 5.1 (`lem:coupling`)). Under the hypotheses of (2) and if moreover the
 rings `i < k` lie outside `B_{6r_k}` on `[0,t♯_k]`: `τ ↦ -h^out_k(τ)·∇Φ ∈ C([0,t̄♯_k];X^s)` and
 `wlin_{in,k} + wlin_{out,k} = wlin` on `[0,t̄♯_k]`, `wlin` the linear response of `thm:quiet` for
 ring `k` (`G = G_k`, `h = h_k`). (`hG`, `hc` are the standing hypotheses of (2); the proof

@@ -8,7 +8,7 @@ import Mathlib.MeasureTheory.Integral.Prod
 /-!
 # Proof: the time equation of `u ⋆ ρ_ε (·, x)` (step 1 of the mollified identity)
 
-Proof of `I/Sec3/Transport/Mollified/TimeEq.lean` (`03_compactness.tex:494-500`).
+Proof of `I/Sec3/Transport/Mollified/TimeEq.lean` (Part I Lemma 3.4 (`lem:transport`) and its proof).
 
 We test `(te)` with `ψ(s,y) = α(s) ρ_ε(x - y)` (a test function by `isTestFunction_mul`). Then
 `∂_s ψ = α' ρ_ε(x - ·)` and `w·∇_y ψ = -α Dρ_ε(x - ·) w`, so the inner integrand of `(te)` is
@@ -163,7 +163,7 @@ theorem integrable_mul_fderiv_reflect (hρ : IsMollifier ρ) {ε : ℝ} (hε : �
 end MollifiedTimeEqH
 
 open MollifiedTimeEqH in
-/-- Step 1 of the mollified identity (`03_compactness.tex:494-500`): at every `x`, the
+/-- Step 1 of the mollified identity (Part I Lemma 3.4 (`lem:transport`) and its proof): at every `x`, the
 mollification `U(s) = u(s) ⋆ ρ_ε (x)` satisfies `∂_s U = -(div(wu)) ⋆ ρ_ε (·,x)` on `[t₀,T)`
 weakly, with datum `u₀ ⋆ ρ_ε (x)`:
 `∫_{t₀}^T (α' U - α (div(wu)) ⋆ ρ_ε (·,x)) + α(t₀) (u₀ ⋆ ρ_ε)(x) = 0` for every

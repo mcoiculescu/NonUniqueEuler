@@ -6,8 +6,9 @@ import Mathlib.Data.Rat.Defs
 
 Statement layer: definitions and statements only, no proofs.
 
-Manuscript sources: `A_verification.tex:507-649` (Definition `def:Nprime`, the two runs,
-Proposition `prop:runs`), and the certificate files
+Current manuscript sources: Part II, Section A.5 (`app:runs`), Definition A.5
+(`def:Nprime`) and Proposition A.7 (`prop:runs`) in
+`manuscript/part2/sections/A_verification.tex`, and the certificate files
 `euler-ring-certificate/certificates/sector3_{count,gap}_cells.json`
 (format `ringcert-certificate-1`: a list of cells `{"G": [lo, hi], "rect": [x0, x1, y0, y1]}`
 with exact rational entries, and run parameters).
@@ -52,7 +53,7 @@ structure CertCell where
   rect : QRect
 deriving Repr, DecidableEq
 
-/-- Parameters of a run (`A_verification.tex:559-602`): the density `ν` (for the `(N2')` run,
+/-- Parameters of a run (Part II, Section A.5, `app:runs`): the density `ν` (for the `(N2')` run,
 the numerator of `ν = 3/(x_i - 211/2500)`), the maximal numbers of rounds, of segments and of
 halvings. -/
 structure RunParams where
@@ -73,13 +74,13 @@ deriving Repr
 
 /-- Soundness of a checker: if it accepts some certificate data, then (N1) and (N2) hold for
 every admissible cutoff. ((N3) has a written proof without machine computation,
-`prop:N3`.) Part (2) proves `CheckerSound Verify.check` (`Verify.check_sound`). -/
+Part II, Proposition A.8, `prop:N3`.) Part (2) proves `CheckerSound Verify.check` (`Verify.check_sound`). -/
 def CheckerSound (check : CertificateData → Bool) : Prop :=
   ∀ cert : CertificateData, check cert = true →
     ∀ χ : ℝ → ℝ, IsAdmissibleCutoff χ → N1 χ ∧ N2 χ
 
 /-- **Statement of the final theorem** `main_theorem_of_certificate`: if the checker accepts the
-certificate, then the explicit cutoff `chiStd` is admissible and Theorem 1.1 holds for every
+certificate, then the explicit cutoff `chiStd` is admissible and Theorem 1.1 of Parts I and II (`thm:main`) holds for every
 admissible cutoff. -/
 def MainTheoremOfCertificate (check : CertificateData → Bool) (cert : CertificateData) : Prop :=
   check cert = true → IsAdmissibleCutoff chiStd ∧ ∀ χ : ℝ → ℝ, IsAdmissibleCutoff χ → MainTheorem χ

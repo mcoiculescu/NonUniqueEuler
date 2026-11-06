@@ -6,8 +6,8 @@ import NonUniqueEuler.I.Infra.Multipole.CircleKernel
 /-!
 # Helper for `couplingFn_ofProfile`: the coupling term at a point `r > 0` of the real axis
 
-Helper file of `P/Sec4/Sector/CouplingOfProfile.lean` (fully proved). Manuscript
-`04_ring.tex:257-263`, computed directly in polar coordinates.
+Helper file of `P/Sec4/Sector/CouplingOfProfile.lean` (fully proved). The calculation in
+the proof of Part I Lemma 4.5 (`lem:sector`) is performed directly in polar coordinates.
 
 * `fderiv_om_ofReal`: `Dω̄(r)v = ω̄'(r) Re v` for `r > 0` (`ω̄ = ω̄(|x|)`,
   `Polar.hasFDerivAt_comp_norm`).

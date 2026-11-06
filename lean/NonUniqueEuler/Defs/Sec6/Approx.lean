@@ -1,14 +1,13 @@
 import NonUniqueEuler.Defs.Sec6.Datum
 
 /-!
-# Section 6.2: the approximate solutions, ring-`k` units (definitions)
+# Part II Section 3: the approximate solutions, ring-`k` units (definitions)
 
-Manuscript `def:approx`
-(`06_datum.tex:71-81`), the paragraph on ring-`k` units (`06_datum.tex:138-156`), the dilated
-annuli of `def:regions` (`06_datum.tex:167`), the configuration of `lem:reduction` for ring `k`
-(`06_datum.tex:323-330`), and the comparison class of `lem:clock` (`06_datum.tex:436-443`).
+Manuscript Part II Definition 3.3 (`def:approx`), the paragraph on ring-`k` units (the ring-unit conventions before Part II Definition 3.5 (`def:regions`)), the dilated
+annuli of Part II Definition 3.5 (`def:regions`), the configuration of `lem:reduction` for ring `k`
+(the reduction discussion after Part II Lemma 3.6 (`lem:regions-basic`)), and the comparison class preceding Part II Lemma 3.10 (`lem:clock`).
 
-* `Approx`: the data fixed in Sections 6–11 ((SA3), `09_relay.tex:43-48`): the cutoff `χ`,
+* `Approx`: the data fixed in Part II Sections 3–8 ((SA3), Part II Definition C.1 (`def:standing`)): the cutoff `χ`,
   `A₁`, `μ`, `s̄`, `κ_seed` (`κs`), the depth `n`, the clock parameters `δ₀`, `T_pin`
   (`def:clock`), and the vorticity `om` (`ω^{(n)}`). `Approx.Valid` says that the parameters are
   in their ranges and that `om` is the solution of `thm:smooth` with datum `f^{(n)}`. The
@@ -35,20 +34,20 @@ namespace Datum
 
 open RingData
 
-/-! ### Ring-`k` units (`06_datum.tex:138-156`) -/
+/-! ### Ring-`k` units (the ring-unit conventions before Part II Definition 3.5 (`def:regions`)) -/
 
-/-- A vorticity in the units `(A, r)`: `y ↦ A⁻¹ g(r y)` (`06_datum.tex:138-140`). -/
+/-- A vorticity in the units `(A, r)`: `y ↦ A⁻¹ g(r y)` (the ring-unit conventions before Part II Definition 3.5 (`def:regions`)). -/
 def scaleVort (A r : ℝ) (g : ℂ → ℝ) (y : ℂ) : ℝ := A⁻¹ * g ((r : ℂ) * y)
 
 /-- A space–time vorticity in the units `(A, r)`: `ω̃(τ, y) = A⁻¹ ω(τ/A, r y)`
-(`06_datum.tex:138-140`). -/
+(the ring-unit conventions before Part II Definition 3.5 (`def:regions`)). -/
 def scaleSol (A r : ℝ) (om : ℝ → ℂ → ℝ) (τ : ℝ) (y : ℂ) : ℝ := A⁻¹ * om (τ / A) ((r : ℂ) * y)
 
-/-- A velocity field in the units `(A, r)`: `V_{[k]}(y) = V(r y)/(A r)` (`06_datum.tex:150-154`,
+/-- A velocity field in the units `(A, r)`: `V_{[k]}(y) = V(r y)/(A r)` (the ring-unit conventions before Part II Definition 3.5 (`def:regions`),
 with `(A, r) = (A_k, r_k)`). -/
 def scaleField (A r : ℝ) (V : ℂ → ℂ) (y : ℂ) : ℂ := V ((r : ℂ) * y) / ((A * r : ℝ) : ℂ)
 
-/-- A flow in the units `(A, r)`: `y ↦ r⁻¹ Φ_{τ/A}(r y)` (`06_datum.tex:141-142`). -/
+/-- A flow in the units `(A, r)`: `y ↦ r⁻¹ Φ_{τ/A}(r y)` (the ring-unit conventions before Part II Definition 3.5 (`def:regions`)). -/
 def scaleFlow (A r : ℝ) (F : ℝ → ℂ → ℂ) (τ : ℝ) (y : ℂ) : ℂ := (r : ℂ)⁻¹ * F (τ / A) ((r : ℂ) * y)
 
 /-- The dilated set `r U = {r y : y ∈ U}`, written as `{x : r⁻¹ x ∈ U}` (equal for `r ≠ 0`). -/
@@ -70,8 +69,8 @@ theorem scaleField_apply (A r : ℝ) (V : ℂ → ℂ) (y : ℂ) :
 
 /-! ### The approximation data -/
 
-/-- **The data of Sections 6–11** (`def:approx`, `def:regions`, `def:clock`; (SA3),
-`09_relay.tex:43-48`): the admissible cutoff `χ` (through `Φ = ringPhi χ`), `A₁`, `μ`, `s̄`,
+/-- **The data of Part II Sections 3–8** (`def:approx`, `def:regions`, `def:clock`; (SA3),
+Part II Definition C.1 (`def:standing`)): the admissible cutoff `χ` (through `Φ = ringPhi χ`), `A₁`, `μ`, `s̄`,
 `κ_seed` (`κs`), the depth `n`, the clock parameters `δ₀` and `T_pin`, and the space–time
 vorticity `om`, which is `ω^{(n)}` (the solution of `thm:smooth` with datum `f^{(n)}`) under
 `Approx.Valid`. Every derived object is defined for all data. -/
@@ -99,28 +98,28 @@ namespace Approx
 
 variable (P : Approx)
 
-/-- `A_k = A₁ μ^{k-1}` (`06_datum.tex:19`). -/
+/-- `A_k = A₁ μ^{k-1}` (Part II Definition 3.1 (`def:datum`)). -/
 def A (k : ℕ) : ℝ := amp P.A₁ P.μ k
 
-/-- `s_k = s̄ (2μ)^{-k}` (`06_datum.tex:19`). -/
+/-- `s_k = s̄ (2μ)^{-k}` (Part II Definition 3.1 (`def:datum`)). -/
 def s (k : ℕ) : ℝ := ratio P.sbar P.μ k
 
-/-- `r_k` (`r₁ = 1`, `r_{k+1} = s_k r_k`, `06_datum.tex:19`). -/
+/-- `r_k` (`r₁ = 1`, `r_{k+1} = s_k r_k`, Part II Definition 3.1 (`def:datum`)). -/
 def r (k : ℕ) : ℝ := radius P.sbar P.μ k
 
-/-- The `k`-th term `f^{(n)}_k` of `f^{(n)}` (`06_datum.tex:162-164`). -/
+/-- The `k`-th term `f^{(n)}_k` of `f^{(n)}` (Part II Definition 3.5 (`def:regions`)). -/
 def term (k : ℕ) : ℂ → ℝ := approxTerm P.χ P.A₁ P.μ P.sbar P.κs P.n k
 
-/-- The approximate datum `f^{(n)}` (`def:approx`, `06_datum.tex:76`). -/
+/-- The approximate datum `f^{(n)}` (Part II Definition 3.3 (`def:approx`)). -/
 def f : ℂ → ℝ := approxDatum P.χ P.A₁ P.μ P.sbar P.κs P.n
 
-/-- The datum `f` of `def:datum` with the same parameters (`06_datum.tex:22-23`). -/
+/-- The datum `f` of `def:datum` with the same parameters (Part II Definition 3.1 (`def:datum`)). -/
 def datumF : ℂ → ℝ := datum P.χ P.A₁ P.μ P.sbar
 
-/-- The velocity `v^{(n)} = K_BS * ω^{(n)}` (`def:approx`, `06_datum.tex:79`). -/
+/-- The velocity `v^{(n)} = K_BS * ω^{(n)}` (Part II Definition 3.3 (`def:approx`)). -/
 def vel (t : ℝ) (x : ℂ) : ℂ := velocityField P.om t x
 
-/-- The flow `Φ_t` of `v^{(n)}` (`def:approx`, `06_datum.tex:80`): `Φ_t(y) = Φ_v(t, 0, y)`
+/-- The flow `Φ_t` of `v^{(n)}` (Part II Definition 3.3 (`def:approx`)): `Φ_t(y) = Φ_v(t, 0, y)`
 (`Smooth.flowOf`; for a valid `P` this is `Smooth.flow f^{(n)} t`, `Valid.flow_eq`). -/
 def flow (t : ℝ) (y : ℂ) : ℂ := Smooth.flowOf (velocityField P.om) t 0 y
 
@@ -146,36 +145,35 @@ structure Valid : Prop where
 def ofParams (χ : ℝ → ℝ) (A₁ μ sbar κs : ℝ) (n : ℕ) (δ₀ Tpin : ℝ) : Approx :=
   ⟨χ, A₁, μ, sbar, κs, n, δ₀, Tpin, Smooth.sol (approxDatum χ A₁ μ sbar κs n)⟩
 
-/-- The same data with the vorticity replaced by `om'` (the comparison of `lem:clock`(2),(3),
-`06_datum.tex:436-443`: `f^{(n)}`, the sets `S_k` and the parameters are kept; the flow becomes
+/-- The same data with the vorticity replaced by `om'` (the comparison class preceding Part II Lemma 3.10 (`lem:clock`): `f^{(n)}`, the sets `S_k` and the parameters are kept; the flow becomes
 the flow of `K_BS * om'`). -/
 def withOm (om' : ℝ → ℂ → ℝ) : Approx := { P with om := om' }
 
-/-- The dilated annulus `N_k = r_k N` (`06_datum.tex:167`). -/
+/-- The dilated annulus `N_k = r_k N` (Part II Definition 3.5 (`def:regions`)). -/
 def Nk (k : ℕ) : Set ℂ := scaleSet (P.r k) annN
 
-/-- The dilated annulus `N'_k = r_k N'` (`06_datum.tex:167`). -/
+/-- The dilated annulus `N'_k = r_k N'` (Part II Definition 3.5 (`def:regions`)). -/
 def Npk (k : ℕ) : Set ℂ := scaleSet (P.r k) annN'
 
-/-- The dilated annulus `N♭_k = r_k N♭` (`06_datum.tex:167`). -/
+/-- The dilated annulus `N♭_k = r_k N♭` (Part II Definition 3.5 (`def:regions`)). -/
 def Nflatk (k : ℕ) : Set ℂ := scaleSet (P.r k) annNflat
 
-/-- The dilated annulus `𝒩_k = r_k 𝒩` (`06_datum.tex:167`). -/
+/-- The dilated annulus `𝒩_k = r_k 𝒩` (Part II Definition 3.5 (`def:regions`)). -/
 def Nnk (k : ℕ) : Set ℂ := scaleSet (P.r k) annNn
 
-/-- The dilated annulus `𝒩₋_k = r_k 𝒩₋` (`06_datum.tex:167`). -/
+/-- The dilated annulus `𝒩₋_k = r_k 𝒩₋` (Part II Definition 3.5 (`def:regions`)). -/
 def Nmk (k : ℕ) : Set ℂ := scaleSet (P.r k) annNm
 
-/-- A vorticity in ring-`k` units, `y ↦ A_k⁻¹ g(r_k y)` (`06_datum.tex:147-149`). -/
+/-- A vorticity in ring-`k` units, `y ↦ A_k⁻¹ g(r_k y)` (the ring-unit conventions before Part II Definition 3.5 (`def:regions`)). -/
 def unitsVort (k : ℕ) (g : ℂ → ℝ) : ℂ → ℝ := scaleVort (P.A k) (P.r k) g
 
-/-- A velocity field in ring-`k` units, `V_{[k]}(y) = V(r_k y)/(A_k r_k)` (`06_datum.tex:150-154`).
-"`V` is bounded on `N'_k` in `C^q`, in ring-`k` units, by `X`" (`07_several_rings.tex:36-39`) is
+/-- A velocity field in ring-`k` units, `V_{[k]}(y) = V(r_k y)/(A_k r_k)` (the ring-unit conventions before Part II Definition 3.5 (`def:regions`)).
+"`V` is bounded on `N'_k` in `C^q`, in ring-`k` units, by `X`" (Part II Section 4 (`sec:several`)) is
 `normCk q annN' (P.unitsField k V) ≤ X` (with `MemCk`). -/
 def unitsField (k : ℕ) (V : ℂ → ℂ) : ℂ → ℂ := scaleField (P.A k) (P.r k) V
 
-/-- **The configuration of `lem:reduction` for ring `k`** (`06_datum.tex:323-330`,
-`07_several_rings.tex:449-456`): the datum `A_k⁻¹ f^{(n)}(r_k ·)` in ring-`k` units split into the
+/-- **The configuration of `lem:reduction` for ring `k`** (the reduction discussion after Part II Lemma 3.6 (`lem:regions-basic`),
+the support-separation argument in the proof of Part II Lemma C.17 (`lem:geometry`)): the datum `A_k⁻¹ f^{(n)}(r_k ·)` in ring-`k` units split into the
 ring part `A_k⁻¹ f^{(n)}_k(r_k ·)`, the inner part `A_k⁻¹ Σ_{i>k} f^{(n)}_i(r_k ·)` and the outer part
 `A_k⁻¹ Σ_{i<k} f^{(n)}_i(r_k ·)`. Its solution is `ω^{(n)}` in ring-`k` units (scaling covariance
 of `thm:smooth`), its `G` is `G_k`, and its field `h` is `h_k` on `N'` (interface statements). -/
@@ -270,7 +268,7 @@ theorem Valid.ringConfig_ring0 (h : P.Valid) {k : ℕ} (hk : 1 ≤ k) (hkn : k <
   rw [← A_def, ← r_def, mul_div_cancel_left₀ y hr, ← mul_assoc, inv_mul_cancel₀ hA, one_mul]
 
 /-- The ring part of the configuration of the innermost ring `n` is the seeded ring
-`Φ^{κ_seed}` (`06_datum.tex:429-430`). -/
+`Φ^{κ_seed}` (Part II Definition 3.3 (`def:approx`)). -/
 theorem Valid.ringConfig_ring0_n (h : P.Valid) :
     (P.ringConfig P.n).ring0 = OneRing.PhiSeed P.χ P.κs := by
   funext y

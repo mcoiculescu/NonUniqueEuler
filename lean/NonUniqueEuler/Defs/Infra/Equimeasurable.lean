@@ -5,13 +5,15 @@ import Mathlib.Topology.EMetricSpace.Lipschitz
 # Equimeasurability (definitions; library I-EQM)
 
 Manuscript-independent infrastructure (library I-EQM). The notion itself,
-`NonUniqueEuler.Equimeasurable g h` (`def:equimeasurable`, `02_prelim.tex:515-519`: `g, h ∈ L¹`
+`NonUniqueEuler.Equimeasurable g h` (Part I, Definition 2.4, `def:equimeasurable`: `g, h ∈ L¹`
 and `|{g > s}| = |{h > s}|`, `|{g < -s}| = |{h < -s}|` for all `s > 0`), is in the statement layer
 (`Statement/WeakSolution.lean`).
 
 Definition.
 * `IsLipO β`: `β : ℝ → ℝ` is Lipschitz and `β 0 = 0`; the manuscript's class `Lip₀`
-  (`02_prelim.tex:129`), used in `lem:lip-renorm`, `lem:renorm-all-t` (eq:conservation).
+  (Part I, Section 2.1, conventions in `sec:prelim`), used in Part I, Lemmas 3.4 (`lem:transport`) and 3.5
+  (`lem:renorm-all-t`), Equation (9) (`eq:conservation`). The former separate
+  `lem:lip-renorm` is retained in the Lean decomposition.
 
 Fully proved basic lemmas: `Equimeasurable.refl`, `Equimeasurable.symm`,
 `Equimeasurable.trans`, `Equimeasurable.memLp_one_left/right`, `IsLipO.comp`, `isLipO_id`,
@@ -28,7 +30,7 @@ namespace NonUniqueEuler
 
 namespace Equimeas
 
-/-- The manuscript's class `Lip₀` (`02_prelim.tex:129`): Lipschitz `β : ℝ → ℝ` with `β 0 = 0`. -/
+/-- The manuscript's class `Lip₀` (Part I, Section 2.1, conventions in `sec:prelim`): Lipschitz `β : ℝ → ℝ` with `β 0 = 0`. -/
 def IsLipO (β : ℝ → ℝ) : Prop :=
   (∃ K : NNReal, LipschitzWith K β) ∧ β 0 = 0
 

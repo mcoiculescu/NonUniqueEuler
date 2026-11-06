@@ -3,16 +3,16 @@ import NonUniqueEuler.Defs.Sec4.Ring
 import Mathlib.Analysis.Calculus.Deriv.Slope
 
 /-!
-# Helper for `lem:closed-form`: the derivative of `ϖ`, its sign, and the pointwise bounds
+# Helper for Part I Lemma 4.11 (`lem:closed-form`): the derivative of `ϖ`, its sign, and the pointwise bounds
 
-Manuscript `04_ring.tex:789-827`. With `A, Ā, B, B̄` of `Defs/Verify/Profile.lean`
+See the proof of Part I Lemma 4.11 (`lem:closed-form`). With `A, Ā, B, B̄` of `Defs/Verify/Profile.lean`
 (`A(ξ) = H((ξ-a₀)/d)`, `Ā = H((a₀-ξ)/d)`, `B = H(-ξ/d)`, `B̄ = H(ξ/d)`) and `P = AB`:
 
 * `hasDerivAt_prof`: `ϖ' = χ'AB + χAB(2/d)(Ā - B̄)` (from `A' = (2/d)AĀ`, `B' = -(2/d)BB̄`;
   this is `(log P)' = (2/d)[Ā - B̄]`);
 * `χ` is nondecreasing on `(-∞, ξ_b]` and nonincreasing on `[ξ_a, ∞)`, so `χ' ≥ 0` on
   `(-∞, ξ_b)` and `χ' ≤ 0` on `(ξ_a, ∞)`;
-* `Ā - B̄ > 0` iff `ξ < a₀/2`; hence the sign of `ϖ'` (`lem:closed-form`(1)), and `ϖ'(a₀/2) = 0`;
+* `Ā - B̄ > 0` iff `ξ < a₀/2`; hence the sign of `ϖ'` (Part I Lemma 4.11(1) (`lem:closed-form`)), and `ϖ'(a₀/2) = 0`;
 * the pointwise bounds of the proof of (2): on `ξ ≤ a₀/2`,
   `e^{2ℓ(ξ-ξc)} ϖ' ≤ H((ξa-a₀)/d) χ' + e^{2ℓ(ξ-ξc)} (2/d) AĀ`, and the mirror image.
 -/
@@ -27,7 +27,7 @@ namespace ClosedFormAux
 
 open RingData AppA
 
-/-! ### Order facts of the pinned data (`04_ring.tex:78-86`) -/
+/-! ### Order facts of the pinned data (proof of Part I Lemma 4.2 (`lem:ring-facts`)) -/
 
 theorem d_pos : 0 < d := by norm_num [d]
 
@@ -129,7 +129,7 @@ theorem profB_le_one (ξ : ℝ) : profB ξ ≤ 1 := H_le_one _
 theorem profAbar_le_one (ξ : ℝ) : profAbar ξ ≤ 1 := H_le_one _
 theorem profBbar_le_one (ξ : ℝ) : profBbar ξ ≤ 1 := H_le_one _
 
-/-! ### `lem:closed-form`(1): the sign of `ϖ'` -/
+/-! ### Part I Lemma 4.11(1) (`lem:closed-form`): the sign of `ϖ'` -/
 
 theorem deriv_prof_nonneg (hχ : IsAdmissibleCutoff χ) {ξ : ℝ} (h : ξ < a₀ / 2) :
     0 ≤ deriv (prof χ) ξ := by
@@ -181,7 +181,7 @@ theorem mem_Icc_of_deriv_prof_ne_zero (hχ : IsAdmissibleCutoff χ) {ξ : ℝ}
   by_contra hc
   exact h (deriv_prof_eq_zero_of_not_mem hχ hc)
 
-/-! ### The pointwise bounds of `lem:closed-form`(2) -/
+/-! ### The pointwise bounds of Part I Lemma 4.11(2) (`lem:closed-form`) -/
 
 /-- On `ξ ≤ a₀/2`: `e^{2ℓ(ξ-ξc)} ϖ' ≤ H((ξa-a₀)/d) χ' + e^{2ℓ(ξ-ξc)} (2/d) AĀ`. -/
 theorem bound_A (hχ : IsAdmissibleCutoff χ) (ℓ : ℕ) {ξ : ℝ} (hξ : ξ ≤ a₀ / 2) :

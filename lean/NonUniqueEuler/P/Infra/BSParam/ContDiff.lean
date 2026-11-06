@@ -11,8 +11,8 @@ import Mathlib.MeasureTheory.Measure.Haar.Unique
 # Proof: the Biot–Savart velocity of a space–time family with locally bounded support
 
 Proof of `NonUniqueEuler/I/Infra/BSParam/ContDiff.lean` (same declarations, statements copied
-verbatim). Manuscript: `lem:iterates`(iii), `B_global_smooth.tex:229-238`, and
-`prop:iter-limit`, `B_global_smooth.tex:456-460`.
+verbatim). Manuscript: Part II, Lemma B.6(iii) (`lem:iterates`), proof, and
+Part II, Proposition B.10 (`prop:iter-limit`), proof.
 
 Structure. With `L` a continuous bilinear map `ℂ × E' → F` and `g : ℝ → ℂ → E'`, write
 `Φ L g (t, x) = (K_BS ⋆[L] g t)(x) = ∫ L (K_BS z) (g t (x - z)) dz`.
@@ -257,7 +257,7 @@ namespace NonUniqueEuler.BS
 open NonUniqueEuler.BSParamH
 
 /-- The Biot–Savart velocity of a `C^n` space–time family with locally (in time) bounded support
-is `C^n` in `(t, x)` (`B_global_smooth.tex:229-238`). -/
+is `C^n` in `(t, x)` (Part II, Lemma B.6(iii) (`lem:iterates`), proof). -/
 theorem contDiff_velocityField_of_slabSupport {n : ℕ∞} {G : ℝ → ℂ → ℝ}
     (hG : ContDiff ℝ n (Function.uncurry G))
     (hsupp : ∀ T : ℝ, ∃ ρ : ℝ, ∀ t ∈ Icc (-T) T, ∀ x : ℂ, ρ < ‖x‖ → G t x = 0) :
@@ -279,7 +279,7 @@ theorem contDiff_velocityField_of_slabSupport {n : ℕ∞} {G : ℝ → ℂ → 
   exact hOn.contDiffAt (prod_mem_nhds (isOpen_Ioo.mem_nhds hq) univ_mem)
 
 /-- The derivatives of order `k ≤ n` of the velocity of such a family are bounded on every slab
-`[-T, T] × ℝ²` (`B_global_smooth.tex:229-238`). -/
+`[-T, T] × ℝ²` (Part II, Lemma B.6(iii) (`lem:iterates`), proof). -/
 theorem iteratedFDeriv_velocityField_bounded {n : ℕ∞} {G : ℝ → ℂ → ℝ}
     (hG : ContDiff ℝ n (Function.uncurry G))
     (hsupp : ∀ T : ℝ, ∃ ρ : ℝ, ∀ t ∈ Icc (-T) T, ∀ x : ℂ, ρ < ‖x‖ → G t x = 0)

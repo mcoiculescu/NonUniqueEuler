@@ -7,8 +7,9 @@ import NonUniqueEuler.H.Infra.SobolevOneD.LogVariable.Seq
 /-!
 # Proof: the radial variable `r` versus the log variable `x = log r` (library I-SOB1)
 
-Proof of `NonUniqueEuler/I/Infra/SobolevOneD/LogVariable.lean` (used by `lem:elliptic`,
-`04_ring.tex:888-897`).
+Proof of `NonUniqueEuler/I/Infra/SobolevOneD/LogVariable.lean` (the elliptic-estimate part
+of the proof of Part I, Corollary 4.13, `cor:K-bound`; Lean retains the former
+separate `lem:elliptic` decomposition).
 
 * Weak chain rules (`H/.../Step.lean`, `H/.../Iterate.lean`): test functions transform by
   `φ ↦ 1_{(0,∞)} φ ∘ log` and `ψ ↦ ψ ∘ exp`, integrals by `r = e^x`. Iterating

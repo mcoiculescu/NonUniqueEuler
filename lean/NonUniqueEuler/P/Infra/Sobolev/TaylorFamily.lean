@@ -22,7 +22,7 @@ Proof of `I/Infra/Sobolev/TaylorFamily.lean` (same declaration, same statement).
 
 Restructuring (as announced in the interface docstring): sup bounds of the `y`-derivatives,
 uniform in `t ∈ [0,1]`, replace the composition estimate `‖g∘Y_t‖_{H^k} ≤ C^Y_k‖g‖_{H^k}` of
-`05_single_ring.tex:1193-1209`.
+Part II, Lemma 2.14 (`lem:seed`), Taylor expansion in the proof.
 -/
 
 noncomputable section
@@ -79,7 +79,7 @@ end TaylorFamilyH
 
 open TaylorFamilyH in
 /-- **Second-order Taylor expansion in `H^k`** of a smooth family that is constant in `t` outside
-a compact set (`05_single_ring.tex:1193-1209`, generic form). -/
+a compact set (Part II, Lemma 2.14 (`lem:seed`), Taylor expansion in the proof, generic form). -/
 theorem normH_taylor_two_le {F : ℝ → ℂ → ℝ}
     (hF : ContDiff ℝ ((⊤ : ℕ∞) : WithTop ℕ∞) (fun p : ℝ × ℂ => F p.1 p.2))
     {K : Set ℂ} (hK : IsCompact K) (hoff : ∀ t : ℝ, ∀ y ∉ K, F t y = F 0 y) (k : ℕ) :

@@ -3,11 +3,11 @@ import NonUniqueEuler.I.Verify.EndRegionCorollaries
 import NonUniqueEuler.I.Evans.ODE
 
 /-!
-# Proof: Proposition A.3, steps (ii) and (iv): the boxes of the two end regions
+# Proof: Part II Proposition A.3, steps (ii) and (iv): the boxes of the two end regions
 
 Proof of `NonUniqueEuler/I/Verify/Sound/EndBoxes.lean` (same declarations, statements copied
-verbatim). Manuscript: proof of Proposition A.3 (`prop:enclosure`), step (ii)
-(`A_verification.tex:395-402`) and step (iv) (`A_verification.tex:439-450`).
+verbatim). Manuscript: proof of Part II Proposition A.3,
+steps (ii) and (iv) (`prop:enclosure`).
 
 Used black boxes: `leftEnd_bound`, `rightEnd_bound` (`I/Verify/EndRegionCorollaries`),
 `evans_eq_of_isEvansSolution` (`I/Evans/ODE`). The containment facts of the code's operations

@@ -1,11 +1,12 @@
 import NonUniqueEuler.Defs.Sec10.Lists
 
 /-!
-# Section 10: the positivity of the constants of (P0)–(P4) (definition)
+# Part II Section 7 and Appendices C.2–C.4: the positivity of the constants of (P0)–(P4) (definition)
 
-Manuscript: `lem:nonempty`
-(`10_parameters.tex:278-290`), the clause "with all quantities finite and positive" (`:281`), proved
-at `:295-315`.
+Current manuscript: the positivity clause of Part II Lemma 7.1 (`lem:nonempty`),
+with detailed verification in Appendix C.4 (`sec:param-verification`, (P0)–(P4)).
+The module path `Sec10` is historical. The separate constants below retain the
+Lean decomposition described in `Defs/Sec10/Lists.lean`.
 
 * `Relay.Standing.ConstPos S`: the signs of the constants of the structural list (P0)–(P4) that the
   later proofs use (a structure of Props with named fields, so that consumers write
@@ -35,9 +36,9 @@ namespace Standing
 
 variable (S : Standing)
 
-/-- **The constants of (P0)–(P4) are positive** (`lem:nonempty`, `10_parameters.tex:281`,
-`:295-315`): the eigendata `σ = σ(0)`, `σ_b`, `|z|`; `c_γ` of (P0.2); `C₂ ≥ 1`, `C₃`, `κ_L` of
-(P0.3), `c_N`, `C_N`, `c_out`, `‖ℓ_*‖`, `C_ls` of `lem:uniform`; `maj_*` (and `C_Q ≥ 0`) of (P0.4);
+/-- **The signs of the constants of (P0)–(P4)** (Part II Lemma 7.1, `lem:nonempty`):
+the eigendata `σ = σ(0)`, `σ_b`, `|z|`; `c_γ` of (P0.2); `C₂ ≥ 1`, `C₃`, `κ_L` of
+(P0.3), `c_N`, `C_N`, `c_out`, `‖ℓ_*‖`, `C_ls` of Part I `lem:uniform`; `maj_*` (and `C_Q ≥ 0`) of (P0.4);
 `C_M`, `C_O`, `C_in` of (P0.5); `δ_kick`, `δ_rd` of (P1); `c'` and `μ_max > 1` of (P2), `C_Duh`,
 `K_O`; `c_K`, `K₁`, `Ā`, `K_lo`, `K_up`, `C_hand ≥ 0`, `C_F`, `C_deep`, `T_z` of (P3); `κ₀(C₀)` of
 (P4). -/
@@ -78,10 +79,10 @@ structure ConstPos : Prop where
 
 variable {S}
 
-/-- `C_F ∈ (0, C₀]`, the hypothesis on `C_F` of `lem:Oprime` (`10_parameters.tex:311-312`). -/
+/-- `C_F ∈ (0, C₀]`, the hypothesis on `C_F` of `lem:Oprime` (Part II Appendix C.4, `sec:param-verification`). -/
 theorem ConstPos.CF_mem (h : S.ConstPos) : S.CF ∈ Ioc 0 S.C0 := ⟨h.CF_pos, S.CF_le_C0⟩
 
-/-- `C_p C₂ > 0` (`C_p = 4/√π`), the positivity used with (P1) for `lem:readout`. -/
+/-- `C_p C₂ > 0` (`C_p = 4/√π`), the positivity used with (P1) for the readout in the proof of Part II Proposition 1.2 (`prop:reduction`). -/
 theorem ConstPos.Cp_C2_pos (h : S.ConstPos) : 0 < Eig.Cp * S.C2 := by
   have hCp : 0 < Eig.Cp := by
     unfold Eig.Cp

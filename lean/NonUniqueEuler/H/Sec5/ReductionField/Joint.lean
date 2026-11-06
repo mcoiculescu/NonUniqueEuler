@@ -9,7 +9,7 @@ import Mathlib.MeasureTheory.Measure.Haar.Unique
 /-!
 # Helper for `lem:reduction`(1): joint smoothness of `h` and continuity into `C^k(N')`
 
-Helper of `P/Sec5/ReductionField.lean` (`05_single_ring.tex:146-163`).
+Helper of `P/Sec5/ReductionField.lean` (Part II Lemma 2.2).
 
 The manuscript differentiates `K * (ω_i + ω_o)(t)` under the integral sign on a neighbourhood of
 `N'` that stays away from the supports, using `|∂^β K(z)| ≤ C_β |z|^{-1-|β|}`. We use instead that
@@ -76,7 +76,7 @@ theorem continuous_flow (hc : c.Hyp T) : Continuous (fun p : ℝ × ℂ => c.flo
   exact (Smooth.flow_contDiff hR).1.continuous
 
 /-- For `t` in a compact set `J`, the supports of `ω_i(t)` and `ω_o(t)` lie in a fixed compact
-set (`supp ω_•(t) = Φ_t(K_•)`, `05_single_ring.tex:139`). -/
+set (`supp ω_•(t) = Φ_t(K_•)`, Part II Lemma 2.2 (`lem:reduction`)). -/
 theorem exists_compact_support_parts (hc : c.Hyp T) {J : Set ℝ} (hJ : IsCompact J) :
     ∃ k : Set ℂ, IsCompact k ∧
       ∀ p ∈ J, ∀ x ∉ k, c.innerPart p x = 0 ∧ c.outerPart p x = 0 := by
@@ -144,7 +144,7 @@ theorem contDiffOn_h_joint (hc : c.Hyp T) :
   exact hvel'.sub hvor
 
 /-- **`t ↦ h(t) ∈ C^k(N')` is continuous on `[0,T]`**, for every `k`
-(`lem:reduction`(1), `05_single_ring.tex:108-109`, `:157-163`). -/
+(`lem:reduction`(1), Part II Lemma 2.2). -/
 theorem ckPathOn_h (hc : c.Hyp T) (k : ℕ) : CkPathOn k annN' (Icc 0 T) c.h := by
   have ha : 0 < a := Real.exp_pos _
   have hW : IsOpen (Ioo (-1 : ℝ) (T + 1) ×ˢ ({0}ᶜ : Set ℂ)) :=

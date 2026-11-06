@@ -4,13 +4,23 @@ import Mathlib.Analysis.Calculus.BumpFunction.InnerProduct
 import Mathlib.Analysis.Calculus.BumpFunction.FiniteDimension
 
 /-!
-# Section 5: the fixed auxiliary objects and the named constants (definitions)
+# Part II Section 2: the fixed auxiliary objects and the named constants (definitions)
 
-Manuscript `05_single_ring.tex`:
-the cutoffs and constants fixed before `lem:bilinear` (`:220-227`), `lem:bilinear` (`:229-246`),
-the rate `Λ(s)` of `eq:Lambda` (`:282-298`), the numbers of `eq:W-const` (`:657-676`), `ς`
-(`:654-655`), `M_h` of `thm:quiet` (`:411`); and the constant `C_S` of `prop:semigroup`
-(`04_ring.tex:1431-1446`) with `C_lin(k)` of `lem:linear-part` (`05_single_ring.tex:619-621`).
+Current manuscript: Part II Section 2 (`sec:single`), in
+`manuscript/part2/sections/05_single_ring.tex`. The cutoffs are fixed before
+Lemma 2.3 (`lem:bilinear`); the energy rate is specified in Lemma 2.4 (`lem:energy`)
+and Equation (7) (`eq:Lambda`); Equation (15) (`eq:W-const`) fixes the window
+orders, and Theorem 2.8 (`thm:quiet`) fixes `M_h`. The semigroup constant comes
+from Part I Proposition 4.22 (`prop:semigroup`), and the linear-response constant
+from Part II Lemma 2.10 (`lem:linear-part`).
+
+This module retains the explicit constant choices of the Lean proof decomposition.
+The current manuscript combines `C_B` and `C_h` into a constant `C_bil(k)` in
+Lemma 2.3, and asks for a sufficiently large `Λ(s)` in Lemma 2.4. The formulas
+for `n_s`, `C_HK`, `C_Ω`, `C_{N'}`, `A_s` and `Λ(s)` below are the retained
+explicit choice, not formulas asserted by the current Equation (7), which only
+requires `Λ(s) ≥ 2 max_G σ(G)`. Likewise, `Clin` gives a concrete constant for the
+bound proved in Lemma 2.10.
 
 Namespace `NonUniqueEuler.OneRing`. Decision D11: constants whose values later definitions use
 are defined here (`Λ(s)`, `N_G`, `M`, `N_W`, `C_B`, `C_BS`, `C_h`, …); constants that the
@@ -20,7 +30,7 @@ are `sSup`/`sInf` (junk `0` when unbounded or empty; their finiteness is part of
 introduces them).
 
 * `chiB`: the cutoff `χ_B ∈ C_c^∞(B_4)`, `χ_B = 1` on `B_{7/2}` (a concrete `ContDiffBump` with
-  radii `7/2`, `15/4`). The cutoff `χ_N` of `05_single_ring.tex:222-223` is not needed as a
+  radii `7/2`, `15/4`). The cutoff `χ_N` fixed before Part II Lemma 2.3 is not needed as a
   definition: `C_P(k)` (`Sob.hkCalcConst`) does not depend on it (any `χ_N` with
   `Sob.HkCalcSetting annN annN1 χN` witnesses its existence);
 * `CP k = C_P(k)` (`Sob.hkCalcConst (max k 3) N N₁`), `Cel j = C^el_j` (`Sob.elConst j χ_B 4`);
@@ -45,7 +55,7 @@ namespace OneRing
 
 open RingData
 
-/-! ### The cutoff `χ_B` and the constants of `lem:Hk-calculus` (`05_single_ring.tex:220-227`) -/
+/-! ### The cutoff `χ_B` and the constants of `lem:Hk-calculus` (Part II Lemma 2.3 (`lem:bilinear`)) -/
 
 /-- The bump function behind `χ_B`: equal to `1` on `\bar B_{7/2}`, support `B_{15/4}`. -/
 def chiBBump : ContDiffBump (0 : ℂ) where
@@ -54,96 +64,98 @@ def chiBBump : ContDiffBump (0 : ℂ) where
   rIn_pos := by norm_num
   rIn_lt_rOut := by norm_num
 
-/-- **The cutoff `χ_B ∈ C_c^∞(B_4)` with `χ_B = 1` on `B_{7/2}`** (`05_single_ring.tex:221-222`),
+/-- **The cutoff `χ_B ∈ C_c^∞(B_4)` with `χ_B = 1` on `B_{7/2}`** (Part II Lemma 2.3 (`lem:bilinear`)),
 fixed once and for all as a concrete smooth bump (any such function would do). -/
 def chiB (x : ℂ) : ℝ := chiBBump x
 
 /-- `C_P(k)`: the constant of `lem:Hk-calculus` for `max(k,3)`, the compact set `N`, the open set
-`N₁` (and `χ_N`) (`05_single_ring.tex:225-227`; `Sob.hkCalcConst`, chosen). It depends only on
+`N₁` (and `χ_N`) (Part II Lemma 2.3 (`lem:bilinear`); `Sob.hkCalcConst`, chosen). It depends only on
 `k` and `a`. -/
 def CP (k : ℕ) : ℝ := Sob.hkCalcConst (max k 3) annN annN1
 
 /-- `C^el_j`: the constant of `lem:Hk-calculus`(3) for `j`, `χ_B` and `ρ = 4`
-(`05_single_ring.tex:223-225`; `Sob.elConst`, chosen). It depends only on `j`. -/
+(Part II Lemma 2.3 (`lem:bilinear`); `Sob.elConst`, chosen). It depends only on `j`. -/
 def Cel (j : ℕ) : ℝ := Sob.elConst j chiB 4
 
-/-- `C_B = C_B(k) = 2 C_P(k) C^el_{k-1}` (`lem:bilinear`, `05_single_ring.tex:231`). -/
+/-- `C_B = C_B(k) = 2 C_P(k) C^el_{k-1}` (`lem:bilinear`, Part II Lemma 2.3). -/
 def CB (k : ℕ) : ℝ := 2 * CP k * Cel (k - 1)
 
-/-- `C_BS = 2 C^el_1` (`lem:bilinear`, `05_single_ring.tex:231-232`). -/
+/-- `C_BS = 2 C^el_1` (`lem:bilinear`, Part II Lemma 2.3). -/
 def CBS : ℝ := 2 * Cel 1
 
 /-- `C_h = C_h(k)`: the supremum of `‖h·∇w‖_{H^k}` over all `w ∈ X^{k+1}` and
 `h ∈ C^k(N';ℝ²)` with `‖w‖_{H^{k+1}} ≤ 1` and `‖h‖_{C^k(N')} ≤ 1` (`lem:bilinear`,
-`05_single_ring.tex:232-234`); its finiteness is part of `lem:bilinear`. -/
+Part II Lemma 2.3); its finiteness is part of `lem:bilinear`. -/
 def Ch (k : ℕ) : ℝ :=
   sSup {x : ℝ | ∃ v hf : ℂ → ℂ, Lin.MemXFn (k + 1) v ∧ Sob.normH (k + 1) v ≤ 1 ∧
     MemCk k annN' hf ∧ normCk k annN' hf ≤ 1 ∧ x = Sob.normH k (hGrad hf v)}
 
-/-! ### The rate `Λ(s)` of `eq:Lambda` (`05_single_ring.tex:282-298`) -/
+/-! ### The retained explicit energy rate for Part II Lemma 2.4 (`lem:energy`) -/
 
-/-- `n_s`, the number of multi-indices `α ∈ ℕ₀²` with `|α| ≤ s` (`05_single_ring.tex:282-283`). -/
+/-- `n_s`, the number of multi-indices `α ∈ ℕ₀²` with `|α| ≤ s` (Part II Lemma 2.4 (`lem:energy`)). -/
 def nIdx (s : ℕ) : ℕ := (Sob.multiIdx s).card
 
-/-- `C_HK = C_P(s)` (`05_single_ring.tex:284`). -/
+/-- `C_HK = C_P(s)` (Part II Lemma 2.4 (`lem:energy`)). -/
 def CHK (s : ℕ) : ℝ := CP s
 
-/-- The background field `Ω(|x|;G) x^⊥` of `(Φ, G)` (`x^⊥ = i x`; `05_single_ring.tex:284-287`,
+/-- The background field `Ω(|x|;G) x^⊥` of `(Φ, G)` (`x^⊥ = i x`; Part II Lemma 2.4 (`lem:energy`),
 `lem:reduction`(2)). -/
 def omegaField (χ : ℝ → ℝ) (G : ℝ) (x : ℂ) : ℂ :=
   ((Lin.Omega χ G ‖x‖ : ℝ) : ℂ) * (Complex.I * x)
 
 /-- `C_Ω = sup_{G ∈ [0,G₁]} (‖Ω(|x|;G)x^⊥‖_{W^{1,∞}(N₁)} + ‖Ω(|x|;G)x^⊥‖_{H^s(N₁)})`
-(`05_single_ring.tex:286-288`). -/
+(Part II Lemma 2.4 (`lem:energy`)). -/
 def COmega (χ : ℝ → ℝ) (s : ℕ) : ℝ :=
   sSup ((fun G => Sob.normW1infOn annN1 (omegaField χ G) +
       Sob.normHOn s annN1 (omegaField χ G)) ''
     Icc 0 Gbar)
 
 /-- `C_{N'}`: the least constant with `‖h‖_{W^{1,∞}(N₁)} + ‖h‖_{H^s(N₁)} ≤ C_{N'} ‖h‖_{C^s(N')}`
-for every `h ∈ C^s(N';ℝ²)` (`05_single_ring.tex:289-291`), as an infimum of the admissible
+for every `h ∈ C^s(N';ℝ²)` (Part II Lemma 2.4 (`lem:energy`)), as an infimum of the admissible
 nonnegative constants. -/
 def CNprime (s : ℕ) : ℝ :=
   sInf {C : ℝ | 0 ≤ C ∧ ∀ hf : ℂ → ℂ, MemCk s annN' hf →
     Sob.normW1infOn annN1 hf + Sob.normHOn s annN1 hf ≤ C * normCk s annN' hf}
 
-/-- `A_s = C_Ω + C_{N'} + C^el_s + 6 C^el_2` (`05_single_ring.tex:292`). -/
+/-- `A_s = C_Ω + C_{N'} + C^el_s + 6 C^el_2` (Part II Lemma 2.4 (`lem:energy`)). -/
 def As (χ : ℝ → ℝ) (s : ℕ) : ℝ := COmega χ s + CNprime s + Cel s + 6 * Cel 2
 
-/-- `σ_max = max_{G ∈ [0,G₁]} σ(G)` (`05_single_ring.tex:295-298`, `thm:active`, `:901`), as a
+/-- `σ_max = max_{G ∈ [0,G₁]} σ(G)` (Part II Lemma 2.4 (`lem:energy`), `thm:active`, Part II Theorem 2.12), as a
 supremum (attained by `prop:U`(a)). -/
 def sigmaMax (χ : ℝ → ℝ) : ℝ := sSup (Eig.sigma χ '' Icc 0 Gbar)
 
-/-- **The rate `Λ(s)`** of `eq:Lambda` (`05_single_ring.tex:293-296`):
+/-- **The retained explicit choice of `Λ(s)`** for Part II Lemma 2.4 (`lem:energy`),
+subject to Equation (7) (`eq:Lambda`):
 `Λ(s) = max(2 max_G σ(G), n_s C_HK A_s + 2 C_HK C^el_{s-1} (‖Φ‖_{H^{s+1}} + 1))`. -/
 def Lam (χ : ℝ → ℝ) (s : ℕ) : ℝ :=
   max (2 * sigmaMax χ)
     (nIdx s * CHK s * As χ s + 2 * CHK s * Cel (s - 1) * (Sob.normH (s + 1) (PhiC χ) + 1))
 
-/-! ### The numbers of `eq:W-const` (`05_single_ring.tex:657-676`) and `M_h` -/
+/-! ### The numbers of Part II Equation (15) (`eq:W-const`) and `M_h` -/
 
 /-- `p = 3` (`= m`) (`eq:W-const`, `thm:active`). -/
 abbrev pW : ℕ := 3
 
-/-- `N_G = min{n ∈ ℤ : n ≥ 2, n ≥ Λ(s)/σ_b + 1}` (`eq:W-const`, `05_single_ring.tex:662`;
-`thm:active`, `:866-867`). -/
+/-- `N_G = min{n ∈ ℤ : n ≥ 2, n ≥ Λ(s)/σ_b + 1}` (`eq:W-const`, Part II Equation (15);
+`thm:active`, Part II Theorem 2.12). -/
 def NG (χ : ℝ → ℝ) (s : ℕ) : ℕ := max 2 ⌈Lam χ s / Eig.sigb χ + 1⌉₊
 
 /-- `M = s + N_G + 2` (`eq:W-const`, `thm:active`, `lem:seed`). -/
 def Mact (χ : ℝ → ℝ) (s : ℕ) : ℕ := s + NG χ s + 2
 
-/-- `N_W = (p+2) N_G + 1` (`eq:W-const`, `05_single_ring.tex:663`). -/
+/-- `N_W = (p+2) N_G + 1` (`eq:W-const`, Part II Equation (15)). -/
 def NW (χ : ℝ → ℝ) (s : ℕ) : ℕ := (pW + 2) * NG χ s + 1
 
-/-- `M_h = s_h + N_Q + 1` (`thm:quiet`, `05_single_ring.tex:411`). -/
+/-- `M_h = s_h + N_Q + 1` (`thm:quiet`, Part II Theorem 2.8). -/
 def Mh (sh NQ : ℕ) : ℕ := sh + NQ + 1
 
-/-- `ς(x) = 1 + σ_b⁻¹ log(1/x)` for `x ∈ (0,1]` (`05_single_ring.tex:654-655`). -/
+/-- `ς(x) = 1 + σ_b⁻¹ log(1/x)` for `x ∈ (0,1]`, defined before Part II
+Equation (15) (`eq:W-const`). -/
 def varsigma (χ : ℝ → ℝ) (x : ℝ) : ℝ := 1 + (Eig.sigb χ)⁻¹ * Real.log (1 / x)
 
 /-! ### `C_S` of `prop:semigroup` and `C_lin(k)` of `lem:linear-part` -/
 
-/-- `C` is a constant `C_S(s,σ')` of `prop:semigroup` (`04_ring.tex:1431-1446`): for every
+/-- `C` is a constant `C_S(s,σ')` of Part I Proposition 4.22 (`prop:semigroup`): for every
 `G ∈ [0,G₁]`, `t ≥ 0` and `w ∈ X^s`,
 `‖e^{tL(G)}(1 - R(G))w‖ ≤ C e^{σ't}‖w‖`, `‖R(G)w‖ ≤ C‖w‖`, `‖e^{tL(G)}w‖ ≤ C e^{σ(G)t}‖w‖`
 (operator norms on `X^s`, the `H^s` norm being the norm of `Y^s(N)`). The two identities of
@@ -159,7 +171,7 @@ def IsSemigroupConst (χ : ℝ → ℝ) (s : ℕ) (σ' C : ℝ) : Prop :=
         ‖Lin.S χ s G t w‖ ≤ C * Real.exp (Eig.sigma χ G * t) * ‖w‖)
 
 /-- `C_lin(k) = C_S(k,σ')(1 + C_∇(k)/σ' + C_∇(k)/(σ_b - σ'))` (`lem:linear-part`,
-`05_single_ring.tex:619-621`), for a given constant `C_S = C_S(k,σ')` of `prop:semigroup`. -/
+Part II Lemma 2.10), for a given constant `C_S = C_S(k,σ')` of `prop:semigroup`. -/
 def Clin (χ : ℝ → ℝ) (k : ℕ) (σ' CS : ℝ) : ℝ :=
   CS * (1 + Eig.Cnab χ k / σ' + Eig.Cnab χ k / (Eig.sigb χ - σ'))
 

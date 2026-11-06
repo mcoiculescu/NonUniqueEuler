@@ -2,10 +2,14 @@ import NonUniqueEuler.Defs.Sec7.All
 import Mathlib.Analysis.SpecialFunctions.Log.PosLog
 
 /-!
-# Proof: `lem:window-length` (the length of a window in kick time)
+# Proof: the legacy window-length helper for the proof of `lem:geometry` (the length of a window in kick time)
+
+This is a retained scalar helper, not a separately numbered current lemma.
+Its kick-time estimate is used inside the proof of Part II Lemma C.17
+(`lem:geometry`) when checking confinement condition (iv).
 
 Proof of the interface `NonUniqueEuler/I/Sec7/WindowLength.lean`, following
-`07_several_rings.tex:402-414`:
+the kick-time bound in the proof of Part II Lemma C.17 (`lem:geometry`):
 1. `A_{k+1}(t - T_{k+1}) = A_{k+1}(t - t♯_k) + T_pin` (`tsh_eq_T_add`), which gives the first claim.
 2. `t ≤ T_k = t♯_k + T̂_k/A_k` and `A_{k+1} = μA_k` give `A_{k+1}(t - T_{k+1}) ≤ T_pin + μT̂_k`.
 3. `κ♯_k ∈ (0,δ₀)`, `σ_k ≥ σ' > 0`, `κ♯_k ≥ K_lo s_k^5` give
@@ -65,7 +69,7 @@ theorem that_le {σ σ' δ κ K s : ℝ} (hκ : 0 < κ) (hκδ : κ < δ) (hσ' 
 
 end WindowLengthAux
 
-/-- **`lem:window-length`** (`07_several_rings.tex:392-400`). Let `1 ≤ k < n`, the clock defined
+/-- **the legacy window-length helper for the proof of `lem:geometry`** (the kick-time bound in the proof of Part II Lemma C.17 (`lem:geometry`)). Let `1 ≤ k < n`, the clock defined
 up to level `k`, and `t ∈ W_k`. If `t ≤ t♯_k`, then `A_{k+1}(t - T_{k+1}) ≤ T_pin`. If `t ≥ t♯_k`,
 `σ', K_lo > 0`, `σ_k ≥ σ'` and `κ♯_k ≥ K_lo s_k^{m+2}`, then
 `A_{k+1}(t - T_{k+1}) ≤ T_pin + μT̂_k ≤ μ[T_pin + 1 + σ'⁻¹((m+2)log(1/s_k) + log₊(δ₀/K_lo))]`. -/

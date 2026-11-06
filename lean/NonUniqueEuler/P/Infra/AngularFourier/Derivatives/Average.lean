@@ -10,7 +10,7 @@ import NonUniqueEuler.I.Infra.AngularFourier.SectorL2
 # Proof: the `H^k`-valued average is `P_ℓ g`
 
 Proof of `NonUniqueEuler/I/Infra/AngularFourier/Derivatives/Average.lean` (same declaration,
-statement copied verbatim). Manuscript: `04_ring.tex:181-185`
+statement copied verbatim). Manuscript: Part I, Definition 4.3 (`def:sector-setting`) and the following mode-profile discussion
 (`P_ℓ w = (2π)⁻¹ ∫₀^{2π} e^{-iℓφ} w ∘ O_φ dφ`, an `H^s`-valued average).
 
 Method (as in the interface sketch).

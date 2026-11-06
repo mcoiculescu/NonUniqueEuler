@@ -7,8 +7,8 @@ import NonUniqueEuler.I.Infra.Sobolev.Symmetry
 # Proof: the claims inside `def:eigendata` and the remark after it
 
 Proof of `I/Sec4/Eigendata.lean` (same declarations, statements copied verbatim).
-Manuscript: `def:eigendata` (`04_ring.tex:1303-1324`) and the remark after it
-(`04_ring.tex:1326-1338`).
+Manuscript: Part I Definition 4.20 (`def:eigendata`) and the remark after it
+(Part I Definition 4.20 (`def:eigendata`)).
 
 Structure of the proof (helpers in `H/Sec4/Eigendata/*`):
 * `EigendataH.lamFacts`: under (N), `λ_*(G) = λ_*^c(R_c²G)` is a simple zero of `E^Φ_3(·;G)` with
@@ -23,7 +23,7 @@ Structure of the proof (helpers in `H/Sec4/Eigendata/*`):
   `Y^s(N)` (`EigendataH.exists_pairing`), hence `exists_ell`, `exists_R`, and the norm identity of
   `ell_representer` (Cauchy–Schwarz, equality at `w = ellRep`);
 * `pinPhi_eq`: `pin_3[φ_*] = n_*⁻¹ pin_3[g_*e^{3iθ}] = n_*⁻¹ pin_*`, `pin_* = -6e^{-3ξ₁}`
-  (`lem:adjoint`(3), `adjoint_stream`), `ξ₁ = ξL - ξR`.
+  (Part I Lemma 4.9(2) (`lem:adjoint`), `adjoint_stream`), `ξ₁ = ξL - ξR`.
 -/
 
 noncomputable section
@@ -36,7 +36,7 @@ namespace Eig
 
 open RingData Sect
 
-/-- `def:eigendata` (`04_ring.tex:1305-1316`): `n_*(G) > 0`, `φ_*(G) ∈ X^s` for every `s` (and
+/-- Part I Definition 4.20 (`def:eigendata`): `n_*(G) > 0`, `φ_*(G) ∈ X^s` for every `s` (and
 `Eig.phiY χ s G` is it), `ℓ_*(G)(φ_*(G)) = 1` and `ℓ_*(G)(conj φ_*(G)) = 0`. -/
 theorem eigendata_phi (χ : ℝ → ℝ) (hχ : IsAdmissibleCutoff χ) (hN : NumericalHypothesis χ)
     {G : ℝ} (hG : G ∈ Icc (0 : ℝ) Gbar) :
@@ -55,7 +55,7 @@ theorem eigendata_phi (χ : ℝ → ℝ) (hχ : IsAdmissibleCutoff χ) (hN : Num
   exact ⟨hfn, EigendataH.mem_YsymSub_of_fn _
     (EigendataH.isMFoldSymmetricC_congr hfn (hX s).2.2)⟩
 
-/-- `def:eigendata` (`04_ring.tex:1313-1317`): the formula `ℓ_*(G)(w) = n_*(G) ℓ_*(w_3)` is a
+/-- Part I Definition 4.20 (`def:eigendata`): the formula `ℓ_*(G)(w) = n_*(G) ℓ_*(w_3)` is a
 bounded functional on `Y^s(N)` for every `s` (on `X^0`, and on `L²(N) = Y^0(N)`), so the chosen
 `Eig.ell χ s G` is it. -/
 theorem exists_ell (χ : ℝ → ℝ) (hχ : IsAdmissibleCutoff χ) (hN : NumericalHypothesis χ)
@@ -68,7 +68,7 @@ theorem exists_ell (χ : ℝ → ℝ) (hχ : IsAdmissibleCutoff χ) (hN : Numeri
     (EigendataH.Y_fn_zero_outside w)]
   rfl
 
-/-- `def:eigendata` (`04_ring.tex:1320-1321`): the formula
+/-- Part I Definition 4.20 (`def:eigendata`): the formula
 `R(G)w = ℓ_*(G)(w)φ_* + conj(ℓ_*(G)(conj w)) conj φ_*` is a bounded operator on `Y^s(N)`, so the
 chosen `Eig.R χ s G` is it. -/
 theorem exists_R (χ : ℝ → ℝ) (hχ : IsAdmissibleCutoff χ) (hN : NumericalHypothesis χ)
@@ -106,7 +106,7 @@ theorem exists_R (χ : ℝ → ℝ) (hχ : IsAdmissibleCutoff χ) (hN : Numerica
   rw [add_apply, hx, ContinuousLinearMap.smulRight_apply,
     ContinuousLinearMap.smulRight_apply, hx1, hx2, hux, hvx, h1, h2, RFn]
 
-/-- `def:eigendata` (`04_ring.tex:1320-1321`): `R(G)w = 2 Re(ℓ_*(G)(w) φ_*(G))` for real `w`. -/
+/-- Part I Definition 4.20 (`def:eigendata`): `R(G)w = 2 Re(ℓ_*(G)(w) φ_*(G))` for real `w`. -/
 theorem R_of_isReal (χ : ℝ → ℝ) (hχ : IsAdmissibleCutoff χ) (hN : NumericalHypothesis χ)
     {G : ℝ} (hG : G ∈ Icc (0 : ℝ) Gbar) (s : ℕ) {w : Y s annN} (hw : w.IsReal) :
     (R χ s G w).fn =ᵐ[volume] fun x => ((2 * (ell χ s G w * phi χ G x).re : ℝ) : ℂ) := by
@@ -119,7 +119,7 @@ theorem R_of_isReal (χ : ℝ → ℝ) (hχ : IsAdmissibleCutoff χ) (hN : Numer
   filter_upwards [hspec] with x hx
   rw [hx, RFn, he, hell, ← map_mul, Complex.add_conj]
 
-/-- The remark after `def:eigendata` (`04_ring.tex:1329-1331`, by `lem:adjoint`(3)):
+/-- The remark after `def:eigendata` (Part I Definition 4.20 (`def:eigendata`), by Part I Lemma 4.9(2) (`lem:adjoint`)):
 `pin_3[φ_*(G)] = -6e^{-3(ξL-ξR)}/n_*(G)`, real and negative. -/
 theorem pinPhi_eq (χ : ℝ → ℝ) (hχ : IsAdmissibleCutoff χ) (hN : NumericalHypothesis χ)
     {G : ℝ} (hG : G ∈ Icc (0 : ℝ) Gbar) :
@@ -148,7 +148,7 @@ theorem pinPhi_eq (χ : ℝ → ℝ) (hχ : IsAdmissibleCutoff χ) (hN : Numeric
   field_simp
   ring_nf
 
-/-- The remark after `def:eigendata` (`04_ring.tex:1333-1338`): `ℓ_*(G)` on `L²(N)` is represented
+/-- The remark after Part I Definition 4.20 (`def:eigendata`): `ℓ_*(G)` on `L²(N)` is represented
 by `ellRep χ G ∈ X^0`, `ℓ_*(G)(w) = ∫ w conj(ellRep)`, so its norm on `L²(N)` (which equals its
 norm on `X^0`) is `‖ellRep‖_{L²}`. -/
 theorem ell_representer (χ : ℝ → ℝ) (hχ : IsAdmissibleCutoff χ) (hN : NumericalHypothesis χ)

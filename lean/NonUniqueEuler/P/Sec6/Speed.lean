@@ -11,14 +11,19 @@ import NonUniqueEuler.I.Sec5.Seed
 /-!
 # Proof: `lem:speed` (norms and velocity of the inner vorticity)
 
-Proof of `I/Sec6/Speed.lean` (`06_datum.tex:361-393`).
+The formal statement retains the separate constants `M_vort` and the explicit
+`C_*` from `Defs/Sec6/Regions.lean`. Current Part II Lemma 3.8 (`lem:speed`)
+uses a single absolute constant and proves the `L¹`/`L⁴` velocity estimate
+directly in its proof.
+
+Proof of `I/Sec6/Speed.lean` (Part II Lemma 3.8 (`lem:speed`)).
 
 * `eq:conserved` (`conserved`, `F(s) = |s|^q`) and the scaling `x = r_i y` give
   `∫|ω_{≥k}(t)|^q = (∫|Φ|^q) Σ_{i=k}^n A_i^q r_i²` (the seeded term by the measure preservation
   of the seed flow `Y_κ`, `Φ^κ = Φ ∘ Y_κ`, which is the equimeasurability used by the manuscript);
 * `∫|Φ|^q ≤ |B̄₁| = π` (`0 ≤ Φ < 1`, `supp Φ ⊂ B̄₁`) and `A_{i+1}^q r_{i+1}² ≤ A_i^q r_i²/8`
   (`0 < q ≤ 4`), so `Σ_{i≥k} A_i^q r_i² ≤ (8/7) A_k^q r_k²`;
-* `lem:LpLinf` with `p = 4` for the velocity.
+* the legacy `BS.eLpNorm_velocity_top_le_L1_Lp` estimate (the current `p = 4` argument is in the proof of Part II Lemma 3.8, `lem:speed`) with `p = 4` for the velocity.
 -/
 
 noncomputable section
@@ -220,7 +225,7 @@ theorem sum_le {P : Approx} (hP : P.Valid) {q : ℝ} (hq4 : q ≤ 4) {k : ℕ}
 end SpeedP
 
 open SpeedP in
-/-- **`lem:speed`** (`06_datum.tex:361-373`): for `1 ≤ k ≤ n`, `t ≥ 0` and `q ∈ {1, 4}`,
+/-- **Part II Lemma 3.8 (`lem:speed`)**: for `1 ≤ k ≤ n`, `t ≥ 0` and `q ∈ {1, 4}`,
 `‖ω_{≥k}(t)‖_{L^q} ≤ M_vort^{1/q}A_kr_k^{2/q}`; `|K_BS * ω_{≥k}(t)(x)| ≤ C_*A_kr_k` at every `x`;
 `‖ω_{≥k}(t)‖_{L¹} = ‖Φ‖_{L¹}Σ_{i=k}^n A_ir_i² ≤ 2‖Φ‖_{L¹}A_kr_k²`. -/
 theorem speed (P : Approx) (hP : P.Valid) (hN : NumericalHypothesis P.χ) {k : ℕ}

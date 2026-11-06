@@ -8,12 +8,14 @@ import NonUniqueEuler.I.Sec10.ConstantsPos
 /-!
 # Helpers for `P/Sec11/BootContinuity`: generic facts and facts on the phases
 
-Helper file of the proof of Step 7 of `prop:bootstrap` (`11_bootstrap.tex:540-591`).
+Helper file of the proof of Lean step 7 of the historical bootstrap decomposition (Part II §8
+(`prop:bootstrap`), “Continuation in time”).
 
 * generic real-analysis facts: an eventual property on `𝓝[>] t` holds on some `(t, t + δ]`
   (`exists_delta_of_eventually`); a function continuous from the left at `t` and `≤ c` on `[a, t)`
   is `≤ c` at `t` (`le_of_forall_Ico`); an `ε`-family of upper bounds (`le_of_forall_eps`);
-* the phases (`11_bootstrap.tex:57-69`, `lem:clock`(1)): `quietAt_anti`, `not_debris_of_quiet`,
+* the phases (Part II Definition 6.1 (`def:stop`) and the phase conventions in §6, `lem:clock` (1)):
+  `quietAt_anti`, `not_debris_of_quiet`,
   `tsh_nonneg_of_clock`, `tsh_nonneg_of_succ`;
 * constants: `sigma_gt` (`σ' < σ_k`), `one_le_C2'` (`C₂ ≥ 1`), `isClosed_Nflatk`;
 * continuity of the active time and of the envelope `â_k` along it.

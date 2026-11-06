@@ -10,11 +10,11 @@ import Mathlib.Analysis.Calculus.IteratedDeriv.Lemmas
 import Mathlib.Analysis.SpecialFunctions.Log.Deriv
 
 /-!
-# Helpers for `P/Sec4/Resolvent`: `lem:resolvent` at the level of radial profiles
+# Helpers for `P/Sec4/Resolvent`: Part I Lemma 4.7 (`lem:resolvent`) at the level of radial profiles
 
-Profile-level parts of `lem:resolvent` (`04_ring.tex:366-448`), from the reduction to `eq:bvp`
+Profile-level parts of Part I Lemma 4.7 (`lem:resolvent`), from the reduction to Part I Equation 12 (`eq:bvp`)
 (`I/Sec4/Resolvent/Reduction.lean`), the Wronskian formula (`I/Sec4/Resolvent/PsiG.lean`), and
-`lem:evans-basic`:
+Part I Lemma 4.6 (`lem:evans-basic`):
 * `resolventFn_spec` (part (1)): for `E ≠ 0` and `g ∈ Y^0_ℓ`, `η = M_λ(g + k_ℓψ_g)` is in
   `Y^0_ℓ` and `z η - L_ℓ η = g` on `(0,∞)`;
 * `ae_eq_zero_of_resolvent_eq_zero` (part (1), injectivity): for `E ≠ 0`, `z h - L_ℓ h = 0`
@@ -145,7 +145,7 @@ theorem eq_psiR_of_right (S : SectorSetting) (hS : S.Valid) (ℓ : ℕ) (hℓ : 
     (by rw [hφ'0, (hright ξ₀ hξ₀2.le).2, show -(ℓ : ℝ) * ξ₀ = -(ℓ * ξ₀) by ring])
   exact ⟨hun.1 (mem_univ ξ), hun.2 (mem_univ ξ)⟩
 
-/-- `eq:bvp` with `F = 0` and `E ≠ 0` has only the zero solution. -/
+/-- Part I Equation 12 (`eq:bvp`) with `F = 0` and `E ≠ 0` has only the zero solution. -/
 theorem eq_zero_of_bvp_hom (S : SectorSetting) (hS : S.Valid) (ℓ : ℕ) (hℓ : 1 ≤ ℓ) {z : ℂ}
     (hz : 0 < z.re) (G : ℝ) (hE : S.evans ℓ z G ≠ 0) {φ φ' : ℝ → ℂ}
     (hsol : IsSolOn (S.Vric ℓ z G) univ φ φ') {c₁ c₂ : ℝ} {A B : ℂ}
@@ -171,7 +171,7 @@ theorem eq_zero_of_bvp_hom (S : SectorSetting) (hS : S.Valid) (ℓ : ℕ) (hℓ 
 
 /-! ### Part (1): the resolvent formula and injectivity -/
 
-/-- `lem:resolvent`(1), profile level: `η = M_λ(g + k_ℓψ_g)` is in `Y^0_ℓ` and solves
+/-- Part I Lemma 4.7(1) (`lem:resolvent`), profile level: `η = M_λ(g + k_ℓψ_g)` is in `Y^0_ℓ` and solves
 `z η - L_ℓ η = g` on `(0,∞)`. -/
 theorem resolventFn_spec (S : SectorSetting) (hS : S.Valid) (ℓ : ℕ) (hℓ : 1 ≤ ℓ) {z : ℂ}
     (hz : 0 < z.re) (G : ℝ) (hE : S.evans ℓ z G ≠ 0) {g : ℝ → ℂ} (hg : S.IsProfileL2 g) :
@@ -189,7 +189,7 @@ theorem resolventFn_spec (S : SectorSetting) (hS : S.Valid) (ℓ : ℕ) (hℓ : 
   rw [← mul_assoc, denom_mul_Mres S hz (ℓ : ℤ) G r, one_mul]
   ring
 
-/-- `lem:resolvent`(1), profile level, injectivity: if `E ≠ 0`, `h ∈ Y^0_ℓ` and
+/-- Part I Lemma 4.7(1) (`lem:resolvent`), profile level, injectivity: if `E ≠ 0`, `h ∈ Y^0_ℓ` and
 `z h - L_ℓ h = 0` a.e. on `(0,∞)`, then `h = 0` a.e. on `(0,∞)`. -/
 theorem ae_eq_zero_of_resolvent_eq_zero (S : SectorSetting) (hS : S.Valid) (ℓ : ℕ)
     (hℓ : 1 ≤ ℓ) {z : ℂ} (hz : 0 < z.re) (G : ℝ) (hE : S.evans ℓ z G ≠ 0) {h : ℝ → ℂ}
@@ -263,7 +263,7 @@ theorem gStar_eq (S : SectorSetting) (ℓ : ℕ) (z : ℂ) (G : ℝ) :
   simp only [gStar, zero_add]
   ring
 
-/-- `lem:resolvent`(2): for `E = 0`, `𝒢_ℓ g_λ = ψ_ℓ(log r)` on `(0,∞)`; `g_λ ∈ Y^0_ℓ`. -/
+/-- Part I Lemma 4.7(2) (`lem:resolvent`): for `E = 0`, `𝒢_ℓ g_λ = ψ_ℓ(log r)` on `(0,∞)`; `g_λ ∈ Y^0_ℓ`. -/
 theorem green_gStar (S : SectorSetting) (hS : S.Valid) (ℓ : ℕ) (hℓ : 1 ≤ ℓ) {z : ℂ}
     (hz : 0 < z.re) (G : ℝ) (hE : S.evans ℓ z G = 0) :
     S.IsProfileL2 (S.gStar ℓ z G) ∧
@@ -275,7 +275,7 @@ theorem green_gStar (S : SectorSetting) (hS : S.Valid) (ℓ : ℕ) (hℓ : 1 ≤
   rw [gStar_eq]
   exact h
 
-/-- `lem:resolvent`(2), kernel, profile level: for `E = 0`, if `h ∈ Y^0_ℓ` and `L_ℓ h = z h`
+/-- Part I Lemma 4.7(2) (`lem:resolvent`), kernel, profile level: for `E = 0`, if `h ∈ Y^0_ℓ` and `L_ℓ h = z h`
 a.e. on `(0,∞)`, then `h = c g_λ` a.e. on `(0,∞)`. -/
 theorem exists_eq_smul_gStar (S : SectorSetting) (hS : S.Valid) (ℓ : ℕ) (hℓ : 1 ≤ ℓ) {z : ℂ}
     (hz : 0 < z.re) (G : ℝ) {h : ℝ → ℂ} (hh : S.IsProfileL2 h)

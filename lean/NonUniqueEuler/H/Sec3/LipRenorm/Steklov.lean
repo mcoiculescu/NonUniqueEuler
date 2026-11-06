@@ -7,9 +7,9 @@ import Mathlib.Analysis.Calculus.Deriv.Slope
 import Mathlib.Analysis.SpecificLimits.Basic
 
 /-!
-# Helper for `lem:lip-renorm`: approximating `Lip₀` by renormalizations
+# Helper for legacy `lem:lip-renorm`: approximating `Lip₀` by renormalizations
 
-Proof helper for `P/Sec3/LipRenorm.lean` (`lem:lip-renorm`, `03_compactness.tex:92-118`).
+Proof helper for `P/Sec3/LipRenorm.lean` (legacy `lem:lip-renorm`, the Lipschitz-extension step in the proof of Part I Lemma 3.4 (`lem:transport`)).
 
 The manuscript approximates `Υ ∈ Lip₀` by `Υ_j = Υ ⋆ ρ^t_{1/j} - (Υ ⋆ ρ^t_{1/j})(0)`. We use
 instead the Steklov averages (the convolution with the normalized indicator of `[-h, 0]`)
@@ -93,7 +93,7 @@ theorem tendsto_steklov {β : ℝ → ℝ} (hβ : Continuous β) (s : ℝ) :
   simp only [smul_eq_mul, zero_add, prim_zero, sub_zero, steklov]
   ring
 
-/-- `lem:lip-renorm`, approximation step: every `K`-Lipschitz `β` with `β 0 = 0` is the
+/-- legacy `lem:lip-renorm`, approximation step: every `K`-Lipschitz `β` with `β 0 = 0` is the
 pointwise limit of renormalizations `Υ_n` (`C¹`, bounded derivative, `Υ_n(0) = 0`) with
 `|Υ_n(s)| ≤ K |s|`. -/
 theorem exists_seq_isRenormalization_tendsto {β : ℝ → ℝ} {K : ℝ≥0} (hK : LipschitzWith K β)

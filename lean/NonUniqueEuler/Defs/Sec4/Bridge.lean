@@ -2,9 +2,9 @@ import NonUniqueEuler.Defs.Infra.SectorSpace
 import NonUniqueEuler.Defs.Infra.Dunford
 
 /-!
-# Section 4: generic bridges used by the linear theory (definitions)
+# Part I Section 4: generic bridges used by the linear theory (definitions)
 
-Small manuscript-independent helpers that the Section 4 objects need and that the libraries
+Small manuscript-independent helpers that the Part I Section 4 objects need and that the libraries
 I-SECT (`Defs/Infra/SectorSpace.lean`) and I-DUNF (`Defs/Infra/Dunford.lean`) do not provide.
 They are declared in those libraries' namespaces (new names only; nothing is redefined):
 
@@ -17,7 +17,7 @@ They are declared in those libraries' namespaces (new names only; nothing is red
   operator `A`, in the form of restructuring R2: its spectral
   projection is a rank-one projection `x ↦ f(x) g` with `f g = 1`, given in the Laurent form
   `IsSimpleSpectralProj`. Manuscript: the definition of algebraic multiplicity by the rank of the
-  Riesz projection (`04_ring.tex:355-364`). For an isolated point `z₀` of the spectrum this is
+  Riesz projection (the Riesz-projection discussion before Part I Lemma 4.7 (`lem:resolvent`)). For an isolated point `z₀` of the spectrum this is
   equivalent to "the Riesz projection at `z₀` has rank one": on a punctured disk the resolvent
   minus `(z - z₀)⁻¹ P` is holomorphic and bounded, so its singularity is removable and the Riesz
   projection `(2πi)⁻¹ ∮ (z - A)⁻¹ dz` equals `P`.
@@ -72,8 +72,8 @@ variable {X : Type*} [NormedAddCommGroup X] [NormedSpace ℂ X]
 
 /-- `z₀` is an algebraically simple eigenvalue of `A` (restructuring R2): there are `f : X →L ℂ`
 and `g : X` with `f g = 1` such that the rank-one projection `x ↦ f(x) g` is the spectral
-projection of `A` at `z₀` in the Laurent form `IsSimpleSpectralProj` (`04_ring.tex:355-364`,
-`thm:evans-simple`(2), `04_ring.tex:462-469`). -/
+projection of `A` at `z₀` in the Laurent form `IsSimpleSpectralProj` (the Riesz-projection discussion before Part I Lemma 4.7 (`lem:resolvent`),
+Part I Theorem 4.8(2) (`thm:evans-simple`)). -/
 def IsAlgSimpleEig (A : X →L[ℂ] X) (z₀ : ℂ) : Prop :=
   ∃ (f : X →L[ℂ] ℂ) (g : X), f g = 1 ∧ IsSimpleSpectralProj A (rankOneProj f g) z₀
 

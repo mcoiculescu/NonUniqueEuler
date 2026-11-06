@@ -3,7 +3,7 @@ import NonUniqueEuler.H.Sec7.Transfer.Inner
 /-!
 # Helper for `lem:transfer`(4): the field of an outer ring on an inner annulus
 
-Helper of `P/Sec7/Transfer.lean` (`07_several_rings.tex:200-228`), for a fixed valid
+Helper of `P/Sec7/Transfer.lean` (Part II Lemma 4.1 (`lem:transfer`)), for a fixed valid
 approximation and with the explicit constant `C4 M_h = Σ_{q≤M_h} (2π)⁻¹ (2/a) (32/a)² V_q`,
 `V_q = Σ_l l^q (3/16)^l`.
 
@@ -62,7 +62,7 @@ theorem r_div_r_le (P : Approx) (hP : P.Valid) {i k : ℕ} (hi : 1 ≤ i) (hik :
     _ ≤ P.s (k - 1) * 1 := by gcongr
     _ ≤ a / 32 := by linarith
 
-/-- **`lem:transfer`(4)**, `L¹` form, for a fixed approximation (`07_several_rings.tex:200-228`). -/
+/-- **`lem:transfer`(4)**, `L¹` form, for a fixed approximation (Part II Lemma 4.1 (`lem:transfer`)). -/
 theorem outer_ring_bound (P : Approx) (hP : P.Valid) (hN : NumericalHypothesis P.χ) (Mh : ℕ)
     {i k : ℕ} (hi : 1 ≤ i) (hik : i < k) (hkn : k ≤ P.n) {t : ℝ} (ht : 0 ≤ t)
     (hS : P.PertDefined i t) :

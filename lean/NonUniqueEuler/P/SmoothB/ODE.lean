@@ -10,7 +10,7 @@ import Mathlib.LinearAlgebra.FiniteDimensional.Defs
 /-!
 # Proof of `lem:ode` (maximal solutions, local smooth dependence, global existence)
 
-Proof of the interface `I/SmoothB/ODE.lean` (same declarations, statements verbatim).
+Proof of the interface `I/SmoothB/ODE.lean` for Part II, Lemma B.1 (`lem:ode`).
 
 * (i) `ode_exists_isMaxSol`: local existence from the cut-off field and the vendored global flow
   (`ODEH.local_flow_package`), then the union of all local solutions

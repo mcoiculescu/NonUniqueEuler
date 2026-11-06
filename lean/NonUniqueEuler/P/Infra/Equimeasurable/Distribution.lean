@@ -8,7 +8,7 @@ import Mathlib.MeasureTheory.Function.LpSeminorm.ChebyshevMarkov
 # Proof: equimeasurable functions have the same distribution off `0` (I-EQM)
 
 Proof of `NonUniqueEuler/I/Infra/Equimeasurable/Distribution.lean` (the "layer-cake" step of
-`thm:criterion`(ii), `03_compactness.tex:996-1003`, for every `Φ` at once).
+Part I, Theorem 3.8(ii) (`thm:criterion`), proof, for every `Φ` at once).
 
 Argument. For `g ∈ L¹` let `M_g = volume.map g` (a measure on `ℝ`; `g` is only a.e.-measurable,
 and `Measure.map_apply_of_aemeasurable` gives `M_g A = |g⁻¹(A)|` for Borel `A`). For `c > 0` the

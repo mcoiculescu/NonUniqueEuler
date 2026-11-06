@@ -4,7 +4,7 @@ import NonUniqueEuler.H.Sec5.Quiet.Approx.DuhamelFn
 # Helpers for `quiet_approx`: the hierarchy `w^{[j]}` (definitions and combinatorics)
 
 Helper of `P/Sec5/Quiet/Approx.lean` (fully proved). Namespace `NonUniqueEuler.OneRing.QAppH`.
-Manuscript `05_single_ring.tex:466-473`: `w^{[1]} = wlin`, and for `j ≥ 2`
+Manuscript Part II Theorem 2.8 (`thm:quiet`): `w^{[1]} = wlin`, and for `j ≥ 2`
 `w^{[j]}(t) = ∫₀ᵗ e^{(t-τ)L} g^{[j]}(τ) dτ`, `g^{[j]} = Σ_{i+l=j} B(w^{[i]},w^{[l]}) - h·∇w^{[j-1]}`,
 built at level `k_j = M_h - j` (here `K - j`).
 
@@ -13,7 +13,7 @@ built at level `k_j = M_h - j` (here `K - j`).
   (a simple recursion on `n`, so no well-founded recursion is needed);
 * `hw j = w^{[j]}`, `hg j = g^{[j]}` (`g^{[1]} = F = -h·∇Φ`), with the fixed-point equation
   `hw_eq : w^{[j]} = ∫ e^{(t-τ)L} g^{[j]}` for `j ≥ 1`;
-* the combinatorial identities of the residual (`05_single_ring.tex:497-506`).
+* the combinatorial identities of the residual (Part II Theorem 2.8 (`thm:quiet`)).
 -/
 
 noncomputable section

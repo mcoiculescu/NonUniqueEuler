@@ -3,10 +3,10 @@ import NonUniqueEuler.H.Sec4.SemigroupConstruct.ExpTrans
 import NonUniqueEuler.I.Infra.Sobolev.Leibniz
 
 /-!
-# Helpers for `lem:semigroup-construct`(2): the linearization `L(G) : Y^{s+1} → Y^s`
+# Helpers for Part I Lemma 4.14(2) (`lem:semigroup-construct`): the linearization `L(G) : Y^{s+1} → Y^s`
 
-Helper file of `P/Sec4/SemigroupConstruct.lean` (fully proved). Manuscript `04_ring.tex:938-939`
-and `:1000-1003` (`‖L^tr w‖_{H^s} ≤ C‖w‖_{H^{s+1}}`).
+Helper file of `P/Sec4/SemigroupConstruct.lean` (fully proved), for Part I Lemma 4.14(2)
+(`lem:semigroup-construct`) and its proof of `‖L^tr w‖_{H^s} ≤ C‖w‖_{H^{s+1}}`.
 
 * `exists_sectorwise`: uniformly bounded sector operators `B_ℓ : Y^{s'}_ℓ → Y^s_ℓ` define a bounded
   operator `Y^{s'} → Y^s` acting sector-wise (`exists_norm_equiv_Y`, `exists_Y_of_summable`).

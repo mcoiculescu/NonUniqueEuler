@@ -6,13 +6,14 @@ import Mathlib.MeasureTheory.Function.LocallyIntegrable
 import Mathlib.MeasureTheory.Function.LpSpace.Indicator
 
 /-!
-# Proof: the approximate solutions are weakly continuous in `L²` (used in `thm:main-explicit`)
+# Proof: the approximate solutions are weakly continuous in `L²` (used in the historical `thm:main-explicit` decomposition)
 
 Proof of `I/Sec11/ApproxWeakCont.lean` (`approx_weakCont`).
 
-**Argument.** A deviation in route, not in content, from the sketch of the interface file: the
-sketch goes through the flow representation `ω(t) = f ∘ Φ_t⁻¹`; here only thm:smooth(1)–(2) are
-used (`Smooth.sol_isSmoothSol`): `(t, x) ↦ ω(t, x)` is continuous (`C^∞`) and
+Current use: the compactness step in Part II §8, proof of Proposition 1.2
+(`prop:reduction`). The interface is now an import wrapper. An earlier interface sketch used
+the flow representation `ω(t) = f ∘ Φ_t⁻¹`; this proof instead uses Theorem 1.8(1)–(2)
+(`thm:smooth`, `Smooth.sol_isSmoothSol`): `(t, x) ↦ ω(t, x)` is continuous (`C^∞`) and
 `supp ω(t) ⊂ B_{R(t)}` with `R(t) = R₀ + U_* |t|`. Then
 1. `ω(t)` is continuous with compact support, so in `L²`;
 2. for `ψ ∈ L²` and `t₀ ∈ ℝ`, on `t ∈ [t₀ - 1, t₀ + 1]` the integrand `ω(t, x) ψ(x)` is dominated
@@ -74,8 +75,10 @@ theorem isWeakContL2On_of_continuous_uncurry {ω : ℝ → ℂ → ℝ}
     · exact IntegrableOn.integrable_indicator (hψi.norm.const_mul M) measurableSet_closedBall
     · exact Eventually.of_forall fun x => ((hct x).mul continuous_const).continuousAt
 
-/-- **`ω^{(n)}` is weakly continuous into `L²` on `[0, ∞)`** (used in `thm:main-explicit`,
-`11_bootstrap.tex:694-708`, through `prop:defect`): under (N1)–(N3), for an admissible `χ`,
+/-- **`ω^{(n)}` is weakly continuous into `L²` on `[0, ∞)`** (used in the historical
+`thm:main-explicit` decomposition,
+Part II §8, proof of Proposition 1.2 (`prop:reduction`), through Part I Corollary 3.9
+(`cor:defect`)): under (N1)–(N3), for an admissible `χ`,
 parameters as in `def:datum` and `κ_seed ∈ (0, κ_L]`, for every `n ≥ 2`. -/
 theorem approx_weakCont (χ : ℝ → ℝ) (hχ : IsAdmissibleCutoff χ) (hN : NumericalHypothesis χ)
     {A₁ μ sbar κs : ℝ} (hp : DatumParams A₁ μ sbar) (hκ : κs ∈ Ioc 0 (OneRing.kL χ)) {n : ℕ}

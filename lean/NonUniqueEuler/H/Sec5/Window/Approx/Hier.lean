@@ -3,7 +3,7 @@ import NonUniqueEuler.H.Sec5.Window.Approx.Step
 /-!
 # Helpers for `window_approx`: the hierarchy and its induction
 
-Helper of `P/Sec5/Window/Approx.lean` (`05_single_ring.tex:747-798`, `eq:W-hier`,
+Helper of `P/Sec5/Window/Approx.lean` (Part II Lemma 2.11 (`lem:window`), `eq:W-hier`,
 `eq:W-res`). Namespace `NonUniqueEuler.OneRing.WAppH`.
 
 * `hier χ G h K w1 P1' n = (w_{n+1}, P_{n+1}, P'_{n+1})`: the increment hierarchy (`Step.lean`),

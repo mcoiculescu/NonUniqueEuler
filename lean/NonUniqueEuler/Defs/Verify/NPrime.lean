@@ -4,12 +4,12 @@ import NonUniqueEuler.Defs.Verify.Winding
 import NonUniqueEuler.Defs.Verify.Contour
 
 /-!
-# The statements (N1′) and (N2′) (Definition A.5)
+# The statements (N1′) and (N2′) (Part II Definition A.5)
 
-Manuscript: Definition A.5 (`def:Nprime`, `A_verification.tex:518-534`), the rectangle
-`R_A = [9/200, 3] × [-5, 3]` and `G'_max = d` (`A_verification.tex:30-33`), and the remark on
-halved intervals (`A_verification.tex:744-751`: "the proof of Lemma A.6 does not use their
-number").
+Manuscript: Part II Definition A.5 (`def:Nprime`), the rectangle
+`R_A = [9/200, 3] × [-5, 3]` and `G'_max = d` (`app:verify`), and the remark on
+halved intervals in Part II §A.7 (`app:reproduce`): the proof of Lemma A.6 does not
+use their number.
 
 * `RA`: the rectangle `R_A`.
 * `WindsOnce χ R G`: `E_3(·; G) ≠ 0` on `∂R` and `wind(E_3(∂R; G), 0) = 1`, along the
@@ -17,7 +17,7 @@ number").
   nonvanishing; the image of `[0, 4]` is `∂R` for a nondegenerate `R`).
 * `CellCertified χ c w`: the output contract of one successful certification of a cell
   `c = (𝒢, ℛ')` with result `w`: for every `G ∈ 𝒢` with `G ≥ 0`, `E_3(·; G)` winds `w` times
-  along `∂ℛ'` (Proposition A.7's argument for one cell). The code side proves
+  along `∂ℛ'` (Part II Proposition A.7's argument for one cell). The code side proves
   `CellCertified χ c w` from a successful run; `N1'_of_cells` and `N2'_of_cells` assemble (N1′)
   and (N2′) from the cells of the two runs.
 * `N1' χ`: for every `G ∈ [0, d]`, `WindsOnce χ RA G`.
@@ -25,7 +25,7 @@ number").
   rational endpoints and a rectangle with rational vertices) whose intervals cover `[0, d]`,
   whose rectangles have left edge on `Re λ = 211/2500`, are nondegenerate and lie in `R_A`,
   and such that `WindsOnce χ c.rect G` for every `G ∈ c.G ∩ [0, d]`. (The manuscript's "236
-  intervals with union `[0, G'_max]`" is the instance of the run; Lemma A.6 does not use the
+  intervals with union `[0, G'_max]`" is the instance of the run; Part II Lemma A.6 does not use the
   number of cells, and only `G ∈ [0, d]` matter since the union is `[0, d]`.)
 -/
 
@@ -37,7 +37,7 @@ namespace NonUniqueEuler
 
 open RingData
 
-/-- The rectangle `R_A = [9/200, 3] × [-5, 3]` (`A_verification.tex:32`). -/
+/-- The rectangle `R_A = [9/200, 3] × [-5, 3]` (`app:verify`). -/
 def RA : QRect := ⟨9 / 200, 3, -5, 3⟩
 
 /-- `E_3(·; G) ≠ 0` on `∂R` and `wind(E_3(∂R; G), 0) = 1`. -/
@@ -49,20 +49,20 @@ def WindsOnce (χ : ℝ → ℝ) (R : QRect) (G : ℝ) : Prop :=
 def CellCertified (χ : ℝ → ℝ) (c : CertCell) (w : ℤ) : Prop :=
   ∀ G ∈ c.G.toSet, 0 ≤ G → HasWinding (fun t => evans χ 3 (c.rect.bdryPath t) G) 0 4 w
 
-/-- **(N1′)** (`A_verification.tex:522-523`): for every `G ∈ [0, G'_max] = [0, d]`,
+/-- **(N1′)** (`def:Nprime`): for every `G ∈ [0, G'_max] = [0, d]`,
 `E_3(·; G) ≠ 0` on `∂R_A` and `wind(E_3(∂R_A; G), 0) = 1`. -/
 def N1' (χ : ℝ → ℝ) : Prop :=
   ∀ G ∈ Icc (0 : ℝ) d, WindsOnce χ RA G
 
-/-- The shape conditions on a rectangle of the (N2′) run (`A_verification.tex:526-528`, and
-the re-check of `A_verification.tex:619-626`): left edge on `Re λ = 211/2500`, nondegenerate,
-contained in `R_A`. -/
+/-- The shape conditions on a rectangle of the (N2′) run, from Part II Definition A.5
+(`def:Nprime`) and the re-check in §A.7 (`app:reproduce`): left edge on
+`Re λ = 211/2500`, nondegenerate, contained in `R_A`. -/
 structure GapRectOK (R : QRect) : Prop where
   left : R.x₀ = 211 / 2500
   nondeg : R.Nondeg
   subset : R.closedSet ⊆ RA.closedSet
 
-/-- **(N2′)** (`A_verification.tex:524-529`): finitely many cells whose intervals cover
+/-- **(N2′)** (`def:Nprime`): finitely many cells whose intervals cover
 `[0, d]`, with rectangles as in `GapRectOK`, such that for every cell and every `G` of its
 interval (in `[0, d]`), `E_3(·; G) ≠ 0` on the boundary of its rectangle and winds once
 around `0` along it. -/
@@ -75,7 +75,7 @@ def N2' (χ : ℝ → ℝ) : Prop :=
 /-! ### Assembling (N1′) and (N2′) from certified cells (proved) -/
 
 /-- (N1′) from a list of certified cells with rectangle `R_A` whose intervals cover `[0, d]`
-(the first run, `A_verification.tex:653-657`). -/
+(the first run in Part II §A.5, `app:runs`). -/
 theorem N1'_of_cells {χ : ℝ → ℝ} (cells : List CertCell)
     (hcov : ∀ G ∈ Icc (0 : ℝ) d, ∃ c ∈ cells, G ∈ c.G.toSet)
     (hrect : ∀ c ∈ cells, c.rect = RA) (hcert : ∀ c ∈ cells, CellCertified χ c 1) :
@@ -87,7 +87,7 @@ theorem N1'_of_cells {χ : ℝ → ℝ} (cells : List CertCell)
   exact h
 
 /-- (N2′) from a list of certified cells with admissible rectangles whose intervals cover
-`[0, d]` (the second run, `A_verification.tex:657-659`). -/
+`[0, d]` (the second run in Part II §A.5, `app:runs`). -/
 theorem N2'_of_cells {χ : ℝ → ℝ} (cells : List CertCell)
     (hcov : ∀ G ∈ Icc (0 : ℝ) d, ∃ c ∈ cells, G ∈ c.G.toSet)
     (hrect : ∀ c ∈ cells, GapRectOK c.rect) (hcert : ∀ c ∈ cells, CellCertified χ c 1) :

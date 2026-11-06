@@ -10,7 +10,7 @@ import NonUniqueEuler.H.Sec2.HkCalculus.TransportEnergy.Smooth
 /-!
 # Proof of `I/Sec2/HkCalculus/TransportEnergy`: the transport term has no real energy
 
-Manuscript: `lem:Hk-calculus`(1), second claim, `02_prelim.tex:735-745`:
+Manuscript: the second claim of Part II, Lemma 1.10(1) (`lem:Hk-calculus`):
 `Re ⟨Ũ·∇g, g⟩_{L²} = ½ ∫ Ũ·∇|g|² dx = -½ ∫ (div Ũ)|g|² dx = 0`.
 
 Proof (as in the interface docstring).

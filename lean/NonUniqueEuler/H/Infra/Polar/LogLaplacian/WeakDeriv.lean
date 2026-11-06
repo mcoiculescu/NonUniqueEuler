@@ -20,7 +20,8 @@ For `φ ∈ C¹_c(ℂ; ℝ)`:
 * `integral_log_norm_mul_fderiv_aux`: every direction `v`, by the rotation `z = e^{i arg v} w`
   (measure preserving) and `v = ‖v‖ e^{i arg v}`.
 
-This is the manuscript's integration by parts of `lem:BS-basic`(d) (`02_prelim.tex:216-221`), done
+This is the integration by parts in the proof of Part I, Lemma 2.1(d)
+(`lem:BS-basic`), done
 on lines instead of on `{|z| > ε}` (restructuring R6); no boundary term arises since the line
 `y = 0` is null. All proofs are complete.
 -/

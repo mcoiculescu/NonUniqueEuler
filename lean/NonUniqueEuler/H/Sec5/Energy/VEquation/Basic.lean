@@ -11,8 +11,8 @@ import Mathlib.MeasureTheory.Function.LpSeminorm.CompareExp
 /-!
 # Helpers for `energy_vEquation` (the equation of `v = w - w_app`)
 
-Helpers of `P/Sec5/Energy/VEquation.lean` (step 1 of the proof of `lem:energy`,
-`05_single_ring.tex:318-331`). All fully proved.
+Helpers of `P/Sec5/Energy/VEquation.lean` (step 1 of the Lean proof decomposition for `lem:energy`,
+Part II Lemma 2.4). All fully proved.
 
 * `VEqH.weakPartial_add_ae`, `VEqH.weakPartial_sub_ae`: the weak derivatives of `H^k` functions
   are additive a.e. (uniqueness of weak derivatives, `MemH.weakPartial_ae_eq`);

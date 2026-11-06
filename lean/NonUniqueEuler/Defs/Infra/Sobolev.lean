@@ -11,7 +11,7 @@ import NonUniqueEuler.Defs.Infra.CkNorm
 Manuscript-independent infrastructure (library I-HK, decision D7). Integer-order Sobolev spaces are
 defined by weak derivatives in `L²`; there is no Fourier `H^s`.
 
-The manuscript (`02_prelim.tex:58-66`): for an integer `k ≥ 0` and an open set `V ⊆ ℝ²`,
+The manuscript (Part I, Section 2.1, conventions in `sec:prelim`): for an integer `k ≥ 0` and an open set `V ⊆ ℝ²`,
 `H^k(V)` has the norm `‖g‖²_{H^k(V)} = ∑_{|γ| ≤ k} ‖∂^γ g‖²_{L²(V)}`, `H^k = H^k(ℝ²)`, with
 `∂^γ = ∂₁^{γ₁} ∂₂^{γ₂}`; functions are complex valued.
 
@@ -32,7 +32,7 @@ The manuscript (`02_prelim.tex:58-66`): for an integer `k ≥ 0` and an open set
   `MemH k f`, `normH k f`;
 * `l2On V f = ‖f‖_{L²(V)}`, `l2 f = ‖f‖_{L²}` (real numbers);
 * `MemW1infOn V U`, `normW1infOn V U`: the manuscript's `W^{1,∞}(V)` norm
-  `ess sup_V |U| + ess sup_V |∇U|` of a vector field `U : ℂ → ℂ` (`02_prelim.tex:70-71`), with
+  `ess sup_V |U| + ess sup_V |∇U|` of a vector field `U : ℂ → ℂ` (Part I, Section 2.1, conventions in `sec:prelim`), with
   `|∇U|² = |∂₁U|² + |∂₂U|²` (Euclidean norm of the matrix `(∂_l U_i)`).
 
 The Hilbert-space type `Sob.Hk k` is in `Defs/Infra/SobolevSpace.lean`. Vector fields `U : ℂ → ℂ`
@@ -153,7 +153,7 @@ structure MemW1infOn (V : Set ℂ) (U : ℂ → ℂ) : Prop where
     MemLp g ⊤ (volume.restrict V) ∧ LocallyIntegrableOn g V ∧ HasWeakDerivOn V (pdList γ) U g
 
 /-- The manuscript's `‖U‖_{W^{1,∞}(V)} = ess sup_V |U| + ess sup_V |∇U|`
-(`02_prelim.tex:70-71`). -/
+(Part I, Section 2.1, conventions in `sec:prelim`). -/
 def normW1infOn (V : Set ℂ) (U : ℂ → ℂ) : ℝ :=
   (eLpNorm U ⊤ (volume.restrict V)).toReal +
     (eLpNorm (gradNormOn V U) ⊤ (volume.restrict V)).toReal

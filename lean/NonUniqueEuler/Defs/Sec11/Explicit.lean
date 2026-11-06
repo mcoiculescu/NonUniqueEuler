@@ -3,24 +3,21 @@ import NonUniqueEuler.Defs.Sec3.Criterion
 import NonUniqueEuler.Statement.MainTheorem
 
 /-!
-# Section 11: `thm:main-explicit` and the proof of `prop:reduction` (definitions)
+# The limit solution and final assembly (legacy `Sec11`)
 
-Manuscript `thm:main-explicit`
-(`11_bootstrap.tex:665-683`, proof `:685-721`) and the proof of `prop:reduction`
-(`11_bootstrap.tex:723-739`).
+Current source: the proof of Part II Proposition 1.2 (`prop:reduction`) in §8,
+`manuscript/part2/sections/11_bootstrap.tex`. The earlier label `thm:main-explicit` is
+retired; `Params.MainExplicit` retains that intermediate conclusion as a Lean bundle.
 
-* `Params.MainExplicit p A₁`: the conclusions of `thm:main-explicit` for the parameters `p` and the
-  amplitude `A₁` (`T_* ∈ [1/A₁, ∞)`, the second solution `ω_∞` and the time `t₀` with (i), (ii)),
-  written with the statement-layer predicates of `Statement/WeakSolution.lean`;
-* `Params.mainTheorem_of`: the logical content of the proof of `prop:reduction`
-  (`11_bootstrap.tex:723-739`): parameters with (P0)–(P6), the datum properties of
-  `prop:integrability` and `thm:main-explicit` for every `A₁ > 0` give `MainTheorem p.χ` (with
-  `μ = p.μ`, `s̄ = p.s̄` fixed before `A₁`, and `T* = p.Tstar A₁`); fully proved;
-* bridges to `prop:defect`: the readout test function `Ψ₁` is the test function `defectTest χ_out 3`
-  of `prop:defect` (`readoutTest_eq_defectTest`, `11_bootstrap.tex:700-701`), and a readout cutoff
-  is a radial test profile (`IsReadoutCutoff.isRadialTestProfile`).
+* `Params.MainExplicit p A₁` records `T_* ≥ 1/A₁`, the second solution `ω_∞`, and a time
+  `t₀ < T_*` with the continuity, equimeasurability and non-uniqueness properties below.
+* `Params.mainTheorem_of` assembles this bundle and the datum properties of Proposition 3.2
+  (`prop:integrability`) into Part II Theorem 1.1 (`thm:main`). The parameters `μ` and `s̄`
+  are fixed before `A₁`.
+* The bridge lemmas identify `Ψ₁` with `Compact.defectTest χ_out 3` and a readout cutoff with
+  a radial test profile, as required by Part I Corollary 3.9 (`cor:defect`).
 
-All lemmas here are fully proved.
+All lemmas here are proved. No current separately numbered explicit-limit theorem is claimed.
 -/
 
 noncomputable section
@@ -33,14 +30,15 @@ namespace Relay
 
 open RingData Datum
 
-/-! ### Bridges to `prop:defect` (`11_bootstrap.tex:700-703`) -/
+/-! ### Bridges to Part I Corollary 3.9 (`cor:defect`) (Part II §8, proof of Proposition 1.2 (`prop:reduction`)) -/
 
-/-- `Ψ₁(x) = χ_out(|x|) x̄^m` is the test function of `prop:defect` with `χ = χ_out`, `m = 3`
-(`11_bootstrap.tex:700-701`). -/
+/-- `Ψ₁(x) = χ_out(|x|) x̄^m` is the test function of Part I Corollary 3.9 (`cor:defect`) with
+`χ = χ_out`, `m = 3`
+(Part II §8, proof of Proposition 1.2 (`prop:reduction`)). -/
 theorem readoutTest_eq_defectTest (χo : ℝ → ℝ) : readoutTest χo = Compact.defectTest χo 3 := rfl
 
-/-- A readout cutoff `χ_out ∈ C_c^∞((a/4, 3))` is a radial test profile of `prop:defect`
-(`χ ∈ C_c^∞((0, ∞))`, `11_bootstrap.tex:701`). -/
+/-- A readout cutoff `χ_out ∈ C_c^∞((a/4, 3))` is a radial test profile of Part I Corollary 3.9 (`cor:defect`)
+(`χ ∈ C_c^∞((0, ∞))`, Part II §8, proof of Proposition 1.2 (`prop:reduction`)). -/
 theorem IsReadoutCutoff.isRadialTestProfile {χo : ℝ → ℝ} (h : IsReadoutCutoff χo) :
     Compact.IsRadialTestProfile χo where
   contDiff := h.contDiff
@@ -54,10 +52,12 @@ namespace Params
 
 variable (p : Params)
 
-/-! ### `thm:main-explicit` (`11_bootstrap.tex:665-683`) -/
+/-! ### the historical `thm:main-explicit` decomposition (Part II §8, proof of Proposition 1.2 (`prop:reduction`)) -/
 
-/-- **The conclusions of `thm:main-explicit`** for the parameters `p` and the amplitude `A₁`
-(`11_bootstrap.tex:669-682`), with `f = p.datum A₁` (`def:datum`) and `T_* = p.Tstar A₁`
+/-- **The conclusions of the historical `thm:main-explicit` decomposition** for the parameters `p`
+and the amplitude `A₁`
+(Part II §8, proof of Proposition 1.2 (`prop:reduction`)), with `f = p.datum A₁` (`def:datum`) and
+`T_* = p.Tstar A₁`
 (`lem:time`): `T_* ∈ [1/A₁, ∞)`, and there are `ω_∞` and `t₀ ∈ [0, T_*)` such that
 * `ω_∞` is a renormalized weak solution on `[0, ∞)` with datum `f`, `q = 2` (`def:weak`);
 * (i) `ω_∞ ∈ C([0, ∞); L^q)` for every `q ∈ [1, ∞)`, and `ω_∞(t)` is equimeasurable with `f` and
@@ -76,13 +76,15 @@ def MainExplicit (A₁ : ℝ) : Prop :=
         IsRenormalizedWeakSolution q T (p.datum A₁) ωinf ∧
         DistinctInX T ωinf (stationary (p.datum A₁))
 
-/-! ### The proof of `prop:reduction` (`11_bootstrap.tex:723-739`) -/
+/-! ### The proof of `prop:reduction` (Part II §8, proof of Proposition 1.2 (`prop:reduction`)) -/
 
 variable {p}
 
-/-- **The assembly of `prop:reduction`** (`11_bootstrap.tex:723-739`): if `p` satisfies (P0)–(P6),
+/-- **The assembly of `prop:reduction`** (Part II §8, proof of Proposition 1.2 (`prop:reduction`)):
+if `p` satisfies (P0)–(P6),
 the datum `f` has the properties of `prop:integrability` for every `A₁ > 0`, and the conclusions of
-`thm:main-explicit` hold for every `A₁ > 0`, then Theorem 1.1 holds for the cutoff `p.χ`, with
+the historical `thm:main-explicit` decomposition hold for every `A₁ > 0`, then Part II Theorem 1.1
+(`thm:main`) holds for the cutoff `p.χ`, with
 `μ = p.μ ∈ (1, 17/16]` and `s̄ = p.s̄ ∈ (0, a/16]` (fixed before `A₁`) and `T* = p.Tstar A₁`
 (`T > T* > t₀`). -/
 theorem mainTheorem_of (hL : p.Lists)

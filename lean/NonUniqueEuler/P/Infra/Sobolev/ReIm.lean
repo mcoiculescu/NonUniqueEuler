@@ -11,7 +11,7 @@ import NonUniqueEuler.I.Infra.Sobolev.NormDeriv
 
 Proof of `NonUniqueEuler/I/Infra/Sobolev/ReIm.lean` (same declaration, same statement).
 
-Manuscript: `02_prelim.tex:58-64` (the `H^k` norm of a complex function sums over its real
+Manuscript: Part I, Section 2.1, conventions in `sec:prelim` (the `H^k` norm of a complex function sums over its real
 entries).
 
 * `ReImAux.hasWeakDerivOn_conj`: `∂_{vs} (conj f) = conj (∂_{vs} f)` weakly (conjugation commutes

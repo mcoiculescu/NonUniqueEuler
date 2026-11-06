@@ -5,7 +5,7 @@ import NonUniqueEuler.Defs.Sec2.Conventions
 # Helper for `lem:comm-R2`: the commutator formula
 
 Helper of `P/SmoothB/CommR2.lean`, step 1 of the proof of `lem:comm-R2`
-(`B_global_smooth.tex:162-165`): for smooth `g` and `u`,
+(Part II, Lemma B.4 (`lem:comm-R2`)): for smooth `g` and `u`,
 `[∂^α, u·∇]g = ∑_{l} ∑_{(w₁,w₂)} ∂_{w₁} u_l ∂_{w₂} ∂_l g`, the inner sum over the splittings
 `(w₁, w₂) ∈ splitsPos (pdList α)` of the list of directions of `∂^α` with `w₁ ≠ []`
 (`comm_formula`). Here `u_l = comp2 l ∘ u` (as a complex function, `compL l`), and the transport

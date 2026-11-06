@@ -9,11 +9,12 @@ import NonUniqueEuler.I.Sec6.FieldContinuity
 /-!
 # Helpers for `P/Sec11/BootContinuity`: the limit step `t_* ∈ 𝓑`
 
-Step 7 of the proof of `prop:bootstrap`, first part (`11_bootstrap.tex:552-574`): if (BA°) holds at
+Lean step 7 of the historical bootstrap decomposition, first part (Part II §8 (`prop:bootstrap`),
+“Continuation in time”): if (BA°) holds at
 every time of `[0, t)`, `0 < t ≤ T_end`, then (BA°)(t) holds (`boot_limit`).
 * (BA1) at `t`: `N♭_j` is closed and `s ↦ Φ_s(y)` is continuous (`limit_ba1`, via
   `flow_image_eventually` applied to a point);
-* `lem:geometry` at `t`, with the amplitudes from Step 3 at the levels with `t♯_k < t`
+* `lem:geometry` at `t`, with the amplitudes from Lean step 3 at the levels with `t♯_k < t`
   (`limit_geometry`);
 * (BA2) at `t`: `h_j` is defined on `[0, t]` by `lem:geometry`(b), `maj_j` is continuous
   (`maj_continuous`) (`limit_ba2`);
@@ -36,7 +37,8 @@ open RingData Datum
 
 variable (S : Standing)
 
-/-- **(BA1) at the limit time** (`11_bootstrap.tex:556-559`): `N♭_j` is closed and `s ↦ Φ_s(y)` is
+/-- **(BA1) at the limit time** (Part II §8 (`prop:bootstrap`), “Continuation in time”): `N♭_j` is
+closed and `s ↦ Φ_s(y)` is
 continuous, so (BA1) at the times of `[0, t)` gives (BA1) at `t`. -/
 theorem limit_ba1 (hS : S.Holds) {t : ℝ} (ht : 0 < t)
     (h : ∀ s ∈ Ico (0 : ℝ) t, S.BA1At S.P.Nflatk s) : S.BA1At S.P.Nflatk t := by
@@ -58,8 +60,9 @@ theorem limit_ba1 (hS : S.Holds) {t : ℝ} (ht : 0 < t)
   have hnd' : ¬ S.P.DebrisAt j s := fun hd => hnd ⟨hd.1, hd.2.trans hs2.2⟩
   exact hs1 (mem_image_of_mem _ (mem_singleton x)) (h s hs2 j hj hnd' (mem_image_of_mem _ hx))
 
-/-- **`lem:geometry` at the limit time** (`11_bootstrap.tex:559-562`): (BA1) on `[0, t]`, and every
-level `k < n` with `t♯_k < t` has `t♯_k ∈ 𝓑`, so Step 3 gives `κ♯_k ≥ K_lo s_k^{m+2}`. -/
+/-- **`lem:geometry` at the limit time** (Part II §8 (`prop:bootstrap`), “Continuation in time”):
+(BA1) on `[0, t]`, and every
+level `k < n` with `t♯_k < t` has `t♯_k ∈ 𝓑`, so Lean step 3 gives `κ♯_k ≥ K_lo s_k^{m+2}`. -/
 theorem limit_geometry (hS : S.Holds) (hL : S.ParamLists) {t : ℝ}
     (ht : t ∈ Icc (0 : ℝ) S.P.Tend)
     (hba1 : ∀ s ∈ Icc (0 : ℝ) t, S.BA1At S.P.Nflatk s)
@@ -73,7 +76,8 @@ theorem limit_geometry (hS : S.Holds) (hL : S.ParamLists) {t : ℝ}
   exact ((boot_steps S hS hL ⟨h0, hlt.le.trans ht.2⟩ (boot_start S hS hL) hBA).handoff k hk hc
     le_rfl).amp_lo
 
-/-- **(BA2) at the limit time** (`11_bootstrap.tex:562-564`): `h_j` is defined on `[0, t]`
+/-- **(BA2) at the limit time** (Part II §8 (`prop:bootstrap`), “Continuation in time”): `h_j` is
+defined on `[0, t]`
 (`lem:geometry`(b)), so `maj_j` is continuous there and the bound passes to the limit. -/
 theorem limit_ba2 (hS : S.Holds) {t : ℝ} (ht : 0 < t) (hgeom : S.GeometryConcl t)
     (h : ∀ s ∈ Ico (0 : ℝ) t, S.BA2At (2 * S.Abar) s) : S.BA2At (2 * S.Abar) t := by
@@ -91,7 +95,8 @@ theorem limit_ba2 (hS : S.Holds) {t : ℝ} (ht : 0 < t) (hgeom : S.GeometryConcl
   exact le_of_forall_Ico (f := fun s => S.maj j (S.P.A j * s)) ht ((hg t ⟨ht.le, le_rfl⟩).mono Ico_subset_Icc_self)
     (fun s hs => (h s hs j hj (quietAt_anti S hq hs.2.le)).2)
 
-/-- **(BA3) at the limit time** (`11_bootstrap.tex:564-572`), for a ring `k` with `t ≠ t♯_k`:
+/-- **(BA3) at the limit time** (Part II §8 (`prop:bootstrap`), “Continuation in time”), for a ring
+`k` with `t ≠ t♯_k`:
 `w_k` is continuous on `[t♯_k, t]` and `R_k(u) = 2C₂â_k(u)(1 + ρ̂_k(u))` satisfies
 `R_k(u_*) ≥ limsup_{u ↑ u_*} R_k(u)` (`rhoHat_semicontinuous`). -/
 theorem limit_ba3 (hS : S.Holds) {t : ℝ}
@@ -145,7 +150,8 @@ theorem limit_ba3 (hS : S.Holds) {t : ℝ}
   show Sob.normH S.s (S.P.w k t) ≤ a t * (1 + ρ)
   exact le_of_forall_eps (envelope_nonneg S hS k t) key
 
-/-- **The limit step of Step 7** (`11_bootstrap.tex:552-574`): if (BA°) holds at every time of
+/-- **The limit step of Lean step 7** (Part II §8 (`prop:bootstrap`), “Continuation in time”): if
+(BA°) holds at every time of
 `[0, t)`, `0 < t ≤ T_end`, then (BA°)(t) holds. -/
 theorem boot_limit (hS : S.Holds) (hL : S.ParamLists) {t : ℝ}
     (ht : t ∈ Ioc (0 : ℝ) S.P.Tend) (h : ∀ s ∈ Ico (0 : ℝ) t, S.BAcirc s) : S.BAcirc t := by

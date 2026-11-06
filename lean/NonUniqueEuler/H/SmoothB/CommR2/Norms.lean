@@ -5,7 +5,7 @@ import NonUniqueEuler.Defs.Sec2.Conventions
 /-!
 # Helper for `lem:comm-R2`: Sobolev norms of smooth functions, computed classically
 
-Helper of `P/SmoothB/CommR2.lean` (`B_global_smooth.tex:149-175`, step 5 of the proof sketch of
+Helper of `P/SmoothB/CommR2.lean` (Part II, Lemma B.4 (`lem:comm-R2`), step 5 of the proof sketch of
 `I/SmoothB/CommR2.lean`). For a smooth function the chosen weak derivatives are the classical
 ones a.e. (uniqueness of locally integrable weak derivatives, `I/Infra/Sobolev/WeakDeriv.lean`;
 the argument follows `H/Sec2/BSSmooth/Weak.lean`), so

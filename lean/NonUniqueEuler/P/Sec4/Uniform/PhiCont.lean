@@ -13,11 +13,11 @@ import Mathlib.MeasureTheory.Integral.DominatedConvergence
 import Mathlib.Analysis.Calculus.IteratedDeriv.Lemmas
 
 /-!
-# Proof: `φ_*(G)` is continuous into every `H^k` (step of `lem:uniform`)
+# Proof: `φ_*(G)` is continuous into every `H^k`
 
-Proof of `I/Sec4/Uniform/PhiCont.lean` (`04_ring.tex:1537-1540`, with the continuity of
-`g_*(G)` in `C^k([a,1])` from the proof of `prop:U`(b), `04_ring.tex:1400-1415`). Same
-declaration, statement copied verbatim.
+This retained auxiliary statement in `I/Sec4/Uniform/PhiCont.lean` supplies the eigenfunction
+continuity used in the proof of Part I Proposition 4.21(b) (`prop:U`). The current proposition
+states continuity of its norms; Lemma 4.23 (`lem:uniform`) states the uniform bounds.
 
 Argument. Fix `G₀ ∈ [0,G₁]` and put, for `G ∈ [0,G₁]`,
 `d_G(r) = n_*(G)⁻¹ g_*(G)(r) - n_*(G₀)⁻¹ g_*(G₀)(r)`, so that
@@ -199,7 +199,7 @@ theorem iteratedDeriv_diff (hχ : IsAdmissibleCutoff χ) (hN : NumericalHypothes
 end PhiContH
 
 open PhiContH in
-/-- **`lem:uniform`, continuity of `φ_*`** (`04_ring.tex:1537-1540`): `φ_*(G) → φ_*(G₀)` in
+/-- **`lem:uniform`, continuity of `φ_*`** (Part I Lemma 4.23 (`lem:uniform`)): `φ_*(G) → φ_*(G₀)` in
 `H^k` as `G → G₀` in `[0,G₁]`, for every `k`. -/
 theorem phi_tendsto_normH (χ : ℝ → ℝ) (hχ : IsAdmissibleCutoff χ) (hN : NumericalHypothesis χ)
     (k : ℕ) {G₀ : ℝ} (hG₀ : G₀ ∈ Icc (0 : ℝ) Gbar) :

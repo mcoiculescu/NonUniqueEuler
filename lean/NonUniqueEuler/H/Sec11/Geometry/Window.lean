@@ -5,13 +5,16 @@ import NonUniqueEuler.I.Sec9.Detuning
 /-!
 # Helper for `P/Sec11/Geometry.lean`: the length of the confinement window
 
-Helper of the proof of `lem:geometry`, hypothesis (iv) of `prop:confine` (`11_bootstrap.tex:176-189`):
+Helper of the proof of `lem:geometry`, hypothesis (iv) of `prop:confine` (Part II Appendix C.14
+(`lem:geometry`, Lemma C.17)):
 for a level `j < n` with `T_{j+1}` defined and `t₁ ∈ [T_{j+1}, min(t, e_j)]`,
 `A_{j+1}(t₁ - T_{j+1}) < μ[T_pin + 1 + σ'⁻¹((m+2) log(1/s_j) + log₊(δ₀/K_lo))]`, hence
 `Λ = 2 + 2C_*A_{j+1}(t₁ - T_{j+1}) < Λ^conf_j` (strictly, as in the manuscript; the strict
-inequality gives `\bar B_{ϱ_j(t')} ⊂ B_{ar_j/8}` with the open ball). Uses `lem:window-length`
+inequality gives `\bar B_{ϱ_j(t')} ⊂ B_{ar_j/8}` with the open ball). Uses the window-length
+calculation in `lem:geometry` (Appendix C.14)
 (`Rings.window_length`, first bound only), `lem:detuning` (`σ_j ≥ 15σ/16 > σ'`) and the bound
-`T̂_j ≤ σ'⁻¹((m+2) log(1/s_j) + log₊(δ₀/K_lo))` (proved here, `11_bootstrap.tex:182-183`). All
+`T̂_j ≤ σ'⁻¹((m+2) log(1/s_j) + log₊(δ₀/K_lo))` (proved here, Part II Appendix C.14 (`lem:geometry`,
+Lemma C.17)). All
 proved.
 -/
 
@@ -43,7 +46,7 @@ theorem logTerm_nonneg (hS : S.Holds) {j : ℕ} (hj : 1 ≤ j) :
   positivity
 
 /-- `T̂_j = σ_j⁻¹ log(δ₀/κ♯_j) ≤ σ'⁻¹((m+2) log(1/s_j) + log₊(δ₀/K_lo))` when `σ_j ≥ σ'`,
-`κ♯_j ≥ K_lo s_j^{m+2}` and `T_j` is defined (`11_bootstrap.tex:182-183`). -/
+`κ♯_j ≥ K_lo s_j^{m+2}` and `T_j` is defined (Part II Appendix C.14 (`lem:geometry`, Lemma C.17)). -/
 theorem That_le (hS : S.Holds) (hpos : S.ConstPos) {j : ℕ} (hj : j ∈ Finset.Icc 1 S.P.n)
     (hc : S.P.ClockUpTo j) (hσ : S.σ' ≤ S.P.sigma j)
     (hamp : S.Klo * S.P.s j ^ (3 + 2) ≤ S.P.ksh j) :
@@ -83,7 +86,8 @@ theorem That_le (hS : S.Holds) (hpos : S.ConstPos) {j : ℕ} (hj : j ∈ Finset.
         mul_le_mul_of_nonneg_left hLle (inv_nonneg.2 hσ'.le)
     _ = _ := by rw [one_div S.σ']
 
-/-- **The length of the window** (`11_bootstrap.tex:176-187`): for `j < n` with `T_{j+1}` defined
+/-- **The length of the window** (Part II Appendix C.14 (`lem:geometry`, Lemma C.17)): for `j < n`
+with `T_{j+1}` defined
 and `t₁ ∈ [T_{j+1}, min(t, e_j)]`, under the hypotheses of `lem:geometry`,
 `A_{j+1}(t₁ - T_{j+1}) < μ[T_pin + 1 + σ'⁻¹((m+2) log(1/s_j) + log₊(δ₀/K_lo))]`. -/
 theorem kickTime_lt (hS : S.Holds) (hL : S.ParamLists) {t : ℝ} (h : S.GeometryHyp t) {j : ℕ}
@@ -131,7 +135,7 @@ theorem kickTime_mono (hS : S.Holds) (j : ℕ) {t t' : ℝ} (ht : t ≤ t') :
     S.P.kickTime j t ≤ S.P.kickTime j t' :=
   mul_le_mul_of_nonneg_left (by linarith) (A_pos hS (j + 1)).le
 
-/-- `Λ = 2 + 2C_*A_{j+1}(t₁ - T_{j+1}) < Λ^conf_j` (`11_bootstrap.tex:188`). -/
+/-- `Λ = 2 + 2C_*A_{j+1}(t₁ - T_{j+1}) < Λ^conf_j` (Part II Appendix C.14 (`lem:geometry`, Lemma C.17)). -/
 theorem confLambda_lt (hS : S.Holds) (hL : S.ParamLists) {t : ℝ} (h : S.GeometryHyp t) {j : ℕ}
     (hj1 : 1 ≤ j) (hjn : j < S.P.n) (hc : S.P.ClockUpTo (j + 1)) {t₁ : ℝ}
     (hT : S.P.T (j + 1) ≤ t₁) (he : t₁ ≤ S.P.endW j) (ht : t₁ ≤ t) :

@@ -7,11 +7,11 @@ import NonUniqueEuler.H.Sec7.Transfer.Region
 /-!
 # Proof: `lem:transfer` (fields induced by one ring on another)
 
-Proof of `I/Sec7/Transfer.lean` (`07_several_rings.tex:83-237`). The helpers are in
+Proof of `I/Sec7/Transfer.lean` (Part II Lemma 4.1 (`lem:transfer`)). The helpers are in
 `H/Sec7/Transfer/` (namespace `NonUniqueEuler.Rings.TransferAux`):
 * `PowerSeries` (termwise derivatives of `Σ d_l z^l`), `Fourier` (Cauchy's coefficient estimate on a
   circle), `Series` (the majorant series `U_q`, `V_q` and `tsum_ext_le`), `Fields` (Laurent and power
-  series forms of the fields, `eq:derivative-norm` in operator-norm form), `Units` (ring units and
+  series forms of the fields, `eq:BS-complex-deriv` in operator-norm form), `Units` (ring units and
   the scaling rule);
 * `Inner`: items (1) (`inner_general_bound`) and (2) (`next_ring_bound`), constants `C1`, `C2`;
 * `Region`: item (3) (`inner_region_bound`, constant `M_vort Σ_q C_{3,q}(4/a)^{4+q}`);
@@ -24,7 +24,8 @@ Here `C^T_M = max(C1, C2, C3, 1)` and `C^T_O = max(C4, 1)`. The `H^{s'}` bounds 
 `Sob.MemH.l2_le`).
 
 Deviations from the manuscript (all harmless, the constants being existential, D11):
-* the constants are not the manuscript's `C^{(1)}, …, C^{(4)}`: we bound operator norms of
+* the separate formal constants are retained while the current manuscript uses a common
+  `C_vel`: we bound operator norms of
   derivatives (which are at most the array norms, `norm_iteratedFDeriv_le_arrayNorm`), so the factor
   `2^{q/2}` disappears, and we use the majorants `U_q = Σ_l (l+q)^q 2^{-l}`, `V_q = Σ_l l^q(3/16)^l`
   in place of `S_{m,q}` (only `c_l = 0` for `l < 3`, resp. `d_l = 0` for `l < 2`, is used);
@@ -44,7 +45,7 @@ namespace Rings
 
 open RingData Datum TransferAux
 
-/-- `‖w_k(t)‖_{L¹} ≤ max(1, C_{L1}) ‖w_k(t)‖_{H^{s'}}` (`07_several_rings.tex:126-128`). -/
+/-- `‖w_k(t)‖_{L¹} ≤ max(1, C_{L1}) ‖w_k(t)‖_{H^{s'}}` (Part II Lemma 4.1 (`lem:transfer`)). -/
 private theorem L1_le_max_normH (P : Approx) (hP : P.Valid) (hN : NumericalHypothesis P.χ)
     {k : ℕ} (hk : k ∈ Finset.Icc 1 P.n) {t : ℝ} (ht : 0 ≤ t) (hS : P.PertDefined k t) (s' : ℕ) :
     (eLpNorm (P.wR k t) 1 volume).toReal ≤ max 1 CL1 * Sob.normH s' (P.w k t) := by
@@ -95,7 +96,7 @@ private theorem annN'_subset_ball : annN' ⊆ ball (0 : ℂ) 4 := fun y hy => by
   linarith
 
 set_option linter.unusedVariables false in
-/-- **`lem:transfer`** (`07_several_rings.tex:83-114`), existence of the constants. Under
+/-- **Part II Lemma 4.1 (`lem:transfer`)**, existence of the constants. Under
 (N1)–(N3), for an admissible cutoff `χ` and an integer `M_h ≥ 1`, there are `C^T_M, C^T_O` such that
 items (1)–(4) hold, with `C_M = C^T_M max(1,C_{L1})`, `C_O = C^T_O max(1,C_{L1})`, for every valid
 approximation with cutoff `χ` and every time `t ≥ 0` (`Rings.IsTransferConst`). -/
@@ -214,7 +215,7 @@ theorem transfer (χ : ℝ → ℝ) (hχ : IsAdmissibleCutoff χ) (hN : Numerica
           exact hC4.trans (le_mul_of_one_le_right hKO0 hm)
 
 set_option linter.unusedVariables false in
-/-- **`lem:transfer`(4), the identity** (`07_several_rings.tex:107-111`, proof `:229-236`). If
+/-- **`lem:transfer`(4), the identity** (Part II Lemma 4.1 (`lem:transfer`) and its proof). If
 `S_i(t) ⊂ N_i` for every `1 ≤ i < k`, then on `N'_k`, in ring-`k` units, the velocity field of
 `ω(t)1_{S_1(t)∪…∪S_{k-1}(t)}` is the sum over `i < k` of the velocity fields of
 `A_iw_i(t,·/r_i)`. -/

@@ -5,17 +5,17 @@ import NonUniqueEuler.H.Sec9.KickTrue.Real
 # Helpers for `P/Sec9/KickTrue`: the error function `err` and the bound on `Err_g`
 
 Helper file of `P/Sec9/KickTrue.lean` (`lem:kicktrue`, steps (Q1) and (Kick3),
-`09_relay.tex:1288-1372`). Pure real analysis.
+`lem:kicktrue`, Part II Lemma C.14). Pure real analysis.
 
 * `errE C₃ Cact κ σ' σ₊ η_b P ι T_pin μ σ C_ls T_g u`: the continuous part of the function `err` of the
-  proof, in active time `u = τ + T_g` (`09_relay.tex:1304-1308`), with the transient term
+  proof, in active time `u = τ + T_g` (`lem:kicktrue`, Part II Lemma C.14), with the transient term
   `2πC₃â(u)ρ̂(u)` replaced by its bound `2πC₃C(C₀)κ⟨u⟩³e^{σ'u}` (`thm:active`, "Moreover"); the full
   `err` is `errE(τ + T_g) + |q^deep(τ)|`;
 * `continuous_errE`, `errE_nonneg`;
 * `errE_integral_le`: `∫₀^{T_g} e^{x(T_g-u)} errE(u) du` is at most the sum of the six bounds of
-  `errT1_le` … `errT6_le` (`09_relay.tex:1316-1368`);
+  `errT1_le` … `errT6_le` (`lem:kicktrue`, Part II Lemma C.14);
 * `errG_split`: `Err_g = ∫₀^{T_g} e^{x(T_g-u)} errE(u) du + ∫_{-T_g}^0 e^{-xτ} g(τ) dτ` for
-  `err = errE(· + T_g) + g` (the substitution `u = τ + T_g`, `09_relay.tex:1311-1312`).
+  `err = errE(· + T_g) + g` (the substitution `u = τ + T_g`, `lem:kicktrue`, Part II Lemma C.14).
 Everything here is proved.
 -/
 
@@ -29,7 +29,7 @@ namespace Relay
 
 namespace KickTrueAux
 
-/-- **The continuous part of `err`** (`09_relay.tex:1304-1308`), in active time `u`: the `ρ̂`-term
+/-- **The continuous part of `err`** (`lem:kicktrue`, Part II Lemma C.14), in active time `u`: the `ρ̂`-term
 (bounded by `C(C₀)κ⟨u⟩³e^{σ'u}`), the `â²`-, `κ^{1/2}`- and `η_b`-terms of `cor:active-moment`, and
 the inner (`ι = 1_{k+1<n}`) and outer drift terms. -/
 def errE (C₃ Cact κ σ' σp ηb P ι Tpin μ σ Cls Tg : ℝ) (u : ℝ) : ℝ :=
@@ -58,7 +58,7 @@ theorem errE_nonneg {C₃ Cact κ σ' σp ηb P ι Tpin μ σ Cls Tg u : ℝ} (h
   have : 0 ≤ (1 + (Tpin + μ * u)) ^ 3 := pow_nonneg h1 3
   positivity
 
-/-- **The six terms of `Err_g`** (`09_relay.tex:1316-1368`): the weighted integral of `errE` over
+/-- **The six terms of `Err_g`** (`lem:kicktrue`, Part II Lemma C.14): the weighted integral of `errE` over
 `[0, T_g]` is at most the sum of the bounds of `errT1_le` … `errT6_le`. -/
 theorem errE_integral_le {x σp σ σ' κ δ₀ μ C₃ Cact P ι Cls ηb Tpin Tg γ ϑ : ℝ}
     (hκ : 0 < κ) (hκδ : κ < δ₀) (hσ : 0 < σ) (hσp : 15 / 16 * σ ≤ σp) (hσ' : 0 ≤ σ')
@@ -130,7 +130,7 @@ theorem errE_integral_le {x σp σ σ' κ δ₀ μ C₃ Cact P ι Cls ηb Tpin T
   simp only [hf1, hf2, hf3, hf4, hf5, hf6]
   linarith [b1, b2, b3, b4, b5, b6]
 
-/-- **The substitution `u = τ + T_g`** (`09_relay.tex:1311-1312`): for `err = errE(· + T_g) + g`,
+/-- **The substitution `u = τ + T_g`** (`lem:kicktrue`, Part II Lemma C.14): for `err = errE(· + T_g) + g`,
 `Err_g = ∫₀^{T_g} e^{x(T_g-u)} errE(u) du + ∫_{-T_g}^0 e^{-xτ} g(τ) dτ`. -/
 theorem errG_split {x Tg : ℝ} {E g : ℝ → ℝ} (hE : Continuous E)
     (hg : IntervalIntegrable (fun τ => Real.exp (-(x * τ)) * g τ) volume (-Tg) 0) :

@@ -7,8 +7,8 @@ import NonUniqueEuler.H.Infra.AngularFourier.Parseval.Hilbert
 /-!
 # Proof: the angular Fourier series in `L²(ℂ)` and Parseval's identity (library I-ANG)
 
-Proof of `NonUniqueEuler/I/Infra/AngularFourier/Parseval.lean` (`02_prelim.tex:33-34`,
-`04_ring.tex:178-180`).
+Proof of `NonUniqueEuler/I/Infra/AngularFourier/Parseval.lean` (Part I, Section 2.1, conventions in `sec:prelim`,
+Part I, Definition 4.3 (`def:sector-setting`) and the following mode-profile discussion).
 
 Structure.
 1. *Parseval in polar form* (`hasSum_angularSector_sq`): reduce to a strongly measurable

@@ -3,9 +3,9 @@ import NonUniqueEuler.I.Sec2.BSBasic
 import NonUniqueEuler.I.Infra.ConvMinkowski.Measurable
 
 /-!
-# Helpers for `prop:stable`, step 1a: integrability of the flux `ū v`
+# Helpers for legacy `prop:stable`, step 1a: integrability of the flux `ū v`
 
-Helper file of `P/Sec3/Stable/WeakLimit.lean` (`03_compactness.tex:764-770`).
+Helper file of `P/Sec3/Stable/WeakLimit.lean` (related current criterion proof: Part I Theorem 3.8 (`thm:criterion`)).
 
 For a.e. `t`, since `|v(t)| ≤ |K| ∗ |ω(t)|` and `|K|` is even, Tonelli's theorem and
 `lem:BS-basic`(b) give
@@ -101,7 +101,7 @@ theorem lintegral_mul_velocity_le {h : ℂ → ℝ} (hhm : AEStronglyMeasurable 
     _ = eLpNorm w 1 volume * ENNReal.ofReal (B + C / (2 * Real.pi)) := by
         rw [lintegral_mul_const' _ _ ENNReal.ofReal_ne_top, eLpNorm_one_eq_lintegral_enorm]
 
-/-- **Flux integrability** (`03_compactness.tex:764-770`): for `ω ∈ X₂(T)` and a measurable `G`
+/-- **Flux integrability** (retained legacy stability step): for `ω ∈ X₂(T)` and a measurable `G`
 with `|G| ≤ B` and `‖G(t)‖_{L¹} ≤ C` for a.e. `t`, `G v ∈ L¹((0,T) × ℝ²)`, `v = K ∗ ω`. -/
 theorem integrable_smul_velocityField {T : ℝ} {ω : ℝ → ℂ → ℝ} (hω : MemX 2 T ω)
     {G : ℝ × ℂ → ℝ} (hGm : Measurable G) {B C : ℝ} (hB : 0 ≤ B) (hC : 0 ≤ C)

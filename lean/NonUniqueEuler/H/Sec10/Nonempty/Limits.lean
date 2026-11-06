@@ -5,7 +5,7 @@ import NonUniqueEuler.Defs.Sec2.Conventions
 /-!
 # Helper for `lem:nonempty`: elementary limits at `0⁺` and at `+∞`
 
-Helper of `P/Sec10/Nonempty.lean` (`10_parameters.tex:292-375`). The proof of `lem:nonempty` uses
+Helper of `P/Sec10/Nonempty.lean` (Part II Appendix C.4, `sec:param-verification`). The proof of `lem:nonempty` uses
 only that finitely many explicit functions tend to `0`:
 * `x^γ ⟨log(1/x)⟩^N → 0`, `x^γ (α + β log(1/x))^N → 0` as `x → 0⁺` (`γ > 0`, `N ∈ ℕ`);
 * `(1 + T)^3 e^{-bT} → 0` as `T → ∞` (`b > 0`; `r_T(T) → 0` in (P3));

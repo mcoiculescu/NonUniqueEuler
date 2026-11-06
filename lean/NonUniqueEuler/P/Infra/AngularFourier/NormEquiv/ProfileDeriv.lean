@@ -3,8 +3,7 @@ import NonUniqueEuler.H.Infra.AngularFourier.NormEquiv.ProfileDeriv.Assembly
 /-!
 # Proof: first weak derivatives of a sector function `h(r) e^{iℓθ}`
 
-Proof of `I/Infra/AngularFourier/NormEquiv/ProfileDeriv.lean` (manuscript `lem:norm-equiv`,
-`04_ring.tex:843-864`, the formulas `∂₁ = cos θ ∂_r - (sin θ / r) ∂_θ`,
+Proof of `I/Infra/AngularFourier/NormEquiv/ProfileDeriv.lean` (manuscript Part I, Lemma 4.12 (`lem:norm-equiv`), proof, the formulas `∂₁ = cos θ ∂_r - (sin θ / r) ∂_θ`,
 `∂₂ = sin θ ∂_r + (cos θ / r) ∂_θ`, `∂_θ = iℓ` on sector `ℓ`).
 
 For a test function `φ` on `ℂ`, both sides of the weak-derivative identity are written in polar

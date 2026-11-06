@@ -7,16 +7,16 @@ import NonUniqueEuler.I.Infra.SectorSpace.Decomposition
 import NonUniqueEuler.I.Infra.CkNorm.Basic
 
 /-!
-# Helper for `lem:sector`(4): `L_ℓ(G)` is a bounded operator on `Y^0_ℓ`
+# Helper for Part I Lemma 4.5(4) (`lem:sector`): `L_ℓ(G)` is a bounded operator on `Y^0_ℓ`
 
-Helper file of `P/Sec4/Sector.lean` (fully proved). Manuscript `04_ring.tex:282-286`.
+Helper file of `P/Sec4/Sector.lean` (fully proved). See the proof of Part I Lemma 4.5 (`lem:sector`).
 
 * `isProfileL2_KsecFn`: for `g ∈ Y^0_ℓ` (as a profile), `k_ℓ𝒢_ℓ g ∈ Y^0_ℓ`: `k_ℓ` is continuous on
   `(0,∞)` and vanishes off `[r₁, r₂]`, and `𝒢_ℓ g` is continuous (`Prof.continuousOn_Psi`).
 * `exists_Ksec0`: the bounded operator `k_ℓ𝒢_ℓ` on `Y^0_ℓ` (linear in the profile, bounded by
   `norm_green_le`, `|𝒢_ℓ g(r)| ≤ (ρ₊/(2|ℓ|)) ‖g‖_{L²(r dr)}`). This follows the construction of
-  `H/Sec4/SemigroupConstruct/SectorOps.lean` (for every `s`, from `cor:K-bound`, which depends on
-  `lem:sector`), here for `s = 0` from part (1) only.
+  `H/Sec4/SemigroupConstruct/SectorOps.lean` (for every `s`, from Part I Corollary 4.13 (`cor:K-bound`), which depends on
+  Part I Lemma 4.5 (`lem:sector`)), here for `s = 0` from part (1) only.
 * `Lsec_zero_spec'`: the chosen `S.Lsec 0 ℓ G` acts on profiles as `L_ℓ(G)`.
 -/
 

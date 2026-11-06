@@ -9,7 +9,7 @@ import Mathlib.Analysis.InnerProductSpace.Harmonic.Basic
 # Proof: `lem:reduction`(1) (the field `h` of the other vorticity near the ring)
 
 Proof of `OneRing.reduction_field` (`I/Sec5/ReductionField.lean`, statement copied verbatim).
-Manuscript `05_single_ring.tex:102-109` (statement), `:129-184` (proof).
+Manuscript Part II Lemma 2.2 (`lem:reduction`), statement and proof.
 
 **Proof.** Fix `t ∈ [0,T]`, put `g = ω_i(t) + ω_o(t)` (`C_c^∞`, `3`-fold symmetric) and take
 `U = {a/8 < |x| < 6}`, an open neighbourhood of `N'` on which `g = 0` (the hypotheses
@@ -288,7 +288,7 @@ theorem angular_average (hc : c.Hyp T) {t : ℝ} (ht : t ∈ Icc (0 : ℝ) T) {r
 
 end RedFieldH
 
-/-- **`lem:reduction`(1)** (`05_single_ring.tex:102-109`). Under the hypotheses of
+/-- **`lem:reduction`(1)** (Part II Lemma 2.2). Under the hypotheses of
 `lem:reduction` on `[0,T]`: for every `t ∈ [0,T]` there is an open neighbourhood `U` of `N'` on
 which `h(t)` is `C^∞`, divergence free, curl free and `3`-fold symmetric, and `h(t) = ∇^⊥ψ` with a
 single-valued harmonic `ψ`; the angular averages of `h(t)·e_r` and `h(t)·e_θ` vanish on every

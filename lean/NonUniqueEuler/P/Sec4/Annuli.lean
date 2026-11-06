@@ -3,7 +3,7 @@ import NonUniqueEuler.Defs.Sec4.Ring
 /-!
 # Proof: `lem:annuli` (the chain of annuli and the radial `a/16` slack)
 
-Proof of `I/Sec4/Annuli.lean` (`04_ring.tex:111-132`). Same declarations, statements copied
+Proof of `I/Sec4/Annuli.lean` (Part II Lemma 1.4 (`lem:annuli`)). Same declarations, statements copied
 verbatim.
 
 The chain: inner radii `b, 7b/8, 3b/4, 5b/8, b/2, b/4` decrease and outer radii

@@ -8,7 +8,7 @@ import Mathlib.Analysis.Calculus.Deriv.Basic
 /-!
 # Proof: `lem:ring-facts` (the ring is admissible and gives two sector settings)
 
-Proof of `I/Sec4/RingFacts.lean`, following `04_ring.tex:70-99`.
+Proof of `I/Sec4/RingFacts.lean`, following Part I Lemma 4.2 (`lem:ring-facts`).
 
 * `exists_isAdmissibleCutoff`: the explicit cutoff `chiStd` (`I/Ring/ChiStd.lean`).
 * `ringData_order`: `norm_num` on the dyadic data.
@@ -313,7 +313,7 @@ theorem ringFacts_of_admissible {χ : ℝ → ℝ} (hχ : IsAdmissibleCutoff χ)
     rw [hmul, ringRef_ofReal (Real.exp_pos ξa), Real.log_exp]
     exact (prof_ξa_pos hχ).ne'
 
-/-- The ring in reference units is a sector setting (`04_ring.tex:345-347`, `:1160-1163`). -/
+/-- The ring in reference units is a sector setting (Part I Lemma 4.6 (`lem:evans-basic`), the two mode settings preceding Part I Equation 13 (`eq:evans-units`)). -/
 theorem ringRefSetting_valid {χ : ℝ → ℝ} (hχ : IsAdmissibleCutoff χ) :
     (ringRefSetting χ).Valid := by
   obtain ⟨h1, h2, h3, -, h5⟩ := ringRef_facts hχ
@@ -325,7 +325,7 @@ theorem ringRefSetting_valid {χ : ℝ → ℝ} (hχ : IsAdmissibleCutoff χ) :
     (by simp only [ringRefSetting]; linarith) (Real.exp_le_exp.2 hLR)
     (by simp only [ringRefSetting]; linarith)
 
-/-- The ring in ring units is a sector setting (`04_ring.tex:1160-1163`). -/
+/-- The ring in ring units is a sector setting (the two mode settings preceding Part I Equation 13 (`eq:evans-units`)). -/
 theorem ringPhiSetting_valid {χ : ℝ → ℝ} (hχ : IsAdmissibleCutoff χ) :
     (ringPhiSetting χ).Valid := by
   obtain ⟨h1, h2, h3, -, -, h5, ha0, ha1⟩ := ringFacts_of_admissible hχ

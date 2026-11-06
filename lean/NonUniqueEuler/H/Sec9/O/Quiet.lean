@@ -4,7 +4,7 @@ import NonUniqueEuler.I.Sec9.QuietRing
 /-!
 # Helpers for `P/Sec9/O`: applying `thm:quiet` to the rings `l ≤ j`
 
-`09_relay.tex:310-322`: under the hypotheses of `lem:O`, if `maj_l ≤ maj_*` on `[0, A_l t]`,
+`lem:O`, Part II Lemma C.8: under the hypotheses of `lem:O`, if `maj_l ≤ maj_*` on `[0, A_l t]`,
 then the hypotheses of `thm:quiet` hold for ring `l` on `[0, A_l t]` (`OProof.quietHyp_of`), and
 its conclusions give `S_l(s) ⊂ 𝒩₋_l ⊂ N_l` and `eq:O-Q` for `s ∈ [0, t]`
 (`OProof.pert_bound_of_quietConcl`). Also `maj_k ≥ 0` (`OProof.maj_nonneg`).
@@ -36,7 +36,7 @@ theorem annNm_subset_annN : annNm ⊆ annN := by
 theorem Nmk_subset_Nk (P : Approx) (k : ℕ) : P.Nmk k ⊆ P.Nk k :=
   fun _ hx => annNm_subset_annN hx
 
-/-- **The hypotheses of `thm:quiet` for ring `l ≤ j`** (`09_relay.tex:310-319`): under
+/-- **The hypotheses of `thm:quiet` for ring `l ≤ j`** (`lem:O`, Part II Lemma C.8): under
 `S.OHyp j τ`, for `t ∈ [0, τ/A_j]` and `1 ≤ l ≤ j`, if `maj_l(A_l s) ≤ maj_*` for `s ∈ [0,t]`, then
 `S.QuietHyp l (A_l t)`. -/
 theorem quietHyp_of (S : Standing) (hS : S.Holds) {j : ℕ} {τ : ℝ} (h : S.OHyp j τ) {t : ℝ}
@@ -64,7 +64,7 @@ theorem quietHyp_of (S : Standing) (hS : S.Holds) {j : ℕ} {τ : ℝ} (h : S.OH
     have := hmaj (τ'' / S.P.A l) (hsub τ'' hτ'')
     rwa [mul_div_cancel₀ τ'' hA.ne'] at this
 
-/-- **`S_l(s) ⊂ N_l` and `eq:O-Q`** (`09_relay.tex:319-324`) from the conclusions of `thm:quiet`
+/-- **`S_l(s) ⊂ N_l` and `eq:O-Q`** (`lem:O`, Part II Lemma C.8) from the conclusions of `thm:quiet`
 for ring `l` on `[0, A_l t]`, for `s ∈ [0,t]`. -/
 theorem pert_bound_of_quietConcl (S : Standing) (hS : S.Holds) {l : ℕ} {t : ℝ}
     (hc : S.QuietConcl l (S.P.A l * t)) {s : ℝ} (hs : s ∈ Icc 0 t) :

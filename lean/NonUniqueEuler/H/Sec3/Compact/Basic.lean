@@ -10,9 +10,9 @@ import Mathlib.Analysis.Calculus.ContDiff.Basic
 import Mathlib.Analysis.Normed.Group.Bounded
 
 /-!
-# Helpers for `prop:compact`: generic analytic lemmas
+# Helpers for legacy `prop:compact`: generic analytic lemmas
 
-Helper file of `P/Sec3/Compact.lean` (`prop:compact`, `03_compactness.tex:251-340`).
+Helper file of `P/Sec3/Compact.lean` (legacy `prop:compact`, the compactness argument in the proof of Part I Theorem 3.8 (`thm:criterion`)).
 
 * `abs_integral_mul_le`: Cauchy–Schwarz `|∫ f g| ≤ ‖f‖₂ ‖g‖₂` (real functions on `ℂ`).
 * `tendsto_integral_mul_of_weak_strong`: weak–strong pairing, `fₙ ⇀ f` bounded in `L²`,

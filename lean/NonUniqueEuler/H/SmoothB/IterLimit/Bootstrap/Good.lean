@@ -3,9 +3,9 @@ import NonUniqueEuler.Defs.SmoothB.Iteration
 import Mathlib.Analysis.Calculus.ContDiff.Operations
 
 /-!
-# Helper for `prop:iter-limit`, step 5: space–time families with `C^n` spatial derivatives
+# Helper for formal decomposition of `prop:iter-limit`, step 5: space–time families with `C^n` spatial derivatives
 
-Helper of `P/SmoothB/IterLimit/Bootstrap.lean` (`B_global_smooth.tex:449-472`). The class
+Helper of `P/SmoothB/IterLimit/Bootstrap.lean` (Part II, Proposition B.10 (`prop:iter-limit`)). The class
 `Good n f` (a stand-in for the manuscript's classes `𝒞^l(T)`, without the time derivatives):
 every slice `f(t, ·)` is `C^∞` and every spatial derivative `(t, x) ↦ ∂_x^γ f(t, x)` is `C^n` on
 `ℝ × ℝ²`. It is closed under sums (`Good.add`), real-linear maps (`Good.clm`), spatial

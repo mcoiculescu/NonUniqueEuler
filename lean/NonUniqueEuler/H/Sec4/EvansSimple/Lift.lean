@@ -4,10 +4,11 @@ import NonUniqueEuler.I.Infra.SobolevOneD.Basic
 import Mathlib.Analysis.Calculus.IteratedDeriv.Lemmas
 
 /-!
-# Helper for `thm:evans-simple`(3): lifting a smooth profile to `Y^s_ℓ`; the converse of (3)
+# Helper for the retained generalized-eigenvector extension: lifting and the converse
 
 Helper of `P/Sec4/EvansSimple.lean` (fully proved). Namespace `NonUniqueEuler.EvansSimpleAux`.
-Manuscript `04_ring.tex:536-563`.
+These results retain the earlier generalized-eigenvector extension. The current
+Part I Theorem 4.8 (`thm:evans-simple`) states only the simple-zero conclusions (1) and (2).
 
 * `memLp_Ioi_of_continuousOn_Icc`, `memH1On_of_smooth_supported`: a profile smooth on `(0,∞)`
   and vanishing off `[a, b] ⊂ (0,∞)` lies in `H^s((0,∞))`;
@@ -16,8 +17,8 @@ Manuscript `04_ring.tex:536-563`.
   `L_ℓ(G) h - λ_* h = g_*` in `Y^s_ℓ`;
 * `J_eq_zero_of_genEigen`: conversely, `(L_ℓ - λ_*) g₁ = g_*` in `Y^0_ℓ` forces `J = 0`: apply
   the (unnormalized) functional `g ↦ ∫ g_ℓ ψ_* M_* r dr`, which annihilates the range of
-  `L_ℓ - λ_*` (`integral_Lsec_eq`) and takes the value `J` at `g_*` (restructured: the manuscript
-  argues with the growth of the variation-of-constants solution, `04_ring.tex:544-551`).
+  `L_ℓ - λ_*` (`integral_Lsec_eq`) and takes the value `J` at `g_*`. This replaces the
+  earlier manuscript argument using growth of the variation-of-constants solution.
 -/
 
 noncomputable section
@@ -65,7 +66,7 @@ theorem memH1On_of_smooth_supported (s : ℕ) {g : ℝ → ℂ} (hg : ContDiffOn
     rw [hev.iteratedDeriv_eq j, iteratedDeriv_const]
     split_ifs <;> rfl
 
-/-- Lifting the generalized eigenprofile to `Y^s_ℓ` (`thm:evans-simple`(3)). -/
+/-- Lifting the generalized eigenprofile to `Y^s_ℓ` (the legacy generalized-eigenvector extension). -/
 theorem exists_Ysec_genEigen (S : SectorSetting) (hS : S.Valid) (ℓ : ℕ) (hℓ : 1 ≤ ℓ) {z : ℂ}
     (hz : 0 < z.re) (G : ℝ) (hE : S.evans ℓ z G = 0) {g₁ : ℝ → ℂ}
     (hg₁ : ContDiffOn ℝ ∞ g₁ (Ioi 0)) (hsupp : ∀ r : ℝ, 0 < r → r ∉ Icc S.r₁ S.r₂ → g₁ r = 0)
@@ -95,7 +96,7 @@ theorem exists_Ysec_genEigen (S : SectorSetting) (hS : S.Valid) (ℓ : ℕ) (h�
   simp only [ofProfile]
   ring
 
-/-- `thm:evans-simple`(3), converse: `(L_ℓ - λ_*) g₁ = g_*` in `Y^0_ℓ` forces `J = 0`. -/
+/-- The retained generalized-eigenvector extension, converse: `(L_ℓ - λ_*) g₁ = g_*` in `Y^0_ℓ` forces `J = 0`. -/
 theorem J_eq_zero_of_genEigen (S : SectorSetting) (hS : S.Valid) (ℓ : ℕ) (hℓ : 1 ≤ ℓ) {z : ℂ}
     (hz : 0 < z.re) (G : ℝ) (hE : S.evans ℓ z G = 0) (s : ℕ) (h : Ysec s S.Nstar ℓ)
     (hh : S.Lsec s ℓ G h - z • h = S.gStarY s ℓ z G) : S.J ℓ z G = 0 := by

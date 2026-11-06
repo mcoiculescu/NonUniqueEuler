@@ -4,9 +4,11 @@ import NonUniqueEuler.Defs.Sec11.Bootstrap
 import NonUniqueEuler.Defs.Sec11.Explicit
 
 /-!
-# Section 11 definitions (all)
+# Bootstrap and conclusion definitions (legacy `Sec11` imports)
 
-Imports `def:stop` (`Stop.lean`), `def:BA` and the
-bundles of `lem:geometry`, `prop:bootstrap` (`Bootstrap.lean`), and `thm:main-explicit` with the
-assembly of `prop:reduction` (`Explicit.lean`); through them, Sections 3–10 and the statement layer.
+Imports the stopping time from Part II Definition 6.1 (`def:stop`, `Stop.lean`), the
+bootstrap bounds of §6 and Lemma C.17 (`lem:geometry`, `Bootstrap.lean`), and the bundles
+used for Proposition 8.1 (`prop:bootstrap`) and Proposition 1.2 (`prop:reduction`,
+`Explicit.lean`). The latter proof is in §8. `MainExplicit` and the stronger all-ring
+`BootConcl` retain historical decompositions, as their defining files explain.
 -/

@@ -5,7 +5,7 @@ import NonUniqueEuler.H.SmoothB.IterCauchy.Induction
 /-!
 # Proof of `lem:iter-cauchy` (the iterates are Cauchy in `L²`)
 
-Proof of `I/SmoothB/IterCauchy.lean` (`B_global_smooth.tex:353-379`). The steps are in the
+Proof of `I/SmoothB/IterCauchy.lean` (Part II, Lemma B.9 (`lem:iter-cauchy`)). The steps are in the
 helpers `H/SmoothB/IterCauchy/*`:
 * `Basic`: support, smoothness and integrability of the iterates (`lem:iterates`), linearity of
   the Biot–Savart integral;

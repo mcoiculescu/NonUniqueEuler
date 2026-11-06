@@ -11,7 +11,7 @@ import Mathlib.MeasureTheory.Function.LocallyIntegrable
 /-!
 # Helper for `P/SmoothB/SmoothUnique`: the energy `t ↦ ∫ u(t)²` and a Grönwall argument
 
-Generic calculus used in the proof of thm:smooth(5) (`B_global_smooth.tex:494-513`):
+Generic calculus used in the proof of thm:smooth(5) (Part II, §B.5, proof of Theorem 1.8 (`thm:smooth`)):
 
 * `eq_zero_of_abs_deriv_le_mul`: a nonnegative function `E`, continuous on `[a, b]`,
   differentiable on `(a, b)` with `|E'| ≤ C E`, vanishing at one point `c ∈ [a, b]`, vanishes on

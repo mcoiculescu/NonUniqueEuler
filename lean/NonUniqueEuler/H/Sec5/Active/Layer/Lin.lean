@@ -7,7 +7,7 @@ import NonUniqueEuler.H.Sec5.Active.Layer.Bridge
 Helper of `P/Sec5/Active/Layer.lean` (fully proved modulo the interface files imported by
 `H/Sec5/Active/Layer/Bridge.lean`). Namespace `NonUniqueEuler.OneRing.LayerH`.
 
-* `wlin0_norm_le` (`05_single_ring.tex:979-981`, "Proposition `prop:semigroup` with
+* `wlin0_norm_le` (Part II Theorem 2.12, "Proposition `prop:semigroup` with
   Lemma `lem:bilinear` gives `‖wlin(u)‖_{H^{M-1}} ≤ C^lay_3 κ`"): for a constant `C_S` of
   `prop:semigroup` at level `k`, `w₀ ∈ X^k`, `h` symmetric with `‖h(v)‖_{C^k(N')} ≤ B` on `[0,ū]`
   and `e^{σ(G)u} ≤ E`,
@@ -22,7 +22,7 @@ namespace NonUniqueEuler.OneRing.LayerH
 
 open RingData
 
-/-- **The size of the linear response** (`05_single_ring.tex:979-981`):
+/-- **The size of the linear response** (Part II Theorem 2.12 (`thm:active`)):
 `‖e^{uL}w₀ + ∫₀ᵘe^{(u-v)L}F(v)dv‖_{H^k} ≤ C_S E(‖w₀‖_{H^k} + u C_∇(k) B)`. -/
 theorem wlin0_norm_le (χ : ℝ → ℝ) (hχ : IsAdmissibleCutoff χ) (hN : NumericalHypothesis χ)
     {k : ℕ} (hk : 2 ≤ k) {σ' CS : ℝ} (hCS : IsSemigroupConst χ k σ' CS) (hCS0 : 0 ≤ CS)

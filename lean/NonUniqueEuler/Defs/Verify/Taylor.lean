@@ -5,7 +5,7 @@ import Mathlib.Algebra.BigOperators.Group.Finset.Basic
 /-!
 # Taylor coefficients (definitions)
 
-Manuscript: the proof of Proposition A.3 (`prop:enclosure`, `A_verification.tex:340-345`):
+Manuscript: the proof of Part II Proposition A.3 (`prop:enclosure`):
 "for `ξ ∈ ℝ` and a smooth function `F` we write `F_k(ξ) = F^{(k)}(ξ)/k!`".
 
 * `AppA.taylorCoeff f k x = (k!)⁻¹ • f^{(k)}(x)` for `f : ℝ → F` (`F = ℝ` or `ℂ`, or any normed

@@ -6,9 +6,11 @@ import Mathlib.Analysis.Calculus.Deriv.ZPow
 import Mathlib.Analysis.Calculus.FDeriv.Mul
 
 /-!
-# Helper for `lem:adjoint`(4): the sector-`ℓ` part of `-h·∇ω̄` for the multipole field `h`
+# Helper: the sector-`ℓ` part of `-h·∇ω̄` for the multipole field `h`
 
-Helper of `P/Sec4/Adjoint.lean` (`04_ring.tex:640-644`). Write `c = -m/(2ℓ)`. Then
+Helper of `P/Sec4/Adjoint.lean`. This retains the general-mode calculation whose
+mode-3 case is discussed before Part I Definition 4.20 (`def:eigendata`).
+Write `c = -m/(2ℓ)`. Then
 * the stream function is `2 Re(c̄ x^{-ℓ})` (`multipoleStream_eq`; `r^{-ℓ}e^{iℓθ} = conj(x)^{-ℓ}`);
 * its gradient is computed from the complex derivative of `c̄ x^{-ℓ}`, and
   `h = ∇^⊥ψ = 2i conj(F')` with `F' = c̄(-ℓ)x^{-ℓ-1}` (`multipoleField_eq`);
@@ -169,7 +171,8 @@ theorem forcing_integrand (S : SectorSetting) (hS : S.Valid) (ℓ : ℕ) (hℓ :
   field_simp
   ring
 
-/-- `lem:adjoint`(4): the sector-`ℓ` profile of `-h·∇ω̄` is `m b(r)` (`r > 0`). -/
+/-- The sector-`ℓ` profile of `-h·∇ω̄` is `m b(r)` (`r > 0`); the mode-3 case
+is discussed before Part I Definition 4.20 (`def:eigendata`). -/
 theorem angularSector_forcing (S : SectorSetting) (hS : S.Valid) (ℓ : ℕ) (hℓ : 1 ≤ ℓ) (m : ℂ)
     {r : ℝ} (hr : 0 < r) :
     Polar.angularSector (fun x => -((fderiv ℝ S.om x (multipoleField ℓ m x) : ℝ) : ℂ)) ℓ r =

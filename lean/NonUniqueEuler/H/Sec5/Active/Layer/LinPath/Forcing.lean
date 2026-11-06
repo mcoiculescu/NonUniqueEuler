@@ -226,7 +226,7 @@ theorem isReal_neg_hGradPhi (χ : ℝ → ℝ) (hχ : IsAdmissibleCutoff χ) (hf
 
 /-! ### The forcing path -/
 
-/-- **The forcing path** (`05_single_ring.tex:601-604`): for `h` continuous on `[0,ū]` into
+/-- **The forcing path** (Part II Lemma 2.9 (`lem:running`)): for `h` continuous on `[0,ū]` into
 `C^s(N')` and `3`-fold symmetric, `v ↦ F(v) = -h(v)·∇Φ` is continuous on `[0,ū]` into `Y^s(N)`
 (through `toY`), and every `toY s annN (F v)` lies in `X^s`, is real, and has function `F v`. -/
 theorem forcing_path (χ : ℝ → ℝ) (hχ : IsAdmissibleCutoff χ) (hN : NumericalHypothesis χ)

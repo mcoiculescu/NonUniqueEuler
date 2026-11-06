@@ -9,9 +9,11 @@ import NonUniqueEuler.I.Infra.ODE.Uniqueness
 import NonUniqueEuler.I.Infra.ODE.Wronskian
 
 /-!
-# Proof: the generalized eigenprofile `g₁` when `J = 0` (step of `thm:evans-simple`(3))
+# Proof: the generalized eigenprofile `g₁` when `J = 0`
 
-Proof of `I/Sec4/EvansSimple/GenEigen.lean` (`04_ring.tex:536-555`).
+This retains `I/Sec4/EvansSimple/GenEigen.lean`, formerly part (3) of `thm:evans-simple`.
+The current Part I Theorem 4.8 has only parts (1) and (2); the construction here is an
+additional formal result.
 
 Let `F_* = -e^{2ξ} M_*(e^ξ) g_*(e^ξ)` (`S.Fres ℓ z G (-g_*)`), smooth on `ℝ` and vanishing when
 `e^ξ ∉ [r₁,r₂]`. Let `ψ` be the global solution of `ψ'' = V_ℓψ + F_*` with
@@ -22,7 +24,7 @@ Let `F_* = -e^{2ξ} M_*(e^ξ) g_*(e^ξ)` (`S.Fres ℓ z G (-g_*)`), smooth on `�
 `W(ψ_*, ψ) = 2ℓB₁A` there, so `A = 0`. Then `g₁ = M_*(-g_* + k_ℓ ψ(log r))` satisfies
 `𝒢_ℓ g₁ = ψ(log r)` (`green_eq_of_bvp`), whence `L_ℓ g₁ - λ_* g₁ = g_*` pointwise.
 
-**Deviation.** The manuscript writes `ψ` by the variation-of-constants formula with a second
+**Deviation from the earlier generalized-eigenvector proof.** That proof writes `ψ` by the variation-of-constants formula with a second
 solution `φ₂`; here `ψ` is the solution with zero data at `ξ₁ - 1`, which is the same function
 (both solve the equation and vanish to the left of `ξ₁`), and the condition at `+∞` is read off
 from the Wronskian of `ψ_*` and `ψ` instead of the coefficient of `φ₂`.
@@ -40,7 +42,7 @@ namespace GenEigenAux
 open SectorSetting LinODE
 
 /-- At a zero of `E_ℓ`: on `[ξ₂, ∞)`, `ψ_* = B₁ e^{-ℓξ}` and `ψ_*' = -ℓ B₁ e^{-ℓξ}` with
-`B₁ ≠ 0` (`04_ring.tex:544-545`). -/
+`B₁ ≠ 0` (the retained generalized-eigenvector argument (not in current Part I Theorem 4.8 (`thm:evans-simple`))). -/
 theorem psi_right (S : SectorSetting) (hS : S.Valid) (ℓ : ℕ) (hℓ : 1 ≤ ℓ) (z : ℂ)
     (hz : 0 < z.re) (G : ℝ) (hE : S.evans ℓ z G = 0) :
     ∃ B₁ : ℂ, B₁ ≠ 0 ∧ ∀ ξ : ℝ, S.ξ₂ ≤ ξ →
@@ -85,7 +87,7 @@ theorem psi_right (S : SectorSetting) (hS : S.Valid) (ℓ : ℕ) (hℓ : 1 ≤ �
     · rw [h.2]
       ring
 
-/-- **The boundary value problem at `J = 0`** (`04_ring.tex:536-551`): there is a smooth
+/-- **The boundary value problem at `J = 0`** (the retained generalized-eigenvector argument (not in current Part I Theorem 4.8 (`thm:evans-simple`))): there is a smooth
 solution `ψ` of `ψ'' = V_ℓψ + F_*` on `ℝ` that vanishes on `(-∞, ξ₁ - 1]` and is a multiple of
 `e^{-ℓξ}` on `[ξ₂ + 1, ∞)`. -/
 theorem exists_bvp (S : SectorSetting) (hS : S.Valid) (ℓ : ℕ) (hℓ : 1 ≤ ℓ) (z : ℂ)
@@ -186,7 +188,7 @@ end GenEigenAux
 
 namespace SectorSetting
 
-/-- `thm:evans-simple`(3), first half, on profiles (`04_ring.tex:536-555`): if `J = 0`, there is
+/-- the retained generalized-eigenvector statement (former part (3) of `thm:evans-simple`), first half, on profiles (the retained generalized-eigenvector argument (not in current Part I Theorem 4.8 (`thm:evans-simple`))): if `J = 0`, there is
 a smooth profile `g₁` supported in `[r₁, r₂]` with `L_ℓ(G) g₁ - λ_* g₁ = g_*` on `(0,∞)`. -/
 theorem evansSimple_genEigen (S : SectorSetting) (hS : S.Valid) (ℓ : ℕ) (hℓ : 1 ≤ ℓ) (z : ℂ)
     (hz : 0 < z.re) (G : ℝ) (hE : S.evans ℓ z G = 0) (hJ : S.J ℓ z G = 0) :

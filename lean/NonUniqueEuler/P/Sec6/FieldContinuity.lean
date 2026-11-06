@@ -6,7 +6,7 @@ import NonUniqueEuler.H.Sec6.FieldContinuity.Ext
 # Proof: continuity in time of the fields, of their norms and of the moments
 
 Proof of the interface `NonUniqueEuler/I/Sec6/FieldContinuity.lean` (the paragraph after
-`lem:regions-basic`, `06_datum.tex:294-321`, and `08_kick.tex:125-127`).
+`lem:regions-basic`, the continuity discussion after Part II Lemma 3.6 (`lem:regions-basic`), and Part II Lemma 5.1 (`lem:coupling`)).
 
 **Route.** By `eq:omega-ge` (`regions_basic_three`), for `t ≥ 0`,
 `ω_{≥k+1}(t) = g_in ∘ Φ_t⁻¹` and `ω(t)1_{S_1(t)∪…∪S_{k-1}(t)} = g_out ∘ Φ_t⁻¹` with
@@ -41,7 +41,7 @@ private theorem Icc_mul_subset_Ici {A t₁ t₂ : ℝ} (hA : 0 < A) (h0 : 0 ≤ 
     Icc (A * t₁) (A * t₂) ⊆ Ici 0 :=
   fun _ hτ => le_trans (mul_nonneg hA.le h0) hτ.1
 
-/-- **Continuity of the inner field** (`06_datum.tex:294-315`): if `D_{k+1}(t) ⊂ B_{a r_k/8}` for
+/-- **Continuity of the inner field** (the continuity discussion after Part II Lemma 3.6 (`lem:regions-basic`)): if `D_{k+1}(t) ⊂ B_{a r_k/8}` for
 every `t ∈ [t₁, t₂] ⊂ [0, ∞)`, then for every integer `M ≥ 0`, `τ ↦ h^in_k(τ)` is continuous from
 `[A_k t₁, A_k t₂]` into `C^M(N')`. -/
 theorem hIn_continuous (P : Approx) (hP : P.Valid) (hN : NumericalHypothesis P.χ) {k : ℕ}
@@ -50,7 +50,7 @@ theorem hIn_continuous (P : Approx) (hP : P.Valid) (hN : NumericalHypothesis P.�
     OneRing.CkPathOn M annN' (Icc (P.A k * t₁) (P.A k * t₂)) (P.hIn k) :=
   ckPathOn_of_ext (Icc_mul_subset_Ici (hP.A_pos k) h0) (hIn_ext hP hN hk hkn)
 
-/-- **Continuity of the outer field** (`06_datum.tex:315-318`): if the rings `i < k` lie outside
+/-- **Continuity of the outer field** (the continuity discussion after Part II Lemma 3.6 (`lem:regions-basic`)): if the rings `i < k` lie outside
 `B_{6r_k}` at every `t ∈ [t₁, t₂] ⊂ [0, ∞)`, then for every integer `M ≥ 0`, `τ ↦ h^out_k(τ)` is
 continuous from `[A_k t₁, A_k t₂]` into `C^M(N')`. -/
 theorem hOut_continuous (P : Approx) (hP : P.Valid) (hN : NumericalHypothesis P.χ) {k : ℕ}
@@ -59,7 +59,7 @@ theorem hOut_continuous (P : Approx) (hP : P.Valid) (hN : NumericalHypothesis P.
     OneRing.CkPathOn M annN' (Icc (P.A k * t₁) (P.A k * t₂)) (P.hOut k) :=
   ckPathOn_of_ext (Icc_mul_subset_Ici (hP.A_pos k) h0) (hOut_ext hP hN hk hkn)
 
-/-- **Continuity of the external field** `h_k = h^in_k + h^out_k` (`06_datum.tex:294-318`): if both
+/-- **Continuity of the external field** `h_k = h^in_k + h^out_k` (the continuity discussion after Part II Lemma 3.6 (`lem:regions-basic`)): if both
 fields are defined at every `t ∈ [t₁, t₂] ⊂ [0, ∞)`, then for every integer `M ≥ 0`,
 `τ ↦ h_k(τ)` is continuous from `[A_k t₁, A_k t₂]` into `C^M(N')`. -/
 theorem hField_continuous (P : Approx) (hP : P.Valid) (hN : NumericalHypothesis P.χ) {k : ℕ}
@@ -79,7 +79,7 @@ private theorem eta_continuousOn_aux (P : Approx) (hP : P.Valid) (hN : Numerical
     continuousOn_normCk_of_ext (M := Mh) hJ (hOut_ext hP hN hk hkn)
   exact ⟨h1, h2, h1.add h2⟩
 
-/-- **Continuity of the field norms** (`06_datum.tex:319-320`): `η^in_k`, `η^out_k` and `η_k` are
+/-- **Continuity of the field norms** (the continuity discussion after Part II Lemma 3.6 (`lem:regions-basic`)): `η^in_k`, `η^out_k` and `η_k` are
 continuous on `[A_k t₁, A_k t₂]` whenever the corresponding fields are defined on `[t₁, t₂]`. -/
 theorem eta_continuous (P : Approx) (hP : P.Valid) (hN : NumericalHypothesis P.χ) {k : ℕ}
     (hk : 1 ≤ k) (hkn : k ≤ P.n) {t₁ t₂ : ℝ} (h0 : 0 ≤ t₁) (Mh : ℕ) :
@@ -93,7 +93,7 @@ theorem eta_continuous (P : Approx) (hP : P.Valid) (hN : NumericalHypothesis P.�
     eta_continuousOn_aux P hP hN hk hkn Mh (Icc_mul_subset_Ici (t₂ := t₂) (hP.A_pos k) h0)
   exact ⟨fun _ => h1, fun _ => h2, fun _ => h3⟩
 
-/-- **Continuity of the Duhamel majorants** (`06_datum.tex:202-209`, `:319-321`): if `h_k` is
+/-- **Continuity of the Duhamel majorants** (Part II Definition 3.5 (`def:regions`), the continuity discussion after Part II Lemma 3.6 (`lem:regions-basic`)): if `h_k` is
 defined on `[0, t₂]`, then `maj_k` is continuous on `[0, A_k t₂]`; if `h^in_k` is defined on
 `[0, t₂]`, then `maj^in_k` is continuous on `[0, A_k t₂]`. -/
 theorem maj_continuous (P : Approx) (hP : P.Valid) (hN : NumericalHypothesis P.χ) {k : ℕ}
@@ -107,7 +107,7 @@ theorem maj_continuous (P : Approx) (hP : P.Valid) (hN : NumericalHypothesis P.�
     eta_continuousOn_aux P hP hN hk hkn Mh (J := Icc 0 (P.A k * t₂)) fun _ hτ => hτ.1
   exact ⟨fun _ => maj_continuousOn hB h3, fun _ => maj_continuousOn hB h1⟩
 
-/-- **Continuity of the normalized moment** (`08_kick.tex:125-127`): for `1 ≤ k < n`,
+/-- **Continuity of the normalized moment** (Part II Lemma 5.1 (`lem:coupling`)): for `1 ≤ k < n`,
 `t ↦ q_{k+1}(t)` is continuous on `[0, ∞)`. -/
 theorem q_continuous (P : Approx) (hP : P.Valid) (hN : NumericalHypothesis P.χ) {k : ℕ}
     (hk : 1 ≤ k) (hkn : k < P.n) :

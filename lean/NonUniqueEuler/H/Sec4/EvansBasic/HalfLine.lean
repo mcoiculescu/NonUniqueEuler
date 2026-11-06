@@ -7,21 +7,22 @@ import Mathlib.Analysis.SpecialFunctions.ExpDeriv
 import Mathlib.Topology.Order.DenselyOrdered
 
 /-!
-# Helpers for `lem:evans-basic`: solutions of `ψ'' = V ψ` where `V = ℓ²` on half-lines
+# Helpers for Part I Lemma 4.6 (`lem:evans-basic`): solutions of `ψ'' = V ψ` where `V = ℓ²` on half-lines
 
-Helper file of `P/Sec4/EvansBasic.lean` (`04_ring.tex:304-344`). Everything is stated for a
+Helper file of `P/Sec4/EvansBasic.lean` (proof of Part I Lemma 4.6 (`lem:evans-basic`)). Everything is stated for a
 continuous coefficient `V : ℝ → ℂ` and an integer `ℓ ≥ 1`:
 
 * `eq_of_le_of_lt`, `eq_of_ge_of_gt`: a continuous `V` equal to a constant on `(-∞, a)`
   (resp. `(b, ∞)`) equals it on `(-∞, a]` (resp. `[b, ∞)`);
 * `isSolOn_ofReal_exp`: `e^{f(ξ)}` with `f' = c` solves `ψ'' = c² ψ`;
 * `sol_left`: on a left half-line where `V = ℓ²`, the solution normalized by `(1, ℓ)` at `ξ₀`
-  is `e^{ℓ(ξ-ξ₀)}` (`04_ring.tex:305-306`);
+  is `e^{ℓ(ξ-ξ₀)}` (proof of Part I Lemma 4.6 (`lem:evans-basic`));
 * `right_coef`: on a right half-line where `V = ℓ²`, `ψ = A e^{ℓξ} + B e^{-ℓξ}` and
-  `e^{-ℓξ}(ψ' + ℓψ) = 2ℓA` (`04_ring.tex:325-333`);
-* `evans_val_indep`: the number `e^{-ℓ(ξ₂-ξ₁)}(ψ'(ξ₂) + ℓψ(ξ₂))` of `def:evans` does not depend
+  `e^{-ℓξ}(ψ' + ℓψ) = 2ℓA` (an auxiliary calculation for Part I Lemma 4.6 (`lem:evans-basic`));
+* `evans_val_indep`: the number `e^{-ℓ(ξ₂-ξ₁)}(ψ'(ξ₂) + ℓψ(ξ₂))` of Part I Definition 4.4 (`def:evans`) does not depend
   on the pair `(ξ₁, ξ₂)` as long as `V = ℓ²` on `(-∞, ξ₁]` and on `[ξ₂, ∞)`
-  (`lem:evans-basic`(2), `04_ring.tex:321-344`).
+  (an auxiliary fact about Part I Definition 4.4 (`def:evans`), not a numbered claim in
+  the current Part I Lemma 4.6 (`lem:evans-basic`)).
 
 All lemmas are fully proved.
 -/
@@ -81,7 +82,7 @@ theorem hasDerivAt_neg_mul (ℓ ξ : ℝ) : HasDerivAt (fun ξ : ℝ => -(ℓ * 
   exact h
 
 /-- On a left half-line `(-∞, a]` where `V = ℓ²`, the global solution normalized by `(1, ℓ)` at
-`ξ₀ ≤ a` is `e^{ℓ(ξ-ξ₀)}` (`04_ring.tex:305-306`). -/
+`ξ₀ ≤ a` is `e^{ℓ(ξ-ξ₀)}` (proof of Part I Lemma 4.6 (`lem:evans-basic`)). -/
 theorem sol_left (hV : Continuous V) (ℓ : ℕ) {a ξ₀ : ℝ} (hξ₀ : ξ₀ ≤ a)
     (hVa : ∀ ξ, ξ ≤ a → V ξ = (ℓ : ℂ) ^ 2) :
     ∀ ξ, ξ ≤ a → (sol V ξ₀ (1, (ℓ : ℂ)) ξ).1 = ((Real.exp (ℓ * (ξ - ξ₀)) : ℝ) : ℂ) ∧
@@ -97,7 +98,8 @@ theorem sol_left (hV : Continuous V) (ℓ : ℕ) {a ξ₀ : ℝ} (hξ₀ : ξ₀
   simpa using this
 
 /-- On a right half-line `[b, ∞)` where `V = ℓ²` (`ℓ ≠ 0`), every solution is
-`A e^{ℓξ} + B e^{-ℓξ}`, and `e^{-ℓξ}(ψ' + ℓψ) = 2ℓA` there (`04_ring.tex:325-333`). -/
+`A e^{ℓξ} + B e^{-ℓξ}`, and `e^{-ℓξ}(ψ' + ℓψ) = 2ℓA` there (an auxiliary calculation
+for Part I Lemma 4.6 (`lem:evans-basic`)). -/
 theorem right_coef {ℓ : ℕ} (hℓ : ℓ ≠ 0) {b : ℝ} (hVb : ∀ ξ, b ≤ ξ → V ξ = (ℓ : ℂ) ^ 2)
     {ψ ψ' : ℝ → ℂ} (h : IsSolOn V (Ici b) ψ ψ') :
     ∃ A B : ℂ, ∀ ξ, b ≤ ξ →
@@ -121,7 +123,8 @@ theorem right_coef {ℓ : ℕ} (hℓ : ℓ ≠ 0) {b : ℝ} (hVb : ∀ ξ, b ≤
   rw [h1, h2]
   linear_combination (2 * (ℓ : ℂ) * A) * e3
 
-/-- **Independence of the normalization points** (`lem:evans-basic`(2), `04_ring.tex:321-344`):
+/-- **Independence of the normalization points** (an auxiliary fact about Part I Definition 4.4 (`def:evans`), not a numbered claim in
+  the current Part I Lemma 4.6 (`lem:evans-basic`)):
 if `V = ℓ²` on `(-∞, a₁]`, `(-∞, a₂]`, `[b₁, ∞)` and `[b₂, ∞)`, the numbers
 `e^{-ℓ(b_i-a_i)}(ψ'(b_i) + ℓψ(b_i))`, `ψ` the solution normalized by `(1, ℓ)` at `a_i`, agree. -/
 theorem evans_val_indep (hV : Continuous V) {ℓ : ℕ} (hℓ : ℓ ≠ 0) {a₁ a₂ b₁ b₂ : ℝ}

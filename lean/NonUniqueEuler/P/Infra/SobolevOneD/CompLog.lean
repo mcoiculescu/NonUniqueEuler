@@ -6,8 +6,9 @@ import NonUniqueEuler.H.Infra.SobolevOneD.CompLog.Rev
 /-!
 # Proof: `u ∈ H^m(ℝ)` gives `u ∘ log ∈ H^m((a, b))` for `0 < a` (library I-SOB1)
 
-Proof of `NonUniqueEuler/I/Infra/SobolevOneD/CompLog.lean` (used by `lem:elliptic`,
-`04_ring.tex:867-898`).
+Proof of `NonUniqueEuler/I/Infra/SobolevOneD/CompLog.lean` (the elliptic-estimate part
+of the proof of Part I, Corollary 4.13, `cor:K-bound`; Lean retains the former
+separate `lem:elliptic` decomposition).
 
 * Weak derivatives (`H/.../CompLog/Rev.lean`): with `U_p` the weak derivatives of `u` on `ℝ`
   (`CompLogH.exists_seq`), the iterated weak chain rule

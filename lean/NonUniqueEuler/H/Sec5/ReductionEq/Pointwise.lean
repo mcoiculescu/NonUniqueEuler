@@ -9,7 +9,7 @@ Helper of `P/Sec5/ReductionEq.lean`. For a real perturbation `w_R` (complexified
 classical ones, the right side of `eq:ring`,
 `ringRHS χ G h W x = L(G)W + B(W,W) - h·∇W - h·∇Φ`, is the classical expression
 `-(Ω(|x|;G) ∂_θ w_R + (K_BS*w_R)·∇Φ + (K_BS*w_R)·∇w_R + h·∇w_R + h·∇Φ)(x)`
-(`ringRHS_eq_classical`; `05_single_ring.tex:211-215`). Also: `x^⊥·∇Φ = ∂_θ Φ = 0` for a radial
+(`ringRHS_eq_classical`; Part II Lemma 2.2). Also: `x^⊥·∇Φ = ∂_θ Φ = 0` for a radial
 `Φ` (`fderiv_mul_I_eq_zero_of_radial`), and real-valued functions have real directional
 derivatives (`fderiv_ofReal_apply`).
 -/
@@ -103,7 +103,7 @@ theorem partialD_zero_one (f : ℂ → ℂ) (x : ℂ) :
     Sob.partialD (0, 1) f x = fderiv ℝ f x Complex.I := by
   simp [Sob.partialD, Sob.iterDirDeriv, Sob.pdList, Sob.dirDeriv]
 
-/-- **The right side of `eq:ring` at a point, classically** (`05_single_ring.tex:211-215`). For
+/-- **The right side of `eq:ring` at a point, classically** (Part II Lemma 2.2 (`lem:reduction`)). For
 a real `w_R` and a point `x` at which the weak first derivatives of `W = (w_R : ℂ)` and of `Φ`
 are the classical ones and the Biot–Savart integral of `w_R` converges absolutely,
 `L(G)W + B(W,W) - h·∇W - h·∇Φ = -(Ω ∂_θ w_R + (K_BS*w_R)·∇Φ + (K_BS*w_R)·∇w_R + h·∇w_R + h·∇Φ)`. -/

@@ -6,7 +6,7 @@ import Mathlib.Analysis.Complex.Basic
 /-!
 # Proof: the array norm of derivatives versus the operator norm (library I-CK)
 
-Proof of `I/Infra/CkNorm/ArrayNorm.lean`. The manuscript's `|∇^q h(x)|` (`02_prelim.tex:72-75`)
+Proof of `I/Infra/CkNorm/ArrayNorm.lean`. The manuscript's `|∇^q h(x)|` (Part I, Section 2.1, conventions in `sec:prelim`)
 is the Euclidean norm of the array of the `2^q` entries `D^q h x (e_{i 1}, …, e_{i q})`,
 `e₀ = 1`, `e₁ = I`. We prove, for any continuous `q`-multilinear map `T` on `ℂ = ℝ²`,
 `‖T‖ ≤ (∑_i ‖T e_i‖²)^{1/2} ≤ 2^{q/2} ‖T‖`, and apply it to `T = D^q h x`.

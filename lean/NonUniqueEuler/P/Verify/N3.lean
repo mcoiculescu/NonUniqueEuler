@@ -6,8 +6,7 @@ import Mathlib.Analysis.Complex.ExponentialBounds
 /-!
 # Proof: (N3) holds
 
-Proof of `NonUniqueEuler/I/Verify/N3.lean`: `prop:N3` (`A_verification.tex:654-683`,
-Proposition A.8). We follow the manuscript proof.
+Proof of `NonUniqueEuler/I/Verify/N3.lean`: Part II Proposition A.8 (`prop:N3`). We follow the manuscript proof.
 
 * `εstar < 10⁻²¹`: `H x ≤ e^{2x}`, both arguments of `H` in `ε_*` are `< -49/2`, and
   `e^{49} > 2.7^{49} > 10^{21}` (`Real.exp_one_gt_d9`).

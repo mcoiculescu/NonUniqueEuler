@@ -7,7 +7,7 @@ import NonUniqueEuler.H.Sec4.Edge.Profile
 /-!
 # Proof of `I/Sec4/Edge.lean`: `lem:edge` (a priori bound for the eigenvalues of large sectors)
 
-Manuscript `04_ring.tex:718-769`.
+Manuscript Part I Lemma 4.10 (`lem:edge`).
 
 * `edge_bound`: the typed eigen-equation `L_ℓ(G) g = λ g` on `Y^0_ℓ` is transferred to the
   profile `g_ℓ = Polar.angularSector g.fn ℓ` (`Lsec_zero_spec`, `Sect.Ysec.fn_ae_eq_ofProfile`,

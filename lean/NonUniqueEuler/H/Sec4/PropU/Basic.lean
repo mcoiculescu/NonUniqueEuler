@@ -12,11 +12,14 @@ import NonUniqueEuler.I.Infra.AngularFourier.Sector
 
 * `Rc_sq_mul_mem`: `R_c² G ∈ [0, 1/50]`;
 * `eig_facts`: `λ_*(G)` is a simple zero of `E^Φ_3(·;G)` with `Re λ_*(G) > 211/2500`, and
-  `∂_λE^Φ_3(λ_*;G) = ∂_λE_3(λ_*;R_c²G)` (`hypN_lamC`, `eq:evans-units`);
+  `∂_λE^Φ_3(λ_*;G) = ∂_λE_3(λ_*;R_c²G)` (`hypN_lamC`, Part I Equation 13 (`eq:evans-units`));
 * `angularSector_ofProfile_self`: the sector-`ℓ` profile of `h(r)e^{iℓθ}` is `h` on `(0,∞)`;
 * `pout_eq`, `beta_eq`: `pout_* = n_*⁻¹ pout_*^{sector}`, `β = n_* β^{sector}`
-  (`def:eigendata`; the sector quantities are those of `lem:adjoint` for `g_*`);
-* `norm_beta_mul_norm_pout`: `prop:U`(c).
+  (Part I Definition 4.20 (`def:eigendata`); the sector quantities are those of Part I Lemma 4.9 (`lem:adjoint`) for `g_*`);
+* `norm_beta_mul_norm_pout`: the retained coupling-product identity. It follows from
+  Part I Theorem 4.8(1) (`thm:evans-simple`), Lemma 4.9(2), (3) (`lem:adjoint`),
+  Definition 4.20 (`def:eigendata`) and Equation 13 (`eq:evans-units`); it is not a
+  separate claim of the current Proposition 4.21 (`prop:U`).
 -/
 
 noncomputable section
@@ -42,7 +45,7 @@ theorem Rc_sq_mul_mem {G : ℝ} (hG : G ∈ Icc (0 : ℝ) Gbar) : Rc ^ 2 * G ∈
 theorem Gbar_nonneg : (0 : ℝ) ≤ Gbar := by
   rw [Gbar]; positivity
 
-/-- The eigenvalue facts at one `G ∈ [0, G₁]` (`hypN_lamC`, `eq:evans-units`). -/
+/-- The eigenvalue facts at one `G ∈ [0, G₁]` (`hypN_lamC`, Part I Equation 13 (`eq:evans-units`)). -/
 theorem eig_facts {χ : ℝ → ℝ} (hχ : IsAdmissibleCutoff χ) (hN : NumericalHypothesis χ) {G : ℝ}
     (hG : G ∈ Icc (0 : ℝ) Gbar) :
     211 / 2500 < (lam χ G).re ∧ 0 < (lam χ G).re ∧
@@ -70,7 +73,7 @@ theorem angularSector_ofProfile_self (ℓ : ℤ) (h : ℝ → ℂ) {r : ℝ} (hr
   rw [Ang.ofProfile, hn, hphase, mul_one, mul_one] at h1
   exact h1.symm
 
-/-- `pout_*(G) = n_*⁻¹ ∫ρ⁴ g_*` (`def:eigendata`, `lem:adjoint`(3)). -/
+/-- `pout_*(G) = n_*⁻¹ ∫ρ⁴ g_*` (Part I Definition 4.20 (`def:eigendata`), Part I Lemma 4.9(2) (`lem:adjoint`)). -/
 theorem pout_eq {χ : ℝ → ℝ} (hχ : IsAdmissibleCutoff χ) (hN : NumericalHypothesis χ) {G : ℝ}
     (hG : G ∈ Icc (0 : ℝ) Gbar) :
     pout χ G = ((nstar χ G : ℝ) : ℂ)⁻¹ * (ringPhiSetting χ).poutStar 3 (lam χ G) G := by
@@ -99,7 +102,7 @@ theorem key_alg (n e1 e2 ψ D J : ℂ) (hn : n ≠ 0) (he1 : e1 ≠ 0) (he2 : e2
   field_simp
   ring
 
-/-- **`prop:U`(c)** in complex form: `β(G) pout_*(G) = 6/∂_λE_3(λ_*(G); R_c²G)`. -/
+/-- **The retained coupling-product identity** in complex form: `β(G) pout_*(G) = 6/∂_λE_3(λ_*(G); R_c²G)`. -/
 theorem beta_mul_pout {χ : ℝ → ℝ} (hχ : IsAdmissibleCutoff χ) (hN : NumericalHypothesis χ)
     {G : ℝ} (hG : G ∈ Icc (0 : ℝ) Gbar) :
     beta χ G * pout χ G = 6 / deriv (fun z => evans χ 3 z (Rc ^ 2 * G)) (lam χ G) := by
@@ -120,7 +123,9 @@ theorem beta_mul_pout {χ : ℝ → ℝ} (hχ : IsAdmissibleCutoff χ) (hN : Num
     (Complex.ofReal_ne_zero.2 (Real.exp_pos _).ne') (Complex.ofReal_ne_zero.2 (Real.exp_pos _).ne')
     hψ hE' hJeq
 
-/-- **`prop:U`(c)** (`04_ring.tex:1350-1352`). -/
+/-- **The retained coupling-product identity**, in absolute value. See the sources
+listed in the module documentation; current Part I Proposition 4.21 (`prop:U`)
+has no separate part (c). -/
 theorem norm_beta_mul_norm_pout {χ : ℝ → ℝ} (hχ : IsAdmissibleCutoff χ)
     (hN : NumericalHypothesis χ) {G : ℝ} (hG : G ∈ Icc (0 : ℝ) Gbar) :
     ‖beta χ G‖ * ‖pout χ G‖ = 6 / ‖deriv (fun z => evans χ 3 z (Rc ^ 2 * G)) (lam χ G)‖ := by

@@ -15,8 +15,8 @@ import NonUniqueEuler.I.Infra.SectorSpace.BanachExp
 # Proof: `lem:semigroup-construct` (2) and (3) in the form of restructuring R1
 
 Proof of `I/Sec4/SemigroupLaw.lean` (same declarations, statements copied verbatim).
-Manuscript: `04_ring.tex:924-1012` (`lem:semigroup-construct`), `:1042-1044` (`Y^s_𝒵`),
-`05_single_ring.tex:45-47` (real functions).
+Manuscript: Part I Lemma 4.14 (`lem:semigroup-construct`), Part I Lemma 4.16 (`lem:sector-sum`) (`Y^s_𝒵`),
+the semigroup discussion preceding Part II Lemma 2.1 (`lem:duhamel`) (real functions).
 
 The linear evolution is the sector-wise exponential `S.semigroup s G t = ⊕_ℓ exp(tL_ℓ(G))`
 (D8, R1), so everything reduces to the I-SECT library with `hb := largeSectors_expBounded`:
@@ -91,7 +91,7 @@ theorem semigroup_add (S : SectorSetting) (hS : S.Valid) (s : ℕ) (G : ℝ) {t 
   exact sectorExp_add hS.ρm_pos hS.ρm_lt_ρp (largeSectors_expBounded S hS s G) ht ht'
 
 /-- Local uniform bounds: `sup_{0 ≤ t ≤ T, |G| ≤ G₊} ‖e^{tL(G)}‖_{Y^s → Y^s} < ∞` (this replaces
-the uniform boundedness principle in the proof of `lem:duhamel`, `05_single_ring.tex:60-62`). -/
+the uniform boundedness principle in the proof of Part II Lemma 2.1 (`lem:duhamel`)). -/
 theorem semigroup_bound (S : SectorSetting) (hS : S.Valid) (s : ℕ) {Gp : ℝ} (hGp : 0 ≤ Gp)
     (T : ℝ) :
     ∃ B : ℝ, ∀ G : ℝ, |G| ≤ Gp → ∀ t ∈ Icc (0 : ℝ) T, ‖S.semigroup s G t‖ ≤ B := by
@@ -107,7 +107,7 @@ theorem semigroup_continuousOn (S : SectorSetting) (hS : S.Valid) (s : ℕ) (G :
   simp only [semigroup_def]
   exact continuousOn_sectorExp hS.ρm_pos hS.ρm_lt_ρp (largeSectors_expBounded S hS s G) w
 
-/-- **`lem:semigroup-construct`(3)** (`04_ring.tex:940-941`): `P_ℓ e^{tL(G)} = exp(tL_ℓ(G)) P_ℓ`
+/-- **`lem:semigroup-construct`(3)** (Part I Lemma 4.14 (`lem:semigroup-construct`)): `P_ℓ e^{tL(G)} = exp(tL_ℓ(G)) P_ℓ`
 and `e^{tL(G)}` restricted to the sector `ℓ` is `exp(tL_ℓ(G))`; in particular `e^{tL}` preserves
 each sector (part (2)). -/
 theorem semigroup_sector (S : SectorSetting) (hS : S.Valid) (s : ℕ) (G : ℝ) {t : ℝ}
@@ -130,7 +130,7 @@ theorem semigroup_sector (S : SectorSetting) (hS : S.Valid) (s : ℕ) (G : ℝ) 
   · rw [secProj_inclSec_ne S hm, secProj_inclSec_ne S hm, map_zero]
 
 /-- **R1 form of `lem:semigroup-construct`(2): both Duhamel formulas, sector-wise**
-(`04_ring.tex:936-937`), with `e^{tL^tr} = exp(t(-iℓΩ))` and `𝒦 = k_ℓ𝒢_ℓ` on the sector. -/
+(Part I Lemma 4.14 (`lem:semigroup-construct`)), with `e^{tL^tr} = exp(t(-iℓΩ))` and `𝒦 = k_ℓ𝒢_ℓ` on the sector. -/
 theorem semigroup_duhamel_sector (S : SectorSetting) (hS : S.Valid) (s : ℕ) (ℓ : ℤ) (G t : ℝ) :
     NormedSpace.exp ((t : ℂ) • S.Lsec s ℓ G) =
         NormedSpace.exp ((t : ℂ) • S.transSec s ℓ G) +
@@ -144,7 +144,7 @@ theorem semigroup_duhamel_sector (S : SectorSetting) (hS : S.Valid) (s : ℕ) (�
   exact ⟨BanachExp.exp_add_eq_duhamel (S.transSec s ℓ G) (S.Ksec s ℓ) t,
     BanachExp.exp_add_eq_duhamel' (S.transSec s ℓ G) (S.Ksec s ℓ) t⟩
 
-/-- The invariance of `Y^s_𝒵` (`04_ring.tex:1042-1044`). -/
+/-- The invariance of `Y^s_𝒵` (Part I Lemma 4.16 (`lem:sector-sum`)). -/
 theorem semigroup_mem_YZSub (S : SectorSetting) (hS : S.Valid) (s : ℕ) (G : ℝ) {t : ℝ}
     (ht : 0 ≤ t) (Z : Set ℤ) {w : Y s S.Nstar} (hw : (w : Sob.SobTuple s) ∈ YZSub s S.Nstar Z) :
     ((S.semigroup s G t w : Y s S.Nstar) : Sob.SobTuple s) ∈ YZSub s S.Nstar Z := by
@@ -164,7 +164,7 @@ theorem semigroup_lowerY (S : SectorSetting) (hS : S.Valid) {s s' : ℕ} (hss' :
     w).symm
 
 /-- **R1 form of `lem:semigroup-construct`(2): the generator extends `L(G)` on `Y^{s+1}`**
-(`04_ring.tex:937-939`): for `w ∈ Y^{s+1}` and `t ≥ 0`,
+(Part I Lemma 4.14 (`lem:semigroup-construct`)): for `w ∈ Y^{s+1}` and `t ≥ 0`,
 `d/dt e^{tL}w = L(G) e^{tL}w = e^{tL} L(G)w` in `Y^s` (one-sided at `t = 0`). -/
 theorem semigroup_hasDerivWithinAt (S : SectorSetting) (hS : S.Valid) (s : ℕ) (G : ℝ)
     (w : Y (s + 1) S.Nstar) {t : ℝ} (ht : 0 ≤ t) :
@@ -189,7 +189,7 @@ theorem semigroup_hasDerivWithinAt (S : SectorSetting) (hS : S.Valid) (s : ℕ) 
   simp only [semigroup_def]
   exact hasDerivWithinAt_sectorExp hS.ρm_pos hS.ρm_lt_ρp hb hv ht
 
-/-- `e^{tL(G)}` maps real-valued functions to real-valued functions (`05_single_ring.tex:45-47`). -/
+/-- `e^{tL(G)}` maps real-valued functions to real-valued functions (the semigroup discussion preceding Part II Lemma 2.1 (`lem:duhamel`)). -/
 theorem semigroup_isReal (S : SectorSetting) (hS : S.Valid) (s : ℕ) (G : ℝ) {t : ℝ}
     (ht : 0 ≤ t) {w : Y s S.Nstar} (hw : w.IsReal) : (S.semigroup s G t w).IsReal := by
   have hP : ∀ (ℓ : ℤ) (v : Y s S.Nstar), secProj s S.Nstar ℓ (S.semigroup s G t v) =

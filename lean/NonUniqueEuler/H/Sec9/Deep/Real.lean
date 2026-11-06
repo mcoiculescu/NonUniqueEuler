@@ -5,13 +5,13 @@ import Mathlib.Analysis.Complex.ExponentialBounds
 /-!
 # Helpers for `P/Sec9/Deep`: elementary real estimates
 
-Helper file of `P/Sec9/Deep.lean` (`lem:deep`(3), `09_relay.tex:1159-1177`). Pure real
+Helper file of `P/Sec9/Deep.lean` (`lem:deep`(3) (historical), `lem:kicktrue`, Part II Lemma C.14, proof of (Q1) and the deep term in (Kick3)). Pure real
 analysis, no project objects:
 * `integral_exp_neg_mul_eq`, `integral_exp_neg_mul_le`: `∫_{-T}^0 e^{-xτ} dτ = (e^{xT} - 1)/x
   ≤ e^{xT}/x` (`x > 0`);
 * `kappa_mul_exp_eq`: `κ e^{xT_g} = δ₀(κ/δ₀)^{1 - x/σ₁}` for `T_g = σ₁⁻¹ log(δ₀/κ)`
-  (`09_relay.tex:1163-1164`);
-* `one_le_log_of_le_rpow`: `κ ≤ δ₀4^{-μ/(μ-1)}` implies `log(δ₀/κ) ≥ 1` (`09_relay.tex:1161`).
+  (`lem:kicktrue`, Part II Lemma C.14, proof of (Q1) and the deep term in (Kick3));
+* `one_le_log_of_le_rpow`: `κ ≤ δ₀4^{-μ/(μ-1)}` implies `log(δ₀/κ) ≥ 1` (`lem:kicktrue`, Part II Lemma C.14, proof of (Q1) and the deep term in (Kick3)).
 Everything here is proved.
 -/
 
@@ -49,7 +49,7 @@ theorem integral_exp_neg_mul_le {x : ℝ} (hx : 0 < x) (T : ℝ) :
   rw [integral_exp_neg_mul_eq x T hx.ne']
   exact div_le_div_of_nonneg_right (by linarith) hx.le
 
-/-- `κ e^{x T_g} = δ₀ (κ/δ₀)^{1 - x/σ₁}` for `T_g = σ₁⁻¹ log(δ₀/κ)` (`09_relay.tex:1163-1164`). -/
+/-- `κ e^{x T_g} = δ₀ (κ/δ₀)^{1 - x/σ₁}` for `T_g = σ₁⁻¹ log(δ₀/κ)` (`lem:kicktrue`, Part II Lemma C.14, proof of (Q1) and the deep term in (Kick3)). -/
 theorem kappa_mul_exp_eq {κ δ₀ σ₁ : ℝ} (x : ℝ) (hκ : 0 < κ) (hδ : 0 < δ₀) (hσ : σ₁ ≠ 0) :
     κ * Real.exp (x * (σ₁⁻¹ * Real.log (δ₀ / κ))) = δ₀ * (κ / δ₀) ^ (1 - x / σ₁) := by
   have hq : 0 < κ / δ₀ := div_pos hκ hδ
@@ -71,7 +71,7 @@ theorem one_lt_log_four : 1 < Real.log 4 := by
   linarith
 
 /-- `κ ≤ δ₀ 4^{-μ/(μ-1)}` with `κ > 0`, `μ > 1` gives `log(δ₀/κ) ≥ (μ/(μ-1)) log 4 ≥ 1`
-(`09_relay.tex:1161`). -/
+(`lem:kicktrue`, Part II Lemma C.14, proof of (Q1) and the deep term in (Kick3)). -/
 theorem one_le_log_of_le_rpow {κ δ₀ μ : ℝ} (hκ : 0 < κ) (hμ : 1 < μ)
     (h : κ ≤ δ₀ * (4 : ℝ) ^ (-(μ / (μ - 1)))) : 1 ≤ Real.log (δ₀ / κ) := by
   set p : ℝ := μ / (μ - 1) with hp

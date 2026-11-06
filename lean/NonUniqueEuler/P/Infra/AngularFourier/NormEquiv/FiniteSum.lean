@@ -8,8 +8,7 @@ import NonUniqueEuler.H.Infra.AngularFourier.NormEquiv.FiniteSum.Plane
 /-!
 # Proof: `H^k` bound for finite sums of sector functions
 
-Proof of `I/Infra/AngularFourier/NormEquiv/FiniteSum.lean` (manuscript `lem:norm-equiv`,
-`04_ring.tex:843-864`, upper bound `‖w‖²_{H^k} ≤ C_k ∑_ℓ ‖g_ℓ‖²_{k,ℓ}`, for finite sector sums).
+Proof of `I/Infra/AngularFourier/NormEquiv/FiniteSum.lean` (manuscript Part I, Lemma 4.12 (`lem:norm-equiv`), proof, upper bound `‖w‖²_{H^k} ≤ C_k ∑_ℓ ‖g_ℓ‖²_{k,ℓ}`, for finite sector sums).
 
 Induction on `k`, for all finite `S` and all families at once.
 * `k = 0` (`FiniteSumAux.base_case`): Parseval for finite sector sums

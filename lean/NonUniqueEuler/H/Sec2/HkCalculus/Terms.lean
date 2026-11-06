@@ -3,10 +3,10 @@ import NonUniqueEuler.H.Sec2.HkCalculus.Basic
 /-!
 # Helper for `P/Sec2/HkCalculus`: bounds on the terms of the Leibniz formulas
 
-* `prodTerm_bound` (proof of `lem:Hk-calculus`(2), `02_prelim.tex:675-685`): for `j ≥ 2`,
+* `prodTerm_bound` (proof of Part II, Lemma 1.10(2) (`lem:Hk-calculus`)): for `j ≥ 2`,
   `g, h ∈ H^j`, `|γ| ≤ j`, `β ≤ γ`: `‖∂^β g ∂^{γ-β} h‖_{L²} ≤ ‖g‖_{H^j} ‖h‖_{H^j}` (end terms by
   (E2), middle terms by Hölder and (E1));
-* `commTerm_bound` (proof of `lem:Hk-calculus`(1), `02_prelim.tex:716-731`): for `k ≥ 3`,
+* `commTerm_bound` (proof of Part II, Lemma 1.10(1) (`lem:Hk-calculus`)): for `k ≥ 3`,
   `G ∈ H^k` with first derivatives bounded by `M` in `L^∞`, `w ∈ H^{k+1}`, `|α| ≤ k`,
   `0 < β ≤ α`, `|e| = 1`: `‖∂^β G ∂^{α-β} ∂_e w‖_{L²} ≤ (M + ‖G‖_{H^k}) ‖w‖_{H^k}`
   (`|β| = 1`: `L^∞`; `|β| = |α| ≥ 2`: (E2) on `∂_e w`; otherwise Hölder and (E1)).

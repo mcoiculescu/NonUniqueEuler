@@ -10,7 +10,7 @@ import NonUniqueEuler.H.Sec5.Seed.Field.Calc
 /-!
 # Proof: the seed field `V` of `lem:seed` and `eq:seed-first`
 
-Proof of `I/Sec5/Seed/Field.lean` (`05_single_ring.tex:1152-1191`).
+Proof of `I/Sec5/Seed/Field.lean` (Part II Lemma 2.14).
 
 Construction (as in the manuscript, with `h(r) = c(r) g_s(r) r⁻³`):
 * `g_s(r) = n_*⁻¹ M_λ(r) ψ_*(log r)` is `C^∞` on `(0,∞)` (`seedProf_contDiffOn`: `psi_spec`,
@@ -49,7 +49,7 @@ theorem lam_re_pos (χ : ℝ → ℝ) (hχ : IsAdmissibleCutoff χ) (hN : Numeri
   linarith
 
 /-- The seed profile `g_s(r) r⁻³ = n_*⁻¹ M_λ(r) ψ_*(log r) r⁻³` is `C^∞` on `(0,∞)`
-(`05_single_ring.tex:1162-1166`). -/
+(Part II Lemma 2.14 (`lem:seed`)). -/
 theorem seedProf_contDiffOn (χ : ℝ → ℝ) (hχ : IsAdmissibleCutoff χ)
     (hN : NumericalHypothesis χ) :
     ContDiffOn ℝ ∞ (fun r : ℝ => ((Eig.nstar χ 0 : ℝ) : ℂ)⁻¹ *
@@ -122,7 +122,7 @@ theorem fderiv_ringPhi_apply {χ : ℝ → ℝ} (hχ : IsAdmissibleCutoff χ) {y
 
 end SeedFieldH
 
-/-- **The seed field** (`05_single_ring.tex:1152-1191`, step 1 of `lem:seed` and
+/-- **The seed field** (Part II Lemma 2.14, step 1 of `lem:seed` and
 `eq:seed-first`). Assume (N1)–(N3). There are a `C^∞` vector field `V` and a compact
 `K ⊆ {a/2 < |y| < 2}` with `V = 0` off `K`, `div V = 0`, `V ∘ O = O ∘ V` (`O = O_{2π/3}`) and
 `V·∇Φ = 2 Re φ_*(0)`. -/

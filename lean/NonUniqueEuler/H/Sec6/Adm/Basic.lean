@@ -6,12 +6,12 @@ import Mathlib.MeasureTheory.Measure.Lebesgue.EqHaar
 /-!
 # Helpers for `lem:adm`: radii, scaling of `L^p` norms, small balls
 
-Helper of `P/Sec6/Adm.lean` (`06_datum.tex:93-136`).
+Helper of `P/Sec6/Adm.lean` (Part II Lemma 3.4 (`lem:adm`)).
 
 * `AdmH.ratio_le_sbar`, `AdmH.radius_antitone`, `AdmH.radius_succ_lt`, `AdmH.tendsto_radius`:
-  `s_k ≤ s̄`, `r_{k+1} ≤ r_k`, `r_{k+1} < a r_k` (`06_datum.tex:36-38`), `r_k → 0`;
+  `s_k ≤ s̄`, `r_{k+1} ≤ r_k`, `r_{k+1} < a r_k` (Part II Proposition 3.2 (`prop:integrability`)), `r_k → 0`;
 * `AdmH.eLpNorm_comp_mp_div`: `‖g ∘ Y ∘ (·/r)‖_p = ‖g ∘ (·/r)‖_p` for a measure-preserving `Y`
-  (equimeasurability of `Φ^κ` and `Φ` survives the dilation, `06_datum.tex:103-104`);
+  (equimeasurability of `Φ^κ` and `Φ` survives the dilation, Part II Lemma 3.4 (`lem:adm`));
 * `AdmH.tendsto_eLpNorm_indicator_closedBall`: `‖1_{B̄_{ρ_n}} F‖_p → 0` for `F ∈ L^p` and
   `ρ_n → 0` (absolute continuity of the `L^p` norm).
 -/
@@ -44,7 +44,7 @@ theorem radius_antitone {sbar μ : ℝ} (hs : 0 < sbar) (hs1 : sbar ≤ 1) (hμ 
     Antitone (radius sbar μ) :=
   antitone_nat_of_succ_le (radius_succ_le hs hs1 hμ)
 
-/-- `r_{k+1} < a r_k` for `k ≥ 1` (`06_datum.tex:36-38`). -/
+/-- `r_{k+1} < a r_k` for `k ≥ 1` (Part II Proposition 3.2 (`prop:integrability`)). -/
 theorem radius_succ_lt {A₁ sbar μ : ℝ} (hp : DatumParams A₁ μ sbar) (ha : 0 < a) {k : ℕ}
     (hk : 1 ≤ k) : radius sbar μ (k + 1) < a * radius sbar μ k := by
   rw [radius_succ sbar μ hk]

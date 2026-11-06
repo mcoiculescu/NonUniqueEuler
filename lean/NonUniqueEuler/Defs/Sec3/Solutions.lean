@@ -2,12 +2,12 @@ import NonUniqueEuler.Statement.WeakSolution
 import Mathlib.Order.Filter.Basic
 
 /-!
-# Section 3: solutions on `[0, T₀)` and continuity into `L^p` on a time set
+# Part I Section 3: solutions on `[0, T₀)` and continuity into `L^p` on a time set
 
-Manuscript sources: `02_prelim.tex:540-542` (a (renormalized) weak solution on `[0, T₀)`,
+Manuscript sources: Part I Definition 2.5 (`def:weak`) (a (renormalized) weak solution on `[0, T₀)`,
 `T₀ ∈ (0, ∞]`: its restriction to `[0, T)` is a (renormalized) weak solution in `X_q(T)` for
-every `T < T₀`), used in `def:adm` (`03_compactness.tex:878-886`), `lem:bounded-adm`,
-`thm:criterion`, `prop:equiv`, `prop:defect`; `C([0, T); L^q)` in `lem:renorm-all-t` and
+every `T < T₀`), used in `def:adm` (Part I Definition 3.7 (`def:adm`), specialized there to `q = 2` and `T₀ = ∞`), legacy `lem:bounded-adm`,
+`thm:criterion`, legacy `prop:equiv`, Part I Corollary 3.9 (`cor:defect`; formerly `prop:defect`); `C([0, T); L^q)` in `lem:renorm-all-t` and
 `C([0, T₀); L^q)` in `thm:criterion`(iii).
 
 * The end time `T₀ ∈ (0, ∞]` is an extended nonnegative real `T₀ : ℝ≥0∞` (`⊤` is `∞`); a real
@@ -32,7 +32,7 @@ open scoped ENNReal Topology
 
 namespace NonUniqueEuler.Weak
 
-/-- The time interval `[0, T₀)`, `T₀ ∈ (0, ∞]` (`02_prelim.tex:540`). -/
+/-- The time interval `[0, T₀)`, `T₀ ∈ (0, ∞]` (Part I Definition 2.5 (`def:weak`)). -/
 def timeInterval (T₀ : ℝ≥0∞) : Set ℝ :=
   {t | 0 ≤ t ∧ ENNReal.ofReal t < T₀}
 
@@ -64,13 +64,13 @@ theorem Icc_subset_timeInterval {T₀ : ℝ≥0∞} {T : ℝ} (hT : ENNReal.ofRe
     Icc 0 T ⊆ timeInterval T₀ :=
   fun _ ht => ⟨ht.1, lt_of_le_of_lt (ENNReal.ofReal_le_ofReal ht.2) hT⟩
 
-/-- A weak solution on `[0, T₀)` with exponent `q` (`def:weak`, `02_prelim.tex:540-542`): a weak
+/-- A weak solution on `[0, T₀)` with exponent `q` (`def:weak`, Part I Definition 2.5 (`def:weak`)): a weak
 solution in `X_q(T)` with datum `ωin` for every `T ∈ (0, T₀)`. -/
 def IsWeakSolutionUpTo (q : ℝ) (T₀ : ℝ≥0∞) (ωin : ℂ → ℝ) (ω : ℝ → ℂ → ℝ) : Prop :=
   ∀ T : ℝ, 0 < T → ENNReal.ofReal T < T₀ → IsWeakSolution q T ωin ω
 
 /-- A renormalized weak solution on `[0, T₀)` with exponent `q` (`def:weak`,
-`02_prelim.tex:540-542`): a renormalized weak solution in `X_q(T)` with datum `ωin` for every
+Part I Definition 2.5 (`def:weak`)): a renormalized weak solution in `X_q(T)` with datum `ωin` for every
 `T ∈ (0, T₀)`. -/
 def IsRenormalizedWeakSolutionUpTo (q : ℝ) (T₀ : ℝ≥0∞) (ωin : ℂ → ℝ) (ω : ℝ → ℂ → ℝ) :
     Prop :=
@@ -87,7 +87,7 @@ theorem isRenormalizedWeakSolutionUpTo_top_iff {q : ℝ} {ωin : ℂ → ℝ} {�
   ⟨fun h T hT => h T hT ENNReal.ofReal_lt_top, fun h T hT _ => h T hT⟩
 
 /-- `ω ∈ C(s; L^p(ℝ²))`: `ω(t) ∈ L^p` for every `t ∈ s`, and `t ↦ ω(t)` is continuous on `s`
-for the `L^p` distance (`03_compactness.tex:586`, `:952`). -/
+for the `L^p` distance (Part I Lemma 3.5 (`lem:renorm-all-t`) and its proof). -/
 def ContinuousIntoLpOn (p : ℝ≥0∞) (s : Set ℝ) (ω : ℝ → ℂ → ℝ) : Prop :=
   (∀ t ∈ s, MemLp (ω t) p volume) ∧
     ∀ t₀ ∈ s, Tendsto (fun t => eLpNorm (ω t - ω t₀) p volume) (𝓝[s] t₀) (𝓝 0)

@@ -7,7 +7,7 @@ import NonUniqueEuler.H.Infra.SectorSpace.RadialMul.Radial
 # Proof: radial multipliers on the sector spaces (library I-SECT)
 
 Proof of `I/Infra/SectorSpace/RadialMul.lean` (used by `def:sector-setting` / `lem:sector`(4),
-`04_ring.tex:945-947`).
+Part I, Lemma 4.14 (`lem:semigroup-construct`), proof and preceding mode identification).
 
 For `χ ∈ C^s(K)` (`K` closed) invariant under rotations, `g ↦ toHk s (χ g)` maps `Y^s_ℓ(K)`
 to itself (`Sob.MemH.mul_of_memCk`: `χ g ∈ H^s` with

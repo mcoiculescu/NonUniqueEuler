@@ -4,12 +4,13 @@ import NonUniqueEuler.Verify.Comp.CInv
 /-!
 # Part 2 algorithms: the enclosure of the Evans function (`evansEncl`)
 
-Manuscript: §A.3, the procedure (ii)–(iv) and Proposition A.3 (`A_verification.tex:239-460`).
+Manuscript: Part II §A.3 (`app:procedure`), steps (ii)–(iv), and
+Proposition A.3 (`prop:enclosure`).
 Reference: `euler-ring-certificate/src/ringcert/evans.py` (`_step_coeffs`, `_psi_coeffs`,
 `evans`), a line-by-line port.
 
 `evansEncl p gr ℓ lam G` returns `some B` with a finite box `B`, or `none` (Python's NaN box:
-fail closed). Proposition A.3 (`evansEncl_sound`, `P/Verify/Sound/EvansEncl.lean`): if
+fail closed). Part II Proposition A.3 (`evansEncl_sound`, `P/Verify/Sound/EvansEncl.lean`): if
 `gr = Grid.build p' 8 16` (any precisions), `lam ⊆ {Re > 0}` and `evansEncl p gr ℓ lam G = some B`,
 then `evans χ ℓ z G' ∈ B` for every `z ∈ lam`, real `G' ∈ G` and admissible `χ`.
 
@@ -19,7 +20,7 @@ Core only. No `partial`; the only recursion is `midLoop`, structural on the list
 
 ## Line-by-line table
 
-| manuscript §A.3 | Python `evans.py` | Lean |
+| Part II §A.3 (`app:procedure`) | Python `evans.py` | Lean |
 |---|---|---|
 | (i) `A₀, Ā₀, B₀, B̄₀` hulls | `_H_pair_iv` (l. 61-70) | `hPairIv`, `coeffs` (first lines), `Comp/Grid.lean` |
 | (i) recurrences `A_{k+1}`, `B_{k+1}` | `_coeffs` loop (l. 90-96) | `hRec` |
@@ -152,7 +153,7 @@ def evansEncl (p : Nat) (gr : Grid) (ℓ : Nat) (lam : CBox) (G : Ball) : Option
     | some relo, some tv =>
       if !relo.isPos then none
       else
-        -- left end [ξL, ξa] (Lemma A.1)
+        -- left end [ξL, ξa] (Part II Lemma A.1)
         let eps := UB.div (UB.ofDyUp tv) (UB.ofDyExact relo)
         if !(UB.leDy eps Dy.one) then none
         else
@@ -165,7 +166,7 @@ def evansEncl (p : Nat) (gr : Grid) (ℓ : Nat) (lam : CBox) (G : Ball) : Option
           match midLoop p ℓ lam G gr.N gr.steps psi0 dpsi0 with
           | none => none
           | some (psi, dpsi) =>
-            -- right end [ξb, ξR] (Lemma A.1 again)
+            -- right end [ξb, ξR] (Part II Lemma A.1 again)
             let emL2 := Ball.expPoint p (Dy.mul (Dy.ofNat ℓ) (Dy.sub RD.ξR RD.ξb))
             let Wv := CBox.add p dpsi (CBox.mulNat p psi ℓ)
             let Wn := UB.max (UB.mulNat (CBox.absUB psi) ℓ) (CBox.absUB dpsi)

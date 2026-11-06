@@ -5,12 +5,12 @@ import NonUniqueEuler.H.Sec4.PropSU.Riesz
 /-!
 # Proof of `prop:SU` (the spectral hypothesis `(S_U)` holds with gap `9/200`)
 
-Proof of the interface `I/Sec4/PropSU.lean` (`04_ring.tex:1253-1267`, proof `:1268-1295`).
+Proof of the interface `I/Sec4/PropSU.lean` (Part I Proposition 4.19 (`prop:SU`) and its proof).
 
 * `lam_SU`: the sector-by-sector argument of the manuscript
   (`H/Sec4/PropSU/Spectrum.lean`, `PropSUH.lam_SU_core`): `eq:evans-units`, (N1), (N2) via
   `hypN_lamC`, `lem:resolvent`, `thm:evans-simple` (also in the conjugate sector `-3`),
-  `cor:sector-6`, `cor:sectors-9`, and `L_0 = 0`.
+  the mode-6 argument in the proof of Part I Proposition 4.19 (`prop:SU`), the large-mode argument in the proof of Part I Proposition 4.19 (`prop:SU`), and `L_0 = 0`.
 * `SU_holds`: `lam_SU` with the rank-one projection `rieszSec = rankOneProj ℓ_* g_*`
   (`Dunford.IsAlgSimpleEig`).
 * `R_sector` (R2 replacement of the second paragraph): `H/Sec4/PropSU/Riesz.lean`,
@@ -30,7 +30,7 @@ namespace Eig
 
 open RingData Sect
 
-/-- **`prop:SU`** (`04_ring.tex:1253-1259`): under (N1)–(N3), `(S_U)` holds with gap `9/200`. -/
+/-- **`prop:SU`** (Part I Proposition 4.19 (`prop:SU`)): under (N1)–(N3), `(S_U)` holds with gap `9/200`. -/
 theorem SU_holds (χ : ℝ → ℝ) (hχ : IsAdmissibleCutoff χ) (hN : NumericalHypothesis χ) :
     SU χ (9 / 200) := by
   intro G hG
@@ -41,7 +41,7 @@ theorem SU_holds (χ : ℝ → ℝ) (hχ : IsAdmissibleCutoff χ) (hN : Numerica
     exact ⟨h3, ⟨(ringPhiSetting χ).ellStarY s 3 (lam χ G) G,
       (ringPhiSetting χ).gStarY s 3 (lam χ G) G, hg, hP⟩, hm3, hrest⟩
 
-/-- **`prop:SU` with the named eigenvalue** (`04_ring.tex:1255-1259`; R2 form of algebraic
+/-- **`prop:SU` with the named eigenvalue** (Part I Proposition 4.19 (`prop:SU`); R2 form of algebraic
 simplicity): for `G ∈ [0,Ḡ]` and every `s`, with `λ_*(G) = Eig.lam χ G = λ_*^c(R_c²G)`:
 `Re λ_*(G) > 211/2500`; the spectrum of `L_3(G)` on `X^s_3` in `{Re > 9/200}` is `{λ_*(G)}`, with
 simple spectral projection `g ↦ ℓ_*(g) g_*` (`ℓ_*(g_*) = 1`); the spectrum of `L_{-3}(G)` on
@@ -63,7 +63,7 @@ theorem lam_SU (χ : ℝ → ℝ) (hχ : IsAdmissibleCutoff χ) (hN : NumericalH
         spectrum ℂ (Lin.Lsec χ s ℓ G) ∩ {w : ℂ | 9 / 200 < w.re} = ∅ :=
   PropSUH.lam_SU_core χ hχ hN hG s
 
-/-- **R2 replacement of the second paragraph of `prop:SU`** (`04_ring.tex:1259-1267`): the Riesz
+/-- **R2 replacement of the second paragraph of `prop:SU`** (Part I Proposition 4.19 (`prop:SU`)): the Riesz
 projection `R(G)` (`Eig.R`, the explicit rank-two operator) acts as the Riesz projection of `L_3(G)`
 at `λ_*(G)` on the sector `3`, as that of `L_{-3}(G)` at `conj λ_*(G)` on the sector `-3`, and as
 `0` on the other sectors; it is a projection and commutes with `e^{tL(G)}` (`t ≥ 0`). -/

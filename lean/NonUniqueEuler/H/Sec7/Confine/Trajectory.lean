@@ -4,12 +4,12 @@ import Mathlib.Topology.Order.IntermediateValue
 /-!
 # Helper for `prop:confine`(a): a trajectory with a conditional speed bound
 
-Helper of `P/Sec7/Confine.lean` (`07_several_rings.tex:357-368`). A curve `γ` differentiable on
+Helper of `P/Sec7/Confine.lean` (Part II Proposition 4.3 (`prop:confine`)). A curve `γ` differentiable on
 `ℝ` with `‖γ t₀‖ ≤ ρ₀` and `‖γ' t‖ ≤ V` whenever `t ∈ [t₀, t₁]` and `‖γ t‖ ≤ L`, where `V > 0` and
 `ρ₀ + V (t₁ - t₀) ≤ L`, satisfies `‖γ t‖ ≤ ρ₀ + V (t - t₀)` on `[t₀, t₁]`.
 
 This is the continuity argument of the manuscript, carried out for one trajectory at a time (the
-speed bound `prop:confine`(b) holds on the whole ball `\bar B_{Λ r_{k+1}}` at every time of the window,
+speed bound the speed-bound paragraph in the proof of `prop:confine` holds on the whole ball `\bar B_{Λ r_{k+1}}` at every time of the window,
 independently of the other trajectories, so the manuscript's uniform continuity in `y` is not
 needed). The proof is "real induction" (`IsClosed.Icc_subset_of_forall_exists_gt`) on the closed
 set `{t | ‖γ t - γ t₀‖ ≤ V (t - t₀)}`, with the mean value inequality on short intervals.

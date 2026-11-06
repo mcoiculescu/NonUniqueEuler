@@ -8,7 +8,7 @@ import Mathlib.Analysis.Normed.Group.Bounded
 
 Proves the declarations of `NonUniqueEuler/I/Infra/CkNorm/Basic.lean` (same names, statements
 copied verbatim): finiteness on compact sets, the triangle inequality, homogeneity, constants,
-and `‖h‖_{C^0(U)} = sup_U |h|` (`02_prelim.tex:72-79`).
+and `‖h‖_{C^0(U)} = sup_U |h|` (Part I, Section 2.1, conventions in `sec:prelim`).
 
 Proof outline.
 * `memCk_of_isCompact`: `iteratedFDeriv ℝ q h` is continuous on the open set where `h` is `C^k`

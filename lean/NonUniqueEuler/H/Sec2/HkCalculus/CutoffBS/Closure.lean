@@ -4,7 +4,7 @@ import NonUniqueEuler.I.Infra.Sobolev.Norm
 /-!
 # Helper for `P/Sec2/HkCalculus/CutoffBS`: limits of `H^k`-Cauchy sequences converging in `L²`
 
-The closing step of the proof of `lem:Hk-calculus`(3) (`02_prelim.tex:762-766`): if `u n ∈ H^k`
+The closing step of the proof of Part II, Lemma 1.10(3) (`lem:Hk-calculus`): if `u n ∈ H^k`
 is Cauchy in `H^k` (in the quantitative form `‖u n - u m‖_{H^k} ≤ ε n + ε m`, `ε → 0`), converges
 to `f` in `L²`, and `‖u n‖_{H^k} ≤ B + ε n`, then `f ∈ H^k` and `‖f‖_{H^k} ≤ B`. The proof uses the
 completeness of the Hilbert space `Sob.Hk k` (`Defs/Infra/SobolevSpace.lean`) and the bridge
@@ -35,7 +35,7 @@ theorem continuous_ofLp_idx0 (k : ℕ) :
   ((PiLp.proj (𝕜 := ℂ) 2 (fun _ : SobIdx k => Lp ℂ 2 (volume : Measure ℂ)) (idx0 k)).continuous).comp
     continuous_subtype_val
 
-/-- Limits of `H^k`-Cauchy sequences converging in `L²` (`02_prelim.tex:762-766`). -/
+/-- Limits of `H^k`-Cauchy sequences converging in `L²` (Part II, Lemma 1.10 (`lem:Hk-calculus`)). -/
 theorem memH_of_cauchy {k : ℕ} {f : ℂ → ℂ} {u : ℕ → ℂ → ℂ} {ε : ℕ → ℝ} {B : ℝ}
     (hu : ∀ n, MemH k (u n))
     (hcau : ∀ n m, normH k (u n - u m) ≤ ε n + ε m)

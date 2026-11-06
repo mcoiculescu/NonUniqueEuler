@@ -9,20 +9,25 @@ import NonUniqueEuler.I.Sec9.Standing
 import NonUniqueEuler.I.Sec9.Time
 
 /-!
-# Proof: `prop:bootstrap` (the joint bootstrap)
+# Proof of the stronger all-ring bootstrap bundle
 
-Proof of `I/Sec11/Bootstrap.lean` (`11_bootstrap.tex:94-113`, proof `:220-605`): same
-declarations, same statements. The assembly of the step interfaces (restructuring R10):
-* Step 0 (`boot_start`), Step 7 (`boot_continuity`: (BA°)(t) on `[0, T_end]`), and Steps 1–6
-  (`boot_steps`) at `t = T_end` (`T_end ≥ 0`: `phase_intervals`).
-* "The clock does not stop" (`:592-596`): otherwise it stops at `k_s` (`stopsAt_stopLevel`),
-  `k_s < n` by Step 0 (`StopsAt.clockUpTo_iff`), `T_end = t♯_{k_s}` (`StopsAt.Tend_eq`), and Step 3
-  at `k_s` (`HandoffStep.clock`) gives the clock up to level `k_s`, a contradiction.
-* The items (`:597-605`): `t♯_k < T_k` (`clock_order`) and `Ph_k ⊂ [0, T_end]`
-  (`phase_intervals`) give `t♯_k, T_k ≤ T_end = T_1`; (1) Step 3 and Step 0; (2) Step 6; (3) Step 3
-  and Step 4 at `t' = T_k` (active time `A_k(T_k - t♯_k) = T̂_k`, `activeTime_T`); (4)
-  `lem:geometry`(a) at `T_1` with `e_k = T_k ≤ T_1` and `prop:confine` (`Rings.confine`); (5)
-  `lem:time`.
+`bootstrap` and `bootstrap_params` prove `Standing.BootConcl`, the historical five-part
+all-ring statement. Current Part II Proposition 8.1 (`prop:bootstrap`, §8) has four ring-1
+conclusions. Its conclusion (1) follows from `clock` and `amp`; (2) from `active` and `coef`;
+(3) from `confine` at `T₁`; and (4) from `time`. This file retains the more detailed Lean
+statement and the earlier proof decomposition.
+
+* Lean step 0 (`boot_start`), step 7 (`boot_continuity`) and steps 1–6 (`boot_steps`) give the
+  estimates at `T_end`. Their current counterparts are the relay estimates in §6 and
+  Appendices C.14–C.18, and the seed and continuation paragraphs in §8.
+* If the clock stopped at `k_s < n`, then `T_end = t♯_{k_s}` and the hand-off conclusion
+  `HandoffStep.clock` would define the clock up to `k_s`, a contradiction. This is the
+  “The final ring and the elapsed time” paragraph of the proof of Proposition 8.1.
+* The all-ring conclusions come from hand-off, active control at `T_k`, Lemma C.17(a)
+  (`lem:geometry`) and Proposition 4.3 (`prop:confine`). The time bound is Lemma C.15
+  (`lem:time`).
+
+The Lean step numbers are historical organization, not numbered steps in the current paper.
 -/
 
 noncomputable section
@@ -36,24 +41,24 @@ namespace Relay
 open RingData Datum
 
 /-- The active time of `T_k` is `T̂_k`: `A_k(T_k - t♯_k) = T̂_k` for `k ≠ n + 1`
-(`06_datum.tex:408`, `:417`). -/
+(Part II Definition 3.9, `def:clock`). -/
 private theorem activeTime_T {P : Approx} (hP : P.Valid) {k : ℕ} (hk : k ≠ P.n + 1) :
     P.activeTime k (P.T k) = P.That k := by
   have hA : P.A k ≠ 0 := (hP.A_pos k).ne'
   rw [Approx.activeTime, Approx.T_of_ne P hk, add_sub_cancel_left]
   field_simp
 
-/-- **`prop:bootstrap`** (`11_bootstrap.tex:94-113`), at the standing level: under (N) and
-(P0)–(P6) (with `A₁ > 0`, `n ≥ 2` and `ω = ω^{(n)}`, all contained in `S.Holds`), the conclusions
-(1)–(5) hold (`S.BootConcl`). -/
+/-- **The stronger all-ring bootstrap statement**, at the standing level. Under (N) and
+(P0)–(P6), the five groups in `S.BootConcl` hold. They imply the four conclusions of
+current Part II Proposition 8.1 (`prop:bootstrap`), as described in the module documentation. -/
 theorem bootstrap (S : Standing) (hS : S.Holds) (hL : S.ParamLists) : S.BootConcl := by
-  -- Step 0, Step 7 and Steps 1–6 at `T_end`.
+  -- Lean step 0, Lean step 7 and Lean steps 1–6 at `T_end`.
   have h0 : S.BootStartConcl := boot_start S hS hL
   have hPI := phase_intervals S hS
   have hTend0 : 0 ≤ S.P.Tend := hPI.1
   have hsteps : S.BootStepsConcl S.P.Tend :=
     boot_steps S hS hL ⟨hTend0, le_rfl⟩ h0 (boot_continuity S hS hL _ ⟨hTend0, le_rfl⟩)
-  -- The clock does not stop (`11_bootstrap.tex:592-596`).
+  -- The clock does not stop (Part II §8 (`prop:bootstrap`), “The final ring and the elapsed time”).
   have hclock : S.P.ClockUpTo 1 := by
     by_contra hc
     have hst : S.P.StopsAt S.P.stopLevel := Approx.stopsAt_stopLevel hc
@@ -77,10 +82,10 @@ theorem bootstrap (S : Standing) (hS : S.Holds) (hL : S.ParamLists) : S.BootConc
     have := Finset.mem_Ico.1 hk
     exact Finset.mem_Icc.2 ⟨this.1, this.2.le⟩
   rw [hTend] at hsteps hPh
-  -- Step 3 at every level `k < n`.
+  -- Lean step 3 at every level `k < n`.
   have hhand : ∀ k ∈ Finset.Ico 1 S.P.n, S.HandoffStep k := fun k hk =>
     hsteps.handoff k hk (hck (k + 1) (hsucc k hk)) (hPh k (hIco k hk)).1.2
-  -- Step 4 at `t' = T_k`, i.e. at the active time `T̂_k`.
+  -- Lean step 4 at `t' = T_k`, i.e. at the active time `T̂_k`.
   have hact : ∀ k ∈ Finset.Icc 1 S.P.n, S.ActiveStep k (S.P.That k) := by
     intro k hk
     have hkne : k ≠ S.P.n + 1 := by
@@ -102,7 +107,7 @@ theorem bootstrap (S : Standing) (hS : S.Holds) (hL : S.ParamLists) : S.BootConc
       coef := fun k hk => (hact k hk).coef rfl
       confine := ?_
       time := time S hS hL.det hclock (fun k hk => (hamp k hk).1) h0.ksh_n.1 }
-  -- Item (4): `lem:geometry`(a) at `T_1` with `e_k = T_k`, and `prop:confine`.
+  -- The confinement group of `BootConcl`: `lem:geometry`(a) at `T_1` with `e_k = T_k`, and `prop:confine`.
   intro k hk
   have hck1 : S.P.ClockUpTo (k + 1) := hck (k + 1) (hsucc k hk)
   have hW := hsteps.geom.window k hk hck1 (hPh (k + 1) (hsucc k hk)).2.2
@@ -114,9 +119,9 @@ theorem bootstrap (S : Standing) (hS : S.Holds) (hL : S.ParamLists) : S.BootConc
   refine ⟨hW.1, fun t ht => ⟨Rings.confine S.P hS.valid hS.hN hG hW.1 t ht, ?_⟩⟩
   exact (hW.2 t ht).1.trans (hW.2 t ht).2.1
 
-/-- **`prop:bootstrap`** (`11_bootstrap.tex:94-113`), at the parameter level: assume (N1)–(N3) and
-(P0)–(P6) for the parameters `p`. Then for every `A₁ > 0` and every `n ≥ 2`, the conclusions
-(1)–(5) hold for the standing datum `p.standing A₁ n` (`ω = ω^{(n)}`). -/
+/-- **The stronger all-ring bootstrap statement**, at the parameter level. Under (N1)–(N3)
+and (P0)–(P6), `BootConcl` holds for `p.standing A₁ n` whenever `A₁ > 0` and `n ≥ 2`.
+Its ring-1 consequences are Part II Proposition 8.1 (`prop:bootstrap`). -/
 theorem bootstrap_params (p : Params) (hχ : IsAdmissibleCutoff p.χ)
     (hN : NumericalHypothesis p.χ) (hL : p.Lists) {A₁ : ℝ} (hA₁ : 0 < A₁) {n : ℕ} (hn : 2 ≤ n) :
     (p.standing A₁ n).BootConcl :=

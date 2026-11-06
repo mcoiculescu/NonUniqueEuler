@@ -7,7 +7,7 @@ import NonUniqueEuler.Defs.Infra.Sobolev
 /-!
 # Helper for `P/Infra/Sobolev/EmbedL4`: the Ladyzhenskaya inequality for `C¹_c` functions
 
-Manuscript `02_prelim.tex:613-620`, proof of (E1), first part ("Let first `g ∈ C_c^∞`").
+Manuscript: proof of Part II, Lemma 1.9(E1) (`lem:embed`), first part ("Let first `g ∈ C_c^∞`").
 
 * `sq_enorm_le_lintegral`: the one-dimensional bound `|f(s)|² ≤ ∫_ℝ 2 |f| |f'|`
   (fundamental theorem of calculus on `(-∞, s]` for `|f|²`, and `|(|f|²)'| ≤ 2 |f| |f'|`);
@@ -192,7 +192,7 @@ theorem lintegral_enorm_mul_le {φ ψ : ℂ → ℂ} (hφ : AEStronglyMeasurable
   simpa using h
 
 /-- The Ladyzhenskaya inequality for `φ ∈ C¹_c`:
-`∫ |φ|⁴ ≤ 2 ‖φ‖₂² (‖∂₁φ‖₂² + ‖∂₂φ‖₂²)` (`02_prelim.tex:613-620`). -/
+`∫ |φ|⁴ ≤ 2 ‖φ‖₂² (‖∂₁φ‖₂² + ‖∂₂φ‖₂²)` (Part II, Lemma 1.9(E1) (`lem:embed`), proof). -/
 theorem lintegral_enorm_pow_four_le_ofReal {φ : ℂ → ℂ} (hφ : ContDiff ℝ 1 φ)
     (hc : HasCompactSupport φ) :
     ∫⁻ z, ‖φ z‖ₑ ^ 4 ≤ ENNReal.ofReal (2 * l2 φ ^ 2 *

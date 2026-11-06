@@ -4,9 +4,9 @@ import Mathlib.MeasureTheory.Function.L2Space
 import Mathlib.Analysis.MeanInequalities
 
 /-!
-# Helper for `lem:sector`(1): growth of `𝒢_ℓ g` at `0` and `∞`, and the bound on `𝒢_ℓ`
+# Helper for Part I Lemma 4.5(1) (`lem:sector`): growth of `𝒢_ℓ g` at `0` and `∞`, and the bound on `𝒢_ℓ`
 
-Helper file of `P/Sec4/Sector.lean` (fully proved). Manuscript `04_ring.tex:224-243`.
+Helper file of `P/Sec4/Sector.lean` (fully proved). See the proof of Part I Lemma 4.5 (`lem:sector`).
 
 * `green_isBigO_zero`, `green_isBigO_atTop`: since `g` vanishes outside `[a, b]`, `𝒢_ℓ g` is a
   multiple of `rⁿ` on `(0, a]` and of `r⁻ⁿ` on `[b, ∞)`.

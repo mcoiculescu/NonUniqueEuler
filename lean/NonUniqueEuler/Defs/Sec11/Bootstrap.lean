@@ -2,28 +2,33 @@ import NonUniqueEuler.Defs.Sec10.Params
 import NonUniqueEuler.Defs.Sec11.Stop
 
 /-!
-# Section 11: the bootstrap assumptions and the bundles of `lem:geometry` and `prop:bootstrap`
-(definitions)
+# Bootstrap and geometry bundles (legacy `Sec11` modules)
 
-Manuscript `11_bootstrap.tex`:
-`def:BA` (`:71-92`), `lem:geometry` (`:121-144`), `prop:bootstrap` (`:94-113`), and
-`eq:handoff` (`09_relay.tex:877-884`) as used in `prop:bootstrap`(3).
+Current sources are the unnumbered bootstrap bounds in Part II §6 (`sec:relay`),
+Lemma C.17 (`lem:geometry`, Appendix C.14), Equation (50) (`eq:handoff`, Appendix C.10),
+and Proposition 8.1 (`prop:bootstrap`, §8).
 
-Throughout Section 11 the standing datum is `S = p.standing A₁ n` (`Defs/Sec10/Params.lean`), and
-`â_k`, `ρ̂_k` are taken with the constant `C₀ = S.C0` of (P4) (`11_bootstrap.tex:17-18`). The
-objects:
-* `S.BA1At U t'`, `S.BA2At A t'`, `S.BA3At C k t'`: the three conditions of `def:BA` at one time
-  `t'` (with the sets `U_j`, the factor `A` in place of `2Ā` and the factor `C` in place of `2C₂`);
-* `S.BA t`, `S.BAstar t`, `S.BAcirc t`: (BA)(t), (BA*)(t), (BA°)(t) (conditions at every
-  `t' ∈ [0, t]`);
-* `S.HandoffEq k`: `eq:handoff` at `t♯_k` with the `K_1` of `def:K1` (the conclusion of
-  `Relay.handoff` for `K₁ = S.K1`, by definition);
-* `S.GeometryHyp t`, `S.GeometryWindow k t`, `S.GeometryRing j t'`, `S.GeometryConcl t`: the
-  hypotheses and the conclusions (a)–(c) of `lem:geometry`;
-* `S.BootConcl`: the conclusions (1)–(5) of `prop:bootstrap`.
+The Lean bundles retain the earlier decomposition. `S.BAcirc t` corresponds to the current
+manuscript's (BA)(t): its active bound is required only strictly after activation.
+`S.BA t` also imposes that bound at activation, and `S.BAstar t` gives the improved bounds,
+including activation. The legacy label `def:BA` is no longer a numbered manuscript definition.
+`S.BootConcl` retains five groups of all-ring conclusions. Proposition 8.1 now states four
+consequences for ring 1; the stronger information remains in its proof and Proposition 6.2
+(`prop:relay-step`). The numbered groups below describe the Lean bundle, not the four items
+of the current proposition.
 
-The restriction `t ∈ [0, T_end]` of `def:BA` and `lem:geometry` is a hypothesis of the statements,
-not part of the definitions. Here `m = 3`. All lemmas here are fully proved.
+For the standing datum `S = p.standing A₁ n` (`Defs/Sec10/Params.lean`):
+* `S.BA1At U t'`, `S.BA2At A t'`, `S.BA3At C k t'` encode the three bounds at one time;
+* `S.BA t`, `S.BAstar t`, `S.BAcirc t` impose them on every `t' ∈ [0, t]` as described above;
+* `S.HandoffEq k` is `eq:handoff` at `t♯_k` with `K₁ = S.K1` from Definition C.13 (`def:K1`);
+* `S.GeometryHyp t`, `S.GeometryWindow k t`, `S.GeometryRing j t'`, `S.GeometryConcl t`
+  encode the hypotheses and conclusions (a)–(c) of Lemma C.17;
+* `S.BootConcl` is the stronger all-ring conclusion used by the Lean proof.
+
+Here `m = 3`, and the envelope and transient use `C₀ = S.C0` from (P4). Lean's envelope
+argument is local active time, while §6 writes these functions in physical time.
+The restriction `t ∈ [0, T_end]` is a hypothesis of the relevant results, not part of these
+definitions. All lemmas here are proved.
 -/
 
 noncomputable section
@@ -40,68 +45,74 @@ namespace Standing
 
 variable (S : Standing)
 
-/-! ### `def:BA` (`11_bootstrap.tex:71-92`) -/
+/-! ### Bootstrap bounds from Part II §6 (`sec:relay`) -/
 
-/-- **(BA1) at the time `t'`** for the family of sets `U` (`def:BA`, `11_bootstrap.tex:75`): every
-ring `j ∈ [1, n]` that is not debris at `t'` has `S_j(t') ⊂ U_j`. (BA) uses `U_j = N♭_j`
-(`S.P.Nflatk`), (BA*) uses `U_j = 𝒩_j` (`S.P.Nnk`). -/
+/-- **(BA1) at time `t'`**, with the sets `U` (Part II §6, `sec:relay`): every
+ring `j ∈ [1, n]` that is not debris at `t'` has `S_j(t') ⊂ U_j`. Lean `BA` uses
+`U_j = N♭_j` (`S.P.Nflatk`), and `BAstar` uses `U_j = 𝒩_j` (`S.P.Nnk`). -/
 def BA1At (U : ℕ → Set ℂ) (t' : ℝ) : Prop :=
   ∀ j ∈ Finset.Icc 1 S.P.n, ¬ S.P.DebrisAt j t' → S.P.St j t' ⊆ U j
 
-/-- **(BA2) at the time `t'`** with the factor `A` (`def:BA`, `11_bootstrap.tex:76-77`): for every
-ring `j < n` that is quiet at `t'`, the field `h_j` is defined at every time in `[0, t']`, and
-`maj_j(A_j t') ≤ A ε_j`. (BA) uses `A = 2Ā`, (BA*) uses `A = Ā` (`S.Abar`). -/
+/-- **(BA2) at time `t'`**, with factor `A` (Part II §6, `sec:relay`): for every
+quiet ring `j < n`, the field `h_j` is defined on `[0, t']` and
+`maj_j(A_j t') ≤ A ε_j`. Lean `BA` and `BAcirc` use `A = 2Ā`; `BAstar` uses `A = Ā`.
+Lean takes the majorant in ring-`j` time; the current manuscript writes it in physical time. -/
 def BA2At (A t' : ℝ) : Prop :=
   ∀ j ∈ Finset.Ico 1 S.P.n, S.P.QuietAt j t' →
     (∀ t'' ∈ Icc (0 : ℝ) t', S.P.HDefined j t'') ∧ S.maj j (S.P.A j * t') ≤ A * S.P.eps j
 
-/-- **(BA3) for ring `k` at the time `t'`** with the factor `C` (`def:BA`, `11_bootstrap.tex:78-79`):
-if ring `k` is active at `t'`, then with `u = A_k(t' - t♯_k)`,
-`‖w_k(t')‖_{H^s} ≤ C â_k(u)(1 + ρ̂_k(u))`, `ρ̂_k` with the constant `C₀ = S.C0` of (P4). (BA) uses
-`C = 2C₂`, (BA*) uses `C = C₂` (`S.C2`). -/
+/-- **The active bound for ring `k` at time `t'`**, with factor `C`:
+if the ring is active, then with `u = A_k(t' - t♯_k)`,
+`‖w_k(t')‖_{H^s} ≤ C â_k(u)(1 + ρ̂_k(u))`. The transient uses `C₀ = S.C0`.
+Lean `BA` uses `C = 2C₂`, and `BAstar` uses `C = C₂`. The strict-after-activation
+restriction of current (BA3) in Part II §6 (`sec:relay`) is imposed by `BAcirc`. -/
 def BA3At (C : ℝ) (k : ℕ) (t' : ℝ) : Prop :=
   S.P.ActiveAt k t' →
     Sob.normH S.s (S.P.w k t') ≤
       C * S.ahatK k (S.P.activeTime k t') * (1 + S.rhoHatK S.C0 k (S.P.activeTime k t'))
 
-/-- **(BA)(t)** (`def:BA`, `11_bootstrap.tex:73-80`): for every `t' ∈ [0, t]`, (BA1) with `N♭_j`,
-(BA2) with `2Ā` and (BA3) with `2C₂` (for every ring `k ∈ [1, n]`). -/
+/-- **Lean (BA)(t)**: on `[0, t]`, (BA1) with `N♭_j`, (BA2) with `2Ā`, and the
+active bound with `2C₂`, including activation. This is stronger than current (BA)(t)
+in Part II §6 (`sec:relay`), which corresponds to `BAcirc`. -/
 structure BA (t : ℝ) : Prop where
   ba1 : ∀ t' ∈ Icc (0 : ℝ) t, S.BA1At S.P.Nflatk t'
   ba2 : ∀ t' ∈ Icc (0 : ℝ) t, S.BA2At (2 * S.Abar) t'
   ba3 : ∀ t' ∈ Icc (0 : ℝ) t, ∀ k ∈ Finset.Icc 1 S.P.n, S.BA3At (2 * S.C2) k t'
 
-/-- **(BA*)(t)** (`def:BA`, `11_bootstrap.tex:81-82`): (BA)(t) with `N♭_j`, `2Ā`, `2C₂` replaced by
-`𝒩_j`, `Ā`, `C₂`. -/
+/-- **Lean (BA*)(t)**: the improved bounds of Part II §6 (`sec:relay`), with `𝒩_j`,
+`Ā` and `C₂`, including the bound at activation supplied by the seed or hand-off. -/
 structure BAstar (t : ℝ) : Prop where
   ba1 : ∀ t' ∈ Icc (0 : ℝ) t, S.BA1At S.P.Nnk t'
   ba2 : ∀ t' ∈ Icc (0 : ℝ) t, S.BA2At S.Abar t'
   ba3 : ∀ t' ∈ Icc (0 : ℝ) t, ∀ k ∈ Finset.Icc 1 S.P.n, S.BA3At S.C2 k t'
 
-/-- **(BA°)(t)** (`def:BA`, `11_bootstrap.tex:82-84`): (BA)(t) without, for each level `k`, the
-instance of (BA3) for ring `k` at `t' = t♯_k`. -/
+/-- **Lean (BA°)(t)**, corresponding to current (BA)(t) in Part II §6 (`sec:relay`):
+Lean `BA` with the active bound omitted at `t' = t♯_k`. Since an active ring has
+`t' ≥ t♯_k`, the remaining active bound is precisely the strict-after-activation one. -/
 structure BAcirc (t : ℝ) : Prop where
   ba1 : ∀ t' ∈ Icc (0 : ℝ) t, S.BA1At S.P.Nflatk t'
   ba2 : ∀ t' ∈ Icc (0 : ℝ) t, S.BA2At (2 * S.Abar) t'
   ba3 : ∀ t' ∈ Icc (0 : ℝ) t, ∀ k ∈ Finset.Icc 1 S.P.n, t' ≠ S.P.tsh k → S.BA3At (2 * S.C2) k t'
 
-/-! ### `eq:handoff` at `t♯_k` (`09_relay.tex:877-884`; `prop:bootstrap`(3)) -/
+/-! ### Equation (50) (`eq:handoff`) at activation -/
 
-/-- **Equation `eq:handoff` at `t♯_k`** with the constant `K_1 = S.K1` of `def:K1`
-(`09_relay.tex:877-884`; `prop:bootstrap`(3), `11_bootstrap.tex:103`; Step 3, `:376`), in ring-`k`
-units: `½|c^in_k| ≤ κ♯_k ≤ (3/2)|c^in_k|`, `maj_k(t̄♯_k) ≤ K_1 κ♯_k`,
-`‖w_k(t♯_k)‖_{H^{s_h}} ≤ C_hand κ♯_k` with `C_hand = K_1C_Q` (`= S.Chand`, `Chand_def`), and
-`supp(Φ + w_k(t♯_k)) ⊂ 𝒩₋`, i.e. `S_k(t♯_k) ⊂ 𝒩₋_k`. This is the conclusion of the interface
-`Relay.handoff` with `K₁ = S.K1`, literally. -/
+/-- **Equation (50) (`eq:handoff`, Part II Appendix C.10) at `t♯_k`**, with
+`K₁ = S.K1` from Definition C.13 (`def:K1`): in ring-`k` units,
+`½|c^in_k| ≤ κ♯_k ≤ (3/2)|c^in_k|`, `maj_k(t̄♯_k) ≤ K₁κ♯_k`,
+`‖w_k(t♯_k)‖_{H^{s_h}} ≤ C_hand κ♯_k`, where `C_hand = K₁C_Q = S.Chand`, and
+`supp(Φ + w_k(t♯_k)) ⊂ 𝒩₋`, equivalently `S_k(t♯_k) ⊂ 𝒩₋_k`.
+This is the conclusion of `Relay.handoff` with `K₁ = S.K1`, used in Proposition 6.2(b)
+(`prop:relay-step`) and retained in `BootConcl.handoff`. -/
 def HandoffEq (k : ℕ) : Prop :=
   1 / 2 * ‖S.P.cinK k‖ ≤ S.P.ksh k ∧ S.P.ksh k ≤ 3 / 2 * ‖S.P.cinK k‖ ∧
     S.maj k (S.P.tash k) ≤ S.K1 * S.P.ksh k ∧
     Sob.normH S.sh (S.P.w k (S.P.tsh k)) ≤ S.K1 * S.CQ * S.P.ksh k ∧
     S.P.St k (S.P.tsh k) ⊆ S.P.Nmk k
 
-/-! ### `lem:geometry` (`11_bootstrap.tex:121-144`) -/
+/-! ### `lem:geometry` (Part II Appendix C.14 (`lem:geometry`, Lemma C.17)) -/
 
-/-- **The hypotheses of `lem:geometry` at the time `t`** (`11_bootstrap.tex:123-124`; `t ∈ [0, T_end]`
+/-- **The hypotheses of `lem:geometry` at the time `t`** (Part II Appendix C.14 (`lem:geometry`,
+Lemma C.17); `t ∈ [0, T_end]`
 is a separate hypothesis): (BA1) holds at every `t' ∈ [0, t]` (with `N♭_j`), and
 `κ♯_k ≥ K_lo s_k^{m+2}` for every level `k < n` with `t♯_k < t` (`t♯_k` defined: the clock is
 defined up to level `k+1`). -/
@@ -110,7 +121,8 @@ structure GeometryHyp (t : ℝ) : Prop where
   amp : ∀ k ∈ Finset.Ico 1 S.P.n, S.P.ClockUpTo (k + 1) → S.P.tsh k < t →
     S.Klo * S.P.s k ^ (3 + 2) ≤ S.P.ksh k
 
-/-- **Conclusion (a) of `lem:geometry` for the level `k` at the time `t`** (`11_bootstrap.tex:128-135`),
+/-- **Conclusion (a) of `lem:geometry` for the level `k` at the time `t`** (Part II Appendix C.14
+(`lem:geometry`, Lemma C.17)),
 for `k < n` with `T_{k+1}` defined and `T_{k+1} ≤ t`: the hypotheses of `prop:confine` hold with
 `t₀ = T_{k+1}` and `t₁ = min(t, e_k)` (`P.ConfineHyp`), and for every `t' ∈ [T_{k+1}, min(t, e_k)]`:
 `D_{k+1}(t') ⊂ \bar B_{ϱ_k(t')} ⊂ B_{ar_k/8}` and `|q_{k+1}(t')| ≤ C_mom(1 + A_{k+1}(t' - T_{k+1}))^m`,
@@ -123,17 +135,20 @@ def GeometryWindow (k : ℕ) (t : ℝ) : Prop :=
         closedBall (0 : ℂ) (S.P.confRadius k t') ⊆ ball 0 (a * S.P.r k / 8) ∧
         ‖S.P.q (k + 1) t'‖ ≤ Rings.Cmom * (1 + S.P.kickTime k t') ^ 3
 
-/-- **Conclusion (b) of `lem:geometry` for the ring `j` at the time `t'`** (`11_bootstrap.tex:136-141`),
+/-- **Conclusion (b) of `lem:geometry` for the ring `j` at the time `t'`** (Part II Appendix C.14
+(`lem:geometry`, Lemma C.17)),
 for `j` not debris at `t'`: every ring `i < j` is quiet at `t'` and satisfies
 `S_i(t') ⊂ N♭_i ⊂ ℝ² ∖ B_{6r_j}`; `D_{j+1}(t') ⊂ B_{ar_j/8}` (`HInDefined`); hence `h_j` is defined
 at `t'` (`HDefined`; this is also the support hypothesis of `lem:reduction` for ring `j` in ring-`j`
-units, `09_relay.tex:72-80`); and, if `j < n`, `η_j(A_j t') ≤ 1`. -/
+units, Part II Lemma 2.2 (`lem:reduction`) and Lemma C.17(b) (`lem:geometry`)); and, if `j < n`,
+`η_j(A_j t') ≤ 1`. -/
 def GeometryRing (j : ℕ) (t' : ℝ) : Prop :=
   (∀ i ∈ Finset.Ico 1 j, S.P.QuietAt i t' ∧ S.P.St i t' ⊆ S.P.Nflatk i ∧
       S.P.Nflatk i ⊆ (ball (0 : ℂ) (6 * S.P.r j))ᶜ) ∧
     S.P.HInDefined j t' ∧ S.P.HDefined j t' ∧ (j < S.P.n → S.eta j (S.P.A j * t') ≤ 1)
 
-/-- **The conclusions (a)–(c) of `lem:geometry` at the time `t`** (`11_bootstrap.tex:127-143`):
+/-- **The conclusions (a)–(c) of `lem:geometry` at the time `t`** (Part II Appendix C.14
+(`lem:geometry`, Lemma C.17)):
 (a) `GeometryWindow k t` for every level `k < n` with `T_{k+1}` defined (the clock is defined up to
 level `k+1`) and `T_{k+1} ≤ t`; (b) `GeometryRing j t'` for every `t' ∈ [0, t]` and every ring
 `j ∈ [1, n]` not debris at `t'`; (c) (Loc) at every `t' ∈ [0, t]` (`P.Loc`). -/
@@ -144,10 +159,11 @@ structure GeometryConcl (t : ℝ) : Prop where
     S.GeometryRing j t'
   loc : ∀ t' ∈ Icc (0 : ℝ) t, S.P.Loc t'
 
-/-! ### The conclusions of `prop:bootstrap` (`11_bootstrap.tex:94-113`) -/
+/-! ### The stronger all-ring bootstrap conclusion -/
 
-/-- **The conclusions (1)–(5) of `prop:bootstrap`** for the standing datum `S`
-(`11_bootstrap.tex:98-112`; in Section 11, `S = p.standing A₁ n`):
+/-- **The five groups of the Lean all-ring bootstrap conclusion**, for the standing datum `S`.
+They retain the earlier statement of `prop:bootstrap`; current Part II Proposition 8.1
+states four ring-1 consequences. The following numbering is internal to this Lean bundle:
 1. `T_end = T₁`, i.e. the clock is defined up to level `1` (`clock`; `P.Tend_of_clockUpTo`);
    `K_lo s_k^{m+2} ≤ κ♯_k ≤ K_up s_k^{m+2}` for `k < n` (`amp`) and
    `κ♯_n ∈ [½κ_seed, 2κ_seed]` (`amp_n`);
@@ -246,7 +262,7 @@ theorem handoffEq_iff (k : ℕ) : S.HandoffEq k ↔
       Sob.normH S.sh (S.P.w k (S.P.tsh k)) ≤ S.Chand * S.P.ksh k ∧
       S.P.St k (S.P.tsh k) ⊆ S.P.Nmk k := Iff.rfl
 
-/-- Item (1) of `prop:bootstrap`: `T_end = T₁`. -/
+/-- The clock consequence of `BootConcl`, also Part II Proposition 8.1(1) (`prop:bootstrap`). -/
 theorem BootConcl.Tend_eq (h : S.BootConcl) : S.P.Tend = S.P.T 1 :=
   Approx.Tend_of_clockUpTo h.clock
 

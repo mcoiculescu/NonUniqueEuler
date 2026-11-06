@@ -5,7 +5,7 @@ import NonUniqueEuler.I.Sec9.Standing
 # Helper for `lem:nonempty`: (B4), and the level conditions (B5), (B8) of (P6), for small `s̄`
 
 Helper of `P/Sec10/Nonempty.lean`, the treatment of (P6) in the proof of `lem:nonempty`
-(`10_parameters.tex:352-371`):
+(Part II Appendix C.4, `sec:param-verification`):
 * (B4) is `det_of_small` (`I/Sec9/Standing.lean`; `λ_*` continuous at `0`);
 * (B5): `Λ^conf_k = α₀ + β₀ log(1/s_k)`; `s(α₀ + β₀log(1/s)) → 0` and
   `s(α₀ + β₀log(1/s))² → 0` give `s₅ > 0` with both inequalities at every scale `s ∈ (0, s₅]`,
@@ -38,12 +38,12 @@ theorem eventually_b4 (hχ : IsAdmissibleCutoff p.χ) (hN : NumericalHypothesis 
   obtain ⟨s₀, hs₀, h⟩ := det_of_small p.χ hχ hN hp.p2.one_lt_μ
   exact eventually_of_Ioc hs₀ h
 
-/-- `Λ^conf` as a function of the scale `s` (`(B5)`, `10_parameters.tex:145-146`). -/
+/-- `Λ^conf` as a function of the scale `s` (`(B5)`, Part II Definition C.4, `def:P6`). -/
 def LconfOf (p : Params) (s : ℝ) : ℝ :=
   2 + 2 * Cstar * (p.ref.P.μ * (p.ref.P.Tpin + 1 + 1 / p.ref.σ' *
     ((3 + 2) * Real.log (1 / s) + Real.posLog (p.ref.P.δ₀ / p.ref.Klo))))
 
-/-- `Λ^conf = α₀ + β₀ log(1/s)` (`10_parameters.tex:356-358`). -/
+/-- `Λ^conf = α₀ + β₀ log(1/s)` (Part II Appendix C.4, `sec:param-verification`). -/
 theorem LconfOf_eq (p : Params) (s : ℝ) :
     LconfOf p s =
       (2 + 2 * Cstar * (p.ref.P.μ * (p.ref.P.Tpin + 1 +
@@ -82,7 +82,7 @@ theorem ratio_mem {μ sb : ℝ} (hμ : 1 < μ) (hsb : 0 < sb) (k : ℕ) :
   have h2 : 1 ≤ 2 * μ := by linarith
   exact ⟨div_pos hsb (pow_pos (by linarith) k), div_le_self hsb.le (one_le_pow₀ h2)⟩
 
-/-- **(B5)** at every level `k ≥ 1`, for small `s̄` (`10_parameters.tex:358-362`). -/
+/-- **(B5)** at every level `k ≥ 1`, for small `s̄` (Part II Appendix C.4, `sec:param-verification`). -/
 theorem eventually_b5 (hp : p.Structural) :
     ∀ᶠ sb in 𝓝[>] (0 : ℝ), ∀ k : ℕ, 1 ≤ k →
       LconfOf p (sb / (2 * p.ref.P.μ) ^ k) * (sb / (2 * p.ref.P.μ) ^ k) ≤ a / 8 ∧
@@ -93,7 +93,7 @@ theorem eventually_b5 (hp : p.Structural) :
   obtain ⟨h1, h2⟩ := ratio_mem hp.p2.one_lt_μ hsb.1 k
   exact ⟨h1, h2.trans hsb.2⟩
 
-/-- The function `F` of (B8) (`10_parameters.tex:364-368`), at the scale `s = s_{k-1}`. -/
+/-- The function `F` of (B8) (Part II Appendix C.4, `sec:param-verification`), at the scale `s = s_{k-1}`. -/
 theorem eventually_b8_scale :
     ∀ᶠ t in 𝓝[>] (0 : ℝ),
       Eig.Cls p.ref.P.χ * (p.ref.Cop p.ref.C0 p.ref.K1 * t ^ (2 * 3) /
@@ -110,7 +110,7 @@ theorem eventually_b8_scale :
   rw [Real.rpow_natCast, pow_one]
   ring
 
-/-- **(B8)** at every level `k ≥ 2`, for small `s̄` (`10_parameters.tex:362-371`). -/
+/-- **(B8)** at every level `k ≥ 2`, for small `s̄` (Part II Appendix C.4, `sec:param-verification`). -/
 theorem eventually_b8_level (κ : ℝ) (hp : p.Structural) :
     ∀ᶠ sb in 𝓝[>] (0 : ℝ), ∀ k : ℕ, 2 ≤ k →
       Eig.Cls (sbarRef p κ sb).P.χ *

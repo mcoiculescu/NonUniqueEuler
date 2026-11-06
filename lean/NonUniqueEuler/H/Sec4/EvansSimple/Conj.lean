@@ -1,10 +1,10 @@
 import NonUniqueEuler.H.Sec4.EvansSimple.Abstract
 
 /-!
-# Helper for `thm:evans-simple`(2) in the conjugate sector: transport by a conjugation
+# Helper for Part I Theorem 4.8(2) (`thm:evans-simple`) in the conjugate sector: transport by a conjugation
 
 Helper of `P/Sec4/EvansSimple.lean` (fully proved; manuscript-independent). Namespace
-`NonUniqueEuler.EvansSimpleAux`. Manuscript `lem:resolvent`, last assertion (`04_ring.tex:446-448`):
+`NonUniqueEuler.EvansSimpleAux`. The last assertion of Part I Lemma 4.7 (`lem:resolvent`):
 complex conjugation `C : Y^s_ℓ → Y^s_{-ℓ}` intertwines `L_ℓ` and `L_{-ℓ}`, so the spectral data of
 `L_ℓ` at `λ_*` transport to `L_{-ℓ}` at `conj λ_*`.
 

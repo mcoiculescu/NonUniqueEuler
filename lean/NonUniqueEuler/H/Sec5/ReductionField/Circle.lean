@@ -4,7 +4,7 @@ import Mathlib.Analysis.SpecialFunctions.Complex.CircleMap
 /-!
 # Helper for `lem:reduction`(1): radial and angular components on circles
 
-Helper of `P/Sec5/ReductionField.lean` (`05_single_ring.tex:165-176`). On the circle
+Helper of `P/Sec5/ReductionField.lean` (Part II Lemma 2.2). On the circle
 `x = r e^{iθ}`, `r > 0`:
 * `radComp F x = ⟨F(x), e^{iθ}⟩` and `angComp F x = ⟨F(x), i e^{iθ}⟩` (the real inner product of
   `ℂ = ℝ²`, as in `I/Infra/Multipole/Circulation.lean`);

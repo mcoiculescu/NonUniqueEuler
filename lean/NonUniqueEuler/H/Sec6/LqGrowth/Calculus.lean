@@ -3,12 +3,12 @@ import Mathlib.Analysis.SpecialFunctions.Pow.Real
 import Mathlib.MeasureTheory.Integral.IntegralEqImproper
 
 /-!
-# Helpers for `lem:Lq-growth`: elementary real analysis
+# Helpers for the legacy supplementary `LqGrowth` result: elementary real analysis
 
-Helpers for `P/Sec6/LqGrowth.lean` (`lem:Lq-growth`, `06_datum.tex:529-591`). All proved.
+Helpers for `P/Sec6/LqGrowth.lean` (the supplementary `LqGrowth` result, no longer stated in the manuscript). All proved.
 
 * `sq_one_add_half_mul_le_exp_mul_exp`: `(1 + ab/2)² ≤ e^a e^b` for `a, b ≥ 0`. This replaces the
-  arithmetic–geometric mean step of the manuscript (`ε log y + α/ε ≥ 2(α log y)^{1/2}`) in the proof
+  arithmetic–geometric mean step of the earlier manuscript (`ε log y + α/ε ≥ 2(α log y)^{1/2}`) in the proof
   of (2): with `a = ε log y`, `b = α/ε` it gives `y^ε e^{α/ε} ≥ (1 + α log y / 2)²`, a lower bound
   independent of `ε` that is still integrable against `dy/y` (deviation).
 * `integrableOn_Ioi_one_log_decay`: `y ↦ γ y⁻¹ (1 + γ log y)⁻²` is integrable on `(1, ∞)` for
@@ -67,7 +67,7 @@ theorem integrableOn_Ioi_one_log_decay {γ : ℝ} (hγ : 0 < γ) :
     have := (tendsto_inv_atTop_zero.comp h).neg
     simpa using this
 
-/-- The arithmetic of the choice `j = ⌊q l/(2L)⌋` (`06_datum.tex:551-566`): with `l = log μ`,
+/-- The arithmetic of the choice `j = ⌊q l/(2L)⌋` (supplementary material no longer stated in the manuscript): with `l = log μ`,
 `L = log(2μ)`, `S = log(1/s̄)`, if `0 ≤ j`, `j ≤ q l/(2L) < j + 1`, then
 `-l - S l/L + (l²/(4L)) q ≤ j l - (2/q)(j S + (j+1) j/2 · L)`. -/
 theorem floor_exponent_ineq {l L S q j : ℝ} (hl : 0 < l) (hL : 0 < L) (hS : 0 ≤ S) (hq : 1 ≤ q)

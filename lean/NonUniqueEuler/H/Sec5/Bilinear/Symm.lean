@@ -5,7 +5,7 @@ import NonUniqueEuler.I.Infra.Sobolev.Symmetry
 import NonUniqueEuler.I.Infra.Sobolev.WeakDeriv
 
 /-!
-# Helper for `lem:bilinear`: `3`-fold symmetry of the products (`05_single_ring.tex:272-275`)
+# Helper for `lem:bilinear`: `3`-fold symmetry of the products (Part II Lemma 2.3)
 
 Helper of `P/Sec5/Bilinear.lean`. "If `v`, `w` and `h` are `3`-fold symmetric, so are `K_BS * v`
 (by the equivariance in the proof of `lem:reduction`), `∇w` and `∇Φ`, as vector fields; hence the
@@ -133,7 +133,7 @@ theorem isMFoldSymmetricC_three_iff {f : ℂ → ℂ} :
   unfold Ang.IsMFoldSymmetricC
   norm_num
 
-/-- `h·∇f` is `3`-fold symmetric (`05_single_ring.tex:272-275`). -/
+/-- `h·∇f` is `3`-fold symmetric (Part II Lemma 2.3 (`lem:bilinear`)). -/
 theorem dotGrad_isMFoldSymmetricC {f h : ℂ → ℂ} (hf : Sob.MemH 1 f)
     (hfs : Ang.IsMFoldSymmetricC 3 f)
     (hsupp : ∀ᵐ x ∂(volume : Measure ℂ), x ∉ annN' →

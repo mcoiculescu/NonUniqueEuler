@@ -8,7 +8,7 @@ import NonUniqueEuler.H.Sec5.LinearPart.Integrals
 # Helpers for `lem:linear-part`: the bound on `(1 - R) wlin₀(u)`
 
 Helper of `P/Sec5/LinearPart.lean` (fully proved modulo the interface files it uses).
-Namespace `NonUniqueEuler.OneRing.LinearPartH`. Manuscript `05_single_ring.tex:634-649`.
+Namespace `NonUniqueEuler.OneRing.LinearPartH`. Manuscript Part II Lemma 2.10.
 
 * `sigb_le_sigma`: `σ_b ≤ σ(G)` on `[0,G₁]` once `σ_b > 9/200` (the infimum defining `σ_b` is
   then over a set bounded below, since `sInf` of an unbounded set is `0`);
@@ -62,7 +62,7 @@ theorem forcing_memX_norm (χ : ℝ → ℝ) (hχ : IsAdmissibleCutoff χ) (hN :
   · rw [norm_neg, norm_toY hXf]
     exact hnorm
 
-/-- **The bound of `lem:linear-part`** (`05_single_ring.tex:634-649`):
+/-- **The bound of `lem:linear-part`** (Part II Lemma 2.10):
 `‖(1-R)wlin₀(u)‖_{H^k} ≤ C_lin(k)(A⟨u⟩^pe^{σ'u} + η_bκe^{σ(G)u})` for `u ∈ [0,ū]`. -/
 theorem complement_bound (χ : ℝ → ℝ) (hχ : IsAdmissibleCutoff χ) (hN : NumericalHypothesis χ)
     {σ' : ℝ} (hσ' : σ' ∈ Ioo (9 / 200 : ℝ) (Eig.sigb χ)) (p : ℕ) {k : ℕ} (hk : 2 ≤ k)

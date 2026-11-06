@@ -5,7 +5,7 @@ import NonUniqueEuler.I.Sec7.FieldBound
 /-!
 # Proof: `lem:geometry` (localization at equal times gives confinement on the windows)
 
-Proof of the interface `I/Sec11/Geometry.lean` (`11_bootstrap.tex:121-144`, proof `:146-218`).
+Proof of the interface `I/Sec11/Geometry.lean` (Part II Lemma C.17 (`lem:geometry`), Appendix C.14).
 The downward induction on the level (the claim on `D_{j+1}` and conclusion (a)) is in
 `H/Sec11/Geometry/Induction.lean` (`GeometryH.inner_of_mem`), with the window length in
 `H/Sec11/Geometry/Window.lean` and the elementary facts in `H/Sec11/Geometry/Basic.lean`. Here:
@@ -29,7 +29,8 @@ namespace Relay
 
 open RingData Datum
 
-/-- **`lem:geometry`** (`11_bootstrap.tex:121-144`). Assume (N), (P0)–(P6), `t ∈ [0, T_end]`,
+/-- **`lem:geometry`** (Part II Appendix C.14 (`lem:geometry`, Lemma C.17)). Assume (N), (P0)–(P6),
+`t ∈ [0, T_end]`,
 (BA1) on `[0, t]` and `κ♯_k ≥ K_lo s_k^{m+2}` for every level `k < n` with `t♯_k < t`
 (`S.GeometryHyp t`). Then the conclusions (a)–(c) hold (`S.GeometryConcl t`). -/
 theorem geometry (S : Standing) (hS : S.Holds) (hL : S.ParamLists) {t : ℝ}
@@ -38,7 +39,7 @@ theorem geometry (S : Standing) (hS : S.Holds) (hL : S.ParamLists) {t : ℝ}
       (∀ t' ∈ Icc (0 : ℝ) t, ¬ S.P.DebrisAt j t' → S.P.HInDefined j t') ∧
         (j < S.P.n → S.P.ClockUpTo (j + 1) → S.P.T (j + 1) ≤ t → S.GeometryWindow j t) :=
     fun hj => GeometryH.inner_of_mem hS hL ht h hj
-  -- (b), `11_bootstrap.tex:151-157`, `:202-212`
+  -- (b), Part II Appendix C.14 (`lem:geometry`, Lemma C.17)
   have hring : ∀ t' ∈ Icc (0 : ℝ) t, ∀ j ∈ Finset.Icc 1 S.P.n, ¬ S.P.DebrisAt j t' →
       S.GeometryRing j t' := by
     intro t' ht' j hj hd
@@ -74,7 +75,7 @@ theorem geometry (S : Standing) (hS : S.Holds) (hL : S.ParamLists) {t : ℝ}
   · intro k hk hc hT
     have hk' := Finset.mem_Ico.1 hk
     exact (hall (Finset.mem_Icc.2 ⟨hk'.1, hk'.2.le⟩)).2 hk'.2 hc hT
-  -- (c), `11_bootstrap.tex:213-218`
+  -- (c), Part II Appendix C.14 (`lem:geometry`, Lemma C.17)
   · intro t' ht'
     refine ⟨?_, ?_⟩
     · intro i hi hle

@@ -9,7 +9,7 @@ import NonUniqueEuler.I.Infra.Polar.RadialDeriv
 /-!
 # Proof: `lem:BS-basic` (a), (b), (c), (e), the basic properties of the Biot–Savart kernel
 
-Proof of `I/Sec2/BSBasic.lean` (`02_prelim.tex:142-302`). Same declarations, same statements.
+Proof of `I/Sec2/BSBasic.lean` (Part I, Lemma 2.1 (`lem:BS-basic`)). Same declarations, same statements.
 
 * (a) `K_BS(w) = (i/(2π)) conj(w⁻¹)` (`biotSavartKernel_eq_conj_inv`), so `K_BS` is smooth off `0`
   and `D K_BS(z) v = (i/(2π)) conj(-v/z²)`, whence `|D K_BS(z) v| = |v|/(2π|z|²)`; each entry
@@ -104,7 +104,7 @@ theorem norm_biotSavartKernel_eq {z : ℂ} (hz : z ≠ 0) :
     ‖biotSavartKernel z‖ = (2 * Real.pi * ‖z‖)⁻¹ :=
   (fun _ => norm_biotSavartKernel_eq' z) hz
 
-/-- The kernel is smooth on `ℝ² ∖ {0}` (`02_prelim.tex:290`, used in (a) and (e)). -/
+/-- The kernel is smooth on `ℝ² ∖ {0}` (Part I, Lemma 2.1 (`lem:BS-basic`), used in (a) and (e)). -/
 theorem contDiffOn_biotSavartKernel : ContDiffOn ℝ ∞ biotSavartKernel {0}ᶜ := by
   rw [biotSavartKernel_eq_fun]
   intro w hw

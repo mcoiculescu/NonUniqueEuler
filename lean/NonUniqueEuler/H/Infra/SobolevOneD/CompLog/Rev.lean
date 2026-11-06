@@ -12,7 +12,7 @@ namespace `CompLogH` because the helpers of another proof may not be imported).
 * `exists_seq`: for `g ∈ H^k(V)`, `V` open, a sequence `G 0 = g`, `G 1, …, G k` of weak
   derivatives of `g` in `L²(V)` forming a first-order chain.
 
-This is the manuscript's "`∂_r^j` is a combination of `∂_x^i`, `i ≤ j`" (`04_ring.tex:888-897`).
+This is the manuscript's "`∂_r^j` is a combination of `∂_x^i`, `i ≤ j`" (Part I, Corollary 4.13 (`cor:K-bound`), elliptic estimate in the proof).
 All proofs are complete.
 -/
 

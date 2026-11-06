@@ -10,8 +10,7 @@ import Mathlib.Algebra.BigOperators.Intervals
 Proof of `NonUniqueEuler/I/Infra/CkNorm/Leibniz.lean`.
 
 `‖f g‖_{C^k(U)} ≤ 2^k ‖f‖_{C^k(U)} ‖g‖_{C^k(U)}`, for a real scalar function times a
-vector-valued one and for two complex functions (used in `lem:bilinear`(2),
-`05_single_ring.tex:258-263`).
+vector-valued one and for two complex functions (used in Part II, Lemma 2.3(2) (`lem:bilinear`), proof).
 
 Proof. At `x ∈ U` both factors are `C^k` on the open set `V ∩ W ⊇ U`; Mathlib's
 `norm_iteratedFDerivWithin_smul_le` / `norm_iteratedFDerivWithin_mul_le` on `V ∩ W`, together with

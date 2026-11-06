@@ -7,7 +7,7 @@ import NonUniqueEuler.H.Infra.Sobolev.Interp.Basic
 /-!
 # Proof: `lem:embed` (E3), the interpolation inequality (library I-HK)
 
-Manuscript: `02_prelim.tex:607-608, 632-643`. For an integer `k ≥ 0` and `g ∈ H^{2k}`,
+Manuscript: Part II, Lemma 1.9(E3) (`lem:embed`), proof. For an integer `k ≥ 0` and `g ∈ H^{2k}`,
 `‖g‖²_{H^k} ≤ 3^k ‖g‖_{L²} ‖g‖_{H^{2k}}`.
 
 Restructuring R3 (integration by parts instead of Plancherel):

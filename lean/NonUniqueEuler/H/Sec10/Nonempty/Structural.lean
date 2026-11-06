@@ -7,13 +7,13 @@ import NonUniqueEuler.H.Sec10.Nonempty.Limits
 # Helper for `lem:nonempty`: the structural list (P0)–(P4) can be satisfied
 
 Helper of `P/Sec10/Nonempty.lean`, first paragraph of the proof of `lem:nonempty`
-(`10_parameters.tex:295-315`).
+(Part II Appendix C.4, `sec:param-verification`).
 
 * `dH_pos`: `d_H > 0` (both branches of the choice of the constants of `thm:active`);
 * `structural_constPos`: the signs `Standing.ConstPos` for `p.ref` from (P0)–(P4)
   (`constants_pos`, `I/Sec10/ConstantsPos.lean`);
 * `exists_structural`: there are parameters with cutoff `χ` satisfying (P0)–(P4): `s = 3`,
-  `σ' ∈ (9/200, min(σ_b, 3σ/4))` (nonempty by `prop:U`(a): `σ_b > 211/2500`, `σ = σ(0) ≥ σ_b`),
+  `σ' ∈ (9/200, min(σ_b, 3σ/4))` (nonempty by Part I `prop:U`(a): `σ_b > 211/2500`, `σ = σ(0) ≥ σ_b`),
   `δ₀ = min(d_H, δ_kick, δ_rd) > 0`, `μ = μ_max > 1`, and `T_pin` with `r_T(T_pin) ≤ 1/64`
   (`r_T(T) → 0`, `σ > 0`).
 
@@ -50,7 +50,7 @@ theorem Gbar_pos : 0 < Gbar := by
   unfold Gbar Rc
   positivity
 
-/-- **(P0)–(P4) can be satisfied** (`10_parameters.tex:295-315`). -/
+/-- **(P0)–(P4) can be satisfied** (Part II Appendix C.4, `sec:param-verification`). -/
 theorem exists_structural (χ : ℝ → ℝ) (hχ : IsAdmissibleCutoff χ)
     (hN : NumericalHypothesis χ) : ∃ p : Params, p.χ = χ ∧ p.Structural := by
   obtain ⟨-, -, ⟨G₀, -, hsb, hmin⟩, hsb_gt, -⟩ := Eig.propU_a χ hχ hN

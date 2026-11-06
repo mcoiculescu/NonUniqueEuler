@@ -8,12 +8,12 @@ import Mathlib.MeasureTheory.Integral.DominatedConvergence
 Proof of `NonUniqueEuler/I/Infra/Multipole/Laurent.lean` (same declarations, statements copied
 verbatim).
 
-* Exterior expansion (`lem:ext-multipole`, `02_prelim.tex:487-492`): pointwise on the support of
+* Exterior expansion (Part II, Lemma 1.7 (`lem:ext-multipole`), proof): pointwise on the support of
   `g` (where `‖w‖ ≤ ϱ < ‖z‖`) the geometric expansion `hasSum_inv_sub_of_norm_lt` of
   `(z - w)⁻¹`, multiplied by `g w`; termwise integration by
   `hasSum_integral_of_dominated_convergence` with the summable dominating sequence
   `‖g w‖ · ‖z‖⁻¹ (ϱ₊/‖z‖)^l`, `ϱ₊ = max ϱ 0`.
-* Interior expansion (`lem:hollow`, `02_prelim.tex:430-440`): likewise with
+* Interior expansion (Part II, Lemma 1.5 (`lem:hollow`), proof): likewise with
   `hasSum_inv_sub_of_norm_gt` on the support (`‖z‖ < R ≤ ‖w‖`), dominating sequence
   `‖g w‖ · R⁻¹ (‖z‖/R)^l`.
 * `cauchyTransform_eq_laurentTail` is `HasSum.tsum_eq` of the exterior expansion.

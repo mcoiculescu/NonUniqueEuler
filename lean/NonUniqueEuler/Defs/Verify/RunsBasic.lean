@@ -7,7 +7,7 @@ Code: `Verify/Comp/RunCore.lean`.
 
 `checkCore_sound`: if `checkCore p spec = true`, and every certification that `checkCore`
 performs is sound (the hypothesis `H`, which is `certifyCell_sound`, proved from
-Proposition A.3 and Proposition A.4 in `P/Verify/Sound/CertifyCell.lean`), then (N1′) and (N2′)
+Part II Propositions A.3 and A.4 in `P/Verify/Sound/CertifyCell.lean`), then (N1′) and (N2′)
 hold. The certified sub-cells of the runs, with their rectangles, are the cells of (N1′) and (N2′)
 (`CertRes.toCertCell`). No property of the search is used: each certified sub-cell carries its
 evidence.
@@ -69,7 +69,7 @@ theorem N2'_of_itemOK {χ : ℝ → ℝ} {p : ℕ} {gr : Grid} {spec : RunSpec}
     have := hcert r hr
     rwa [(hall r hr).1] at this
 
-/-- **The runs** (Proposition A.7, given the soundness `H` of each certification): if
+/-- **The runs** (Part II Proposition A.7, given the soundness `H` of each certification): if
 `checkCore p spec = true` then (N1′) and (N2′) hold. -/
 theorem checkCore_sound {p : ℕ} {spec : CertSpec} (h : checkCore p spec = true) {χ : ℝ → ℝ}
     (H : ∀ (R : Rect) (lo hi ν : ℚ) (J K : ℕ) (w : ℤ),

@@ -8,8 +8,8 @@ import Mathlib.Analysis.Complex.Basic
 
 Proof of the interface `I/Verify/TaylorRemainder.lean` (same declarations, same statements).
 
-**Manuscript.** Proof of Proposition A.3, steps (i) and (iii) (`A_verification.tex:372-378`,
-`:421-434`). Checker design decision D9 (see `FORMALIZATION_NOTES.md`).
+**Manuscript.** Proof of Part II Proposition A.3, steps (i) and (iii) (`prop:enclosure`).
+Checker design decision D9 (see `FORMALIZATION_NOTES.md`).
 
 **Restructuring (checker design decision D9, deviation T1).** The manuscript's integral remainder
 and convexity of the box are replaced by Lagrange's form applied separately to `Re ∘ f` and
@@ -152,7 +152,7 @@ theorem taylor_deriv_mem_reProdIm {f : ℝ → ℂ} (hf : ContDiff ℝ ∞ f) {s
   rw [heq]
   exact hB η hη
 
-/-- The increment of a primitive `g` of `q` over one step (step (i) of Proposition A.3):
+/-- The increment of a primitive `g` of `q` over one step (step (i) of Part II Proposition A.3):
 `g(s+h) - g(s) = Σ_{k<N} q_k(s) h^{k+1}/(k+1) + q_N(η) h^{N+1}/(N+1)`, `η ∈ [s, s+h]`. -/
 theorem taylor_increment_real {g q : ℝ → ℝ} (hg : ContDiff ℝ ∞ g) (hq : ∀ x, deriv g x = q x)
     {s h : ℝ} (hh : 0 ≤ h) (N : ℕ) :

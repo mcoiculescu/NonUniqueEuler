@@ -2,20 +2,25 @@ import NonUniqueEuler.H.Sec3.Stable.EveryTime
 import NonUniqueEuler.I.Sec3.Stable.RenormLimit
 
 /-!
-# Proof: `prop:stable`, stability of renormalized solutions under strong convergence of data
+# Proof: legacy `prop:stable`, stability of renormalized solutions under strong convergence of data
 
-Proof of `I/Sec3/Stable.lean` (manuscript `03_compactness.tex:716-827`).
+The former `prop:stable` has no standalone current counterpart. Its role in constructing
+the criterion limit is now covered by the proof of Part I Theorem 3.8 (`thm:criterion`),
+which uses direct renormalization and the conserved `L²` norm. The steps below describe
+the retained Lean stability proof, not the current manuscript proof.
 
-Structure (following the manuscript proof):
-1. Bounded renormalizations converge strongly (`03_compactness.tex:739-789`):
+Proof of `I/Sec3/Stable.lean`.
+
+Structure (following the retained legacy proof):
+1. Bounded renormalizations converge strongly:
    `StableAux.stable_bddRenorm` (`H/Sec3/Stable/BddRenorm.lean`), from the weak limits of
-   `stable_weakLimit` (`I/Sec3/Stable/WeakLimit.lean`) and `lem:transport`(i), (iii).
-2. Strong convergence in space–time (`03_compactness.tex:791-800`):
+   `stable_weakLimit` (`I/Sec3/Stable/WeakLimit.lean`) and `lem:transport`(i) and its legacy uniqueness consequence.
+2. Strong convergence in space–time:
    `StableAux.stable_tendsto_slab` (`H/Sec3/Stable/SpaceTime.lean`). Deviation: a
    sub-subsequence argument replaces the diagonal subsequence, so the whole sequence converges.
-3. The limit is renormalized (`03_compactness.tex:802-815`): `stable_renormalized`
+3. The limit is renormalized: `stable_renormalized`
    (`I/Sec3/Stable/RenormLimit.lean`).
-4. Convergence at every time (`03_compactness.tex:817-827`): `StableAux.stable_tendsto_time`
+4. Convergence at every time: `StableAux.stable_tendsto_time`
    (`H/Sec3/Stable/EveryTime.lean`).
 
 Since steps 2-4 hold for the whole sequence, the subsequence of the statement is `φ = id`.
@@ -30,7 +35,7 @@ namespace NonUniqueEuler.Compact
 
 open Weak
 
-/-- **`prop:stable`** (`03_compactness.tex:716-723`): in the setting of `prop:compact`
+/-- **legacy `prop:stable`** (retained legacy stability step): in the setting of legacy `prop:compact`
 (`IsCompactSeq T M gs g ωs` and its conclusions `IsCompactLimit T g ωs ω`), if moreover
 `gₙ → g` in `L¹ ∩ L²` and every `ωₙ` is renormalized, then `ω` is renormalized and, along a
 further subsequence `φ`, `ω_{φ n}(t) → ω(t)` in `L^q` for every `t ∈ [0, T)` and `q ∈ [1, 2]`. -/

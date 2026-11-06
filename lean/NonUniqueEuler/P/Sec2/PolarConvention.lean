@@ -6,7 +6,7 @@ import Mathlib.Analysis.Complex.RealDeriv
 /-!
 # Proof: the sign conventions of the stream function in polar coordinates
 
-Proof of `I/Sec2/PolarConvention.lean` (manuscript `02_prelim.tex:38-47`, Conventions).
+Proof of `I/Sec2/PolarConvention.lean` (Part I, §2.1, Conventions, `sec:prelim`).
 
 * `Prelim.inner_perpGrad_radial_angular`: by the chain rule, `∂_θψ(x) = Dψ(x)(ix)` (the curve
   `θ ↦ O_θ x` has velocity `ix` at `θ = 0`) and `∂_rψ(x) = Dψ(x)(x/|x|)` (the ray
@@ -74,7 +74,7 @@ theorem Prelim.inner_perpGrad_radial_angular {ψ : ℂ → ℝ} {x : ℂ} (hx : 
     Complex.ofReal_im]
   constructor <;> ring
 
-/-- The sign conventions of `02_prelim.tex:45-47` for `v = K ∗ g`, `g ∈ C_c^∞` real, and its
+/-- The sign conventions of Part I, §2.1, Conventions (`sec:prelim`) for `v = K ∗ g`, `g ∈ C_c^∞` real, and its
 stream function `ψ = (2π)⁻¹ log|·| ∗ g`: `v·e_r = -r⁻¹ ∂_θψ` and `v·e_θ = ∂_rψ` at every
 `x ≠ 0`. -/
 theorem BS.inner_velocity_radial_angular_of_smooth {g : ℂ → ℝ} (hg : ContDiff ℝ ∞ g)

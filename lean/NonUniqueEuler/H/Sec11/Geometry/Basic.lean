@@ -7,13 +7,14 @@ import NonUniqueEuler.I.Sec7.SkSmall
 /-!
 # Helper for `P/Sec11/Geometry.lean`: elementary facts
 
-Helper of the proof of `lem:geometry` (`11_bootstrap.tex:146-218`): positivity of `A_k`, `s_k`,
+Helper of the proof of `lem:geometry` (Part II Appendix C.14 (`lem:geometry`, Lemma C.17)):
+positivity of `A_k`, `s_k`,
 `r_k`, `C_*`; `s_k ≤ a/32` and `r_j ≤ (a/32) r_i` for `i < j` (`eq:sk-small`); the norm bounds on
 `N♭_i = r_i N♭ = {⅝ar_i ≤ |x| ≤ 7r_i/4}` and `N♭_i ⊂ N_i`; `D_k = S_k ∪ D_{k+1}`; and the order facts
 of the clock that the proof uses (`lem:clock`(1)): a quiet ring is not debris, `t♯_j ≤ e_j`,
 `T_{j+1} ≤ t♯_j`, `T_{j+1} ≥ 0`, `T_j ≤ T_i` for `i ≤ j`, the rings `i ≤ j` are not debris before
 `e_j`, and a ring `j` that is not debris at `t' ≤ T_end` has `t' ≤ e_j`. All proved.
-(Some of these are also proved, independently, in the helpers of other Section 11 proofs; helper
+(Some of these are also proved, independently, in the helpers of other `Sec11` proofs; helper
 files of other proofs may not be imported (import rules, `README.md`).)
 -/
 
@@ -116,7 +117,8 @@ theorem half_le_of_mem_Nflatk (hS : S.Holds) {i : ℕ} {x : ℂ} (hx : x ∈ S.P
   have := (norm_of_mem_Nflatk hS hx).1
   nlinarith
 
-/-- `N♭_i ⊂ ℝ² ∖ B_{6r_j}` for `1 ≤ i < j`: `⅝ar_i ≥ 20r_j` (`11_bootstrap.tex:151-157`). -/
+/-- `N♭_i ⊂ ℝ² ∖ B_{6r_j}` for `1 ≤ i < j`: `⅝ar_i ≥ 20r_j` (Part II Appendix C.14 (`lem:geometry`,
+Lemma C.17)). -/
 theorem Nflatk_subset_compl_ball (hS : S.Holds) {i j : ℕ} (hi : 1 ≤ i) (hij : i < j) :
     S.P.Nflatk i ⊆ (ball (0 : ℂ) (6 * S.P.r j))ᶜ := by
   intro x hx hxb
@@ -212,7 +214,8 @@ theorem T_le_T (hS : S.Holds) {i j : ℕ} (hi : 1 ≤ i) (hij : i ≤ j) (hjn : 
     have h2 := tsh_le_T hS (Finset.mem_Icc.2 ⟨hi, by omega⟩) hc
     linarith
 
-/-- The rings `i ≤ j` are not debris at a time `t' ≤ e_j` (`11_bootstrap.tex:172-175`). -/
+/-- The rings `i ≤ j` are not debris at a time `t' ≤ e_j` (Part II Appendix C.14 (`lem:geometry`,
+Lemma C.17)). -/
 theorem not_debris_of_le_endW (hS : S.Holds) {i j : ℕ} (hi : 1 ≤ i) (hij : i ≤ j)
     (hjn : j ≤ S.P.n) {t' : ℝ} (ht' : t' ≤ S.P.endW j) : ¬ S.P.DebrisAt i t' := by
   rintro ⟨hc, hT⟩
@@ -222,7 +225,7 @@ theorem not_debris_of_le_endW (hS : S.Holds) {i j : ℕ} (hi : 1 ≤ i) (hij : i
   linarith
 
 /-- A ring `j` (with `t♯_j` defined) that is not debris at `t' ≤ T_end` has `t' ≤ e_j`
-(`11_bootstrap.tex:194-197`). -/
+(Part II Appendix C.14 (`lem:geometry`, Lemma C.17)). -/
 theorem le_endW_of_not_debris {j : ℕ} (hj : j ∈ Finset.Icc 1 S.P.n)
     (hc : S.P.ClockUpTo (j + 1)) {t' : ℝ} (hTend : t' ≤ S.P.Tend) (hd : ¬ S.P.DebrisAt j t') :
     t' ≤ S.P.endW j := by

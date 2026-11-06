@@ -11,8 +11,9 @@ Wronskian `u v' - u' v ≡ 1`, and `F` is interval integrable on every interval,
 `φ = v ∫_c^ξ uF - u ∫_c^ξ vF` is `C¹` with `φ' = v' ∫_c^ξ uF - u' ∫_c^ξ vF`, and
 `φ'(b) - φ'(a) = ∫_a^b (Vφ + F)` (the integrated form of `φ'' = Vφ + F`).
 
-This is the variation of constants formula of the proof of `thm:evans-simple`(3)
-(`04_ring.tex:540-546`), in the integrated form needed for a forcing `F` that is only `L¹`
+This variation-of-constants formula supports the retained generalized-eigenvector
+extension, which is not stated in the current Part I Theorem 4.8 (`thm:evans-simple`).
+It is written in the integrated form needed for a forcing `F` that is only `L¹`
 (as in `I/Sec4/Resolvent/PsiG.lean`). The proof uses integration by parts against an
 indefinite integral (`I/Infra/ODE/WeakIBP.lean`) twice.
 -/

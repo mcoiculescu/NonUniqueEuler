@@ -17,7 +17,7 @@ import NonUniqueEuler.I.Infra.AngularFourier.Sector
 /-!
 # Proof of `lem:sector` (`I/Sec4/Sector.lean`)
 
-Manuscript `04_ring.tex:200-221` (statement), proof `:222-283`.
+Manuscript Part I Lemma 4.5 (`lem:sector`) and its proof.
 
 * Part (1). `green_spec`: the kernel computation of `H/Sec4/Sector/GreenSol.lean` (Fubini and
   the two FTCs for the kernel `(min/max)ⁿρ`, whose `r`-derivative jumps by `-2n` on the diagonal)
@@ -87,7 +87,7 @@ theorem green_eq_logPotential (S : SectorSetting) (hS : S.Valid) {ℓ : ℤ} (h�
 
 /-- `lem:sector`(1), last assertion: `𝒢_ℓ` is bounded from `Y^0_ℓ` to `C([ρ₋,ρ₊])`; precisely
 `𝒢_ℓ g` is continuous on `(0,∞)` and `|𝒢_ℓ g(r)| ≤ (ρ₊/(2|ℓ|)) ‖g‖_{L²((0,∞), r dr)}` for all
-`r > 0` (`04_ring.tex:228-231`). -/
+`r > 0` (Part I Lemma 4.5 (`lem:sector`)). -/
 theorem green_bound (S : SectorSetting) (hS : S.Valid) {ℓ : ℤ} (hℓ : ℓ ≠ 0) {g : ℝ → ℂ}
     (hg : S.IsProfileL2 g) :
     ContinuousOn (green ℓ g) (Ioi 0) ∧

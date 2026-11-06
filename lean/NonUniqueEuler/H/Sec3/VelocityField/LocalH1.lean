@@ -4,7 +4,7 @@ import NonUniqueEuler.I.Infra.Sobolev.WeakDeriv
 /-!
 # Helpers for `I/Sec3/VelocityField`: a global `L²` gradient gives local `H¹`
 
-Helper file of `P/Sec3/VelocityField.lean` (the remark `03_compactness.tex:243-247`).
+Helper file of `P/Sec3/VelocityField.lean` (the remark Part I §3.2 (`sec:weak-rep`)).
 
 * `memHOn_one_of_hasGradH`: if `u ∈ L²(V)` is locally integrable on the open set `V` and its
   weak gradient on the plane lies in `L²` (`Prelim.HasGradH 0 u`), then `u ∈ H¹(V)` and every

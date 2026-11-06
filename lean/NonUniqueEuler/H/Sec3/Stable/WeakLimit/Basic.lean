@@ -7,9 +7,9 @@ import Mathlib.MeasureTheory.Integral.Prod
 import Mathlib.MeasureTheory.Function.LpSeminorm.CompareExp
 
 /-!
-# Helpers for `prop:stable`, step 1a: generic lemmas
+# Helpers for legacy `prop:stable`, step 1a: generic lemmas
 
-Helper file of `P/Sec3/Stable/WeakLimit.lean` (`03_compactness.tex:739-785`).
+Helper file of `P/Sec3/Stable/WeakLimit.lean` (related current criterion proof: Part I Theorem 3.8 (`thm:criterion`)).
 
 * Test functions `φ ∈ 𝒟_T`: derivatives, bounds, supports, `∂_tφ ∈ L²` (the first lemmas are
   adapted from `H/Sec3/Transport/Basic.lean`, namespace `Weak.TransportH`).
@@ -164,7 +164,7 @@ theorem isLipO_continuous {β : ℝ → ℝ} (hβ : Equimeas.IsLipO β) : Contin
   obtain ⟨⟨K, hK⟩, _⟩ := hβ
   exact hK.continuous
 
-/-- `β² ∈ Lip₀` for bounded `β ∈ Lip₀` (`03_compactness.tex:741`). -/
+/-- `β² ∈ Lip₀` for bounded `β ∈ Lip₀` (retained legacy stability step). -/
 theorem isLipO_sq {β : ℝ → ℝ} (hβ : Equimeas.IsLipO β) {B : ℝ} (hB : ∀ s, |β s| ≤ B) :
     Equimeas.IsLipO (fun s => β s ^ 2) := by
   obtain ⟨L, hL0, -, hL⟩ := isLipO_exists_abs_le hβ

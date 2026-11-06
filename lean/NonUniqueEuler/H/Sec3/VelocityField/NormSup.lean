@@ -18,7 +18,7 @@ Helper file of `P/Sec3/VelocityField.lean`.
 These are used to write `‖∂^γ v(t)‖_{L²(B_R)}` as a countable supremum of
 `|∫ v(t) ∂^γ φ_m|`-type expressions, which are measurable in `t` (Fubini); this is the
 measurability of `t ↦ ‖v(t)‖_{H¹(B_R)}` required by `Weak.IsBddH1DivFreeField` (the remark
-`03_compactness.tex:243-247`).
+Part I §3.2 (`sec:weak-rep`)).
 -/
 
 noncomputable section

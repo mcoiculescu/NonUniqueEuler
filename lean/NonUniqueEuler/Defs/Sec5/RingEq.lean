@@ -3,19 +3,18 @@ import NonUniqueEuler.Defs.Sec2.BiotSavart
 import NonUniqueEuler.Defs.Sec4.Extra2Eigendata
 
 /-!
-# Section 5: the perturbation equation, paths in `X^k`, the linear response and the running
+# Part II Section 2: the perturbation equation, paths in `X^k`, the linear response and the running
 coefficient (definitions)
 
-Manuscript `05_single_ring.tex`:
-`lem:duhamel` (`:50-57`), `lem:reduction`(3) and `eq:ring` (`:118-126`), `lem:energy`
-(`:300-316`), `def:majorant` (`:383-388`), `thm:quiet`(b) (`:424-426`), `lem:running` and
-`eq:running` (`:587-600`), `lem:linear-part` (`:616-633`), `thm:active`(b) (`:897-899`).
+Manuscript `manuscript/part2/sections/05_single_ring.tex`:
+Part II Lemma 2.1 (`lem:duhamel`), `lem:reduction`(3) and `eq:ring` (Part II Lemma 2.2), Part II Lemma 2.4 (`lem:energy`), Part II Definition 2.6 (`def:majorant`), `thm:quiet`(b) (Part II Theorem 2.8), `lem:running` and
+`eq:running` (Part II Lemma 2.9), Part II Lemma 2.10 (`lem:linear-part`), `thm:active`(b) (Part II Theorem 2.12).
 
 Namespace `NonUniqueEuler.OneRing` (ring units). Plane functions are `ℂ → ℂ` (the spaces
 `X^k` consist of complex functions, `Lin.MemXFn`); the real vorticities are coerced.
 
 * `PhiC χ`: the ring `Φ` as a complex function;
-* `hGrad h g = h·∇g` (`05_single_ring.tex:125-126`; no indicator of `N'`, see its docstring;
+* `hGrad h g = h·∇g` (Part II Lemma 2.2; no indicator of `N'`, see its docstring;
   `hGrad h (PhiC χ) = Eig.hGradPhi χ h` by `rfl`);
 * `bsGrad v g = (K_BS * v)·∇g` for a complex `v` (`K_BS * v = K_BS * Re v + i K_BS * Im v`);
 * `Bfn v g = B(v,g) = -(K_BS * v)·∇g` (`eq:ring`); `bsNorm v x = |(K_BS * v)(x)|`;
@@ -53,7 +52,7 @@ def PhiC (χ : ℝ → ℝ) (y : ℂ) : ℂ := ((ringPhi χ y : ℝ) : ℂ)
 
 /-- `h·∇g = h₁∂₁g + h₂∂₂g` with the weak derivatives of `g` (`Sob.dotGrad`; `lem:bilinear`(2),(3),
 `eq:ring`). The manuscript takes "the functions equal to these products on `N'` and to `0`
-elsewhere" (`05_single_ring.tex:125-126`), because `h` is only given near `N'`. For the `g` that
+elsewhere" (Part II Lemma 2.2 (`lem:reduction`)), because `h` is only given near `N'`. For the `g` that
 occur (`g = w ∈ X^k`, which vanishes a.e. outside `N`, and `g = Φ`, supported in `{a ≤ |y| ≤ 1}`)
 the weak gradient of `g` vanishes a.e. on the open set `ℂ ∖ N`, so this product is `0` a.e.
 outside `N ⊂ N'` whatever the values of `h` there: it is the manuscript's function up to a null
@@ -68,18 +67,18 @@ def hGrad (h g : ℂ → ℂ) : ℂ → ℂ := Sob.dotGrad h g
 def bsGrad (v g : ℂ → ℂ) (x : ℂ) : ℂ :=
   Sob.dotGrad (BS.velocityRe v) g x + Complex.I * Sob.dotGrad (BS.velocityIm v) g x
 
-/-- The quadratic term `B(v,g) = -(K_BS * v)·∇g` of `eq:ring` (`05_single_ring.tex:123`,
-`lem:bilinear`(1), `:238`). -/
+/-- The quadratic term `B(v,g) = -(K_BS * v)·∇g` of `eq:ring` (Part II Lemma 2.2 (`lem:reduction`),
+`lem:bilinear`(1), Part II Lemma 2.3). -/
 def Bfn (v g : ℂ → ℂ) (x : ℂ) : ℂ := -bsGrad v g x
 
 /-- The Euclidean norm `|(K_BS * v)(x)|` of the complex vector `(K_BS * v)(x) ∈ ℂ²` for a complex
 function `v`: `(|K_BS * Re v|² + |K_BS * Im v|²)^{1/2}` (`lem:bilinear`(4),
-`05_single_ring.tex:242`); for real `v` it is `‖velocity v x‖`. -/
+Part II Lemma 2.3); for real `v` it is `‖velocity v x‖`. -/
 def bsNorm (v : ℂ → ℂ) (x : ℂ) : ℝ :=
   Real.sqrt (‖BS.velocityRe v x‖ ^ 2 + ‖BS.velocityIm v x‖ ^ 2)
 
-/-- The right side of `eq:ring`, `L(G)v + B(v,v) - h·∇v - h·∇Φ` (`05_single_ring.tex:123`),
-for a perturbation `v` and a field `h` (`hGrad`). The linearization `L(G)` is `Lin.Lfn χ G` (`-Ω(·;G)∂_θ v - (K_BS * v)·∇Φ`, `04_ring.tex:161-164`). -/
+/-- The right side of `eq:ring`, `L(G)v + B(v,v) - h·∇v - h·∇Φ` (Part II Lemma 2.2 (`lem:reduction`)),
+for a perturbation `v` and a field `h` (`hGrad`). The linearization `L(G)` is `Lin.Lfn χ G` (`-Ω(·;G)∂_θ v - (K_BS * v)·∇Φ`, Part I Definition 4.3 (`def:sector-setting`)). -/
 def ringRHS (χ : ℝ → ℝ) (G : ℝ) (h v : ℂ → ℂ) (x : ℂ) : ℂ :=
   Lin.Lfn χ G v x + Bfn v v x - hGrad h v x - hGrad h (PhiC χ) x
 
@@ -87,7 +86,7 @@ def ringRHS (χ : ℝ → ℝ) (G : ℝ) (h v : ℂ → ℂ) (x : ℂ) : ℂ :=
 
 /-- `u ∈ C([0,T]; X^s)`: every `u(t)`, `t ∈ [0,T]`, lies in `X^s` (`Lin.MemXFn`: `3`-fold
 symmetric, in `H^s`, supported in `N`), and `t ↦ u(t)` is continuous on `[0,T]` into
-`Y^s(N)` (whose norm is the `H^s` norm) (`lem:duhamel`, `05_single_ring.tex:51-56`). -/
+`Y^s(N)` (whose norm is the `H^s` norm) (`lem:duhamel`, Part II Lemma 2.1). -/
 def PathC (s : ℕ) (T : ℝ) (u : ℝ → ℂ → ℂ) : Prop :=
   (∀ t ∈ Icc (0 : ℝ) T, Lin.MemXFn s (u t)) ∧
     ContinuousOn (fun t => Sect.toY s annN (u t)) (Icc (0 : ℝ) T)
@@ -101,7 +100,7 @@ def PathC1 (s : ℕ) (T : ℝ) (u u' : ℝ → ℂ → ℂ) : Prop :=
     ∀ t ∈ Icc (0 : ℝ) T,
       HasDerivWithinAt (fun t => Sect.toY s annN (u t)) (Sect.toY s annN (u' t)) (Icc (0 : ℝ) T) t
 
-/-- **The conclusion of `lem:reduction`(3)** (`05_single_ring.tex:118-126`): for every integer
+/-- **The conclusion of `lem:reduction`(3)** (Part II Lemma 2.2): for every integer
 `k ≥ 0`, `w = ω_r - Φ` lies in `C¹([0,T]; X^k)`, and its time derivative in `X^k` is the right
 side of `eq:ring`, `∂_t w = L(G)w + B(w,w) - h·∇w - h·∇Φ`. (`w` is real valued by construction,
 `RingConfig.w_im`.) For a smooth `w` the `X^k`-derivative and the pointwise one agree a.e., so this
@@ -110,7 +109,7 @@ def RingConfig.PertEq (c : RingConfig) (χ : ℝ → ℝ) (T : ℝ) : Prop :=
   ∀ k : ℕ, PathC1 k T (c.w χ) (fun t => ringRHS χ c.G (c.h t) (c.w χ t))
 
 /-- The residual `R_app = ∂_t w_app - (L(G)w_app + B(w_app,w_app) - h·∇w_app - h·∇Φ)` of
-`lem:energy` (`05_single_ring.tex:308-310`), for an approximate solution `w_app` with time
+Part II Lemma 2.4 (`lem:energy`), for an approximate solution `w_app` with time
 derivative `w_app'` and a field `h(τ)`. -/
 def Rapp (χ : ℝ → ℝ) (G : ℝ) (h : ℝ → ℂ → ℂ) (wapp wapp' : ℝ → ℂ → ℂ) (τ : ℝ) (x : ℂ) : ℂ :=
   wapp' τ x - ringRHS χ G (h τ) (wapp τ) x
@@ -119,37 +118,37 @@ def Rapp (χ : ℝ → ℝ) (G : ℝ) (h : ℝ → ℂ → ℂ) (wapp wapp' : �
 
 /-- The forcing `F(τ) = -h(τ)·∇Φ` (`hGrad`; `= -Eig.hGradPhi χ (h τ)`, `forcing_eq`) of the
 linear response
-(`thm:quiet`(b), `05_single_ring.tex:425`; `lem:running`, `:591`; `09_relay.tex`, `eq:running-k`). -/
+(`thm:quiet`(b), Part II Theorem 2.8; `lem:running`, Part II Lemma 2.9; Part II Equation (28) (`eq:running-k`)). -/
 def forcing (χ : ℝ → ℝ) (h : ℝ → ℂ → ℂ) (τ : ℝ) (x : ℂ) : ℂ :=
   -hGrad (h τ) (PhiC χ) x
 
 /-- `wlin₀(u) = e^{uL(G)} w₀ + ∫₀ᵘ e^{(u-v)L(G)} F(v) dv` in `Y^s(N)` (`lem:running`,
-`05_single_ring.tex:597`), with `F = forcing χ h`; the plane functions `w₀`, `F(v)` enter
+Part II Lemma 2.9), with `F = forcing χ h`; the plane functions `w₀`, `F(v)` enter
 through `Sect.toY s annN` (they lie in `X^s` in every application). -/
 def wlin0 (χ : ℝ → ℝ) (s : ℕ) (G : ℝ) (w₀ : ℂ → ℂ) (h : ℝ → ℂ → ℂ) (u : ℝ) : Sect.Y s annN :=
   Lin.duhamel χ s G (Sect.toY s annN w₀) (fun v => Sect.toY s annN (forcing χ h v)) u
 
 /-- The **linear response** `wlin(t) = ∫₀ᵗ e^{(t-τ)L(G)}(-h(τ)·∇Φ) dτ` of `thm:quiet`(b)
-(`05_single_ring.tex:424-426`), in `Y^s(N)`: `wlin0` with `w₀ = 0`. -/
+(Part II Theorem 2.8), in `Y^s(N)`: `wlin0` with `w₀ = 0`. -/
 def wlin (χ : ℝ → ℝ) (s : ℕ) (G : ℝ) (h : ℝ → ℂ → ℂ) (t : ℝ) : Sect.Y s annN :=
   wlin0 χ s G 0 h t
 
 /-- The **running coefficient** `c(u) = ℓ_*(w₀) + ∫₀ᵘ e^{-λ_* v} ℓ_*(F(v)) dv` (`eq:running`,
-`05_single_ring.tex:592-595`), with `ℓ_* = ℓ_*(G)` on functions (`Eig.ellFn`),
+Part II Lemma 2.9 (`lem:running`)), with `ℓ_* = ℓ_*(G)` on functions (`Eig.ellFn`),
 `λ_* = λ_*(G)` (`Eig.lam`) and `F = forcing χ h`. -/
 def runCoef (χ : ℝ → ℝ) (G : ℝ) (w₀ : ℂ → ℂ) (h : ℝ → ℂ → ℂ) (u : ℝ) : ℂ :=
   Eig.ellFn χ G w₀ +
     ∫ v in (0 : ℝ)..u, Complex.exp (-(Eig.lam χ G * v)) * Eig.ellFn χ G (forcing χ h v)
 
-/-- The real function `2 Re(X φ_*(G))` (`lem:running`, `05_single_ring.tex:599`;
-`thm:active`(b), `:897`; `lem:seed` with `X = κ`, `G = 0`). -/
+/-- The real function `2 Re(X φ_*(G))` (`lem:running`, Part II Lemma 2.9;
+`thm:active`(b), Part II Theorem 2.12; `lem:seed` with `X = κ`, `G = 0`). -/
 def modeFn (χ : ℝ → ℝ) (G : ℝ) (X : ℂ) (x : ℂ) : ℂ :=
   ((2 * (X * Eig.phi χ G x).re : ℝ) : ℂ)
 
 /-! ### The Duhamel majorant (`def:majorant`) -/
 
 /-- The **Duhamel majorant** `maj(t) = ∫₀ᵗ e^{σ(t-τ)} η(τ) dτ` (`def:majorant`,
-`05_single_ring.tex:383-388`), with `σ = σ(G)` (`Eig.sigma χ G`). The manuscript takes
+Part II Definition 2.6), with `σ = σ(G)` (`Eig.sigma χ G`). The manuscript takes
 `η : [0,T] → [0,∞)` integrable; carry these hypotheses (the interval integral is `0` for a
 non-integrable `η`). -/
 def maj (σ : ℝ) (η : ℝ → ℝ) (t : ℝ) : ℝ :=

@@ -6,7 +6,7 @@ import NonUniqueEuler.I.Evans.ODE
 import Mathlib.Analysis.Normed.Algebra.Spectrum
 
 /-!
-# Helpers for `P/Sec4/PropU`: continuity of `λ_*` on `[0, G₁]` (`prop:U`(a), restructuring R9)
+# Helpers for `P/Sec4/PropU`: continuity of `λ_*` on `[0, G₁]` (Part I Proposition 4.21(a) (`prop:U`), restructuring R9)
 
 * `exists_bound_Lsec`: `sup_{G ∈ [0,G₁]} ‖L_3(G)‖_{X^0_3 → X^0_3} < ∞`, because
   `L_3(G) = -3iΩ(·;0) - 3iG r⁻² + k_3𝒢_3` is affine in `G` (`Omega_eq_add`, `radialMul_add`);
@@ -117,7 +117,7 @@ theorem exists_bound_lam {χ : ℝ → ℝ} (hχ : IsAdmissibleCutoff χ) (hN : 
     exact this.1
   exact (norm_le_of_mem_spectrum _ hmem).trans (hM G hG)
 
-/-- **`prop:U`(a), continuity (R9)**: `λ_*` is continuous on `[0, G₁]`. -/
+/-- **Part I Proposition 4.21(a) (`prop:U`), continuity (R9)**: `λ_*` is continuous on `[0, G₁]`. -/
 theorem lam_continuousOn {χ : ℝ → ℝ} (hχ : IsAdmissibleCutoff χ) (hN : NumericalHypothesis χ) :
     ContinuousOn (lam χ) (Icc 0 Gbar) := by
   obtain ⟨M, hM⟩ := exists_bound_lam hχ hN

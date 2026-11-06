@@ -4,16 +4,16 @@ import NonUniqueEuler.I.Sec3.VelocityField
 import NonUniqueEuler.I.Infra.ConvMinkowski.Measurable
 
 /-!
-# Helpers for `prop:stable`, step 1a: passage to the limit in `(te)`
+# Helpers for legacy `prop:stable`, step 1a: passage to the limit in `(te)`
 
-Helper file of `P/Sec3/Stable/WeakLimit.lean` (`03_compactness.tex:755-763`).
+Helper file of `P/Sec3/Stable/WeakLimit.lean` (related current criterion proof: Part I Theorem 3.8 (`thm:criterion`)).
 
 Let `uₙ = γ(ωₙ)` with `γ ∈ Lip₀` bounded, `uₙ ⇀ G` weakly in `L²((0,T) × ℝ²)`. For `φ ∈ 𝒟_T`
 with support in `ℝ × B_R`:
 * `memLp_testIntegrand`: `Ψ = ∂_tφ + v·∇φ ∈ L²((0,T) × ℝ²)` (`v ∈ L^∞(0,T; L²(B_R))`), so
   `∫∫ uₙ Ψ → ∫∫ G Ψ`;
 * `enorm_integral_transport_sub_le`: `|∫∫ uₙ (vₙ - v)·∇φ| ≤ B ‖∇φ‖_∞ ‖vₙ - v‖_{L¹((0,T) × B_R)}`;
-* `tendsto_lintegral_velocity_sub`: `‖vₙ - v‖_{L¹((0,T) × B_R)} → 0` (`prop:compact`(iii) with
+* `tendsto_lintegral_velocity_sub`: `‖vₙ - v‖_{L¹((0,T) × B_R)} → 0` (legacy `prop:compact`(iii) with
   `s = 1` and Hölder on `B_R`);
 * `tendsto_datum`: `∫ γ(gₙ) φ(0) → ∫ γ(g) φ(0)` (`|γ(gₙ) - γ(g)| ≤ L |gₙ - g|`);
 * `solvesTE_of_weak`: `G` satisfies `(te)` with field `v` and datum `γ(g)`.
@@ -112,7 +112,7 @@ theorem enorm_integral_transport_sub_le {φ : ℝ × ℂ → ℝ} (hφ : IsTestF
     Measure.restrict_restrict (measurableSet_univ_prod_ball R), prod_ball_inter_slab,
     lintegral_const_mul' _ _ ENNReal.ofReal_ne_top]
 
-/-- `‖vₙ - v‖_{L¹((0,T) × B_R)} → 0` (`prop:compact`(iii) with `s = 1`, Hölder on `B_R`). -/
+/-- `‖vₙ - v‖_{L¹((0,T) × B_R)} → 0` (legacy `prop:compact`(iii) with `s = 1`, Hölder on `B_R`). -/
 theorem tendsto_lintegral_velocity_sub (hseq : IsCompactSeq T M gs g ωs)
     (hlim : IsCompactLimit T g ωs ω) {R : ℝ} (hR : 0 < R) :
     Tendsto (fun n => ∫⁻ p in Ioo 0 T ×ˢ ball (0 : ℂ) R,

@@ -10,8 +10,8 @@ import NonUniqueEuler.I.Infra.Sobolev.WeakDeriv
 /-!
 # Proof of `I/Sec2/HkCalculus/ProductLeibniz.lean`: the weak Leibniz rule in `H^j × H^j`
 
-Manuscript: `lem:Hk-calculus`, `02_prelim.tex:672-688` (proof of (2)) and `02_prelim.tex:697-707`
-(`eq:Leibniz-comm`).
+Manuscript: the proofs of items (1), (2) of Part II, Lemma 1.10 (`lem:Hk-calculus`),
+including the unnumbered commutator expansion.
 
 Statement. For `g, h ∈ H^j(ℝ²)` and `|γ| ≤ j`,
 `∂^γ(gh) = Σ_{β ≤ γ} C(γ₁,β₁) C(γ₂,β₂) ∂^β g ∂^{γ-β} h` weakly on the plane.

@@ -9,7 +9,7 @@ import NonUniqueEuler.I.Infra.SobolevOneD.Basic
 /-!
 # Proof: continuity of `t ↦ ‖h_t(r) e^{iℓθ}‖_{H^k}` (`I/Infra/AngularFourier/NormHCont.lean`)
 
-Manuscript: proof of `prop:U`(b) (`04_ring.tex:1416-1417`).
+Manuscript: proof of Part I, Proposition 4.21(b) (`prop:U`).
 
 Proof (as in the interface docstring). Fix `t₀ ∈ T` and put `d_t = h t - h t₀`.
 * A profile smooth on `(0,∞)` and vanishing on `(0,∞) \ [ρ₋, ρ₊]` lies in `H^k((0,∞))`

@@ -7,7 +7,7 @@ import Mathlib.MeasureTheory.Integral.IntegralEqImproper
 /-!
 # Helper for `lem:grad-bound`: the radial cutoff
 
-Helper of `P/SmoothB/GradBound.lean` (`B_global_smooth.tex:128-140`). The manuscript applies the
+Helper of `P/SmoothB/GradBound.lean` (Part II, Lemma B.3 (`lem:grad-bound`)). The manuscript applies the
 divergence theorem on the annulus `{δ < |z| < ρ'}`, which produces a boundary term on `|z| = δ`.
 Following R6 (no divergence theorem), we multiply the kernel by a smooth radial cutoff
 `χ(z) = ψ(|z|)` with `ψ = 0` on `(-∞, a]`, `ψ = 1` on `[b, ∞)`, `ψ' ≥ 0`, and integrate by parts on

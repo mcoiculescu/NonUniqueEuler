@@ -22,7 +22,7 @@ import Mathlib.MeasureTheory.Function.LpSeminorm.CompareExp
 * The transport integrand of `β(u)` for `|β(s)| ≤ L|s|` is integrable on `(t₀,T) × ℝ²`, and so
   is the datum term (`integrableOn_transportIntegrand_comp`, `integrable_datum_comp`).
 * The standing assumptions `IsTEData` of `(te)` under the hypotheses of `lem:transport`
-  (`isTEData_of_transport`), for `lem:lip-renorm`.
+  (`isTEData_of_transport`), for legacy `lem:lip-renorm`.
 -/
 
 noncomputable section

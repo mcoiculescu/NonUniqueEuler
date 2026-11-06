@@ -10,7 +10,7 @@ import NonUniqueEuler.Vendor.ODE.GlobalPicard
 /-!
 # Proof of `I/SmoothB/ODE/LinearFlow.lean`: the linear variational equation with parameters
 
-Sub-step of `lem:ode`(ii), `B_global_smooth.tex:30-35` (the variational equation, cited from
+Sub-step of `lem:ode`(ii), Part II, Lemma B.1 (`lem:ode`) (the variational equation, cited from
 Teschl, Theorem 2.10).
 
 Proof, following the docstring of the interface file:

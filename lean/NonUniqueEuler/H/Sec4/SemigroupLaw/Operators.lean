@@ -14,7 +14,7 @@ import NonUniqueEuler.I.Infra.AngularFourier.Symmetry
 
 * `Lsec_lowerSec`, `exp_Lsec_lowerSec`: `L_ℓ(G)` and `exp(tL_ℓ(G))` commute with the inclusions
   `Y^{s'}_ℓ → Y^s_ℓ` (both act on profiles by `LsecFn`, `semigroupConstruct_Lsec`);
-* `secProj_LinY`: `P_ℓ L(G) w = L_ℓ(G) P_ℓ w` for `w ∈ Y^{s+1}` (`lem:sector`(2),
+* `secProj_LinY`: `P_ℓ L(G) w = L_ℓ(G) P_ℓ w` for `w ∈ Y^{s+1}` (Part I Lemma 4.5(2) (`lem:sector`),
   `linFn_sector`);
 * `Lsec_conjSec`, `exp_Lsec_conjSec`: `L_{-ℓ}(G) conj = conj L_ℓ(G)` (`LsecFn_neg_conj`) and the
   same for the exponentials (real `t`);
@@ -55,7 +55,7 @@ theorem SgLaw_exp_Lsec_lowerSec (S : SectorSetting) (hS : S.Valid) {s s' : ℕ} 
     (fun x => (SgLaw_Lsec_lowerSec S hS h ℓ G x).symm) t g
   exact this.symm
 
-/-- `lem:sector`(2) on `Y^{s+1}`: `P_ℓ L(G) w = L_ℓ(G) P_ℓ w`. -/
+/-- Part I Lemma 4.5(2) (`lem:sector`) on `Y^{s+1}`: `P_ℓ L(G) w = L_ℓ(G) P_ℓ w`. -/
 theorem SgLaw_secProj_LinY (S : SectorSetting) (hS : S.Valid) (s : ℕ) (G : ℝ)
     (u : Y (s + 1) S.Nstar) (ℓ : ℤ) :
     secProj s S.Nstar ℓ (S.LinY s G u) =

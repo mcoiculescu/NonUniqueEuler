@@ -9,7 +9,7 @@ import NonUniqueEuler.H.Sec5.Active.Layer.Steps
 /-!
 # Proof: the initial layer of `thm:active` (`eq:A-layer` and its consequences)
 
-Proof of `NonUniqueEuler/I/Sec5/Active/Layer.lean` (`05_single_ring.tex:953-1020`). Same
+Proof of `NonUniqueEuler/I/Sec5/Active/Layer.lean` (Part II Theorem 2.12). Same
 declaration (`active_layer`), statement copied verbatim.
 
 **Structure.** Put `n = M - 2` (so `M - 1 = n + 1`).
@@ -53,7 +53,7 @@ namespace OneRing
 open RingData
 
 set_option maxHeartbeats 1000000 in
-/-- **The initial layer of `thm:active`** (`05_single_ring.tex:953-1020`, `eq:A-layer`). See the
+/-- **The initial layer of `thm:active`** (Part II Theorem 2.12, `eq:A-layer`). See the
 module docstring: a constant `C_L ≥ 0` independent of `C₀`, and for every `C₀ ≥ 1` numbers
 `κ_L > 0`, `C₄ ≥ 0`, such that under (Init), (Field) and `κ ≤ κ_L`, on `[0, min(ū, t₁)]` the
 ring moves radially by at most `C₄κ`, `w - 2Re(ce^{λu}φ_*)` is bounded in `H^{M-2}` by

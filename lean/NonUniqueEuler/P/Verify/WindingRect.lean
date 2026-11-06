@@ -9,9 +9,10 @@ import NonUniqueEuler.I.Verify.ContourGeom
 Proof of the interface `NonUniqueEuler/I/Verify/WindingRect.lean` (same declarations, same
 statements).
 
-**Manuscript.** `A_verification.tex:509-512` and Lemma A.6 (`:540-560`).
+**Manuscript.** The rectangle winding calculation used with the argument principle in
+Part II Lemma A.6 (`lem:Nprime-N`), retaining the separate formal decomposition.
 
-* Inside: Proposition A.4 (`hasWinding_of_segments`, `I/Verify/SegmentFormula.lean`) on the
+* Inside: Part II Proposition A.4 (`hasWinding_of_segments`, `I/Verify/SegmentFormula.lean`) on the
   four edges `[0,1], [1,2], [2,3], [3,4]` with types `P, P, P, N`: on the bottom edge
   `Im (γ - u) = y₀ - Im u < 0`, on the right edge `Re (γ - u) = x₁ - Re u > 0`, on the top edge
   `Im (γ - u) = y₁ - Im u > 0`, on the left edge `Re (γ - u) = x₀ - Re u < 0`. The indicator

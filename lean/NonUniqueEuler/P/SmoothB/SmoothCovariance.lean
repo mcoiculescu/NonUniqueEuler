@@ -15,7 +15,7 @@ import Mathlib.Analysis.Calculus.ContDiff.Operations
 Proof of `I/SmoothB/SmoothCovariance.lean`. Each item follows the manuscript: check that the
 transformed function is a `C¹` solution in the sense of thm:smooth(5) (`IsC1SolOn univ`), and
 identify it with the solution of the transformed datum by `smooth_unique`
-(`06_datum.tex:139-146`, `B_global_smooth.tex:533-545`). The flows are identified by the
+(Part II, ring-unit scaling after Lemma 3.4 (`lem:adm`), Part II, §B.5, proof of Theorem 1.8 (`thm:smooth`)). The flows are identified by the
 uniqueness of maximal solutions (`IsMaxSol.maximal` of `flow_global`), the inverse flows by
 `flow_diffeo`, and the rotation equivariance of the flow by `flowOf_rot`.
 
@@ -175,7 +175,7 @@ theorem sol_timeShift (h : IsSmoothDatum ω₀ R₀) (t₁ : ℝ) :
   · rw [hvel]
     exact (hasDerivAt_flow h (t₁ + τ) (flowInv ω₀ t₁ y)).comp_const_add t₁ τ
 
-/-- Scaling covariance (ring units, `06_datum.tex:139-146`): for `A, r > 0` the solution with
+/-- Scaling covariance (ring units, Part II, ring-unit scaling after Lemma 3.4 (`lem:adm`)): for `A, r > 0` the solution with
 datum `A⁻¹ ω₀(r ·)` is `(τ, y) ↦ A⁻¹ ω(τ/A, r y)`, with velocity `(Ar)⁻¹ v(τ/A, r y)`, flow
 `y ↦ r⁻¹ Φ_{τ/A}(r y)` and inverse flow `x ↦ r⁻¹ Φ_{τ/A}⁻¹(r x)`. -/
 theorem sol_scale (h : IsSmoothDatum ω₀ R₀) {A r : ℝ} (hA : 0 < A) (hr : 0 < r) :
@@ -282,7 +282,7 @@ theorem sol_scale (h : IsSmoothDatum ω₀ R₀) {A r : ℝ} (hA : 0 < A) (hr : 
   conv_lhs => rw [← hx]
   exact (flow_diffeo hd τ).1 _
 
-/-- Rotation conjugation (`B_global_smooth.tex:535-541`): the solution with datum `ω₀ ∘ O_θ` is
+/-- Rotation conjugation (Part II, §B.5, proof of Theorem 1.8 (`thm:smooth`)): the solution with datum `ω₀ ∘ O_θ` is
 `(t, x) ↦ ω(t, O_θ x)`, with velocity `O_θ⁻¹ v(t, O_θ x)`. -/
 theorem sol_comp_rot (h : IsSmoothDatum ω₀ R₀) (θ : ℝ) :
     IsSmoothDatum (fun x => ω₀ (rot θ x)) R₀ ∧
@@ -329,7 +329,7 @@ theorem sol_comp_rot (h : IsSmoothDatum ω₀ R₀) (θ : ℝ) :
   rw [vel_eq, hsol]
   exact Covariance.velocity_comp_rot (sol ω₀ t) θ x
 
-/-- Equivariance for a symmetric datum (`05_single_ring.tex:141-145`, `06_datum.tex:255-262`):
+/-- Equivariance for a symmetric datum (Part II, proof of Lemma 2.2 (`lem:reduction`), Part II, proof of Lemma 3.6(2) (`lem:regions-basic`)):
 if `ω₀ ∘ O_θ = ω₀`, then `v(t, O_θ x) = O_θ v(t, x)`, `Φ_t(O_θ y) = O_θ Φ_t(y)` and
 `Φ_t⁻¹(O_θ x) = O_θ Φ_t⁻¹(x)`. -/
 theorem vel_flow_rot_of_symm (h : IsSmoothDatum ω₀ R₀) {θ : ℝ}

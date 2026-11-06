@@ -6,7 +6,7 @@ import NonUniqueEuler.H.Sec8.Coupling.Sector
 import NonUniqueEuler.H.Sec8.Coupling.Moment
 
 /-!
-# Helper for `lem:coupling`(1) (`08_kick.tex:66-110`)
+# Helper for `lem:coupling`(1) (Part II Lemma 5.1 (`lem:coupling`))
 
 Helper of `P/Sec8/Coupling.lean` (fully proved, modulo the interface files it imports).
 
@@ -53,7 +53,7 @@ theorem radComp_hIn (P : Approx) (k : ℕ) (τ : ℝ) (y : ℂ) :
 
 variable (P : Approx)
 
-/-- **The sector-`3` profile of `h^in_k(A_kt)·e_r`** (`08_kick.tex:66-86`). -/
+/-- **The sector-`3` profile of `h^in_k(A_kt)·e_r`** (Part II Lemma 5.1 (`lem:coupling`)). -/
 theorem profile_hIn (hP : P.Valid) (hN : NumericalHypothesis P.χ) {k : ℕ} (hk : 1 ≤ k)
     (hkn : k < P.n) {t : ℝ} (ht : 0 ≤ t) (hin : P.HInDefined k t) :
     ∀ r ∈ Icc (a / 4) 3,
@@ -85,7 +85,7 @@ theorem memCk_hIn (hP : P.Valid) (hN : NumericalHypothesis P.χ) {k : ℕ} (hk :
     rw [ht']; exact hin
   exact (Approx.hIn_continuous P hP hN hk hkn.le ht hdef M).1 (P.A k * t) (left_mem_Icc.2 le_rfl)
 
-/-- **`lem:coupling`(1)** (`08_kick.tex:26-33`), proved. -/
+/-- **`lem:coupling`(1)** (Part II Lemma 5.1 (`lem:coupling`)), proved. -/
 theorem coupling_one_aux (hP : P.Valid) (hN : NumericalHypothesis P.χ) {k : ℕ}
     (hk : 1 ≤ k) (hkn : k < P.n) {t : ℝ} (ht : 0 ≤ t) (hin : P.HInDefined k t) :
     (∀ s : ℕ, Lin.MemXFn s (OneRing.forcing P.χ (P.hIn k) (P.A k * t))) ∧

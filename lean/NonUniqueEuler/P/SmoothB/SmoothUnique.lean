@@ -5,8 +5,7 @@ import NonUniqueEuler.H.SmoothB.SmoothUnique.Transport
 /-!
 # Proof: thm:smooth (5) for any function with (1)–(3) (uniqueness among `C¹` solutions)
 
-Proof of `I/SmoothB/SmoothUnique.lean` (`thm:smooth`(5), `02_prelim.tex:580-585`; proof
-`B_global_smooth.tex:494-513`).
+Proof of `I/SmoothB/SmoothUnique.lean` (Part II, Theorem 1.8(5), `thm:smooth`; proof in §B.5).
 
 Fix `t ∈ I`, `t ≠ 0`, and `J = [a, b] = [min 0 t, max 0 t] ⊆ I`. Choose `ρ > 0` with `ω(s)`,
 `ω̃(s)` vanishing outside `B_ρ` for `s ∈ J`, and `L` bounding `Dω̃` on `J × B̄_ρ` (continuity of

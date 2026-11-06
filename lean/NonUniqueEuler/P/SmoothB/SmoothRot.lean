@@ -7,8 +7,8 @@ import Mathlib.Analysis.Calculus.FDeriv.Mul
 /-!
 # Proof: thm:smooth (6) (rotational symmetry is preserved)
 
-Proof of `I/SmoothB/SmoothRot.lean` (`thm:smooth`(6), `02_prelim.tex:586-587`; proof
-`B_global_smooth.tex:533-545`, restructuring R16: from the uniqueness (5)).
+Proof of `I/SmoothB/SmoothRot.lean` (Part II, Theorem 1.8(6), `thm:smooth`; proof in §B.5,
+restructuring R16: from the uniqueness in (5)).
 
 Let `ω = sol ω₀` and `ω_θ(t, x) = ω(t, O_θ x)` (the manuscript writes `O_θ⁻¹`; both are the same
 argument since `O_θ⁻¹ = O_{-θ}` is again a rotation).

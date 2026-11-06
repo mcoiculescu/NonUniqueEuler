@@ -179,7 +179,7 @@ def gen():
              "`Verify/Main.lean` computes; its proof evaluates nothing.\n-/\n\n",
              "namespace NonUniqueEuler.Verify\n\n",
              "/-- **The certificate**: the cells, rectangles and parameters of the two runs of\n"
-             "§A.6, transcribed from `sector3_count_cells.json` and `sector3_gap_cells.json`. -/\n",
+             "Part II §A.5 (`app:runs`), transcribed from `sector3_count_cells.json` and `sector3_gap_cells.json`. -/\n",
              "def cert : CertificateData := certLits.toCertificateData\n\n",
              "/-- The checker on the certificate is the core computation of the executable. -/\n",
              "theorem check_cert : check cert = checkCore defaultPrec certLits := by\n",

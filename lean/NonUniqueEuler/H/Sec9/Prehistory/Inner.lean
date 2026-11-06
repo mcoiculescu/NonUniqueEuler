@@ -5,7 +5,7 @@ import NonUniqueEuler.I.Sec6.FieldContinuity
 /-!
 # Helpers for `P/Sec9/Prehistory`: the inner part `|2π pout_3[ν^in_j(t)]| ≤ 4π η^in_j(A_jt)`
 
-Helper file of `P/Sec9/Prehistory.lean` (`lem:prehistory`, `09_relay.tex:1070-1085`).
+Helper file of `P/Sec9/Prehistory.lean` (`lem:prehistory` (historical), `lem:kicktrue`, Part II Lemma C.14, proof of (Q2) and (Kick4)).
 `lem:coupling`(1) at `r = 1` reads `(2π)⁻¹∫₀^{2π} h^in_j(A_jt)(e^{iθ})·e_r e^{-3iθ}dθ = (i/2)p_3`,
 `p_3 = pout_3[ν^in_j(t)]`, so `|p_3| ≤ 2 max_{|y|=1}|h^in_j(A_jt)| ≤ 2η^in_j(A_jt)` (the unit circle
 lies in `N'`).
@@ -71,7 +71,7 @@ theorem abs_radComp_le (h : ℂ → ℂ) (x : ℂ) : |OneRing.radComp h x| ≤ �
     _ = ‖h x‖ := mul_one _
 
 /-- **`|2π pout_3[ν^in_j(t)]| ≤ 4π η^in_j(A_jt)`** for `1 ≤ j < n`, `t ≥ 0` with
-`D_{j+1}(t) ⊂ B_{ar_j/8}` (`09_relay.tex:1070-1085`: `lem:coupling`(1) at `r = 1`; the unit circle
+`D_{j+1}(t) ⊂ B_{ar_j/8}` (`lem:kicktrue`, Part II Lemma C.14, proof of (Q2) and (Kick4): `lem:coupling`(1) at `r = 1`; the unit circle
 lies in `N'`, where `|h^in_j(A_jt)| ≤ ‖h^in_j(A_jt)‖_{C^{M_h}(N')}`). -/
 theorem norm_two_pi_pout_nuIn_le (P : Approx) (hP : P.Valid) (hN : NumericalHypothesis P.χ)
     {j : ℕ} (hj : 1 ≤ j) (hjn : j < P.n) {t : ℝ} (ht : 0 ≤ t) (hin : P.HInDefined j t)

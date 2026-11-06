@@ -3,9 +3,12 @@ import NonUniqueEuler.Defs.Sec3.Paths
 import NonUniqueEuler.I.Infra.WeakL2.Norm
 
 /-!
-# Proof: `lem:RR`, the Radon–Riesz property (exponent `2`)
+# Proof: legacy `lem:RR`, the Radon–Riesz property (exponent `2`)
 
-Proof of `NonUniqueEuler/I/Sec3/RR.lean` (manuscript `lem:RR`, `03_compactness.tex:691-714`,
+There is no current standalone `lem:RR`. The relevant `L²` argument is written directly
+in the proofs of Part I Lemma 3.5 (`lem:renorm-all-t`) and Theorem 3.8 (`thm:criterion`).
+
+Proof of `NonUniqueEuler/I/Sec3/RR.lean` (manuscript legacy `lem:RR`, the Hilbert-space argument in the proofs of Part I Lemma 3.5 (`lem:renorm-all-t`) and Theorem 3.8 (`thm:criterion`),
 restructuring R8: `p = 2` only).
 
 Pass to the classes `(hgs i).toLp (gs i)` in the Hilbert space `L²(ℂ)`. Weak convergence of
@@ -22,7 +25,7 @@ open scoped ENNReal Topology
 
 namespace NonUniqueEuler.Compact
 
-/-- **`lem:RR`** with `p = 2`, along an arbitrary filter: if `gᵢ, g ∈ L²`, `∫ gᵢ ψ → ∫ g ψ` for
+/-- **legacy `lem:RR`** with `p = 2`, along an arbitrary filter: if `gᵢ, g ∈ L²`, `∫ gᵢ ψ → ∫ g ψ` for
 every `ψ ∈ L²` and `‖gᵢ‖_{L²} → ‖g‖_{L²}`, then `gᵢ → g` in `L²`. -/
 theorem radonRiesz_filter {ι : Type*} {l : Filter ι} {gs : ι → ℂ → ℝ} {g : ℂ → ℝ}
     (hgs : ∀ i, MemLp (gs i) 2 volume) (hg : MemLp g 2 volume)
@@ -39,7 +42,7 @@ theorem radonRiesz_filter {ι : Type*} {l : Filter ι} {gs : ι → ℂ → ℝ}
   have hed := (tendsto_iff_edist_tendsto_0 (α := Lp ℝ 2 (volume : Measure ℂ))).1 hstrong
   simpa only [Lp.edist_toLp_toLp] using hed
 
-/-- **`lem:RR`** with `p = 2` (`03_compactness.tex:691-696`, R8): if real `gₙ ⇀ g` weakly in `L²`
+/-- **legacy `lem:RR`** with `p = 2` (the Hilbert-space argument in the proofs of Part I Lemma 3.5 (`lem:renorm-all-t`) and Theorem 3.8 (`thm:criterion`), R8): if real `gₙ ⇀ g` weakly in `L²`
 and `‖gₙ‖_{L²} → ‖g‖_{L²}`, then `gₙ → g` in `L²`. -/
 theorem radonRiesz {gs : ℕ → ℂ → ℝ} {g : ℂ → ℝ} (hw : Prelim.WeakTendstoLp 2 gs g)
     (hn : Tendsto (fun n => eLpNorm (gs n) 2 volume) atTop (𝓝 (eLpNorm g 2 volume))) :

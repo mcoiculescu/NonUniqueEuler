@@ -8,9 +8,9 @@ import Mathlib.MeasureTheory.Integral.Lebesgue.DominatedConvergence
 import Mathlib.MeasureTheory.Measure.Prod
 
 /-!
-# Helpers for `prop:stable`, step 3 (the limit is renormalized): generic lemmas
+# Helpers for legacy `prop:stable`, step 3 (the limit is renormalized): generic lemmas
 
-Helper file of `P/Sec3/Stable/RenormLimit.lean` (`03_compactness.tex:802-815`).
+Helper file of `P/Sec3/Stable/RenormLimit.lean` (related current criterion proof: Part I Theorem 3.8 (`thm:criterion`)).
 
 * Derivatives of a test function: bounds, vanishing outside the support, a ball containing the
   spatial projection of the support (adapted from `H/Sec3/Transport/Basic.lean`).
@@ -21,7 +21,7 @@ Helper file of `P/Sec3/Stable/RenormLimit.lean` (`03_compactness.tex:802-815`).
   `lintegral` (`lintegral_enorm_rpow_two`), Hölder with exponents `(2,2)` in `eLpNorm` form
   (`lintegral_enorm_mul_le`).
 * `tendsto_lintegral_mul_of_L1_L2`: if `aₙ → 0` in `L¹(μ)`, `aₙ` is bounded in `L²(μ)` and
-  `h ∈ L²(μ)`, then `∫ aₙ h → 0` (the weak `L²` convergence step of the manuscript: approximate
+  `h ∈ L²(μ)`, then `∫ aₙ h → 0` (the weak `L²` convergence step of the legacy proof: approximate
   `h` by the bounded function `min(h, K)`).
 -/
 
@@ -125,7 +125,7 @@ theorem exists_lipschitz_of_isRenormalization {Υ : ℝ → ℝ} (hΥ : IsRenorm
   refine ⟨C, (abs_nonneg _).trans (hC 0), hlip, fun s => ?_⟩
   simpa [hΥ.map_zero] using hlip s 0
 
-/-- The pointwise estimate behind `03_compactness.tex:808-813`:
+/-- The pointwise estimate behind retained legacy stability step:
 `Υ(a)(τ + ℓw) - Υ(b)(τ + ℓw') = (Υ(a) - Υ(b))τ + Υ(a)ℓ(w - w') + (Υ(a) - Υ(b))ℓw'`. -/
 theorem abs_renorm_integrand_sub_le {Υ : ℝ → ℝ} {L D : ℝ} (hL : 0 ≤ L) (_hD : 0 ≤ D)
     (hlip : ∀ a b, |Υ a - Υ b| ≤ L * |a - b|) (hlin : ∀ s, |Υ s| ≤ L * |s|) {τ : ℝ}

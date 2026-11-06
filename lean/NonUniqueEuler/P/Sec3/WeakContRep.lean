@@ -9,7 +9,7 @@ import Mathlib.Analysis.InnerProductSpace.LinearMap
 import Mathlib.Topology.Order.IsLUB
 
 /-!
-# Proof: weak solutions and their weakly continuous representatives (`03_compactness.tex:236-243`)
+# Proof: weak solutions and their weakly continuous representatives (Part I §3.2 (`sec:weak-rep`))
 
 Proof of `I/Sec3/WeakContRep.lean`.
 
@@ -129,7 +129,7 @@ end WeakContRepAux
 
 open WeakContRepAux
 
-/-- `03_compactness.tex:242-243`: two functions that are weakly continuous into `L²` on `[0,T]`,
+/-- Part I §3.2 (`sec:weak-rep`): two functions that are weakly continuous into `L²` on `[0,T]`,
 `T > 0`, and agree (a.e. in `x`) for almost every `t ∈ (0,T)`, agree for every `t ∈ [0,T]`. -/
 theorem ae_eq_of_isWeakContL2On {T : ℝ} (hT : 0 < T) {ω₁ ω₂ : ℝ → ℂ → ℝ}
     (h₁ : IsWeakContL2On (Icc 0 T) ω₁) (h₂ : IsWeakContL2On (Icc 0 T) ω₂)
@@ -155,8 +155,8 @@ theorem ae_eq_of_isWeakContL2On {T : ℝ} (hT : 0 < T) {ω₁ ω₂ : ℝ → �
   exact e1.symm.trans e2
 
 /-- Weak solutions are invariant under a.e. modification on `(0,T) × ℝ²` (elements of `X_q(T)`
-are equivalence classes, `02_prelim.tex:101-120`; used for the identification
-`03_compactness.tex:238-240`). -/
+are equivalence classes, Part I §2.1 (`sec:prelim`), function-space conventions; used for the identification
+Part I §3.2 (`sec:weak-rep`)). -/
 theorem _root_.NonUniqueEuler.IsWeakSolution.congr_ae {q T : ℝ} {ωin : ℂ → ℝ}
     {ω ω' : ℝ → ℂ → ℝ} (h : IsWeakSolution q T ωin ω)
     (h' : Function.uncurry ω' =ᵐ[volume.restrict (slab T)] Function.uncurry ω) :
@@ -193,7 +193,7 @@ theorem _root_.NonUniqueEuler.IsRenormalizedWeakSolution.congr_ae {q T : ℝ} {�
   show Υ (ω' p.1 p.2) = Υ (ω p.1 p.2)
   rw [hp']
 
-/-- `03_compactness.tex:236-240` (with `b = 2`, D9): a weak solution in `X_q(T)` with
+/-- Part I §3.2 (`sec:weak-rep`) (with `b = 2`, D9): a weak solution in `X_q(T)` with
 `ω ∈ L^∞(0,T;L²)` has a jointly measurable representative `ω'` (equal to `ω` a.e. on
 `(0,T) × ℝ²`) that is a weak solution with the same datum, weakly continuous into `L²` on
 `[0,T]`, with `ω'(0) = ω^in`. -/
@@ -217,7 +217,7 @@ theorem _root_.NonUniqueEuler.IsWeakSolution.exists_weakContRep {q T : ℝ} {ωi
     (memLp_one_iff_integrable.1 h.datum_memLp_one).locallyIntegrable h.solvesTE hN
   exact ⟨ũ, hm, hae, h.congr_ae hae, hc, h0⟩
 
-/-- `03_compactness.tex:239-240` (`lem:weak-cont`(a), `ũ(0) = u₀`): a weak solution in `X_q(T)`
+/-- Part I §3.2 (`sec:weak-rep`) (`lem:weak-cont`(a), `ũ(0) = u₀`): a weak solution in `X_q(T)`
 that is weakly continuous into `L²` on `[0,T]` takes the value `ω^in` at `t = 0`. -/
 theorem _root_.NonUniqueEuler.IsWeakSolution.ae_eq_datum_of_isWeakContL2On {q T : ℝ}
     {ωin : ℂ → ℝ} {ω : ℝ → ℂ → ℝ} (h : IsWeakSolution q T ωin ω)
@@ -235,7 +235,7 @@ theorem _root_.NonUniqueEuler.IsWeakSolution.ae_eq_datum_of_isWeakContL2On {q T 
     ⟨le_rfl, hT.le⟩
   exact h0'.symm.trans h0
 
-/-- `03_compactness.tex:240-241` (`lem:weak-cont`(a) bounds): for a function weakly continuous
+/-- Part I §3.2 (`sec:weak-rep`) (`lem:weak-cont`(a) bounds): for a function weakly continuous
 into `L²` on `[0,T]`, `T > 0`, an essential bound of `‖ω(t)‖_{L^p}` on `(0,T)`, `p ∈ [1,∞]`,
 holds at every `t ∈ [0,T]`. -/
 theorem eLpNorm_le_of_isWeakContL2On {T : ℝ} (hT : 0 < T) {ω : ℝ → ℂ → ℝ}
@@ -252,7 +252,7 @@ theorem eLpNorm_le_of_isWeakContL2On {T : ℝ} (hT : 0 < T) {ω : ℝ → ℂ �
   rw [← eLpNorm_congr_ae (JointRep.coeFn_toPath (μ := (volume : Measure ℂ)) (hm t ht))]
   exact key t ht
 
-/-- `03_compactness.tex:239-241`: a weak solution in `X_q(T)` that is weakly continuous into
+/-- Part I §3.2 (`sec:weak-rep`): a weak solution in `X_q(T)` that is weakly continuous into
 `L²` on `[0,T]` has `ω(t) ∈ L¹ ∩ L^q` for every `t ∈ [0,T]`, with
 `sup_{t ∈ [0,T]} ‖ω(t)‖_{L¹∩L^q} < ∞`. -/
 theorem _root_.NonUniqueEuler.IsWeakSolution.bound_of_isWeakContL2On {q T : ℝ}
@@ -289,7 +289,7 @@ theorem _root_.NonUniqueEuler.IsWeakSolution.bound_of_isWeakContL2On {q T : ℝ}
       _ = ENNReal.ofReal (2 * max M 0) := by
         rw [← ENNReal.ofReal_add (le_max_right _ _) (le_max_right _ _), two_mul]
 
-/-- `03_compactness.tex:241-243`: a weak solution on `[0,T₀)` with `ω ∈ L^∞(0,T;L²)` for every
+/-- Part I §3.2 (`sec:weak-rep`): a weak solution on `[0,T₀)` with `ω ∈ L^∞(0,T;L²)` for every
 `T < T₀` has a jointly measurable representative, equal to `ω` a.e. on every `(0,T) × ℝ²`,
 `T < T₀`, which is a weak solution on `[0,T₀)` with the same datum, weakly continuous into `L²`
 on `[0,T₀)`, with value `ω^in` at `0`. -/

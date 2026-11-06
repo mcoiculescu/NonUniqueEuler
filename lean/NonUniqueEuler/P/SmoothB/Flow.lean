@@ -14,7 +14,7 @@ import Mathlib.LinearAlgebra.Determinant
 /-!
 # Proof of `lem:flow` (flows of smooth vector fields bounded on slabs)
 
-Proof of the interface `NonUniqueEuler/I/SmoothB/Flow.lean` (`B_global_smooth.tex:47-110`).
+Proof of the interface `NonUniqueEuler/I/SmoothB/Flow.lean` (Part II, Lemma B.2 (`lem:flow`)).
 
 * (a) global existence: `lem:ode`(iii) (`ode_global`) with `M(T) = sup |u|`, `L(T) = 0`;
 * (b) cocycle identity: the maximality (uniqueness) of the maximal solution through
@@ -26,7 +26,7 @@ Proof of the interface `NonUniqueEuler/I/SmoothB/Flow.lean` (`B_global_smooth.te
   `Φ_u(t, s', y') = Φ_u(t, τ', Φ_u(τ', s', y'))` is a composition of `C^k` maps near
   `(τ, s, y)`), and contains `s` (`lem:ode`(ii) at `(s, y)`). Since `ℝ` is connected, `G = ℝ`.
   This replaces the manuscript's chain of times obtained from the Lebesgue number lemma
-  (`B_global_smooth.tex:73-99`) by a connectedness argument; the local step is the same.
+  (Part II, Lemma B.2 (`lem:flow`)) by a connectedness argument; the local step is the same.
 * (d) variational equation: `D_y Φ_u(τ, s, y) = D_x Φ_u(τ, t, x) ∘ D_y Φ_u(t, s, y)` with
   `x = Φ_u(t, s, y)` (cocycle and chain rule), and the local variational equation of
   `lem:ode`(ii) at `(t, x)`, where `D_x Φ_u(t, t, ·) = id`. This replaces the manuscript's

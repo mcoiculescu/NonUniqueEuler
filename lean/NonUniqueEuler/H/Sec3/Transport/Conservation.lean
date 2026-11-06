@@ -6,7 +6,7 @@ import Mathlib.MeasureTheory.Integral.DominatedConvergence
 /-!
 # Helper for `P/Sec3/Transport`: conservation (`lem:transport`(ii))
 
-`03_compactness.tex:526-543`. Let `β ∈ Lip₀` with `|β(s)| ≤ L|s|`, and assume `β(u)` satisfies
+Part I Lemma 3.4 (`lem:transport`) and its proof. Let `β ∈ Lip₀` with `|β(s)| ≤ L|s|`, and assume `β(u)` satisfies
 `(te)` on `[t₀,T)` with datum `β(u₀)`. For `α ∈ C_c^∞((-∞,T))` test with
 `φ_n(t,x) = α(t) ς_{R_n}(x)`, `R_n = n + 1` (`isTestFunction_mul`):
 `∂_tφ_n = α' ς_{R_n}`, `w·∇φ_n = α ∇ς_{R_n}·w`, so `(te)` reads
@@ -88,7 +88,7 @@ theorem eventually_sigmaCutR_eq_one (x : ℂ) :
   linarith
 
 /-- `(te)` for `β(u)` tested with `α(t) ς_R(x)`, `R → ∞`, gives
-`∫_{t₀}^T α' ∫β(u(t)) + α(t₀) ∫β(u₀) = 0` (`03_compactness.tex:528-540`). -/
+`∫_{t₀}^T α' ∫β(u(t)) + α(t₀) ∫β(u₀) = 0` (Part I Lemma 3.4 (`lem:transport`) and its proof). -/
 theorem identity_timeTest (ht₀ : t₀ ∈ Ico 0 T) (hw : IsBddH1DivFreeField (Ioo 0 T) w)
     (hu1 : Prelim.MemLinfLp (Ioo 0 T) univ 1 u)
     (huw : Integrable (fun p : ℝ × ℂ => u p.1 p.2 • w p.1 p.2) (volume.restrict (slab T)))
@@ -249,7 +249,7 @@ theorem identity_timeTest (ht₀ : t₀ ∈ Ico 0 T) (hw : IsBddH1DivFreeField (
 
 end Identity
 
-/-- `lem:transport`(ii) from `lem:transport`(i) (`03_compactness.tex:526-543`): if `β ∈ Lip₀`
+/-- `lem:transport`(ii) from `lem:transport`(i) (Part I Lemma 3.4 (`lem:transport`) and its proof): if `β ∈ Lip₀`
 and `β(u)` satisfies `(te)` on `[t₀,T)` with datum `β(u₀)`, then `β(u(t))` is integrable and
 `∫ β(u(t)) = ∫ β(u₀)` for a.e. `t ∈ (t₀,T)`. -/
 theorem conservation_of_solvesTE {T t₀ : ℝ} (ht₀ : t₀ ∈ Ico 0 T) {w : ℝ → ℂ → ℂ}

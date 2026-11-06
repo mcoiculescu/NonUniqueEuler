@@ -6,7 +6,7 @@ import NonUniqueEuler.I.SmoothB.Smooth
 /-!
 # Proof: the facts stated inside `def:clock` and right after it
 
-Proof of the interface `NonUniqueEuler/I/Sec6/DefClock.lean` (`def:clock`, `06_datum.tex:399-430`).
+Proof of the interface `NonUniqueEuler/I/Sec6/DefClock.lean` (Part II Definition 3.9 (`def:clock`)).
 
 * `kickTime_eq`: algebra with `tsh_eq_T_add` (`t♯_k = T_{k+1} + T_pin/A_{k+1}`) and `amp_succ`
   (`A_{k+1} = μ A_k`).
@@ -69,7 +69,7 @@ private theorem annNm_subset_annN : annNm ⊆ annN := by
 private theorem scaleSet_mono {r : ℝ} {U V : Set ℂ} (h : U ⊆ V) : scaleSet r U ⊆ scaleSet r V :=
   fun _ hx => h hx
 
-/-- **The kick time on the active phase** (`def:clock`, `06_datum.tex:424-426`): for `1 ≤ k < n`
+/-- **The kick time on the active phase** (Part II Definition 3.9 (`def:clock`)): for `1 ≤ k < n`
 and every `t`, `A_{k+1}(t - T_{k+1}) = T_pin + μ A_k(t - t♯_k)`; in particular the kick time of
 `t♯_k` is `T_pin`. -/
 theorem kickTime_eq (P : Approx) (hP : P.Valid) {k : ℕ} (hk : 1 ≤ k) (hkn : k < P.n) :
@@ -87,7 +87,8 @@ theorem kickTime_eq (P : Approx) (hP : P.Valid) {k : ℕ} (hk : 1 ≤ k) (hkn : 
   refine ⟨key, ?_⟩
   rw [key, activeTime_tsh, mul_zero, add_zero]
 
-/-- **The start of the clock** (`06_datum.tex:429-430`): `S_k(0) = S_k` for every `k`;
+/-- **The start of the clock** (Part II Definition 3.9, `def:clock`, and the seed
+paragraph in the proof of Proposition 8.1, `prop:bootstrap`): `S_k(0) = S_k` for every `k`;
 `S_n(0) ⊂ N_n`; `w_n(0) = Φ^{κ_seed} - Φ`; and `c_n(0) = ℓ_*(0)(Φ^{κ_seed} - Φ)`. -/
 theorem clock_start (P : Approx) (hP : P.Valid) (hN : NumericalHypothesis P.χ) :
     (∀ k : ℕ, P.St k 0 = P.S k) ∧ P.PertDefined P.n 0 ∧

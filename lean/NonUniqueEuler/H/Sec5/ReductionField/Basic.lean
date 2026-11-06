@@ -8,7 +8,7 @@ import Mathlib.MeasureTheory.Measure.Haar.InnerProductSpace
 /-!
 # Helper for `lem:reduction`(1): calculus of `∇^⊥`, the point vortex, rotations
 
-Helper of `P/Sec5/ReductionField.lean` (`05_single_ring.tex:146-184`). Configuration-free facts:
+Helper of `P/Sec5/ReductionField.lean` (Part II Lemma 2.2). Configuration-free facts:
 * `divergence_perpGrad`, `curl_perpGrad`: for `ψ` of class `C²` at `x`,
   `div ∇^⊥ψ (x) = 0` (symmetry of second derivatives) and `curl ∇^⊥ψ (x) = Δψ(x)`;
 * `perpGrad_sub_const_mul`: `∇^⊥(f₁ - G f₂) = ∇^⊥f₁ - G ∇^⊥f₂` at a point where both are
@@ -16,7 +16,7 @@ Helper of `P/Sec5/ReductionField.lean` (`05_single_ring.tex:146-184`). Configura
 * the point vortex `vortex G x = G x^⊥/|x|²` (`h = K * (ω_i + ω_o) - vortex G`): it is
   `∇^⊥(G log|x|)` off `0` (`vortex_eq_perpGrad`), smooth off `0`, and `O`-equivariant;
 * `biotSavartKernel_rot`, `velocity_rot`: `K(Ox) = O K(x)`, hence `(K * g)(Ox) = O (K * g)(x)` for
-  every `g` with `g ∘ O = g` (`05_single_ring.tex:141-143`).
+  every `g` with `g ∘ O = g` (Part II Lemma 2.2).
 -/
 
 noncomputable section
@@ -126,7 +126,7 @@ theorem perpGrad_sub_const_mul {f₁ f₂ : ℂ → ℝ} {x : ℂ} (h₁ : Diffe
 
 /-! ### The point vortex `G x^⊥/|x|²` -/
 
-/-- The point vortex `G x^⊥/|x|²` (`05_single_ring.tex:98-101`), in the form used by
+/-- The point vortex `G x^⊥/|x|²` (Part II Lemma 2.2 (`lem:reduction`)), in the form used by
 `RingConfig.h`. -/
 def vortex (G : ℝ) (x : ℂ) : ℂ :=
   (G : ℂ) * (Complex.I * x) / (((‖x‖ ^ 2 : ℝ)) : ℂ)
@@ -200,7 +200,7 @@ theorem rot_sub (θ : ℝ) (x y : ℂ) : rot θ x - rot θ y = rot θ (x - y) :=
 theorem rot_eq_rotation (θ : ℝ) (x : ℂ) : rot θ x = rotation (Circle.exp θ) x := by
   rw [rotation_apply, Circle.coe_exp, rot]
 
-/-- `(K * g)(Ox) = O (K * g)(x)` for every `g` with `g ∘ O = g` (`05_single_ring.tex:141-143`). -/
+/-- `(K * g)(Ox) = O (K * g)(x)` for every `g` with `g ∘ O = g` (Part II Lemma 2.2 (`lem:reduction`)). -/
 theorem velocity_rot {g : ℂ → ℝ} {θ : ℝ} (hg : ∀ y, g (rot θ y) = g y) (x : ℂ) :
     velocity g (rot θ x) = rot θ (velocity g x) := by
   let R : ℂ ≃ₗᵢ[ℝ] ℂ := rotation (Circle.exp θ)

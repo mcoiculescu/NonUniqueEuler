@@ -8,7 +8,7 @@ import NonUniqueEuler.H.Sec5.ReductionEq.Equation
 # Proof: `lem:reduction`(3) and `eq:ring` (the perturbation equation of one ring)
 
 Proof of `I/Sec5/ReductionEq.lean` (same declaration, same statement), following
-`05_single_ring.tex:204-217`.
+Part II Lemma 2.2.
 
 * `w = ω_r - Φ` is real by construction (`RingConfig.w_im`).
 * `w ∈ C^∞(ℝ × ℝ²)` (`RedEqH.w_contDiff`), and the supports of `w(t)`, `t ∈ (-1, T+1)`, lie in a
@@ -63,7 +63,7 @@ private theorem memXFn_of_family {k : ℕ} {T : ℝ} {u : ℝ → ℂ → ℂ}
   rw [h3]
   exact Eventually.of_forall fun x => hrot t x
 
-/-- **`lem:reduction`(3) and `eq:ring`** (`05_single_ring.tex:118-126`). Under the hypotheses
+/-- **`lem:reduction`(3) and `eq:ring`** (Part II Lemma 2.2). Under the hypotheses
 of `lem:reduction` on `[0,T]`, if `supp ω_r(t) ⊂ N` for `t ∈ [0,T]`, then `w = ω_r - Φ` is real
 valued, lies in `C¹([0,T]; X^k)` for every `k`, and solves
 `∂_t w = L(G)w + B(w,w) - h·∇w - h·∇Φ` on `[0,T]` (`RingConfig.PertEq`). -/

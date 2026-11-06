@@ -6,15 +6,16 @@ import NonUniqueEuler.I.Sec10.ThetaQuiet
 /-!
 # Helper for `P/Sec11/BootActive.lean`: (Init) and the outer field (`lem:Oprime`)
 
-Step 4 of the proof of `prop:bootstrap` (`11_bootstrap.tex:410-460`):
-* `boot_switch`: `‖w_k(t♯_k)‖_{H^s} ≤ C₀κ♯_k < C₂â_k(0)(1 + ρ̂_k(0))` (`eq:boot-switch` from Step 3,
-  or `eq:boot-start` from Step 0 if `k = n`);
-* `boot_init`: (Init) of `thm:active` for ring `k` (`eq:handoff` with `C_hand ≤ C₀`, or Step 0);
+Lean step 4 of the historical bootstrap decomposition (Part II Appendix C.17 (`sec:bootstrap-active-checks`)):
+* `boot_switch`: `‖w_k(t♯_k)‖_{H^s} ≤ C₀κ♯_k < C₂â_k(0)(1 + ρ̂_k(0))` (`eq:boot-switch` from Lean step 3,
+  or `eq:boot-start` from Lean step 0 if `k = n`);
+* `boot_init`: (Init) of `thm:active` for ring `k` (`eq:handoff` with `C_hand ≤ C₀`, or Lean step 0);
 * `boot_oprimeHyp`: the hypotheses of `lem:Oprime` with `C₀`, `K₁`, `C_F` at the time `t'`:
-  (Loc) from `lem:geometry`(c); for `k ≥ 2`, Step 2 for ring `k-1` at `t'` and
+  (Loc) from `lem:geometry`(c); for `k ≥ 2`, Lean step 2 for ring `k-1` at `t'` and
   `θ_{k-1}A_{k-1}t' ≤ θ_{k-1}τ̄♯_{k-1} ≤ ½` (`lem:quiet-time` at `t'`, with the levels `i ≥ k` from
-  Step 3 and Step 0, and `lem:theta-quiet`); (BA3) for ring `k` on `(t♯_k, t']` from (BA°)(t') and at
-  `t♯_k` from `boot_switch`; the inner bound `eq:boot-inner`; for `k < n`, Step 2 for ring `k` at
+  Lean step 3 and Lean step 0, and `lem:theta-quiet`); (BA3) for ring `k` on `(t♯_k, t']` from
+  (BA°)(t') and at
+  `t♯_k` from `boot_switch`; the inner bound `eq:boot-inner`; for `k < n`, Lean step 2 for ring `k` at
   `t♯_k`, `eq:handoff` and `lem:geometry`(b).
 All proved.
 -/
@@ -33,7 +34,8 @@ open RingData Datum
 
 variable {S : Standing}
 
-/-- `eq:boot-switch` / `eq:boot-start` (`11_bootstrap.tex:384-388`, `:245-250`). -/
+/-- `eq:boot-switch` / `eq:boot-start` (Part II Appendix C.16 (`sec:bootstrap-handoff-checks`), Part
+II §8 (`prop:bootstrap`), “The seed” and `eq:boot-start`). -/
 theorem boot_switch {k : ℕ} (hk : k ∈ Finset.Icc 1 S.P.n) (h0 : S.BootStartConcl)
     (hlev : ∀ i ∈ Finset.Ico k S.P.n, S.HandoffStep i) :
     Sob.normH S.s (S.P.w k (S.P.tsh k)) ≤ S.C0 * S.P.ksh k ∧
@@ -45,7 +47,7 @@ theorem boot_switch {k : ℕ} (hk : k ∈ Finset.Icc 1 S.P.n) (h0 : S.BootStartC
   · have h := hlev k (Finset.mem_Ico.2 ⟨le_rfl, hkn'⟩)
     exact ⟨h.switch_le.trans h.switch_C0, h.switch_lt⟩
 
-/-- (Init) of `thm:active` for ring `k` with `C₀` (`11_bootstrap.tex:410-412`). -/
+/-- (Init) of `thm:active` for ring `k` with `C₀` (Part II Appendix C.17 (`sec:bootstrap-active-checks`)). -/
 theorem boot_init {k : ℕ} (hk : k ∈ Finset.Icc 1 S.P.n) (h0 : S.BootStartConcl)
     (hlev : ∀ i ∈ Finset.Ico k S.P.n, S.HandoffStep i) : S.ActiveInitK S.C0 k := by
   obtain ⟨-, hkn⟩ := Finset.mem_Icc.1 hk
@@ -58,7 +60,8 @@ theorem boot_init {k : ℕ} (hk : k ∈ Finset.Icc 1 S.P.n) (h0 : S.BootStartCon
       mul_le_mul_of_nonneg_right S.Chand_le_C0 (S.P.ksh_nonneg k)
     exact hw.trans h1
 
-/-- (BA3) for ring `k` with the factor `2C₂` on `[0, ū]` in active time (`11_bootstrap.tex:448-449`):
+/-- (BA3) for ring `k` with the factor `2C₂` on `[0, ū]` in active time (Part II Appendix C.17
+(`sec:bootstrap-active-checks`)):
 at `u = 0` from `eq:boot-switch`/`eq:boot-start`, for `u > 0` from (BA°)(t'). -/
 theorem boot_active_bound (hS : S.Holds) {k : ℕ} (hk : k ∈ Finset.Icc 1 S.P.n)
     (hc : S.P.ClockUpTo k) {t' : ℝ} (ht' : t' ∈ S.P.Phase k) (h0 : S.BootStartConcl)
@@ -98,7 +101,7 @@ theorem le_tsh_pred (hS : S.Holds) {k : ℕ} (hk2 : 2 ≤ k) (hkn : k ≤ S.P.n)
   linarith [ht'.2]
 
 /-- **The hypotheses of `lem:Oprime`** with `C₀`, `K₁`, `C_F` for ring `k` at the time `t'`
-(`11_bootstrap.tex:437-459`). -/
+(Part II Appendix C.17 (`sec:bootstrap-active-checks`)). -/
 theorem boot_oprimeHyp (S : Standing) (hS : S.Holds) (hL : S.ParamLists) {k : ℕ}
     (hk : k ∈ Finset.Icc 1 S.P.n) (hc : S.P.ClockUpTo k) {t' : ℝ} (ht' : t' ∈ S.P.Phase k)
     (htsh : S.P.tsh k < t') (h0 : S.BootStartConcl)
@@ -150,7 +153,7 @@ theorem boot_oprimeHyp (S : Standing) (hS : S.Holds) (hL : S.ParamLists) {k : �
     have hnd : ¬ S.P.DebrisAt k t'' := fun h => absurd h.2 (not_lt.2 (ht''.2.trans ht'.2))
     exact (hgeo.ring t'' ⟨htsh0.trans ht''.1, ht''.2⟩ k hk hnd).2.1
 
-/-- **The outer field** (`lem:Oprime`, `11_bootstrap.tex:437-460`): on `[0, ū]`,
+/-- **The outer field** (`lem:Oprime`, Part II Appendix C.17 (`sec:bootstrap-active-checks`)): on `[0, ū]`,
 `h^out_k(t̄♯_k + u) ∈ C^{M_h}(N')` with `η^out_k(t̄♯_k + u) ≤ η_{b,k}â_k(u)`; and `η_{b,k} ≤ η_b`. -/
 theorem boot_outer (S : Standing) (hS : S.Holds) (hL : S.ParamLists) {k : ℕ}
     (hk : k ∈ Finset.Icc 1 S.P.n) (hc : S.P.ClockUpTo k) {t' : ℝ} (ht' : t' ∈ S.P.Phase k)

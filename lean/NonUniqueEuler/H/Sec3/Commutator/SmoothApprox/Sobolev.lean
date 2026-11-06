@@ -11,7 +11,7 @@ import NonUniqueEuler.Defs.Infra.Instances
 * `memHOn_sub`: `H^k(B_r)` is closed under subtraction;
 * `tendsto_l2On_weakDerivOn_sub_conv`: if `G = ∂_{vs} f` weakly on `B_R` (`|vs| ≤ 1`,
   `G ∈ L²`) and `∂_{vs}(ρ_n ⋆ f) = ρ_n ⋆ G` on `B_R`, then the weak derivative `∂_{vs}` of
-  `f - ρ_n ⋆ f` on `B_R` tends to `0` in `L²(B_R)` (`03_compactness.tex:440-447`:
+  `f - ρ_n ⋆ f` on `B_R` tends to `0` in `L²(B_R)` (the legacy smooth-field commutator argument; current treatment: Part I Lemma 3.3 (`lem:commutator`):
   "`∇w_δ → ∇w` in `L^a(B_{R+2})`").
 
 The instance `IsFiniteMeasure (volume.restrict (ball x r))` comes from `Defs/Infra/Instances`; this

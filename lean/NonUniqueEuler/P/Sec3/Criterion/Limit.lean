@@ -13,14 +13,14 @@ import NonUniqueEuler.H.Sec3.Criterion.Limit.Restrict
 # Proof: `thm:criterion`, step 1 — construction of the limit `ω_∞` on `[0, T₀)`
 
 Proof of `I/Sec3/Criterion/Limit.lean` (`Compact.criterion_limit`). Manuscript: proof of
-`thm:criterion`, first paragraph, `03_compactness.tex:974-994`.
+`thm:criterion`, first paragraph, Part I Theorem 3.8 (`thm:criterion`) and its proof.
 
 Structure.
 1. `exists_times`: real times `T_j ∈ (0, T₀)`, cofinal in `[0, T₀)` (an enumeration of the
    positive rationals below `T₀`; no monotonicity is needed).
-2. `isCompactSeq_of_admissible`: with `M = sup_n ‖f⁽ⁿ⁾‖_{L¹∩L²}` (`lem:bounded-adm`(ii)), the
-   hypotheses of `prop:compact` hold on every `[0, T]`, `T < T₀`.
-3. For each `j`, `prop:compact` + `prop:stable` along any subsequence give a further subsequence
+2. `isCompactSeq_of_admissible`: with `M = sup_n ‖f⁽ⁿ⁾‖_{L¹∩L²}` (legacy `lem:bounded-adm`(ii)), the
+   hypotheses of legacy `prop:compact` hold on every `[0, T]`, `T < T₀`.
+3. For each `j`, legacy `prop:compact` + legacy `prop:stable` along any subsequence give a further subsequence
    converging (uniformly weakly in `L²` on `[0, T_j]`) to a renormalized weak solution
    `ω^{[j]}` in `X₂(T_j)`, weakly continuous on `[0, T_j]`; diagonal extraction
    (`WeakL2.exists_diagonal_subseq`) gives one subsequence `φ` for all `j`.
@@ -137,8 +137,8 @@ theorem isWeakContL2On_of_local {T₀ : ℝ≥0∞} {ω : ℝ → ℂ → ℝ} {
         (integral_mul_congr (heq k t₀ ⟨ht₀.1, hk.le⟩) ψ)
     exact (continuousWithinAt_inter (Iio_mem_nhds hk)).1 h2
 
-/-- Step 1 of the proof: with `M = sup_n ‖f⁽ⁿ⁾‖_{L¹∩L²}` (`lem:bounded-adm`(ii)), the hypotheses of
-`prop:compact` hold on every `[0, T]`, `0 < T < T₀`, with `gₙ = f⁽ⁿ⁾`, `g = f`. -/
+/-- Step 1 of the proof: with `M = sup_n ‖f⁽ⁿ⁾‖_{L¹∩L²}` (legacy `lem:bounded-adm`(ii)), the hypotheses of
+legacy `prop:compact` hold on every `[0, T]`, `0 < T < T₀`, with `gₙ = f⁽ⁿ⁾`, `g = f`. -/
 theorem isCompactSeq_of_admissible {T₀ : ℝ≥0∞} {f : ℂ → ℝ} {fs : ℕ → ℂ → ℝ}
     {ωs : ℕ → ℝ → ℂ → ℝ} (hadm : IsAdmissibleSeq 2 T₀ f fs ωs)
     (hcont : ∀ n, IsWeakContL2On (timeInterval T₀) (ωs n)) :
@@ -174,7 +174,7 @@ namespace NonUniqueEuler.Compact
 
 open Weak CriterionLimitAux
 
-/-- Step 1 of the proof of **`thm:criterion`** (`03_compactness.tex:974-994`): a `2`-admissible
+/-- Step 1 of the proof of **Part I Theorem 3.8 (`thm:criterion`)**: a `2`-admissible
 sequence for `f` on `[0, T₀)` (weakly continuous representatives) has a subsequence `φ` and a
 limit `ω_∞` that is a renormalized weak solution on `[0, T₀)` with datum `f`, weakly continuous
 into `L²` on `[0, T₀)`, with `ω^{(φ n)} → ω_∞` uniformly weakly in `L²` on every `[0, T']`,

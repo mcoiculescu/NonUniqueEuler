@@ -7,7 +7,7 @@ import Mathlib.MeasureTheory.Integral.DominatedConvergence
 /-!
 # Helper for `lem:energy`: the Grönwall comparison of the last step
 
-Helper of `P/Sec5/Energy.lean` (`05_single_ring.tex:366-372`). If `y ≥ 0` on `[0,t]`, `y²` has
+Helper of `P/Sec5/Energy.lean` (Part II Lemma 2.4). If `y ≥ 0` on `[0,t]`, `y²` has
 (one-sided) derivative `q` within `[0,t]` with `q ≤ 2(Λy² + r y)`, `Λ ≥ 0`, and `r ≥ 0` is
 continuous on `[0,t]`, then `y(τ) ≤ e^{Λτ} y(0) + ∫₀^τ e^{Λ(τ-σ)} r(σ) dσ`.
 
@@ -124,7 +124,7 @@ theorem le_of_hasDerivWithinAt_sq_eps {y q r : ℝ → ℝ} {t Λ ε : ℝ} (hΛ
     intervalIntegral.integral_same, sub_zero] at hle
   linarith
 
-/-- **The Grönwall comparison of `lem:energy`** (`05_single_ring.tex:366-372`). -/
+/-- **The Grönwall comparison of `lem:energy`** (Part II Lemma 2.4). -/
 theorem le_of_hasDerivWithinAt_sq {y q r : ℝ → ℝ} {t Λ : ℝ} (hΛ : 0 ≤ Λ)
     (hy0 : ∀ τ ∈ Icc (0 : ℝ) t, 0 ≤ y τ)
     (hy : ∀ τ ∈ Icc (0 : ℝ) t, HasDerivWithinAt (fun σ => y σ ^ 2) (q τ) (Icc 0 t) τ)

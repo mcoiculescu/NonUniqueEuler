@@ -3,10 +3,10 @@ import NonUniqueEuler.I.Infra.WeakL2.LpNorm
 import NonUniqueEuler.I.Infra.JointRep.Representative
 
 /-!
-# Helpers for `prop:compact`: the limit `ω`, properties (i), (ii), `ω ∈ X₂(T)`
+# Helpers for legacy `prop:compact`: the limit `ω`, properties (i), (ii), `ω ∈ X₂(T)`
 
-Helper file of `P/Sec3/Compact.lean`. Manuscript: proof of `prop:compact`
-(`03_compactness.tex:281-314`).
+Helper file of `P/Sec3/Compact.lean`. Legacy proof decomposition: `prop:compact`
+(the compactness argument in the proof of Part I Theorem 3.8 (`thm:criterion`)).
 
 Given the sequence (`IsCompactSeq`, already extracted) and a weakly continuous `L²`-valued path
 `U` that is the uniform weak limit of the paths `t ↦ [ωₙ(t)]` on `[0,T]` (from
@@ -16,10 +16,10 @@ Given the sequence (`IsCompactSeq`, already extracted) and a weakly continuous `
 * `ω` is weakly continuous into `L²` on `[0,T]`, and (i) holds (`exists_limit_of_path`);
 * (ii) `‖ω(t)‖_{L^q} ≤ liminf ‖ωₙ(t)‖_{L^q}`, `q ∈ [1,2]` (weak lower semicontinuity,
   `WeakL2.eLpNorm_le_liminf_of_weakTendsto`; this covers `q = 1` and `q ∈ (1,2]` at once,
-  instead of the manuscript's duality arguments, `03_compactness.tex:291-303`), and
+  instead of the legacy proof's duality arguments, the compactness argument in the proof of Part I Theorem 3.8 (`thm:criterion`)), and
   `‖ω(t)‖_{L¹∩L²} ≤ M` (`WeakL2.eLpNorm_add_eLpNorm_le_of_weakTendsto`);
 * `ω ∈ X₂(T)` (`memX_of_bound`): joint measurability replaces the manuscript's Pettis argument
-  (`03_compactness.tex:304-314`).
+  (the compactness argument in the proof of Part I Theorem 3.8 (`thm:criterion`)).
 -/
 
 noncomputable section
@@ -33,7 +33,7 @@ open Weak
 
 variable {T M : ℝ} {gs : ℕ → ℂ → ℝ} {g : ℂ → ℝ} {ωs : ℕ → ℝ → ℂ → ℝ}
 
-/-- The limit `ω` and properties (i), (ii) of `prop:compact` and the bound
+/-- The limit `ω` and properties (i), (ii) of legacy `prop:compact` and the bound
 `‖ω(t)‖_{L¹∩L²} ≤ M`. -/
 theorem exists_limit_of_path (h : IsCompactSeq T M gs g ωs)
     {U : ℝ → Lp ℝ 2 (volume : Measure ℂ)} (hUc : WeakL2.WeakContinuousOn U (Icc 0 T))

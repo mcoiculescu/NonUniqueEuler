@@ -3,8 +3,8 @@ import NonUniqueEuler.Verify.Comp.Certify
 /-!
 # Part 2 algorithms: the two runs and the exact checks (core part of `check`)
 
-Manuscript: §A.6 "The Two Computations" and §A.7 "Reproduction" (the re-check),
-`A_verification.tex:507-649, 692-735`.
+Manuscript: Part II §A.5, "The Two Computations" (`app:runs`), and §A.7,
+"Reproduction" (`app:reproduce`, the re-check).
 Reference: `euler-ring-certificate/src/ringcert/sector3.py` (`COUNT_PARAMS`,
 `GAP_PARAMS`, `rectangle_ok`, `_jobs`, `run`) and `results.py` (`check_sector3`, the exact
 re-check of `ringcert check`).

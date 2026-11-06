@@ -65,8 +65,9 @@ theorem CertSpec.ofCertificateData_toCertificateData (c : CertSpec) :
   simp only [CertSpec.ofCertificateData, CertSpec.toCertificateData, h]
   rfl
 
-/-- **The certificate checker** (Part (2)): the two runs of §A.6 and the exact re-check of
-§A.7 on the given data, at the package's precision of 128 bits. -/
+/-- **The certificate checker** (Part (2)): the two runs of Part II §A.5 (`app:runs`) and
+the exact re-check of §A.7 (`app:reproduce`) on the given data, at the package's precision
+of 128 bits. -/
 def check (c : CertificateData) : Bool :=
   checkCore defaultPrec (CertSpec.ofCertificateData c)
 

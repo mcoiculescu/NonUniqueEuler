@@ -4,9 +4,9 @@ import Mathlib.Analysis.Calculus.FDeriv.Symmetric
 import Mathlib.Analysis.Complex.RealDeriv
 
 /-!
-# Proof: `prop:iter-limit`, step 4a — the differentiated transport equation of the iterates
+# Proof: formal decomposition of `prop:iter-limit`, step 4a — the differentiated transport equation of the iterates
 
-Proof of `I/SmoothB/IterLimit/IterEquation.lean` (`B_global_smooth.tex:432-436`).
+Proof of `I/SmoothB/IterLimit/IterEquation.lean` (Part II, Proposition B.10 (`prop:iter-limit`)).
 
 For a `C^∞` space–time function `Φ : ℝ × ℂ → E` write `∂_w Φ (p) = DΦ(p) w`. The steps:
 1. slices: `D_y Φ(t, y) v = DΦ(t, y)(0, v)` and `∂_t Φ(t, x) = DΦ(t, x)(1, 0)`
@@ -127,7 +127,7 @@ open IterEquationAux
 
 variable {ω₀ : ℂ → ℝ} {R₀ : ℝ}
 
-/-- `prop:iter-limit`, step 4a (`B_global_smooth.tex:432-436`): `∂_t ∂_x^γ ω^{[j+1]} =
+/-- formal decomposition of `prop:iter-limit`, step 4a (Part II, Proposition B.10 (`prop:iter-limit`)): `∂_t ∂_x^γ ω^{[j+1]} =
 -∂_x^γ(v^{[j]} · ∇ω^{[j+1]})` on `ℝ × ℝ²`. -/
 theorem iter_hasDerivAt_spaceD (h : IsSmoothDatum ω₀ R₀) (hne : ω₀ ≠ 0) (j : ℕ) (γ : ℕ × ℕ)
     (t : ℝ) (x : ℂ) :

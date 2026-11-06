@@ -6,7 +6,7 @@ import NonUniqueEuler.I.Infra.AngularFourier.Sector
 import NonUniqueEuler.I.Infra.AngularFourier.Derivatives.ProfileL2
 
 /-!
-# Helper for `thm:evans-simple`: elements of `Y^s_ℓ`, sector profiles, `L²` pairings
+# Helper for Part I Theorem 4.8 (`thm:evans-simple`): elements of `Y^s_ℓ`, sector profiles, `L²` pairings
 
 Helper of `P/Sec4/EvansSimple.lean` (fully proved). Namespace `NonUniqueEuler.EvansSimpleAux`.
 The first two groups are copied (namespace renamed) from `H/Sec4/SemigroupLaw/Basic.lean`,

@@ -4,9 +4,9 @@ import Mathlib.MeasureTheory.Integral.Prod
 import Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic
 
 /-!
-# Helper for `lem:sector`(1): `𝒢_ℓ g` solves the radial Poisson equation
+# Helper for Part I Lemma 4.5(1) (`lem:sector`): `𝒢_ℓ g` solves the radial Poisson equation
 
-Helper file of `P/Sec4/Sector.lean` (fully proved). Manuscript `04_ring.tex:224-243`.
+Helper file of `P/Sec4/Sector.lean` (fully proved). See the proof of Part I Lemma 4.5 (`lem:sector`).
 
 For a profile `g ∈ L¹([a,b])` vanishing a.e. on `(0,∞) \ [a,b]` (`Prof a b g`), with `0 < a`:
 * `Psi a b n g t = ∫_{[a,b]} ker(t,ρ) g(ρ) dρ`, so `𝒢_ℓ g = -(2|ℓ|)⁻¹ Psi` (`green_eq_Psi`);

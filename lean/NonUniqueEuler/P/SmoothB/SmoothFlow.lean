@@ -14,8 +14,7 @@ import Mathlib.MeasureTheory.Integral.Bochner.Basic
 /-!
 # Proof: thm:smooth (4) (the flow of the smooth solution)
 
-Proof of `I/SmoothB/SmoothFlow.lean` (`02_prelim.tex:572-579`, proof
-`B_global_smooth.tex:522-531`).
+Proof of `I/SmoothB/SmoothFlow.lean` (Part II, Theorem 1.8(4), `thm:smooth`; proof in §B.5).
 
 * `vel_isSmoothBoundedField`: thm:smooth (2) (`sol_isSmoothSol`, `SolCore.velocity_contDiff`,
   `SolCore.velocity_bounded` with `n = 0`);

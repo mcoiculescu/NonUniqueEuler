@@ -11,9 +11,9 @@ import NonUniqueEuler.I.Sec4.RingFacts
 import NonUniqueEuler.H.Sec7.Confine.Arith
 
 /-!
-# Helper for `prop:confine`(b): the speed bound on `\bar B_{Λ r_{k+1}}`
+# Helper for the speed-bound paragraph in the proof of `prop:confine`: the speed bound on `\bar B_{Λ r_{k+1}}`
 
-Helper of `P/Sec7/Confine.lean` (`07_several_rings.tex:322-349`). For `t ∈ [T_{k+1}, t₁]` and
+Helper of `P/Sec7/Confine.lean` (Part II Proposition 4.3 (`prop:confine`)). For `t ∈ [T_{k+1}, t₁]` and
 `|x| ≤ Λ r_{k+1}`: `v(t,x) = K*ω_{≥k+1}(t)(x) + Σ_{j≤k} K*g_j(x)`, `g_j = ω(t)1_{S_j(t)}`
 (`lem:regions-basic`(2),(3)); the first term is `≤ C_*A_{k+1}r_{k+1}` (`lem:speed`), and by (Cl),
 `lem:hollow` (`m₀ = 3`, `R_j = (a/2) r_j`), `‖g_j‖_{L¹} = A_jr_j²‖Φ‖_{L¹} ≤ πA_jr_j²`, `eq:sk-small`
@@ -143,7 +143,7 @@ theorem vel_split (hP : P.Valid) (hN : NumericalHypothesis P.χ) {k : ℕ} (hkn 
     Finset.sum_union hdisj, add_comm]
 
 /-- The ratio estimate `r_{k+1} ≤ s_k 2^{j-k} r_j` for `1 ≤ j ≤ k` (`eq:sk-small` and
-`s̄^{m-2} ≤ 1/2`, `07_several_rings.tex:343-345`). -/
+`s̄^{m-2} ≤ 1/2`, Part II Proposition 4.3 (`prop:confine`)). -/
 theorem r_succ_le (hP : P.Valid) {k j : ℕ} (hj1 : 1 ≤ j) (hjk : j ≤ k)
     (hsbar : P.sbar ^ (3 - 2) ≤ 1 / 2) :
     P.r (k + 1) ≤ P.s k * (1 / 2 : ℝ) ^ (k - j) * P.r j := by
@@ -184,7 +184,7 @@ theorem two_le_confLambda (hP : P.Valid) {k : ℕ} {t₁ : ℝ} (ht₁ : P.T (k 
     positivity
   linarith
 
-/-- **`prop:confine`(b)** (`07_several_rings.tex:322-349`): `|v(t,x)| ≤ 2C_*A_{k+1}r_{k+1}` for
+/-- **the speed-bound paragraph in the proof of `prop:confine`** (Part II Proposition 4.3 (`prop:confine`)): `|v(t,x)| ≤ 2C_*A_{k+1}r_{k+1}` for
 `t ∈ [T_{k+1}, t₁]` and `x ∈ \bar B_{Λ r_{k+1}}`. -/
 theorem confine_speed (hP : P.Valid) (hN : NumericalHypothesis P.χ) (hG : P.GSmall) {k : ℕ}
     {t₁ : ℝ} (h : P.ConfineHyp k t₁) :

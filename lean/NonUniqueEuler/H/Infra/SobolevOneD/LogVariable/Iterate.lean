@@ -12,7 +12,7 @@ Iterating the first-order rules of `Step.lean`:
   only on `j` (Stirling numbers of the first kind: `r^j ∂_r^j = ∑ s(j,p) ∂_x^p`).
 
 This is the manuscript's "`∂_r^j` is a combination of `∂_x^i`, `i ≤ j`, and conversely"
-(`04_ring.tex:888-897`). All proofs are complete.
+(Part I, Corollary 4.13 (`cor:K-bound`), elliptic estimate in the proof). All proofs are complete.
 -/
 
 noncomputable section

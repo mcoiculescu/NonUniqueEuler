@@ -5,7 +5,7 @@ import NonUniqueEuler.I.Sec2.BSBasic
 /-!
 # Helpers for `R_app ∈ C([0,t];X^s)`: bilinearity (a.e.) of `B(v,w)` and `h·∇w`
 
-Helper of `P/Sec5/Energy/RappPath.lean` (`05_single_ring.tex:331`). Namespace
+Helper of `P/Sec5/Energy/RappPath.lean` (Part II Lemma 2.4 (`lem:energy`)). Namespace
 `NonUniqueEuler.OneRing.RappPathH`.
 
 * `weakPartial_add_ae_eq` (copy of the proved helper of `H/Infra/Sobolev/DotGradSharp/Deriv.lean`),

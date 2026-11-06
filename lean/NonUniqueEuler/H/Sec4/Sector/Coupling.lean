@@ -8,7 +8,7 @@ import NonUniqueEuler.I.Sec4.Sector.CouplingProj
 import NonUniqueEuler.I.Sec4.Sector.CouplingOfProfile
 
 /-!
-# Helper for `lem:sector`(2): the coupling term `𝒦w = -(K_BS * w)·∇ω̄`
+# Helper for Part I Lemma 4.5(2) (`lem:sector`): the coupling term `𝒦w = -(K_BS * w)·∇ω̄`
 
 Helper file of `P/Sec4/Sector.lean` (fully proved, modulo the interface files
 `I/Sec4/Sector/CouplingProj.lean` and `I/Sec4/Sector/CouplingOfProfile.lean`).

@@ -8,8 +8,8 @@ import Mathlib.Algebra.BigOperators.Group.Finset.Basic
 Proof of `NonUniqueEuler/I/Verify/WindingAlgebra.lean` (same declarations, statements copied
 verbatim).
 
-**Manuscript.** The argument principle step of Proposition A.4 (`A_verification.tex:512`) and
-Lemma A.6 (`:536-560`).
+**Manuscript.** The argument principle used in the proof of Part II Lemma A.6
+(`lem:Nprime-N`); the formalization retains separate algebraic lemmas for this step.
 
 * `HasArgChange.mul`: the sum of the two lifts is a lift of the product.
 * `HasWinding.pow`, `HasWinding.finset_prod`: induction, from `mul` and the constant curve `1`.

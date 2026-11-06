@@ -5,7 +5,7 @@ import NonUniqueEuler.I.Infra.CkNorm.Basic
 /-!
 # Helpers for `R_app ∈ C([0,t];X^s)`: the nonlinear and field terms are paths in `X^s`
 
-Helper of `P/Sec5/Energy/RappPath.lean` (`05_single_ring.tex:331`). Namespace
+Helper of `P/Sec5/Energy/RappPath.lean` (Part II Lemma 2.4 (`lem:energy`)). Namespace
 `NonUniqueEuler.OneRing.RappPathH`. For `s ≥ 2` and `w ∈ C([0,T];X^{s+1})`:
 
 * `pathC_Bfn`: `B(w,w) ∈ C([0,T];X^s)` (`lem:bilinear`(1), `bilinear_B`, and the a.e.

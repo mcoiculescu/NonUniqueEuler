@@ -8,10 +8,10 @@ import NonUniqueEuler.I.Sec4.ClosedForm
 import NonUniqueEuler.I.Sec4.RingFacts
 
 /-!
-# Proof: `cor:sector-6` (no unstable eigenvalue with `Re λ ≥ 9/200` in the sectors `±6`)
+# Proof: the mode-6 argument in the proof of Part I Proposition 4.19 (`prop:SU`) (no unstable eigenvalue with `Re λ ≥ 9/200` in the sectors `±6`)
 
-Proof of `I/Sec4/Sector6.lean` (`04_ring.tex:1192-1197`, proof `:1198-1203`). Same declaration,
-statement copied verbatim.
+This retains the interface `I/Sec4/Sector6.lean`. Its estimate is now the mode-6 step
+in the proof of Part I Proposition 4.19 (`prop:SU`), rather than a separate corollary.
 
 Proof (as in the manuscript). Both settings are valid (`ringRefSetting_valid`,
 `ringPhiSetting_valid`) and satisfy `EdgeSplit` (`ringRefSetting_edgeSplit`,
@@ -62,7 +62,7 @@ private lemma half_sqrt_Zedge6_lt {χ : ℝ → ℝ} (hχ : IsAdmissibleCutoff �
       _ = M := Real.sqrt_mul_self hM0
   linarith
 
-/-- `cor:sector-6`: assume (N3). For the ring in reference or ring units, every `G ∈ ℝ` and
+/-- the mode-6 argument in the proof of Part I Proposition 4.19 (`prop:SU`): assume (N3). For the ring in reference or ring units, every `G ∈ ℝ` and
 `ℓ ∈ {6, -6}`, every eigenvalue `λ` of `L_ℓ(G)` on `Y^0_ℓ` with `Re λ > 0` satisfies
 `Re λ < 9/200`. -/
 theorem sector_six {χ : ℝ → ℝ} (hχ : IsAdmissibleCutoff χ) (h3 : N3) (S : SectorSetting)

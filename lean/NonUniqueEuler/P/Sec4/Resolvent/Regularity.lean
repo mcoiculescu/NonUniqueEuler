@@ -10,10 +10,10 @@ import NonUniqueEuler.I.Infra.SobolevOneD.MultiplierLocal
 /-!
 # Proof of `I/Sec4/Resolvent/Regularity.lean`: `H^s` regularity of resolvent solutions
 
-Proof of `lem:resolvent`(1), the regularity on `Y^s_ℓ` (`04_ring.tex:423-433`), restructured as
+Proof of `lem:resolvent`(1), the regularity on `Y^s_ℓ` (Part I Lemma 4.7 (`lem:resolvent`)), restructured as
 in the interface file: the solution `h ∈ Y^0_ℓ` of `z h - L_ℓ(G) h = g` satisfies
 `h = M_λ (g + k_ℓ 𝒢_ℓ h)` a.e. on `(0,∞)`, and a bootstrap on the number of derivatives with
-`lem:elliptic` (`𝒢_ℓ` gains two derivatives) and the multiplier lemmas gives `h ∈ H^s((0,∞))`.
+the elliptic estimate in the proof of Part I Corollary 4.13 (`cor:K-bound`) (`𝒢_ℓ` gains two derivatives) and the multiplier lemmas gives `h ∈ H^s((0,∞))`.
 
 Helpers (namespace `NonUniqueEuler.ResolventRegularityAux`):
 * one-dimensional `H^k((0,∞))` facts: `memH1On_zero_of_memLp`, `memH1On_add`, `memH1On_congr`
@@ -163,7 +163,7 @@ namespace SectorSetting
 
 open Sob ResolventRegularityAux
 
-/-- Proof of `lem:resolvent`(1), regularity on `Y^s_ℓ` (`04_ring.tex:423-433`, restructured):
+/-- Proof of `lem:resolvent`(1), regularity on `Y^s_ℓ` (Part I Lemma 4.7 (`lem:resolvent`), restructured):
 a solution `h ∈ Y^0_ℓ` of `z h - L_ℓ(G) h = g` with `g ∈ H^s((0,∞))` supported in `[ρ₋,ρ₊]`
 lies in `H^s((0,∞))`. -/
 theorem memH1On_of_resolvent_eq (S : SectorSetting) (hS : S.Valid) (ℓ : ℕ) (hℓ : 1 ≤ ℓ)

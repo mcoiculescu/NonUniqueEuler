@@ -3,14 +3,14 @@ import Mathlib.MeasureTheory.Integral.Prod
 import Mathlib.MeasureTheory.Integral.Bochner.Set
 
 /-!
-# Helper for `lem:adjoint`: the Green operator `𝒢_ℓ` (symmetry, values off the support)
+# Helper for Part I Lemma 4.9 (`lem:adjoint`): the Green operator `𝒢_ℓ` (symmetry, values off the support)
 
 Helper of `P/Sec4/Adjoint.lean`.
 * `integral_green_mul_symm`: the kernel of `𝒢_ℓ` is real and symmetric for `ρ dρ`, so
-  `∫ (𝒢_ℓ g) h r dr = ∫ g (𝒢_ℓ h) ρ dρ` (Fubini; `04_ring.tex:605-606`);
+  `∫ (𝒢_ℓ g) h r dr = ∫ g (𝒢_ℓ h) ρ dρ` (Fubini; proof of Part I Lemma 4.9 (`lem:adjoint`));
 * `green_eq_exterior`, `green_eq_interior`: for `h` vanishing off `[a,b]`,
   `𝒢_ℓ h(r) = -(2ℓ)⁻¹ r^{-ℓ} ∫ρ^{ℓ+1}h` for `r ≥ b` and `-(2ℓ)⁻¹ r^ℓ ∫ρ^{1-ℓ}h` for `r ≤ a`
-  (`04_ring.tex:621-624`).
+  (proof of Part I Lemma 4.9 (`lem:adjoint`)).
 -/
 
 noncomputable section

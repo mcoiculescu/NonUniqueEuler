@@ -5,7 +5,7 @@ import NonUniqueEuler.Defs.Sec9.All
 /-!
 # Helpers for `prop:relay`: generic real and interval-integral lemmas
 
-Helper file of `P/Sec9/Relay.lean` (`09_relay.tex:440-593`). Everything here is proved and
+Helper file of `P/Sec9/Relay.lean` (`prop:relay`, Part II Proposition C.9). Everything here is proved and
 independent of the standing data.
 
 * `integral_le_of_le`: comparison of interval integrals when only the larger integrand is known
@@ -15,7 +15,7 @@ independent of the standing data.
 * `integral_split3`, `integral_exp_shift` (the Duhamel integral over `[0,τ_a]` is
   `e^{σ(τ-τ_a)} maj(τ_a)`);
 * the Japanese bracket: `jap_le_jap`, `self_le_jap`, `That_jap_le` (`T̂⟨T̂⟩^m ≤
-  ⟨L⟩^{m+1}/(σ_b min(1,σ_b)^m)` for `T̂ = σ_k⁻¹L`, `σ_k ≥ σ_b > 0`, `09_relay.tex:566-570`);
+  ⟨L⟩^{m+1}/(σ_b min(1,σ_b)^m)` for `T̂ = σ_k⁻¹L`, `σ_k ≥ σ_b > 0`, `prop:relay`, Part II Proposition C.9);
 * `mul_exp_log_eq`: `κ e^{γ log(δ₀/κ)} = δ₀ (κ/δ₀)^{1-γ}` (`eq:relay-id`).
 -/
 
@@ -137,7 +137,7 @@ theorem jap_div_le {L σ : ℝ} (hσ : 0 < σ) : Prelim.jap (L / σ) ≤ Prelim.
   exact (pow_le_pow_iff_left₀ h0 (Prelim.jap_nonneg _) two_ne_zero).1 hsq
 
 /-- **`T̂⟨T̂⟩^m ≤ ⟨L⟩^{m+1}/(σ_b min(1,σ_b)^m)`** for `T̂ = σ_k⁻¹ L`, `L ≥ 0`, `σ_k ≥ σ_b > 0`
-(`09_relay.tex:566-570`, `m = 3`). -/
+(`prop:relay`, Part II Proposition C.9, `m = 3`). -/
 theorem That_jap_le {L σk σb : ℝ} (hL : 0 ≤ L) (hb : 0 < σb) (hbk : σb ≤ σk) :
     σk⁻¹ * L * Prelim.jap (σk⁻¹ * L) ^ 3 ≤ Prelim.jap L ^ (3 + 1) / (σb * min 1 σb ^ 3) := by
   have hk : 0 < σk := lt_of_lt_of_le hb hbk

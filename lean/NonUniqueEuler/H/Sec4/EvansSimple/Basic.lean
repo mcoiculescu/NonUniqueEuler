@@ -9,17 +9,18 @@ import Mathlib.MeasureTheory.Integral.Prod
 import Mathlib.MeasureTheory.Function.LocallyIntegrable
 
 /-!
-# Helper for `thm:evans-simple`: basic facts on the eigendata, and the adjoint eigenfunction
+# Helper for Part I Theorem 4.8 (`thm:evans-simple`): basic facts on the eigendata, and the adjoint eigenfunction
 
 Helper of `P/Sec4/EvansSimple.lean` (fully proved). Namespace `NonUniqueEuler.EvansSimpleAux`.
 Copied, with the namespace renamed, from `H/Sec4/Adjoint/Basic.lean`, `H/Sec4/Adjoint/Green.lean`
-and `H/Sec4/Adjoint/Eigen.lean` (the proof of `lem:adjoint`), which this proof may
+and `H/Sec4/Adjoint/Eigen.lean` (the proof of Part I Lemma 4.9 (`lem:adjoint`)), which this proof may
 not import (import rules, `README.md`). With `X(r) = ψ_*(log r) M_*(r)`:
 * `denom_ne_zero`, `Mres_ne_zero`, `psi_eq_denom_mul_X`, `kcoef_mul_X`, continuity on `(0,∞)`;
 * `integrableOn_Ioi_of_continuousOn_Icc`, `integrableOn_profile_mul`, `isProfileL2_gStar`;
 * `integral_green_mul_symm`: the symmetric kernel of `𝒢_ℓ` (Fubini);
-* `weak_eigen`: `∫ (L_ℓ g) X r dr = λ_* ∫ g X r dr` for `g ∈ Y^0_ℓ` (`04_ring.tex:602-612`), the
-  identity `ℓ_* ∘ L_ℓ = λ_* ℓ_*` used for `thm:evans-simple`(2) and the converse of (3).
+* `weak_eigen`: `∫ (L_ℓ g) X r dr = λ_* ∫ g X r dr` for `g ∈ Y^0_ℓ` (proof of Part I Lemma 4.9 (`lem:adjoint`)), the
+  identity `ℓ_* ∘ L_ℓ = λ_* ℓ_*` used for Part I Theorem 4.8(2) (`thm:evans-simple`) and
+  for the retained generalized-eigenvector converse, which is not in the current theorem.
 -/
 
 noncomputable section
@@ -177,7 +178,7 @@ theorem integral_green_mul_symm (ℓ : ℤ) {g h : ℝ → ℂ}
   simp_rw [hL, hR]
   rw [integral_const_mul, integral_const_mul, integral_integral_swap hint]
 
-/-- `lem:adjoint`(1), weak form, with `X = ψ_*(log r) M_*(r)`:
+/-- The adjoint calculation in the proof of Part I Lemma 4.9(1) (`lem:adjoint`), weak form, with `X = ψ_*(log r) M_*(r)`:
 `∫ (L_ℓ g) X r dr = λ_* ∫ g X r dr` for `g ∈ Y^0_ℓ`. -/
 theorem weak_eigen (S : SectorSetting) (hS : S.Valid) (ℓ : ℕ) (hℓ : 1 ≤ ℓ) (z : ℂ)
     (hz : 0 < z.re) (G : ℝ) (hE : S.evans ℓ z G = 0) {g : ℝ → ℂ} (hg : S.IsProfileL2 g) :

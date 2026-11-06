@@ -6,16 +6,16 @@ import Mathlib.MeasureTheory.Function.JacobianOneDim
 import Mathlib.Analysis.SpecialFunctions.Log.Deriv
 
 /-!
-# Helpers for `P/Sec4/Resolvent/Reduction`: the reduction of `lem:resolvent` to `eq:bvp`
+# Helpers for `P/Sec4/Resolvent/Reduction`: the reduction of Part I Lemma 4.7 (`lem:resolvent`) to Part I Equation 12 (`eq:bvp`)
 
-Elementary facts used in both directions of the reduction (`04_ring.tex:391-410`):
+Elementary facts used in both directions of the reduction (proof of Part I Lemma 4.7 (`lem:resolvent`)):
 * `integral_exp_comp`, `intervalIntegrable_exp_comp`: the substitution `r = e^t` for interval
   integrals of arbitrary (not necessarily continuous) integrands;
 * `integrableOn_Ioi_of_isProfileL2`, `intervalIntegrable_Fres`: integrability of profiles in
   `Y^0_ℓ` and of the forcing `F = e^{2ξ}(M_λ g)(e^ξ)`;
 * `norm_Mres_le`, `continuousOn_Mres`, `continuousOn_kcoef`, `kcoef_eq_zero`;
 * `exp_sq_mul_Mres`: the algebraic identity `e^{2ξ} M_λ(g + k_ℓ X) = F + (V_ℓ - ℓ²) X` at
-  `r = e^ξ` (`04_ring.tex:395-396`: `e^{2ξ} M_λ k_ℓ = V_ℓ - ℓ²`);
+  `r = e^ξ` (proof of Part I Lemma 4.7 (`lem:resolvent`): `e^{2ξ} M_λ k_ℓ = V_ℓ - ℓ²`);
 * `rmul_deriv_integrated`: `(rψ')' = r g + ℓ²ψ/r` in integrated form, from the integrated radial
   equation (integration by parts against `v(r) = r`, `LinODE.integral_mul_eq_of_integrated`);
 * `green_left`, `green_right`: `𝒢_ℓ h = A r^ℓ` on `(0, ρ₋]` and `B r^{-ℓ}` on `[ρ₊, ∞)`;
@@ -96,7 +96,7 @@ theorem denom_ne_zero (S : SectorSetting) {z : ℂ} (hz : 0 < z.re) (ℓ : ℤ) 
   simp at this
   linarith
 
-/-- `|M_λ(r)| ≤ 1/Re λ` (`lem:sector`(3): `|λ + iℓΩ| ≥ Re λ`). -/
+/-- `|M_λ(r)| ≤ 1/Re λ` (Part I Lemma 4.5(3) (`lem:sector`): `|λ + iℓΩ| ≥ Re λ`). -/
 theorem norm_Mres_le (S : SectorSetting) {z : ℂ} (hz : 0 < z.re) (ℓ : ℤ) (G r : ℝ) :
     ‖S.Mres ℓ z G r‖ ≤ 1 / z.re := by
   have hre : (z + Complex.I * (ℓ : ℂ) * ((S.Omega G r : ℝ) : ℂ)).re = z.re := by simp
@@ -154,7 +154,7 @@ theorem intervalIntegrable_Fres (S : SectorSetting) (hS : S.Valid) (ℓ : ℕ) {
 
 /-! ### The key algebraic identity -/
 
-/-- `e^{2ξ} M_λ(e^ξ) (g(e^ξ) + k_ℓ(e^ξ) X) = F(ξ) + (V_ℓ(ξ) - ℓ²) X` (`04_ring.tex:395-396`:
+/-- `e^{2ξ} M_λ(e^ξ) (g(e^ξ) + k_ℓ(e^ξ) X) = F(ξ) + (V_ℓ(ξ) - ℓ²) X` (proof of Part I Lemma 4.7 (`lem:resolvent`):
 `e^{2ξ} M_λ k_ℓ = iℓ f_ξ M_λ = V_ℓ - ℓ²`). -/
 theorem exp_sq_mul_Mres (S : SectorSetting) (ℓ : ℕ) (z : ℂ) (G : ℝ) (g : ℝ → ℂ) (t : ℝ)
     (X : ℂ) :
@@ -223,7 +223,7 @@ theorem rmul_deriv_integrated {ℓ : ℤ} {g ψ ψ' : ℝ → ℂ}
 
 /-! ### `𝒢_ℓ h` off the support -/
 
-/-- `𝒢_ℓ h(r) = A r^ℓ` for `r ≤ ρ₋` (`04_ring.tex:229`). -/
+/-- `𝒢_ℓ h(r) = A r^ℓ` for `r ≤ ρ₋` (proof of Part I Lemma 4.5 (`lem:sector`)). -/
 theorem green_left (S : SectorSetting) (ℓ : ℕ) {h : ℝ → ℂ} (hh : S.IsProfileL2 h) :
     ∃ A : ℂ, ∀ r : ℝ, r ≤ S.ρm → green ℓ h r = A * ((r ^ ℓ : ℝ) : ℂ) := by
   refine ⟨-((((2 * |((ℓ : ℤ) : ℝ)|)⁻¹ : ℝ)) : ℂ) *
@@ -242,7 +242,7 @@ theorem green_left (S : SectorSetting) (ℓ : ℕ) {h : ℝ → ℂ} (hh : S.IsP
   rw [green, integral_congr_ae hae, integral_const_mul]
   ring
 
-/-- `𝒢_ℓ h(r) = B r^{-ℓ}` for `r ≥ ρ₊` (`04_ring.tex:229`). -/
+/-- `𝒢_ℓ h(r) = B r^{-ℓ}` for `r ≥ ρ₊` (proof of Part I Lemma 4.5 (`lem:sector`)). -/
 theorem green_right (S : SectorSetting) (ℓ : ℕ) {h : ℝ → ℂ} (hh : S.IsProfileL2 h) :
     ∃ B : ℂ, ∀ r : ℝ, S.ρp ≤ r → green ℓ h r = B * ((r⁻¹ ^ ℓ : ℝ) : ℂ) := by
   refine ⟨-((((2 * |((ℓ : ℤ) : ℝ)|)⁻¹ : ℝ)) : ℂ) *
@@ -264,7 +264,7 @@ theorem green_right (S : SectorSetting) (ℓ : ℕ) {h : ℝ → ℂ} (hh : S.Is
 /-! ### The converse profile `η = M_λ(g + k_ℓ φ(log r))` -/
 
 /-- For `g ∈ Y^0_ℓ` and `φ` continuous, `η = M_λ(g + k_ℓ φ(log r))` is in `Y^0_ℓ`
-(`04_ring.tex:403-405`): `|M_λ| ≤ 1/Re λ`, `k_ℓ φ(log r)` is continuous on `[ρ₋,ρ₊]` and vanishes
+(proof of Part I Lemma 4.7 (`lem:resolvent`)): `|M_λ| ≤ 1/Re λ`, `k_ℓ φ(log r)` is continuous on `[ρ₋,ρ₊]` and vanishes
 off `[r₁, r₂] ⊆ [ρ₋, ρ₊]`. -/
 theorem isProfileL2_eta (S : SectorSetting) (hS : S.Valid) (ℓ : ℕ) {z : ℂ} (hz : 0 < z.re)
     (G : ℝ) {g : ℝ → ℂ} (hg : S.IsProfileL2 g) {φ : ℝ → ℂ} (hφc : Continuous φ) :

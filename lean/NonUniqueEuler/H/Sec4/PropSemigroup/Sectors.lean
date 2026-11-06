@@ -12,12 +12,12 @@ import NonUniqueEuler.I.Sec4.PropSemigroup.RieszCont
 /-!
 # Helpers for `P/Sec4/PropSemigroup`: the sector-wise bounds
 
-`04_ring.tex:1449-1490`. For `w ∈ X^s`, `G ∈ [0,G₁]`, `t ≥ 0` and every `ℓ ∈ ℤ`:
+The proof of Part I Proposition 4.22 (`prop:semigroup`). For `w ∈ X^s`, `G ∈ [0,G₁]`, `t ≥ 0` and every `ℓ ∈ ℤ`:
 `‖P_ℓ e^{tL}(1 - R)w‖ ≤ C e^{σ't} ‖P_ℓ w‖` with one `C` (`exists_secProj_one_sub_bound`):
-* `|ℓ| ≥ max(M_{σ'}, 4)`: `R_ℓ = 0` and `prop:large-sectors` (`largeSectors_opNorm`);
+* `|ℓ| ≥ max(M_{σ'}, 4)`: `R_ℓ = 0` and Part I Proposition 4.15 (`prop:large-sectors`) (`largeSectors_opNorm`);
 * `ℓ = ±3`: deflation, `Dunford.exists_norm_exp_mul_one_sub_le_uniform` (restructuring R2), with
   the continuity of `L_{±3}(G)` (`Lsec_continuous`), of the projections (`rieszSec_continuousOn`)
-  and of `λ_*` (`propU_a`), and the spectral gap of `prop:SU` (`lam_SU`);
+  and of `λ_*` (`propU_a`), and the spectral gap of Part I Proposition 4.19 (`prop:SU`) (`lam_SU`);
 * other `ℓ ∈ 3ℤ`: `Dunford.exists_norm_exp_le_of_spectrum_re_lt_uniform` (`lam_SU`);
 * `ℓ ∉ 3ℤ`: `P_ℓ w = 0` for `w ∈ X^s`.
 Also `‖P_ℓ R w‖ ≤ K‖P_ℓ w‖` and `‖P_ℓ e^{tL}Rw‖ ≤ K e^{σ(G)t}‖P_ℓ w‖` (`exp_mul_proj`).
@@ -58,14 +58,14 @@ theorem norm_exp_proj_apply (A P : X →L[ℂ] X) (z : ℂ) (hAP : A * P = z •
 
 end Generic
 
-/-- `P_ℓ e^{tL(G)} = exp(tL_ℓ(G)) P_ℓ` (`lem:semigroup-construct`(3)). -/
+/-- `P_ℓ e^{tL(G)} = exp(tL_ℓ(G)) P_ℓ` (Part I Lemma 4.14(3) (`lem:semigroup-construct`)). -/
 theorem secProj_S (hχ : IsAdmissibleCutoff χ) (s : ℕ) (G : ℝ) {t : ℝ} (ht : 0 ≤ t) (ℓ : ℤ)
     (w : Y s annN) :
     secProj s annN ℓ (Lin.S χ s G t w) =
       NormedSpace.exp ((t : ℂ) • Lin.Lsec χ s ℓ G) (secProj s annN ℓ w) :=
   (SectorSetting.semigroup_sector _ (ringPhiSetting_valid hχ) s G ht ℓ).1 w
 
-/-- The spectral gap of `prop:SU` in the form used by the Dunford bounds. -/
+/-- The spectral gap of Part I Proposition 4.19 (`prop:SU`) in the form used by the Dunford bounds. -/
 theorem spectrum_re_lt (hχ : IsAdmissibleCutoff χ) (hN : NumericalHypothesis χ) {G : ℝ}
     (hG : G ∈ Icc (0 : ℝ) Gbar) (s : ℕ) {σ' : ℝ} (hσ' : 9 / 200 < σ') :
     (∀ z ∈ spectrum ℂ (Lin.Lsec χ s 3 G), z ≠ Eig.lam χ G → z.re < σ') ∧
@@ -135,7 +135,7 @@ theorem exists_secProj_one_sub_bound_single (hχ : IsAdmissibleCutoff χ)
       secProj_eq_zero_of_memX hw hd, sub_zero, map_zero, norm_zero]
     positivity
 
-/-- The bound for large sectors (`prop:large-sectors` with `γ = σ'`). -/
+/-- The bound for large sectors (Part I Proposition 4.15 (`prop:large-sectors`) with `γ = σ'`). -/
 theorem exists_secProj_one_sub_bound_large (hχ : IsAdmissibleCutoff χ)
     (hN : NumericalHypothesis χ) (s : ℕ) {σ' : ℝ} (hσ' : 0 < σ') :
     ∃ M C : ℝ, 0 < C ∧ ∀ ℓ : ℤ, M ≤ |(ℓ : ℝ)| → ∀ G ∈ Icc (0 : ℝ) Gbar, ∀ t : ℝ, 0 ≤ t →
@@ -161,7 +161,7 @@ theorem exists_secProj_one_sub_bound_large (hχ : IsAdmissibleCutoff χ)
       (norm_nonneg _)))
 
 /-- **The sector-wise bound** `‖P_ℓ e^{tL}(1 - R)w‖ ≤ C e^{σ't}‖P_ℓ w‖`, uniformly in `ℓ`,
-`G ∈ [0,G₁]`, `t ≥ 0`, `w ∈ X^s` (`04_ring.tex:1455-1490`). -/
+`G ∈ [0,G₁]`, `t ≥ 0`, `w ∈ X^s` (proof of Part I Proposition 4.22 (`prop:semigroup`)). -/
 theorem exists_secProj_one_sub_bound (hχ : IsAdmissibleCutoff χ)
     (hN : NumericalHypothesis χ) (s : ℕ) {σ' : ℝ} (hσ' : 9 / 200 < σ') :
     ∃ C : ℝ, 0 < C ∧ ∀ ℓ : ℤ, ∀ G ∈ Icc (0 : ℝ) Gbar, ∀ t : ℝ, 0 ≤ t →

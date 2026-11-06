@@ -9,16 +9,16 @@ import Mathlib.Topology.Instances.ENNReal.Lemmas
 /-!
 # Helper for `P/Sec3/Criterion/Uniform`: abstract lemmas
 
-Manuscript: proof of `thm:criterion`(iv), `03_compactness.tex:1023-1056`.
+Manuscript: proof of `thm:criterion`(iv), Part I Theorem 3.8 (`thm:criterion`) and its proof.
 
 * `tendsto_iSup_of_seq`: the sequential criterion for uniform convergence on a compact set used
-  in the contradiction argument (`03_compactness.tex:1027-1033`): if `D (nᵢ) (tᵢ) → 0` whenever
+  in the contradiction argument (Part I Theorem 3.8 (`thm:criterion`) and its proof): if `D (nᵢ) (tᵢ) → 0` whenever
   `nᵢ → ∞` and `tᵢ → t₀` in `K`, then `sup_{t ∈ K} D n t → 0`.
 * `tendsto_lintegral_tail`: `∫_{|x| ≥ R} |g| → 0` as `R → ∞` for `g ∈ L¹` (the tails of
-  `f` and `ω_∞(t)` in the claim, `03_compactness.tex:1047-1055`).
-* `tendsto_zero_of_le_add`: "let `n → ∞`, then `R → ∞`" (`03_compactness.tex:1055-1056`).
+  `f` and `ω_∞(t)` in the claim, Part I Theorem 3.8 (`thm:criterion`) and its proof).
+* `tendsto_zero_of_le_add`: "let `n → ∞`, then `R → ∞`" (Part I Theorem 3.8 (`thm:criterion`) and its proof).
 * `tendsto_rpow_mul_rpow_zero`: the interpolation limit `S₁^{2/q-1} S₂^{2-2/q} → 0`
-  (`03_compactness.tex:1034-1035`).
+  (Part I Theorem 3.8 (`thm:criterion`) and its proof).
 -/
 
 noncomputable section
@@ -30,7 +30,7 @@ namespace NonUniqueEuler.Compact.UniformAux
 
 /-- Sequential criterion for uniform convergence to `0` on a compact set: if `D (nᵢ) (tᵢ) → 0`
 whenever `nᵢ → ∞` and `tᵢ ∈ K`, `tᵢ → t₀ ∈ K`, then `sup_{t ∈ K} D n t → 0`
-(`03_compactness.tex:1027-1033`). -/
+(Part I Theorem 3.8 (`thm:criterion`) and its proof). -/
 theorem tendsto_iSup_of_seq {K : Set ℝ} (hK : IsCompact K) (D : ℕ → ℝ → ℝ≥0∞)
     (h : ∀ (n : ℕ → ℕ) (t : ℕ → ℝ) (t₀ : ℝ), Tendsto n atTop atTop → (∀ i, t i ∈ K) →
       t₀ ∈ K → Tendsto t atTop (𝓝 t₀) → Tendsto (fun i => D (n i) (t i)) atTop (𝓝 0)) :

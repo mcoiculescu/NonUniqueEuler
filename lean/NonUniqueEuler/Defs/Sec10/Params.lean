@@ -1,20 +1,22 @@
 import NonUniqueEuler.Defs.Sec10.Lists
 
 /-!
-# Section 10: the parameters of the construction as one record (definitions)
+# Part II Section 7 and Appendices C.2–C.4: the parameters of the construction as one record (definitions)
 
-Manuscript `10_parameters.tex`:
-the choices (P0)–(P6) (`def:P0-P4` `:20-71`, `def:P5` `:96-120`, `def:P6` `:132-168`), Table
-`tab:param` (`:188-218`), and `lem:nonempty` (`:278-390`): "none of the choices depends on `n`,
-`A₁` or `ω^{(n)}`", and "if (P0)–(P6) hold, then for every `n ≥ 2` and every `A₁ > 0` the standing
-assumptions (SA) hold with these parameters, and (Det) holds".
+Current manuscript: Part II Section 7 (`sec:param`, `sections/10_parameters.tex`),
+Lemma 7.1 (`lem:nonempty`) and Table `tab:param`; Definitions C.2–C.4
+(`def:P0-P4`, `def:P5`, `def:P6`) and the detailed verification in Appendix C.4
+(`sec:param-verification`, `sections/C_parameter_details.tex`). No parameter choice
+depends on `n`, `A₁` or `ω^{(n)}`. The lists give (SA) and (Det) for every
+`n ≥ 2` and `A₁ > 0`. The module path `Sec10` retains the historical numbering;
+`Defs/Sec10/Lists.lean` explains the retained detailed constant choices.
 
-* `Relay.Params`: the numbers chosen in Section 10, `χ, s, σ', δ₀, μ, T_pin, κ_seed, s̄` (the
-  cutoff `χ` is fixed "once and for all", decision D12). They do not contain `n`, `A₁` or
+* `Relay.Params`: the numbers chosen in Part II Section 7, `χ, s, σ', δ₀, μ, T_pin, κ_seed, s̄` (the
+  cutoff `χ` is fixed once and for all). They do not contain `n`, `A₁` or
   `ω^{(n)}`.
 * `p.approx A₁ n`, `p.standing A₁ n`: the approximation `Approx.ofParams` and the standing datum of
-  Section 9 at amplitude `A₁` and depth `n` (`ω^{(n)} = Smooth.sol f^{(n)}`); this is the setting of
-  Section 11 ("fix `A₁ > 0` and `n ≥ 2`", `11_bootstrap.tex:12-18`).
+  Part II Definition C.1 (`def:standing`) at amplitude `A₁` and depth `n`
+  (`ω^{(n)} = Smooth.sol f^{(n)}`); this is the setting of Part II Section 8 (`sec:bootstrap`).
 * `p.ref = p.standing 1 2`: a reference standing datum. The lists (P0)–(P6) are the conditions
   `Standing.StructuralList`, `Standing.KappaList`, `Standing.SbarList` of `Defs/Sec10/Lists.lean`
   for `p.ref`: `p.Structural`, `p.KappaOK`, `p.SbarOK`, `p.Lists`. The choice `A₁ = 1`, `n = 2` is
@@ -23,7 +25,7 @@ assumptions (SA) hold with these parameters, and (Det) holds".
   `ω^{(n)}`; each transfer is a re-packaging of definitionally equal fields).
 * `Lists.holds`, `Lists.det`: (P0)–(P6) give (SA) and (Det) for `p.standing A₁ n`, every `A₁ > 0`,
   `n ≥ 2` (the last sentence of `lem:nonempty`; bookkeeping, fully proved).
-* the `n`-independent numbers of Section 11: `p.Tstar A₁` (`T_*` of `lem:time`), `p.c0 A₁`
+* the `n`-independent numbers used in Part II Section 8: `p.Tstar A₁` (`T_*` of `lem:time`), `p.c0 A₁`
   (`c₀ = ½A₁c_outδ₀`), the datum `p.datum A₁` (`f` of `def:datum`) and `p.approxVort A₁ n`
   (`ω^{(n)}`); `standing_Tstar` etc. identify them with the standing-datum objects by `rfl`.
 
@@ -40,15 +42,16 @@ namespace Relay
 
 open RingData Datum
 
-/-- **The parameters of the construction** (`def:P0-P4`, `def:P5`, `def:P6`, Table `tab:param`,
-`10_parameters.tex:20-218`): the cutoff `χ` of `def:ring` (fixed once and for all, D12), the
+/-- **The parameters of the construction** (Part II Definitions C.2–C.4,
+`def:P0-P4`, `def:P5`, `def:P6`, and Table `tab:param`): the cutoff `χ` of
+Part I Definition 4.1 (`def:ring`), fixed once and for all, the
 integer `s` and the rate `σ'` of (P0.2), the saturation level `δ₀` of (P1), the amplitude ratio
 `μ` of (P2), the pinning time `T_pin` of (P3), the seed size `κ_seed` of (P5) and the scale ratio
-`s̄` of (P6). Every other quantity of Section 10 is a function of these (the constants of (P0),
-(P4) and the derived ones of Section 9). The depth `n`, the amplitude `A₁` and `ω^{(n)}` are not
-parameters (`10_parameters.tex:13-15`). The conditions are `Params.Lists`. -/
+`s̄` of (P6). Every other parameter-list quantity is a function of these (the constants of (P0),
+(P4) and the derived relay quantities). The depth `n`, the amplitude `A₁` and `ω^{(n)}` are not
+parameters (Part II Section 7, `sec:param`). The conditions are `Params.Lists`. -/
 structure Params where
-  /-- the cutoff `χ` of `def:ring` (`Φ = ringPhi χ`) -/
+  /-- the cutoff `χ` of Part I `def:ring` (`Φ = ringPhi χ`) -/
   χ : ℝ → ℝ
   /-- the Sobolev index `s ≥ 3` of (P0.2) -/
   s : ℕ
@@ -70,11 +73,11 @@ namespace Params
 variable (p : Params)
 
 /-- The objects of `def:datum`–`def:clock` with the parameters `p`, the amplitude `A₁` and the
-depth `n` (`ω^{(n)} = Smooth.sol f^{(n)}`; (SA3), `09_relay.tex:43-48`). -/
+depth `n` (`ω^{(n)} = Smooth.sol f^{(n)}`; (SA3), Part II Definition C.1, `def:standing`). -/
 def approx (A₁ : ℝ) (n : ℕ) : Approx := Approx.ofParams p.χ A₁ p.μ p.sbar p.κs n p.δ₀ p.Tpin
 
-/-- The standing datum of Section 9 with the parameters `p`, the amplitude `A₁` and the depth `n`
-(the setting of Section 11, `11_bootstrap.tex:12-18`). -/
+/-- The standing datum of Part II Definition C.1 (`def:standing`) with parameters `p`,
+amplitude `A₁` and depth `n`, as used in Part II Section 8 (`sec:bootstrap`). -/
 def standing (A₁ : ℝ) (n : ℕ) : Standing := ⟨p.approx A₁ n, p.s, p.σ'⟩
 
 /-- The reference standing datum `p.standing 1 2`, used to state the lists (P0)–(P6), which do not
@@ -95,20 +98,23 @@ def SbarOK : Prop := p.ref.SbarList
 `Standing.ParamLists` of the reference datum; fields `structural`, `kappa`, `sbar`). -/
 def Lists : Prop := p.ref.ParamLists
 
-/-- The datum `f` of `def:datum` with the parameters `p` and the amplitude `A₁`
-(`06_datum.tex:22-23`, the statement layer's `datum`). -/
+/-- The datum `f` of Part II Definition 3.1 (`def:datum`) with parameters `p` and
+amplitude `A₁` (the statement layer's `datum`). -/
 def datum (A₁ : ℝ) : ℂ → ℝ := NonUniqueEuler.datum p.χ A₁ p.μ p.sbar
 
-/-- The approximate solution `ω^{(n)} = Smooth.sol f^{(n)}` (`def:approx`, `06_datum.tex:76-80`). -/
+/-- The approximate solution `ω^{(n)} = Smooth.sol f^{(n)}` of Part II Definition 3.3
+(`def:approx`). -/
 def approxVort (A₁ : ℝ) (n : ℕ) : ℝ → ℂ → ℝ :=
   Smooth.sol (approxDatum p.χ A₁ p.μ p.sbar p.κs n)
 
-/-- `T_*` of `lem:time` (`09_relay.tex:1468-1471`) for the parameters `p` and the amplitude `A₁`;
+/-- `T_*` of `lem:time` (Part II Lemma C.15, `lem:time`) for the parameters `p` and the amplitude `A₁`;
 it does not depend on `n` (`standing_Tstar`). -/
 def Tstar (A₁ : ℝ) : ℝ := (p.standing A₁ 2).Tstar
 
-/-- `c₀ = ½A₁c_outδ₀` of `lem:readout` / `thm:Rsharp` (`09_relay.tex:1421`, `11_bootstrap.tex:627`)
-for the parameters `p` and the amplitude `A₁`; it does not depend on `n` (`standing_c0`). -/
+/-- `c₀ = ½A₁c_outδ₀`, used in the readout in the proof of Part II Proposition 1.2
+(`prop:reduction`, Section 8), for parameters `p` and amplitude `A₁`.
+The legacy readout/Rsharp decomposition uses the same quantity. It does not depend
+on `n` (`standing_c0`). -/
 def c0 (A₁ : ℝ) : ℝ := (p.standing A₁ 2).c0
 
 /-! ### Basic lemmas (fully proved) -/
@@ -192,8 +198,7 @@ theorem kappaList_iff (A₁ : ℝ) (n : ℕ) : (p.standing A₁ n).KappaList p.�
 theorem sbarList_iff (A₁ : ℝ) (n : ℕ) : (p.standing A₁ n).SbarList ↔ p.SbarOK :=
   ⟨p.sbarList_congr, p.sbarList_congr⟩
 
-/-- **The lists (P0)–(P6) do not depend on `A₁`, `n`, `ω^{(n)}`** (`lem:nonempty`,
-`10_parameters.tex:286`, `:373-375`). -/
+/-- **The lists (P0)–(P6) do not depend on `A₁`, `n`, `ω^{(n)}`** (Part II Lemma 7.1 (`lem:nonempty`)). -/
 theorem lists_iff (A₁ : ℝ) (n : ℕ) : (p.standing A₁ n).ParamLists ↔ p.Lists :=
   ⟨p.paramLists_congr, p.paramLists_congr⟩
 
@@ -225,7 +230,7 @@ theorem kappaOK_with_iff {κs sbar : ℝ} :
     fun h => ⟨h.1, fun κ hκ => p.condKappa_with (h.2 κ hκ)⟩⟩
 
 /-- **The lists can be satisfied** (the logical step from `lem:nonempty` to a choice of all the
-parameters, `11_bootstrap.tex:724-725`): if (P0)–(P4) hold for some parameters `p` with cutoff `χ`
+parameters, Part II Section 8, the proof of `prop:reduction`): if (P0)–(P4) hold for some parameters `p` with cutoff `χ`
 (the fields `κs`, `sbar` of `p` are irrelevant), the admissible seed sizes contain an interval
 `(0, κ†]`, and for every admissible seed size the admissible `s̄` contain an interval `(0, s̄₀]`,
 then some parameters with cutoff `χ` satisfy (P0)–(P6). The hypothesis is the shape recommended
@@ -246,14 +251,13 @@ theorem exists_lists_of {χ : ℝ → ℝ}
 
 variable {p}
 
-/-- **(P0)–(P6) give (SA)** for every `A₁ > 0` and `n ≥ 2` (`lem:nonempty`,
-`10_parameters.tex:287-289`, `:377-389`), given (N) and an admissible cutoff. -/
+/-- **(P0)–(P6) give (SA)** for every `A₁ > 0` and `n ≥ 2` (Part II Lemma 7.1 (`lem:nonempty`)), given (N) and an admissible cutoff. -/
 theorem Lists.holds (hL : p.Lists) (hχ : IsAdmissibleCutoff p.χ)
     (hN : NumericalHypothesis p.χ) {A₁ : ℝ} (hA₁ : 0 < A₁) {n : ℕ} (hn : 2 ≤ n) :
     (p.standing A₁ n).Holds :=
   Standing.ParamLists.holds (p.paramLists_congr hL) hN hχ hA₁ hn rfl
 
-/-- **(P0)–(P6) give (Det)** for every `A₁` and `n` (it is (B4), `10_parameters.tex:388-389`). -/
+/-- **(P0)–(P6) give (Det)** for every `A₁` and `n` (it is (B4), Part II Appendix C.4, `sec:param-verification`). -/
 theorem Lists.det (hL : p.Lists) (A₁ : ℝ) (n : ℕ) : (p.standing A₁ n).Det :=
   Standing.ParamLists.det (p.paramLists_congr hL)
 
@@ -263,12 +267,12 @@ theorem Lists.standing (hL : p.Lists) (A₁ : ℝ) (n : ℕ) : (p.standing A₁ 
 
 theorem Lists.one_lt_μ (hL : p.Lists) : 1 < p.μ := hL.structural.p2.one_lt_μ
 
-/-- `μ ≤ μ_max ≤ 17/16` (`11_bootstrap.tex:725`). -/
+/-- `μ ≤ μ_max ≤ 17/16` (Part II Section 8, the proof of `prop:reduction`). -/
 theorem Lists.μ_le (hL : p.Lists) : p.μ ≤ 17 / 16 := hL.structural.p2.mu_le_muMax_le
 
 theorem Lists.sbar_pos (hL : p.Lists) : 0 < p.sbar := hL.sbar.sbar_pos
 
-/-- `s̄ ≤ a/16` by (B1) (`11_bootstrap.tex:726`). -/
+/-- `s̄ ≤ a/16` by (B1) (Part II Section 8, the proof of `prop:reduction`). -/
 theorem Lists.sbar_le (hL : p.Lists) : p.sbar ≤ a / 16 := hL.sbar.b1_le
 
 theorem Lists.kseed_pos (hL : p.Lists) : 0 < p.κs := hL.kappa.pos
@@ -280,7 +284,7 @@ theorem Lists.Tpin_pos (hL : p.Lists) : 0 < p.Tpin := hL.structural.p3.Tpin_pos
 /-- `κ_seed ≤ κ_L` by (κ6) at `κ = 2κ_seed`. -/
 theorem Lists.kseed_le (hL : p.Lists) : p.κs ≤ OneRing.kL p.χ := hL.kappa.le_kL
 
-/-- `2κ_seed < δ₀` by (κ1) at `κ = 2κ_seed` (`11_bootstrap.tex:236`, `:687-688`). -/
+/-- `2κ_seed < δ₀` by (κ1) at `κ = 2κ_seed` (Part II Section 8, the initial step of `prop:bootstrap`). -/
 theorem Lists.two_kseed_lt_δ₀ (hL : p.Lists) : 2 * p.κs < p.δ₀ :=
   hL.kappa.two_lt_δ₀ hL.δ₀_pos hL.one_lt_μ
 

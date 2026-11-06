@@ -5,8 +5,11 @@ import NonUniqueEuler.Defs.Infra.Sobolev
 /-!
 # One-dimensional weighted Sobolev norms (definitions; library I-SOB1)
 
-Manuscript-independent infrastructure (library I-SOB1; restructuring R4). Used by `lem:norm-equiv`,
-`lem:elliptic`, `cor:K-bound` and `lem:semigroup-construct`(1) (`04_ring.tex:836-1013`).
+Manuscript-independent infrastructure (library I-SOB1; restructuring R4). Used by
+Part I, Lemma 4.12 (`lem:norm-equiv`), Corollary 4.13 (`cor:K-bound`) and
+Lemma 4.14(1) (`lem:semigroup-construct`). The former separate `lem:elliptic`
+is the elliptic-estimate portion of the current proof of Corollary 4.13; Lean
+retains that decomposition.
 
 Weak derivatives on the line are the generic ones of `Defs/Infra/Sobolev.lean` with
 `E = ℝ` and the direction list `derivList j = [1, …, 1]` (`j` times), so a classical
@@ -16,13 +19,13 @@ Definitions.
 * `derivList j`, `weakDeriv1On V j g` (the weak `j`-th derivative of `g` on `V ⊆ ℝ`);
 * `MemH1On k V g`: `g ∈ H^k(V)` on the line (`L²` for Lebesgue measure `dr`);
 * `secNormSq k ℓ I g = ∑_{j ≤ k} (1+ℓ²)^{k-j} ∫_I |∂_r^j g|² r dr` and `secNorm = √secNormSq`:
-  the manuscript's `‖g‖²_{k,ℓ;I}` (`04_ring.tex:838-841`; `‖g‖_{k,ℓ}` is `I = [ρ₋, ρ₊]`).
+  the manuscript's `‖g‖²_{k,ℓ;I}` (Part I, profile-norm definition preceding Lemma 4.12 (`lem:norm-equiv`); `‖g‖_{k,ℓ}` is `I = [ρ₋, ρ₊]`).
   Radial profiles live on `(0, ∞)`: the weak derivatives are taken on `Ioi 0`;
 * `logNormSqOn k ℓ J u = ∑_{j ≤ k} (1+ℓ²)^{k-j} ∫_J |∂_x^j u|² dx` and
   `logNormSq k ℓ u = logNormSqOn k ℓ univ u`: the manuscript's `|u|²_{k,ℓ}` in the log variable
-  `x = log r` (`04_ring.tex:881`), weak derivatives on `ℝ`;
+  `x = log r` (Part I, Corollary 4.13 (`cor:K-bound`), elliptic estimate in the proof), weak derivatives on `ℝ`;
 * `yukawa ℓ f x = -(2|ℓ|)⁻¹ ∫ e^{-|ℓ||x-y|} f(y) dy`, the decaying solution of
-  `ψ'' - ℓ²ψ = f` (`04_ring.tex:878-880`).
+  `ψ'' - ℓ²ψ = f` (Part I, Corollary 4.13 (`cor:K-bound`), elliptic estimate in the proof).
 
 Junk values: if a weak derivative does not exist, `weakDeriv1On` is `0`; a non-integrable
 integrand gives `0`. Consumers carry `MemH1On` hypotheses.
@@ -55,7 +58,7 @@ def secWeight (k j : ℕ) (ℓ : ℤ) : ℝ :=
   (1 + (ℓ : ℝ) ^ 2) ^ (k - j)
 
 /-- The manuscript's `‖g‖²_{k,ℓ;I} = ∑_{j ≤ k} (1+ℓ²)^{k-j} ‖∂_r^j g‖²_{L²(I, r dr)}`
-(`04_ring.tex:838-841`), with weak derivatives on `(0, ∞)`. -/
+(Part I, profile-norm definition preceding Lemma 4.12 (`lem:norm-equiv`)), with weak derivatives on `(0, ∞)`. -/
 def secNormSq (k : ℕ) (ℓ : ℤ) (I : Set ℝ) (g : ℝ → ℂ) : ℝ :=
   ∑ j ∈ Finset.range (k + 1),
     secWeight k j ℓ * ∫ r in I, ‖weakDeriv1On (Ioi 0) j g r‖ ^ 2 * r
@@ -69,12 +72,13 @@ def logNormSqOn (k : ℕ) (ℓ : ℤ) (J : Set ℝ) (u : ℝ → ℂ) : ℝ :=
   ∑ j ∈ Finset.range (k + 1),
     secWeight k j ℓ * ∫ x in J, ‖weakDeriv1On univ j u x‖ ^ 2
 
-/-- The manuscript's `|u|²_{k,ℓ} = ∑_{j ≤ k} (1+ℓ²)^{k-j} ‖∂_x^j u‖²_{L²(ℝ)}` (`04_ring.tex:881`). -/
+/-- The manuscript's `|u|²_{k,ℓ} = ∑_{j ≤ k} (1+ℓ²)^{k-j} ‖∂_x^j u‖²_{L²(ℝ)}` (Part I, Corollary 4.13 (`cor:K-bound`), elliptic estimate in the proof). -/
 def logNormSq (k : ℕ) (ℓ : ℤ) (u : ℝ → ℂ) : ℝ :=
   logNormSqOn k ℓ univ u
 
 /-- The decaying solution `ψ = -(2|ℓ|)⁻¹ e^{-|ℓ||·|} ⋆ f` of `ψ'' - ℓ²ψ = f` on `ℝ`
-(`04_ring.tex:878-880`, the Green function of `lem:elliptic` in the log variable). -/
+(the Green function in the elliptic-estimate part of the proof of Part I,
+Corollary 4.13, `cor:K-bound`). -/
 def yukawa (ℓ : ℤ) (f : ℝ → ℂ) (x : ℝ) : ℂ :=
   -(((2 * |(ℓ : ℝ)|)⁻¹ : ℝ) : ℂ) *
     ∫ y, ((Real.exp (-|(ℓ : ℝ)| * |x - y|) : ℝ) : ℂ) * f y

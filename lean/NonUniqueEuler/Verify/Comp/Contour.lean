@@ -4,7 +4,7 @@ import NonUniqueEuler.Verify.Comp.Evans
 # Part 2 algorithms: rectangles, contour segments, boxes and classification
 
 Checker design decision D8 (see `FORMALIZATION_NOTES.md`).
-Manuscript: §A.6, the certification (`A_verification.tex:559-600`).
+Manuscript: Part II §A.5, the certification (`app:runs`).
 Reference: `euler-ring-certificate/src/ringcert/winding.py` (`seg_box`, `pt_box`,
 `G_ball`, `classify`, `rect_points`).
 
@@ -76,7 +76,7 @@ def ptBox (p : Nat) (R : Rect) (t : Rat) : CBox :=
 def gBall (p : Nat) (lo hi : Rat) : Ball :=
   Ball.union p (Ball.ofRat p lo) (Ball.ofRat p hi)
 
-/-- The two segment types of Proposition A.4: `P` (the box misses `(-∞, 0]`) and `N` (the box
+/-- The two segment types of Part II Proposition A.4: `P` (the box misses `(-∞, 0]`) and `N` (the box
 misses `[0, ∞)`). The core mirror of `SegKind` (`Defs/Verify/Winding.lean`). -/
 inductive SegTy where
   | P

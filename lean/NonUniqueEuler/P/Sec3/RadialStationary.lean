@@ -15,7 +15,7 @@ import Mathlib.Analysis.Normed.Group.Bounded
 # Proof: `lem:radial-stationary`, radial data give stationary renormalized solutions
 
 Proof of `NonUniqueEuler/I/Sec3/RadialStationary.lean` (same declarations, statements copied
-verbatim). Manuscript: `lem:radial-stationary`, `03_compactness.tex:831-876`.
+verbatim). Manuscript: `lem:radial-stationary`, Part I Lemma 3.6 (`lem:radial-stationary`).
 
 Structure (following the manuscript's proof).
 1. `radial_velocity`: Newton's theorem, `Polar.velocity_of_isRadial` (I-POLAR).
@@ -102,7 +102,7 @@ theorem integrable_mul_timeDeriv (hφ : IsTestFunction T φ) {g : ℂ → ℝ} (
   · exact (Real.norm_eq_abs _).le.trans (hC t x)
 
 /-- `∫₀ᵀ ∫ g ∂_tφ dx dt = -∫ g φ(0, ·) dx` for `g ∈ L¹` (Fubini and the fundamental theorem of
-calculus; `03_compactness.tex:871-872`). -/
+calculus; Part I Lemma 3.6 (`lem:radial-stationary`)). -/
 theorem integral_time_piece (hT : 0 < T) (hφ : IsTestFunction T φ) {g : ℂ → ℝ}
     (hg : Integrable g) :
     ∫ t in Ioo (0 : ℝ) T, ∫ x, g x * timeDeriv φ t x = -∫ x, g x * φ (0, x) := by
@@ -117,7 +117,7 @@ theorem integral_time_piece (hT : 0 < T) (hφ : IsTestFunction T φ) {g : ℂ �
   simp only
   rw [integral_const_mul, integral_timeDeriv hT hφ x, mul_neg]
 
-/-- The angular part (`03_compactness.tex:863-870`): for radial `g ∈ L¹` and a field
+/-- The angular part (Part I Lemma 3.6 (`lem:radial-stationary`)): for radial `g ∈ L¹` and a field
 `v = c(|x|) x^⊥/(2π|x|²)` a.e., `∫ g v · ∇φ(t) = 0` whenever the integrand is integrable. -/
 theorem integral_space_piece_eq_zero {g : ℂ → ℝ} (hg : Integrable g) (hgrad : IsRadial g)
     {v : ℂ → ℂ} {c : ℝ → ℝ} (hv : v =ᵐ[volume] fun x => (c ‖x‖ : ℂ) * biotSavartKernel x)
@@ -197,14 +197,14 @@ end RadialStationaryAux
 open RadialStationaryAux
 
 set_option linter.unusedVariables false in
-/-- **`lem:radial-stationary`**, the velocity formula (`03_compactness.tex:833-834`): for
+/-- **`lem:radial-stationary`**, the velocity formula (Part I Lemma 3.6 (`lem:radial-stationary`)): for
 `4/3 < q < ∞` and radial `f ∈ L¹ ∩ L^q`, `K ∗ f(x) = Circ_f(|x|) x^⊥/(2π|x|²)` for a.e. `x`. -/
 theorem radial_velocity {q : ℝ} {f : ℂ → ℝ} (hq : 4 / 3 < q) (hf1 : MemLp f 1 volume)
     (hfq : MemLp f (ENNReal.ofReal q) volume) (hrad : IsRadial f) :
     velocity f =ᵐ[volume] fun x => (Polar.circ f ‖x‖ : ℂ) * biotSavartKernel x := by
   exact Polar.velocity_of_isRadial hrad (memLp_one_iff_integrable.mp hf1)
 
-/-- **`lem:radial-stationary`**, the stationary solution (`03_compactness.tex:834-836`): for
+/-- **`lem:radial-stationary`**, the stationary solution (Part I Lemma 3.6 (`lem:radial-stationary`)): for
 `4/3 < q < ∞`, `T > 0` and radial `f ∈ L¹ ∩ L^q`, the stationary function `ω(t) = f` is a
 renormalized weak solution in `X_q(T)` with datum `f`. -/
 theorem radial_stationary {q T : ℝ} {f : ℂ → ℝ} (hq : 4 / 3 < q) (hT : 0 < T)

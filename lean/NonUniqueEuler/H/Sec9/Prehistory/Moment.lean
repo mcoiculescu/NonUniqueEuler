@@ -9,7 +9,7 @@ import NonUniqueEuler.I.Sec6.RegionsBasic
 /-!
 # Helpers for `P/Sec9/Prehistory`: `q_j = 2π pout_3[w_j] + 2π pout_3[ν^in_j]` and the ring part
 
-Helper file of `P/Sec9/Prehistory.lean` (`lem:prehistory`, `09_relay.tex:1059-1075`).
+Helper file of `P/Sec9/Prehistory.lean` (`lem:prehistory` (historical), `lem:kicktrue`, Part II Lemma C.14, proof of (Q2) and (Kick4)).
 In ring-`j` units, `D_j(t) = S_j(t) ⊔ D_{j+1}(t)` gives
 `Q_m[ω_{≥j}(t)] = A_jr_j^{m+2}(Q_m[Φ + w_j(t)] + Q_m[ν^in_j])`; `Q_m[Φ] = 0` (radial), and
 `conj Q_m[g] = 2π pout_m[g]` for real `g`.
@@ -61,7 +61,7 @@ theorem Qm_add {g h : ℂ → ℝ} (hg : Integrable (fun y : ℂ => ((g y : ℝ)
   push_cast
   ring
 
-/-- `ω_{≥j}(t) = ω(t)1_{S_j(t)} + ω_{≥j+1}(t)` for `1 ≤ j ≤ n` and `t ≥ 0` (`09_relay.tex:1036-1039`,
+/-- `ω_{≥j}(t) = ω(t)1_{S_j(t)} + ω_{≥j+1}(t)` for `1 ≤ j ≤ n` and `t ≥ 0` (`lem:kicktrue`, Part II Lemma C.14, proof of (Q2) and (Kick4),
 from `lem:regions-basic`(3)); both parts are continuous with compact support (`ω_{≥n+1} = 0`). -/
 theorem omegaGe_split (P : Approx) (hP : P.Valid) (hN : NumericalHypothesis P.χ) {j : ℕ}
     (hj : 1 ≤ j) (hjn : j ≤ P.n) {t : ℝ} (ht : 0 ≤ t) :
@@ -86,7 +86,7 @@ theorem omegaGe_split (P : Approx) (hP : P.Valid) (hN : NumericalHypothesis P.χ
   rw [hsum, hnsum, ← Finset.insert_Icc_add_one_left_eq_Icc hjn]
   exact Finset.sum_insert (by simp)
 
-/-- `conj Q_3[ω_{≥j}(t)] = conj Q_3[ω(t)1_{S_j(t)}] + conj Q_3[ω_{≥j+1}(t)]` (`09_relay.tex:1063-1066`). -/
+/-- `conj Q_3[ω_{≥j}(t)] = conj Q_3[ω(t)1_{S_j(t)}] + conj Q_3[ω_{≥j+1}(t)]` (`lem:kicktrue`, Part II Lemma C.14, proof of (Q2) and (Kick4)). -/
 theorem conjQm_split (P : Approx) (hP : P.Valid) (hN : NumericalHypothesis P.χ) {j : ℕ}
     (hj : 1 ≤ j) (hjn : j ≤ P.n) {t : ℝ} (ht : 0 ≤ t) :
     conj (BS.Qm 3 fun x => ((P.omegaGe j t x : ℝ) : ℂ)) =
@@ -201,7 +201,7 @@ theorem conjQm_div_eq_pout_units (P : Approx) (hP : P.Valid) (j : ℕ) (g : ℂ 
   ring
 
 /-- **`q_j(t) = 2π pout_3[w_j(t)] + 2π pout_3[ν^in_j(t)]`** for `1 ≤ j ≤ n` and `t ≥ 0`
-(`09_relay.tex:1063-1066`, `:1072-1081`; `D_j(t) = S_j(t) ⊔ D_{j+1}(t)`, `Q_3[Φ] = 0`). -/
+(`lem:kicktrue`, Part II Lemma C.14, proof of (Q2) and (Kick4); `D_j(t) = S_j(t) ⊔ D_{j+1}(t)`, `Q_3[Φ] = 0`). -/
 theorem q_eq (P : Approx) (hP : P.Valid) (hN : NumericalHypothesis P.χ) {j : ℕ}
     (hj : 1 ≤ j) (hjn : j ≤ P.n) {t : ℝ} (ht : 0 ≤ t) :
     P.q j t = 2 * Real.pi * BS.pout 3 (P.w j t) +
@@ -211,7 +211,7 @@ theorem q_eq (P : Approx) (hP : P.Valid) (hN : NumericalHypothesis P.χ) {j : �
     conjQm_div_eq_pout_units P hP j]
   rfl
 
-/-- **`|2π pout_3[w_j(t)]| ≤ 2³‖w_j(t)‖_{L¹}`** if `S_j(t) ⊂ N_j`, `t ≥ 0` (`09_relay.tex:1067-1069`:
+/-- **`|2π pout_3[w_j(t)]| ≤ 2³‖w_j(t)‖_{L¹}`** if `S_j(t) ⊂ N_j`, `t ≥ 0` (`lem:kicktrue`, Part II Lemma C.14, proof of (Q2) and (Kick4):
 `w_j(t)` is supported in `N ⊂ B̄₂`, and `2π pout_3[w] = conj Q_3[w]` for real `w`). -/
 theorem norm_two_pi_pout_w_le (P : Approx) (hP : P.Valid) (hN : NumericalHypothesis P.χ) {j : ℕ}
     (hj : j ∈ Finset.Icc 1 P.n) {t : ℝ} (ht : 0 ≤ t) (hS : P.PertDefined j t) :

@@ -6,7 +6,7 @@ import Mathlib.MeasureTheory.Measure.Haar.Unique
 /-!
 # Helper for `lem:grad-bound`: differentiation under the integral sign
 
-Helper of `P/SmoothB/GradBound.lean` (`B_global_smooth.tex:125-127`, first sentence of the
+Helper of `P/SmoothB/GradBound.lean` (Part II, Lemma B.3 (`lem:grad-bound`), first sentence of the
 proof). For real `g ∈ C¹_c`, the velocity `u = K ∗ g` is a Mathlib convolution of the locally
 integrable kernel with a compactly supported `C¹` function, so `u ∈ C¹` and
 `∂_l u_i(x) = ∫ (K_BS)_i(z) ∂_l g(x - z) dz`:
@@ -132,7 +132,7 @@ theorem integrable_kernelComp_mul (i : Fin 2) {φ : ℂ → ℝ} (hφ : Continuo
   simp only [comp2CLM_apply, comp2_mul_ofReal, BS.kernelComp]
 
 /-- `∂_l u_i(x) = ∫ (K_BS)_i(z) ∂_l g(x - z) dz` for real `g ∈ C¹_c`
-(`B_global_smooth.tex:126-127`). -/
+(Part II, Lemma B.3 (`lem:grad-bound`)). -/
 theorem gradEntry_velocity_eq {g : ℂ → ℝ} (hg : ContDiff ℝ 1 g) (hc : HasCompactSupport g)
     (i l : Fin 2) (x : ℂ) :
     Prelim.gradEntry (velocity g) i l x =

@@ -4,12 +4,12 @@ import NonUniqueEuler.I.Verify.TaylorRemainder
 import NonUniqueEuler.I.Evans.ODE
 
 /-!
-# Proof: Proposition A.3, step (iii): one middle step and the middle region
+# Proof: Part II Proposition A.3, step (iii): one middle step and the middle region
 
 Proof of `I/Verify/Sound/MidStep.lean` (same declarations, same statements).
 
-**Manuscript.** Proof of Proposition A.3 (`prop:enclosure`), step (iii)
-(`A_verification.tex:404-437`). **Code.** `Verify/Comp/Evans.lean`: `midStep`,
+**Manuscript.** Proof of Part II Proposition A.3, step (iii)
+(`prop:enclosure`). **Code.** `Verify/Comp/Evans.lean`: `midStep`,
 `midLoop`.
 
 Structure of the proof of `midStep_sound` (helpers in the namespace `MidStepAux`):

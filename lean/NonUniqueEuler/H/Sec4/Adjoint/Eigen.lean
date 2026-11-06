@@ -4,9 +4,9 @@ import NonUniqueEuler.I.Sec4.Sector
 import Mathlib.MeasureTheory.Measure.OpenPos
 
 /-!
-# Helper for `lem:adjoint`(1): the adjoint eigenfunction (weak form)
+# Helper for the adjoint calculation in the proof of Part I Lemma 4.9(1) (`lem:adjoint`): the adjoint eigenfunction (weak form)
 
-Helper of `P/Sec4/Adjoint.lean` (`04_ring.tex:602-612`). With `X = ψ_*(log r) M_*(r)` and
+Helper of `P/Sec4/Adjoint.lean` (proof of Part I Lemma 4.9 (`lem:adjoint`)). With `X = ψ_*(log r) M_*(r)` and
 `g ∈ Y^0_ℓ`:
 `∫ (L_ℓ g) X r dr = ∫ (-iℓΩ) g X r dr + ∫ (𝒢_ℓ g) g_* r dr`, and by the symmetry of the kernel
 (`integral_green_mul_symm`) and `𝒢_ℓ g_* = ψ_*(log r) = (λ_* + iℓΩ) X`, the second term is
@@ -22,7 +22,7 @@ namespace NonUniqueEuler.AdjointAux
 
 open SectorSetting
 
-/-- `lem:adjoint`(1), weak form, with `X = ψ_*(log r) M_*(r)`:
+/-- The adjoint calculation in the proof of Part I Lemma 4.9(1) (`lem:adjoint`), weak form, with `X = ψ_*(log r) M_*(r)`:
 `∫ (L_ℓ g) X r dr = λ_* ∫ g X r dr` for `g ∈ Y^0_ℓ`. -/
 theorem weak_eigen (S : SectorSetting) (hS : S.Valid) (ℓ : ℕ) (hℓ : 1 ≤ ℓ) (z : ℂ)
     (hz : 0 < z.re) (G : ℝ) (hE : S.evans ℓ z G = 0) {g : ℝ → ℂ} (hg : S.IsProfileL2 g) :
@@ -97,7 +97,8 @@ theorem weak_eigen (S : SectorSetting) (hS : S.Valid) (ℓ : ℕ) (hℓ : 1 ≤ 
   rw [e1, hFub, e2, e3, e4]
   ring
 
-/-- `lem:adjoint`(1), last assertion: `conj X` is not `0` in `L²([ρ₋,ρ₊])`. -/
+/-- A retained non-vanishing fact for the adjoint calculation in the proof of
+Part I Lemma 4.9(1) (`lem:adjoint`): `conj X` is not `0` in `L²([ρ₋,ρ₊])`. -/
 theorem adjEig_not_ae_zero (S : SectorSetting) (hS : S.Valid) (ℓ : ℕ) (hℓ : 1 ≤ ℓ) (z : ℂ)
     (hz : 0 < z.re) (G : ℝ) :
     ¬ (∀ᵐ r ∂(volume.restrict (Icc S.ρm S.ρp)), S.adjEig ℓ z G r = 0) := by

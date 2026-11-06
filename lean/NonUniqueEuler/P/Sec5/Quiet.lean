@@ -5,18 +5,20 @@ import NonUniqueEuler.I.Infra.Continuity.Bootstrap
 /-!
 # Proof: `thm:quiet` (a quiet ring)
 
-Proof of `I/Sec5/Quiet.lean` (`thm:quiet`, `05_single_ring.tex:408-429`, proof `:430-557`).
+Proof of `I/Sec5/Quiet.lean`, corresponding to Part II Theorem 2.8 (`thm:quiet`).
+The Lean statement retains the explicit displacement constant `C_Δ` and the
+radial-motion bound used in the current theorem's proof.
 
 **Structure.**
-1. *Constants* (`05_single_ring.tex:440-461`). The approximate solution
+1. *Constants* (Part II Theorem 2.8). The approximate solution
    (`I/Sec5/Quiet/Approx.lean`, `quiet_approx`, which contains `eq:Q-hier` and `eq:Q-res`) comes
    with a constant `C_app ≥ 0`. We take `C_Q = C_app(2 + σ_b⁻¹) + 1`, `C_Δ = 1 + C_BS C_Q/σ_b`,
    `maj_* = min(1, 1/(2C_Q), a/(16C_Δ))`; they depend only on `(Φ, G₁, s_h, N_Q)`.
-2. *Comparison step* (`H/Sec5/Quiet/Key.lean`, `QuietH.key`; `05_single_ring.tex:514-549`): if on
+2. *Comparison step* (`H/Sec5/Quiet/Key.lean`, `QuietH.key`; Part II Theorem 2.8): if on
    `[0,t']` the trajectories move radially by at most `a/8` and `‖w‖_{H^{s_h}} ≤ 1`, then on
    `[0,t']` the support stays in `N`, `lem:energy` applies, and `eq:Q-v`, `eq:Q-b` and
    `δ_r ≤ C_Δ maj` hold.
-3. *Continuity argument* (`05_single_ring.tex:514-555`), with `Continuity.forall_Icc_of_history`
+3. *Continuity argument* (Part II Theorem 2.8), with `Continuity.forall_Icc_of_history`
    for `Q(t)`: "`δ_r(t) ≤ C_Δ maj(t)`, `‖w(t)‖ ≤ C_Q maj(t)`, `‖w(t) - wlin(t)‖ ≤ C_Q maj(t)²`".
    `Q(t)` gives `δ_r(t) ≤ a/16` and `‖w(t)‖ ≤ 1/2`. *Extension* (`hext`): from `δ_r(t) ≤ a/16` and
    `‖w‖ ≤ 1/2` on `[0,t]`, the tube lemma (the flow is continuous and `supp Φ` is compact) gives
@@ -47,7 +49,7 @@ namespace OneRing
 
 open RingData
 
-/-- **`thm:quiet`** (`05_single_ring.tex:408-429`). Assume (N1)–(N3). Let `s_h ≥ 3` and
+/-- **`thm:quiet`** (Part II Theorem 2.8). Assume (N1)–(N3). Let `s_h ≥ 3` and
 `N_Q ≥ 2` be integers with `N_Q σ_b ≥ Λ(s_h)`, `M_h = s_h + N_Q + 1`. There are
 `maj_* ∈ (0,1]` and `C_Q, C_Δ < ∞` (here also `≥ 0`), depending only on `(Φ, G₁, s_h, N_Q)`,
 with `C_Δ maj_* ≤ a/16`, such that for every configuration of `lem:reduction` on `[0,T]` with

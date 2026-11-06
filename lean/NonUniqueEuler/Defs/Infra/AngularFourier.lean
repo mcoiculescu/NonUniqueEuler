@@ -6,9 +6,9 @@ import NonUniqueEuler.Defs.Infra.SobolevOneD
 /-!
 # Angular Fourier decomposition on the plane (definitions; library I-ANG)
 
-Manuscript-independent infrastructure (library I-ANG). Manuscript: `02_prelim.tex:26-35` (angular
+Manuscript-independent infrastructure (library I-ANG). Manuscript: Part I, Section 2.1, conventions in `sec:prelim` (angular
 sectors, `g = ∑ g_ℓ e^{iℓθ}` in `L²`, `m`-fold symmetry iff `g_ℓ = 0` for `ℓ ∉ mℤ`) and
-`04_ring.tex:174-185` (sector profiles, `P_ℓ w = (2π)⁻¹ ∫₀^{2π} e^{-iℓφ} w ∘ O_φ dφ`).
+Part I, Definition 4.3 (`def:sector-setting`) and the following mode-profile discussion (sector profiles, `P_ℓ w = (2π)⁻¹ ∫₀^{2π} e^{-iℓφ} w ∘ O_φ dφ`).
 
 The angular sector `g_ℓ(r) = (2π)⁻¹ ∫₀^{2π} g(re^{iθ}) e^{-iℓθ} dθ` is `Polar.angularSector`
 (library I-POLAR, `Defs/Infra/Polar.lean`); it is not redefined here.
@@ -22,7 +22,7 @@ Definitions (namespace `NonUniqueEuler.Ang`).
 * `IsMFoldSymmetricC m g`: complex-valued version of the statement layer's
   `IsMFoldSymmetric` (`isMFoldSymmetric_iff_C` relates them);
 * `thetaDeriv g = -x₂ ∂₁g + x₁ ∂₂g` (weak `∂_θ`) and `radDeriv g = cos θ ∂₁g + sin θ ∂₂g`
-  (weak `∂_r`), `04_ring.tex:851-853`;
+  (weak `∂_r`), Part I, Lemma 4.12 (`lem:norm-equiv`), proof;
 * `rotLp θ`: `g ↦ g ∘ O_θ` on `L²(ℂ)`, a linear isometry (`Lp.compMeasurePreservingₗᵢ`);
 * `sectorProjL ℓ`: `P_ℓ` as a continuous linear map on `L²(ℂ)`, chosen; its specification
   `sectorProjL_spec` is in `I/Infra/AngularFourier/Sector.lean`.
@@ -44,7 +44,7 @@ def ofProfile (ℓ : ℤ) (h : ℝ → ℂ) (x : ℂ) : ℂ :=
   h ‖x‖ * angPhase ℓ x
 
 /-- The sector projection `P_ℓ g (x) = (2π)⁻¹ ∫₀^{2π} e^{-iℓφ} g(O_φ x) dφ`
-(`04_ring.tex:181`). -/
+(Part I, Definition 4.3 (`def:sector-setting`) and the following mode-profile discussion). -/
 def sectorProj (ℓ : ℤ) (g : ℂ → ℂ) (x : ℂ) : ℂ :=
   (2 * π : ℂ)⁻¹ * ∫ φ in (0 : ℝ)..2 * π,
     Complex.exp (-((ℓ : ℂ) * φ * Complex.I)) * g (rot φ x)

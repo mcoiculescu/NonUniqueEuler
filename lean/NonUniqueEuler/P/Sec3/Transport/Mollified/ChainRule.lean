@@ -10,7 +10,7 @@ import Mathlib.Analysis.Calculus.ContDiff.RCLike
 /-!
 # Proof: the one-dimensional chain rule for a weak time equation (step 2)
 
-Proof of `I/Sec3/Transport/Mollified/ChainRule.lean` (`03_compactness.tex:500-505`, time part
+Proof of `I/Sec3/Transport/Mollified/ChainRule.lean` (Part I Lemma 3.4 (`lem:transport`) and its proof, time part
 of the chain rule in the proof of `lem:transport`(i)).
 
 Put `D̃ = 1_{(t₀,T)} D ∈ L¹(ℝ)` and `V(s) = U₀ - ∫_{t₀}^s D̃`.
@@ -138,7 +138,7 @@ theorem continuous_deriv_of_test {T : ℝ} {β : ℝ → ℝ} (hβ : IsTimeTestF
 end ChainRuleH
 
 open ChainRuleH in
-/-- The one-dimensional chain rule in weak form (`03_compactness.tex:500-505`, time part): if
+/-- The one-dimensional chain rule in weak form (Part I Lemma 3.4 (`lem:transport`) and its proof, time part): if
 `U ∈ L^∞(t₀,T)` satisfies `U' = -D` weakly on `[t₀,T)` with `D ∈ L¹(t₀,T)` and datum `U₀`, then
 for every `Υ ∈ C¹`, `Υ(U)' = -Υ'(U) D` weakly on `[t₀,T)` with datum `Υ(U₀)`. -/
 theorem renorm_timeEq {t₀ T : ℝ} (hT : t₀ < T) {U D : ℝ → ℝ} {U₀ : ℝ}

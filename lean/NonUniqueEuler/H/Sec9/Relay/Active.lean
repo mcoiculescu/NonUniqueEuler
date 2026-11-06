@@ -8,17 +8,17 @@ import NonUniqueEuler.I.Sec7.FieldUnits
 /-!
 # Helpers for `prop:relay`: the inner field of ring `j` on the active and debris phases of `j+1`
 
-Helper file of `P/Sec9/Relay.lean` (`09_relay.tex:517-574`). Everything here is proved.
+Helper file of `P/Sec9/Relay.lean` (`prop:relay`, Part II Proposition C.9). Everything here is proved.
 
 * `hIn_eq_extField`: on a time with `D_{j+1}(t) ⊂ B_{ar_j/8}`, `h^in_j(A_jt)` is the non-monopole
   field of `ω_{≥j+1}(t)` in ring-`j` units, as functions on `ℂ` (copied, with its proof, from
   `FieldBoundProof.hIn_eq_unitsField_extField` of `P/Sec7/FieldBound.lean`; it follows from
   `lem:inner-field`'s identity `Rings.inner_field_eq` at the point `y = 1 ∈ N'` and
   `Rings.fields_scaleVort`);
-* `active_pointwise` (`09_relay.tex:519-531`): on `I₂ = [τ^act, min(τ, τ^sat)]`,
+* `active_pointwise` (`prop:relay`, Part II Proposition C.9): on `I₂ = [τ^act, min(τ, τ^sat)]`,
   `η^in_j(v) ≤ C_Mε_j(2C₂κe^{σ_{j+1}u} + 2C₂C(C₀)κ⟨u⟩^me^{σ'u} + C₀κ⟨u⟩^m)`, `u = μ(v - τ^act)`
   (`lem:transfer-step`(1) with `s' = s`, the bounds of (H4), `thm:active`'s last assertion);
-* `debris_pointwise` (`09_relay.tex:563-574`): on `I₃ = [τ^sat, τ]`,
+* `debris_pointwise` (`prop:relay`, Part II Proposition C.9): on `I₃ = [τ^sat, τ]`,
   `η^in_j(v) ≤ C_Mε_j(2 + 2C_*T_pin)^m` (`lem:transfer`(3) with
   `R = min(ϱ_j(t), ar_j/8)`, `D_{j+1}(t) ⊂ \bar B_R` by (Loc)(2)).
 
@@ -99,7 +99,7 @@ theorem T_succ_nonneg (h : S.RelayHyp C₀ K₁ j τ) (hS : S.Holds) : 0 ≤ S.P
   have := div_nonneg (That_nonneg h hS) (hS.valid.A_pos (j + 1)).le
   linarith
 
-/-- **The debris phase of ring `j+1`** (`09_relay.tex:563-574`): for `v ∈ [τ^sat, τ]`,
+/-- **The debris phase of ring `j+1`** (`prop:relay`, Part II Proposition C.9): for `v ∈ [τ^sat, τ]`,
 `η^in_j(v) ≤ C_Mε_j(2 + 2C_*T_pin)^m`. -/
 theorem debris_pointwise (h : S.RelayHyp C₀ K₁ j τ) (hS : S.Holds) {v : ℝ}
     (hv : v ∈ Icc (S.P.A j * S.P.T (j + 1)) τ) :
@@ -163,7 +163,7 @@ theorem debris_pointwise (h : S.RelayHyp C₀ K₁ j τ) (hS : S.Holds) {v : ℝ
   exact mul_le_mul_of_nonneg_left (pow_le_pow_left₀ hRr0 hRr 3)
     (mul_nonneg (CM_pos S).le (hS.valid.eps_pos j).le)
 
-/-- **The active phase of ring `j+1`** (`09_relay.tex:519-531`): for
+/-- **The active phase of ring `j+1`** (`prop:relay`, Part II Proposition C.9): for
 `v ∈ [τ^act, min(τ, τ^sat)]` and `u = μ(v - τ^act)`,
 `η^in_j(v) ≤ C_Mε_j(2C₂κe^{σ_{j+1}u} + 2C₂C(C₀)κ⟨u⟩^me^{σ'u} + C₀κ⟨u⟩^m)`. -/
 theorem active_pointwise (h : S.RelayHyp C₀ K₁ j τ) (hS : S.Holds) (hC₀ : 1 ≤ C₀)

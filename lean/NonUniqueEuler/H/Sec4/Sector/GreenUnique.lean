@@ -7,9 +7,9 @@ import Mathlib.Analysis.Asymptotics.Lemmas
 import Mathlib.Topology.Algebra.Order.Field
 
 /-!
-# Helper for `lem:sector`(1): uniqueness for the radial Poisson equation
+# Helper for Part I Lemma 4.5(1) (`lem:sector`): uniqueness for the radial Poisson equation
 
-Helper file of `P/Sec4/Sector.lean` (fully proved). Manuscript `04_ring.tex:236-239`.
+Helper file of `P/Sec4/Sector.lean` (fully proved). See the proof of Part I Lemma 4.5 (`lem:sector`).
 
 If `ψ₁, ψ₂` solve `ψ'' + ψ'/r - ℓ²ψ/r² = g` on `(0, ∞)` (`IsRadialPoissonSol`, `ℓ ≠ 0`) and
 `φ = ψ₁ - ψ₂` is `O(rⁿ)` at `0` and `O(r⁻ⁿ)` at `∞` (`n = |ℓ|`), then `φ = 0` on `(0, ∞)`.
@@ -61,7 +61,7 @@ theorem homogeneous_of_sub {ℓ : ℤ} {g ψ₁ ψ₂ ψ₁' ψ₂' : ℝ → �
   ring
 
 /-- Uniqueness of the solution of the radial Poisson equation with the growth conditions
-(`lem:sector`(1), `04_ring.tex:236-239`). -/
+(Part I Lemma 4.5(1) (`lem:sector`)). -/
 theorem eqOn_of_isRadialPoissonSol {ℓ : ℤ} (hℓ : ℓ ≠ 0) {g ψ₁ ψ₂ : ℝ → ℂ}
     (hg : ∀ a' b' : ℝ, 0 < a' → 0 < b' → IntervalIntegrable g volume a' b')
     (h₁ : IsRadialPoissonSol ℓ g ψ₁) (h₂ : IsRadialPoissonSol ℓ g ψ₂)

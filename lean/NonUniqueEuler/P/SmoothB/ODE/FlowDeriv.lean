@@ -14,7 +14,7 @@ import Mathlib.Topology.UniformSpace.HeineCantor
 /-!
 # Proof of `I/SmoothB/ODE/FlowDeriv.lean`: differentiability of a flow in its initial point
 
-Sub-step of `lem:ode`(ii), `B_global_smooth.tex:30-35` (Teschl, Theorem 2.10; Hartman,
+Sub-step of `lem:ode`(ii), Part II, Lemma B.1 (`lem:ode`) (Teschl, Theorem 2.10; Hartman,
 Theorem V.3.1).
 
 **Proof.** For `r ≥ 0` (`FlowDeriv.hasFDerivAt_flow_nonneg`): let `L`, `M`, `R` bound

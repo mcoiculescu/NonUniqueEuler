@@ -6,7 +6,7 @@ import NonUniqueEuler.Defs.Sec5.RingEq
 /-!
 # Helpers for `lem:seed`: the functional `ℓ_*(0)` on functions
 
-Helper of `P/Sec5/Seed.lean` (`05_single_ring.tex:1210-1219`).
+Helper of `P/Sec5/Seed.lean` (Part II Lemma 2.14).
 
 * `SeedH.ellFn_bound`: `|ℓ_*(0)(f)| ≤ ‖ℓ_*(0)‖_{(X^0)^*} ‖f‖_{L²}` for `f ∈ L²` vanishing a.e.
   off `N` (`‖ℓ_*(0)‖` is the norm of `Eig.ell χ 0 0` on `Y^0(N)`);
@@ -105,7 +105,7 @@ theorem modeFn_zero_outside (hχ : IsAdmissibleCutoff χ) (hN : NumericalHypothe
   rw [modeFn_eq, hx hxK]
   simp
 
-/-- `ℓ_*(0)(2Re(κφ_*(0))) = κ` (`05_single_ring.tex:1214-1215`). -/
+/-- `ℓ_*(0)(2Re(κφ_*(0))) = κ` (Part II Lemma 2.14 (`lem:seed`)). -/
 theorem ellFn_modeFn (hχ : IsAdmissibleCutoff χ) (hN : NumericalHypothesis χ) (κ : ℝ) :
     Eig.ellFn χ 0 (modeFn χ 0 κ) = κ := by
   obtain ⟨-, hX, hY, h1, h0⟩ := Eig.eigendata_phi χ hχ hN zero_mem_Icc_Gbar

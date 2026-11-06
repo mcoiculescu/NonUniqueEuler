@@ -5,12 +5,12 @@ import NonUniqueEuler.I.Verify.ProfileBasic
 import NonUniqueEuler.I.Verify.ProfileOmega
 
 /-!
-# Proof: Proposition A.3, step (i): the grid (`γ_j`, the steps, `Grid.build`)
+# Proof: Part II Proposition A.3, step (i): the grid (`γ_j`, the steps, `Grid.build`)
 
 Proof of the interface `I/Verify/Sound/Grid.lean` (same declarations, statements verbatim).
 
-**Manuscript.** Proof of Proposition A.3 (`prop:enclosure`), step (i), second paragraph
-(`A_verification.tex:376-393`). **Code.** `Verify/Comp/Grid.lean`.
+**Manuscript.** Proof of Part II Proposition A.3, step (i), second paragraph
+(`prop:enclosure`). **Code.** `Verify/Comp/Grid.lean`.
 
 Helper lemmas (proved here):
 * `dgAux_mem`: the loop invariant of `dgAux` (the accumulator contains the partial Taylor sum
@@ -195,7 +195,7 @@ theorem buildSteps_sound {χ : ℝ → ℝ} (hχ : IsAdmissibleCutoff χ) {p N :
     · exact buildSteps_sound hχ (s1 :: rest) _ _ hc2 hst.g1
         (fun x hx => hb x (List.mem_cons_of_mem _ hx)) sd hsd
 
-/-- **Step (i) of Proposition A.3**: if the grid passes its check `Grid.ok`, its data are
+/-- **Step (i) of Part II Proposition A.3**: if the grid passes its check `Grid.ok`, its data are
 sound for every admissible cutoff. -/
 theorem grid_sound {χ : ℝ → ℝ} (hχ : IsAdmissibleCutoff χ) {p hpow N : ℕ}
     (hok : (Grid.build p hpow N).ok = true) : GridSound χ (Grid.build p hpow N) := by

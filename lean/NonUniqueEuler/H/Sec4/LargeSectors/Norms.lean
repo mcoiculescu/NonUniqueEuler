@@ -12,9 +12,9 @@ import NonUniqueEuler.I.Sec4.KBound
 * `exists_secNormY_equiv`: the profile norm `‖g_ℓ‖_{s,ℓ}` (`S.secNormY s g`) and the `Y^s_ℓ` norm
   are equivalent uniformly in `ℓ` (`Sect.exists_norm_Ysec_equiv`, square roots taken).
 * `exists_norm_exp_transSec_le`: `‖exp(t(-iℓΩ))‖_{Y^s_ℓ → Y^s_ℓ} ≤ C(1+|t|)^s` uniformly in `ℓ`
-  and `|G| ≤ G₊` (`lem:semigroup-construct`(1), `semigroupConstruct_transport_sector`, plus the
+  and `|G| ≤ G₊` (Part I Lemma 4.14(1) (`lem:semigroup-construct`), `semigroupConstruct_transport_sector`, plus the
   norm equivalence).
-* `exists_norm_Ksec_le`: `‖k_ℓ𝒢_ℓ‖_{Y^s_ℓ → Y^s_ℓ} ≤ K/|ℓ|` for `ℓ ≠ 0` (`cor:K-bound` with
+* `exists_norm_Ksec_le`: `‖k_ℓ𝒢_ℓ‖_{Y^s_ℓ → Y^s_ℓ} ≤ K/|ℓ|` for `ℓ ≠ 0` (Part I Corollary 4.13 (`cor:K-bound`) with
   `(1+ℓ²)⁻¹ ≤ ℓ⁻²`, the spec `semigroupConstruct_Ksec`, and the norm equivalences
   `Sect.exists_norm_Ysec_equiv`, `Ang.exists_norm_equiv_ofProfile`).
 
@@ -105,7 +105,7 @@ theorem exists_secNormY_equiv (hS : S.Valid) (s : ℕ) :
     calc ‖g‖ = Real.sqrt (‖g‖ ^ 2) := (Real.sqrt_sq (norm_nonneg _)).symm
       _ ≤ _ := Real.sqrt_le_sqrt h2
 
-/-- `lem:semigroup-construct`(1) in the operator norm of `Y^s_ℓ`:
+/-- Part I Lemma 4.14(1) (`lem:semigroup-construct`) in the operator norm of `Y^s_ℓ`:
 `‖exp(t(-iℓΩ))‖ ≤ C(1+|t|)^s` for all `ℓ`, `|G| ≤ G₊`, `t`. -/
 theorem exists_norm_exp_transSec_le (hS : S.Valid) (s : ℕ) {Gp : ℝ} (hGp : 0 ≤ Gp) :
     ∃ C : ℝ, 0 < C ∧ ∀ (ℓ : ℤ) (G : ℝ), |G| ≤ Gp → ∀ t : ℝ,
@@ -124,7 +124,7 @@ theorem exists_norm_exp_transSec_le (hS : S.Valid) (s : ℕ) {Gp : ℝ} (hGp : 0
         exact (hab ℓ g).1
     _ = b * C₀ * a * (1 + |t|) ^ s * ‖g‖ := by ring
 
-/-- `cor:K-bound` in the operator norm of `Y^s_ℓ`: `‖k_ℓ𝒢_ℓ‖ ≤ K/|ℓ|` for `ℓ ≠ 0`. -/
+/-- Part I Corollary 4.13 (`cor:K-bound`) in the operator norm of `Y^s_ℓ`: `‖k_ℓ𝒢_ℓ‖ ≤ K/|ℓ|` for `ℓ ≠ 0`. -/
 theorem exists_norm_Ksec_le (hS : S.Valid) (s : ℕ) :
     ∃ K : ℝ, 0 < K ∧ ∀ ℓ : ℤ, ℓ ≠ 0 → ‖S.Ksec s ℓ‖ ≤ K / |(ℓ : ℝ)| := by
   obtain ⟨CK, hCK, hK⟩ := S.K_bound hS s

@@ -9,9 +9,9 @@ import NonUniqueEuler.I.Infra.Sobolev.Space
 import NonUniqueEuler.I.Infra.Sobolev.Paths
 
 /-!
-# Proof: the continuity properties used in Step 7 of the proof of `prop:bootstrap`
+# Proof: the continuity properties used in Lean step 7 of the historical bootstrap decomposition
 
-Proof of `I/Sec11/ContinuityProps.lean` (`11_bootstrap.tex:543-552`, `:563-569`).
+Proof of `I/Sec11/ContinuityProps.lean` (Part II §8 (`prop:bootstrap`), “Continuation in time”).
 
 * `flow_image_eventually`: `(t, y) ↦ Φ_t(y)` is continuous (`thm:smooth`(4), `flow_contDiff`), so
   the tube lemma (`IsCompact.eventually_forall_of_forall_eventually`) applies to the open set
@@ -176,7 +176,8 @@ end ContinuityPropsP
 
 open ContinuityPropsP
 
-/-- **Stability of inclusions under the flow** (`11_bootstrap.tex:545-547`, from `thm:smooth`(2),(4)):
+/-- **Stability of inclusions under the flow** (Part II §8 (`prop:bootstrap`), “Continuation in
+time”, from `thm:smooth` (2),(4)):
 for a compact set `K`, an open set `U` and `t₀ ≥ 0` with `Φ_{t₀}(K) ⊂ U`, `Φ_t(K) ⊂ U` for every
 `t ≥ 0` close enough to `t₀`. -/
 theorem flow_image_eventually (P : Approx) (hP : P.Valid) (hN : NumericalHypothesis P.χ)
@@ -188,7 +189,8 @@ theorem flow_image_eventually (P : Approx) (hP : P.Valid) (hN : NumericalHypothe
     exact (hU.preimage hc).mem_nhds (h ⟨y, hy, rfl⟩)
   exact nhdsWithin_le_nhds (hev.mono fun t ht => image_subset_iff.mpr ht)
 
-/-- **Continuity of the perturbation in `H^{s'}`** (`11_bootstrap.tex:547-550`): if `S_k(t) ⊂ N_k`
+/-- **Continuity of the perturbation in `H^{s'}`** (Part II §8 (`prop:bootstrap`), “Continuation in
+time”): if `S_k(t) ⊂ N_k`
 for every `t ∈ [t₁, t₂] ⊂ [0, ∞)`, then for every `s'`, `w_k(t) ∈ H^{s'}` for `t ∈ [t₁, t₂]`,
 `t ↦ w_k(t)` is continuous from `[t₁, t₂]` into `H^{s'}`, and `t ↦ ‖w_k(t)‖_{H^{s'}}` is continuous on
 `[t₁, t₂]`. -/
@@ -307,7 +309,8 @@ end ContinuityPropsP
 
 open ContinuityPropsP
 
-/-- **Semicontinuity of the transient `ρ̂`** (`11_bootstrap.tex:563-569`): for `σ > σ'` and
+/-- **Semicontinuity of the transient `ρ̂`** (Part II §8 (`prop:bootstrap`), “Continuation in
+time”): for `σ > σ'` and
 `C₀ ≥ 1`, `ρ̂ = OneRing.rhoHatOf σ σ' C₀` is right-continuous at every `u ≥ 0`, and at every `u > 0`
 its values just to the left of `u` are at most `ρ̂(u) + ε` for every `ε > 0` (`ρ̂(u) ≥ limsup_{v↑u} ρ̂(v)`;
 the only discontinuity is the upward jump at `t₁`). -/

@@ -10,7 +10,7 @@ import NonUniqueEuler.I.Sec5.Bilinear
 /-!
 # Helpers for `window_approx`: the operators `L(G)`, `B`, `h·∇` on plane functions
 
-Helper of `P/Sec5/Window/Approx.lean` (`05_single_ring.tex:747-798`). Namespace
+Helper of `P/Sec5/Window/Approx.lean` (Part II Lemma 2.11 (`lem:window`)). Namespace
 `NonUniqueEuler.OneRing.WAppH`. Several lemmas are copies (renamed into this namespace) of the
 proved helpers `H/Sec5/Energy/RappPath/Linear.lean`, `H/Sec5/Energy/RappPath/Bilin.lean`,
 `H/Sec5/Energy/RappPath/Terms.lean` and of `P/Infra/Sobolev/ReIm.lean` (`ReImAux`), which a proof

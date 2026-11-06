@@ -7,9 +7,9 @@ import NonUniqueEuler.I.Sec3.Commutator.SmoothApprox
 # Helper for `P/Sec3/Commutator.lean`: the commutator lemma at a fixed time
 
 At a fixed time `t` with `u(t) ∈ L²_loc`, `w(t) ∈ H¹_loc` and `div w(t) = 0`,
-`C_ε[u,w](t) → 0` in `L¹(B_R)` as `ε → 0⁺` (`03_compactness.tex:440-461`, at fixed `t`).
+`C_ε[u,w](t) → 0` in `L¹(B_R)` as `ε → 0⁺` (the legacy smooth-field commutator argument; current treatment: Part I Lemma 3.3 (`lem:commutator`), at fixed `t`).
 
-Proof (the manuscript's density step, slice-wise): choose smooth divergence-free `g_n` with
+Proof (the legacy proof's density step, slice-wise): choose smooth divergence-free `g_n` with
 `‖w(t) - g_n‖_{H¹(B_{R+1})} → 0` (`exists_smooth_divFree_approx`); by bilinearity
 (`commEps_sub`) `C_ε[u,w] = C_ε[u,w-g_n] + C_ε[u,g_n]`; the first term is bounded uniformly in
 `ε ∈ (0,1]` by `C ‖u(t)‖_{L²(B_{R+1})} ‖w(t) - g_n‖_{H¹(B_{R+1})}`

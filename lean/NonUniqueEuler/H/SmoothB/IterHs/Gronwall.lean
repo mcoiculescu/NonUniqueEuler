@@ -3,8 +3,10 @@ import Mathlib.Analysis.ODE.Gronwall
 /-!
 # Helper for `lem:iter-Hs`: a two-sided scalar Grönwall inequality
 
-Helper of `P/SmoothB/IterHs.lean` (`B_global_smooth.tex:345-348`: "Gronwall's inequality
-gives `𝓗(t) ≤ (‖ω₀‖²_{H^s} + 𝓜² + 1) e^{𝓑_s(T)|t|}`"). If `G ≥ 0` is differentiable with
+Helper of `P/SmoothB/IterHs.lean` for the Grönwall step in Part II, Lemma B.8
+(`lem:iter-Hs`). The formal proof retains the explicit bound
+`𝓗(t) ≤ (‖ω₀‖²_{H^s} + 𝓜² + 1) e^{𝓑_s(T)|t|}`; the current manuscript
+absorbs the constants into `C`. If `G ≥ 0` is differentiable with
 `|G'| ≤ B G` on `[-T, T]`, then `G(τ) ≤ G(0) e^{B|τ|}` for `|τ| ≤ T`. Both time directions are
 needed; the backward one is the forward one for `σ ↦ G(-σ)`. Uses Mathlib's
 `norm_le_gronwallBound_of_norm_deriv_right_le`.

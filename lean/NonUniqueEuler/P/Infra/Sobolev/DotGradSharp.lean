@@ -11,7 +11,7 @@ import NonUniqueEuler.I.Infra.Sobolev.NormDeriv
 # Proof: the transport term `h·∇w` in `H^k` with the sharp constant (library I-HK)
 
 Proof of `NonUniqueEuler/I/Infra/Sobolev/DotGradSharp.lean` (same declaration, same statement),
-following `04_ring.tex:1558-1567`.
+following Part I, Lemma 4.23(3) (`lem:uniform`), proof.
 
 1. Cutoff (`exists_cutoff_compact`): `g = ζ h` is `C^k` with compact support and `g = h` on an
    open `W ⊇ K`; since `∂_j w = 0` a.e. off `K`, `h·∇w = g·∇w` a.e.
@@ -224,7 +224,7 @@ open DotGradSharpAux
 
 /-- The transport term `h·∇w` of a vector field `h ∈ C^k(K)` and `w ∈ H^{k+1}` vanishing a.e.
 outside the compact set `K`, with the sharp constant `2^k ((k+1)(k+2)/2)^{1/2}` of `lem:uniform`
-(`04_ring.tex:1532`, `:1555-1567`). -/
+(Part I, Lemma 4.23(3) (`lem:uniform`), statement and proof). -/
 theorem MemH.dotGrad_of_memCk_sharp {k : ℕ} {w h : ℂ → ℂ} {K : Set ℂ} (hK : IsCompact K)
     (hw : MemH (k + 1) w) (hwK : ∀ᵐ x, x ∉ K → w x = 0) (hh : MemCk k K h) :
     MemH k (dotGrad h w) ∧

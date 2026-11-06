@@ -5,7 +5,7 @@ import Mathlib.Topology.MetricSpace.Pseudo.Defs
 /-!
 # Helper for `lem:clock`(2): flows of fields that agree on a time slab
 
-Helper of `P/Sec6/Clock.lean` (`06_datum.tex:475-478`): "the velocities agree on `[0, t̄] × ℝ²` and
+Helper of `P/Sec6/Clock.lean` (Part II Lemma 3.10 (`lem:clock`)): "the velocities agree on `[0, t̄] × ℝ²` and
 are Lipschitz in `x`, so the two flows agree on `[0, t̄]`, by uniqueness for the flow equation".
 
 `flowOf_eq_of_eqOn_Icc`: let `u` have the global maximal solution `t ↦ Φ_u(t, 0, y)`, let every

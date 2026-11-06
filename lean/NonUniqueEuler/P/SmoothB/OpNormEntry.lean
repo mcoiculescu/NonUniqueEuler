@@ -4,8 +4,8 @@ import Mathlib.Analysis.Normed.Operator.Basic
 /-!
 # Proof: `‖M‖_op ≤ 2 max_{i,l} |M_il|` for real `2 × 2` matrices
 
-Proof of `I/SmoothB/OpNormEntry.lean` (the fact stated in the proofs of `lem:iter-lip`,
-`B_global_smooth.tex:273-275`, and `lem:smooth-bounds`, `B_global_smooth.tex:518-520`).
+Proof of `I/SmoothB/OpNormEntry.lean`: the matrix estimate in the proofs of
+Part II, Lemmas B.7 (`lem:iter-lip`) and B.11 (`lem:smooth-bounds`).
 
 For `v = v₁ + i v₂`, `L v = v₁ L(1) + v₂ L(i)`; each component of `L v` is `v₁ a + v₂ b` with
 `|a|, |b| ≤ m`, so its square is at most `(a² + b²)(v₁² + v₂²) ≤ 2m²‖v‖²` (Cauchy–Schwarz,
@@ -36,8 +36,7 @@ theorem sq_lin_le {x y a b m : ℝ} (ha : |a| ≤ m) (hb : |b| ≤ m) :
 
 end OpNormEntryAux
 
-/-- `‖M‖_op ≤ 2 max_{i,l} |M_il|` for a real `2 × 2` matrix `M` (`B_global_smooth.tex:273-275`,
-`:518-520`), with any bound `m` of the moduli of the entries. -/
+/-- `‖M‖_op ≤ 2 max_{i,l} |M_il|` for a real `2 × 2` matrix `M` (Part II, proofs of Lemmas B.7 (`lem:iter-lip`) and B.11 (`lem:smooth-bounds`)), with any bound `m` of the moduli of the entries. -/
 theorem opNorm_le_two_mul_of_entry_le {L : ℂ →L[ℝ] ℂ} {m : ℝ}
     (hL : ∀ i l : Fin 2, |Prelim.comp2 i (L (Prelim.e2 l))| ≤ m) :
     ‖L‖ ≤ 2 * m := by

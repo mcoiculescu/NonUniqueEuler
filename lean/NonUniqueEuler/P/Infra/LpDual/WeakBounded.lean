@@ -14,7 +14,7 @@ import Mathlib.Data.Real.ConjExponents
 
 Proof of `NonUniqueEuler/I/Infra/LpDual/WeakBounded.lean`.
 
-Manuscript: `lem:velocity`(b), `02_prelim.tex:345-357`.
+Manuscript: Part I, Lemma 2.2(b) (`lem:velocity`), proof.
 
 * `exists_eLpNorm_le_of_forall_bdd`: Banach–Steinhaus on the functionals
   `Λₙ φ = ∫ fₙ φ` on the Banach space `Lp ℝ p' μ` (built with Mathlib's `lpPairing`), then the

@@ -9,7 +9,7 @@ import Mathlib.Analysis.SpecialFunctions.Log.Deriv
 /-!
 # Helpers for `P/Sec4/EvansSimple/Range`: the forcing `F(ξ) = e^{2ξ}(M_λ g)(e^ξ)`
 
-For a profile `g ∈ Y^0_ℓ` (`IsProfileL2`), with `F = S.Fres ℓ z G g` (`04_ring.tex:378`):
+For a profile `g ∈ Y^0_ℓ` (`IsProfileL2`), with `F = S.Fres ℓ z G g` (proof of Part I Lemma 4.7 (`lem:resolvent`)):
 * `integrable_Fres`: `F ∈ L¹(ℝ)` (substitution `r = e^ξ`);
 * `Fres_ae_zero`: `F = 0` a.e. off `[log ρ₋, log ρ₊]` (null sets of `(0,∞)` pull back to null
   sets under `exp`, because `log` is differentiable there);

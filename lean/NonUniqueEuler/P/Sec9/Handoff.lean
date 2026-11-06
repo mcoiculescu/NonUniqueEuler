@@ -14,15 +14,15 @@ import NonUniqueEuler.H.Sec9.Handoff.Bridge
 /-!
 # Proof: `lem:handoff` and `eq:handoff` (the hand-off of a quiet ring at `t♯_k`)
 
-Proof of `I/Sec9/Handoff.lean` (same declaration, statement copied verbatim). Manuscript
-`09_relay.tex:863-924`. Write `τ♯ = t̄♯_k`, `maj = maj_k`, `c = c^in_k`, `G = G_k`.
+Proof of `I/Sec9/Handoff.lean` (with the existing Lean interface statement). Manuscript
+`lem:handoff`, Part II Lemma C.12. Write `τ♯ = t̄♯_k`, `maj = maj_k`, `c = c^in_k`, `G = G_k`.
 
 1. `t♯_k > 0` (`lem:clock`(1) at level `k+1`), so `τ♯ ≥ 0` and `τ♯/A_k = t♯_k`. By (i) and
    `thm:quiet` for ring `k` (`quiet_ring`): `S_k(t♯_k) ⊂ 𝒩₋_k`, `‖w_k(t♯_k)‖_{H^{s_h}} ≤ C_Q maj(τ♯)`
    and `‖w_k(t♯_k) - wlin(τ♯)‖_{H^{s_h}} ≤ C_Q maj(τ♯)²`. In particular `S_k(t♯_k) ⊂ N_k`, so
    `w_k(t♯_k) ∈ X^{s_h}` (`lem:regions-basic`(4)), and `|ℓ_*(w_k(t♯_k)) - ℓ_*(wlin(τ♯))| ≤
    ‖ℓ_*‖C_Q maj(τ♯)²` (`HandoffAux.norm_ellFn_sub_le`, `lem:uniform`); this is
-   `cor:quiet-handoff` for ring `k`.
+   `cor:quiet-handoff` (historical) for ring `k`.
 2. `lem:coupling`(2),(3): `-h^in_k·∇Φ`, `-h^out_k·∇Φ ∈ C([0,τ♯];X^s)` and
    `wlin = wlin_{in,k} + wlin_{out,k}` (at level `s_h`); `ℓ_*(G)` is additive on `Y^{s_h}(N)`.
    `ℓ_*(G)(wlin_{in,k}(τ♯))` is the same at levels `s_h` and `0` (`HandoffAux.ellFn_wlin_level`),
@@ -34,9 +34,10 @@ Proof of `I/Sec9/Handoff.lean` (same declaration, statement copied verbatim). Ma
 4. (iv), (iii): `‖ℓ_*‖C_Q maj² ≤ maj/(2K₁) ≤ |c|/4`. Hence `|κ♯_k - |c|| ≤ 3|c|/8`, which gives the
    first two claims; then `maj(τ♯) ≤ ½K₁|c| ≤ K₁κ♯_k` and `‖w_k(t♯_k)‖_{H^{s_h}} ≤ C_Q K₁κ♯_k`.
 
-Deviation (none of substance): the manuscript's step 1 cites `cor:quiet-handoff`; here the same
+Deviation (none of substance): the historical `cor:quiet-handoff` is now the application of Theorem 2.8(b)
+(`thm:quiet`) and the uniform eigenfunctional bound in the proof of Lemma C.12; here the same
 inequality is derived directly from `thm:quiet`(b) for ring `k` (`QuietConcl.lin`), as in the
-proof of `cor:quiet-handoff`.
+proof of `cor:quiet-handoff` (historical).
 -/
 
 noncomputable section
@@ -72,7 +73,7 @@ theorem Nmk_subset_Nk (P : Approx) (k : ℕ) : P.Nmk k ⊆ P.Nk k := by
   obtain ⟨h1, h2⟩ := hx'
   exact ⟨by linarith, by linarith⟩
 
-/-- The final arithmetic of `lem:handoff` (`09_relay.tex:917-921`): from
+/-- The final arithmetic of `lem:handoff` (Part II Lemma C.12): from
 `|E - L| ≤ X m²`, `L = c + O`, `|O| ≤ Y m`, `X K₁ m ≤ ½`, `Y K₁ ≤ ¼`, `m ≤ ½K₁|c|` (`m ≥ 0`,
 `K₁ > 0`), `|E - c| ≤ 3|c|/8`. -/
 theorem norm_sub_le_aux {E c O L : ℂ} {m K₁ X Y : ℝ} (hK₁ : 0 < K₁) (hm : 0 ≤ m)
@@ -98,7 +99,7 @@ theorem norm_sub_le_aux {E c O L : ℂ} {m K₁ X Y : ℝ} (hK₁ : 0 < K₁) (h
     _ ≤ 1 / 4 * ‖c‖ + 1 / 8 * ‖c‖ := add_le_add h1 h4
     _ = 3 / 8 * ‖c‖ := by ring
 
-/-- **The outer term** (`09_relay.tex:900-912`): under the hypotheses of `lem:handoff`,
+/-- **The outer term** (`lem:handoff`, Part II Lemma C.12): under the hypotheses of `lem:handoff`,
 `|ℓ_*(G_k)(wlin_{out,k}(τ♯))| ≤ C_lsθτ♯maj_k(τ♯)` (at level `s_h`). -/
 theorem ellFn_wlinOut_le (S : Standing) (hS : S.Holds) {θ K₁ : ℝ} {k : ℕ}
     (hk : 1 ≤ k) (hkn : k < S.P.n) (hc : S.P.ClockUpTo (k + 1)) (h : S.HandoffHyp θ K₁ k)
@@ -171,7 +172,7 @@ theorem ellFn_wlinOut_le (S : Standing) (hS : S.Holds) {θ K₁ : ℝ} {k : ℕ}
 
 end HandoffAux
 
-/-- **`lem:handoff`** (`09_relay.tex:863-885`). Assume (SA), (Det), `K₁ > 0`, `1 ≤ k < n`, the clock
+/-- **`lem:handoff`** (`lem:handoff`, Part II Lemma C.12). Assume (SA), (Det), `K₁ > 0`, `1 ≤ k < n`, the clock
 defined up to level `k+1`, and (i)–(iv) (`S.HandoffHyp θ K₁ k`). Then `eq:handoff` holds with
 `C_hand = K₁C_Q`: `½|c^in_k| ≤ κ♯_k ≤ (3/2)|c^in_k|`, `maj_k(t̄♯_k) ≤ K₁κ♯_k`,
 `‖w_k(t♯_k)‖_{H^{s_h}} ≤ K₁C_Qκ♯_k` and `S_k(t♯_k) ⊆ 𝒩₋_k` (`supp(Φ + w_k(t♯_k)) ⊂ 𝒩₋`). -/
@@ -217,7 +218,7 @@ theorem handoff (S : Standing) (hS : S.Holds) (hDet : S.Det) {θ K₁ : ℝ} (hK
   have hpert : S.P.PertDefined k (S.P.tsh k) := hsupp.trans (HandoffAux.Nmk_subset_Nk S.P k)
   have hwX : Lin.MemXFn S.sh (S.P.w k (S.P.tsh k)) :=
     (Approx.regions_basic_four S.P hP hN hkmem htsh.le hpert).2.2.2.2.1 S.sh
-  -- `cor:quiet-handoff` for ring `k`: `|ℓ_*(w_k(t♯_k)) - ℓ_*(wlin(τ♯))| ≤ ‖ℓ_*‖C_Q maj²`
+  -- `cor:quiet-handoff` (historical) for ring `k`: `|ℓ_*(w_k(t♯_k)) - ℓ_*(wlin(τ♯))| ≤ ‖ℓ_*‖C_Q maj²`
   have hellle : ‖Eig.ell S.P.χ 0 (S.P.G k)‖ ≤ Eig.ellNorm S.P.χ :=
     ((Eig.uniform_constants S.P.χ hχ hN).2.2.2.2.2.2.2.2 (S.P.G k) hG).2.2.2.1
   have hEN : 0 ≤ Eig.ellNorm S.P.χ := (ContinuousLinearMap.opNorm_nonneg _).trans hellle

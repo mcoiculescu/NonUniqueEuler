@@ -4,10 +4,10 @@ import NonUniqueEuler.H.Sec5.Energy.Gronwall
 /-!
 # Proof of `lem:energy` (the crude energy estimate)
 
-Proof of `I/Sec5/Energy.lean` (`05_single_ring.tex:300-373`). Same declaration, statement
+Proof of `I/Sec5/Energy.lean` (Part II Lemma 2.4). Same declaration, statement
 copied verbatim.
 
-Structure (the manuscript's proof, `05_single_ring.tex:317-373`):
+Lean decomposition of the proof of Part II Lemma 2.4 (`lem:energy`):
 1. `v = w - w_app` is a `C¹` path in `Y^s(N)` (`lem:reduction`(3), `reduction_eq`, and the
    hypothesis on `w_app`), with derivative `V' = toY(∂_t w) - toY(∂_t w_app)`; its norm is the
    `H^s` norm (`EnergyH.MemXFn.norm_toY`).
@@ -32,7 +32,7 @@ namespace OneRing
 
 open RingData
 
-/-- **`lem:energy`** (`05_single_ring.tex:300-316`). Assume (N1)–(N3). Let `s ≥ 3`, let the
+/-- **`lem:energy`** (Part II Lemma 2.4). Assume (N1)–(N3). Let `s ≥ 3`, let the
 assumptions of `lem:reduction`(3) hold on `[0,t]` with `G = c.G ∈ [0,G₁]` and `w = ω_r - Φ`, let
 `w_app ∈ C([0,t];X^{s+1}) ∩ C¹([0,t];X^s)` be real valued with time derivative `w_app'`, and
 assume `‖w‖_{H^s} ≤ 1`, `‖w_app‖_{H^{s+1}} ≤ 1`, `‖h‖_{C^{s+1}(N')} ≤ 1` on `[0,t]`. Then for

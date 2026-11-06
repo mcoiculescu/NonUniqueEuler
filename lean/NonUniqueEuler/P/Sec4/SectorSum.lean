@@ -7,7 +7,7 @@ import NonUniqueEuler.H.Sec4.SectorSum.Laplace
 /-!
 # Proof: `lem:sector-sum`(2) (the resolvent of the large sectors)
 
-Proof of `I/Sec4/SectorSum.lean` (`04_ring.tex:1057-1060`, proof `:1087-1093`).
+Proof of `I/Sec4/SectorSum.lean` (Part I Lemma 4.16 (`lem:sector-sum`) and its proof).
 
 * `largeSectors_opNorm` (`prop:large-sectors` in the operator norm of `Y^s_ℓ`) gives `M ≥ 1`,
   `C₀ > 0` with `‖exp(tL_ℓ(G))‖ ≤ C₀ e^{γt}` for `|ℓ| ≥ M`, `|G| ≤ G₊`, `t ≥ 0`.
@@ -54,7 +54,7 @@ theorem exists_secNormY_equiv_norm (S : SectorSetting) (hS : S.Valid) (s : ℕ) 
       _ = Real.sqrt C * S.secNormY s g := by
           rw [Real.sqrt_mul hC.le]; rfl
 
-/-- **`lem:sector-sum`(2)** (`04_ring.tex:1057-1060`): for `γ > 0`, `G₊ ≥ 0` there are `M_γ ≥ 1`
+/-- **`lem:sector-sum`(2)** (Part I Lemma 4.16 (`lem:sector-sum`)): for `γ > 0`, `G₊ ≥ 0` there are `M_γ ≥ 1`
 and `C` such that for `|ℓ| ≥ M_γ`, `|G| ≤ G₊` and `Re z > γ`, `z` lies in the resolvent set of
 `L_ℓ(G)` on `Y^s_ℓ` and `‖(z - L_ℓ(G))⁻¹‖_{s,ℓ → s,ℓ} ≤ C/(Re z - γ)`. -/
 theorem sectorSum2_resolvent (S : SectorSetting) (hS : S.Valid) (s : ℕ) {γ Gp : ℝ}

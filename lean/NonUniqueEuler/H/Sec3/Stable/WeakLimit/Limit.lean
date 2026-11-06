@@ -1,9 +1,9 @@
 import NonUniqueEuler.H.Sec3.Stable.WeakLimit.TE
 
 /-!
-# Helpers for `prop:stable`, step 1a: the weak limit satisfies `(te)`
+# Helpers for legacy `prop:stable`, step 1a: the weak limit satisfies `(te)`
 
-Helper file of `P/Sec3/Stable/WeakLimit.lean` (`03_compactness.tex:755-763`).
+Helper file of `P/Sec3/Stable/WeakLimit.lean` (related current criterion proof: Part I Theorem 3.8 (`thm:criterion`)).
 
 `solvesTE_of_weak`: if `γ ∈ Lip₀` is bounded by `B` and `γ(ωₙ) ⇀ G` weakly in
 `L²((0,T) × ℝ²)`, then `G` satisfies `(te)` on `[0,T)` with field `v = K ∗ ω` and datum `γ(g)`.
@@ -24,7 +24,7 @@ open Weak
 
 variable {T M : ℝ} {gs : ℕ → ℂ → ℝ} {g : ℂ → ℝ} {ωs : ℕ → ℝ → ℂ → ℝ} {ω : ℝ → ℂ → ℝ}
 
-/-- **Passage to the limit in `(te)`** (`03_compactness.tex:755-763`). -/
+/-- **Passage to the limit in `(te)`** (retained legacy stability step). -/
 theorem solvesTE_of_weak (hseq : IsCompactSeq T M gs g ωs) (hlim : IsCompactLimit T g ωs ω)
     (hstrong : Tendsto (fun n => normL1LpE 2 (gs n - g)) atTop (𝓝 0))
     (hren : ∀ n, IsRenormalizedWeakSolution 2 T (gs n) (ωs n))

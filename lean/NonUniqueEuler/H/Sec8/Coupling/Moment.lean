@@ -5,7 +5,7 @@ import Mathlib.LinearAlgebra.Complex.FiniteDimensional
 /-!
 # Helper for `lem:coupling`(1): `pout_3[ν^in_k] = μ s_k⁵ q_{k+1}(t)/(2π)`
 
-Helper of `P/Sec8/Coupling.lean` (fully proved). Manuscript `08_kick.tex:104-109`: "the change of
+Helper of `P/Sec8/Coupling.lean` (fully proved). Manuscript Part II Lemma 5.1 (`lem:coupling`): "the change of
 variables `x = r_k y` and the reality of `ω_{≥k+1}(t)` give
 `p_3 = (2πA_k)⁻¹∫ω_{≥k+1}(t, r_ky) ȳ³ dy = conj(Q_m[ω_{≥k+1}(t)])/(2πA_kr_k⁵)
 = A_{k+1}r_{k+1}⁵/(2πA_kr_k⁵) q_{k+1}(t) = μs_k⁵/(2π) q_{k+1}(t)`."
@@ -22,7 +22,7 @@ namespace NonUniqueEuler.CouplingAux
 
 open RingData Datum
 
-/-- **`pout_3[ν^in_k(t)] = μ s_k⁵ q_{k+1}(t)/(2π)`** (`08_kick.tex:104-109`), for `k ≥ 1`. -/
+/-- **`pout_3[ν^in_k(t)] = μ s_k⁵ q_{k+1}(t)/(2π)`** (Part II Lemma 5.1 (`lem:coupling`)), for `k ≥ 1`. -/
 theorem pout_nuIn (P : Approx) (hP : P.Valid) {k : ℕ} (hk : 1 ≤ k) (t : ℝ) :
     BS.pout 3 (fun y => ((P.nuIn k t y : ℝ) : ℂ)) =
       ((P.μ * P.s k ^ 5 / (2 * Real.pi) : ℝ) : ℂ) * P.q (k + 1) t := by

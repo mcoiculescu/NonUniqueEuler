@@ -10,7 +10,7 @@ import Mathlib.MeasureTheory.Function.LpSeminorm.Indicator
 /-!
 # Proof of `I/Sec3/WeakCont/Bounds.lean`: Hölder bounds for the flux term `∫ u w·∇ψ`
 
-Manuscript: proof of `lem:weak-cont`, second paragraph (`03_compactness.tex:155-160`), with
+Manuscript: proof of `lem:weak-cont`, second paragraph (Part I Lemma 3.2 (`lem:weak-cont`)), with
 `b = b' = 2` (D9).
 
 * `abs_integral_mul_fderiv_le`: `|∫ f (v·∇ψ)| ≤ N W G`.
@@ -69,7 +69,7 @@ theorem eLpNorm_le_ofReal_of_toReal_le {E : Type*} [NormedAddCommGroup E] {μ : 
 
 /-! ### The interface statements -/
 
-/-- Slice bound (`03_compactness.tex:157-158`, `b = 2`): `|∫ f (v·∇ψ)| ≤ N W G` if `‖f‖₂ ≤ N`,
+/-- Slice bound (Part I Lemma 3.2 (`lem:weak-cont`), `b = 2`): `|∫ f (v·∇ψ)| ≤ N W G` if `‖f‖₂ ≤ N`,
 `‖v‖_{L²(B_R)} ≤ W`, `tsupport ψ ⊆ B_R` and `‖∇ψ‖ ≤ G`. -/
 theorem abs_integral_mul_fderiv_le {R N W G : ℝ} (hN : 0 ≤ N) (hW : 0 ≤ W) {f : ℂ → ℝ}
     {v : ℂ → ℂ} {ψ : ℂ → ℝ} (hψ : ContDiff ℝ 1 ψ) (hψR : tsupport ψ ⊆ ball (0 : ℂ) R)
@@ -99,7 +99,7 @@ theorem abs_integral_mul_fderiv_le {R N W G : ℝ} (hN : 0 ≤ N) (hW : 0 ≤ W)
   rw [← ofReal_norm, ENNReal.ofReal_le_ofReal_iff (by positivity)] at h3
   simpa [Real.norm_eq_abs] using h3
 
-/-- Integrability of the flux integrand `u w·∇ψ` on `(0,T) × ℝ²` (`03_compactness.tex:155-158`):
+/-- Integrability of the flux integrand `u w·∇ψ` on `(0,T) × ℝ²` (Part I Lemma 3.2 (`lem:weak-cont`)):
 `u ∈ L^∞(0,T; L²)`, `w ∈ L^∞(0,T; L²(B_R))` for every `R > 0`, `ψ ∈ C_c¹`. -/
 theorem integrableOn_slab_mul_fderiv {T : ℝ} {u : ℝ → ℂ → ℝ} {w : ℝ → ℂ → ℂ}
     (hw : ∀ R : ℝ, 0 < R → Prelim.MemLinfLp (Ioo 0 T) (ball (0 : ℂ) R) 2 w)

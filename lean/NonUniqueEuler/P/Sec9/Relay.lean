@@ -4,15 +4,22 @@ import NonUniqueEuler.H.Sec9.Relay.Main
 /-!
 # Proof: `prop:relay` (the majorant of a quiet ring is bounded by the next ring)
 
-Proof of `I/Sec9/Relay.lean` (`09_relay.tex:390-593`). The steps (helpers in
+Current counterpart: Part II Proposition C.9 (`prop:relay`), Appendix C.7
+(`sec:proof-relay`). This is the quantitative transmission estimate, distinct
+from Proposition 6.2 (`prop:relay-step`), which combines transmission, hand-off,
+active control and quiet-size improvement. The encoded estimate retains the
+explicit constants `C_M` and `C_Xi`; the current manuscript uses enlarged
+common constants `C_vel` and `C_relay(C_0,K_1)`.
+
+Proof of `I/Sec9/Relay.lean` (`prop:relay`, Part II Proposition C.9). The steps (helpers in
 `H/Sec9/Relay/*.lean`, namespace `Relay.RelayH`):
-1. `maj_le_two_majIn` (`09_relay.tex:460-470`): `maj_j ≤ maj^in_j + θ_jτ'maj_j(τ')` from (H2) and
+1. `maj_le_two_majIn` (`prop:relay`, Part II Proposition C.9): `maj_j ≤ maj^in_j + θ_jτ'maj_j(τ')` from (H2) and
    (M1) (`lem:majorant`), so `maj_j ≤ 2maj^in_j` on `[0,τ]`; the integrability of `η^in_j`,
    `η^out_j` is their continuity (`FieldContinuity`), from (Loc)(2) for the quiet ring `j`.
-2. `quiet_o` (`09_relay.tex:471-498`, `eq:relay-quiet`): `lem:transfer-step`(1) with `s' = s_h`,
+2. `quiet_o` (`prop:relay`, Part II Proposition C.9, `eq:relay-quiet`): `lem:transfer-step`(1) with `s' = s_h`,
    `thm:quiet`(c) for ring `j+1` ((H3)), (M1) for `maj_{j+1}` and `lem:detuning`; this is (o), and
    with step 1 it gives (i) (if `j+1 = n`, (i) concerns only `τ = 0`).
-3. `majIn_after_act` (`09_relay.tex:500-590`): for `τ^act < τ ≤ t̄♯_j`, the Duhamel integral is
+3. `majIn_after_act` (`prop:relay`, Part II Proposition C.9): for `τ^act < τ ≤ t̄♯_j`, the Duhamel integral is
    split at `τ^act` and `min(τ, τ^sat)`; the three parts are bounded by (o) and (H4)
    (`phase1_exp`), by `lem:transfer-step`(1) with `s' = s`, (H4) and `thm:active`'s last
    assertion (`active_pointwise`, `phase2_pt`, `phase2_int`), and by `lem:transfer`(3)
@@ -33,7 +40,7 @@ namespace Relay
 
 open RingData Datum
 
-/-- **`prop:relay`** (`09_relay.tex:390-439`): under (SA), (Det), `C₀ ≥ 1`, `K₁ > 0` and the
+/-- **`prop:relay`** (`prop:relay`, Part II Proposition C.9): under (SA), (Det), `C₀ ≥ 1`, `K₁ > 0` and the
 hypotheses (H1)–(H4) at level `j` and ring-`j` time `τ ∈ [0, t̄♯_j]` (`S.RelayHyp C₀ K₁ j τ`):
 `maj_j ≤ 2maj^in_j` on `[0,τ]`; (o) if `j+1 < n`,
 `maj^in_j(τ') ≤ C_M(2C_Q/(σ_b(μ-1)) + 1)ε_j maj_{j+1}(μτ')` on `[0, min(τ, A_jt♯_{j+1})]`;

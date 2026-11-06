@@ -5,9 +5,12 @@ import NonUniqueEuler.I.Infra.ConvMinkowski.Young
 import NonUniqueEuler.I.Infra.ConvMinkowski.Measurable
 
 /-!
-# Proof: `lem:LpLinf`, the `L^∞` bound of the velocity of an `L¹ ∩ L^p` vorticity, `p > 2`
+# The retained `LpLinf` velocity estimate
 
-Proof of `I/Sec2/LpLinf.lean` (`02_prelim.tex:386-406`). Write `q = p' = p.conjExponent`, so
+Proof of `I/Sec2/LpLinf.lean`, formerly the manuscript lemma `lem:LpLinf`.
+This auxiliary estimate for `L¹ ∩ L^p`, `2 < p < ∞`, has no numbered counterpart in the current
+manuscripts. It uses the kernel bounds of Part I, Lemma 2.1(a) (`lem:BS-basic`).
+Write `q = p' = p.conjExponent`, so
 `1 < q < 2`. For `R > 0` split the kernel as `K = 1_{B_R} K + 1_{B_R^c} K`. Then
 * `‖1_{B_R} K‖_{L^q} = (2π)⁻¹ (2π R^{2-q}/(2-q))^{1/q} = (2π)⁻¹ c_p R^{2/q-1}`
   (`lem:BS-basic`(a) and `Polar.lintegral_ball_norm_rpow` with exponent `-q > -2`);
@@ -187,7 +190,7 @@ private theorem optimize_identity {q A B c : ℝ} (hq : 0 < q) (hA : 0 < A) (hB 
 
 /-! ### The lemma -/
 
-/-- `lem:LpLinf`: for `2 < p < ∞` and `g ∈ L¹ ∩ L^p`, at every `x` the majorant satisfies
+/-- The retained `LpLinf` estimate: for `2 < p < ∞` and `g ∈ L¹ ∩ L^p`, at every `x` the majorant satisfies
 `(|K| ∗ |g|)(x) ≤ (1 + c_p)/(2π) ‖g‖₁^{1-p'/2} ‖g‖_p^{p'/2}`, the integral defining `K ∗ g(x)`
 converges absolutely, and `|K ∗ g(x)|` obeys the same bound. -/
 theorem velocity_bound_L1_Lp {p : ℝ} (hp : 2 < p) {g : ℂ → ℝ} (hg1 : MemLp g 1 volume)
@@ -247,7 +250,7 @@ theorem velocity_bound_L1_Lp {p : ℝ} (hp : 2 < p) {g : ℂ → ℝ} (hg1 : Mem
     rw [← ofReal_norm, ENNReal.ofReal_le_ofReal_iff hbound0] at h2
     exact h2
 
-/-- `lem:LpLinf`, `L^∞` form: `‖K ∗ g‖_{L^∞} ≤ (1 + c_p)/(2π) ‖g‖₁^{1-p'/2} ‖g‖_p^{p'/2}`. -/
+/-- The retained `LpLinf` estimate, `L^∞` form: `‖K ∗ g‖_{L^∞} ≤ (1 + c_p)/(2π) ‖g‖₁^{1-p'/2} ‖g‖_p^{p'/2}`. -/
 theorem eLpNorm_velocity_top_le_L1_Lp {p : ℝ} (hp : 2 < p) {g : ℂ → ℝ} (hg1 : MemLp g 1 volume)
     (hgp : MemLp g (ENNReal.ofReal p) volume) :
     eLpNorm (velocity g) ⊤ volume ≤ ENNReal.ofReal

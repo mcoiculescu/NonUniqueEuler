@@ -7,9 +7,9 @@ import Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic
 /-!
 # Linear second-order ODEs `ψ'' = V ψ + F` (definitions; library I-ODE)
 
-Manuscript-independent infrastructure (library I-ODE), shared by Part (1)
-(Section 4: Evans function, resolvent, eigenfunctions) and Part (2) (Appendix A: validated
-enclosures of the Evans function).
+Manuscript-independent infrastructure (library I-ODE), shared by Part I,
+Section 4 (`sec:ring`: Evans function, resolvent, eigenfunctions) and Part II,
+Appendix A (`app:verify`: validated enclosures of the Evans function).
 
 The equation `ψ'' = V(ξ) ψ + F(ξ)`, with complex coefficient `V : ℝ → ℂ` and forcing
 `F : ℝ → ℂ`, is written as the first-order system for the pair `(ψ, ψ')`, with derivatives

@@ -8,7 +8,7 @@ import NonUniqueEuler.I.Sec6.RegionsBasic
 /-!
 # Proof: `lem:field-bound` (the field of a quiet ring is small)
 
-Proof of `I/Sec7/FieldBound.lean`, `07_several_rings.tex:483-515`.
+Proof of `I/Sec7/FieldBound.lean`, Part II Lemma 4.5 (`lem:field-bound`).
 
 `C_η = max{(a/8)^m C_M, 4‖Φ‖_{L¹} C_O}` with `C_M = C^T_M max(1, C_{L1})`,
 `C_O = C^T_O max(1, C_{L1})` of `lem:transfer` (`Rings.transfer`).
@@ -80,7 +80,7 @@ theorem sum_Ico_pow_sub_le {x : ℝ} (hx0 : 0 ≤ x) (hx : x ≤ 1 / 2) (j : ℕ
 
 variable {P : Approx}
 
-/-- `b_{i,j} ≤ s̄^{j-i}` for `1 ≤ i < j` (`07_several_rings.tex:511-512`). -/
+/-- `b_{i,j} ≤ s̄^{j-i}` for `1 ≤ i < j` (Part II Lemma 4.5 (`lem:field-bound`)). -/
 theorem b_le_sbar_pow (hP : P.Valid) {i j : ℕ} (hi : 1 ≤ i) (hij : i < j) :
     P.b i j ≤ P.sbar ^ (j - i) := by
   have hsk := sk_small P hP
@@ -166,7 +166,7 @@ theorem hOut_eq_unitsField_velocity (hP : P.Valid) (j : ℕ) (t : ℝ) :
 end FieldBoundProof
 
 open FieldBoundProof in
-/-- **`lem:field-bound`** (`07_several_rings.tex:483-491`), existence of `C_η`. Under (N1)–(N3),
+/-- **Part II Lemma 4.5 (`lem:field-bound`)**, existence of `C_η`. Under (N1)–(N3),
 for an admissible `χ` and `M_h ≥ 1` there is `C_η` such that for every valid approximation with
 cutoff `χ` and `s̄^{m-2} ≤ 1/2`, every `1 ≤ j < n` and `t ≥ 0`: if `S_i(t) ⊂ N_i` and
 `S_i(t) ∩ B_{6r_j} = ∅` for every `i < j` and `D_{j+1}(t) ⊂ B_{ar_j/8}`, then

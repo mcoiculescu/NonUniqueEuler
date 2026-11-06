@@ -4,7 +4,7 @@ import NonUniqueEuler.I.Sec2.HkCalculus.ProductLeibniz
 /-!
 # Helper for `P/Sec2/HkCalculus`: `lem:Hk-calculus`(2), the product bound
 
-`02_prelim.tex:672-688`. For `2 ≤ j ≤ k` and `g, h ∈ H^j`, the weak Leibniz rule
+Part II, Lemma 1.10 (`lem:Hk-calculus`). For `2 ≤ j ≤ k` and `g, h ∈ H^j`, the weak Leibniz rule
 (`hasWeakDerivOn_mul_of_memH`, `I/Sec2/HkCalculus/ProductLeibniz.lean`) and the term bounds
 (`prodTerm_bound`) give `‖∂^γ(gh)‖_{L²} ≤ 2^{|γ|} ‖g‖_{H^j} ‖h‖_{H^j}`, hence
 `‖gh‖_{H^j} ≤ (k+1) 2^k ‖g‖_{H^j} ‖h‖_{H^j}` (`exists_isHkProdConst`).

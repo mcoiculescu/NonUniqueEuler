@@ -1,9 +1,9 @@
 import NonUniqueEuler.H.Sec4.Edge.Setup
 
 /-!
-# Helpers for `P/Sec4/Edge`: the energy argument of `lem:edge`
+# Helpers for `P/Sec4/Edge`: the energy argument of Part I Lemma 4.10 (`lem:edge`)
 
-Manuscript `04_ring.tex:730-769`. Let `I = [r₁, r₂]`, `n = |ℓ|`, `c = (2n)⁻¹`, and let
+See the proof of Part I Lemma 4.10 (`lem:edge`). Let `I = [r₁, r₂]`, `n = |ℓ|`, `c = (2n)⁻¹`, and let
 `ψ` be continuous on `(0,∞)` with `ψ(r) = -c ∫_I K0(r,ρ) ω̄'(ρ) e(ρ) ρ dρ` on `I`, where
 `e = iℓψ/(r(λ + iℓΩ))` (`efun`); this is the situation of the proof, with `ψ = 𝒢_ℓ g` and
 `g = ω̄' e` (`g = M_λ k_ℓ ψ`). The manuscript's weighted quantities are

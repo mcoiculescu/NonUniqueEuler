@@ -4,12 +4,12 @@ import Mathlib.Analysis.Normed.Operator.Banach
 import Mathlib.Analysis.Normed.Ring.Units
 
 /-!
-# Helper for `thm:evans-simple`: an abstract criterion for a simple isolated eigenvalue
+# Helper for Part I Theorem 4.8 (`thm:evans-simple`): an abstract criterion for a simple isolated eigenvalue
 
 Helper of `P/Sec4/EvansSimple.lean` (fully proved; manuscript-independent functional analysis).
 Namespace `NonUniqueEuler.EvansSimpleAux`.
 
-Restructured proof of `thm:evans-simple`(2) (deviation from the manuscript's contour-integral
+Restructured proof of Part I Theorem 4.8(2) (`thm:evans-simple`) (deviation from the manuscript's contour-integral
 computation): for a bounded operator `A` on a complex Banach space,
 an eigenvector `g` (`A g = z₀ g`), a functional `f` with `f g = 1` and `f ∘ A = z₀ f`, a
 one-dimensional eigenspace and the solvability `ran (A - z₀) ⊇ ker f`, the rank-one operator
@@ -23,7 +23,7 @@ invertible (open mapping). For `w ∈ ρ(B)`, `w ≠ z₀`,
 
 * `isSimpleSpectralProj_of_range`, `isAlgSimpleEig_of_range`: the criterion;
 * `not_isAlgSimpleEig_of_genEigen`: a generalized eigenvector `g₁`, `(A - z₀)g₁ = g_* ≠ 0`,
-  `(A - z₀) g_* = 0`, excludes algebraic simplicity (`thm:evans-simple`(3), with
+  `(A - z₀) g_* = 0`, excludes algebraic simplicity (the legacy generalized-eigenvector extension, with
   `RieszFixes`).
 -/
 
@@ -86,7 +86,7 @@ theorem isUnit_sub_deflate {A : X →L[ℂ] X} {z₀ : ℂ} {f : X →L[ℂ] ℂ
     simp only [smul_add, map_add, map_neg, map_smul, hAg, smul_neg, smul_smul]
     linear_combination (norm := module) hx
 
-/-- **The criterion** (restructured `thm:evans-simple`(2)). -/
+/-- **The criterion** (restructured Part I Theorem 4.8(2) (`thm:evans-simple`)). -/
 theorem isSimpleSpectralProj_of_range {A : X →L[ℂ] X} {z₀ : ℂ} {f : X →L[ℂ] ℂ} {g : X}
     (hfg : f g = 1) (hAg : A g = z₀ • g) (hfA : ∀ x, f (A x) = z₀ * f x)
     (hker : ∀ x, A x = z₀ • x → ∃ c : ℂ, x = c • g)
@@ -175,8 +175,8 @@ theorem isAlgSimpleEig_of_range {A : X →L[ℂ] X} {z₀ : ℂ} {f : X →L[ℂ
   ⟨f, g, hfg, isSimpleSpectralProj_of_range hfg hAg hfA hker hrange⟩
 
 omit [CompleteSpace X] in
-/-- A generalized eigenvector excludes algebraic simplicity (`thm:evans-simple`(3),
-`04_ring.tex:556-560`). -/
+/-- A generalized eigenvector excludes algebraic simplicity. This is retained auxiliary
+material beyond the current Part I Theorem 4.8 (`thm:evans-simple`). -/
 theorem not_isAlgSimpleEig_of_genEigen {A : X →L[ℂ] X} {z₀ : ℂ} {g₁ gs : X} (hgs : gs ≠ 0)
     (hAgs : A gs = z₀ • gs) (h₁ : A g₁ - z₀ • g₁ = gs) : ¬ IsAlgSimpleEig A z₀ := by
   rintro ⟨f, g, hfg, hP⟩

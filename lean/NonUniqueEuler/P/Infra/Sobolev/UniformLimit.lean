@@ -10,7 +10,7 @@ import Mathlib.Analysis.Normed.Operator.Bilinear
 # Proof: uniform limits of smooth functions whose classical partial derivatives converge
 (library I-HK)
 
-Proof of `I/Infra/Sobolev/UniformLimit.lean` (`B_global_smooth.tex:411-416`).
+Proof of `I/Infra/Sobolev/UniformLimit.lean` (Part II, Proposition B.10 (`prop:iter-limit`), proof).
 
 Let `G γ x = lim_j ∂^γ f_j (x)`. Completeness of `ℂ` gives `∂^γ f_j → G γ` uniformly. For a
 smooth `φ`, `D(∂^γ φ)(x) = Λ(∂^{γ+(1,0)} φ x, ∂^{γ+(0,1)} φ x)` with
@@ -127,7 +127,7 @@ end UniformLimitAux
 open UniformLimitAux in
 /-- If smooth `f_j → g` pointwise and every `∂^γ f_j` is uniformly Cauchy on `ℝ²`, then `g` is
 smooth and `∂^γ f_j → ∂^γ g` uniformly for every multi-index `γ`
-(`B_global_smooth.tex:411-416`). -/
+(Part II, Proposition B.10 (`prop:iter-limit`), proof). -/
 theorem contDiff_and_tendstoUniformly_partialD {f : ℕ → ℂ → ℂ} {g : ℂ → ℂ}
     (hf : ∀ j, ContDiff ℝ ∞ (f j))
     (hc : ∀ γ : ℕ × ℕ, UniformCauchySeqOn (fun j => partialD γ (f j)) atTop univ)

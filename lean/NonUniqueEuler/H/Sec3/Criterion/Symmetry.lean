@@ -4,7 +4,7 @@ import Mathlib.MeasureTheory.Measure.Lebesgue.Complex
 /-!
 # Helper for `P/Sec3/Criterion`: item (vi) of `thm:criterion`
 
-Manuscript: proof of `thm:criterion`, last paragraph, `03_compactness.tex:1066-1077`.
+Manuscript: proof of `thm:criterion`, last paragraph, Part I Theorem 3.8 (`thm:criterion`) and its proof.
 
 If `gₙ ⇀ g` weakly in `L²` (tested against all of `L²`) and `gₙ ∘ Q = ι gₙ` a.e. for a linear
 isometry `Q` of `ℝ² = ℂ`, then `g ∘ Q = ι g` a.e.: change of variables `y = Qx` (`Q` preserves

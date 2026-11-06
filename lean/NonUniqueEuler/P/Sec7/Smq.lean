@@ -2,10 +2,9 @@ import NonUniqueEuler.Defs.Sec7.Transfer
 import Mathlib.Analysis.SpecificLimits.Normed
 
 /-!
-# Proof: `eq:Smi` (the series `S_{m,q}` is finite)
+# Proof: the differentiated-series estimate in the proof of `lem:transfer` (the series `S_{m,q}` is finite)
 
-Proof of `I/Sec7/Smq.lean` (`07_several_rings.tex:67-71`). Same declarations, statements copied
-verbatim.
+Proof of `I/Sec7/Smq.lean` (the differentiated-series estimate in the proof of Part II Lemma 4.1 (`lem:transfer`)). The formal interface is unchanged.
 
 **Proof.** Write `x = 2^{-m} ∈ (0, 1)` and `a_p = ((p+1)m+q)^q`, so the `p`-th term is
 `a_p x^p` (`2^{-pm} = (2^{-m})^p`). Since `(p+1)m + q ≤ (m+q)(p+1)`,
@@ -56,7 +55,7 @@ private lemma smq_summable_base {m : ℕ} (hm : 1 ≤ m) (q : ℕ) :
     _ = ((((m + q : ℕ) : ℝ)) ^ q * x⁻¹) * ((((p + 1 : ℕ) : ℝ)) ^ q * x ^ (p + 1)) := by
         rw [← hxp]; ring
 
-/-- **`eq:Smi`** (`07_several_rings.tex:67-71`). For `m ≥ 1`, `q ≥ 0`: the series
+/-- **the differentiated-series estimate in the proof of `lem:transfer`** (the differentiated-series estimate in the proof of Part II Lemma 4.1 (`lem:transfer`)). For `m ≥ 1`, `q ≥ 0`: the series
 `S_{m,q} = Σ_{p≥1} (pm+q)^q 2^{-(p-1)m}` converges, `S_{m,q} > 0`, and for `0 ≤ ρ ≤ 1/2`,
 `Σ_{p≥1} (pm+q)^q ρ^{(p-1)m}` converges and is at most `S_{m,q}`. -/
 theorem smq_summable {m : ℕ} (hm : 1 ≤ m) (q : ℕ) :

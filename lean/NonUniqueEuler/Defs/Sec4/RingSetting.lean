@@ -2,10 +2,10 @@ import NonUniqueEuler.Defs.Sec4.Ring
 import NonUniqueEuler.Defs.Sec4.Setting
 
 /-!
-# Section 4.5: the two sector settings of the ring (definitions)
+# Part I Section 4.6: the two sector settings of the ring (definitions)
 
-Manuscript `04_ring.tex:1160-1171`
-(and `lem:evans-basic`, last assertion, `04_ring.tex:300-302`, `:345-352`):
+Manuscript the two mode settings preceding Part I Equation 13 (`eq:evans-units`)
+(and `lem:evans-basic`, last assertion, Part I Lemma 4.6 (`lem:evans-basic`)):
 
 * **reference units** `ringRefSetting χ`: `ω̄ = ω̄_c = ringRef χ`, `(r₁, r₂) = (e^{ξL}, e^{ξR})`,
   so `(ξ₁, ξ₂) = (ξL, ξR)`, and `N_* = {½e^{ξL} ≤ |x| ≤ 2e^{ξR}}` (`RingData.annRef`);
@@ -15,7 +15,7 @@ Manuscript `04_ring.tex:1160-1171`
 They are plain data; that they are valid sector settings for an admissible cutoff
 (`(ringRefSetting χ).Valid`, `(ringPhiSetting χ).Valid`) is a consequence of `lem:ring-facts`
 and belongs to an interface file. `Φ = ω̄_c(R_c ·)`, so the ring units are the dilation of the
-reference units by `R_c` (`ringPhiSetting_eq_dilate`, proved here), and `lem:dilation` relates
+reference units by `R_c` (`ringPhiSetting_eq_dilate`, proved here), and the retained dilation identities relates
 the two (`eq:evans-units`).
 
 All lemmas here are fully proved.
@@ -29,7 +29,7 @@ namespace NonUniqueEuler
 
 open RingData
 
-/-- The sector setting of the ring in **reference units** (`04_ring.tex:345-346`, `:1161-1162`). -/
+/-- The sector setting of the ring in **reference units** (Part I Lemma 4.6 (`lem:evans-basic`), the two mode settings preceding Part I Equation 13 (`eq:evans-units`)). -/
 def ringRefSetting (χ : ℝ → ℝ) : SectorSetting where
   om := ringRef χ
   r₁ := Real.exp ξL
@@ -37,7 +37,7 @@ def ringRefSetting (χ : ℝ → ℝ) : SectorSetting where
   ρm := Real.exp ξL / 2
   ρp := 2 * Real.exp ξR
 
-/-- The sector setting of the ring in **ring units** (`04_ring.tex:1162-1163`): `ω̄ = Φ`,
+/-- The sector setting of the ring in **ring units** (the two mode settings preceding Part I Equation 13 (`eq:evans-units`)): `ω̄ = Φ`,
 `(ξ₁, ξ₂) = (ξL - ξR, 0)`, `N_* = N`. -/
 def ringPhiSetting (χ : ℝ → ℝ) : SectorSetting where
   om := ringPhi χ
@@ -69,7 +69,7 @@ theorem ringPhiSetting_ξ₂ (χ : ℝ → ℝ) : (ringPhiSetting χ).ξ₂ = 0 
   Real.log_one
 
 /-- `Φ = ω̄_c(R_c ·)`: the ring units are the reference units dilated by `R_c`
-(`04_ring.tex:1164-1165`). -/
+(the two mode settings preceding Part I Equation 13 (`eq:evans-units`)). -/
 theorem ringPhiSetting_eq_dilate (χ : ℝ → ℝ) :
     ringPhiSetting χ = (ringRefSetting χ).dilate Rc := by
   have hR : Real.exp ξR ≠ 0 := Real.exp_ne_zero ξR

@@ -10,8 +10,8 @@ import NonUniqueEuler.H.Infra.SectorSpace.Decomposition.Basic
 /-!
 # Proof: the sector decomposition of `Y^s` on an annulus (library I-SECT)
 
-Proof of `I/Infra/SectorSpace/Decomposition.lean` (`04_ring.tex:174-185`, `lem:norm-equiv`
-`04_ring.tex:843-864`).
+Proof of `I/Infra/SectorSpace/Decomposition.lean` (Part I, Definition 4.3 (`def:sector-setting`) and the following mode-profile discussion,
+and the proof of Part I, Lemma 4.12, `lem:norm-equiv`).
 
 * Single sector (`exists_norm_Ysec_equiv`, `exists_Ysec_ofProfile`, `Ysec.fn_ae_eq_ofProfile`):
   a sector function is `g_ℓ(r)e^{iℓθ}` (`Ang.isSectorFn_iff`), its profile is in `H^s((0,∞))`

@@ -11,16 +11,17 @@ import Mathlib.Analysis.Calculus.ContDiff.Defs
 
 Statement layer: definitions and statements only, no proofs.
 
-Manuscript sources (`manuscript/tex/sections/`):
-* `02_prelim.tex:101-120`  functions of `(t, x)` and Bochner spaces, identified with
-  measurable functions on `I × Ω`; `L^∞(I; L^b)` is "`t ↦ ‖u(t)‖_{L^b}` essentially bounded";
-* `02_prelim.tex:122-127`  `X_q(T) = L^∞(0,T; L¹ ∩ L^q(ℝ²))`, the test class `𝒟_T`;
-* `02_prelim.tex:515-519`  equimeasurable functions (`def:equimeasurable`);
-* `02_prelim.tex:521-543`  weak and renormalized weak solutions (`def:weak`),
-  solutions on `[0, T₀)`;
-* `03_compactness.tex:46-66`  the same definition written as the transport identity
-  `(te)` with field `v = K * ω`, together with the integrability requirements.
-* `01_intro.tex:156-163`  `C([0,∞); L^p)` and "distinct elements of `X_q(T)`".
+Current manuscript sources in Part I:
+* Section 2.1 (Conventions), within `sec:prelim`, defines Bochner spaces,
+  `X_q(T) = L^∞(0,T; L¹ ∩ L^q(ℝ²))` and the test class `𝒟_T`;
+* Definition 2.4 (`def:equimeasurable`) defines equimeasurable functions;
+* Definition 2.5 (`def:weak`) and Equations (4)–(5) (`eq:weak`, `eq:renorm`) define
+  weak and renormalized weak solutions, including solutions on `[0, T₀)`;
+* Section 3.1, Equation (6) (`eq:te`), gives the transport identity with its
+  integrability requirements;
+* Theorem 1.1 (`thm:main`) states `C([0,∞); L^p)` and distinctness in `X_q(T)`.
+The sources are `manuscript/part1/sections/02_prelim.tex`, `03_compactness.tex`
+and `01_intro.tex`, respectively.
 
 Representation choices (see also `FORMALIZATION_NOTES.md`).
 * A space–time function is a curried function `ω : ℝ → ℂ → ℝ`, `ω t x = ω(t, x)`. Membership
@@ -33,7 +34,7 @@ Representation choices (see also `FORMALIZATION_NOTES.md`).
 * `∂_t φ + v · ∇φ` is written with the partial derivatives `deriv` in `t` and the Fréchet
   derivative in `x` applied to the vector `v`.
 * The absolute convergence of every integral in the weak formulation, which the manuscript
-  derives from `ω ∈ X_q(T)`, `q > 4/3` (`02_prelim.tex:545-550`), is required explicitly.
+  derives from `ω ∈ X_q(T)`, `q > 4/3` (the paragraph after Part I, Definition 2.5, `def:weak`), is required explicitly.
   This changes nothing mathematically (the conditions are consequences of membership in
   `X_q(T)`), and it prevents Lean's convention `∫ f = 0` for non-integrable `f` from entering.
 -/
@@ -48,7 +49,7 @@ namespace NonUniqueEuler
 /-- The space–time slab `(0, T) × ℝ²`. -/
 def slab (T : ℝ) : Set (ℝ × ℂ) := Ioo (0 : ℝ) T ×ˢ (univ : Set ℂ)
 
-/-- Membership in `X_q(T) = L^∞(0,T; L¹ ∩ L^q(ℝ²))` (`02_prelim.tex:101-124`):
+/-- Membership in `X_q(T) = L^∞(0,T; L¹ ∩ L^q(ℝ²))` (Part I, Section 2.1, `sec:prelim`):
 `ω` is (a.e. strongly) measurable on `(0,T) × ℝ²`, and for almost every `t ∈ (0,T)`,
 `ω(t) ∈ L¹ ∩ L^q` with `‖ω(t)‖_{L¹} + ‖ω(t)‖_{L^q} ≤ M` for a constant `M`. -/
 structure MemX (q T : ℝ) (ω : ℝ → ℂ → ℝ) : Prop where
@@ -64,7 +65,7 @@ def DistinctInX (T : ℝ) (ω₁ ω₂ : ℝ → ℂ → ℝ) : Prop :=
   ¬ (Function.uncurry ω₁ =ᵐ[volume.restrict (slab T)] Function.uncurry ω₂)
 
 /-- The test class `𝒟_T = {φ ∈ C_c^∞(ℝ × ℝ²) : supp φ ⊂ (-∞, T) × ℝ²}`
-(`02_prelim.tex:125`), with real-valued `φ`. The smoothness order `((⊤ : ℕ∞) : WithTop ℕ∞)` is
+(Part I, Section 2.1, `sec:prelim`), with real-valued `φ`. The smoothness order `((⊤ : ℕ∞) : WithTop ℕ∞)` is
 `C^∞` (Mathlib's scoped notation `∞`; we do not open the `ContDiff` scope here because it makes
 `ω` a token). -/
 structure IsTestFunction (T : ℝ) (φ : ℝ × ℂ → ℝ) : Prop where
@@ -85,7 +86,7 @@ def transportIntegrand (u : ℝ → ℂ → ℝ) (w : ℝ → ℂ → ℂ) (φ :
   u p.1 p.2 * (timeDeriv φ p.1 p.2 + spaceDeriv φ p.1 p.2 (w p.1 p.2))
 
 /-- `u` satisfies the transport equation `(te)` on `[0, T)` with field `w` and datum `u₀`
-(`03_compactness.tex:46-58`, with `t₀ = 0`):
+(Part I, Equation (6), `eq:te`, with `t₀ = 0`):
 `∫₀ᵀ ∫ u (∂_t φ + w · ∇φ) dx dt + ∫ u₀ φ(0, ·) dx = 0` for all `φ ∈ 𝒟_T`,
 with both integrals absolutely convergent. -/
 structure SolvesTransport (T : ℝ) (u : ℝ → ℂ → ℝ) (w : ℝ → ℂ → ℂ) (u₀ : ℂ → ℝ) : Prop where
@@ -99,12 +100,12 @@ structure SolvesTransport (T : ℝ) (u : ℝ → ℂ → ℝ) (w : ℝ → ℂ �
 def velocityField (ω : ℝ → ℂ → ℝ) (t : ℝ) (x : ℂ) : ℂ :=
   velocity (ω t) x
 
-/-- A weak solution with datum `ωin` in `X_q(T)` (`def:weak`, `02_prelim.tex:521-531`):
+/-- A weak solution with datum `ωin` in `X_q(T)` (Part I, Definition 2.5, `def:weak`):
 `4/3 < q < ∞` (`q` is real, hence finite), `T > 0`, `ωin ∈ L¹ ∩ L^q`, `ω ∈ X_q(T)`, and the
 weak formulation `(weak)` with `v(t) = K * ω(t)`. The field `velocity_convergent` records that
 the integral defining `v(t, x)` converges absolutely for a.e. `t ∈ (0, T)` and a.e. `x`
-(a consequence of `ω(t) ∈ L¹`, `02_prelim.tex:172-176`, and of `lem:velocity`(a),
-`02_prelim.tex:309-310`), so that `v` is the Biot–Savart integral itself and Lean's junk value
+(a consequence of Part I, Lemmas 2.1(e) (`lem:BS-basic`) and 2.2(a)
+(`lem:velocity`)), so that `v` is the Biot–Savart integral itself and Lean's junk value
 `∫ = 0` for non-integrable integrands never enters the weak formulation. -/
 structure IsWeakSolution (q T : ℝ) (ωin : ℂ → ℝ) (ω : ℝ → ℂ → ℝ) : Prop where
   q_gt : 4 / 3 < q
@@ -117,13 +118,13 @@ structure IsWeakSolution (q T : ℝ) (ωin : ℂ → ℝ) (ω : ℝ → ℂ → 
   weak : SolvesTransport T ω (velocityField ω) ωin
 
 /-- The renormalizations: `Υ ∈ C¹(ℝ)` with `Υ'` bounded and `Υ(0) = 0`
-(`02_prelim.tex:532-533`). -/
+(Part I, Definition 2.5, `def:weak`). -/
 structure IsRenormalization (Υ : ℝ → ℝ) : Prop where
   contDiff : ContDiff ℝ 1 Υ
   deriv_bounded : ∃ C : ℝ, ∀ s : ℝ, |deriv Υ s| ≤ C
   map_zero : Υ 0 = 0
 
-/-- A renormalized weak solution in `X_q(T)` (`def:weak`, `02_prelim.tex:532-539`): a weak
+/-- A renormalized weak solution in `X_q(T)` (Part I, Definition 2.5, `def:weak`): a weak
 solution such that `Υ(ω)` satisfies the same identity, with the same field `v = K * ω` and datum
 `Υ(ωin)`, for every renormalization `Υ`. -/
 structure IsRenormalizedWeakSolution (q T : ℝ) (ωin : ℂ → ℝ) (ω : ℝ → ℂ → ℝ) : Prop
@@ -131,13 +132,13 @@ structure IsRenormalizedWeakSolution (q T : ℝ) (ωin : ℂ → ℝ) (ω : ℝ 
   renormalized : ∀ Υ : ℝ → ℝ, IsRenormalization Υ →
     SolvesTransport T (fun t x => Υ (ω t x)) (velocityField ω) (fun x => Υ (ωin x))
 
-/-- A renormalized weak solution on `[0, ∞)` (`02_prelim.tex:540-542` with `T₀ = ∞`): its
+/-- A renormalized weak solution on `[0, ∞)` (Part I, Definition 2.5, `def:weak`, with `T₀ = ∞`): its
 restriction to `[0, T)` is a renormalized weak solution in `X_q(T)` for every `T ∈ (0, ∞)`.
 (The predicates above only look at `ω` on `(0, T)`, so no explicit restriction is needed.) -/
 def IsRenormalizedWeakSolutionOnHalfLine (q : ℝ) (ωin : ℂ → ℝ) (ω : ℝ → ℂ → ℝ) : Prop :=
   ∀ T : ℝ, 0 < T → IsRenormalizedWeakSolution q T ωin ω
 
-/-- Equimeasurable functions (`def:equimeasurable`, `02_prelim.tex:515-519`): `g, h ∈ L¹` and
+/-- Equimeasurable functions (Part I, Definition 2.4, `def:equimeasurable`): `g, h ∈ L¹` and
 `|{g > s}| = |{h > s}|`, `|{g < -s}| = |{h < -s}|` for every `s > 0`. -/
 def Equimeasurable (g h : ℂ → ℝ) : Prop :=
   MemLp g 1 ∧ MemLp h 1 ∧ ∀ s : ℝ, 0 < s →

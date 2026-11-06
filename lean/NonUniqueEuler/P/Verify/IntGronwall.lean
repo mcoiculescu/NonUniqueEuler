@@ -6,7 +6,7 @@ import Mathlib.Analysis.Calculus.Deriv.MeanValue
 # Proof: Grönwall's inequality in integral form, with a variable coefficient
 
 Proof of `NonUniqueEuler/I/Verify/IntGronwall.lean` (manuscript: end of the proof of
-Lemma A.1(2), `A_verification.tex:186-190`).
+Part II Lemma A.1(2), `lem:end-regions`).
 
 Put `g = b (c + u)`, `B(x) = ∫_α^x b`, `R(x) = c + ∫_α^x g` and `F = R e^{-B}`. On the open
 interval `F' = (g - b R) e^{-B} ≤ 0` because `c + u ≤ R` (the hypothesis) and `b ≥ 0`; `F` is

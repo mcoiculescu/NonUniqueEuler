@@ -14,7 +14,7 @@ import Mathlib.MeasureTheory.Function.LocallyIntegrable
 /-!
 # Helper for `P/SmoothB/SmoothWeak`: the transport identity for `C¹` solutions
 
-Proof of thm:smooth (7), `B_global_smooth.tex:547-557`: if `u ∈ C¹(ℝ × ℝ²)` solves
+Proof of Part II, Theorem 1.8(7) (`thm:smooth`) in §B.5: if `u ∈ C¹(ℝ × ℝ²)` solves
 `∂_t u + w·∇u = 0` with `w ∈ C¹(ℝ × ℝ²)`, `div w = 0`, then for every `φ ∈ 𝒟_T`
 `∫₀ᵀ∫ u (∂_tφ + w·∇φ) dx dt + ∫ u(0) φ(0) dx = 0` (`transport_identity`).
 
@@ -71,7 +71,7 @@ theorem contDiff_slice {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
 /-! ### Integration by parts in `x` with a divergence-free field -/
 
 /-- `∫ f (W·∇g) = -∫ (W·∇f) g` for `f, g ∈ C¹(ℝ²)`, `g` compactly supported, `W ∈ C¹(ℝ²; ℝ²)`
-with `div W = 0` (`B_global_smooth.tex:553-555`). -/
+with `div W = 0` (Part II, §B.5, proof of Theorem 1.8 (`thm:smooth`)). -/
 theorem integral_mul_fderiv_field {f g : ℂ → ℝ} {W : ℂ → ℂ}
     (hf : ContDiff ℝ 1 f) (hg : ContDiff ℝ 1 g) (hgc : HasCompactSupport g) (hW : ContDiff ℝ 1 W)
     (hdiv : ∀ x, Prelim.divergence W x = 0) :
@@ -164,7 +164,7 @@ theorem integral_mul_fderiv_field {f g : ℂ → ℝ} {W : ℂ → ℂ}
 
 /-! ### The transport identity -/
 
-/-- **The weak transport identity for `C¹` solutions** (`B_global_smooth.tex:547-557`): if
+/-- **The weak transport identity for `C¹` solutions** (Part II, §B.5, proof of Theorem 1.8 (`thm:smooth`)): if
 `u ∈ C¹(ℝ × ℝ²)` solves `∂_t u + w·∇u = 0` with `w ∈ C¹(ℝ × ℝ²)`, `div w = 0`, then for every
 `φ ∈ 𝒟_T`, `∫₀ᵀ∫ u (∂_tφ + w·∇φ) dx dt + ∫ u(0) φ(0) dx = 0`. -/
 theorem transport_identity {u : ℝ → ℂ → ℝ} {w : ℝ → ℂ → ℂ} {T : ℝ} {φ : ℝ × ℂ → ℝ}

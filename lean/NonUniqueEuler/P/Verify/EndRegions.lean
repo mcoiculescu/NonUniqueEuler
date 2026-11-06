@@ -10,10 +10,10 @@ import Mathlib.Analysis.Calculus.Deriv.Slope
 import Mathlib.Analysis.Calculus.ContDiff.Deriv
 
 /-!
-# Proof: Lemma A.1 (`lem:end-regions`)
+# Proof: Part II Lemma A.1 (`lem:end-regions`)
 
 Proof of the interface `NonUniqueEuler/I/Verify/EndRegions.lean` (same declarations, same
-statements). Manuscript: `A_verification.tex:131-191`, Equation `(eq:xayb)` (`:34-41`).
+statements). Manuscript: `lem:end-regions`, Part II Equation (35) (`eq:xayb`).
 
 **Deviation (a variant of restructuring T3).** For `w = AB` we use the exact
 identity `w' = A'B + AB' = (2/d) A B (Ā - B̄)` (from `A' = (2/d)AĀ`, `B' = -(2/d)BB̄`), so
@@ -38,11 +38,11 @@ open RingData
 
 /-! ### Numerics -/
 
-/-- Equation `(eq:xayb)`, first half: `-25 < x_a < -25 + 4·10^{-15}`. -/
+/-- Part II Equation (35) (`eq:xayb`), first half: `-25 < x_a < -25 + 4·10^{-15}`. -/
 theorem xa_bounds : -25 < xa ∧ xa < -25 + 4 / 10 ^ 15 := by
   constructor <;> norm_num [xa, ξa, a₀, d]
 
-/-- Equation `(eq:xayb)`, second half: `-25 < y_b < -25 + 10^{-15}`. -/
+/-- Part II Equation (35) (`eq:xayb`), second half: `-25 < y_b < -25 + 10^{-15}`. -/
 theorem yb_bounds : -25 < yb ∧ yb < -25 + 1 / 10 ^ 15 := by
   constructor <;> norm_num [yb, ξb, d]
 
@@ -61,7 +61,7 @@ private theorem const_lt_of_lt {x : ℝ} (hx : x < -25 + 4 / 10 ^ 15) :
   have h3 := Real.exp_pos (-50)
   nlinarith
 
-/-- **Lemma A.1(1)**, the numerical bounds: both constants are `< 3e^{-50}`. -/
+/-- **Part II Lemma A.1(1)**, the numerical bounds: both constants are `< 3e^{-50}`. -/
 theorem endRegion_const_lt :
     9 / 4 * Real.exp (2 * xa) < 3 * Real.exp (-50) ∧
       9 / 4 * Real.exp (2 * yb) < 3 * Real.exp (-50) :=
@@ -315,9 +315,9 @@ private theorem setIntegral_Ici_eq {χ : ℝ → ℝ} (hχ : IsAdmissibleCutoff 
     exact hx.2 ⟨hx.1, h.2⟩
   simp [deriv_prof_eq_zero_of_not_mem hχ hx']
 
-/-! ### Lemma A.1(1) -/
+/-! ### Part II Lemma A.1(1) -/
 
-/-- **Lemma A.1(1)**, left end region. -/
+/-- **Part II Lemma A.1(1)**, left end region. -/
 theorem endRegion_left_TV {χ : ℝ → ℝ} (hχ : IsAdmissibleCutoff χ) :
     ∫ ξ in Iic ξa, |deriv (prof χ) ξ| ≤ 9 / 4 * Real.exp (2 * xa) := by
   rw [setIntegral_Iic_eq hχ]
@@ -325,7 +325,7 @@ theorem endRegion_left_TV {χ : ℝ → ℝ} (hχ : IsAdmissibleCutoff χ) :
   have := Real.exp_pos (2 * xa)
   linarith
 
-/-- **Lemma A.1(1)**, right end region. -/
+/-- **Part II Lemma A.1(1)**, right end region. -/
 theorem endRegion_right_TV {χ : ℝ → ℝ} (hχ : IsAdmissibleCutoff χ) :
     ∫ ξ in Ici ξb, |deriv (prof χ) ξ| ≤ 9 / 4 * Real.exp (2 * yb) := by
   rw [setIntegral_Ici_eq hχ]
@@ -333,21 +333,21 @@ theorem endRegion_right_TV {χ : ℝ → ℝ} (hχ : IsAdmissibleCutoff χ) :
   have := Real.exp_pos (2 * yb)
   linarith
 
-/-- Lemma A.1(1) on the bounded end region `[ξL, ξa]`, in the form used by (2). -/
+/-- Part II Lemma A.1(1) on the bounded end region `[ξL, ξa]`, in the form used by (2). -/
 theorem endRegion_left_TV_interval {χ : ℝ → ℝ} (hχ : IsAdmissibleCutoff χ) :
     ∫ ξ in ξL..ξa, |deriv (prof χ) ξ| ≤ 3 * Real.exp (-50) := by
   rw [← setIntegral_Iic_eq hχ]
   exact (endRegion_left_TV hχ).trans endRegion_const_lt.1.le
 
-/-- Lemma A.1(1) on the bounded end region `[ξb, ξR]`, in the form used by (2). -/
+/-- Part II Lemma A.1(1) on the bounded end region `[ξb, ξR]`, in the form used by (2). -/
 theorem endRegion_right_TV_interval {χ : ℝ → ℝ} (hχ : IsAdmissibleCutoff χ) :
     ∫ ξ in ξb..ξR, |deriv (prof χ) ξ| ≤ 3 * Real.exp (-50) := by
   rw [← setIntegral_Ici_eq hχ]
   exact (endRegion_right_TV hχ).trans endRegion_const_lt.2.le
 
-/-! ### Lemma A.1(2) -/
+/-! ### Part II Lemma A.1(2) -/
 
-/-- **Lemma A.1(2)**: the comparison estimate on the two end regions, for every solution pair
+/-- **Part II Lemma A.1(2)**: the comparison estimate on the two end regions, for every solution pair
 of the Evans system on `[ξL, ξR]`. -/
 theorem endRegion_comparison {χ : ℝ → ℝ} (hχ : IsAdmissibleCutoff χ) {ℓ : ℕ} (hℓ : 1 ≤ ℓ)
     {z : ℂ} (hz : 0 < z.re) {G : ℝ} {ψ ψ' : ℝ → ℂ} (hsol : IsEvansSolution χ ℓ z G ψ ψ')

@@ -6,8 +6,8 @@ import Mathlib.LinearAlgebra.Complex.FiniteDimensional
 # Proof: homogeneity of `K_BS` (fields in ring units)
 
 Proof of `I/Sec7/FieldUnits.lean` (the claim "since `K_BS` is homogeneous of degree `-1`, `V` is
-the velocity field of `g̃` minus its monopole", `07_several_rings.tex:138-140`,
-`06_datum.tex:150-154`).
+the velocity field of `g̃` minus its monopole", Part II Lemma 4.1 (`lem:transfer`),
+the ring-unit conventions before Part II Definition 3.5 (`def:regions`)).
 
 1. `K_BS(r z) = r⁻¹ K_BS(z)` (`biotSavartKernel_ofReal_mul`, also at `z = 0` and `r = 0`).
 2. Change of variables `x = r η` (`Measure.integral_comp_smul`, `finrank ℝ ℂ = 2`):
@@ -99,7 +99,7 @@ theorem monopole_scaleVort (A : ℝ) {r : ℝ} (hr : 0 < r) (g : ℂ → ℝ) (y
 end FieldUnits
 
 open FieldUnits in
-/-- **Homogeneity of `K_BS`** (`07_several_rings.tex:138-140`, `06_datum.tex:150-154`). For
+/-- **Homogeneity of `K_BS`** (Part II Lemma 4.1 (`lem:transfer`), the ring-unit conventions before Part II Definition 3.5 (`def:regions`)). For
 `A, r > 0` and every vorticity `g`, the velocity, the monopole and the non-monopole field of
 `g̃ = A⁻¹ g(r ·)` are those of `g` in the units `(A, r)`: `V ↦ V(r ·)/(Ar)`. -/
 theorem fields_scaleVort {A r : ℝ} (hA : 0 < A) (hr : 0 < r) (g : ℂ → ℝ) :

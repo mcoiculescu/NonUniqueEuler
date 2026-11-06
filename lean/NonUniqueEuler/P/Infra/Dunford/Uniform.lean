@@ -9,7 +9,7 @@ import Mathlib.Topology.Algebra.Algebra
 
 Exponential bounds from the spectrum, uniformly for continuous families of bounded operators on a
 compact parameter set (library I-DUNF; restructuring R2; used by
-`prop:semigroup`, `04_ring.tex:1431-1500`).
+Part I, Proposition 4.22 (`prop:semigroup`), proof).
 
 * (D3) `exists_norm_resolvent_le_of_isCompact`: `(k, z) ↦ Ring.inverse (z - A k)` is continuous on
   the compact `K ×ˢ Z` (continuity of `Ring.inverse` at units), hence bounded.

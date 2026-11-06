@@ -8,18 +8,19 @@ import NonUniqueEuler.Defs.Infra.AngularFourier
 # Sector spaces `Y^s`, `Y^s_ℓ`, `Y^s_𝒵` and sector-wise operators (definitions; library I-SECT)
 
 Manuscript-independent infrastructure (library I-SECT, decisions D8, D14
-and restructuring R1). Manuscript: `04_ring.tex:155-185`
-(`Y^s`, `Y^s_ℓ`, sector profiles), `04_ring.tex:1042-1045` (`Y^s_𝒵`), and the sector-wise
+and restructuring R1). Manuscript: Part I, Definition 4.3 (`def:sector-setting`) and the following mode-profile discussion
+(`Y^s`, `Y^s_ℓ`, sector profiles), the definition of `Y^s_𝒵` preceding
+Part I, Lemma 4.16 (`lem:sector-sum`), and the sector-wise
 semigroup `e^{tL} = ⊕_ℓ exp(t L_ℓ)` of `lem:semigroup-construct`(3) (R1).
 
 All spaces are closed submodules of the tuple space `Sob.SobTuple s` (`Defs/Infra/SobolevSpace`),
 defined as intersections of kernels of continuous linear maps, so they are complete with no
 further proof. For a set `K ⊆ ℂ` (in practice the closed annulus `N_* = closedAnnulus ρ₋ ρ₊`):
-* `YSub s K`, `Y s K`: `{w ∈ H^s : w = 0 a.e. outside K}` (`04_ring.tex:155-156`);
+* `YSub s K`, `Y s K`: `{w ∈ H^s : w = 0 a.e. outside K}` (Part I, Definition 4.3 (`def:sector-setting`));
 * `YsecSub s K ℓ`, `Ysec s K ℓ`: its sector-`ℓ` part, `w ∘ O_θ = e^{iℓθ} w` for all `θ`
   (the manuscript's `Y^s_ℓ`, identified with `P_ℓ Y^s` through `g ↦ g(r)e^{iℓθ}`,
-  `04_ring.tex:944-945`);
-* `YZSub s K Z`, `YZ s K Z`: the `w ∈ Y^s` with `P_ℓ w = 0` for `ℓ ∉ Z` (`04_ring.tex:1042`);
+  Part I, Lemma 4.14 (`lem:semigroup-construct`), proof and preceding mode identification);
+* `YZSub s K Z`, `YZ s K Z`: the `w ∈ Y^s` with `P_ℓ w = 0` for `ℓ ∉ Z` (Part I, definition of `Y^s_𝒵` preceding Lemma 4.16 (`lem:sector-sum`));
 * `YsymSub s K m`, `Ysym s K m`: the `m`-fold symmetric `w ∈ Y^s` (the space `X^s` of the
   manuscript is `Ysym s N_* 3` in ring units; equal to `YZ s K (3ℤ)` by
   `I/Infra/SectorSpace/Projection.lean`).

@@ -1,7 +1,7 @@
 import NonUniqueEuler.H.Sec4.Eigendata.Basic
 
 /-!
-# Helpers for `def:eigendata`: `L²` pairings as continuous functionals on `Y^s(K)`
+# Helpers for Part I Definition 4.20 (`def:eigendata`): `L²` pairings as continuous functionals on `Y^s(K)`
 
 Helper of `P/Sec4/Eigendata.lean` (fully proved). Namespace `NonUniqueEuler.Eig.EigendataH`.
 

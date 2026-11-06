@@ -7,9 +7,9 @@ import Mathlib.Topology.UniformSpace.UniformConvergence
 import Mathlib.Analysis.Calculus.UniformLimitsDeriv
 
 /-!
-# Proof: `prop:iter-limit`, step 4 — the differentiated transport equation of the limit
+# Proof: formal decomposition of `prop:iter-limit`, step 4 — the differentiated transport equation of the limit
 
-Proof of `I/SmoothB/IterLimit/Equation.lean` (`B_global_smooth.tex:432-448`).
+Proof of `I/SmoothB/IterLimit/Equation.lean` (Part II, Proposition B.10 (`prop:iter-limit`)).
 
 **Argument.** Fix `γ`, `t`, `x`, put `T = |t| + 1` and `S = [-T, T] × {x}` (compact).
 1. The families `ω^{[n+1]} → ω` and `v^{[n]} → v` are "good" on `S` (`H/.../Equation/Good.lean`):
@@ -79,7 +79,7 @@ theorem good_of_spaceD {S : Set (ℝ × ℂ)} {F : ℕ → ℝ → ℂ → ℂ} 
 end IterLimitEqAux
 
 open IterLimitEqAux in
-/-- `prop:iter-limit`, step 4 (`B_global_smooth.tex:432-448`): the limit satisfies
+/-- formal decomposition of `prop:iter-limit`, step 4 (Part II, Proposition B.10 (`prop:iter-limit`)): the limit satisfies
 `∂_t ∂_x^γ ω = -∂_x^γ(v · ∇ω)` on `ℝ × ℝ²` for every multi-index `γ`. -/
 theorem limit_hasDerivAt_spaceD (h : IsSmoothDatum ω₀ R₀) (hne : ω₀ ≠ 0)
     {ω : ℝ → ℂ → ℝ} (hsm : ∀ t, ContDiff ℝ ((⊤ : ℕ∞) : WithTop ℕ∞) (ω t))

@@ -10,13 +10,13 @@ Helper of `P/Sec5/Active/Layer.lean` (fully proved modulo the interface files it
 Namespace `NonUniqueEuler.OneRing.LayerH`.
 
 * `rapp_linPath`: with `w_app' = L(G)w_app + F`, the residual of `lem:energy` is
-  `R_app = -B(w_app,w_app) + h·∇w_app` pointwise (`05_single_ring.tex:983-985`: "the term `F`
+  `R_app = -B(w_app,w_app) + h·∇w_app` pointwise (Part II Theorem 2.12: "the term `F`
   cancels");
 * `rapp_linPath_bound`: `‖R_app‖_{H^k} ≤ C_B(k)‖w_app‖_{H^k}‖w_app‖_{H^{k+1}} +
   C_h(k)‖h‖_{C^k(N')}‖w_app‖_{H^{k+1}}` (`lem:bilinear`(1),(2));
 * `lay_pathC_restrict`, `lay_pathC1_restrict`, `lay_normH_eq_zero_of_ae`, `v_le_integral`
   (copies of `H/Sec5/Window/Comparison.lean`): `lem:energy` on `[0,t] ⊆ [0,ū]` with
-  `w_app(0) = w(0)` (`05_single_ring.tex:983-988`);
+  `w_app(0) = w(0)` (Part II Theorem 2.12);
 * `integral_exp_const_le`: `∫₀^τ e^{Λ(τ-τ')}R dτ' ≤ τ e^{Λτ} R` for `Λ, R ≥ 0`.
 -/
 
@@ -81,7 +81,7 @@ theorem lay_normH_eq_zero_of_ae {k : ℕ} {f g : ℂ → ℂ} (hg : Sob.MemH k g
   rw [h1.2, h0.2]
   simp
 
-/-- **`lem:energy` on `[0,t]`** with `w_app(0) = w(0)` (`05_single_ring.tex:983-988`). -/
+/-- **`lem:energy` on `[0,t]`** with `w_app(0) = w(0)` (Part II Theorem 2.12 (`thm:active`)). -/
 theorem v_le_integral {χ : ℝ → ℝ} (hχ : IsAdmissibleCutoff χ) (hN : NumericalHypothesis χ)
     {s : ℕ} (hs : 3 ≤ s) {c : RingConfig} {ubar t : ℝ} (hc : c.Hyp ubar)
     (ht : t ∈ Icc (0 : ℝ) ubar) (hG : c.G ∈ Icc (0 : ℝ) Gbar) (hsupp : c.RingSupportedIn t annN)

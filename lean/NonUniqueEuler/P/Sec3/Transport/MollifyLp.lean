@@ -11,7 +11,7 @@ import Mathlib.Topology.UniformSpace.HeineCantor
 # Proof: spatial mollification in `L^p` (bound and convergence)
 
 Proof of `I/Sec3/Transport/MollifyLp.lean` (the standard facts on mollifiers used in the proof of
-`lem:transport`, `03_compactness.tex:503-523`, with the notation of `03_compactness.tex:27-30`).
+`lem:transport`, Part I Lemma 3.4 (`lem:transport`) and its proof, with the notation of Part I §3 (`sec:compact`), auxiliary-function conventions).
 
 * `memLp_mollify`: `|g ⋆ ρ_ε| ≤ |ρ_ε| ⋆ |g|` pointwise (`MollifyLpH.enorm_mollify_le`), Young's
   inequality `‖|ρ_ε| ⋆ |g|‖_p ≤ ‖ρ_ε‖₁ ‖g‖_p` (`Conv.eLpNorm_convAbs_le`) and `‖ρ_ε‖₁ = 1`;
@@ -32,7 +32,7 @@ open scoped ENNReal Topology
 
 namespace NonUniqueEuler.Weak
 
-/-- Young's inequality for the mollifier (`03_compactness.tex:27-30`): for `1 ≤ p ≤ ∞`,
+/-- Young's inequality for the mollifier (Part I §3 (`sec:compact`), auxiliary-function conventions): for `1 ≤ p ≤ ∞`,
 `g ∈ L^p` implies `g ⋆ ρ_ε ∈ L^p` with `‖g ⋆ ρ_ε‖_p ≤ ‖g‖_p`. -/
 theorem memLp_mollify {ρ : ℂ → ℝ} (hρ : IsMollifier ρ) {ε : ℝ} (hε : 0 < ε) {p : ℝ≥0∞}
     (hp : 1 ≤ p) {g : ℂ → ℝ} (hg : MemLp g p volume) :
@@ -83,7 +83,7 @@ theorem MollifyLpH.eventually_eLpNorm_mollify_sub_le_of_continuous {ρ : ℂ →
   · rw [ENNReal.ofReal_coe_nnreal]
     exact hcM.le
 
-/-- Mollifications converge in `L^p`, `1 ≤ p < ∞` (`03_compactness.tex:503-523`):
+/-- Mollifications converge in `L^p`, `1 ≤ p < ∞` (Part I Lemma 3.4 (`lem:transport`) and its proof):
 `‖g ⋆ ρ_ε - g‖_p → 0` as `ε → 0⁺`. -/
 theorem tendsto_eLpNorm_mollify_sub {ρ : ℂ → ℝ} (hρ : IsMollifier ρ) {p : ℝ≥0∞} (hp : 1 ≤ p)
     (hp' : p ≠ ∞) {g : ℂ → ℝ} (hg : MemLp g p volume) :

@@ -6,7 +6,7 @@ import Mathlib.MeasureTheory.Measure.Prod
 # Jointly measurable representatives of `L²`-valued paths (definitions; library I-JOINT)
 
 Manuscript-independent infrastructure (library I-JOINT; restructuring R5).
-Section 3 works with paths `u : τ → Lp ℝ 2 μ` (weakly continuous in time), while the statement
+Part I, Section 3 (`sec:compact`) works with paths `u : τ → Lp ℝ 2 μ` (weakly continuous in time), while the statement
 layer (`Statement/WeakSolution.lean`, decision D4) works with functions `ℝ → ℂ → ℝ` that are
 measurable on the slab `(0, T) × ℂ`. This file fixes the bridge vocabulary:
 

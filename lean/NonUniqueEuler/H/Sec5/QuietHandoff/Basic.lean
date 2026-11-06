@@ -5,9 +5,12 @@ import NonUniqueEuler.I.Infra.Sobolev.Norm
 import NonUniqueEuler.I.Infra.Sobolev.NormDeriv
 
 /-!
-# Helpers for `cor:quiet-handoff`: `ℓ_*` only sees the a.e. class; functions of `Y^s(K)`
+# Helpers for the quiet-ring hand-off consequence: a.e. classes and functions of `Y^s(K)`
 
-Helper of `P/Sec5/QuietHandoff.lean`.
+Helper of `P/Sec5/QuietHandoff.lean`, which retains the former
+`cor:quiet-handoff` decomposition. Its current manuscript inputs are Part II
+Theorem 2.8 (`thm:quiet`) and Part I Lemma 4.23 (`lem:uniform`); the consequence
+is used in the hand-off proof of Part II Proposition 6.2 (`prop:relay-step`).
 
 * `QuietHandoffH.ae_circle_of_ae`, `QuietHandoffH.angularSector_congr_ae`,
   `QuietHandoffH.ellFn_congr_ae`: if `f = g` a.e. on the plane, then for a.e. `r > 0` the

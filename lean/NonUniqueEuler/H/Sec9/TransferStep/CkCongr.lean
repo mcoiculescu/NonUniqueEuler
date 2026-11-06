@@ -4,7 +4,7 @@ import NonUniqueEuler.I.Infra.CkNorm.Basic
 /-!
 # Helper for `lem:transfer-step`: `C^k(N')` norms of fields that agree on `N'`
 
-Helper of `P/Sec9/TransferStep.lean` (`09_relay.tex:185-225`). The norm `normCk k U h` uses the
+Helper of `P/Sec9/TransferStep.lean` (`lem:transfer-step`, Part II Lemma C.7). The norm `normCk k U h` uses the
 global derivatives of `h` at the points of `U`, so it depends on the germ of `h` near `U`. The
 identities that the proof of `lem:transfer-step` combines (`inner_field_eq`,
 `transfer_outer_sum_eq`) hold on `N'` only. Since `N' ⊂ closure (interior N')` and the derivatives of

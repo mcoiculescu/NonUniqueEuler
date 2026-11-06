@@ -7,7 +7,7 @@ import NonUniqueEuler.I.Sec2.BSBasic
 /-!
 # Helpers for `lem:reduction`(3): `eq:ring` holds almost everywhere at each time
 
-Helper of `P/Sec5/ReductionEq.lean` (`05_single_ring.tex:206-217`). For `t ∈ [0,T]`,
+Helper of `P/Sec5/ReductionEq.lean` (Part II Lemma 2.2). For `t ∈ [0,T]`,
 `ringRHS χ G (h t) (w t) = ∂_t w(t)` almost everywhere (`RedEqH.ringRHS_ae_eq_deriv`):
 * at the points where the weak first derivatives of `w(t)` and `Φ` are the classical ones (a.e.,
   `memH_of_contDiff_hasCompactSupport`), the right side is
@@ -50,7 +50,7 @@ theorem weakPartial_ae_eq_fderiv {f : ℂ → ℂ} (hf : ContDiff ℝ ∞ f) (hc
   · filter_upwards [h01] with x hx
     rw [hx, partialD_zero_one]
 
-/-- **`eq:ring` a.e. at each time** (`05_single_ring.tex:206-217`): for `t ∈ [0,T]`,
+/-- **`eq:ring` a.e. at each time** (Part II Lemma 2.2 (`lem:reduction`)): for `t ∈ [0,T]`,
 `L(G)w + B(w,w) - h·∇w - h·∇Φ = ∂_t w` almost everywhere on `ℝ²`. -/
 theorem ringRHS_ae_eq_deriv {χ : ℝ → ℝ} (hχ : IsAdmissibleCutoff χ) (hc : c.Hyp T)
     (hsupp : c.RingSupportedIn T annN) {t : ℝ} (ht : t ∈ Icc (0 : ℝ) T) :

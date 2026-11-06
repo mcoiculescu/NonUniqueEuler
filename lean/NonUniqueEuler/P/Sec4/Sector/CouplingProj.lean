@@ -6,7 +6,7 @@ import NonUniqueEuler.I.Infra.AngularFourier.SectorL2
 /-!
 # Proof: the coupling term `𝒦w = -(K_BS * w)·∇ω̄` commutes with rotations and with `P_ℓ`
 
-Proof of `I/Sec4/Sector/CouplingProj.lean` (manuscript `04_ring.tex:263-266`, proof of
+Proof of `I/Sec4/Sector/CouplingProj.lean` (manuscript Part I Lemma 4.5 (`lem:sector`), proof of
 `lem:sector`(2)).
 
 * `couplingFn_rot`: substitute `y = O_φ y'` (`O_φ` is measure preserving), and use

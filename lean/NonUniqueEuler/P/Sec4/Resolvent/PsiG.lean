@@ -9,7 +9,7 @@ import NonUniqueEuler.H.Sec4.Resolvent.PsiG.VoC
 # Proof: the Wronskian formula `ψ_g` solves the boundary value problem `eq:bvp`
 (sub-step of `lem:resolvent`(1))
 
-Proof of `I/Sec4/Resolvent/PsiG.lean` (`04_ring.tex:412-422`). Following the proof sketch of the
+Proof of `I/Sec4/Resolvent/PsiG.lean` (Part I Lemma 4.7 (`lem:resolvent`)). Following the proof sketch of the
 interface file:
 1. `F = S.Fres ℓ z G g` is integrable and vanishes a.e. off `[c, d] = [log ρ₋, log ρ₊]`
    (`H/Sec4/Resolvent/PsiG/Fres.lean`), so `∫_{Iic ξ} ψ F = ∫_c^ξ ψ F` and
@@ -29,7 +29,7 @@ namespace NonUniqueEuler
 
 namespace SectorSetting
 
-/-- Proof of `lem:resolvent`(1) (`04_ring.tex:412-422`): if `E_ℓ(λ;G) ≠ 0` and `g ∈ Y^0_ℓ`, the
+/-- Proof of `lem:resolvent`(1) (Part I Lemma 4.7 (`lem:resolvent`)): if `E_ℓ(λ;G) ≠ 0` and `g ∈ Y^0_ℓ`, the
 Wronskian formula `ψ_g` is `C¹` and solves `ψ_g'' = V_ℓψ_g + F` (`F = S.Fres ℓ z G g`) in
 integrated form, with `ψ_g = A e^{ℓξ}` for `ξ ≤ log ρ₋` and `ψ_g = B e^{-ℓξ}` for
 `ξ ≥ log ρ₊`. -/

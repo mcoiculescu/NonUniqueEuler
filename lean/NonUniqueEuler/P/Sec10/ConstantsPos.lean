@@ -3,14 +3,17 @@ import NonUniqueEuler.I.Infra.Ip.Ip
 import NonUniqueEuler.H.Sec10.ConstantsPos.Eigen
 
 /-!
-# Proof: the constants of (P0)–(P4) are positive (part of `lem:nonempty`)
+# Proof: the signs of the constants of (P0)–(P4) (part of `lem:nonempty`)
 
-Proof of `I/Sec10/ConstantsPos.lean` (`lem:nonempty`, `10_parameters.tex:281`, `:295-315`).
+Proof of `I/Sec10/ConstantsPos.lean`: Part II Lemma 7.1 (`lem:nonempty`),
+with detailed verification in Appendix C.4 (`sec:param-verification`).
+Lean's `ConstPos` retains `C_Q ≥ 0` and `C_hand ≥ 0`; the current manuscript
+chooses positive constants. See `Defs/Sec10/Extra1ConstPos.lean` for this distinction.
 
 * The eigendata signs (`σ_b, σ, |z|, c_N, C_N, c_out, ‖ℓ_*‖, C_ls`) are in the helper
-  `H/Sec10/ConstantsPos/Eigen.lean` (from `prop:U`, `lem:uniform`, `def:eigendata`,
-  `lem:ring-facts`).
-* The chosen constants of Sections 5 and 7 have the signs of their specifications in both branches
+  `H/Sec10/ConstantsPos/Eigen.lean` (from Part I `prop:U`, Part I `lem:uniform`, Part I `def:eigendata`,
+  Part I `lem:ring-facts`).
+* The chosen constants of Part II Sections 2 and 4 have the signs of their specifications in both branches
   of the choice (`activeConsts_signs`, `kL_pos`, `quietConsts_signs`, `transferConsts_pos`,
   `Cin_pos`).
 * `C_* > 0` (`Cstar_pos`: `c₄ = (2π/(2 - 4/3))^{3/4} > 0`, `M_vort > 0`), `C_D(T_pin) > 0`.
@@ -29,7 +32,7 @@ namespace ConstantsPosAux
 
 open RingData Datum
 
-/-! ### The chosen constants of Sections 5 and 7 (both branches of the choice) -/
+/-! ### The chosen constants of Part II Sections 2 and 4 (both branches of the choice) -/
 
 /-- `C₂ ≥ 1`, `C₃ > 0` and `κ₀(C₀) > 0` for `C₀ ≥ 1` (`thm:active`; junk `(1/2, 1, 1, 1)`). -/
 theorem activeConsts_signs (χ : ℝ → ℝ) (s : ℕ) (σ' : ℝ) :
@@ -119,8 +122,8 @@ end ConstantsPosAux
 
 open RingData Datum ConstantsPosAux
 
-/-- **The constants of (P0)–(P4) are finite and positive** (`lem:nonempty`,
-`10_parameters.tex:281`, `:295-315`): for an admissible cutoff with (N1)–(N3) and parameters with
+/-- **The signs required for (P0)–(P4)** (Part II Lemma 7.1, `lem:nonempty`):
+for an admissible cutoff with (N1)–(N3) and parameters with
 `σ' ∈ (9/200, 3σ/4)`, `δ₀ > 0`, `μ > 1` and `T_pin > 0`, all the signs of `Standing.ConstPos`
 hold. -/
 theorem constants_pos (S : Standing) (hχ : IsAdmissibleCutoff S.P.χ)

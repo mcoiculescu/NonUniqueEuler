@@ -4,7 +4,7 @@ import NonUniqueEuler.H.Sec10.Nonempty.Structural
 # Helper for `lem:nonempty`: (κ1)–(κ4), (κ6), (κ7) for small `κ`
 
 Helper of `P/Sec10/Nonempty.lean`, the treatment of (P5) in the proof of `lem:nonempty`
-(`10_parameters.tex:317-327`): (κ1), (κ4), (κ6) have positive thresholds
+(Part II Appendix C.4, `sec:param-verification`): (κ1), (κ4), (κ6) have positive thresholds
 `δ₀4^{-μ/(μ-1)}`, `κ₀(C₀)`, `κ_L`; the left sides of (κ2), (κ3), (κ7) are finite sums of terms
 `Cκ^{1/2}` and `C(κ/δ₀)^γ⟨log(δ₀/κ)⟩^N` with `γ ∈ {γ_μ, ϑ_μ, γ'_μ}` positive (`μ > 1`, `c_γ > 0`),
 which tend to `0`, while the right sides are positive. (κ5) is `H/Sec10/Nonempty/KappaFive.lean`.

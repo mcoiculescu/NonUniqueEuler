@@ -6,7 +6,7 @@ import Mathlib.Analysis.InnerProductSpace.Calculus
 import Mathlib.Analysis.SpecialFunctions.Complex.CircleMap
 
 /-!
-# Helpers for `def:eigendata`: generic facts (profiles, angular sectors, `Y^s(K)`)
+# Helpers for Part I Definition 4.20 (`def:eigendata`): generic facts (profiles, angular sectors, `Y^s(K)`)
 
 Helper of `P/Sec4/Eigendata.lean` (fully proved). Namespace `NonUniqueEuler.Eig.EigendataH`.
 

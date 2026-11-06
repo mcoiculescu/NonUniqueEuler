@@ -6,7 +6,7 @@ import NonUniqueEuler.H.Sec5.Energy.VEquation.Basic
 /-!
 # Proof of `I/Sec5/Energy/VEquation.lean`: the equation of `v = w - w_app`
 
-Step 1 of the proof of `lem:energy` (`05_single_ring.tex:318-331`). Same declaration, statement
+Step 1 of the Lean proof decomposition for Part II Lemma 2.4 (`lem:energy`). Same declaration, statement
 copied verbatim.
 
 Proof (the manuscript's subtraction argument, at a point). Fix `τ ∈ [0,t]`. By
@@ -39,7 +39,7 @@ namespace OneRing
 
 open RingData
 
-/-- **The equation of `v = w - w_app`** (proof of `lem:energy`, `05_single_ring.tex:318-331`):
+/-- **The equation of `v = w - w_app`** (proof of `lem:energy`, Part II Lemma 2.4):
 for `τ ∈ [0,t]`, a.e. on `ℝ²`,
 `L(G)w + B(w,w) - h·∇w - h·∇Φ - w_app' = -U·∇v + B(v, Φ + w_app) - R_app` with
 `U = Ω(|x|;G)x^⊥ + h + K_BS*w` and `v = w - w_app`. -/

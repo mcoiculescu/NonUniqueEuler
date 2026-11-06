@@ -6,7 +6,7 @@ import NonUniqueEuler.I.Infra.Sobolev.Norm
 # Helper for `P/Infra/Sobolev/DotGradSharp`: weak derivatives of `∂_j w` and of sums
 
 * `weakPartial_e1_ae_eq`, `weakPartial_e2_ae_eq`: for `w ∈ H^{k+1}` and `|δ| ≤ k`,
-  `∂^δ ∂₁ w = ∂^{δ+(1,0)} w` and `∂^δ ∂₂ w = ∂^{δ+(0,1)} w` a.e. (`04_ring.tex:1564`);
+  `∂^δ ∂₁ w = ∂^{δ+(1,0)} w` and `∂^δ ∂₂ w = ∂^{δ+(0,1)} w` a.e. (Part I, Lemma 4.23(3) (`lem:uniform`), proof);
 * `weakPartial_add_ae_eq`: `∂^γ (f + g) = ∂^γ f + ∂^γ g` a.e. for `f, g ∈ H^k`, `|γ| ≤ k`.
 -/
 

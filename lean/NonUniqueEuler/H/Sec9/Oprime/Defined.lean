@@ -7,7 +7,7 @@ import NonUniqueEuler.H.Sec9.Oprime.Basic
 /-!
 # Helpers for `lem:Oprime`: the fields are defined on `[t♯_k, t]`
 
-Helper file of `P/Sec9/Oprime.lean` (`09_relay.tex:638-650`, `:688-692`). Everything here is
+Helper file of `P/Sec9/Oprime.lean` (`lem:Oprime`, Part II Lemma C.10). Everything here is
 proved. Under `S.OprimeHyp C₀ K₁ C_F k t`:
 
 * `G_k ∈ [0, G₁]` and `P.GSmall` (`lem:inner-circ` with `C_Gμs̄² ≤ G₁`), `0 ≤ t♯_k`
@@ -143,7 +143,7 @@ theorem Nk_inter_ball (hS : S.Holds) {j : ℕ} (hj : 1 ≤ j) :
   rw [hrs] at hxb
   nlinarith
 
-/-- **`h_k` is defined at `t' ∈ [t♯_k, t]`** (`09_relay.tex:638-642`), `k = j+1 ≥ 2`. -/
+/-- **`h_k` is defined at `t' ∈ [t♯_k, t]`** (`lem:Oprime`, Part II Lemma C.10), `k = j+1 ≥ 2`. -/
 theorem hDefined_k (hS : S.Holds) {j : ℕ} (hj : 1 ≤ j) (h : S.OprimeHyp C₀ K₁ CF (j + 1) t)
     {t' : ℝ} (ht' : t' ∈ Icc (S.P.tsh (j + 1)) t) : S.P.HDefined (j + 1) t' := by
   have h0 : 0 ≤ t' := (tsh_nonneg hS h).trans ht'.1
@@ -169,7 +169,7 @@ theorem hDefined_k (hS : S.Holds) {j : ℕ} (hj : 1 ≤ j) (h : S.OprimeHyp C₀
     exact Set.inter_subset_inter_left _ hP
 
 /-- **`‖w_i(t')‖_{H^{s_h}} ≤ C_Q maj_i(A_i t')` for `1 ≤ i ≤ j`, `t' ∈ [0,t]`**
-(`thm:quiet`(c) through `lem:O` if `t' > 0`; `w_i(0) = 0` if `t' = 0`, `09_relay.tex:643-650`). -/
+(`thm:quiet`(c) through `lem:O` if `t' > 0`; `w_i(0) = 0` if `t' = 0`, `lem:Oprime`, Part II Lemma C.10). -/
 theorem normH_w_le (hS : S.Holds) {j : ℕ} (hj : 1 ≤ j) (h : S.OprimeHyp C₀ K₁ CF (j + 1) t)
     {t' : ℝ} (ht' : t' ∈ Icc (0 : ℝ) t) {i : ℕ} (hi : i ∈ Finset.Icc 1 j) :
     Sob.normH S.sh (S.P.w i t') ≤ S.CQ * S.maj i (S.P.A i * t') := by

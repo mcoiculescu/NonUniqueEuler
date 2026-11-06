@@ -6,16 +6,15 @@ import Mathlib.Analysis.Calculus.Deriv.Prod
 /-!
 # Proof: thm:smooth (1)–(3) and (5) for `Smooth.sol` (the global smooth solution)
 
-Proof of `I/SmoothB/Smooth.lean` (`thm:smooth`, `02_prelim.tex:561-595`; proof
-`B_global_smooth.tex:493-521`).
+Proof of `I/SmoothB/Smooth.lean` (Part II, Theorem 1.8, `thm:smooth`; proof in §B.5).
 
-* Existence: `ω₀ = 0` gives `ω ≡ 0` (`isSmoothSolAll_zero`, `B_global_smooth.tex:517-518`);
+* Existence: `ω₀ = 0` gives `ω ≡ 0` (`isSmoothSolAll_zero`, Part II, §B.5, proof of Theorem 1.8 (`thm:smooth`));
   otherwise `iter_limit` (`prop:iter-limit`) gives a function with `IsSmoothSolAll ω₀`, so
   `sol_spec` applies.
 * Uniqueness in (1)–(3): a function with (1)–(3) for `R₀` is a `C¹` solution on `ℝ`
   (`IsSmoothSol.isC1SolOn_univ`: `C^∞ ⇒ C¹`, the chain rule splits the derivative in the
   direction `(1, v)` into `∂_t ω + v·∇ω`, supports in `B_{R(max(|a|,|b|))}` on `[a, b]`), so (5)
-  in the form `isC1SolOn_eq_of_isSmoothSol` (`B_global_smooth.tex:494-513`) identifies it with
+  in the form `isC1SolOn_eq_of_isSmoothSol` (Part II, §B.5, proof of Theorem 1.8 (`thm:smooth`)) identifies it with
   `sol ω₀`.
 * (5) for `sol ω₀`: `isC1SolOn_eq_of_isSmoothSol` with `sol_isSmoothSol`.
 -/
@@ -48,7 +47,7 @@ theorem fderiv_uncurry_one_apply {ω : ℝ → ℂ → ℝ} {t : ℝ} {x : ℂ}
     ← map_add, Prod.mk_add_mk, add_zero, zero_add]
 
 /-- A function with properties (1)–(3) of thm:smooth for `R₀` is a `C¹` solution on `ℝ` in the
-sense of thm:smooth(5) (`B_global_smooth.tex:514-516`). -/
+sense of thm:smooth(5) (Part II, §B.5, proof of Theorem 1.8 (`thm:smooth`)). -/
 theorem IsSmoothSol.isC1SolOn_univ {ω : ℝ → ℂ → ℝ} (hω : IsSmoothSol ω₀ R₀ ω) :
     IsC1SolOn univ ω₀ ω := by
   have hC1 : ContDiff ℝ 1 (Function.uncurry ω) :=
@@ -70,7 +69,7 @@ theorem IsSmoothSol.isC1SolOn_univ {ω : ℝ → ℂ → ℝ} (hω : IsSmoothSol
       exact (this.trans (neg_le_abs a)).trans (le_max_left _ _)
 
 /-- Existence of a function with (1)–(3) for every admissible radius
-(`B_global_smooth.tex:517-521`). -/
+(Part II, §B.5, proof of Theorem 1.8 (`thm:smooth`)). -/
 theorem exists_isSmoothSolAll (h : IsSmoothDatum ω₀ R₀) :
     ∃ ω : ℝ → ℂ → ℝ, IsSmoothSolAll ω₀ ω := by
   by_cases hne : ω₀ = 0

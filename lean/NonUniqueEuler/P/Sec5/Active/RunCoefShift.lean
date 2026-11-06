@@ -13,7 +13,7 @@ import Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic
 /-!
 # Proof: the running coefficient of a restarted problem (`eq:A-restart`, algebraic part)
 
-Proof of `I/Sec5/Active/RunCoefShift.lean` (`05_single_ring.tex:1031-1036`).
+Proof of `I/Sec5/Active/RunCoefShift.lean` (Part II Theorem 2.12 (`thm:active`)).
 
 Structure (as in the sketch of the interface file):
 * `RunCoefShiftAux.ellFn_congr_ae`: `ℓ_*(G)` on functions only sees the a.e. class (Tonelli in
@@ -244,7 +244,7 @@ end RunCoefShiftAux
 
 open RingData
 
-/-- **The running coefficient after a restart** (`05_single_ring.tex:1031-1036`): for
+/-- **The running coefficient after a restart** (Part II Theorem 2.12 (`thm:active`)): for
 `CkPathOn 0 annN' (Icc 0 T) h`, `t₁, u' ≥ 0`, `t₁ + u' ≤ T`,
 `c̃(u') = e^{λt₁}c(t₁ + u') + (ℓ_*(w₁) - e^{λt₁}c(t₁))`, where `c̃` is the running coefficient with
 datum `w₁` and field `h(t₁ + ·)`, and `c` the one with datum `w₀` and field `h`. -/

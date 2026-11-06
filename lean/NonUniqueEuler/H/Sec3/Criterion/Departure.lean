@@ -4,7 +4,7 @@ import NonUniqueEuler.I.Infra.JointRep.Slab
 /-!
 # Helper for `P/Sec3/Criterion`: item (v) of `thm:criterion`
 
-Manuscript: proof of `thm:criterion`, paragraph "We now prove (v)", `03_compactness.tex:1058-1077`.
+Manuscript: proof of `thm:criterion`, paragraph "We now prove (v)", Part I Theorem 3.8 (`thm:criterion`) and its proof.
 
 * `supDist_eq_of_tendsto`: the defect passes to the limit under uniform `L¹` convergence;
 * `isOpen_departureSet_of`: `𝒪 = {t ∈ [0, T₀) : ω(t) ≠ f}` is open if `ω ∈ C([0, T₀); L¹)` and

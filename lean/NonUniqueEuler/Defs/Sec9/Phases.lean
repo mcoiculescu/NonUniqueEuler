@@ -1,16 +1,21 @@
 import NonUniqueEuler.Defs.Sec9.Standing
 
 /-!
-# Section 9: `thm:quiet` and `thm:active` applied to ring `k` (definitions)
+# Relay: `thm:quiet` and `thm:active` applied to ring `k` (definitions)
 
-Manuscript `09_relay.tex:71-84` (applying
-Section 5 to ring `k` in ring-`k` units, with `G = G_k`, `h = h_k`, `η = η_k`, `maj = maj_k` and
-perturbation `w_k`) and `:759-767` (the active phase: time origin `t♯_k`, active time
+Current correspondence: Part II Theorems 2.8 and 2.12 (`thm:quiet`, `thm:active`)
+and Corollary 2.13 (`cor:active-moment`), applied using the pullbacks in
+Appendices C.1 and C.17 (`sec:relay-data`, `sec:bootstrap-active-checks`).
+The formal bundles below use ring-time arguments; the current manuscript's
+ring quantities are functions of physical time.
+
+Manuscript `sec:relay-data`, Part II, Appendix C.1 (applying
+Part II Section 2 to ring `k` in ring-`k` units, with `G = G_k`, `h = h_k`, `η = η_k`, `maj = maj_k` and
+perturbation `w_k`) and `sec:bootstrap-active-checks`, Part II, Appendix C.17, active-time pullback (the active phase: time origin `t♯_k`, active time
 `u = A_k(t - t♯_k)`, `w(u) = w_k(t♯_k + u/A_k)`, `h(u) = h_k(t̄♯_k + u)`, `c = c_k`).
 
 The hypotheses and conclusions of `thm:quiet` and `thm:active` (with `cor:active-moment`) for ring `k`
-of an approximation, written with the objects of `def:regions`/`def:clock` (the translation the
-manuscript makes "without further comment", `09_relay.tex:72-80`):
+of an approximation, written with the objects of `def:regions`/`def:clock` (the pullback convention of `sec:relay-data`, Part II, Appendix C.1):
 * `S.QuietHyp i T`, `S.QuietConcl i T` (ring-`i` time `T`): "the hypotheses / the conclusions
   (a)–(c) of `thm:quiet` hold for ring `i` on `[0,T]`";
 * `S.ActiveInitK`, `S.ActiveFieldK`, `S.CoefK` ((Init), (Field), (Coef) of `thm:active` for ring `k`
@@ -38,7 +43,7 @@ open RingData
 
 variable (P : Approx)
 
-/-- **The configuration of ring `k` with time origin `t♯_k`** (`09_relay.tex:759-767`): the
+/-- **The configuration of ring `k` with time origin `t♯_k`** (`sec:bootstrap-active-checks`, Part II, Appendix C.17, active-time pullback): the
 vorticity `ω^{(n)}(t♯_k)` in ring-`k` units, split into its parts on `S_k(t♯_k)` (ring), on
 `D_{k+1}(t♯_k)` (inner) and on `S_1(t♯_k) ∪ … ∪ S_{k-1}(t♯_k)` (outer). `thm:active` is applied to
 it with `G = G_k`, `κ = κ♯_k`; its solution is `ω^{(n)}(t♯_k + ·/A_k)` in ring-`k` units, its
@@ -58,12 +63,12 @@ theorem activeConfig_inner0 (k : ℕ) :
 theorem activeConfig_outer0 (k : ℕ) :
     (P.activeConfig k).outer0 = P.unitsVort k (P.omegaOut k (P.tsh k)) := rfl
 
-/-- `h^out_1 = 0`: no ring lies outside ring `1` (`lem:transfer-step`(2), `09_relay.tex:182`). -/
+/-- `h^out_1 = 0`: no ring lies outside ring `1` (`lem:transfer-step`(2), `lem:transfer-step`, Part II Lemma C.7). -/
 theorem hOut_one (τ : ℝ) : P.hOut 1 τ = 0 := by
   funext y
   simp [hOut, nuOut, omegaOut, unitsVort, scaleVort, velocity]
 
-/-- `η^out_1 = 0` (`lem:transfer-step`(2), `09_relay.tex:182`). -/
+/-- `η^out_1 = 0` (`lem:transfer-step`(2), `lem:transfer-step`, Part II Lemma C.7). -/
 theorem etaOut_one (Mh : ℕ) (τ : ℝ) : P.etaOut Mh 1 τ = 0 := by
   have h0 : ∀ q : ℕ, supIterDerivE q annN' (0 : ℂ → ℂ) = 0 := by
     intro q
@@ -85,10 +90,10 @@ namespace Standing
 
 variable (S : Standing)
 
-/-! ### `thm:quiet` for ring `i` (`09_relay.tex:72-84`) -/
+/-! ### `thm:quiet` for ring `i` (`sec:relay-data`, Part II, Appendix C.1) -/
 
 /-- **The hypotheses of `thm:quiet` hold for ring `i` on `[0,T]`** (`T` in ring-`i` time), with
-`G = G_i`, `h = h_i`, `η = η_i`, `maj = maj_i` (`09_relay.tex:72-84`, `:315-319`):
+`G = G_i`, `h = h_i`, `η = η_i`, `maj = maj_i` (`sec:relay-data`, Part II, Appendix C.1, `lem:O`, Part II Lemma C.8):
 * `1 ≤ i < n`, so ring `i` starts at `Φ` in ring-`i` units (`ω_r(0) = Φ`);
 * the geometric hypotheses of `lem:reduction` in ring-`i` units on `[0,T]`: for `t ∈ [0, T/A_i]`,
   `D_{i+1}(t) ⊂ B_{a r_i/8}` and the rings `l < i` lie outside `B_{6 r_i}` (`HDefined`); the
@@ -108,13 +113,13 @@ structure QuietHyp (i : ℕ) (T : ℝ) : Prop where
   maj_le : ∀ τ ∈ Icc (0 : ℝ) T, S.maj i τ ≤ S.majst
 
 /-- **The conclusions (a)–(c) of `thm:quiet` hold for ring `i` on `[0,T]`** (`T` in ring-`i` time;
-`05_single_ring.tex:415-427` read for ring `i`, `09_relay.tex:76-80`): for `τ ∈ [0,T]`, `t = τ/A_i`,
+`thm:quiet`, Part II Theorem 2.8 read for ring `i`, `sec:relay-data`, Part II, Appendix C.1): for `τ ∈ [0,T]`, `t = τ/A_i`,
 (a) every trajectory of ring `i` moves radially by at most `C_Δ maj_i(τ)` (in ring-`i` units) on
 `[0,t]`: `||Φ_{t'}(x)| - |x|| ≤ r_i C_Δ maj_i(τ)` for `x ∈ S_i`, `t' ∈ [0,t]`; and
 `S_i(t) ⊂ 𝒩₋_i = r_i 𝒩₋` (`supp ω_r(t) ⊂ 𝒩₋` in ring-`i` units);
 (b) `‖w_i(t) - wlin_i(τ)‖_{H^{s_h}} ≤ C_Q maj_i(τ)²`, with the linear response `wlin_i` of `h_i`;
 (c) `‖w_i(t)‖_{H^{s_h}} ≤ C_Q maj_i(τ)`.
-The clause "`w` solves `eq:ring`" of (a) is not used in Sections 9–11 and is omitted (it is part of
+The clause "`w` solves `eq:ring`" of (a) is not used in the relay construction (Part II Sections 6–8 and Appendix C) and is omitted (it is part of
 `OneRing.IsQuietConst` for the configuration `P.ringConfig i`). -/
 structure QuietConcl (i : ℕ) (T : ℝ) : Prop where
   radial : ∀ τ ∈ Icc (0 : ℝ) T, ∀ x ∈ S.P.S i, ∀ t' ∈ Icc (0 : ℝ) (τ / S.P.A i),
@@ -124,14 +129,14 @@ structure QuietConcl (i : ℕ) (T : ℝ) : Prop where
     Sob.normH S.sh (S.P.w i (τ / S.P.A i) - (S.wlinK i τ).fn) ≤ S.CQ * S.maj i τ ^ 2
   bound : ∀ τ ∈ Icc (0 : ℝ) T, Sob.normH S.sh (S.P.w i (τ / S.P.A i)) ≤ S.CQ * S.maj i τ
 
-/-! ### `thm:active` for ring `k` (`09_relay.tex:759-767`) -/
+/-! ### `thm:active` for ring `k` (`sec:bootstrap-active-checks`, Part II, Appendix C.17, active-time pullback) -/
 
-/-- **(Init) of `thm:active` for ring `k`** (`05_single_ring.tex:886` at time origin `t♯_k`):
+/-- **(Init) of `thm:active` for ring `k`** (`thm:active`, Part II Theorem 2.12 at time origin `t♯_k`):
 `‖w_k(t♯_k)‖_{H^{M-1}} ≤ C₀ κ♯_k` and `supp(Φ + w_k(t♯_k)) ⊂ 𝒩₋`, i.e. `S_k(t♯_k) ⊂ 𝒩₋_k`. -/
 def ActiveInitK (C₀ : ℝ) (k : ℕ) : Prop :=
   Sob.normH (S.M - 1) (S.P.w k (S.P.tsh k)) ≤ C₀ * S.P.ksh k ∧ S.P.St k (S.P.tsh k) ⊆ S.P.Nmk k
 
-/-- **(Field) of `thm:active` for ring `k`** on `[0,ū]` (`05_single_ring.tex:887-889` with
+/-- **(Field) of `thm:active` for ring `k`** on `[0,ū]` (`thm:active`, Part II Theorem 2.12 with
 `h(u) = h_k(t̄♯_k + u)`, `κ = κ♯_k`, `σ = σ_k`, `M = S.M`, `p = 3`): `h_k(t̄♯_k + u) = h₁(u) + h₂(u)`
 near `N'`, with `‖h₁(u)‖_{C^M(N')} ≤ C₀κ♯_k⟨u⟩^p` and `‖h₂(u)‖_{C^M(N')} ≤ η_b â_k(u)` (memberships
 explicit, as in `OneRing.RingConfig.ActiveField`). -/
@@ -144,7 +149,7 @@ def ActiveFieldK (C₀ ηb : ℝ) (k : ℕ) (ubar : ℝ) : Prop :=
       MemCk S.M annN' (h₂ u) ∧
       normCk S.M annN' (h₂ u) ≤ ηb * S.ahatK k u
 
-/-- **(Coef) of `thm:active` for ring `k`** on `[0,ū]` (`05_single_ring.tex:890` with `c = c_k`,
+/-- **(Coef) of `thm:active` for ring `k`** on `[0,ū]` (`thm:active`, Part II Theorem 2.12 with `c = c_k`,
 `κ = κ♯_k`, `σ = σ_k`): `|c_k(u)| ≤ κ♯_k(2 + C₀⟨u⟩^p e^{-σ_k u})`. -/
 def CoefK (C₀ : ℝ) (k : ℕ) (ubar : ℝ) : Prop :=
   ∀ u ∈ Icc (0 : ℝ) ubar,
@@ -152,7 +157,7 @@ def CoefK (C₀ : ℝ) (k : ℕ) (ubar : ℝ) : Prop :=
       S.P.ksh k * (2 + C₀ * Prelim.jap u ^ OneRing.pW * Real.exp (-(S.P.sigma k * u)))
 
 /-- **The conclusions (a)–(b) of `thm:active` for ring `k` at active time `u`**
-(`05_single_ring.tex:893-899` read with `09_relay.tex:759-767`), `t = t♯_k + u/A_k`:
+(`thm:active`, Part II Theorem 2.12 read with `sec:bootstrap-active-checks`, Part II, Appendix C.17, active-time pullback), `t = t♯_k + u/A_k`:
 (a) every trajectory of ring `k` moves radially by at most `C₂δ₀ + κ♯_k^{1/2}` (ring-`k` units)
 between `t♯_k` and `t`: `||Φ_{t',t♯_k}(x)| - |x|| ≤ r_k(C₂δ₀ + κ♯_k^{1/2})` for `x ∈ S_k(t♯_k)`,
 `t' ∈ [t♯_k, t]` (`Φ_{t',t♯_k}` the flow of `v^{(n)}` from time `t♯_k`); and
@@ -171,7 +176,7 @@ structure ActiveConclAB (C₀ ηb : ℝ) (k : ℕ) (u : ℝ) : Prop where
     S.C2 * S.ahatK k u * (1 + S.rhoHatK C₀ k u)
 
 /-- **The conclusions of `thm:active` and `cor:active-moment` for ring `k` at active time `u`**
-(`05_single_ring.tex:893-899`, `:1104-1111`; `09_relay.tex:759-767`): (a)–(b) (`ActiveConclAB`) and,
+(`thm:active`, Part II Theorem 2.12, `cor:active-moment`, Part II Corollary 2.13; `sec:bootstrap-active-checks`, Part II, Appendix C.17, active-time pullback): (a)–(b) (`ActiveConclAB`) and,
 with `q(u) = 2π pout_3[w_k(t)]`, `t = t♯_k + u/A_k`,
 `|q(u) - 2π pout_*(G_k) c_k(u) e^{λ_k u}| ≤ 2π C₃ â_k(u)[ρ̂_k(u) + â_k(u) + κ♯_k^{1/2} + η_b]`. -/
 structure ActiveConclAt (C₀ ηb : ℝ) (k : ℕ) (u : ℝ) : Prop extends
@@ -183,13 +188,13 @@ structure ActiveConclAt (C₀ ηb : ℝ) (k : ℕ) (u : ℝ) : Prop extends
       (S.rhoHatK C₀ k u + S.ahatK k u + Real.sqrt (S.P.ksh k) + ηb)
 
 /-- **The conclusions of `thm:active` and `cor:active-moment` hold for ring `k` on `Ph_k`**
-(`09_relay.tex:759-767`), with `G = G_k`, `κ = κ♯_k`, the constant `C₀` and `η_b`: for every
+(`sec:bootstrap-active-checks`, Part II, Appendix C.17, active-time pullback), with `G = G_k`, `κ = κ♯_k`, the constant `C₀` and `η_b`: for every
 active time `u ∈ [0, T̂_k]` (`t ∈ Ph_k = [t♯_k, T_k]`). -/
 def ActiveConcl (C₀ ηb : ℝ) (k : ℕ) : Prop :=
   ∀ u ∈ Icc (0 : ℝ) (S.P.That k), S.ActiveConclAt C₀ ηb k u
 
 /-- **The conclusions (a)–(b) of `thm:active` hold for ring `k` on `Ph_k`** (as used by
-`lem:readout`, `09_relay.tex:1414-1416`). -/
+`lem:readout` (historical), `prop:reduction`, Part II Proposition 1.2, readout proof in Section 8). -/
 def ActiveConclABOn (C₀ ηb : ℝ) (k : ℕ) : Prop :=
   ∀ u ∈ Icc (0 : ℝ) (S.P.That k), S.ActiveConclAB C₀ ηb k u
 

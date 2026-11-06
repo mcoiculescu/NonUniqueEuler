@@ -3,7 +3,7 @@ import NonUniqueEuler.Defs.SmoothB.Iteration
 import Mathlib.Analysis.Calculus.FDeriv.Equiv
 
 /-!
-# Proof: the gradient bound of the cutoff `ς_R` (`03_compactness.tex:24-27`)
+# Proof: the gradient bound of the cutoff `ς_R` (Part I §3 (`sec:compact`), auxiliary-function conventions)
 
 Proof of `I/Sec3/CutoffGrad.lean`. `fderiv ℝ ς` is continuous with compact support, hence
 bounded; for `R > 0`, `ς_R = ς ∘ (R⁻¹ •)`, so `Dς_R(x) = R⁻¹ • Dς(R⁻¹x)` (`fderiv_comp_smul`)
@@ -29,7 +29,7 @@ theorem bddAbove_norm_fderiv_sigmaCut :
   refine ⟨hbdd, ?_⟩
   exact (norm_nonneg _).trans (le_ciSup hbdd (0 : ℂ))
 
-/-- `03_compactness.tex:26-27`: `|∇ς_R| ≤ ‖∇ς‖_{L^∞}/R` for `R > 0`. -/
+/-- Part I §3 (`sec:compact`), auxiliary-function conventions: `|∇ς_R| ≤ ‖∇ς‖_{L^∞}/R` for `R > 0`. -/
 theorem norm_fderiv_sigmaCutR_le {R : ℝ} (hR : 0 < R) (x : ℂ) :
     ‖fderiv ℝ (sigmaCutR R) x‖ ≤ Smooth.gradSup sigmaCut / R := by
   have hfun : sigmaCutR R = fun y : ℂ => sigmaCut (R⁻¹ • y) := by

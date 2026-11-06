@@ -10,7 +10,7 @@ import Mathlib.Analysis.Calculus.Deriv.Mul
 Proof of the interface `NonUniqueEuler/I/Verify/StepGronwall.lean` (same declarations, same
 statements).
 
-**Manuscript.** Proof of Proposition A.3, step (iii) (`A_verification.tex:406-419`).
+**Manuscript.** Proof of Part II Proposition A.3, step (iii) (`prop:enclosure`).
 
 **Proof.** Put `Z t = (κ • ψ t, ψ' t) : ℂ × ℂ`; the `Prod` norm is the max norm, so
 `‖Z t‖ = max(κ|ψ|, |ψ'|)`, and `‖Z'‖ = max(κ|ψ'|, |V||ψ|) ≤ κ‖Z‖` because `|V| ≤ q ≤ κ²`.

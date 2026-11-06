@@ -9,7 +9,7 @@ import NonUniqueEuler.I.Infra.LpInterp.Interp
 # Helper for `P/Sec3/Criterion`: items (ii) and (iii) of `thm:criterion`
 
 Manuscript: proof of `thm:criterion`, paragraph "We next prove (ii) and (iii)",
-`03_compactness.tex:996-1021`.
+Part I Theorem 3.8 (`thm:criterion`) and its proof.
 
 For a renormalized weak solution `ω` on `[0, T₀)` with datum `f` (exponent `2`), weakly
 continuous into `L²` on `[0, T₀)`:
@@ -18,7 +18,7 @@ continuous into `L²` on `[0, T₀)`:
   `X_q(T')` whenever `f ∈ L^q` (`renormalized_q_of_equimeasurable`; the identities do not involve
   `q`);
 * (iii) `ω ∈ C([0, T₀); L^q)`: `q ∈ [1, 2)` by `lem:renorm-all-t`, `q = 2` by weak continuity,
-  constant norm and `lem:RR` (`continuousIntoLpOn_two`), `q ∈ (2, r)` with `f ∈ L^r` by
+  constant norm and legacy `lem:RR` (`continuousIntoLpOn_two`), `q ∈ (2, r)` with `f ∈ L^r` by
   interpolation (R8, `continuousIntoLpOn_of_interp`).
 -/
 
@@ -117,7 +117,7 @@ theorem memLp_cutPath {s : Set ℝ} {ω : ℝ → ℂ → ℝ} {p : ℝ≥0∞}
   · simpa [cutPath, ht] using h t ht
   · simp [cutPath, ht]
 
-/-- (iii), `q = 2`: weak continuity, constant `L²` norm and `lem:RR`. -/
+/-- (iii), `q = 2`: weak continuity, constant `L²` norm and legacy `lem:RR`. -/
 theorem continuousIntoLpOn_two {s : Set ℝ} (hwc : IsWeakContL2On s ω)
     (hnorm : ∀ t ∈ s, eLpNorm (ω t) 2 volume = eLpNorm f 2 volume) :
     ContinuousIntoLpOn 2 s ω := by

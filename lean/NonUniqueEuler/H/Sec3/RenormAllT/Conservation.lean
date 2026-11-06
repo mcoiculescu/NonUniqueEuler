@@ -9,17 +9,16 @@ import NonUniqueEuler.I.Sec3.WeakContRep
 
 Helper file of `P/Sec3/RenormAllT.lean` (fully proved).
 
-Restructured argument (deviation from `03_compactness.tex:601-656`).
-With the `(a,b) = (2,2)` version of `lem:transport` (R7), the transport lemma applies to `ω`
-itself, so the bounded truncations `U_k` of the manuscript are not needed:
+Current source: the proof of Part I Lemma 3.5 (`lem:renorm-all-t`).
+The `L²` version of Lemma 3.4 (`lem:transport`) applies to `ω` itself, as it does
+in the current manuscript. The truncations `U_k` belonged to the legacy proof:
 
 * `solvesTE_restart`: by `lem:weak-cont`(c) (with `u = ω`) and the uniqueness of weakly
   continuous representatives, `ω` satisfies `(te)` on `[t₀,T)` with datum `ω(t₀)`, for every
   `t₀ ∈ [0,T)`;
 * `conservation`: `lem:transport`(ii) on `[0,T)` (datum `ω^in`) and on `[t₀,T)` (datum
   `ω(t₀)`), compared at a time `t ∈ (t₀,T)` that is exceptional for neither, gives
-  `∫β(ω(t₀)) = ∫β(ω^in)` for every `t₀ ∈ [0,T)` and `β ∈ Lip₀` (eq:conservation; this is
-  eq:Uk for `ω` in place of `U_k`).
+  `∫β(ω(t₀)) = ∫β(ω^in)` for every `t₀ ∈ [0,T)` and `β ∈ Lip₀` (Part I Equation (9), `eq:conservation`).
 
 Only the weak-solution property in `X₂(T)` is used.
 -/

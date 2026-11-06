@@ -10,7 +10,7 @@ import NonUniqueEuler.I.Infra.Sobolev.Smooth
 Helper of `P/Sec5/Energy.lean`.
 * `EnergyH.weakPartialOn_ae_eq`: for `F ∈ H^s` and `V` open, the local weak derivative
   `∂^γ F` on `V` is the global one a.e. on `V`;
-* `EnergyH.abs_re_inner_dotGrad_le`: **the transport bound** of `05_single_ring.tex:345-350`:
+* `EnergyH.abs_re_inner_dotGrad_le`: **the transport bound** of Part II Lemma 2.4:
   for real `U ∈ W^{1,∞}(N₁) ∩ H^s(N₁)` with `div U = 0` on `N₁` and `v ∈ H^{s+1}` supported in
   `N`, `|Re ⟪v, U·∇v⟫_{H^s}| ≤ n_s C_HK (‖U‖_{W^{1,∞}(N₁)} + ‖U‖_{H^s(N₁)}) ‖v‖²_{H^s}`, from
   `lem:Hk-calculus`(1) (`CP_isHkCalcConst`) summed over `|α| ≤ s`;
@@ -38,7 +38,7 @@ theorem weakPartialOn_ae_eq {s : ℕ} {F : ℂ → ℂ} (hF : MemH s F) {V : Set
 
 theorem annN_subset_annN1 : annN ⊆ annN1 := exists_chiN.choose_spec.subset
 
-/-- **The transport bound** (`05_single_ring.tex:345-350`, `lem:Hk-calculus`(1) summed over
+/-- **The transport bound** (Part II Lemma 2.4 (`lem:energy`), `lem:Hk-calculus`(1) summed over
 `|α| ≤ s`). -/
 theorem abs_re_inner_dotGrad_le {s : ℕ} (hs : 3 ≤ s) {v U : ℂ → ℂ} (hv : MemH (s + 1) v)
     (hvN : ∀ᵐ x ∂(volume : Measure ℂ), x ∉ annN → v x = 0) (hU1 : MemW1infOn annN1 U)

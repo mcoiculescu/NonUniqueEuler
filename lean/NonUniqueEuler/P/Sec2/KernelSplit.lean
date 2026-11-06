@@ -5,7 +5,7 @@ import Mathlib.MeasureTheory.Function.L1Space.Integrable
 /-!
 # Proof: the near/far splitting of the Biot–Savart kernel
 
-Proof of `I/Sec2/KernelSplit.lean` (`02_prelim.tex:129-140`). The norm of the kernel is computed
+Proof of `I/Sec2/KernelSplit.lean` (Part I, §2.2, Biot–Savart law (`sec:prelim`)). The norm of the kernel is computed
 directly from the definition (`norm_biotSavartKernel'`, valid for every `z`, including `z = 0`
 where both sides are `0`); the radial integral is `Polar.setIntegral_ball_norm_rpow` with
 exponent `-s`.
@@ -57,7 +57,7 @@ private theorem integrable_norm_kernelNear_rpow {s : ℝ} (hs0 : 0 < s) (hs2 : s
   rw [integrable_indicator_iff measurableSet_ball]
   exact (Polar.integrableOn_ball_norm_rpow (by linarith) 1).const_mul _
 
-/-- `K_near ∈ L^s(ℝ²)` for `s ∈ [1, 2)` (`02_prelim.tex:135-137`). -/
+/-- `K_near ∈ L^s(ℝ²)` for `s ∈ [1, 2)` (Part I, §2.2, Biot–Savart law (`sec:prelim`)). -/
 theorem memLp_kernelNear {s : ℝ} (hs1 : 1 ≤ s) (hs2 : s < 2) :
     MemLp kernelNear (ENNReal.ofReal s) volume := by
   have hs0 : 0 < s := by linarith
@@ -65,7 +65,7 @@ theorem memLp_kernelNear {s : ℝ} (hs1 : 1 ≤ s) (hs2 : s < 2) :
     (by simpa using hs0) ENNReal.ofReal_ne_top, ENNReal.toReal_ofReal hs0.le]
   exact integrable_norm_kernelNear_rpow hs0 hs2
 
-/-- `‖K_near‖_{L^s}^s = (2π)^{1-s}/(2-s)` for `s ∈ [1, 2)` (`02_prelim.tex:138-139`). -/
+/-- `‖K_near‖_{L^s}^s = (2π)^{1-s}/(2-s)` for `s ∈ [1, 2)` (Part I, §2.2, Biot–Savart law (`sec:prelim`)). -/
 theorem integral_norm_kernelNear_rpow {s : ℝ} (hs1 : 1 ≤ s) (hs2 : s < 2) :
     ∫ z, ‖kernelNear z‖ ^ s = (2 * Real.pi) ^ (1 - s) / (2 - s) := by
   have hs0 : 0 < s := by linarith
@@ -77,7 +77,7 @@ theorem integral_norm_kernelNear_rpow {s : ℝ} (hs1 : 1 ≤ s) (hs2 : s < 2) :
     show -s + 2 = 2 - s by ring]
   ring
 
-/-- `|K_far(z)| ≤ min{1, |z|⁻¹}/(2π)` for every `z ∈ ℝ²` (`02_prelim.tex:138-139`). -/
+/-- `|K_far(z)| ≤ min{1, |z|⁻¹}/(2π)` for every `z ∈ ℝ²` (Part I, §2.2, Biot–Savart law (`sec:prelim`)). -/
 theorem norm_kernelFar_le (z : ℂ) : ‖kernelFar z‖ ≤ min 1 ‖z‖⁻¹ / (2 * Real.pi) := by
   have hpi : 0 < 2 * Real.pi := by positivity
   rcases lt_or_ge ‖z‖ 1 with hz | hz

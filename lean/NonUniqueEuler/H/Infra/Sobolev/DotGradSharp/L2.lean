@@ -10,7 +10,7 @@ import NonUniqueEuler.Defs.Infra.Sobolev
   `H/Infra/Sobolev/Leibniz/L2.lean`);
 * `l2_sq_eq_integral`: `‖f‖₂² = ∫ |f|²`;
 * `pairNorm A B = (|A|² + |B|²)^{1/2}` and `memLp_pairNorm`: it lies in `L²` with
-  `‖pairNorm A B‖₂² = ‖A‖₂² + ‖B‖₂²` (`04_ring.tex:1564`).
+  `‖pairNorm A B‖₂² = ‖A‖₂² + ‖B‖₂²` (Part I, Lemma 4.23(3) (`lem:uniform`), proof).
 -/
 
 noncomputable section

@@ -5,7 +5,7 @@ import NonUniqueEuler.I.Infra.SobolevOneD.Basic
 /-!
 # Helper for `P/Infra/AngularFourier/NormEquiv`: the lower bound `c ∑_ℓ ‖g_ℓ‖²_{k,ℓ} ≤ ‖w‖²_{H^k}`
 
-Manuscript `lem:norm-equiv` (`04_ring.tex:851-863`), lower bound: the polar derivatives
+Manuscript: Part I, Lemma 4.12 (`lem:norm-equiv`), proof, lower bound: the polar derivatives
 `∂_θ^n ∂_r^i w` (`i + n ≤ k`) are bounded in `L²` by `C ‖w‖_{H^k}` (`polar_iter`); by Parseval
 in `θ` (`hasSum_angularSector_sq`) and `angularSector_polar`,
 `‖∂_θ^n ∂_r^i w‖²_{L²} = 2π ∑_ℓ ℓ^{2n} ‖∂_r^i g_ℓ‖²_{L²(r dr)}`; summing over `i + n ≤ k` and

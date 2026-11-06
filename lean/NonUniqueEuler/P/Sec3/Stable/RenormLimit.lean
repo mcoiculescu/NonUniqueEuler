@@ -4,9 +4,9 @@ import NonUniqueEuler.H.Sec3.Stable.RenormLimit.Basic
 import NonUniqueEuler.H.Sec3.Stable.RenormLimit.Terms
 
 /-!
-# Proof: `prop:stable`, step 3 — the limit is renormalized
+# Proof: legacy `prop:stable`, step 3 — the limit is renormalized
 
-Proof of `I/Sec3/Stable/RenormLimit.lean` (`03_compactness.tex:802-815`).
+Proof of `I/Sec3/Stable/RenormLimit.lean` (related current criterion proof: Part I Theorem 3.8 (`thm:criterion`)).
 
 Let `Υ` be a renormalization (`|Υ(a) - Υ(b)| ≤ L|a - b|`, `|Υ(s)| ≤ L|s|`) and `φ ∈ 𝒟_T` with
 `supp φ ⊂ ℝ × B_R`, `‖Dφ‖ ≤ D`, `|φ| ≤ A`.
@@ -16,7 +16,7 @@ Let `Υ` be a renormalization (`|Υ(a) - Υ(b)| ≤ L|a - b|`, `|Υ(s)| ≤ L|s|
   `L¹((0,T)×ℝ²)`: by `RenormLimitAux.lintegral_transport_sub_le` the error is at most
   `LD (∫|ωₙ - ω| + ∫|ωₙ||vₙ - v| + ∫|ωₙ - ω||v|)` over `(0,T) × B_R`. The first term tends to `0`
   by hypothesis; the second is `≤ M ∫_0^T ‖vₙ(t) - v(t)‖_{L²(B_R)} dt → 0`
-  (`prop:compact`(iii)); the third tends to `0` by the weak `L²` argument of the manuscript
+  (legacy `prop:compact`(iii)); the third tends to `0` by the weak `L²` argument of the legacy proof
   (`RenormLimitAux.tendsto_lintegral_sub_mul`; `‖ωₙ(t) - ω(t)‖₂ ≤ 2M`, `v ∈ L^∞(0,T;L²(B_R))`).
   The data converge in `L¹`: `|Υ(gₙ) - Υ(g)||φ(0)| ≤ LA|gₙ - g|`.
 -/
@@ -30,7 +30,7 @@ namespace NonUniqueEuler.Compact
 
 open Weak RenormLimitAux
 
-/-- For `t ∈ [0, T]`, `‖ω(t)‖_{L²} ≤ M` for the limit (lower semicontinuity, `prop:compact`(ii)). -/
+/-- For `t ∈ [0, T]`, `‖ω(t)‖_{L²} ≤ M` for the limit (lower semicontinuity, legacy `prop:compact`(ii)). -/
 private theorem eLpNorm_limit_le {T M : ℝ} {gs : ℕ → ℂ → ℝ} {g : ℂ → ℝ} {ωs : ℕ → ℝ → ℂ → ℝ}
     {ω : ℝ → ℂ → ℝ} (hseq : IsCompactSeq T M gs g ωs) (hlim : IsCompactLimit T g ωs ω)
     {t : ℝ} (ht : t ∈ Icc 0 T) : eLpNorm (ω t) 2 volume ≤ ENNReal.ofReal M := by
@@ -150,8 +150,8 @@ private theorem tendsto_lintegral_datum {T M : ℝ} {gs : ℕ → ℂ → ℝ} {
     _ ≤ ENNReal.ofReal (L * A) * normL1LpE 2 (gs n - g) := by
         gcongr; exact eLpNorm_one_le_normL1LpE 2 _
 
-/-- **`prop:stable`, step 3** (`03_compactness.tex:802-815`): if, in the setting of
-`prop:stable`, `ωₙ → ω` in `L¹((0,T) × B_R)` for every `R > 0`, then `ω` is a renormalized weak
+/-- **legacy `prop:stable`, step 3** (retained legacy stability step): if, in the setting of
+legacy `prop:stable`, `ωₙ → ω` in `L¹((0,T) × B_R)` for every `R > 0`, then `ω` is a renormalized weak
 solution in `X₂(T)` with datum `g`. -/
 theorem stable_renormalized {T M : ℝ} {gs : ℕ → ℂ → ℝ} {g : ℂ → ℝ} {ωs : ℕ → ℝ → ℂ → ℝ}
     {ω : ℝ → ℂ → ℝ} (hseq : IsCompactSeq T M gs g ωs) (hlim : IsCompactLimit T g ωs ω)

@@ -8,8 +8,8 @@ import NonUniqueEuler.H.Sec4.Sector.LogPotReal.Integrable
 /-!
 # Proof: the logarithmic potential of `g(|y|)e^{iℓθ}` at a point `r > 0` of the real axis
 
-Proof of `I/Sec4/Sector/LogPotReal.lean` (`lem:sector`(1), `04_ring.tex:206-208`, proof
-`:244-256`). Following the interface's proof sketch (a deviation in the proof only: polar
+Proof of `I/Sec4/Sector/LogPotReal.lean` (Part I Lemma 4.5(1) (`lem:sector`), proof
+Part I Lemma 4.5 (`lem:sector`)). Following the interface's proof sketch (a deviation in the proof only: polar
 coordinates and the explicit circle integral replace the Liouville/density argument):
 1. `y ↦ log|r - y| W(y)` is integrable (`LogPotRealH.integrable_log_mul_ofProfile`, Hölder);
 2. polar coordinates (`Polar.integral_eq_integral_Ioi_intervalIntegral`);

@@ -4,7 +4,7 @@ import Mathlib.MeasureTheory.Measure.Lebesgue.VolumeOfBalls
 /-!
 # Helper for `lem:iter-Hs`: the case `s = 1`
 
-Helper of `P/SmoothB/IterHs.lean` (`B_global_smooth.tex:316-318`): by `lem:iterates`(i)–(ii)
+Helper of `P/SmoothB/IterHs.lean` (Part II, Lemma B.8 (`lem:iter-Hs`)): by `lem:iterates`(i)–(ii)
 and `lem:iter-lip`, `‖ω^{[j]}(t)‖_{L²} = ‖ω₀‖_{L²}` and
 `‖∇ω^{[j]}(t)‖²_{L²} ≤ |B_{R(T)}| Ψ(T)² = π R(T)² Ψ(T)²` for `|t| ≤ T`, so
 `‖ω^{[j]}(t)‖_{H¹} ≤ 𝓜_1(T)`.

@@ -4,7 +4,7 @@ import NonUniqueEuler.I.Infra.Polar.Fubini
 import NonUniqueEuler.I.Infra.Sobolev.WeakDeriv
 
 /-!
-# Helper for `lem:sector`: basic facts on the sector spaces and angular sectors
+# Helper for Part I Lemma 4.5 (`lem:sector`): basic facts on the sector spaces and angular sectors
 
 Helper file of `P/Sec4/Sector.lean` (fully proved). Copied (namespace changed) from
 `H/Sec4/SemigroupConstruct/Basic.lean`, which no other proof may import.

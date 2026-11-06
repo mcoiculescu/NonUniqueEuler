@@ -12,7 +12,11 @@ import Mathlib.Analysis.Calculus.ContDiff.Comp
 /-!
 # Proof: `C_ε[u,w] → 0` for a smooth divergence-free field, at a fixed time
 
-Proof of `NonUniqueEuler/I/Sec3/Commutator/SliceSmooth.lean` (`03_compactness.tex:408-438`).
+Current manuscript: Part I Lemma 3.3 (`lem:commutator`). This file retains components
+of the older smooth-field proof. The current proof obtains convergence by smoothing
+`u`; the Lean decomposition smooths the vector field and uses the kernel moments.
+
+Proof of `NonUniqueEuler/I/Sec3/Commutator/SliceSmooth.lean` (the legacy smooth-field commutator argument; current treatment: Part I Lemma 3.3 (`lem:commutator`)).
 
 * Reduction: `C_ε[u,g](t)` depends on `u(t)` only through its a.e. class, so `u(t)` may be
   replaced by a strongly measurable representative `f` (this makes every parametric integral
@@ -32,7 +36,7 @@ Proof of `NonUniqueEuler/I/Sec3/Commutator/SliceSmooth.lean` (`03_compactness.te
 
 Deviation (harmless): the bound on `E_ε` is obtained from the approximate identity applied to
 `|f|` (which bounds `∫_{B_R}∫_{B₁}|f(x-εz)|dz dx` for small `ε`) instead of Tonelli and
-translation invariance; the conclusion is the manuscript's `‖E_ε(t)‖_{1,R} = O(ε)`.
+translation invariance; the conclusion is the legacy proof's `‖E_ε(t)‖_{1,R} = O(ε)`.
 
 Helper names live in the namespace `NonUniqueEuler.Weak.SliceSmoothH`.
 -/
@@ -46,7 +50,7 @@ namespace NonUniqueEuler.Weak
 
 namespace SliceSmoothH
 
-/-- The kernel `ψ(z) = ℓ(z) Dρ(z) v` (`ψ^{ij}` of `03_compactness.tex:415`). -/
+/-- The kernel `ψ(z) = ℓ(z) Dρ(z) v` (`ψ^{ij}` of the legacy smooth-field commutator argument; current treatment: Part I Lemma 3.3 (`lem:commutator`)). -/
 def psi (ρ : ℂ → ℝ) (ℓ : ℂ →L[ℝ] ℝ) (v : ℂ) (z : ℂ) : ℝ :=
   ℓ z * fderiv ℝ ρ z v
 
@@ -188,7 +192,7 @@ theorem locallyIntegrable_norm {f : ℂ → ℝ} (hf : LocallyIntegrable f volum
     LocallyIntegrable (fun y => ‖f y‖) volume :=
   locallyIntegrable_iff.2 fun _ hk => (hf.integrableOn_isCompact hk).norm
 
-/-- The pointwise decomposition and bound (`03_compactness.tex:418-424`): for `x ∈ B_R` and
+/-- The pointwise decomposition and bound (the legacy smooth-field commutator argument; current treatment: Part I Lemma 3.3 (`lem:commutator`)): for `x ∈ B_R` and
 `0 < ε ≤ 1`, `|C_ε(x)| ≤ M Σ|D_{ji,ε}(x)| + KLε (|D_{5,ε}(x)| + |B₁| |f(x)|)`. -/
 theorem norm_commEps_le {ρ : ℂ → ℝ} (hρ : IsMollifier ρ) {g : ℂ → ℂ} (hg : ContDiff ℝ 2 g)
     (hdiv : ∀ x, (fderiv ℝ g x 1).re + (fderiv ℝ g x Complex.I).im = 0)
@@ -399,7 +403,7 @@ theorem tendsto_main {ρ : ℂ → ℝ} (hρ : IsMollifier ρ) {g : ℂ → ℂ}
 
 end SliceSmoothH
 
-/-- Smooth fields (`03_compactness.tex:408-438`): for `g ∈ C²` with `div g = 0` and
+/-- Smooth fields (the legacy smooth-field commutator argument; current treatment: Part I Lemma 3.3 (`lem:commutator`)): for `g ∈ C²` with `div g = 0` and
 `u(t) ∈ L¹_loc`, `C_ε[u,g](t) → 0` in `L¹(B_R)` as `ε → 0⁺`. -/
 theorem tendsto_lintegral_commEps_ball_of_contDiff {ρ : ℂ → ℝ} (hρ : IsMollifier ρ)
     {g : ℂ → ℂ} (hg : ContDiff ℝ 2 g)

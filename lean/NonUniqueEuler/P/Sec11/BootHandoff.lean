@@ -9,18 +9,20 @@ import NonUniqueEuler.I.Sec9.Handoff
 import NonUniqueEuler.I.Sec9.Amp
 
 /-!
-# Proof: Step 3 of the proof of `prop:bootstrap` (the hand-off of ring `k` at `t♯_k`)
+# Proof: Lean step 3 of the historical bootstrap decomposition (the hand-off of ring `k` at `t♯_k`)
 
-Proof of the interface `I/Sec11/BootHandoff.lean` (`11_bootstrap.tex:298-388`). The steps, in the
-manuscript's order:
+Proof of the interface `I/Sec11/BootHandoff.lean` (Part II Appendix C.16
+(`sec:bootstrap-handoff-checks`)). The checks, in their order in Appendix C.16:
 1. `eq:boot-kappa` (`BootHandoffH.kappa`);
 2. `lem:kicktrue` (`kicktrue`, hypotheses `BootHandoffH.kickTrueHyp`): `eq:boot-kick`;
 3. `lem:quiet-time`, `lem:theta-quiet` (`BootHandoffH.theta`): `eq:boot-theta`; `prop:relay`
-   (`relay`, hypotheses `BootHandoffH.relayHyp`): `eq:relay` at `t̄♯_k`; `lem:gamma` and (κ7)
-   (`BootHandoffH.xiNext_le`); `lem:K1` (`K1_bound`): `maj_k(t̄♯_k) ≤ Āε_k` and
+   (`relay`, hypotheses `BootHandoffH.relayHyp`): `eq:relay` at `t̄♯_k`; the exponent comparison
+   in Appendix C.16 (`sec:bootstrap-handoff-checks`) and (κ7)
+   (`BootHandoffH.xiNext_le`); the `K₁` comparison in §6 (`par:relay-handoff`) (`K1_bound`):
+   `maj_k(t̄♯_k) ≤ Āε_k` and
    `2maj_k(t̄♯_k) ≤ ½K₁|c^in_k|`;
-4. `lem:handoff` (`handoff`): `eq:handoff`; `cor:amp` (`amp`): the amplitude bounds; then the clock
-   is defined up to level `k`;
+4. `lem:handoff` (`handoff`) gives `eq:handoff`; Lean `amp` gives the amplitude bounds
+   in §6 (`par:relay-handoff`), and the clock is defined up to level `k`;
 5. `eq:boot-switch`.
 -/
 
@@ -34,9 +36,12 @@ namespace Relay
 
 open RingData Datum
 
-/-- **Step 3 of the proof of `prop:bootstrap`** (`11_bootstrap.tex:298-388`): the hand-off of ring
-`k < n` at `t♯_k`. Given Step 0, (BA°)(t♯_k), `lem:geometry` with `t♯_k`, Step 2 on `[0, t♯_k]`, Step 3
-at the levels `i ∈ (k, n)` and Step 4 for ring `k+1` on `Ph_{k+1}`, the conclusions of Step 3 hold at
+/-- **Lean step 3 of the historical bootstrap decomposition** (Part II Appendix C.16
+(`sec:bootstrap-handoff-checks`)): the hand-off of ring
+`k < n` at `t♯_k`. Given Lean step 0, (BA°)(t♯_k), `lem:geometry` with `t♯_k`, Lean step 2 on
+`[0, t♯_k]`, Lean step 3
+at the levels `i ∈ (k, n)` and Lean step 4 for ring `k+1` on `Ph_{k+1}`, the conclusions of Lean
+step 3 hold at
 the level `k` (`S.HandoffStep k`). -/
 theorem boot_handoff (S : Standing) (hS : S.Holds) (hL : S.ParamLists) {k : ℕ}
     (hk : k ∈ Finset.Ico 1 S.P.n) (hc : S.P.ClockUpTo (k + 1)) (hkt : S.P.tsh k ≤ S.P.Tend)
@@ -51,13 +56,13 @@ theorem boot_handoff (S : Standing) (hS : S.Holds) (hL : S.ParamLists) {k : ℕ}
   have hDet := hL.det
   have hK1 := hpos.K1_pos
   have htsh0 := BootHandoffH.tsh_nonneg hS hk1 hkn hc
-  -- Step 3.1: `eq:boot-kappa`
+  -- Lean step 3.1: `eq:boot-kappa`
   obtain ⟨hκpos, hκle⟩ := BootHandoffH.kappa hS hL hk hc h0 hdeep
-  -- Step 3.2: `lem:kicktrue`, `eq:boot-kick`
+  -- Lean step 3.2: `lem:kicktrue`, `eq:boot-kick`
   obtain ⟨hqs, hkick⟩ := kicktrue S hS hDet S.one_le_C0 hK1 hk1 hkn hc
     (BootHandoffH.kickTrueHyp hS hL hk hc h0 hgeo hquiet hdeep hact)
   have hkickT := hkick S.P.Tpin ⟨hS.Tpin_pos.le, le_rfl⟩
-  -- Step 3.3: `eq:boot-theta`, `eq:relay`, `lem:K1`
+  -- Lean step 3.3: `eq:boot-theta`, `eq:relay`, the `K₁` comparison in §6 (`par:relay-handoff`)
   obtain ⟨hθle, hθsmall⟩ := BootHandoffH.theta hS hL hk hc h0 hdeep
   have hθhalf : S.theta k * S.P.tash k ≤ 1 / 2 := hθle.trans (hθsmall.trans (min_le_left _ _))
   have hrelay : S.maj k (S.P.tash k) ≤ S.relayBound k (S.XiNext S.C0 S.K1 k) :=
@@ -72,7 +77,7 @@ theorem boot_handoff (S : Standing) (hS : S.Holds) (hL : S.ParamLists) {k : ℕ}
   have hmaj : S.maj k (S.P.tash k) ≤ S.Abar * S.P.eps k := hm1.trans hm2
   have hcin : 2 * S.maj k (S.P.tash k) ≤ 1 / 2 * S.K1 * ‖S.P.cinK k‖ :=
     (hm3 (S.P.kickQs k) hqs.1 hkickT.1).2
-  -- Step 3.4: `lem:handoff`, `eq:handoff`
+  -- Lean step 3.4: `lem:handoff`, `eq:handoff`
   have hmaj0 : 0 ≤ S.maj k (S.P.tash k) :=
     BootHandoffH.maj_nonneg k (mul_nonneg (BootHandoffH.A_pos hS k).le htsh0)
   have hθ0 := BootHandoffH.theta_nonneg hpos hS k
@@ -104,7 +109,7 @@ theorem boot_handoff (S : Standing) (hS : S.Holds) (hL : S.ParamLists) {k : ℕ}
       theta_small := hθK
       maj_le_cin := by linarith [hcin, hmaj0]
       maj_small := hsmall }
-  -- `cor:amp`: the amplitude bounds
+  -- the amplitude bounds in §6 (`par:relay-handoff`): the amplitude bounds
   have hSk : S.P.PertDefined k (S.P.tsh k) := hHO.2.2.2.2.trans (BootHandoffH.Nmk_subset_Nk k)
   obtain ⟨hA1, hA2⟩ := amp S hS hDet hk1 hkn hc hin hSk hHO.1 hHO.2.1 hqs hkickT
   -- the clock is defined up to level `k`
@@ -125,7 +130,7 @@ theorem boot_handoff (S : Standing) (hS : S.Holds) (hL : S.ParamLists) {k : ℕ}
       exact ⟨hSk, hkpos, hklt⟩
     · exact hc i (Finset.mem_Icc.2 ⟨by have := (Finset.mem_Icc.1 hi).1; omega,
         (Finset.mem_Icc.1 hi).2⟩)
-  -- Step 3.5: `eq:boot-switch`
+  -- Lean step 3.5: `eq:boot-switch`
   have hsw : Sob.normH S.s (S.P.w k (S.P.tsh k)) ≤ S.Chand * S.P.ksh k :=
     (BootHandoffH.normH_mono (BootHandoffH.s_le_sh S) _).trans hHO.2.2.2.1
   have hswC0 : S.Chand * S.P.ksh k ≤ S.C0 * S.P.ksh k :=

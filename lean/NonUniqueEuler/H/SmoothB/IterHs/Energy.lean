@@ -7,7 +7,7 @@ import Mathlib.Analysis.InnerProductSpace.Calculus
 /-!
 # Helper for `lem:iter-Hs`: the energy identity for the top-order derivatives
 
-Helper of `P/SmoothB/IterHs.lean` (`B_global_smooth.tex:322-336`). Generic facts, for a jointly
+Helper of `P/SmoothB/IterHs.lean` (Part II, Lemma B.8 (`lem:iter-Hs`)). Generic facts, for a jointly
 smooth family `w(t, x)` whose spatial supports lie in a fixed compact set for `t` in an open set:
 
 * `inner_toHk_eq`: `⟪f, g⟫_{H^k} = ∑_{|γ| ≤ k} ∫ conj(∂^γ f) ∂^γ g` (classical derivatives) for

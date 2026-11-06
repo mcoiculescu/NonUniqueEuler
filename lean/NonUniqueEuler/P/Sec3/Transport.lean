@@ -8,10 +8,13 @@ import NonUniqueEuler.H.Sec3.Transport.Conservation
 /-!
 # Proof: `lem:transport` (renormalization, conservation and uniqueness for `(te)`), `a = b = 2`
 
-Proof of `I/Sec3/Transport.lean` (`03_compactness.tex:463-547`). Same declarations, same
-statements.
+Current Part I Lemma 3.4 (`lem:transport`) contains only (i) and (ii). The former
+item (iii), retained below as `transport_eq_zero`, is the zero-datum consequence
+of (ii) with `β = |·|`, not a third item in the current manuscript.
 
-**(i)** (`transport_renorm`). By `lem:lip-renorm` (`I/Sec3/LipRenorm.lean`) it suffices to treat
+Proof of `I/Sec3/Transport.lean` (Part I Lemma 3.4 (`lem:transport`) and its proof). The interface and proof declarations agree.
+
+**(i)** (`transport_renorm`). By legacy `lem:lip-renorm` (`I/Sec3/LipRenorm.lean`) it suffices to treat
 renormalizations `Υ` (`C¹`, `Υ'` bounded, `Υ(0) = 0`), under the standing assumptions `IsTEData`
 of `(te)` (`TransportH.isTEData_of_transport`: `u ∈ L^∞(0,T;L¹)`, `w ∈ L^∞(0,T;L²(B_R))`,
 `uw ∈ L¹`, `u₀ ∈ L¹`). For a renormalization (`TransportH.solvesTE_renormalization`,
@@ -26,7 +29,7 @@ extension by `0`, `H/Sec3/Transport/CommSlab.lean`).
 `α(t)ς_{n+1}(x)`, let `n → ∞` (dominated convergence; the flux term is
 `≤ L‖α‖_∞‖∇ς‖_∞ (n+1)⁻¹ ‖uw‖_{L¹}`), and apply `lem:dbr` to `B(t) = ∫β(u(t))`.
 
-**(iii)** (`transport_eq_zero`). (ii) with `β = |·|` gives `∫|u(t)| = ∫|u₀| = 0` for a.e.
+**Legacy (iii)** (`transport_eq_zero`). (ii) with `β = |·|` gives `∫|u(t)| = ∫|u₀| = 0` for a.e.
 `t ∈ (t₀,T)`; Tonelli on the slab.
 
 **Deviations.** The manuscript extends `u, w` to `(t₀-1,T)` and recovers the datum by testing
@@ -42,7 +45,7 @@ open scoped ENNReal
 
 namespace NonUniqueEuler.Weak
 
-/-- `lem:transport`(i) with `a = b = 2` (`03_compactness.tex:463-474`): under the hypotheses of
+/-- `lem:transport`(i) with `a = b = 2` (Part I Lemma 3.4 (`lem:transport`) and its proof): under the hypotheses of
 the lemma, for every `Υ ∈ Lip₀`, `Υ(u)` satisfies `(te)` on `[t₀,T)` with field `w` and datum
 `Υ(u₀)`. -/
 theorem transport_renorm {T t₀ : ℝ} (hT : 0 < T) (ht₀ : t₀ ∈ Ico 0 T) {w : ℝ → ℂ → ℂ}
@@ -55,7 +58,7 @@ theorem transport_renorm {T t₀ : ℝ} (hT : 0 < T) (ht₀ : t₀ ∈ Ico 0 T) 
   lipRenorm hT ht₀ (TransportH.isTEData_of_transport ht₀ hw hu1 huw hu₀1)
     fun _ hΥ => TransportH.solvesTE_renormalization hT ht₀ hw hu1 hu2 huw hu₀1 hu₀2 hte hΥ
 
-/-- `lem:transport`(ii) with `a = b = 2` (`03_compactness.tex:475-476`): under the hypotheses
+/-- `lem:transport`(ii) with `a = b = 2` (Part I Lemma 3.4 (`lem:transport`) and its proof): under the hypotheses
 of the lemma, for every `Υ ∈ Lip₀` and a.e. `t ∈ (t₀,T)`, `Υ(u(t))` is integrable and
 `∫Υ(u(t)) = ∫Υ(u₀)`. -/
 theorem transport_conservation {T t₀ : ℝ} (hT : 0 < T) (ht₀ : t₀ ∈ Ico 0 T) {w : ℝ → ℂ → ℂ}
@@ -69,7 +72,7 @@ theorem transport_conservation {T t₀ : ℝ} (hT : 0 < T) (ht₀ : t₀ ∈ Ico
   fun β hβ => TransportH.conservation_of_solvesTE ht₀ hw hu1 huw hu₀1 hβ
     (transport_renorm hT ht₀ hw hu1 hu2 huw hu₀1 hu₀2 hte β hβ)
 
-/-- `lem:transport`(iii) with `a = b = 2` (`03_compactness.tex:477`): under the hypotheses of
+/-- the legacy uniqueness consequence of `lem:transport`(ii) with `a = b = 2` (Part I Lemma 3.4 (`lem:transport`) and its proof): under the hypotheses of
 the lemma, if `u₀ = 0` a.e., then `u = 0` a.e. on `(t₀,T) × ℝ²`. -/
 theorem transport_eq_zero {T t₀ : ℝ} (hT : 0 < T) (ht₀ : t₀ ∈ Ico 0 T) {w : ℝ → ℂ → ℂ}
     (hw : IsBddH1DivFreeField (Ioo 0 T) w) {u : ℝ → ℂ → ℝ} {u₀ : ℂ → ℝ}

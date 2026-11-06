@@ -10,7 +10,7 @@ Helper of `P/Sec5/Quiet/Approx.lean` (fully proved). Namespace `NonUniqueEuler.O
 
 * `duhFn χ k G g t`: the function of `∫₀ᵗ e^{(t-τ)L(G)} g(τ) dτ ∈ Y^k(N)` (`g(τ)` enters through
   `Sect.toY k N`);
-* `duhFn_spec` (`lem:duhamel`, `05_single_ring.tex:52-57`): for `g ∈ C([0,T];X^{k+1})`,
+* `duhFn_spec` (`lem:duhamel`, Part II Lemma 2.1): for `g ∈ C([0,T];X^{k+1})`,
   `duhFn ∈ C([0,T];X^{k+1}) ∩ C¹([0,T];X^k)` with `∂_t duhFn = L(G) duhFn + g` (with `L(G)` on
   functions, `Lin.Lfn`), `duhFn(0) = 0`, real for real `g`;
 * `duhFn_bound`: `‖duhFn(t)‖_{H^k} ≤ C ∫₀ᵗ e^{σ(t-τ)} ‖g(τ)‖_{H^k} dτ` whenever
@@ -53,7 +53,7 @@ theorem memX_of_hasDerivWithinAt {s : ℕ} {T t : ℝ} (hT : 0 < T) (ht : t ∈ 
     hasDerivWithinAt_const _ _ _
   exact (uniqueDiffOn_Icc hT t ht).eq_deriv _ h2 h3
 
-/-- **`lem:duhamel` on plane functions** (`05_single_ring.tex:52-57`). -/
+/-- **`lem:duhamel` on plane functions** (Part II Lemma 2.1). -/
 theorem duhFn_spec (χ : ℝ → ℝ) (hχ : IsAdmissibleCutoff χ) {G : ℝ}
     (hG : G ∈ Icc (0 : ℝ) Gbar) {T : ℝ} (hT : 0 < T) (k : ℕ) {g : ℝ → ℂ → ℂ}
     (hg : PathC (k + 1) T g) :

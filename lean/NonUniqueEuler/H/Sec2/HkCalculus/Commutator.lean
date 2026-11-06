@@ -5,11 +5,11 @@ import NonUniqueEuler.I.Infra.Sobolev.ReIm
 /-!
 # Helper for `P/Sec2/HkCalculus`: the commutator bound of `lem:Hk-calculus`(1)
 
-`02_prelim.tex:690-731`. For a real vector field `Ũ ∈ W^{1,∞}(ℝ²) ∩ H^k(ℝ²)` equal to `U` on a
+Part II, Lemma 1.10 (`lem:Hk-calculus`). For a real vector field `Ũ ∈ W^{1,∞}(ℝ²) ∩ H^k(ℝ²)` equal to `U` on a
 neighborhood `V` of `N` and `w ∈ H^{k+1}` vanishing outside `N`:
 * `∂^α(Ũ·∇w) = Σ_l Σ_{β ≤ α} C(α,β) ∂^β Ũ_l ∂^{α-β} ∂_l w` weakly (the weak Leibniz rule
   `hasWeakDerivOn_mul_of_memH` applied to `Ũ_l ∈ H^k` and `∂_l w ∈ H^k`);
-* `eq:Leibniz-comm`: `[∂^α, U·∇]w = Σ_l Σ_{0 < β ≤ α} C(α,β) ∂^β Ũ_l ∂^{α-β} ∂_l w` a.e.
+* the commutator expansion in the proof of Part II, Lemma 1.10 (`lem:Hk-calculus`): `[∂^α, U·∇]w = Σ_l Σ_{0 < β ≤ α} C(α,β) ∂^β Ũ_l ∂^{α-β} ∂_l w` a.e.
   (`leibSum_split`; weak derivatives commute);
 * `comm_main`: the existence of `∂^α(U·∇w)` in `L²(N₁)` and
   `‖[∂^α, U·∇]w‖_{L²} ≤ 2·2^k (‖Ũ‖_{W^{1,∞}} + ‖Ũ‖_{H^k}) ‖w‖_{H^k}` (`commRem_bound`, from the
@@ -23,7 +23,7 @@ open scoped ENNReal
 
 namespace NonUniqueEuler.Sob.HkCalcAux
 
-/-- The remainder `Σ_{0 < β ≤ α} C(α,β) ∂^β G ∂^{α-β} ∂_e w` of `eq:Leibniz-comm`. -/
+/-- The remainder `Σ_{0 < β ≤ α} C(α,β) ∂^β G ∂^{α-β} ∂_e w` of the commutator expansion in the proof of Part II, Lemma 1.10 (`lem:Hk-calculus`). -/
 def commRem (α : ℕ × ℕ) (G w : ℂ → ℂ) (e : ℕ × ℕ) (x : ℂ) : ℂ :=
   ∑ β ∈ (leIdx α).erase (0, 0), ((α.1.choose β.1 * α.2.choose β.2 : ℕ) : ℂ) *
     weakPartial β G x * weakPartial (α.1 - β.1, α.2 - β.2) (weakPartial e w) x

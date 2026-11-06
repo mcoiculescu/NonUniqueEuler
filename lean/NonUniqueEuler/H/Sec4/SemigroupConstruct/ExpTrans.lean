@@ -4,9 +4,9 @@ import Mathlib.MeasureTheory.Function.ConvergenceInMeasure
 import Mathlib.Analysis.SpecialFunctions.Exponential
 
 /-!
-# Helpers for `lem:semigroup-construct`(1): the transport group on a sector
+# Helpers for Part I Lemma 4.14(1) (`lem:semigroup-construct`): the transport group on a sector
 
-Helper file of `P/Sec4/SemigroupConstruct.lean` (fully proved). Manuscript `04_ring.tex:949-962`.
+Helper file of `P/Sec4/SemigroupConstruct.lean` (fully proved). Part I Lemma 4.14 (`lem:semigroup-construct`).
 
 * `exp_transSec_spec`: `exp(t(-iℓΩ))` on `Y^s_ℓ` is multiplication by `e^{-iℓΩ(|x|;G)t}`. Proof:
   the partial sums of the exponential series converge in `Y^s_ℓ`, hence their functions converge
@@ -116,7 +116,7 @@ theorem exp_apply_fn_of_mul [CompleteSpace (Ysec s K ℓ)] {A : Ysec s K ℓ →
   simpa only [hE, ContinuousLinearMap.comp_apply, ContinuousLinearMap.apply_apply, fnL_coe]
     using this
 
-/-- `lem:semigroup-construct`(1), the formula on a sector. -/
+/-- Part I Lemma 4.14(1) (`lem:semigroup-construct`), the formula on a sector. -/
 theorem exp_transSec_spec (S : SectorSetting) (hS : S.Valid) (s : ℕ) (ℓ : ℤ)
     (G t : ℝ) (g : Ysec s S.Nstar ℓ) :
     (NormedSpace.exp ((t : ℂ) • S.transSec s ℓ G) g).fn =ᵐ[volume]
@@ -158,7 +158,7 @@ theorem exists_iteratedDeriv_Omega_le (S : SectorSetting) (hS : S.Valid) (k : �
 
 /-! ### The sector bound -/
 
-/-- **`lem:semigroup-construct`(1), sector bound**. -/
+/-- **Part I Lemma 4.14(1) (`lem:semigroup-construct`), sector bound**. -/
 theorem transport_sector (S : SectorSetting) (hS : S.Valid) (s : ℕ) {Gp : ℝ}
     (hGp : 0 ≤ Gp) :
     ∃ C : ℝ, 0 < C ∧ ∀ (ℓ : ℤ) (G : ℝ), |G| ≤ Gp → ∀ (t : ℝ) (g : Ysec s S.Nstar ℓ),

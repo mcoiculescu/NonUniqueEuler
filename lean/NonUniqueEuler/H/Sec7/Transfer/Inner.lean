@@ -12,7 +12,7 @@ import NonUniqueEuler.H.Sec7.Transfer.Units
 /-!
 # Helper for `lem:transfer`(1), (2): fields induced by the inner material on ring `j`
 
-Helper of `P/Sec7/Transfer.lean` (`07_several_rings.tex:141-189`), for a fixed valid
+Helper of `P/Sec7/Transfer.lean` (Part II Lemma 4.1 (`lem:transfer`)), for a fixed valid
 approximation and with the explicit constants
 `C1 M_h = Σ_{q≤M_h} (4/a)^q · 8U_q` and `C2 M_h = Σ_{q≤M_h} (2π)⁻¹ 2^{-1-q} (8/a)^{4+q} · 8U_q`
 (`U_q = Σ_l (l+q)^q 2^{-l}` replaces `S_{m,q}`; we bound operator norms of derivatives, which are
@@ -74,7 +74,7 @@ theorem C1_nonneg (Mh : ℕ) : 0 ≤ C1 Mh :=
     have := a_pos'
     positivity
 
-/-- **`lem:transfer`(1)** for a fixed approximation (`07_several_rings.tex:141-171`). -/
+/-- **`lem:transfer`(1)** for a fixed approximation (Part II Lemma 4.1 (`lem:transfer`)). -/
 theorem inner_general_bound (P : Approx) (hP : P.Valid) (Mh : ℕ) {j : ℕ} (hj : 1 ≤ j)
     {g : ℂ → ℝ} (hg : MemLp g 1 volume) (hsym : IsMFoldSymmetric 3 g)
     (hsupp : ∀ᵐ x ∂(volume : Measure ℂ), a * P.r (j + 1) / 8 < ‖x‖ → g x = 0) :
@@ -225,7 +225,7 @@ theorem C2_nonneg (Mh : ℕ) : 0 ≤ C2 Mh :=
     have := Real.pi_pos
     positivity
 
-/-- **`lem:transfer`(2)**, `L¹` form, for a fixed approximation (`07_several_rings.tex:173-189`). -/
+/-- **`lem:transfer`(2)**, `L¹` form, for a fixed approximation (Part II Lemma 4.1 (`lem:transfer`)). -/
 theorem next_ring_bound (P : Approx) (hP : P.Valid) (hN : NumericalHypothesis P.χ) (Mh : ℕ)
     {j : ℕ} (hj : 1 ≤ j) (hjn : j < P.n) {t : ℝ} (ht : 0 ≤ t) (hS : P.PertDefined (j + 1) t) :
     MemCk Mh annN' (P.unitsField j (velocity (P.wPhys (j + 1) t))) ∧

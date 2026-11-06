@@ -11,7 +11,7 @@ import Mathlib.Topology.MetricSpace.Bounded
 /-!
 # Proof of `lem:clock` (order and causality of the phase clock)
 
-Proof of `I/Sec6/Clock.lean` (`06_datum.tex:445-497`).
+Proof of `I/Sec6/Clock.lean` (Part II Lemma 3.10 (`lem:clock`)).
 
 * (1) `clock_order`: `σ_i > 211/2500 > 0` (`prop:SU`, `Eig.lam_SU`, with `G_i ∈ [0, Ḡ]` from
   `lem:inner-circ` and `P.GSmall`) and `κ♯_i ∈ (0, δ₀)` give `T_i > t♯_i`; `t♯_{i-1} - T_i =
@@ -40,7 +40,7 @@ open RingData
 
 namespace ClockH
 
-/-- `σ_j > 0` for `j ∈ [1, n]` (`prop:SU` with `G_j ∈ [0, Ḡ]`, `06_datum.tex:463-464`). -/
+/-- `σ_j > 0` for `j ∈ [1, n]` (`prop:SU` with `G_j ∈ [0, Ḡ]`, Part II Lemma 3.10 (`lem:clock`)). -/
 theorem sigma_pos_of (P : Approx) (hP : P.Valid) (hN : NumericalHypothesis P.χ)
     (hG : P.GSmall) {j : ℕ} (hj : j ∈ Finset.Icc 1 P.n) : 0 < P.sigma j := by
   have hG0 := ((inner_circ P hP hN).2.2.1 j hj).1
@@ -63,7 +63,7 @@ theorem exists_isSmoothDatum (P : Approx) (hP : P.Valid) (hN : NumericalHypothes
   obtain ⟨R, hR⟩ := (Metric.isBounded_iff_subset_ball (0 : ℂ)).mp hcs.isCompact.isBounded
   exact ⟨R, hcd, hR⟩
 
-/-- **The flows agree on `[0, t̄]`** (`06_datum.tex:475-478`): for a comparison vorticity `ω̃`
+/-- **The flows agree on `[0, t̄]`** (Part II Lemma 3.10 (`lem:clock`)): for a comparison vorticity `ω̃`
 equal to `ω^{(n)}` on `[0, t̄] × ℝ²`, the flow of `K_BS * ω̃` is the flow of `v^{(n)}` on
 `[0, t̄]`. -/
 theorem flow_agree (P : Approx) (hP : P.Valid) (hN : NumericalHypothesis P.χ) {tbar : ℝ}
@@ -90,7 +90,7 @@ theorem flow_agree (P : Approx) (hP : P.Valid) (hN : NumericalHypothesis P.χ) {
 
 end ClockH
 
-/-- **`lem:clock`(1)** (`06_datum.tex:449-450`): if `G_k ≤ G₁` for all levels and the clock is
+/-- **`lem:clock`(1)** (Part II Lemma 3.10 (`lem:clock`)): if `G_k ≤ G₁` for all levels and the clock is
 defined up to level `k ≥ 1`, then `t♯_i < T_i` for `i ∈ [k,n]` and `T_i < t♯_{i-1}` for
 `i ∈ [k,n]`, `i ≥ 2`; hence `T_j < t♯_i` for `k ≤ i < j ≤ n`, and `0 ≤ t♯_i` for `i ∈ [k,n]`
 (`t♯_n = 0` is `tsh_n`). -/
@@ -111,7 +111,7 @@ theorem clock_order (P : Approx) (hP : P.Valid) (hN : NumericalHypothesis P.χ) 
     have := hmono i P.n (by omega) hi.2 le_rfl
     rwa [tsh_n] at this
 
-/-- **`lem:clock`(2)** (`06_datum.tex:451-452`): for `i ∈ [k,n]`, the numbers `t♯_i`, `c_i(0)`,
+/-- **`lem:clock`(2)** (Part II Lemma 3.10 (`lem:clock`)): for `i ∈ [k,n]`, the numbers `t♯_i`, `c_i(0)`,
 `κ♯_i`, `T_i` and (if `i ≥ 2`) `t♯_{i-1}` are determined by `ω^{(n)}` on `[0, t♯_i]`: they are the
 same for `P.withOm ω̃` whenever `ω̃` is a comparison vorticity with `ω̃ = ω^{(n)}` on `[0, t̄] × ℝ²`,
 `t̄ ≥ t♯_i`. -/
@@ -128,7 +128,7 @@ theorem clock_causal (P : Approx) (hP : P.Valid) (hN : NumericalHypothesis P.χ)
     (ClockH.sigma_pos_of_le P hP hN hG hk) hc hi ht hfl heq
   exact ⟨e1, e2, e3, e4, fun h2i => e5 (by omega)⟩
 
-/-- **`lem:clock`(3)** (`06_datum.tex:453-459`): for `t ≥ 0` and a comparison vorticity `ω̃` with
+/-- **`lem:clock`(3)** (Part II Lemma 3.10 (`lem:clock`)): for `t ≥ 0` and a comparison vorticity `ω̃` with
 `ω̃ = ω^{(n)}` on `[0, t] × ℝ²`, for every `i ∈ [k,n]`: `t̃♯_i` is defined and `≤ t` iff `t♯_i ≤ t`;
 if `t♯_i ≤ t`, the clock of `ω̃` is defined up to level `i` and `t̃♯_i = t♯_i`, `T̃_i = T_i`; and
 ring `i` is quiet (resp. active, debris) at `t` for `ω̃` iff it is for `ω^{(n)}`. -/

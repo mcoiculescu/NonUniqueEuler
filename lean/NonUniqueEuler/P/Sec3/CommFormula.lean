@@ -10,7 +10,7 @@ import Mathlib.LinearAlgebra.Complex.FiniteDimensional
 /-!
 # Proof: `eq:comm-formula` (the commutator `C_ε[u,w]` as a single integral)
 
-Proof of `NonUniqueEuler/I/Sec3/CommFormula.lean` (`03_compactness.tex:342-363`).
+Proof of `NonUniqueEuler/I/Sec3/CommFormula.lean` (Part I Equation (7) (`eq:comm-formula`)).
 
 The rescaled kernel `ρ_ε = scaled ρ ε` is `C^∞` with compact support, so
 `y ↦ Dρ_ε(x - y)` is continuous with compact support; this gives the integrability of both

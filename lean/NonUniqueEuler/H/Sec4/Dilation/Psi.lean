@@ -4,16 +4,18 @@ import NonUniqueEuler.I.Sec4.Sector
 import NonUniqueEuler.I.Infra.ODE.Uniqueness
 
 /-!
-# Helpers for `lem:dilation`: validity, the solution `ψ_ℓ`, the Evans function, `g_*`
+# Helpers for the retained general dilation identities: validity, the solution `ψ_ℓ`, the Evans function, `g_*`
 
-Helper of `P/Sec4/Dilation.lean` (`lem:dilation`, `04_ring.tex:653-712`).
+Helper of `P/Sec4/Dilation.lean`. The current manuscript gives the ring-specific scaling
+argument before Part I Equation 13 (`eq:evans-units`); these general dilation identities
+are retained as auxiliary Lean results.
 
 * `DilationH.dilate_valid'`: `S.dilate R` is a sector setting;
 * `DilationH.dilate_psi`: with `t = log R`, `ψ^{ω̄_R}_ℓ(ξ;λ,G) = ψ^{ω̄}_ℓ(ξ+t;λ,R²G)` (and the same
   for `ψ'`). The Riccati coefficient is translated (`Vric_dilate`), the data point moves from
   `ξ₁` to `ξ₁ - t`, and uniqueness for the initial value problem (`IsSolOn.eqOn`) identifies the
-  two solutions. (The manuscript normalizes `ψ = e^{ℓξ}` on the left and so gets a factor
-  `R^{-ℓ}`; with the normalization `ψ(ξ₁) = 1` of `def:evans` there is no factor.)
+  two solutions. The normalization `ψ(ξ₁) = 1` in Part I Definition 4.4 (`def:evans`)
+  agrees with the Lean normalization, so there is no factor `R^{-ℓ}`.
 * `DilationH.evans_dilate`: `E^{ω̄_R}_ℓ(λ;G) = E^{ω̄}_ℓ(λ;R²G)`;
 * `DilationH.gStar_dilate`: `g^{ω̄_R}_*(r) = R² g^{ω̄}_*(Rr)` (unnormalized eigenprofiles);
 * `DilationH.l2_const_mul`, `DilationH.ofProfile_gStar_dilate`.

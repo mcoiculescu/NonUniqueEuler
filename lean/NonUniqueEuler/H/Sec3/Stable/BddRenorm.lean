@@ -4,13 +4,13 @@ import NonUniqueEuler.I.Sec3.Transport
 import NonUniqueEuler.I.Sec3.VelocityField
 
 /-!
-# Helpers for `prop:stable`: bounded renormalizations converge strongly
+# Helpers for legacy `prop:stable`: bounded renormalizations converge strongly
 
-Helper file of `P/Sec3/Stable.lean`. Manuscript: proof of `prop:stable`, third paragraph
-(`03_compactness.tex:774-789`): with the weak limits `ū`, `z̄` of `β(ωₙ)`, `β(ωₙ)²`
+Helper file of `P/Sec3/Stable.lean`. Legacy proof decomposition: `prop:stable`, third paragraph
+(related current criterion proof: Part I Theorem 3.8 (`thm:criterion`)): with the weak limits `ū`, `z̄` of `β(ωₙ)`, `β(ωₙ)²`
 (`stable_weakLimit`, `I/Sec3/Stable/WeakLimit.lean`),
 * `ae_eq_sq_of_weakLimit`: `z̄ = ū²` a.e. on `(0,T) × ℝ²`, by `lem:transport`(i) applied to
-  `ū` with `γ(s) = T_B(s)²` (`γ(s) = s²` for `|s| ≤ B`, `γ ∈ Lip₀`) and `lem:transport`(iii)
+  `ū` with `γ(s) = T_B(s)²` (`γ(s) = s²` for `|s| ≤ B`, `γ ∈ Lip₀`) and the legacy uniqueness consequence of `lem:transport`(ii)
   applied to `z̄ - γ(ū)` (datum `β(g)² - γ(β(g)) = 0`);
 * `tendsto_lintegral_of_weak_sq`: weak convergence of `uₙ` to `ū` and of `uₙ²` to `ū²`
   (bounded functions) gives `uₙ → ū` in `L²(S)`, hence in `L¹(S)`, for every set `S` of finite
@@ -132,8 +132,8 @@ theorem tendsto_lintegral_of_weak_sq {α : Type*} [MeasurableSpace α] {μ : Mea
 
 /-! ### `z̄ = ū²` -/
 
-/-- **`z̄ = ū²`** (`03_compactness.tex:774-783`): `lem:transport`(i) with `γ(s) = T_B(s)²` and
-`lem:transport`(iii) applied to `z̄ - γ(ū)`. -/
+/-- **`z̄ = ū²`** (retained legacy stability step): `lem:transport`(i) with `γ(s) = T_B(s)²` and
+the legacy uniqueness consequence of `lem:transport`(ii) applied to `z̄ - γ(ū)`. -/
 theorem ae_eq_sq_of_weakLimit {T : ℝ} (hT : 0 < T) {g : ℂ → ℝ} {ω : ℝ → ℂ → ℝ}
     (hω : IsWeakSolution 2 T g ω) {β : ℝ → ℝ} (hβ : Equimeas.IsLipO β) {B : ℝ}
     (hB : ∀ s, |β s| ≤ B) {ub zb : ℝ → ℂ → ℝ}
@@ -218,7 +218,7 @@ theorem volume_Ioo_prod_ball_ne_top (T R : ℝ) :
 theorem Ioo_prod_ball_subset_slab (T R : ℝ) : Ioo (0 : ℝ) T ×ˢ ball (0 : ℂ) R ⊆ slab T :=
   prod_mono subset_rfl (subset_univ _)
 
-/-- **Bounded renormalizations converge strongly** (`03_compactness.tex:739-789`): for bounded
+/-- **Bounded renormalizations converge strongly** (retained legacy stability step): for bounded
 `β ∈ Lip₀`, along a subsequence, `β(ωₙ) → ū` in `L¹((0,T) × B_R)` for every `R > 0`. -/
 theorem stable_bddRenorm {T M : ℝ} {gs : ℕ → ℂ → ℝ} {g : ℂ → ℝ} {ωs : ℕ → ℝ → ℂ → ℝ}
     {ω : ℝ → ℂ → ℝ} (hseq : IsCompactSeq T M gs g ωs) (hlim : IsCompactLimit T g ωs ω)

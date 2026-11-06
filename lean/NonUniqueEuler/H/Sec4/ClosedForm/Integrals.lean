@@ -5,9 +5,9 @@ import Mathlib.MeasureTheory.Measure.Haar.NormedSpace
 import Mathlib.MeasureTheory.Group.Integral
 
 /-!
-# Helper for `lem:closed-form`: the integrals of the bounding functions
+# Helper for Part I Lemma 4.11 (`lem:closed-form`): the integrals of the bounding functions
 
-Manuscript `04_ring.tex:805-827`.
+See the proof of Part I Lemma 4.11 (`lem:closed-form`).
 * `integral_kA`: `∫_ℝ e^{2ℓ(ξ-ξc)} (2/d) A Ā dξ = e^{ℓa₀} Θ_ℓ` (substitution `ξ = a₀ + dx`);
 * `integral_kB`: `∫_ℝ e^{-2ℓ(ξ-ξc)} (2/d) B B̄ dξ = e^{ℓa₀} Θ_ℓ` (substitution `ξ = -dx`);
   both from the `sech²` integral (`integral_exp_mul_dH`, with `β = 2ℓd ∈ (0, 2)`), and the
@@ -100,7 +100,7 @@ theorem kB_eq (ℓ : ℕ) (ξ : ℝ) : kB ℓ ξ = kerG ℓ ((-ξ) / d) := by
   rw [this]
   field_simp
 
-/-- `∫_ℝ e^{2ℓ(ξ-ξc)} (2/d) A Ā dξ = e^{ℓa₀} Θ_ℓ` (`04_ring.tex:810-814`). -/
+/-- `∫_ℝ e^{2ℓ(ξ-ξc)} (2/d) A Ā dξ = e^{ℓa₀} Θ_ℓ` (proof of Part I Lemma 4.11 (`lem:closed-form`)). -/
 theorem integral_kA {ℓ : ℕ} (hℓ : 1 ≤ ℓ) (hd : (ℓ : ℝ) * d < 1) :
     ∫ ξ, kA ℓ ξ = Real.exp (ℓ * a₀) * Θ ℓ := by
   calc ∫ ξ, kA ℓ ξ = ∫ ξ, (fun y => kerG ℓ (y / d)) (ξ - a₀) := by
@@ -111,7 +111,7 @@ theorem integral_kA {ℓ : ℕ} (hℓ : 1 ≤ ℓ) (hd : (ℓ : ℝ) * d < 1) :
     _ = |d| • ∫ x, kerG ℓ x := Measure.integral_comp_div (kerG ℓ) d
     _ = Real.exp (ℓ * a₀) * Θ ℓ := integral_kerG hℓ hd
 
-/-- `∫_ℝ e^{-2ℓ(ξ-ξc)} (2/d) B B̄ dξ = e^{ℓa₀} Θ_ℓ` (`04_ring.tex:823-827`). -/
+/-- `∫_ℝ e^{-2ℓ(ξ-ξc)} (2/d) B B̄ dξ = e^{ℓa₀} Θ_ℓ` (proof of Part I Lemma 4.11 (`lem:closed-form`)). -/
 theorem integral_kB {ℓ : ℕ} (hℓ : 1 ≤ ℓ) (hd : (ℓ : ℝ) * d < 1) :
     ∫ ξ, kB ℓ ξ = Real.exp (ℓ * a₀) * Θ ℓ := by
   calc ∫ ξ, kB ℓ ξ = ∫ ξ, (fun y => kerG ℓ (y / d)) (-ξ) := by

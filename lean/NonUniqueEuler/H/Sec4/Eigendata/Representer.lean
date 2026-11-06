@@ -5,10 +5,10 @@ import NonUniqueEuler.I.Infra.AngularFourier.Derivatives.ProfileL2
 import NonUniqueEuler.I.Infra.Sobolev.Norm
 
 /-!
-# Helpers for `def:eigendata`: the representer of `ℓ_*(G)` on `L²(N)`
+# Helpers for Part I Definition 4.20 (`def:eigendata`): the representer of `ℓ_*(G)` on `L²(N)`
 
 Helper of `P/Sec4/Eigendata.lean` (fully proved). Namespace `NonUniqueEuler.Eig.EigendataH`.
-Manuscript `04_ring.tex:1333-1338`.
+See the discussion following Part I Definition 4.20 (`def:eigendata`).
 
 * `continuousOn_adjEig`: `conj(ψ_*(log r)M_*(r))` is continuous on `(0,∞)`;
 * `memLp_ellRep`, `memXFn_ellRep`: the representer lies in `L²` and in `X^0`;
@@ -85,7 +85,7 @@ theorem memLp_ellRep {χ : ℝ → ℝ} {G : ℝ} (hL : LamFacts χ G) :
   memLp_indicator_annN (continuousOn_ofProfile_annN
     (continuousOn_adjEig _ hL.valid 3 (by norm_num) hL.re_pos G) _)
 
-/-- The representer lies in `X^0` (`04_ring.tex:1333-1338`). -/
+/-- The representer lies in `X^0` (the discussion following Part I Definition 4.20 (`def:eigendata`)). -/
 theorem memXFn_ellRep {χ : ℝ → ℝ} {G : ℝ} (hL : LamFacts χ G) :
     Lin.MemXFn 0 (ellRep χ G) := by
   refine ⟨(normH_zero (memLp_ellRep hL)).1, Eventually.of_forall fun x hx => ?_, ?_⟩
@@ -128,7 +128,7 @@ theorem ellRep_circle {χ : ℝ → ℝ} {G : ℝ} (f : ℂ → ℂ) {r : ℝ} (
   · rw [ellRep, Set.indicator_of_notMem (fun h => hrI (hmem.1 h)), Set.indicator_of_notMem hrI]
     simp
 
-/-- **The representer** (`04_ring.tex:1333-1338`): for `f ∈ L²` vanishing a.e. off `N`,
+/-- **The representer** (the discussion following Part I Definition 4.20 (`def:eigendata`)): for `f ∈ L²` vanishing a.e. off `N`,
 `ℓ_*(G)(f) = ∫ f conj(ellRep)`. -/
 theorem ellFn_eq_integral {χ : ℝ → ℝ} {G : ℝ} (hL : LamFacts χ G) {f : ℂ → ℂ}
     (hf : MemLp f 2 volume) (hfK : ∀ᵐ x ∂(volume : Measure ℂ), x ∉ annN → f x = 0) :

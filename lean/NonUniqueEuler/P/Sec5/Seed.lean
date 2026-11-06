@@ -10,9 +10,11 @@ import NonUniqueEuler.H.Sec5.Seed.Ell
 /-!
 # Proof of `lem:seed` (the seeded ring)
 
-Proof of `I/Sec5/Seed.lean` (`seed`, `seed_const`; `05_single_ring.tex:1131-1219`).
+Proof of `I/Sec5/Seed.lean` (`seed`, `seed_const`; Part II Lemma 2.14,
+`lem:seed`). The Lean interface also exposes the generating flow and Taylor
+bounds from the proof of the current lemma.
 
-Structure (`05_single_ring.tex:1148-1219`):
+Structure (Part II Lemma 2.14):
 1. the seed field `V` and `eq:seed-first` (`V·∇Φ = 2Re φ_*(0)`): `seedField_exists`
    (`I/Sec5/Seed/Field.lean`);
 2. the flow `Y_κ = Φ_V(κ, 0, ·)` and its properties: `lem:flow` (`I/SmoothB/Flow.lean`) and the
@@ -111,7 +113,7 @@ end SeedP
 
 open SeedP
 
-/-- **`lem:seed`, the `Φ`-only data** (`05_single_ring.tex:1131-1147`). Assume (N1)–(N3). There
+/-- **`lem:seed`, the `Φ`-only data** (Part II Lemma 2.14). Assume (N1)–(N3). There
 are a smooth area-preserving flow `(Y_κ)_{κ∈ℝ}` on `ℝ²` that is the identity outside a compact
 subset of `{a/2 < |y| < 2}` and commutes with `O_{2π/3}`, a number `κ_L > 0` and numbers `C'_k`,
 such that `Φ^κ = Φ∘Y_κ` satisfies, for every `κ ∈ (0,κ_L]`: `Φ^κ ∈ C_c^∞`, `Φ^κ ≥ 0`, `Φ^κ` is
@@ -284,7 +286,7 @@ theorem seed (χ : ℝ → ℝ) (hχ : IsAdmissibleCutoff χ) (hN : NumericalHyp
         rw [hexp_eq κ]
         exact (hC' k κ (hIcc κ hκ)).2 }
 
-/-- **`lem:seed`, the constant `C_seed`** (`05_single_ring.tex:1137-1143`). Assume (N1)–(N3) and
+/-- **`lem:seed`, the constant `C_seed`** (Part II Lemma 2.14). Assume (N1)–(N3) and
 let `s ≥ 3`, `M = s + N_G + 2`. For the chosen seed data (`seedFlow χ`, `kL χ`) there is
 `C_seed ≥ 0` with `Φ^κ - Φ ∈ H^{M-1}` and `‖Φ^κ - Φ‖_{H^{M-1}} ≤ C_seed κ` for every
 `κ ∈ (0,κ_L]` (`IsSeedConst`). -/

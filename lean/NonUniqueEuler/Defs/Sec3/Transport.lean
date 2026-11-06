@@ -2,9 +2,9 @@ import NonUniqueEuler.Defs.Sec3.Auxiliary
 import Mathlib.MeasureTheory.Integral.Prod
 
 /-!
-# Section 3: the linear transport equation `(te)`
+# Part I Section 3: the linear transport equation `(te)`
 
-Manuscript source: `03_compactness.tex:42-66` (Equation `eq:te` and the standing integrability
+Manuscript source: Part I Equation (6) (`eq:te`) and its integrability conventions (Equation `eq:te` and the standing integrability
 assumptions). For `T > 0`, `t₀ ∈ [0, T)`, a real field `w`, a real function `u` on
 `(t₀, T) × ℝ²` and a datum `u₀`, the requirement is
 `∫_{t₀}^T ∫ u (∂_t φ + w · ∇φ) dx dt + ∫ u₀ φ(t₀, ·) dx = 0` for all `φ ∈ 𝒟_T`.
@@ -14,11 +14,11 @@ assumptions). For `T > 0`, `t₀ ∈ [0, T)`, a real field `w`, a real function 
   the statement layer's `SolvesTransport` (which is the case `t₀ = 0`, `solvesTE_zero_iff`), the
   absolute convergence of both integrals is part of the definition, so that Lean's junk value
   `∫ = 0` of a non-integrable integrand never enters. The manuscript derives the convergence from
-  the standing assumptions (`03_compactness.tex:53-56`); with the conjuncts, the predicate is
+  the standing assumptions (Part I Equation (6) (`eq:te`) and its integrability conventions); with the conjuncts, the predicate is
   equivalent to the manuscript's requirement under those assumptions.
-* `IsTEData t₀ T u w u₀`: the standing assumptions of `(te)` (`03_compactness.tex:52-56`): `u`, `w`
+* `IsTEData t₀ T u w u₀`: the standing assumptions of `(te)` (Part I Equation (6) (`eq:te`) and its integrability conventions): `u`, `w`
   and `u w` are integrable on `(t₀, T') × B_R` for all `T' < T`, `R > 0`, and `u₀ ∈ L¹_loc`.
-  They are hypotheses of `lem:lip-renorm` ("let `w`, `u` and `u₀` be as in the definition of
+  They are hypotheses of legacy `lem:lip-renorm` ("let `w`, `u` and `u₀` be as in the definition of
   (te)").
 
 The field `w : ℝ → ℂ → ℂ` is a real vector field written in `ℂ` (D1), `w · ∇φ` is
@@ -28,8 +28,8 @@ statement layer.
 
 Fully proved API: `solvesTE_zero_iff`, `IsWeakSolution.solvesTE`,
 `IsRenormalizedWeakSolution.solvesTE_renormalized`, and linearity (`SolvesTE.add`, `.sub`,
-`.const_mul`, `.neg`), used e.g. in `prop:stable` (`z̄ - ū²` solves `(te)` with datum `0`,
-`03_compactness.tex:776-779`).
+`.const_mul`, `.neg`), used e.g. in legacy `prop:stable` (`z̄ - ū²` solves `(te)` with datum `0`,
+related current criterion proof: Part I Theorem 3.8 (`thm:criterion`)).
 -/
 
 noncomputable section
@@ -47,7 +47,7 @@ def slabFrom (t₀ T : ℝ) : Set (ℝ × ℂ) :=
   rfl
 
 /-- `u` satisfies Equation `(te)` on `[t₀, T)` with field `w` and datum `u₀`
-(`eq:te`, `03_compactness.tex:46-58`): for every `φ ∈ 𝒟_T`, the integrand
+(`eq:te`, Part I Equation (6) (`eq:te`) and its integrability conventions): for every `φ ∈ 𝒟_T`, the integrand
 `u (∂_t φ + w · ∇φ)` is integrable on `(t₀, T) × ℝ²`, `u₀ φ(t₀, ·)` is integrable, and
 `∫_{t₀}^T ∫ u (∂_t φ + w · ∇φ) dx dt + ∫ u₀ φ(t₀, ·) dx = 0`. -/
 structure SolvesTE (t₀ T : ℝ) (u : ℝ → ℂ → ℝ) (w : ℝ → ℂ → ℂ) (u₀ : ℂ → ℝ) : Prop where
@@ -56,7 +56,7 @@ structure SolvesTE (t₀ T : ℝ) (u : ℝ → ℂ → ℝ) (w : ℝ → ℂ →
   identity : ∀ φ, IsTestFunction T φ →
     (∫ t in Ioo t₀ T, ∫ x : ℂ, transportIntegrand u w φ (t, x)) + ∫ x : ℂ, u₀ x * φ (t₀, x) = 0
 
-/-- The standing assumptions of Equation `(te)` (`03_compactness.tex:52-56`): `u`, `w` and `u w`
+/-- The standing assumptions of Equation `(te)` (Part I Equation (6) (`eq:te`) and its integrability conventions): `u`, `w` and `u w`
 are integrable on `(t₀, T') × B_R` for all `T' < T` and `R > 0`, and `u₀ ∈ L¹_loc(ℝ²)`.
 (Measurability of `u`, `w` on `(t₀, T) × ℝ²` follows: the slab is a countable union of such
 sets.) -/
@@ -78,13 +78,13 @@ theorem solvesTE_zero_iff {T : ℝ} {u : ℝ → ℂ → ℝ} {w : ℝ → ℂ �
     fun h => ⟨h.integrableOn, h.datum_integrable, h.identity⟩⟩
 
 /-- A weak solution satisfies `(te)` on `[0, T)` with field `v = K ∗ ω` and its datum
-(`03_compactness.tex:59-62`). -/
+(Part I Equation (6) (`eq:te`) and its integrability conventions). -/
 theorem _root_.NonUniqueEuler.IsWeakSolution.solvesTE {q T : ℝ} {ωin : ℂ → ℝ}
     {ω : ℝ → ℂ → ℝ} (h : IsWeakSolution q T ωin ω) : SolvesTE 0 T ω (velocityField ω) ωin :=
   solvesTE_zero_iff.2 h.weak
 
 /-- A renormalized weak solution: `Υ(ω)` satisfies `(te)` on `[0, T)` with field `v = K ∗ ω` and
-datum `Υ(ωin)` (`03_compactness.tex:62-65`). -/
+datum `Υ(ωin)` (Part I Equation (6) (`eq:te`) and its integrability conventions). -/
 theorem _root_.NonUniqueEuler.IsRenormalizedWeakSolution.solvesTE_renormalized {q T : ℝ}
     {ωin : ℂ → ℝ} {ω : ℝ → ℂ → ℝ} (h : IsRenormalizedWeakSolution q T ωin ω) {Υ : ℝ → ℝ}
     (hΥ : IsRenormalization Υ) :

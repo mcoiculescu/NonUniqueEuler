@@ -2,15 +2,15 @@ import NonUniqueEuler.H.Sec3.Stable.RenormLimit.Basic
 import NonUniqueEuler.Defs.Sec2.Spaces
 
 /-!
-# Helpers for `prop:stable`, step 3 (the limit is renormalized): the three error terms
+# Helpers for legacy `prop:stable`, step 3 (the limit is renormalized): the three error terms
 
-Helper file of `P/Sec3/Stable/RenormLimit.lean` (`03_compactness.tex:802-815`).
+Helper file of `P/Sec3/Stable/RenormLimit.lean` (related current criterion proof: Part I Theorem 3.8 (`thm:criterion`)).
 
 * `integrable_renorm_mul`: if `a S ∈ L¹` and `|Υ(s)| ≤ L|s|`, `Υ(0) = 0`, then `Υ(a) S ∈ L¹`
   (measurability through `Υ(a) S = (Υ(a)/a)(a S)`).
 * `lintegral_transport_sub_le`: the difference of two renormalized transport integrands over the
   slab is bounded by `LD (∫_{(0,T)×B_R}|a - b| + ∫|a||w - w'| + ∫|a - b||w'|)` when
-  `supp φ ⊂ ℝ × B_R` (`03_compactness.tex:808-813`).
+  `supp φ ⊂ ℝ × B_R`.
 * `lintegral_prodSet_mul_le`: `∫_{I×s}|u||w| ≤ K ∫_I ‖w(t)‖_{L²(s)} dt` when
   `‖u(t)‖_{L²(s)} ≤ K` (Tonelli and Cauchy–Schwarz on slices; the first error term of the
   manuscript).

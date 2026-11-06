@@ -7,13 +7,13 @@ import NonUniqueEuler.I.Sec4.PropU
 Proof of `I/Sec5/ActiveT1.lean`. The two declarations, with their statements copied verbatim,
 are those of `I/Sec5/Active.lean` that concern `t₁`:
 
-* `tOneOf_spec` — `t₁(C₀,G)` (`05_single_ring.tex:874-875`) and `t̄₁(C₀)` (`:901-905`) are well
+* `tOneOf_spec` — `t₁(C₀,G)` (Part II Theorem 2.12) and `t̄₁(C₀)` (Part II Theorem 2.12) are well
   defined: the infimum `tOneOf σ σ' C₀` is positive, has the defining property, and is minimal.
-* `active_tOne` — the "Moreover" part of `thm:active` (`:901-911`, proof `:960-971`):
+* `active_tOne` — the "Moreover" part of `thm:active` (Part II Theorem 2.12):
   `t₁(C₀,G) ≤ t̄₁(C₀)` and `â(u)ρ̂(u) ≤ C(C₀)κ⟨u⟩^pe^{σ'u}` for `u ≥ 0`.
 
-**Proof** (`05_single_ring.tex:960-971`, plus the existence of `t₁`, which the manuscript takes
-for granted). Write `f(t) = 2^{p/2}C₀⟨t⟩^pe^{-(σ-σ')t}`.
+**Proof details for Part II Theorem 2.12** (`thm:active`), including the
+existence and minimality of `t₁`. Write `f(t) = 2^{p/2}C₀⟨t⟩^pe^{-(σ-σ')t}`.
 1. `f(t) → 0` as `t → ∞` (`⟨t⟩ ≤ 1 + t` and `x^pe^{-x} → 0`), so the set
    `S = {t ≥ 0 | f ≤ 1 on [t,∞)}` is nonempty; it is bounded below by `0`. Its infimum `t₁` lies in
    `S`: `f ≤ 1` on `(t₁,∞)` by the infimum property, hence on the closure `[t₁,∞)` since `f` is
@@ -103,8 +103,8 @@ theorem ActiveT1.exists_f_le_one {σ σ' C₀ : ℝ} (hσ : σ' < σ) (hC₀ : 0
   have ht'T : T ≤ t' := le_trans (le_max_left _ _) ht'
   exact (ActiveT1.f_le hσ hC₀ ht'0).trans (hT t' ht'T).le
 
-/-- **`t₁` is well defined** (`thm:active`, `05_single_ring.tex:874-875` with `σ = σ(G)`, and
-`:901-905` with `σ = σ_b`). For `σ' < σ` and `C₀ ≥ 1`, `tOneOf σ σ' C₀` is the least `t ≥ 0`
+/-- **`t₁` is well defined** (`thm:active`, Part II Theorem 2.12 with `σ = σ(G)`, and
+Part II Theorem 2.12 with `σ = σ_b`). For `σ' < σ` and `C₀ ≥ 1`, `tOneOf σ σ' C₀` is the least `t ≥ 0`
 such that `2^{p/2}C₀⟨t'⟩^pe^{-(σ-σ')t'} ≤ 1` for all `t' ≥ t`: it is positive (at `t' = 0` the
 left side is `2^{p/2}C₀ > 1`), it has the property, and it is below every `t ≥ 0` that has it. -/
 theorem tOneOf_spec {σ σ' C₀ : ℝ} (hσ : σ' < σ) (hC₀ : 1 ≤ C₀) :
@@ -166,7 +166,7 @@ theorem ActiveT1.sigma_bounds (χ : ℝ → ℝ) (hχ : IsAdmissibleCutoff χ)
   rintro _ ⟨G', hG', rfl⟩
   exact hmax G' hG'
 
-/-- **`thm:active`, "Moreover"** (`05_single_ring.tex:901-911`). Assume (N1)–(N3), let
+/-- **`thm:active`, "Moreover"** (Part II Theorem 2.12). Assume (N1)–(N3), let
 `σ' ∈ (9/200, σ_b)`, `C₀ ≥ 1`, `G ∈ [0,G₁]`, `σ = σ(G)`, `κ > 0`, `â(u) = κe^{σu}`, and let
 `ρ̂` be the transient. Then `t₁(C₀,G) ≤ t̄₁(C₀)`, and for all `u ≥ 0`,
 `â(u)ρ̂(u) ≤ C(C₀)κ⟨u⟩^pe^{σ'u}` with `C(C₀) = max(C₀, e^{σ_max t̄₁(C₀)})`. -/

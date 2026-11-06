@@ -1,21 +1,24 @@
 import NonUniqueEuler.Defs.Sec6.Regions
 
 /-!
-# Section 6.4: the phase clock (definitions)
+# Part II Section 3: the phase clock (definitions)
 
-Manuscript `def:clock`
-(`06_datum.tex:399-443`) and `lem:clock` (`06_datum.tex:445-461`).
+**Time convention.** The current Part II Equation (28) (`eq:running-k`) writes
+`c_k` in physical time. `runCoefK k u` here uses active time
+`u = A_k(t - t♯_k)`; in particular, `c0 k` is the manuscript value `c_k(t♯_k)`.
 
-The clock is defined recursively downward in `k` (`06_datum.tex:403-410`):
+Manuscript Part II Definition 3.9 (`def:clock`) and Part II Lemma 3.10 (`lem:clock`).
+
+The clock is defined recursively downward in `k` (Part II Definition 3.9 (`def:clock`)):
 `t♯_n = 0`; `c_k(0) = ℓ_*(G_k)(w_k(t♯_k))`, `κ♯_k = |c_k(0)|`; `T̂_k = σ_k⁻¹ log(δ₀/κ♯_k)`,
 `T_k = t♯_k + T̂_k/A_k`, `t♯_{k-1} = T_k + T_pin/A_k`. The manuscript defines each step only under
 `S_k(t♯_k) ⊂ N_k` and `κ♯_k ∈ (0, δ₀)`. In Lean the recursion is carried out with the same formulas
 without these conditions (total functions, `tshRev` by recursion on `n - k`), and
 `P.ClockUpTo k` ("the clock is defined up to level `k`") records them for `i ∈ [k, n]`: under it,
 `P.tsh i`, `P.ksh i`, `P.That i`, `P.T i` (`k ≤ i ≤ n`) and `P.tsh (k-1)` are the manuscript's numbers.
-Following `06_datum.tex:413`, `T_{n+1} = 0`; `P.ClockUpTo (n+1)` holds (empty condition).
+Following Part II Definition 3.9 (`def:clock`), `T_{n+1} = 0`; `P.ClockUpTo (n+1)` holds (empty condition).
 
-"Defined" conventions (`def:loc`, `07_several_rings.tex:466-468`; `11_bootstrap.tex:57-62`):
+"Defined" conventions (Part II Definition 4.4 (`def:loc`); the conventions after Part II Definition 6.1 (`def:stop`)):
 `T_j` is defined iff `P.ClockUpTo j`; `t♯_j` is defined iff `P.ClockUpTo (j+1)` (always for
 `j = n`). `QuietAt`, `ActiveAt`, `DebrisAt` use them.
 
@@ -42,87 +45,87 @@ variable (P : Approx)
 /-! ### The recursion -/
 
 /-- `|ℓ_*(G_k)(w_k(t))|`, the size of the unstable coefficient of ring `k` at time `t`
-(`06_datum.tex:406`, evaluated at `t = t♯_k`). -/
+(Part II Definition 3.9 (`def:clock`), evaluated at `t = t♯_k`). -/
 def kshAt (k : ℕ) (t : ℝ) : ℝ := ‖Eig.ellFn P.χ (P.G k) (P.w k t)‖
 
-/-- `σ_k⁻¹ log(δ₀/|ℓ_*(G_k)(w_k(t))|)` (`06_datum.tex:408`, at `t = t♯_k`). -/
+/-- `σ_k⁻¹ log(δ₀/|ℓ_*(G_k)(w_k(t))|)` (Part II Definition 3.9 (`def:clock`), at `t = t♯_k`). -/
 def ThatAt (k : ℕ) (t : ℝ) : ℝ := (P.sigma k)⁻¹ * Real.log (P.δ₀ / P.kshAt k t)
 
 /-- The recursion of `def:clock` indexed by `j = n - k`: `tshRev j = t♯_{n-j}`;
-`t♯_n = 0` and `t♯_{k-1} = t♯_k + T̂_k/A_k + T_pin/A_k` with `k = n - j` (`06_datum.tex:404-409`). -/
+`t♯_n = 0` and `t♯_{k-1} = t♯_k + T̂_k/A_k + T_pin/A_k` with `k = n - j` (Part II Definition 3.9 (`def:clock`)). -/
 def tshRev : ℕ → ℝ
   | 0 => 0
   | j + 1 => tshRev j + P.ThatAt (P.n - j) (tshRev j) / P.A (P.n - j) + P.Tpin / P.A (P.n - j)
 
-/-- The activation time `t♯_k` (`def:clock`, `06_datum.tex:404`, `:409`). -/
+/-- The activation time `t♯_k` (Part II Definition 3.9 (`def:clock`)). -/
 def tsh (k : ℕ) : ℝ := P.tshRev (P.n - k)
 
-/-- `c_k(0) = ℓ_*(G_k)(w_k(t♯_k))` (`06_datum.tex:405-406`). -/
+/-- `c_k(0) = ℓ_*(G_k)(w_k(t♯_k))` (Part II Definition 3.9 (`def:clock`)). -/
 def c0 (k : ℕ) : ℂ := Eig.ellFn P.χ (P.G k) (P.w k (P.tsh k))
 
-/-- `κ♯_k = |c_k(0)|` (`06_datum.tex:406`). -/
+/-- `κ♯_k = |c_k(0)|` (Part II Definition 3.9 (`def:clock`)). -/
 def ksh (k : ℕ) : ℝ := ‖P.c0 k‖
 
 /-- `T̂_k = σ_k⁻¹ log(δ₀/κ♯_k)`, the length of the active phase in active time
-(`06_datum.tex:408`). -/
+(Part II Definition 3.9 (`def:clock`)). -/
 def That (k : ℕ) : ℝ := (P.sigma k)⁻¹ * Real.log (P.δ₀ / P.ksh k)
 
-/-- The saturation time `T_k = t♯_k + T̂_k/A_k`, and `T_{n+1} = 0` (`06_datum.tex:408`, `:413`). -/
+/-- The saturation time `T_k = t♯_k + T̂_k/A_k`, and `T_{n+1} = 0` (Part II Definition 3.9 (`def:clock`)). -/
 def T (k : ℕ) : ℝ := if k = P.n + 1 then 0 else P.tsh k + P.That k / P.A k
 
-/-- `t̄♯_k = A_k t♯_k`, the activation time in ring-`k` time (`06_datum.tex:413`). -/
+/-- `t̄♯_k = A_k t♯_k`, the activation time in ring-`k` time (Part II Definition 3.9 (`def:clock`)). -/
 def tash (k : ℕ) : ℝ := P.A k * P.tsh k
 
-/-- **The clock is defined up to level `k`** (`06_datum.tex:411-413`): `S_i(t♯_i) ⊂ N_i` and
+/-- **The clock is defined up to level `k`** (Part II Definition 3.9 (`def:clock`)): `S_i(t♯_i) ⊂ N_i` and
 `κ♯_i ∈ (0, δ₀)` for every `i ∈ [k, n]`. (For `k = n + 1` the condition is empty.) -/
 def ClockUpTo (k : ℕ) : Prop :=
   ∀ i ∈ Finset.Icc k P.n, P.St i (P.tsh i) ⊆ P.Nk i ∧ P.ksh i ∈ Ioo (0 : ℝ) P.δ₀
 
 /-! ### Phases -/
 
-/-- The window `W_k = [T_{k+1}, T_k]` (`06_datum.tex:413`). -/
+/-- The window `W_k = [T_{k+1}, T_k]` (Part II Definition 3.9 (`def:clock`)). -/
 def W (k : ℕ) : Set ℝ := Icc (P.T (k + 1)) (P.T k)
 
-/-- The active phase `Ph_k = [t♯_k, T_k]` (`06_datum.tex:414`, `\Phase_k`). -/
+/-- The active phase `Ph_k = [t♯_k, T_k]` (Part II Definition 3.9 (`def:clock`), `\Phase_k`). -/
 def Phase (k : ℕ) : Set ℝ := Icc (P.tsh k) (P.T k)
 
-/-- The pinning phase `Pin_k = [T_{k+1}, t♯_k]`, `k < n` (`06_datum.tex:415`). -/
+/-- The pinning phase `Pin_k = [T_{k+1}, t♯_k]`, `k < n` (Part II Definition 3.9 (`def:clock`)). -/
 def Pin (k : ℕ) : Set ℝ := Icc (P.T (k + 1)) (P.tsh k)
 
 /-- Ring `j` is **quiet** at `t`: `t♯_j` is not defined or `t ≤ t♯_j` (`def:loc`,
-`07_several_rings.tex:466-468`; `11_bootstrap.tex:57-58`; when the clock is defined this is the
+Part II Definition 4.4 (`def:loc`); the conventions after Part II Definition 6.1 (`def:stop`); when the clock is defined this is the
 `t ≤ t♯_j` of `def:clock`). -/
 def QuietAt (j : ℕ) (t : ℝ) : Prop := ¬ P.ClockUpTo (j + 1) ∨ t ≤ P.tsh j
 
 /-- Ring `j` is **active** at `t`: `T_j` is defined and `t♯_j ≤ t ≤ T_j`
-(`06_datum.tex:416`, `11_bootstrap.tex:58-59`). -/
+(Part II Definition 3.9 (`def:clock`), the conventions after Part II Definition 6.1 (`def:stop`)). -/
 def ActiveAt (j : ℕ) (t : ℝ) : Prop := P.ClockUpTo j ∧ P.tsh j ≤ t ∧ t ≤ P.T j
 
-/-- Ring `j` is **debris** at `t`: `T_j` is defined and `t > T_j` (`06_datum.tex:416`,
-`11_bootstrap.tex:59-60`). -/
+/-- Ring `j` is **debris** at `t`: `T_j` is defined and `t > T_j` (Part II Definition 3.9 (`def:clock`),
+the conventions after Part II Definition 6.1 (`def:stop`)). -/
 def DebrisAt (j : ℕ) (t : ℝ) : Prop := P.ClockUpTo j ∧ P.T j < t
 
-/-- The active time `u = A_k(t - t♯_k)` of ring `k` (`06_datum.tex:417`). -/
+/-- The active time `u = A_k(t - t♯_k)` of ring `k` (Part II Definition 3.9 (`def:clock`)). -/
 def activeTime (k : ℕ) (t : ℝ) : ℝ := P.A k * (t - P.tsh k)
 
-/-- The **running coefficient** of ring `k` (`eq:running-k`, `06_datum.tex:419-423`):
+/-- The **running coefficient** of ring `k` (`eq:running-k`, Part II Definition 3.9 (`def:clock`)):
 `c_k(u) = c_k(0) + ∫₀ᵘ e^{-λ_k v} ℓ_*(G_k)(F_k(v)) dv`, `F_k(v) = -h_k(t̄♯_k + v)·∇Φ`. This is
 `OneRing.runCoef` with `G = G_k`, `w₀ = w_k(t♯_k)` and the field `v ↦ h_k(t̄♯_k + v)` (the indicator
 of `N'` in `F_k` is omitted: `OneRing.hGrad`). -/
 def runCoefK (k : ℕ) (u : ℝ) : ℂ :=
   OneRing.runCoef P.χ (P.G k) (P.w k (P.tsh k)) (fun v => P.hField k (P.tash k + v)) u
 
-/-- The kick time `τ_K = A_{k+1}(t - T_{k+1})` of ring `k < n` (`06_datum.tex:424`). -/
+/-- The kick time `τ_K = A_{k+1}(t - T_{k+1})` of ring `k < n` (Part II Definition 3.9 (`def:clock`)). -/
 def kickTime (k : ℕ) (t : ℝ) : ℝ := P.A (k + 1) * (t - P.T (k + 1))
 
-/-- `τ₀ = -A_{k+1} T_{k+1}`, the kick time of `t = 0` (`06_datum.tex:425-426`). -/
+/-- `τ₀ = -A_{k+1} T_{k+1}`, the kick time of `t = 0` (Part II Definition 3.9 (`def:clock`)). -/
 def tau0 (k : ℕ) : ℝ := -(P.A (k + 1) * P.T (k + 1))
 
 end Approx
 
 /-! ### The comparison class of `lem:clock` -/
 
-/-- **The comparison vorticities of `lem:clock`(2),(3)** (`06_datum.tex:436-443`): `ω̃` is smooth,
+/-- **The comparison vorticities preceding Part II Lemma 3.10 (`lem:clock`)**: `ω̃` is smooth,
 every `ω̃(t)`, `t ≥ 0`, has compact support, and `K_BS * ω̃` is smooth with every derivative bounded
 on `[0, T] × ℝ²` for every `T`. "A quantity is determined by `ω^{(n)}` on `[0, t̄]`" means that it
 is unchanged when `P` is replaced by `P.withOm ω̃` for such an `ω̃` with `ω̃ = ω^{(n)}` on
@@ -149,7 +152,7 @@ theorem tshRev_succ (j : ℕ) :
       P.tshRev j + P.ThatAt (P.n - j) (P.tshRev j) / P.A (P.n - j) + P.Tpin / P.A (P.n - j) :=
   rfl
 
-/-- `t♯_n = 0` (`06_datum.tex:404`). -/
+/-- `t♯_n = 0` (Part II Definition 3.9 (`def:clock`)). -/
 theorem tsh_n : P.tsh P.n = 0 := by
   simp [tsh]
 
@@ -163,7 +166,7 @@ theorem ksh_eq_kshAt (k : ℕ) : P.ksh k = P.kshAt k (P.tsh k) := rfl
 
 theorem That_eq_ThatAt (k : ℕ) : P.That k = P.ThatAt k (P.tsh k) := rfl
 
-/-- `t♯_k = T_{k+1} + T_pin/A_{k+1}` for `k < n` (`06_datum.tex:409`, with `k+1` in place of `k`). -/
+/-- `t♯_k = T_{k+1} + T_pin/A_{k+1}` for `k < n` (Part II Definition 3.9 (`def:clock`), with `k+1` in place of `k`). -/
 theorem tsh_eq_T_add {k : ℕ} (hkn : k < P.n) :
     P.tsh k = P.T (k + 1) + P.Tpin / P.A (k + 1) := by
   have hne : k + 1 ≠ P.n + 1 := by omega

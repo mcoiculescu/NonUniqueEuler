@@ -9,8 +9,8 @@ import Mathlib.Topology.Connected.TotallyDisconnected
 
 Proof of `NonUniqueEuler/I/Verify/WindingLift.lean` (same declarations, statements verbatim).
 
-**Manuscript.** The definition of `wind(c, 0)` (`A_verification.tex:42-46`) and the proof of
-Proposition A.4 (`:487-499`).
+**Manuscript.** The definition of `wind(c, 0)` (`app:verify`) and the proof of
+Part II Proposition A.4 (`prop:winding`).
 
 * Uniqueness: two continuous arguments differ by a function with values in `2πℤ`, which is
   continuous on the connected `Icc a b`, hence constant (`IsPreconnected.constant_of_mapsTo`

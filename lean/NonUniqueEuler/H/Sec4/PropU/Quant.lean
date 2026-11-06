@@ -7,7 +7,7 @@ import NonUniqueEuler.I.Infra.AngularFourier.NormHCont
 import NonUniqueEuler.I.Infra.Sobolev.Norm
 
 /-!
-# Helpers for `P/Sec4/PropU`: the eigendata as continuous functions of `G` (`prop:U`(b))
+# Helpers for `P/Sec4/PropU`: the eigendata as continuous functions of `G` (proof of Part I Proposition 4.21(b) (`prop:U`))
 
 With `λ_*` continuous on `[0, G₁]` (`lam_continuousOn`):
 * `gstar_iteratedDeriv_continuousOn`: `(G, r) ↦ ∂_r^j g_*(G)(r)` is continuous on
@@ -45,7 +45,7 @@ theorem Icc_a_two_subset : Icc (a / 2) 2 ⊆ Ioi (0 : ℝ) :=
   fun _ hr => lt_of_lt_of_le (by linarith [a_pos_lt_one.1]) hr.1
 
 /-- At `G ∈ [0,G₁]`, `g_*(G)` is smooth on `(0,∞)` and vanishes off `[a,1]`
-(`lem:resolvent`(2)). -/
+(Part I Lemma 4.7(2) (`lem:resolvent`)). -/
 theorem gstar_facts (hχ : IsAdmissibleCutoff χ) (hN : NumericalHypothesis χ) {G : ℝ}
     (hG : G ∈ Icc (0 : ℝ) Gbar) :
     ContDiffOn ℝ ∞ (gstar χ G) (Ioi 0) ∧ (∀ r : ℝ, 0 < r → r ∉ Icc a 1 → gstar χ G r = 0) := by
@@ -54,7 +54,7 @@ theorem gstar_facts (hχ : IsAdmissibleCutoff χ) (hN : NumericalHypothesis χ) 
     hz G hE
   exact ⟨h.1, h.2.1⟩
 
-/-- `J(G) ≠ 0` (`thm:evans-simple`(1)). -/
+/-- `J(G) ≠ 0` (Part I Theorem 4.8(1) (`thm:evans-simple`)). -/
 theorem J_ne_zero (hχ : IsAdmissibleCutoff χ) (hN : NumericalHypothesis χ) {G : ℝ}
     (hG : G ∈ Icc (0 : ℝ) Gbar) : J χ G ≠ 0 := by
   obtain ⟨-, hz, hE, -, hE', -⟩ := eig_facts hχ hN hG

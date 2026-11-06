@@ -9,7 +9,7 @@ import Mathlib.LinearAlgebra.Complex.FiniteDimensional
 /-!
 # Helper for `lem:transfer-step`(1): the decomposition of `ω_{≥i+1}(t)`
 
-Helper of `P/Sec9/TransferStep.lean` (`09_relay.tex:198-206`). In physical units
+Helper of `P/Sec9/TransferStep.lean` (`lem:transfer-step`, Part II Lemma C.7). In physical units
 `ω_{≥i+1}(t) = A_{i+1}Φ(·/r_{i+1}) + A_{i+1}w_{i+1}(t,·/r_{i+1}) + ω_{≥i+2}(t)`; the first term is
 radial and supported in `\bar B_{r_{i+1}}`, so it has no non-monopole field at `|x| ≥ 2r_{i+1}`
 (`Radial.lean`); the second has zero integral (`lem:regions-basic`(4)). Hence, at `|x| ≥ 2r_{i+1}`,
@@ -142,7 +142,7 @@ theorem omegaGe_facts (P : Approx) (hP : P.Valid) (hN : NumericalHypothesis P.χ
     exact ⟨hsm.continuous.memLp_of_hasCompactSupport hcpt,
       hsm.continuous.memLp_of_hasCompactSupport hcpt, hsym⟩
 
-/-- **The decomposition of the non-monopole field of `ω_{≥i+1}(t)`** (`09_relay.tex:198-206`): for
+/-- **The decomposition of the non-monopole field of `ω_{≥i+1}(t)`** (`lem:transfer-step`, Part II Lemma C.7): for
 `1 ≤ i < n`, `t ≥ 0`, `S_{i+1}(t) ⊂ N_{i+1}` and `|x| ≥ 2r_{i+1}`,
 `E[ω_{≥i+1}(t)](x) = K_BS * (A_{i+1}w_{i+1}(t,·/r_{i+1}))(x) + E[ω_{≥i+2}(t)](x)`. -/
 theorem extField_omegaGe_split (P : Approx) (hP : P.Valid) (hN : NumericalHypothesis P.χ)

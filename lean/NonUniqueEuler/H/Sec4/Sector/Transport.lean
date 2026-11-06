@@ -8,9 +8,9 @@ import NonUniqueEuler.I.Infra.Sobolev.Symmetry
 import Mathlib.MeasureTheory.Integral.IntervalIntegral.Periodic
 
 /-!
-# Helper for `lem:sector`(2): the transport part of `L(G)`, sector projections, realness
+# Helper for Part I Lemma 4.5(2) (`lem:sector`): the transport part of `L(G)`, sector projections, realness
 
-Helper file of `P/Sec4/Sector.lean` (fully proved). Manuscript `04_ring.tex:267-277`.
+Helper file of `P/Sec4/Sector.lean` (fully proved). See the proof of Part I Lemma 4.5 (`lem:sector`).
 
 * `ae_of_ae_norm`: a property of almost every radius holds at `|x|` for almost every `x`.
 * `ae_intervalIntegrable_rot`: for `f ∈ L¹_loc`, `φ ↦ f(O_φ x)` is integrable on `[0, 2π]`

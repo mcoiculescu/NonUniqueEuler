@@ -4,13 +4,14 @@ import Mathlib.Analysis.Complex.Basic
 /-!
 # Helper for `lem:transfer`: the numerical series
 
-Helper of `P/Sec7/Transfer.lean` (`07_several_rings.tex:157-164`, `:186-189`, `:212-221`).
+Helper of `P/Sec7/Transfer.lean` (Part II Lemma 4.1 (`lem:transfer`), Part II Lemma 4.1 (`lem:transfer`)).
 The constants of `lem:transfer` are existential (D11), so we use the simple majorants
 * `Uq q = Σ_{l≥0} (l+q)^q 2^{-l}` (items (1), (2): the exterior series, `tsum_ext_le`), and
 * `Vq q = Σ_{l≥0} l^q (3/16)^l` (item (4): the interior series)
-in place of the manuscript's `S_{m,q}`; both converge (`summable_Uq`, `summable_Vq`).
+in place of the differentiated geometric series in the proof of Part II Lemma 4.1
+(`lem:transfer`); both converge (`summable_Uq`, `summable_Vq`).
 
-`tsum_ext_le` is the estimate of `07_several_rings.tex:157-164`: if `c_l = 0` for `l < 3`
+`tsum_ext_le` is the estimate of Part II Lemma 4.1 (`lem:transfer`): if `c_l = 0` for `l < 3`
 (the monopole and the non-multiples of `m = 3`), `|c_l| ≤ K τ^l` and `|x| ≥ τ/σ` with
 `0 < σ ≤ 1/2`, then `Σ_l |c_l| (l+q)^q |x|^{-(l+1+q)} ≤ K τ^{-1-q} σ^{4+q} · 8 U_q`.
 -/
@@ -48,7 +49,7 @@ theorem summable_Vq (q : ℕ) : Summable (fun l : ℕ => (l : ℝ) ^ q * (3 / 16
 theorem Vq_nonneg (q : ℕ) : 0 ≤ Vq q :=
   tsum_nonneg fun l => by positivity
 
-/-- **The exterior series bound** (`07_several_rings.tex:157-164`, `:186-189`). -/
+/-- **The exterior series bound** (Part II Lemma 4.1 (`lem:transfer`)). -/
 theorem tsum_ext_le {c : ℕ → ℂ} {K τ σ : ℝ} (hK : 0 ≤ K) (hτ : 0 < τ) (hσ0 : 0 < σ)
     (hσ : σ ≤ 1 / 2) (hc : ∀ l, ‖c l‖ ≤ K * τ ^ l) (hvan : ∀ l, l < 3 → c l = 0) (q : ℕ)
     {x : ℂ} (hx : τ / σ ≤ ‖x‖) :

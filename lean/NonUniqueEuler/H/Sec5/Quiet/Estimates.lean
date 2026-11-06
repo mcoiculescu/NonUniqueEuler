@@ -5,14 +5,14 @@ import Mathlib.Analysis.SpecialFunctions.Exp
 # Helpers for `thm:quiet`: the scalar estimates of the comparison step
 
 Helper of `P/Sec5/Quiet.lean` (fully proved). Real-variable lemmas behind `eq:Q-v` and the
-radial displacement bound (`05_single_ring.tex:521-549`):
+radial displacement bound (Part II Theorem 2.8):
 
 * `exp_mul_pow_le`: `e^{Λ d} x^n ≤ y^n` from `e^{σ d} x ≤ y`, `Λ ≤ nσ`, `d ≥ 0`
-  (`05_single_ring.tex:526-528`);
+  (Part II Theorem 2.8);
 * `energy_integral_le`: `∫₀^τ e^{Λ(τ-τ')} R(τ') dτ' ≤ C (1 + σ_b⁻¹) maj(τ)^{n+1}` from
   `R ≤ C(maj^{n+1} + η maj^n)` and (M1)–(M3) (`eq:Q-v`);
 * `radial_integral_le`: `|∫₀^τ f| ≤ (1 + A/σ_b) maj(τ)` from `|f| ≤ η + A maj` and (M2), (M3)
-  (`05_single_ring.tex:544-547`).
+  (Part II Theorem 2.8).
 -/
 
 noncomputable section
@@ -35,7 +35,7 @@ theorem exp_mul_pow_le {Λ σ d x y : ℝ} {n : ℕ} (hd : 0 ≤ d) (hΛ : Λ �
     _ = (Real.exp (σ * d) * x) ^ n := (mul_pow _ _ _).symm
     _ ≤ y ^ n := pow_le_pow_left₀ (mul_nonneg (Real.exp_pos _).le hx) h1 n
 
-/-- **The integral of `eq:Q-v`** (`05_single_ring.tex:521-533`). -/
+/-- **The integral of `eq:Q-v`** (Part II Theorem 2.8 (`thm:quiet`)). -/
 theorem energy_integral_le {Λ σ σb C τ : ℝ} {n : ℕ} {m η R : ℝ → ℝ}
     (hσb : 0 < σb) (hσ : σb ≤ σ) (hΛ : Λ ≤ n * σ) (hC : 0 ≤ C) (hτ : 0 ≤ τ)
     (hm0 : ∀ t ∈ Icc (0 : ℝ) τ, 0 ≤ m t) (hη0 : ∀ t ∈ Icc (0 : ℝ) τ, 0 ≤ η t)
@@ -81,7 +81,7 @@ theorem energy_integral_le {Λ σ σb C τ : ℝ} {n : ℕ} {m η R : ℝ → �
         mul_le_mul_of_nonneg_left hsum (mul_nonneg hC (pow_nonneg hmτ n))
     _ = C * (1 + σb⁻¹) * m τ ^ (n + 1) := by ring
 
-/-- **The radial displacement integral** (`05_single_ring.tex:544-547`). -/
+/-- **The radial displacement integral** (Part II Theorem 2.8 (`thm:quiet`)). -/
 theorem radial_integral_le {σ σb A τ : ℝ} {m η f : ℝ → ℝ} (hσb : 0 < σb) (hσ : σb ≤ σ)
     (hA : 0 ≤ A) (hτ : 0 ≤ τ) (hmτ : 0 ≤ m τ)
     (hM2 : (∫ v in (0 : ℝ)..τ, η v) ≤ m τ) (hM3 : (∫ v in (0 : ℝ)..τ, m v) ≤ m τ / σ)

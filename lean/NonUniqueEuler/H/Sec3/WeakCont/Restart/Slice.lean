@@ -10,7 +10,7 @@ For `φ : ℝ × ℂ → ℝ` with compact support, the slices `φ(t, ·)` vanis
 `K = Prod.snd '' tsupport φ` (the projection of the support to `ℝ²`). If `φ` is continuous, the
 slices are in every `L^p`; if `φ` is `C`-Lipschitz, then
 `‖φ(t, ·) - φ(s, ·)‖_{L²} ≤ C |t - s| |K|^{1/2}`. Together with the Cauchy–Schwarz inequality
-`|∫ f g| ≤ ‖f‖₂ ‖g‖₂` (`abs_integral_mul_le`) this is the estimate of `03_compactness.tex:216-219`.
+`|∫ f g| ≤ ‖f‖₂ ‖g‖₂` (`abs_integral_mul_le`) this is the estimate of Part I Lemma 3.2 (`lem:weak-cont`).
 
 All lemmas are fully proved.
 -/

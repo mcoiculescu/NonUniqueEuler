@@ -7,7 +7,7 @@ import Mathlib.Analysis.Calculus.LineDeriv.IntegrationByParts
 /-!
 # Helper for `lem:grad-bound`: the estimate for a fixed cutoff
 
-Helper of `P/SmoothB/GradBound.lean` (`B_global_smooth.tex:125-147`). Fix `0 < a < b ≤ 1` and the
+Helper of `P/SmoothB/GradBound.lean` (Part II, Lemma B.3 (`lem:grad-bound`)). Fix `0 < a < b ≤ 1` and the
 radial cutoff `χ = cut a b` (`0` on `|z| ≤ a`, `1` on `|z| ≥ b`). For real `g ∈ C¹_c` we split
 `∫ (K_BS)_i(z) ∂_l g(x - z) dz = ∫ (1 - χ)(K_BS)_i ∂_l g(x - ·) + ∫ χ (K_BS)_i ∂_l g(x - ·)`:
 * near part (`abs_integral_near_le`): at most `b ‖∇g‖_∞`, by `∫_{B_b} |K_BS| = b`;
@@ -287,7 +287,7 @@ theorem abs_integral_near_le (ha : 0 < a) (hab : a < b) (i : Fin 2) {φ : ℂ �
 /-! ### The estimate for a fixed cutoff -/
 
 /-- `|∫ (K_BS)_i(z) ∂_l g(x - z) dz| ≤ b ‖∇g‖_∞ + ‖g‖_∞ + ‖g‖_∞ log(1/a) + ‖g‖₁/(2π)` for
-`0 < a < b ≤ 1` (`B_global_smooth.tex:128-144`, with the cutoff between `a` and `b` in place of
+`0 < a < b ≤ 1` (Part II, Lemma B.3 (`lem:grad-bound`), with the cutoff between `a` and `b` in place of
 the sharp cut at `δ`). -/
 theorem abs_integral_kernelComp_le (ha : 0 < a) (hab : a < b) (hb1 : b ≤ 1) (i l : Fin 2)
     {g : ℂ → ℝ} (hg : ContDiff ℝ 1 g) (hc : HasCompactSupport g) (x : ℂ) :

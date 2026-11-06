@@ -243,7 +243,7 @@ theorem lay_bsNorm_w (χ : ℝ → ℝ) (t : ℝ) (x : ℂ) :
   rw [bsNorm, h1, h2]
   simp [Real.sqrt_sq (norm_nonneg _)]
 
-/-- **The displacement bound** (`05_single_ring.tex:968-971`): if `supp ω_r(τ) ⊂ N` on `[0,t]`,
+/-- **The displacement bound** (Part II Theorem 2.12 (`thm:active`)): if `supp ω_r(τ) ⊂ N` on `[0,t]`,
 `‖h(τ)‖_{C^0(N')} ≤ A` and `‖w(τ)‖_{H^1} ≤ B` (constants), then every trajectory of `ω_r`
 satisfies `||Φ_τ(y)| - |y|| ≤ τ(A + C_BS B)` for `τ ∈ [0,t]`. -/
 theorem displacement_le {χ : ℝ → ℝ} (hχ : IsAdmissibleCutoff χ) (hc : c.Hyp T) {t : ℝ}

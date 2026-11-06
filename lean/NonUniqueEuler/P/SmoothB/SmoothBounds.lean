@@ -6,8 +6,8 @@ import NonUniqueEuler.I.SmoothB.OpNormEntry
 /-!
 # Proof of `lem:smooth-bounds` (explicit bounds on the smooth solution)
 
-Proof of `I/SmoothB/SmoothBounds.lean` (`B_global_smooth.tex:479-491`, joint proof with thm:smooth
-`:493-521`).
+Proof of `I/SmoothB/SmoothBounds.lean`: Part II, Lemma B.11 (`lem:smooth-bounds`),
+proved jointly with Theorem 1.8 (`thm:smooth`) in §B.5.
 
 `iter_limit` gives `ω` with `IsSmoothSolAll ω₀ ω` and the bounds `eq:limit-bounds`. Both `ω` and
 `sol ω₀` satisfy `IsSmoothSol ω₀ R₀` (`IsSmoothSolAll.isSmoothSol`, `sol_spec`), so they agree by

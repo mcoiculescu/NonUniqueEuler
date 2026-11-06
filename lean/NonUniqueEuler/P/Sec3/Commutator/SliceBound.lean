@@ -7,7 +7,11 @@ import Mathlib.MeasureTheory.Group.Prod
 /-!
 # Proof: the uniform commutator bound `eq:comm-bound` at a fixed time (`a = b = 2`)
 
-Proof of `I/Sec3/Commutator/SliceBound.lean` (`03_compactness.tex:374-406`).
+Current manuscript: Part I Lemma 3.3 (`lem:commutator`). This file retains components
+of the older smooth-field proof. The current proof obtains convergence by smoothing
+`u`; the Lean decomposition smooths the vector field and uses the kernel moments.
+
+Proof of `I/Sec3/Commutator/SliceBound.lean` (the bound in the proof of Part I Lemma 3.3 (`lem:commutator`)).
 
 With `K = sup_z ‖Dρ(z)‖` and the second line of `eq:comm-formula`
 (`commEps_eq_integral_ball`), for every `x`,
@@ -121,7 +125,7 @@ theorem enorm_commEps_le {ρ : ℂ → ℝ} (hρ : IsMollifier ρ) {K : ℝ} (hK
 end SliceBoundH
 
 open SliceBoundH in
-/-- `eq:comm-bound` at a fixed time (`03_compactness.tex:403-406`, `a = b = 2`): there is a
+/-- `eq:comm-bound` at a fixed time (the bound in the proof of Part I Lemma 3.3 (`lem:commutator`), `a = b = 2`): there is a
 constant `C` (depending only on `ρ`) such that, whenever `u(t) ∈ L²(B_r)` and `w(t) ∈ H¹(B_r)` for
 every `r > 0`, for all `0 < ε ≤ 1` and `R > 0`,
 `‖C_ε[u,w](t)‖_{L¹(B_R)} ≤ C ‖u(t)‖_{L²(B_{R+1})} ‖w(t)‖_{H¹(B_{R+1})}`. -/

@@ -6,12 +6,13 @@ import NonUniqueEuler.I.Sec10.ConstantsPos
 # Proof: `eq:E22` holds for small `s̄` (a step of `lem:nonempty`)
 
 Proof of `I/Sec10/Nonempty/E22.lean` (`Relay.e22_small`), the condition `eq:E22` of (B7) in the
-proof of `lem:nonempty` (`10_parameters.tex:345-352`; `eq:E22` is `:151-154`).
+proof of Lemma 7.1 (`lem:nonempty`), Part II Appendix C.4 (`sec:param-verification`).
+The condition is Equation (37) (`eq:E22`), in Definition C.4 (`def:P6`).
 
 `Standing.CondE22` is the multiplicative form
 `4C_OC_QC_τ · K_O s̄^{2m}[T_z + 2log(1/s̄) + 1/(μ-1)] ≤ (μ-1) · min{1/2, 1/(4C_lsK₁)}`.
 
-**Proof** (the manuscript's argument, `10_parameters.tex:345-352`).
+**Proof** (the manuscript's argument, Part II Appendix C.4, `sec:param-verification`).
 1. `f(s̄) = K_O s̄^6 [T_z + 2log(1/s̄) + 1/(μ-1)] = K_O s̄^6 (A - 2 log s̄)` with
    `A = T_z + 1/(μ-1)`; `s̄^6 → 0` and `s̄^6 log s̄ → 0` (`tendsto_log_mul_rpow_nhdsGT_zero`), so
    `4C_OC_QC_τ f(s̄) → 0` as `s̄ → 0⁺` (`E22H.tendsto_pow_mul_affine_log`).
@@ -54,7 +55,7 @@ theorem tendsto_pow_mul_affine_log {n : ℕ} (hn : n ≠ 0) (A B : ℝ) :
 
 end E22H
 
-/-- **`eq:E22` for small `s̄`** (`10_parameters.tex:151-154`, `:345-352`): for parameters satisfying
+/-- **`eq:E22` for small `s̄`** (Part II Definition C.4, `def:P6`): for parameters satisfying
 (P0)–(P4) and any seed size `κ`, `eq:E22` holds for every `s̄ ∈ (0, s₀]`, some `s₀ > 0`. -/
 theorem e22_small (p : Params) (hχ : IsAdmissibleCutoff p.χ) (hN : NumericalHypothesis p.χ)
     (hp : p.Structural) (κ : ℝ) :

@@ -3,7 +3,7 @@ import NonUniqueEuler.I.Sec3.WeakCont.AeIdentity
 import NonUniqueEuler.I.Infra.WeakL2.TestFamily
 
 /-!
-# `lem:weak-cont`: construction of the weakly continuous path (`03_compactness.tex:171-189`)
+# `lem:weak-cont`: construction of the weakly continuous path (Part I Lemma 3.2 (`lem:weak-cont`))
 
 Let `𝓕 = {F k}` be a countable test family (`WeakL2.exists_isTestFamily`). For `ψ = F k` the
 identity `∫ u(t) ψ = A_ψ(t) := ∫ u₀ψ + ∫_0^t c_ψ` holds for a.e. `t` (`ae_integral_mul_eq`), so it
@@ -25,7 +25,7 @@ open scoped ENNReal Topology InnerProductSpace
 
 namespace NonUniqueEuler.Weak.WeakCont
 
-/-- The weakly continuous `L²`-valued path of `lem:weak-cont` (`03_compactness.tex:171-189`):
+/-- The weakly continuous `L²`-valued path of Part I Lemma 3.2 (`lem:weak-cont`):
 `P` is weakly continuous on `[0,T]`, bounded by `N`, and `P(t) = u(t)` for a.e. `t ∈ (0,T)`. -/
 theorem exists_weakContinuousOn_path {T N : ℝ} (hT : 0 < T) (hN0 : 0 ≤ N) {u : ℝ → ℂ → ℝ}
     {w : ℝ → ℂ → ℂ} {u₀ : ℂ → ℝ}

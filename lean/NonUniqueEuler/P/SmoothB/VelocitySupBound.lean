@@ -6,8 +6,7 @@ import Mathlib.MeasureTheory.Measure.Lebesgue.VolumeOfBalls
 /-!
 # Proof: `‖K_BS ∗ g‖_{L^∞} ≤ √2 ρ ‖g‖_{L^∞}` for `g` vanishing outside `B_ρ`
 
-Proof of `I/SmoothB/VelocitySupBound.lean` (the bound inside the proof of `prop:iter-limit`,
-`B_global_smooth.tex:422-424`).
+Proof of `I/SmoothB/VelocitySupBound.lean` (the bound inside the proof of Part II, Proposition B.10 (`prop:iter-limit`)).
 
 1. `‖g‖₁ ≤ |B_ρ| ‖g‖_∞ = πρ² ‖g‖_∞` (`eLpNorm_one_le_pi_mul_sq_mul_eLpNorm_top`): bound
    `‖g y‖ₑ` a.e. by `1_{B_ρ}(y) ‖g‖_∞` and integrate (`Complex.volume_ball`).
@@ -44,7 +43,7 @@ theorem eLpNorm_one_le_pi_mul_sq_mul_eLpNorm_top {g : ℂ → ℝ} {ρ : ℝ} (h
 
 /-- For a bounded measurable real `g` vanishing outside `B_ρ`, the Biot–Savart integral
 converges absolutely at every `x` and `|K_BS ∗ g(x)| ≤ √2 ρ ‖g‖_{L^∞}`
-(`B_global_smooth.tex:422-424`). -/
+(Part II, Proposition B.10 (`prop:iter-limit`)). -/
 theorem norm_velocity_le_sqrt_two_mul_radius {g : ℂ → ℝ} {ρ : ℝ} (hρ : 0 < ρ)
     (hg : MemLp g ⊤ volume) (hsupp : ∀ᵐ y, y ∉ ball (0 : ℂ) ρ → g y = 0) (x : ℂ) :
     Integrable (fun y => biotSavartKernel (x - y) * (g y : ℂ)) volume ∧

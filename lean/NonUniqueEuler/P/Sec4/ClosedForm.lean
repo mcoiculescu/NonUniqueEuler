@@ -8,7 +8,7 @@ import Mathlib.MeasureTheory.Function.JacobianOneDim
 # Proof: `lem:closed-form` (sign of `ϖ'` and the closed-form bound on `Z_ℓ`)
 
 Proof of the interface `NonUniqueEuler/I/Sec4/ClosedForm.lean` (same declarations, statements
-copied verbatim). Manuscript `04_ring.tex:771-827`.
+copied verbatim). Manuscript Part I Lemma 4.11 (`lem:closed-form`).
 
 * (1) `prof_deriv_sign`: `ϖ' = χ'AB + χAB(2/d)(Ā - B̄)` and the monotonicity of `χ`
   (`H/Sec4/ClosedForm/Sign.lean`). `ringRefSetting_edgeSplit`: `r ω̄_c'(r) = ϖ'(log r)`

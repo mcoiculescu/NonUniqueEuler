@@ -9,7 +9,7 @@ import Mathlib.LinearAlgebra.Complex.FiniteDimensional
 /-!
 # Proof: ring `k` in ring-`k` units as a configuration of `lem:reduction`
 
-Proof of `I/Sec6/RingConfig.lean` (`06_datum.tex:138-156`, `:323-330`).
+Proof of `I/Sec6/RingConfig.lean` (the ring-unit conventions before Part II Definition 3.5 (`def:regions`), the reduction discussion after Part II Lemma 3.6 (`lem:regions-basic`)).
 
 * `ringConfig_units`: the scaling covariance of `thm:smooth` (`Smooth.sol_scale`) applied to the
   datum `A_k⁻¹ f^{(n)}(r_k ·)` (`ringConfig_datum`) gives the solution, velocity, flow and inverse
@@ -307,7 +307,7 @@ namespace Approx
 
 open RingData RingConfigAux
 
-/-- **Ring `k` in ring-`k` units** (`06_datum.tex:138-156`, `:323-330`): for `1 ≤ k ≤ n`, the
+/-- **Ring `k` in ring-`k` units** (the ring-unit conventions before Part II Definition 3.5 (`def:regions`), the reduction discussion after Part II Lemma 3.6 (`lem:regions-basic`)): for `1 ≤ k ≤ n`, the
 configuration `P.ringConfig k` has solution `A_k⁻¹ω(τ/A_k, r_k ·)`, velocity `v(τ/A_k)_{[k]}` and
 flow `r_k⁻¹Φ_{τ/A_k}(r_k ·)`; for `τ ≥ 0` its ring, inner and outer parts are the rescaled
 `ω(t)1_{S_k(t)}`, `ν^in_k`, `ν^out_k` at `t = τ/A_k`, its perturbation is `w_k(τ/A_k)`, its field
@@ -422,7 +422,7 @@ theorem ringConfig_units (P : Approx) (hP : P.Valid) (hN : NumericalHypothesis P
     rw [OneRing.RingConfig.h, hinner τ hτ, houter τ hτ, hG, hadd, hField, hIn, hOut]
     ring
 
-/-- **Ring `k` satisfies the hypotheses of `lem:reduction`** (`06_datum.tex:323-330`): if `T > 0`
+/-- **Ring `k` satisfies the hypotheses of `lem:reduction`** (the reduction discussion after Part II Lemma 3.6 (`lem:regions-basic`)): if `T > 0`
 and, for every `t ∈ [0, T]`, `D_{k+1}(t) ⊂ B_{ar_k/8}` and the rings `i < k` lie outside
 `B_{6r_k}`, then `P.ringConfig k` satisfies `RingConfig.Hyp` on `[0, A_kT]` (with `G = G_k` and
 `h = h_k`, `ringConfig_units`). -/

@@ -11,9 +11,9 @@ import Mathlib.MeasureTheory.Function.LpSeminorm.LpNorm
 /-!
 # Proof of `lem:ext-multipole`, the exterior field of a confined `m`-fold symmetric body
 
-Proof of the interface `NonUniqueEuler/I/Sec2/ExtMultipole.lean` (`02_prelim.tex:470-511`).
+Proof of the interface `NonUniqueEuler/I/Sec2/ExtMultipole.lean` (Part II, Lemma 1.7 (`lem:ext-multipole`)).
 
-Structure (following the manuscript proof, `02_prelim.tex:482-511`).
+Structure (following the manuscript proof, Part II, Lemma 1.7 (`lem:ext-multipole`)).
 * `cExtMultipole_finite`: the series part, in `H/Sec2/ExtMultipole/Series.lean`
   (`summable_extSeries`, `bddAbove_extSeries`, `cExtMultipole_pos`).
 * `extField_smooth`: for `|x| > ϱ`, `g = 0` a.e. on `ball x (|x| - ϱ)`, so the Biot–Savart

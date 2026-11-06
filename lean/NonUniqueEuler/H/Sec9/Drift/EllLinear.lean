@@ -12,7 +12,7 @@ import Mathlib.MeasureTheory.Integral.Prod
 /-!
 # Helper for `lem:drift`: additivity of `ℓ_*(G)` on the field terms `-h·∇Φ`
 
-Helper of `P/Sec9/Drift.lean` (`09_relay.tex:803-818`: "by the linearity of `ℓ_*(G_k)`").
+Helper of `P/Sec9/Drift.lean` (`lem:drift`, Part II Lemma C.11: "by the linearity of `ℓ_*(G_k)`").
 
 * `DriftAux.ellFn_congr_ae`: `ℓ_*(G)` on functions (`Eig.ellFn`) only sees the a.e. class;
 * `DriftAux.exists_Y_neg_hGradPhi`: for `h ∈ C^0(N')`, `-h·∇Φ` is a.e. the function of an element

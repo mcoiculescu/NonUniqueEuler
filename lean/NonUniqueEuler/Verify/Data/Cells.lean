@@ -18,7 +18,7 @@ import NonUniqueEuler.Verify.Data.CellLits
 namespace NonUniqueEuler.Verify
 
 /-- **The certificate**: the cells, rectangles and parameters of the two runs of
-§A.6, transcribed from `sector3_count_cells.json` and `sector3_gap_cells.json`. -/
+Part II §A.5 (`app:runs`), transcribed from `sector3_count_cells.json` and `sector3_gap_cells.json`. -/
 def cert : CertificateData := certLits.toCertificateData
 
 /-- The checker on the certificate is the core computation of the executable. -/

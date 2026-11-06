@@ -67,15 +67,16 @@ are distinct elements of $X_q(T')$ for every $T'>t_0$ and every
 $q\in(4/3,\infty)$.
 \end{theorem}
 
-Taking the last time up to which $\omega_\infty$ agrees with $f$ as the new time
-origin gives non-uniqueness on every interval $[0,T]$ with $T>0$.
+The time translation symmetry of the Euler equations allows us to take the
+last time up to which $\omega_\infty$ agrees with $f$ as the new time origin.
+This gives non-uniqueness on every interval $[0,T]$ with $T>0$.
 
 We do not treat $q\le4/3$. No symmetry is
 imposed on the class; the $3$-fold rotational symmetry of $\omega_\infty$ comes from the
-construction, where it removes the angular modes $\ell\notin3\Z$, among them the
-modes $\ell=\pm1$ that contain the translations of a ring, and leaves the
-modes $\ell\in3\Z$, whose spectra Part~I controls under
-Hypothesis~I.\ref{I-hyp:N}.
+construction. This symmetry removes the angular modes $\ell\notin3\Z$ from
+the study of the linearization of the ring, among them the modes $\ell=\pm1$
+that contain its translations. The remaining modes $\ell\in3\Z$ have spectra
+controlled in Part~I under Hypothesis~I.\ref{I-hyp:N}.
 
 The proof of Theorem~\ref{thm:main} is divided between Part~I and this paper.
 Part~I proves a non-uniqueness criterion (Section~I.\ref{I-sec:compact}) and the
@@ -194,11 +195,11 @@ explains the terminology used below. The evolution $e^{\gamma t}b(0)$ is the
 induced by the other rings. Factoring out $e^{\gamma t}$ leaves a normalized
 coefficient whose change is the weighted integral of the drive.
 
-In $\omega^{(n)}$ the instability passes outward like a relay. The unstable
-coefficient of ring $k$ grows at the rate $A_k\sigma(G_k)$ per unit physical
-time to a fixed size $\delta_0$, and we then say that ring $k$ saturates.
-The mode-$3$ component of the velocity induced by ring $k$ and the rings
-inside it advects the radial vorticity of ring $k-1$ and drives its unstable
+In $\omega^{(n)}$ the instability passes outward like a relay. We say that
+ring $k$ saturates when its free-growth envelope, growing at the rate
+$A_k\sigma(G_k)$ per unit physical time, reaches the fixed size $\delta_0$.
+The 3rd angular mode of the velocity induced by ring $k$ and the rings
+inside it advects the vorticity of ring $k-1$ and drives its unstable
 coefficient. In ring-$(k-1)$ units, this coupling carries the factor
 $\mu s_{k-1}^5$, where $s_{k-1}=r_k/r_{k-1}$ and
 $\mu=A_k/A_{k-1}$ (Lemma~\ref{lem:coupling}). In ring-$k$ time $\tau=A_kt$,
@@ -206,7 +207,7 @@ this velocity component grows at rate $\sigma(G_k)$. Ring $k-1$ grows freely
 at physical rate $A_{k-1}\sigma(G_{k-1})$, so its rate in $\tau$ is
 $(A_{k-1}/A_k)\sigma(G_{k-1})=\sigma(G_{k-1})/\mu$.
 Once $\mu$ is fixed, we separate the rings to make the central circulations
-small. By continuity of $\sigma$ at zero, the change in each growth rate is
+small. By continuity of $\sigma(G)$ at $G=0$, the change in each growth rate is
 then only a small fraction of the gap at $G_k=G_{k-1}=0$
 (Lemma~\ref{lem:detuning}). Thus
 \[
@@ -216,14 +217,12 @@ then only a small fraction of the gap at $G_k=G_{k-1}=0$
 Here $\sigma(0)=\Re\lamst(0)$ is the instability growth rate of the reference
 ring without a central point vortex. After the free linear evolution of ring
 $k-1$ is factored out, the driven part of its unstable coefficient is a
-truncated Laplace transform of the mode-$3$ moment of the vorticity in ring
+truncated Laplace transform of the moment of the 3rd angular mode of the vorticity in ring
 $k$ and the rings inside it (Lemma~\ref{lem:coupling},
 Equation~\eqref{eq:kick-A}). The positive difference of growth rates makes
 this integral dominated by the contribution near the saturation of ring $k$.
 The resulting amplitude remains essentially stationary during the subsequent
-handoff to ring $k-1$. Its modulus is comparable to the size of the mode-$3$
-driving at saturation divided by $\mu-1$, with constants independent of $k$
-and $n$ (Proposition~\ref{prop:kick} and its proof).
+handoff to ring $k-1$ (Proposition~\ref{prop:kick} and its proof).
 
 As $\mu$ is fixed, ring $k-1$ therefore starts with a coefficient of order
 $s_{k-1}^5$ (the hand-off in Proposition~\ref{prop:relay-step}), and it
@@ -239,13 +238,20 @@ allow time for the inner ring's contribution to accumulate, then read off the
 next ring's starting amplitude from $\omega^{(n)}$. The clock of
 Definition~\ref{def:clock} uses this amplitude to predict when free growth
 will bring the ring to $\delta_0$ and to schedule the next handoff.
-Until it becomes active, a ring stays close to $\Phi$,
-although driven by the velocity fields of the vorticity inside and outside it
-(Theorem~\ref{thm:quiet}).
+
+Saturated rings continue to evolve and interact. During each active interval,
+we follow the outermost activated ring and control the combined field of the
+material inside it. The separation of spatial scales keeps this material
+confined well inside the active ring (Proposition~\ref{prop:confine}). Its
+circulation field remains in the linearization. After the handoff, the
+polynomial bound on its multipole moments, together with the exponential
+weight in the Duhamel integral, makes its further contribution to the
+normalized unstable coefficient small (Lemma~\ref{lem:drift}). Meanwhile,
+the outer quiet rings stay close to their radial profiles until activation,
+with controlled feedback on the active ring (Theorem~\ref{thm:quiet}).
+
 The active ring follows its unstable eigenfunction (Theorem~\ref{thm:active}).
-Once the ring just inside it has saturated, the material inside each ring
-stays in a small disk (Proposition~\ref{prop:confine}). The hypotheses of these three statements are
-verified jointly, for all rings and all times until the outermost ring
+These bounds are verified jointly, for all rings and all times until the outermost ring
 saturates, by one bootstrap with constants independent of $n$ (proof of
 Proposition~\ref{prop:bootstrap}).
 
@@ -265,7 +271,7 @@ Section~\ref{sec:II-prelim} collects notation and preliminaries.
 Section~\ref{sec:single} gives the quiet, active and seeded ring estimates.
 Section~\ref{sec:datum} defines the datum, its approximants and the clock,
 and Section~\ref{sec:several} controls the fields between rings and the
-confinement of the inner material. Section~\ref{sec:kick} computes the kick,
+confinement of the inner material. Section~\ref{sec:kick} computes the driving,
 and Section~\ref{sec:relay} proves one step of the relay.
 Section~\ref{sec:param} chooses the parameters, and Section~\ref{sec:bootstrap}
 iterates the step and completes the proof of Proposition~\ref{prop:reduction}.

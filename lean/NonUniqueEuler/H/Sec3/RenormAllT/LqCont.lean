@@ -9,7 +9,7 @@ import Mathlib.Topology.Algebra.Order.Field
 
 Helper file of `P/Sec3/RenormAllT.lean` (fully proved).
 
-`03_compactness.tex:685-689`: the uniform tail bound eq:tail and the (local) strong continuity
+Part I Lemma 3.5 (`lem:renorm-all-t`) and its proof: the uniform tail bound eq:tail and the (local) strong continuity
 give `ω ∈ C([0,T);L¹)` (`tendsto_eLpNorm_one`: split `ℝ² = B_{2R} ∪ {|x| ≥ 2R}`, Hölder on the
 ball, eq:tail outside); interpolation with the bound `‖ω(t) - ω(s)‖₂ ≤ 2B` gives
 `ω ∈ C([0,T);L^q)` for `q ∈ [1,2)` (`continuousIntoLpOn_of_one_two`, I-LPINT).

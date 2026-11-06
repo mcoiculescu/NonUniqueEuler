@@ -7,10 +7,11 @@ import NonUniqueEuler.I.Sec4.PropU
 # Helpers for `quiet_approx`: the induction on `j` (regularity, equations, `eq:Q-hier`)
 
 Helper of `P/Sec5/Quiet/Approx.lean` (fully proved). Namespace `NonUniqueEuler.OneRing.QAppH`.
-Manuscript `05_single_ring.tex:474-492`. With `A = C_L C_bil` and a number `R` with
+Manuscript Part II Theorem 2.8 (`thm:quiet`). With `A = C_L C_bil` and a number `R` with
 `A (N_Q A/σ_b + 1) ≤ R`, the constants `C^{(j)} = A R^{j-1}` satisfy the recursion inequality of
-the manuscript (deviation: the manuscript defines `C^{(j)}` by the exact recursion; any constants
-satisfying the inequality work, and this closed form avoids a recursive definition).
+the retained Lean decomposition. The former exposition used an exact recursion;
+this closed form satisfies its required inequality. The current proof of
+Theorem 2.8 uses implicit constants in the induction for Equation (10) (`eq:Q-hier`).
 
 `hier_props`: for `1 ≤ j ≤ N_Q`, `w^{[j]} ∈ C([0,T];X^{k_j}) ∩ C¹([0,T];X^{k_j-1})` with
 `∂_t w^{[j]} = L w^{[j]} + g^{[j]}`, real, `w^{[j]}(0) = 0`, `‖w^{[j]}(t)‖_{H^{k_j}} ≤

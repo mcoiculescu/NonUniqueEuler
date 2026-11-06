@@ -6,7 +6,7 @@ import NonUniqueEuler.H.Sec5.LinearPart.Bound
 /-!
 # Proof: `lem:linear-part` (the complementary part of the linear response)
 
-Proof of `I/Sec5/LinearPart.lean` (`05_single_ring.tex:616-649`).
+Proof of `I/Sec5/LinearPart.lean` (Part II Lemma 2.10).
 
 * The decomposition `wlin₀(u) = 2Re(c(u)e^{λu}φ_*) + (1-R)wlin₀(u)` is `lem:running` at level `k`
   (`I/Sec5/Running.lean`, `running`: `R wlin₀(u) = 2Re(c(u)e^{λu}φ_*)` a.e.) together with
@@ -30,7 +30,7 @@ namespace OneRing
 
 open RingData
 
-/-- **`lem:linear-part`** (`05_single_ring.tex:616-633`). Assume (N1)–(N3). Let
+/-- **`lem:linear-part`** (Part II Lemma 2.10). Assume (N1)–(N3). Let
 `σ' ∈ (9/200, σ_b)`, `p ≥ 0`, `k ≥ 2`, and let `CS ≥ 0` be a constant `C_S(k,σ')` of
 `prop:semigroup`. Let `G ∈ [0,G₁]`, `ū > 0`, `A, κ, η_b ≥ 0`, `w₀ ∈ X^k` real with
 `‖w₀‖_{H^k} ≤ A`, and `h` continuous on `[0,ū]` into `C^k(N';ℝ²)`, `3`-fold symmetric, with

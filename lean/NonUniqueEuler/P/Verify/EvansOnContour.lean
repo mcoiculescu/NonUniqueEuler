@@ -8,8 +8,8 @@ import Mathlib.Analysis.Complex.Basic
 # Proof: the Evans function along a rectangle contour in the right half-plane
 
 Proof of the interface `NonUniqueEuler/I/Verify/EvansOnContour.lean` (same declarations, same
-statements). Manuscript: proof of Proposition A.7 (`A_verification.tex:640-643`) and
-Lemma A.6 (`:538-540`).
+statements). Manuscript: proof of Part II Proposition A.7 (`prop:runs`) and
+Part II Lemma A.6 (`lem:Nprime-N`).
 
 * `continuous_evans_bdryPath`: `evans_differentiableOn` (`I/Evans/ODE.lean`) gives continuity
   of `E_ℓ(·; G)` on `{Re z > 0}`; the boundary curve is continuous

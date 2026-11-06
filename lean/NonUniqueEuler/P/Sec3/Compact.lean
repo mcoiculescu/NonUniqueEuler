@@ -5,9 +5,13 @@ import NonUniqueEuler.H.Sec3.Compact.Velocity
 import NonUniqueEuler.H.Sec3.Compact.Identity
 
 /-!
-# Proof: `prop:compact`, compactness of weak solutions with bounded `L¹ ∩ L²` norms
+# Proof: legacy `prop:compact`, compactness of weak solutions with bounded `L¹ ∩ L²` norms
 
-Proof of `I/Sec3/Compact.lean` (`03_compactness.tex:251-340`). Same declaration, same statement.
+The former `prop:compact` is retained as a separate Lean result. The current manuscript
+uses its compactness ingredients inside the proof of Part I Theorem 3.8 (`thm:criterion`);
+that theorem is not a replacement statement for this more general auxiliary.
+
+Proof of `I/Sec3/Compact.lean` (the compactness argument in the proof of Part I Theorem 3.8 (`thm:criterion`)). The interface and proof declarations agree.
 
 The steps are in the helper files `H/Sec3/Compact/*.lean` (namespace
 `NonUniqueEuler.Compact.PropCompact`):
@@ -35,7 +39,7 @@ namespace NonUniqueEuler.Compact
 
 open Weak
 
-/-- **`prop:compact`** (`03_compactness.tex:251-271`): under the hypotheses `IsCompactSeq T M gs g
+/-- **legacy `prop:compact`** (the compactness argument in the proof of Part I Theorem 3.8 (`thm:criterion`)): under the hypotheses `IsCompactSeq T M gs g
 ωs`, there are a subsequence `φ` and a weak solution `ω` in `X₂(T)` with datum `g`, weakly
 continuous into `L²` on `[0, T]`, such that (i)–(iii) of `IsCompactLimit` hold for `ωs ∘ φ`, and
 `sup_{t ∈ [0,T]} ‖ω(t)‖_{L¹∩L²} ≤ M` (the "in particular" of (ii)). -/

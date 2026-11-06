@@ -7,7 +7,7 @@ import Mathlib.MeasureTheory.Integral.IntervalIntegral.Periodic
 /-!
 # Proof: Fubini in polar coordinates on `ℂ` (I-POLAR)
 
-Proof of `NonUniqueEuler/I/Infra/Polar/Fubini.lean` (`02_prelim.tex:26-29`).
+Proof of `NonUniqueEuler/I/Infra/Polar/Fubini.lean` (Part I, Section 2.1, conventions in `sec:prelim`).
 
 Strategy. Instead of the polar chart `polarCoord` (whose target is `(0,∞) × (-π,π)`), we apply
 the change of variables theorem (`Mathlib/MeasureTheory/Function/Jacobian.lean`) directly to the
@@ -179,7 +179,7 @@ theorem ae_circleIntegrable_of_integrable {f : ℂ → E} (hf : Integrable f) :
   exact (intervalIntegrable_iff_integrableOn_Ioc_of_le Real.two_pi_pos.le).mpr h
 
 /-- For `f ∈ L¹_loc`, `θ ↦ f(r e^{iθ})` is integrable on `[0, 2π]` for almost every `r > 0`
-(`02_prelim.tex:26-29`). -/
+(Part I, Section 2.1, conventions in `sec:prelim`). -/
 theorem ae_circleIntegrable_of_locallyIntegrable {f : ℂ → E} (hf : LocallyIntegrable f) :
     ∀ᵐ r ∂(volume.restrict (Ioi (0 : ℝ))), CircleIntegrable f 0 r := by
   have h : ∀ n : ℕ, ∀ᵐ r ∂(volume.restrict (Ioi (0 : ℝ))),

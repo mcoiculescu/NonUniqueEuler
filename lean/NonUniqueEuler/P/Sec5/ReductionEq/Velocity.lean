@@ -6,7 +6,7 @@ import NonUniqueEuler.I.Sec5.ReductionVelocity
 
 Proof of `I/Sec5/ReductionEq/Velocity.lean` (same declaration, same statement). The statement
 is the second conjunct of `OneRing.reduction_velocity` (`I/Sec5/ReductionVelocity.lean`,
-`05_single_ring.tex:110-115`).
+Part II Lemma 2.2).
 -/
 
 noncomputable section
@@ -19,7 +19,7 @@ namespace OneRing
 
 open RingData
 
-/-- **`lem:reduction`(2), the velocity decomposition** (`05_single_ring.tex:110-115`; second
+/-- **`lem:reduction`(2), the velocity decomposition** (Part II Lemma 2.2; second
 conjunct of `reduction_velocity`). Under the hypotheses of `lem:reduction` on `[0,T]`, on
 `[0,T] × N'`: `v = K_BS * ω = Ω(|x|;G)x^⊥ + h + K_BS * (ω_r - Φ)`. -/
 theorem velocity_sol_eq_decomp (χ : ℝ → ℝ) (hχ : IsAdmissibleCutoff χ) {c : RingConfig}

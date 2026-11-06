@@ -1,7 +1,7 @@
 import NonUniqueEuler.H.Sec4.Duhamel.Sector
 
 /-!
-# Helper for `lem:duhamel`: the time derivative of the Duhamel integral
+# Helper for Part II Lemma 2.1 (`lem:duhamel`): the time derivative of the Duhamel integral
 
 Helper of `P/Sec4/Duhamel.lean` (restructuring R1). For `f₀ ∈ Y^{k+1}(N)` and
 `g ∈ C([0,T]; Y^{k+1}(N))`, let `u(t) = e^{tL}f₀ + ∫₀ᵗ e^{(t-τ)L}g(τ)dτ` and
@@ -81,7 +81,7 @@ theorem lower_duhamel_eq_integral {G T : ℝ} (hT : 0 ≤ T) (k : ℕ) {f₀ : Y
   rw [map_add, ← (secProj k annN ℓ).intervalIntegral_comp_comm hDint, hFTC, h1 t ht, h1 0 h0T]
   abel
 
-/-- **The main step of `lem:duhamel`**: `∂_t u = L(G)u + g` in `Y^k(N)` on `[0, T]`. -/
+/-- **The main step of Part II Lemma 2.1 (`lem:duhamel`)**: `∂_t u = L(G)u + g` in `Y^k(N)` on `[0, T]`. -/
 theorem hasDerivWithinAt_lower_duhamel {G T : ℝ} (hT : 0 ≤ T) (k : ℕ) {f₀ : Y (k + 1) annN}
     {g : ℝ → Y (k + 1) annN} (hg : ContinuousOn g (Icc 0 T)) {t : ℝ} (ht : t ∈ Icc (0 : ℝ) T) :
     HasDerivWithinAt (fun τ => lowerY k (k + 1) annN (duhamel χ (k + 1) G f₀ g τ))

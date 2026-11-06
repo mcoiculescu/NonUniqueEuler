@@ -8,8 +8,8 @@ import Mathlib.MeasureTheory.Function.LpSeminorm.LpNorm
 /-!
 # Helper for `lem:transfer`: Laurent and power series forms of the fields
 
-Helper of `P/Sec7/Transfer.lean` (`07_several_rings.tex:143-149`, `:176-182`, `:200-211`).
-For a real `g ∈ L¹`, with `F = V₁ - iV₂` the complex form (`eq:complex-velocity`):
+Helper of `P/Sec7/Transfer.lean` (Part II Lemma 4.1 (`lem:transfer`), Part II Lemma 4.1 (`lem:transfer`)).
+For a real `g ∈ L¹`, with `F = V₁ - iV₂` the complex form (`eq:BS-complex`):
 * exterior: if `g = 0` a.e. outside `\bar B_ϱ`, then on `|z| > ϱ` the non-monopole field is
   `E_g = conj F`, `F = Σ_l c_l z^{-l-1}` with `c_0 = 0`, `c_l = (2πi)⁻¹ ∫ g ζ^l`
   (`extField_eq_conj_laurentTail`), `|c_l| ≤ (2π)⁻¹‖g‖₁ ϱ^l` (`norm_extCoeff_le`) and `c_l = 0`
@@ -20,7 +20,7 @@ For a real `g ∈ L¹`, with `F = V₁ - iV₂` the complex form (`eq:complex-ve
   `F = Σ_l d_l z^l`, `d_l = -(2πi)⁻¹ ∫ g ζ^{-l-1}` (`velocity_eq_conj_powSer`),
   `|d_l| ≤ (2π)⁻¹‖g‖₁ R^{-l-1}` (`norm_intCoeff_le`), `d_l = 0` unless `m ∣ l + 1`
   (`intCoeff_eq_zero_of_not_dvd`);
-* `eq:derivative-norm` in operator-norm form: if `V = conj F` on an open `U` with `F`
+* `eq:BS-complex-deriv` in operator-norm form: if `V = conj F` on an open `U` with `F`
   holomorphic, then `‖D^q V(z)‖ = |F^{(q)}(z)|` on `U` (`norm_iteratedFDeriv_of_eqOn_conj`).
 -/
 
@@ -190,7 +190,7 @@ theorem velocity_eq_conj_powSer {R : ℝ} {g : ℂ → ℝ} (hg : Integrable g)
 
 /-! ### Derivatives of `conj F` -/
 
-/-- `eq:derivative-norm`, operator-norm form: if `V = conj F` on an open `U` and `F` is
+/-- `eq:BS-complex-deriv`, operator-norm form: if `V = conj F` on an open `U` and `F` is
 holomorphic there, then `‖D^q V(z)‖ = |F^{(q)}(z)|` on `U`. -/
 theorem norm_iteratedFDeriv_of_eqOn_conj {V F : ℂ → ℂ} {U : Set ℂ} (hU : IsOpen U)
     (hF : DifferentiableOn ℂ F U) (hV : ∀ z ∈ U, V z = conj (F z)) (q : ℕ) {z : ℂ}

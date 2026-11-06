@@ -6,11 +6,17 @@ import NonUniqueEuler.I.Sec9.Detuning
 import NonUniqueEuler.I.Sec9.Standing
 
 /-!
-# Proof: `lem:K1` and `eq:Abar` (`09_relay.tex:947-994`)
+# Proof: `lem:K1` (historical) and `eq:Abar` (historical) (`sec:bootstrap-handoff-checks`, Part II, Appendix C.16)
+
+The labels `lem:K1` and `eq:Abar` are historical. The current counterpart is
+the comparison of the Duhamel bound with the incoming coefficient in
+Appendix C.16 (`sec:bootstrap-handoff-checks`), using Definition C.13
+(`def:K1`). Lean retains the explicit constant `C_M` in place of the
+manuscript's common `C_vel`.
 
 Proof of `I/Sec9/K1.lean` (`Relay.K1_bound`), following the manuscript proof
-(`09_relay.tex:968-994`):
-1. `Ξ ≤ δ₀/(σ_b(μ-1))` and `relayBound_mono` give the first inequality of `eq:Abar`;
+(`sec:bootstrap-handoff-checks`, Part II, Appendix C.16):
+1. `Ξ ≤ δ₀/(σ_b(μ-1))` and `relayBound_mono` give the first inequality of `eq:Abar` (historical);
 2. `x_k ≤ 17σ/16` (`detuning`) and `T_pin > 0` give the second;
 3. `|c^in_k| = e^{x_kT_pin}|A^in(T_pin)|` (`coupling_two`, `kick_instance`) and
    `|β(G_k)||pout_*(G_{k+1})| ≥ c_N` (`uniform_constants`, `standing_levels`) give the lower bound
@@ -97,7 +103,7 @@ private theorem K1_norm_betaK (P : Approx) (hP : P.Valid) (k : ℕ) :
     Real.norm_eq_abs, abs_of_pos (by positivity)]
 
 /-- The lower bound `|c^in_k| ≥ c_Kε_kδ₀e^{x_kT_pin}/(|z|(μ-1))` from its ingredients
-(`09_relay.tex:979-988`; `(15/16)(1/10) = 3/32`), over named real variables. -/
+(`sec:bootstrap-handoff-checks`, Part II, Appendix C.16; `(15/16)(1/10) = 3/32`), over named real variables. -/
 private theorem K1_cin_lower {cN βn pn qn Ain cin s5 μ δ₀ E zn : ℝ} (hβ : 0 ≤ βn)
     (hcN : cN ≤ βn * pn) (hs5 : 0 < s5) (hμ : 1 < μ) (hδ : 0 < δ₀) (hE : 0 < E) (hz : 0 < zn)
     (hq : 15 / 16 * (2 * Real.pi * pn * δ₀) ≤ qn)
@@ -125,7 +131,7 @@ private theorem K1_cin_lower {cN βn pn qn Ain cin s5 μ δ₀ E zn : ℝ} (hβ 
     _ = cin := hcin.symm
 
 /-- The identity `½K_1 · c_Kε_kδ₀E/(|z|(μ-1)) = 4C_Mε_kE[(4C₂+1)δ₀/(σ_b(μ-1)) + C_D]`
-(`eq:K1`, `09_relay.tex:989-993`), over named real variables. -/
+(`eq:K1`, `sec:bootstrap-handoff-checks`, Part II, Appendix C.16), over named real variables. -/
 private theorem K1_identity {CM zn cK C2 sb CDT μ δ₀ e E : ℝ} (hz : 0 < zn) (hcK : 0 < cK)
     (hsb : 0 < sb) (hμ : 1 < μ) (hδ : 0 < δ₀) :
     1 / 2 * (8 * CM * zn / cK * ((4 * C2 + 1) / sb + CDT * (μ - 1) / δ₀)) *
@@ -137,11 +143,11 @@ private theorem K1_identity {CM zn cK C2 sb CDT μ δ₀ e E : ℝ} (hz : 0 < zn
   field_simp
   ring
 
-/-! ### `lem:K1` -/
+/-! ### `lem:K1` (historical) -/
 
-/-- **`lem:K1`** (`09_relay.tex:947-966`). Assume (SA), (Det), `1 ≤ k < n`, the clock defined up to
+/-- **`lem:K1` (historical)** (`sec:bootstrap-handoff-checks`, Part II, Appendix C.16). Assume (SA), (Det), `1 ≤ k < n`, the clock defined up to
 level `k+1`, and `h_k` defined on `[0, t♯_k]`. If `eq:relay` holds at `t̄♯_k` with
-`Ξ_{k+1} = Ξ ≤ δ₀/(σ_b(μ-1))`, then `eq:Abar` holds; and for every `q_s` with
+`Ξ_{k+1} = Ξ ≤ δ₀/(σ_b(μ-1))`, then `eq:Abar` (historical) holds; and for every `q_s` with
 `|q_s| ≥ (15/16)2π|pout_*(G_{k+1})|δ₀` and `|A^in(T_pin)| ≥ |β_k||q_s|/(10|z|(μ-1))`:
 `|c^in_k| ≥ c_Kε_kδ₀e^{x_kT_pin}/(|z|(μ-1))` and `2maj_k(t̄♯_k) ≤ ½K_1|c^in_k|`. -/
 theorem K1_bound (S : Standing) (hS : S.Holds) (hDet : S.Det) {k : ℕ} (hk : 1 ≤ k)
@@ -177,7 +183,7 @@ theorem K1_bound (S : Standing) (hS : S.Holds) (hDet : S.Det) {k : ℕ} (hk : 1 
       apply div_nonneg _ (by positivity)
       exact mul_nonneg (by linarith) hδ.le
     linarith
-  -- Step 1: the first inequality of `eq:Abar`
+  -- Step 1: the first inequality of `eq:Abar` (historical)
   have hstep1 : S.maj k (S.P.tash k) ≤ 2 * S.CM * S.P.eps k * E * B := by
     refine hrelay.trans ((S.relayBound_mono k hΞ (mul_nonneg hCM.le he.le)).trans (le_of_eq ?_))
     rw [Standing.relayBound_def, hB_def]

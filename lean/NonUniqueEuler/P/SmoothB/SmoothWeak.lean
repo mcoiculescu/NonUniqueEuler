@@ -9,8 +9,7 @@ import NonUniqueEuler.H.SmoothB.SmoothWeak.TransportIdentity
 # Proof: thm:smooth (7) (the smooth solution is a renormalized weak solution)
 
 Proof of `NonUniqueEuler/I/SmoothB/SmoothWeak.lean` (same declarations, statements copied
-verbatim). Manuscript: `thm:smooth`(7), `02_prelim.tex:588-591`, proof
-`B_global_smooth.tex:547-565`.
+verbatim). Manuscript: Part II, Theorem 1.8(7) (`thm:smooth`), proved in §B.5.
 
 Structure.
 1. `SmoothWeakH.transport_identity` (helper): for `u ∈ C¹(ℝ × ℝ²)` solving

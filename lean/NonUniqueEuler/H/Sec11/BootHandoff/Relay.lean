@@ -5,14 +5,15 @@ import NonUniqueEuler.I.Sec10.ThetaQuiet
 /-!
 # Helper for `P/Sec11/BootHandoff.lean`: `eq:boot-theta` and the hypotheses of `prop:relay`
 
-Step 3 of the proof of `prop:bootstrap` (`11_bootstrap.tex:341-374`):
-* `etaOut_le_theta`: `η^out_k ≤ θ_k maj_k` on `[0, t̄♯_k]` (Step 2, `lem:O` for `j = k`);
+Lean step 3 of the historical bootstrap decomposition (Part II Appendix C.16
+(`sec:bootstrap-handoff-checks`)):
+* `etaOut_le_theta`: `η^out_k ≤ θ_k maj_k` on `[0, t̄♯_k]` (Lean step 2, `lem:O` for `j = k`);
 * `theta`: `eq:boot-theta`, `θ_k t̄♯_k ≤ θ_k τ̄♯_k ≤ min{1/2, 1/(4C_lsK₁)}` (`lem:quiet-time` at the
   time `t♯_k`, `lem:theta-quiet`);
 * `relayHyp`: the hypotheses (H1)–(H4) of `prop:relay` with `j = k`, `τ = t̄♯_k`, `C₀ = S.C0`,
-  `K₁ = S.K1` (`11_bootstrap.tex:351-369`);
+  `K₁ = S.K1` (Part II Appendix C.16 (`sec:bootstrap-handoff-checks`));
 * `xiNext_le`: `Ξ_{k+1} ≤ δ₀/(σ_b(μ-1))` from `1 - γ_k ≥ γ'_μ` and (κ7) at `κ♯_{k+1}`
-  (`11_bootstrap.tex:371-374`). All proved.
+  (Part II Appendix C.16 (`sec:bootstrap-handoff-checks`)). All proved.
 -/
 
 noncomputable section
@@ -29,7 +30,7 @@ open RingData Datum
 
 variable {S : Standing}
 
-/-- Step 2 at `t♯_k` for the ring `k`: the conclusions `QuietStep k t♯_k`. -/
+/-- Lean step 2 at `t♯_k` for the ring `k`: the conclusions `QuietStep k t♯_k`. -/
 theorem quietStep_self (hS : S.Holds) {k : ℕ} (hk : k ∈ Finset.Ico 1 S.P.n)
     (hc : S.P.ClockUpTo (k + 1)) (hquiet : ∀ t' ∈ Icc (0 : ℝ) (S.P.tsh k), S.QuietStepAt t') :
     S.QuietStep k (S.P.tsh k) := by
@@ -37,7 +38,7 @@ theorem quietStep_self (hS : S.Holds) {k : ℕ} (hk : k ∈ Finset.Ico 1 S.P.n)
   have hkn := (Finset.mem_Ico.1 hk).2
   exact hquiet (S.P.tsh k) ⟨tsh_nonneg hS hk1 hkn hc, le_rfl⟩ k hk (Or.inr le_rfl)
 
-/-- `η^out_k ≤ θ_k maj_k` on `[0, t̄♯_k]` (Step 2: `lem:O` for `j = k`, `τ = t̄♯_k`). -/
+/-- `η^out_k ≤ θ_k maj_k` on `[0, t̄♯_k]` (Lean step 2: `lem:O` for `j = k`, `τ = t̄♯_k`). -/
 theorem etaOut_le_theta (hS : S.Holds) {k : ℕ} (hk : k ∈ Finset.Ico 1 S.P.n)
     (hc : S.P.ClockUpTo (k + 1)) (hquiet : ∀ t' ∈ Icc (0 : ℝ) (S.P.tsh k), S.QuietStepAt t') :
     ∀ τ ∈ Icc (0 : ℝ) (S.P.tash k), S.etaOut k τ ≤ S.theta k * S.maj k τ := by
@@ -49,8 +50,9 @@ theorem etaOut_le_theta (hS : S.Holds) {k : ℕ} (hk : k ∈ Finset.Ico 1 S.P.n)
   have := hO.etaOut_le (τ / S.P.A k) hmem
   rwa [A_mul_div hS] at this
 
-/-- **`eq:boot-theta`** (`11_bootstrap.tex:341-348`): `θ_k t̄♯_k ≤ θ_k τ̄♯_k ≤ min{1/2, 1/(4C_lsK₁)}`,
-by `lem:quiet-time` at the time `t♯_k` (levels `i ∈ (k, n)` by Step 3, `κ♯_n ≥ ½κ_seed` by Step 0)
+/-- **`eq:boot-theta`** (Part II Appendix C.16 (`sec:bootstrap-handoff-checks`)):
+`θ_k t̄♯_k ≤ θ_k τ̄♯_k ≤ min{1/2, 1/(4C_lsK₁)}`,
+by `lem:quiet-time` at the time `t♯_k` (levels `i ∈ (k, n)` by Lean step 3, `κ♯_n ≥ ½κ_seed` by Lean step 0)
 and `lem:theta-quiet`. -/
 theorem theta (hS : S.Holds) (hL : S.ParamLists) {k : ℕ} (hk : k ∈ Finset.Ico 1 S.P.n)
     (hc : S.P.ClockUpTo (k + 1)) (h0 : S.BootStartConcl)
@@ -70,7 +72,8 @@ theorem theta (hS : S.Holds) (hL : S.ParamLists) {k : ℕ} (hk : k ∈ Finset.Ic
     (fun _ => le_rfl) h0.ksh_n.1
   exact mul_le_mul_of_nonneg_left hqt (theta_nonneg hpos hS k)
 
-/-- The bound (BA3) for ring `k+1` on `Ph_{k+1}`, with `2C₂` (`11_bootstrap.tex:362-366`): by
+/-- The bound (BA3) for ring `k+1` on `Ph_{k+1}`, with `2C₂` (Part II Appendix C.16
+(`sec:bootstrap-handoff-checks`)): by
 (BA°)(t♯_k) off `t♯_{k+1}`, and at `t♯_{k+1}` by `eq:boot-switch` for ring `k+1` or by
 `eq:boot-start`. -/
 theorem ba3_next (hS : S.Holds) {k : ℕ} (hk : k ∈ Finset.Ico 1 S.P.n)
@@ -103,7 +106,8 @@ theorem ba3_next (hS : S.Holds) {k : ℕ} (hk : k ∈ Finset.Ico 1 S.P.n)
   · exact hBA.ba3 t ⟨htsh1.trans ht.1, ht.2.trans hTtsh⟩ (k + 1) hk1I hts ⟨hc, ht.1, ht.2⟩
 
 /-- **The hypotheses (H1)–(H4) of `prop:relay`** with `j = k`, `τ = t̄♯_k`, `C₀ = S.C0`,
-`K₁ = S.K1` (`11_bootstrap.tex:351-369`), given `θ_k t̄♯_k ≤ 1/2` (`eq:boot-theta`). -/
+`K₁ = S.K1` (Part II Appendix C.16 (`sec:bootstrap-handoff-checks`)), given `θ_k t̄♯_k ≤ 1/2`
+(`eq:boot-theta`). -/
 theorem relayHyp (hS : S.Holds) {k : ℕ} (hk : k ∈ Finset.Ico 1 S.P.n)
     (hc : S.P.ClockUpTo (k + 1)) (h0 : S.BootStartConcl) (hBA : S.BAcirc (S.P.tsh k))
     (hgeo : S.GeometryConcl (S.P.tsh k))
@@ -127,7 +131,7 @@ theorem relayHyp (hS : S.Holds) {k : ℕ} (hk : k ∈ Finset.Ico 1 S.P.n)
       h2 := ⟨etaOut_le_theta hS hk hc hquiet, hθ⟩
       h3 := ?_
       h4 := ?_ }
-  · -- (H3): `thm:quiet` for ring `k+1` on `[0, t̄♯_{k+1}]` (Step 2)
+  · -- (H3): `thm:quiet` for ring `k+1` on `[0, t̄♯_{k+1}]` (Lean step 2)
     intro h
     rw [hdiv, min_eq_right (htshT.trans hTtsh)]
     exact (hquiet (S.P.tsh (k + 1)) ⟨htsh1, htshT.trans hTtsh⟩ (k + 1)
@@ -145,7 +149,7 @@ theorem relayHyp (hS : S.Holds) {k : ℕ} (hk : k ∈ Finset.Ico 1 S.P.n)
         exact mul_nonneg hpos.K1_pos.le (S.P.ksh_nonneg _)
     · exact (hgeo.ring t ⟨htsh1.trans ht.1, ht.2.trans hTtsh⟩ (k + 1) hk1I
         (not_debris_of_le_T ht.2)).2.1
-    · -- the inner bound, by Step 4 for ring `k+1` with `C_F ≤ C₀`
+    · -- the inner bound, by Lean step 4 for ring `k+1` with `C_F ≤ C₀`
       have hA := A_pos hS (k + 1)
       set u := S.P.activeTime (k + 1) t with hu
       have hu0 : 0 ≤ u := mul_nonneg hA.le (by linarith [ht.1])
@@ -179,7 +183,8 @@ theorem CXi_nonneg (hpos : S.ConstPos) : 0 ≤ S.CXi S.C0 S.K1 := by
   have hmax : 0 ≤ max 1 (2 * S.CQ) := le_trans zero_le_one (le_max_left _ _)
   positivity
 
-/-- **`Ξ_{k+1} ≤ δ₀/(σ_b(μ-1))`** (`11_bootstrap.tex:371-374`): `κ♯_{k+1} < δ₀` and
+/-- **`Ξ_{k+1} ≤ δ₀/(σ_b(μ-1))`** (Part II Appendix C.16 (`sec:bootstrap-handoff-checks`)):
+`κ♯_{k+1} < δ₀` and
 `1 - γ_k ≥ γ'_μ` give `(κ♯_{k+1}/δ₀)^{1-γ_k} ≤ (κ♯_{k+1}/δ₀)^{γ'_μ}`; then (κ7) at `κ♯_{k+1}`. -/
 theorem xiNext_le (hS : S.Holds) (hL : S.ParamLists) {k : ℕ} (hk : k ∈ Finset.Ico 1 S.P.n)
     (hc : S.P.ClockUpTo (k + 1)) (hκle : S.P.ksh (k + 1) ≤ 2 * S.P.κs)

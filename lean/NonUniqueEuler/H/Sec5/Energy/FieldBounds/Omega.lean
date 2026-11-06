@@ -7,7 +7,7 @@ import NonUniqueEuler.I.Infra.Polar.RadialDeriv
 /-!
 # Helper for `P/Sec5/Energy/FieldBounds`: the background field `Ω(|x|;G)x^⊥` is divergence free
 
-Step 1 of the proof of `lem:energy` (`05_single_ring.tex:333-337`):
+Step 1 of the Lean proof decomposition for Part II Lemma 2.4 (`lem:energy`):
 `div(f(|x|)x^⊥) = f'(|x|) (x/|x|)·x^⊥ = 0`. Here, with `g(x) = Ω(|x|;G)` (smooth on `ℂ \ {0}`):
 `div(g x^⊥) = Dg(x)(x^⊥) + g div(x^⊥) = Dg(x)(x^⊥)`, and `Dg(x)(x^⊥) = 0` because `g` is
 constant along the circle `t ↦ e^{it}x`, whose velocity at `t = 0` is `ix = x^⊥`. The classical

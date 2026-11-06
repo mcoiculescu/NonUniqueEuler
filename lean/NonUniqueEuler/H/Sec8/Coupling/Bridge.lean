@@ -298,7 +298,7 @@ theorem forcing_add (χ : ℝ → ℝ) (h₁ h₂ : ℝ → ℂ → ℂ) (v : �
   push_cast
   ring
 
-/-- **Additivity of the linear response in the field** (`lem:coupling`(3), `08_kick.tex:150-153`):
+/-- **Additivity of the linear response in the field** (`lem:coupling`(3), Part II Lemma 5.1 (`lem:coupling`)):
 if `-h₁·∇Φ` and `-h₂·∇Φ` lie in `C([0,T];X^s)`, then for `τ ∈ [0,T]`,
 `wlin[h₁](τ) + wlin[h₂](τ) = wlin[h₁ + h₂](τ)` in `Y^s(N)`. -/
 theorem wlin_add (χ : ℝ → ℝ) (hχ : IsAdmissibleCutoff χ) {s : ℕ} {G T : ℝ}

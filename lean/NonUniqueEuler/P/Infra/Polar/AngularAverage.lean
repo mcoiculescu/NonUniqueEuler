@@ -9,8 +9,8 @@ import Mathlib.Analysis.SpecialFunctions.Integrals.Basic
 # Proof: angular averages and angular sectors (I-POLAR)
 
 Proof of `NonUniqueEuler/I/Infra/Polar/AngularAverage.lean` (same declarations, same
-statements). Manuscript: `lem:hollow` (`02_prelim.tex:413-414`, the rotation form of the angular
-average) and the angular sectors (`02_prelim.tex:27-33`).
+statements). Manuscript: Part II, Lemma 1.5 (`lem:hollow`), for the rotation form of the angular
+average, and Part I, Section 2.1 (`sec:prelim`), for the angular sectors.
 
 Method. All measure-theoretic statements are reduced to one fact
 (`AngularAverageAux.measurePreserving_rotProd`): with the normalized angle measure
@@ -32,7 +32,7 @@ namespace NonUniqueEuler.Polar
 
 variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpace E]
 
-/-- The rotation form of the angular average (`02_prelim.tex:413-414`). -/
+/-- The rotation form of the angular average (Part II, Lemma 1.5 (`lem:hollow`)). -/
 theorem angAvg_eq_intervalIntegral_rot (g : ℂ → E) (x : ℂ) :
     angAvg g x = (2 * π)⁻¹ • ∫ φ in (0 : ℝ)..2 * π, g (rot φ x) := by
   rw [angAvg, Real.circleAverage_eq_integral_add (Complex.arg x)]

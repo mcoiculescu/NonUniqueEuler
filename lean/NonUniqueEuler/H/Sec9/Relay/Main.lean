@@ -5,7 +5,7 @@ import NonUniqueEuler.H.Sec9.Relay.Real
 /-!
 # Helpers for `prop:relay`: `maj^in_j(τ)` after the activation of ring `j+1`
 
-Helper file of `P/Sec9/Relay.lean` (`09_relay.tex:500-590`). Everything here is proved.
+Helper file of `P/Sec9/Relay.lean` (`prop:relay`, Part II Proposition C.9). Everything here is proved.
 
 `majIn_after_act`: if `τ^act = A_jt♯_{j+1} < τ ≤ t̄♯_j`, then `maj^in_j(τ)` is at most half the
 right side of `eq:relay`. The Duhamel integral is split at `τ^act` and `b = min(τ, τ^sat)`:
@@ -44,7 +44,7 @@ theorem gamma_bounds (h : S.RelayHyp C₀ K₁ j τ) (hS : S.Holds) :
   rw [le_div_iff₀ hμ, mul_comm]
   exact le_max_right _ _
 
-/-- **`maj^in_j(τ)` after the activation of ring `j+1`** (`09_relay.tex:500-590`). -/
+/-- **`maj^in_j(τ)` after the activation of ring `j+1`** (`prop:relay`, Part II Proposition C.9). -/
 theorem majIn_after_act (h : S.RelayHyp C₀ K₁ j τ) (hS : S.Holds) (hDet : S.Det)
     (hC₀ : 1 ≤ C₀) (hK₁ : 0 < K₁) (hact : S.P.A j * S.P.tsh (j + 1) < τ) :
     S.majIn j τ ≤ S.CM * S.P.eps j * Real.exp (S.P.xk j * S.P.Tpin) *

@@ -6,8 +6,8 @@ import NonUniqueEuler.H.Sec4.PropSU.Spectrum
 /-!
 # Helpers for `P/Sec4/PropSU`: the Riesz projection `Eig.R` sector by sector
 
-R2 replacement of the second paragraph of `prop:SU` (`04_ring.tex:1259-1267`, `:1289-1295`) and
-the formula of `def:eigendata` (`04_ring.tex:1320-1330`).
+R2 replacement of the projection assertion in Part I Proposition 4.19 (`prop:SU`) and
+the formula of Part I Definition 4.20 (`def:eigendata`).
 
 * `R_decomp`: `R(G)w = ℓ_*(G)(w) n_*⁻¹ g_*e^{3iθ} + conj(ℓ_*(G)(conj w)) n_*⁻¹ conj(g_*)e^{-3iθ}`,
   an identity of elements of `Y^s(N)` (`P_3 φ_* = φ_*`, `conj φ_*` lies in the sector `-3`);
@@ -47,7 +47,7 @@ theorem commute_smul_right {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E
     rw [← mul_apply_eq_comp, h', mul_apply_eq_comp]
   simp only [mul_apply_eq_comp, smul_apply, map_smul, hx]
 
-/-- The Evans function of `Φ` vanishes at `λ_*(G)`, simply (`eq:evans-units`, (N1)). -/
+/-- The Evans function of `Φ` vanishes at `λ_*(G)`, simply (Part I Equation 13 (`eq:evans-units`), (N1)). -/
 theorem evansPhi_lam (χ : ℝ → ℝ) (hχ : IsAdmissibleCutoff χ) (hN : NumericalHypothesis χ)
     {G : ℝ} (hG : G ∈ Icc (0 : ℝ) Gbar) :
     0 < (Eig.lam χ G).re ∧ (ringPhiSetting χ).evans 3 (Eig.lam χ G) G = 0 ∧
@@ -125,7 +125,7 @@ variable (χ : ℝ → ℝ) (hχ : IsAdmissibleCutoff χ) (hN : NumericalHypothe
 
 include hχ hN hG
 
-/-- The facts of `thm:evans-simple` used here, in the typed aliases. -/
+/-- The facts of Part I Theorem 4.8 (`thm:evans-simple`) used here, in the typed aliases. -/
 theorem riesz_facts :
     (∀ g : Ysec s annN 3, e3 χ s G g =
         (ringPhiSetting χ).ellStar 3 (Eig.lam χ G) G (Polar.angularSector g.fn 3)) ∧
@@ -145,7 +145,7 @@ theorem riesz_facts :
   exact ⟨fun g => hR.1 g, fun g => hRc.1 g, hEig.1, hRc.2.1, hR.2.2.1, hRc.2.2.2.2.2.1⟩
 
 /-- `R(G)w = ℓ_*(G)(w) • n_*⁻¹ g_*e^{3iθ} + conj(ℓ_*(G)(conj w)) • n_*⁻¹ conj(g_*)e^{-3iθ}` in
-`Y^s(N)` (`def:eigendata`, `04_ring.tex:1320-1321`). -/
+`Y^s(N)` (Part I Definition 4.20 (`def:eigendata`)). -/
 theorem R_decomp (w : Y s annN) :
     Eig.R χ s G w =
       Eig.ellFn χ G w.fn • inclSec s annN 3 (u3 χ s G) +
@@ -202,7 +202,7 @@ theorem conj_ellFn_conj_eq_em3 (w : Y s annN) :
   rw [hc]
   exact congrArg conj hr.symm
 
-/-- **The five assertions of `Eig.R_sector`** (`04_ring.tex:1259-1267`, R2), with the typed
+/-- **The five assertions of `Eig.R_sector`** (Part I Proposition 4.19 (`prop:SU`), R2), with the typed
 aliases. -/
 theorem R_sector_core :
     (∀ w : Y s annN, secProj s annN 3 (Eig.R χ s G w) = P3 χ s G (secProj s annN 3 w)) ∧

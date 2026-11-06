@@ -7,7 +7,7 @@ import NonUniqueEuler.H.Sec7.Transfer.Units
 /-!
 # Helper for `lem:transfer`(3): the non-monopole field of the inner region
 
-Helper of `P/Sec7/Transfer.lean` (`07_several_rings.tex:191-198`). For `g = ω_{≥j+1}(t)` (real,
+Helper of `P/Sec7/Transfer.lean` (Part II Lemma 4.1 (`lem:transfer`)). For `g = ω_{≥j+1}(t)` (real,
 `C_c^∞`, `3`-fold symmetric by `lem:regions-basic`(3)), supported in `\bar B_R`, `0 < R ≤ ar_j/8`,
 with `‖g‖_{L¹} ≤ M A_{j+1}r_{j+1}²`: every `y ∈ N'` has `|r_jy| ≥ ar_j/4 ≥ 2R`;
 `lem:ext-multipole` (with the array norm dominating the operator norm) and the scaling rule give
@@ -27,7 +27,7 @@ namespace NonUniqueEuler.Rings.TransferAux
 open RingData Datum
 
 /-- The bound of `lem:transfer`(3) for a fixed approximation (copy of the bound of `lem:inner-field`), with the explicit constant
-`C_in = M_vort Σ_{q≤M_h} C_{3,q} (4/a)^{4+q}` (`07_several_rings.tex:255-263`). -/
+`C_in = M_vort Σ_{q≤M_h} C_{3,q} (4/a)^{4+q}` (Part II Lemma 4.2 (`lem:inner-field`)). -/
 theorem inner_region_bound (P : Approx) (hP : P.Valid) (hN : NumericalHypothesis P.χ)
     (Mh : ℕ) {k : ℕ} (hk : 1 ≤ k) (hkn : k < P.n) {t : ℝ} (ht : 0 ≤ t) {R : ℝ} (hR : 0 < R)
     (hRa : R ≤ a * P.r k / 8) (hsupp : tsupport (P.omegaGe (k + 1) t) ⊆ closedBall 0 R)

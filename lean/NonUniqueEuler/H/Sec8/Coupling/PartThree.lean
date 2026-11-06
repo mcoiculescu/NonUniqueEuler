@@ -1,7 +1,7 @@
 import NonUniqueEuler.H.Sec8.Coupling.PartTwo
 
 /-!
-# Helper for `lem:coupling`(3) (`08_kick.tex:139-154`)
+# Helper for `lem:coupling`(3) (Part II Lemma 5.1 (`lem:coupling`))
 
 Helper of `P/Sec8/Coupling.lean` (fully proved, modulo the interface files it imports).
 
@@ -27,7 +27,7 @@ theorem hOut_ckPath (hP : P.Valid) (hN : NumericalHypothesis P.χ) {k : ℕ} (hk
   have h := Approx.hOut_continuous P hP hN hk hkn (le_refl 0) hout M
   rwa [mul_zero, ← Approx.tash_def] at h
 
-/-- **`lem:coupling`(3)** (`08_kick.tex:54-63`), proved. -/
+/-- **`lem:coupling`(3)** (Part II Lemma 5.1 (`lem:coupling`)), proved. -/
 theorem coupling_three_aux (hP : P.Valid) (hN : NumericalHypothesis P.χ) {k : ℕ}
     (hk : 1 ≤ k) (hkn : k < P.n)
     (hdef : ∀ t ∈ Icc (0 : ℝ) (P.tsh k), P.HDefined k t) (s : ℕ) :

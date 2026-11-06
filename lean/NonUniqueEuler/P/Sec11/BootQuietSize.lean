@@ -6,27 +6,30 @@ import NonUniqueEuler.H.Sec11.BootQuietSize.Bounds
 import NonUniqueEuler.H.Sec11.BootQuietSize.RelayHyp
 
 /-!
-# Proof: Step 5 of the proof of `prop:bootstrap` (the size of the quiet rings)
+# Proof: Lean step 5 of the historical bootstrap decomposition (the size of the quiet rings)
 
-Proof of `I/Sec11/BootQuietSize.lean` (`11_bootstrap.tex:486-530`). Same declaration, same
-statement.
+Proof of `I/Sec11/BootQuietSize.lean` (Part II Appendix C.18 (`sec:bootstrap-quiet-checks`)). The
+declaration is re-exported by its interface.
 
 **Structure.**
-* `BootQuietSizeH.quiet_size_defined`: the case `t♯_j` defined (`:492-523`). `prop:relay` applies to
+* `BootQuietSizeH.quiet_size_defined`: the case `t♯_j` defined (Part II Appendix C.18
+  (`sec:bootstrap-quiet-checks`)). `prop:relay` applies to
   `j` and `τ = A_jt'` (hypotheses: `BootQuietSizeH.relayHyp`). If `τ ≤ A_jt♯_{j+1}`: for `j+1 = n`,
   `τ = 0` and `maj_j(0) = 0`; for `j+1 < n`, ring `j+1` is quiet at `t'`, and `prop:relay`(i),
   (BA2) for ring `j+1` (with `μA_jt' = A_{j+1}t'`) and (B10) give `maj_j(τ) ≤ Āε_j`
   (`BootQuietSizeH.b10_bound`). Otherwise `prop:relay`(ii) (`τ = t̄♯_j`) or (iii) bound `maj_j(τ)` by
-  `eq:relay`; `κ♯_{j+1} ∈ (0, 2κ_seed]` (Step 3 for ring `j+1` with (B6), or Step 0), (κ7),
-  `lem:gamma` give `Ξ_{j+1} ≤ δ₀/(σ_b(μ-1))` (`BootQuietSizeH.XiNext_le`), and `lem:detuning`
+  `eq:relay`; `κ♯_{j+1} ∈ (0, 2κ_seed]` (Lean step 3 for ring `j+1` with (B6), or Lean step 0), (κ7),
+  the exponent comparison in Appendix C.16 (`sec:bootstrap-handoff-checks`) give
+  `Ξ_{j+1} ≤ δ₀/(σ_b(μ-1))` (`BootQuietSizeH.XiNext_le`), and `lem:detuning`
   (`x_j ≤ 17σ/16`) with the definition of `Ā` gives `≤ Āε_j` (`BootQuietSizeH.relayBound_le_Abar`).
 * `boot_quiet_size`: `h_j` is defined on `[0, t']` by `lem:geometry`(b). If `t♯_j` is not defined,
   the clock stops at `k_s > j` (`def:stop`); if `k_s = n` then `T_end = 0`, `t' = 0` and
   `maj_j(0) = 0`; otherwise ring `k_s` is quiet at `t' ≤ T_end = t♯_{k_s}`, the defined case gives
-  `maj_{k_s}(A_{k_s}t') ≤ Āε_{k_s}`, and Step 2 (`QuietStep.stopped`) with (B7) gives
+  `maj_{k_s}(A_{k_s}t') ≤ Āε_{k_s}`, and Lean step 2 (`QuietStep.stopped`) with (B7) gives
   `maj_j(τ) ≤ ¾P̃_{j,k_s}Āε_{k_s} ≤ ⅜Āε_j` (`BootQuietSizeH.Ptil_mul_le`).
 
-No deviation from the manuscript.
+The Lean proof retains the earlier split into assigned and unassigned activation times.
+Appendix C.18 now argues first for the innermost quiet ring and then compares its outer rings.
 -/
 
 noncomputable section
@@ -43,7 +46,8 @@ namespace BootQuietSizeH
 
 variable {S : Standing}
 
-/-- **Step 5 when `t♯_j` is defined** (`11_bootstrap.tex:492-523`): for a ring `j < n` with
+/-- **Lean step 5 when `t♯_j` is defined** (Part II Appendix C.18 (`sec:bootstrap-quiet-checks`)):
+for a ring `j < n` with
 `t♯_j` defined and `t' ≤ t♯_j`, `maj_j(A_jt') ≤ Āε_j`. -/
 theorem quiet_size_defined (S : Standing) (hS : S.Holds) (hL : S.ParamLists) {t' : ℝ}
     (ht0 : 0 ≤ t') (h0 : S.BootStartConcl) (hBA : S.BAcirc t')
@@ -106,9 +110,10 @@ theorem quiet_size_defined (S : Standing) (hS : S.Holds) (hL : S.ParamLists) {t'
 end BootQuietSizeH
 
 open BootQuietSizeH in
-/-- **Step 5 of the proof of `prop:bootstrap`** (`11_bootstrap.tex:486-530`): given Step 0,
-(BA°)(t'), `lem:geometry` with `t'`, Step 2 on `[0, t']`, Step 3 at the levels `i < n` with
-`t♯_i ≤ t'` and Step 4 for the rings `i` with `t♯_i < t'` up to `min(t', T_i)`, (BA2) holds at `t'`
+/-- **Lean step 5 of the historical bootstrap decomposition** (Part II Appendix C.18
+(`sec:bootstrap-quiet-checks`)): given Lean step 0,
+(BA°)(t'), `lem:geometry` with `t'`, Lean step 2 on `[0, t']`, Lean step 3 at the levels `i < n` with
+`t♯_i ≤ t'` and Lean step 4 for the rings `i` with `t♯_i < t'` up to `min(t', T_i)`, (BA2) holds at `t'`
 with `Ā` in place of `2Ā`. -/
 theorem boot_quiet_size (S : Standing) (hS : S.Holds) (hL : S.ParamLists) {t' : ℝ}
     (ht' : t' ∈ Icc (0 : ℝ) S.P.Tend) (h0 : S.BootStartConcl) (hBA : S.BAcirc t')

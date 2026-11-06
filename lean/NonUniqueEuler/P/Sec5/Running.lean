@@ -11,7 +11,7 @@ import NonUniqueEuler.H.Sec5.Running.Integrand
 # Proof: `lem:running` and `eq:running` (the running coefficient)
 
 Proof of `I/Sec5/Running.lean` (same declaration, statement copied verbatim). Manuscript
-`05_single_ring.tex:587-611`.
+Part II Lemma 2.9.
 
 Steps (as in the manuscript proof):
 1. `F(v) = -h(v)·∇Φ` is continuous on `[0,ū]` into `X^s`, real (`RunningAux.forcing_path`,
@@ -39,7 +39,7 @@ namespace OneRing
 
 open RingData
 
-/-- **`lem:running`** (`05_single_ring.tex:587-600`), at level `s` (`s = 0` is the manuscript's
+/-- **`lem:running`** (Part II Lemma 2.9), at level `s` (`s = 0` is the manuscript's
 `X^0` statement). Assume (N1)–(N3). Let `G ∈ [0,G₁]`, `ū > 0`, `w₀ ∈ X^s` real, and `h`
 continuous on `[0,ū]` with values in `C^s(N';ℝ²)`, `3`-fold symmetric. With `F = -h·∇Φ`, the
 running coefficient `c(u) = ℓ_*(w₀) + ∫₀ᵘ e^{-λ_* v}ℓ_*(F(v))dv` and

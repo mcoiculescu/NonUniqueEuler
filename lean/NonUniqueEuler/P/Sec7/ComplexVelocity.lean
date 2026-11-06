@@ -3,9 +3,11 @@ import NonUniqueEuler.I.Infra.Multipole.CauchySmooth
 import NonUniqueEuler.I.Infra.Multipole.Holomorphic
 
 /-!
-# Proof: `eq:complex-velocity`, `eq:derivative-norm` (the complex form of a velocity field)
+# Proof: `eq:BS-complex`, `eq:BS-complex-deriv` (the complex form of a velocity field)
 
-Proof of the interface `NonUniqueEuler/I/Sec7/ComplexVelocity.lean` (`07_several_rings.tex:43-66`).
+Proof of the interface `NonUniqueEuler/I/Sec7/ComplexVelocity.lean`: current
+Part II Equations (3) (`eq:BS-complex`) and (4) (`eq:BS-complex-deriv`) in
+Section 1.4 (`sec:II-prelim`).
 
 1. `complexForm (velocity g) = BS.complexVelocity g = (2πi)⁻¹ C[g]` (`BS.complexVelocity_eq`),
    holomorphic off `tsupport g` by `Multipole.differentiableOn_cauchyTransform` (off the closed
@@ -28,7 +30,7 @@ namespace Rings
 
 open RingData Datum
 
-/-- **`eq:complex-velocity`** (`07_several_rings.tex:43-57`). For real `g ∈ L¹`: the complex form
+/-- **Part II Equation (3) (`eq:BS-complex`)**. For real `g ∈ L¹`: the complex form
 of `K_BS * g` is `(2πi)⁻¹ ∫ g(ζ)/(z-ζ) dA(ζ)` off `supp g` and is holomorphic there; the complex
 form of the monopole is `(∫g)/(2πiz)` (`z ≠ 0`); the complex form of the non-monopole field
 `E_g = K_BS * g - (∫g)K_BS` is holomorphic on `ℂ ∖ (supp g ∪ {0})`. -/
@@ -80,7 +82,7 @@ theorem complex_velocity {g : ℂ → ℝ} (hg : MemLp g 1 volume) :
   have hpi : (Real.pi : ℂ) ≠ 0 := by exact_mod_cast Real.pi_ne_zero
   exact mul_ne_zero (mul_ne_zero (mul_ne_zero two_ne_zero hpi) Complex.I_ne_zero) hz0
 
-/-- **`eq:derivative-norm`** (`07_several_rings.tex:57-66`). If the complex form `F = V₁ - iV₂`
+/-- **Part II Equation (4) (`eq:BS-complex-deriv`)**. If the complex form `F = V₁ - iV₂`
 of a vector field `V` is holomorphic on an open set `U`, then for `x ∈ U` and `q ≥ 0` the array
 norm of `∇^qV(x)` is `2^{q/2} |F^{(q)}(x)|`. -/
 theorem derivative_norm {V : ℂ → ℂ} {U : Set ℂ} (hU : IsOpen U)

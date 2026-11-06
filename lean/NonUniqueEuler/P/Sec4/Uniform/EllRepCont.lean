@@ -1,10 +1,12 @@
 import NonUniqueEuler.H.Sec4.Uniform.EllRepCont.Cont
 
 /-!
-# Proof: the representer of `ℓ_*(G)` is continuous in `L²(N)` (step of `lem:uniform`)
+# Proof: continuity of the representer of `ℓ_*(G)` in `L²(N)`
 
-Proof of `I/Sec4/Uniform/EllRepCont.lean` (`04_ring.tex:1540-1543`). Same declaration, statement
-copied verbatim.
+This retained auxiliary result in `I/Sec4/Uniform/EllRepCont.lean` supplies operator-norm
+continuity of the functional. The corresponding current argument is in the proof of
+Part I Proposition 4.21(b) (`prop:U`), using the representer after Definition 4.20
+(`def:eigendata`); Lemma 4.23 (`lem:uniform`) now states the resulting uniform bounds.
 
 **Proof.** By `ellRep_eq`, `ellRep(G) = h_G(|x|) e^{3iθ}` with the profile
 `h_G = 1_{[a/2,2]} · A(G, ·)`, `A(G, r) = (n_*/(2π conj J)) conj(ψ_*(log r) M_*(r))`. So
@@ -81,7 +83,8 @@ theorem l2_ellRep_sub_eq (hχ : IsAdmissibleCutoff χ) (hN : NumericalHypothesis
 end EllRepContH
 
 open EllRepContH in
-/-- **`lem:uniform`, continuity of the representer of `ℓ_*`** (`04_ring.tex:1540-1543`):
+/-- Retained representer-continuity statement, refining the argument in the proof of
+Part I Proposition 4.21(b) (`prop:U`):
 `ellRep(G) → ellRep(G₀)` in `L²` as `G → G₀` in `[0,G₁]`. -/
 theorem ellRep_tendsto_l2 (χ : ℝ → ℝ) (hχ : IsAdmissibleCutoff χ) (hN : NumericalHypothesis χ)
     {G₀ : ℝ} (hG₀ : G₀ ∈ Icc (0 : ℝ) Gbar) :

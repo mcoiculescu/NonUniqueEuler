@@ -3,8 +3,8 @@ import NonUniqueEuler.H.Sec5.Active.Basic
 /-!
 # Helpers for `thm:active`: elementary inequalities for the transient and the window
 
-Helper of `P/Sec5/Active.lean` (fully proved). Manuscript `05_single_ring.tex:876-880`,
-`:951-956` (`eq:A-t1`), `:1003-1010`, `:1037-1047`.
+Helper of `P/Sec5/Active.lean` (fully proved). Manuscript Part II Theorem 2.12,
+Part II Theorem 2.12 (`eq:A-t1`), Part II Theorem 2.12.
 
 * `rhoHatOf_nonneg`; `rho_layer`: `C₀κ⟨u⟩^pe^{σ'u} ≤ â(u)ρ̂(u)` for `0 ≤ u ≤ t₁`;
 * `small_after_t1` (`eq:A-t1`): `C₀⟨v⟩^pe^{-σv} ≤ 1` for `v ≥ t₁`;
@@ -36,7 +36,7 @@ theorem exp_sig_mul (σ σ' u : ℝ) :
     Real.exp (σ * u) * Real.exp (-((σ - σ') * u)) = Real.exp (σ' * u) := by
   rw [← Real.exp_add]; congr 1; ring
 
-/-- `C₀κ⟨u⟩^pe^{σ'u} ≤ â(u)ρ̂(u)` for `0 ≤ u ≤ t₁` (`05_single_ring.tex:1003-1006`). -/
+/-- `C₀κ⟨u⟩^pe^{σ'u} ≤ â(u)ρ̂(u)` for `0 ≤ u ≤ t₁` (Part II Theorem 2.12 (`thm:active`)). -/
 theorem rho_layer {σ σ' C₀ κ u : ℝ} (hσ : σ' < σ) (hC₀ : 1 ≤ C₀) (hκ : 0 < κ) (_hu : 0 ≤ u)
     (hut : u ≤ tOneOf σ σ' C₀) :
     C₀ * κ * Prelim.jap u ^ pW * Real.exp (σ' * u) ≤ ahat κ σ u * rhoHatOf σ σ' C₀ u := by
@@ -61,7 +61,7 @@ theorem rho_layer {σ σ' C₀ κ u : ℝ} (hσ : σ' < σ) (hC₀ : 1 ≤ C₀)
           rw [← exp_sig_mul σ σ' t]; ring
       _ ≤ κ * Real.exp (σ * t) * 1 := by gcongr
 
-/-- At `u = t₁`: `C₀κ⟨t₁⟩^pe^{σ't₁} ≤ â(t₁)` (`05_single_ring.tex:1004-1006`). -/
+/-- At `u = t₁`: `C₀κ⟨t₁⟩^pe^{σ't₁} ≤ â(t₁)` (Part II Theorem 2.12 (`thm:active`)). -/
 theorem rho_layer_t1 {σ σ' C₀ κ : ℝ} (hσ : σ' < σ) (hC₀ : 1 ≤ C₀) (hκ : 0 < κ) :
     C₀ * κ * Prelim.jap (tOneOf σ σ' C₀) ^ pW * Real.exp (σ' * tOneOf σ σ' C₀) ≤
       ahat κ σ (tOneOf σ σ' C₀) := by
@@ -69,7 +69,7 @@ theorem rho_layer_t1 {σ σ' C₀ κ : ℝ} (hσ : σ' < σ) (hC₀ : 1 ≤ C₀
   rwa [rhoHatOf_of_le le_rfl, sub_self, Prelim.jap_zero, one_pow, mul_zero, neg_zero,
     Real.exp_zero, mul_one, mul_one] at h
 
-/-- `eq:A-t1`: `C₀⟨v⟩^pe^{-σv} ≤ 1` for `v ≥ t₁` (`05_single_ring.tex:953-956`). -/
+/-- `eq:A-t1`: `C₀⟨v⟩^pe^{-σv} ≤ 1` for `v ≥ t₁` (Part II Theorem 2.12 (`thm:active`)). -/
 theorem small_after_t1 {σ σ' C₀ v : ℝ} (hσ : σ' < σ) (hσ' : 0 ≤ σ') (hC₀ : 1 ≤ C₀)
     (hv : tOneOf σ σ' C₀ ≤ v) : C₀ * Prelim.jap v ^ pW * Real.exp (-(σ * v)) ≤ 1 := by
   obtain ⟨hpos, hprop, -⟩ := tOneOf_spec hσ hC₀

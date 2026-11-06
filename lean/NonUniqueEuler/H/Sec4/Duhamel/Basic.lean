@@ -4,7 +4,7 @@ import Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic
 import Mathlib.Topology.Algebra.Module.Star
 
 /-!
-# Helper for `lem:duhamel`: generic facts (joint continuity, `X^s`, real elements)
+# Helper for Part II Lemma 2.1 (`lem:duhamel`): generic facts (joint continuity, `X^s`, real elements)
 
 Helper of `P/Sec4/Duhamel.lean`.
 

@@ -21,8 +21,8 @@ Helper of `P/Sec5/Quiet.lean` (fully proved). Contents (namespace
 * `flow_continuous`: the flow `(t,y) ↦ Φ_t(y)` of a configuration is continuous
   (`thm:smooth`(4));
 * `supp_of_movesRadially`: a radial displacement `≤ a/16` (resp. `≤ a/8`) of the trajectories of
-  a ring starting at `Φ` keeps its support in `𝒩₋` (resp. in `N`) (`05_single_ring.tex:33-40`,
-  `:526-529`).
+  a ring starting at `Φ` keeps its support in `𝒩₋` (resp. in `N`) (Part II Section 2 (`sec:single`),
+  Part II Theorem 2.8).
 -/
 
 noncomputable section
@@ -167,7 +167,7 @@ theorem flow_continuous {c : RingConfig} {T : ℝ} (hc : c.Hyp T) :
 
 /-! ### Supports -/
 
-/-- **Radial motion and supports** (`05_single_ring.tex:33-40`, `:526-529`): if the ring starts
+/-- **Radial motion and supports** (Part II Section 2 (`sec:single`), Part II Theorem 2.8 (`thm:quiet`)): if the ring starts
 at `Φ` and its trajectories move radially by at most `δ` on `[0,t]`, then `supp ω_r(τ) ⊂ 𝒩₋` for
 `τ ∈ [0,t]` when `δ ≤ a/16`, and `supp ω_r(τ) ⊂ N` when `δ ≤ a/8`. -/
 theorem supp_of_movesRadially {χ : ℝ → ℝ} (hχ : IsAdmissibleCutoff χ) {c : RingConfig} {T : ℝ}

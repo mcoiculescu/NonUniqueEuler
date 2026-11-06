@@ -13,7 +13,7 @@ For `g ∈ Y^s_ℓ` with profile `g_ℓ = Polar.angularSector g.fn ℓ`:
   in `Y^0_ℓ` as a profile;
 * `fn_ae_eq_ofProfile`, `Lsec_fn`: `g = g_ℓ(r)e^{iℓθ}` and `L_ℓ g = (L_ℓ g_ℓ)(r)e^{iℓθ}`;
 * `sub_Lsec_fn`: `(z g - L_ℓ g) = (z g_ℓ - L_ℓ g_ℓ)(r) e^{iℓθ}`;
-* `conjLIE_Lsec`: conjugation intertwines `L_ℓ(G)` and `L_{-ℓ}(G)` (`lem:sector`(2),
+* `conjLIE_Lsec`: conjugation intertwines `L_ℓ(G)` and `L_{-ℓ}(G)` (Part I Lemma 4.5(2) (`lem:sector`),
   `LsecFn_neg_conj`).
 -/
 
@@ -71,7 +71,7 @@ theorem sub_Lsec_fn (S : SectorSetting) (hS : S.Valid) {s : ℕ} {ℓ : ℤ} (z 
   rw [h1, Pi.sub_apply, h2, Pi.smul_apply, h3, h4]
   rfl
 
-/-- `L_{-ℓ}(G) ḡ = conj(L_ℓ(G) g)` on `Y^s_ℓ` (`lem:sector`(2)). -/
+/-- `L_{-ℓ}(G) ḡ = conj(L_ℓ(G) g)` on `Y^s_ℓ` (Part I Lemma 4.5(2) (`lem:sector`)). -/
 theorem conjLIE_Lsec (S : SectorSetting) (hS : S.Valid) (s : ℕ) (ℓ : ℤ) (G : ℝ)
     (g : Ysec s S.Nstar ℓ) :
     S.Lsec s (-ℓ) G (conjLIE s S.Nstar ℓ g) = conjLIE s S.Nstar ℓ (S.Lsec s ℓ G g) := by

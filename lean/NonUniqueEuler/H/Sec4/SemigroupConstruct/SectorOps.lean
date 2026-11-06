@@ -9,14 +9,14 @@ import NonUniqueEuler.I.Infra.Sobolev.Norm
 import NonUniqueEuler.I.Infra.CkNorm.Basic
 
 /-!
-# Helpers for `lem:semigroup-construct`: the sector operators `-iℓΩ`, `k_ℓ𝒢_ℓ`, `L_ℓ(G)`
+# Helpers for Part I Lemma 4.14 (`lem:semigroup-construct`): the sector operators `-iℓΩ`, `k_ℓ𝒢_ℓ`, `L_ℓ(G)`
 
 Helper file of `P/Sec4/SemigroupConstruct.lean` (fully proved). Remark after
-`lem:semigroup-construct` (`04_ring.tex:944-947`):
+Part I Lemma 4.14 (`lem:semigroup-construct`):
 
 * `transSec_spec`: `S.transSec s ℓ G` is multiplication by `-iℓΩ(|x|;G)` (`Ω` is smooth on
   `(0, ∞)`, `contDiffOn_Omega`, so `exists_radialMul_spec` applies);
-* `kElem`: the element of `Y^s_ℓ` with function `ofProfile ℓ (k_ℓ𝒢_ℓ g_ℓ)` (`cor:K-bound`,
+* `kElem`: the element of `Y^s_ℓ` with function `ofProfile ℓ (k_ℓ𝒢_ℓ g_ℓ)` (Part I Corollary 4.13 (`cor:K-bound`),
   `K_bound`, and `exists_Ysec_ofProfile`); it is linear in `g` (the profile map is linear a.e.,
   `angularSector_add_ae`, and `𝒢_ℓ` is linear on `L²` profiles supported in `[ρ₋, ρ₊]`) and bounded
   uniformly in `ℓ` (`exists_norm_equiv_ofProfile`, `K_bound`, `exists_norm_Ysec_equiv`);
@@ -214,7 +214,7 @@ def kLin {S : SectorSetting} (hS : S.Valid) (s : ℕ) (ℓ : ℤ) :
       kElem_spec hS g] with x h1 h2 h3
     rw [h1, RingHom.id_apply, h2, Pi.smul_apply, h3, kFn_smul c g, Pi.smul_apply]
 
-/-- The uniform bound `‖k_ℓ𝒢_ℓ g‖_{Y^s} ≤ C ‖g‖_{Y^s}` (`cor:K-bound` and `lem:norm-equiv`). -/
+/-- The uniform bound `‖k_ℓ𝒢_ℓ g‖_{Y^s} ≤ C ‖g‖_{Y^s}` (Part I Corollary 4.13 (`cor:K-bound`) and Part I Lemma 4.12 (`lem:norm-equiv`)). -/
 theorem exists_norm_kElem_le {S : SectorSetting} (hS : S.Valid) (s : ℕ) :
     ∃ C : ℝ, 0 < C ∧ ∀ (ℓ : ℤ) (g : Ysec s S.Nstar ℓ), ‖kElem S s ℓ g‖ ≤ C * ‖g‖ := by
   obtain ⟨CK, hCK, hK⟩ := K_bound S hS s

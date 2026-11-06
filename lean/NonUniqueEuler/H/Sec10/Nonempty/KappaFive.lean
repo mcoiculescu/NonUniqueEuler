@@ -5,7 +5,7 @@ import NonUniqueEuler.I.Sec5.ActiveT1
 # Helper for `lem:nonempty`: (κ5) for small `κ`, uniformly in `G`
 
 Helper of `P/Sec10/Nonempty.lean`, the treatment of (κ5) in the proof of `lem:nonempty`
-(`10_parameters.tex:327-343`). Let `c = σ_b - σ' > 0`, `σ_max = max_{[0,G₁]} σ`. For `G ∈ [0,G₁]`,
+(Part II Appendix C.4, `sec:param-verification`). Let `c = σ_b - σ' > 0`, `σ_max = max_{[0,G₁]} σ`. For `G ∈ [0,G₁]`,
 `t₁(C₀,G) ≤ t̄₁(C₀)` (`active_tOne`) and `σ(G) ∈ [σ_b, σ_max]`, so `T̂ ≥ σ_max⁻¹ log(δ₀/κ)`. Once
 `log(δ₀/κ) ≥ σ_max(t̄₁(C₀) + Y)`, `y = T̂ - t₁(C₀,G) ≥ Y ≥ 0` and
 `ρ̂(T̂) = ⟨y⟩^p e^{-(σ(G)-σ')y} ≤ ⟨y⟩^p e^{-cy}`, which is `≤ ε` for `y ≥ Y`. This is the
@@ -73,7 +73,7 @@ theorem sigb_le_sigma {χ : ℝ → ℝ} (hχ : IsAdmissibleCutoff χ) (hN : Num
 
 variable {p : Params}
 
-/-- **(κ5) for small `κ`, uniformly in `G ∈ [0, G₁]`** (`10_parameters.tex:327-343`). -/
+/-- **(κ5) for small `κ`, uniformly in `G ∈ [0, G₁]`** (Part II Appendix C.4, `sec:param-verification`). -/
 theorem eventually_k5 (hχ : IsAdmissibleCutoff p.χ) (hN : NumericalHypothesis p.χ)
     (hpos : p.ref.ConstPos) (hp : p.Structural) :
     ∀ᶠ κ in 𝓝[>] (0 : ℝ), ∀ G ∈ Icc (0 : ℝ) Gbar,

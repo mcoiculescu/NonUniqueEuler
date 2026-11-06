@@ -12,7 +12,7 @@ import Mathlib.MeasureTheory.Measure.OpenPos
 /-!
 # Proof of `lem:iter-lip` (uniform Lipschitz bounds on the iterates and their velocities)
 
-Proof of `I/SmoothB/IterLip.lean`, following `B_global_smooth.tex:272-300`.
+Proof of `I/SmoothB/IterLip.lean`, following Part II, Lemma B.7 (`lem:iter-lip`).
 
 * `IterLipAux.amax_pos`: `A = ‖ω₀‖_{L^∞} > 0` for `ω₀ ≠ 0`;
 * `IterLipAux.norm_fderiv_datum_le`, `IterLipAux.N0_le`: `|∇ω₀| ≤ N₀ ≤ A e^{𝓛(0)}`

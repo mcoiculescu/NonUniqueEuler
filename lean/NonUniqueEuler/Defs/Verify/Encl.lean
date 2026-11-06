@@ -8,11 +8,11 @@ import NonUniqueEuler.Defs.Verify.Profile
 /-!
 # Soundness predicates of the enclosure procedure (definitions and basic facts, all proved)
 
-Manuscript: Proposition A.3 (`prop:enclosure`, `A_verification.tex:301-460`), step (i): the
+Manuscript: Part II Proposition A.3 (`prop:enclosure`), step (i): the
 `λ`-independent data are valid enclosures of the Taylor coefficients of the profile objects.
 Code: `Verify/Comp/{Grid,Evans,Contour,Certify}.lean`.
 
-These are the invariants that the stage lemmas of Proposition A.3 (`I/Verify/Sound/*`) are
+These are the invariants that the stage lemmas of Part II Proposition A.3 (`I/Verify/Sound/*`) are
 stated with. They mention the code's arrays exactly as the code reads them
 (`fun k => arr.getD k Ball.zero`), so that a stage lemma applies to the code term without
 rewriting.
@@ -24,7 +24,7 @@ rewriting.
   resp. `N`).
 * `omegaFn χ = g e^{-2ξ}`, so `Ω_G = omegaFn χ + G e^{-2ξ}` (`OmegaG_eq`).
 * `StepSound χ N sd`: the data of one step `[s₀, s₁] ⊆ [ξa, ξb]` are valid (the conclusion of
-  step (i) of Proposition A.3 for this step): coefficient data at `s₀` and over the step,
+  step (i) of Part II Proposition A.3 for this step): coefficient data at `s₀` and over the step,
   `γ_j ∋ g(s₀)`, `γ_{j+1} ∋ g(s₁)`, the coefficients `o_k` of `g e^{-2ξ}` at `s₀` and over the
   step, and the powers `h^k`, `k h^{k-1}`.
 * `StepChain a steps`: the steps are consecutive, from `a` to `ξb`.
@@ -87,7 +87,7 @@ theorem OmegaG_eq_omegaFn (χ : ℝ → ℝ) (G x : ℝ) :
 /-! ### The steps and the grid -/
 
 /-- The data `sd` of one step of the middle region are valid for the cutoff `χ` (step (i) of
-Proposition A.3 for the step `[s₀, s₁]`, `h = s₁ - s₀`). -/
+Part II Proposition A.3 for the step `[s₀, s₁]`, `h = s₁ - s₀`). -/
 structure StepSound (χ : ℝ → ℝ) (N : ℕ) (sd : StepData) : Prop where
   /-- `s₀ < s₁`. -/
   lt : sd.s0.toReal < sd.s1.toReal
@@ -121,7 +121,7 @@ def StepChain : ℝ → List StepData → Prop
   | a, sd :: rest => sd.s0.toReal = a ∧ StepChain sd.s1.toReal rest
 
 /-- The grid is valid for the cutoff `χ`: its steps run consecutively from `ξa` to `ξb`, and
-each step is sound (the conclusion of step (i) of Proposition A.3). -/
+each step is sound (the conclusion of step (i) of Part II Proposition A.3). -/
 structure GridSound (χ : ℝ → ℝ) (gr : Grid) : Prop where
   chain : StepChain ξa gr.steps
   steps : ∀ sd ∈ gr.steps, StepSound χ gr.N sd

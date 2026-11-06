@@ -7,7 +7,7 @@ import NonUniqueEuler.I.Sec4.RingFacts
 /-!
 # Helpers for `lem:reduction`(3): facts about the perturbation `w = ω_r - Φ`
 
-Helper of `P/Sec5/ReductionEq.lean` (`05_single_ring.tex:129-145`, `:204-210`):
+Helper of `P/Sec5/ReductionEq.lean` (Part II Lemma 2.2):
 * `RedEqH.exists_isSmoothDatum`: the datum is a datum of `thm:smooth`;
 * `RedEqH.hasDerivAt_ringPart`: the transport equation `∂_t ω_r = -v·∇ω_r` on `ℝ × ℝ²`
   (`ω_r(t) = ω_r(0) ∘ Φ_t⁻¹`, `I/SmoothB/FlowFacts.lean`);
@@ -36,7 +36,7 @@ theorem exists_isSmoothDatum (hc : c.Hyp T) : ∃ R₀ : ℝ, Smooth.IsSmoothDat
   exact ⟨R, hc.datum_contDiff, hR⟩
 
 /-- **Transport equation for `ω_r`**: `∂_t ω_r(t,x) = -Dω_r(t)(x) v(t,x)` (differentiate
-`ω_r(t) = ω_r(0) ∘ Φ_t⁻¹`, `05_single_ring.tex:207-208`). -/
+`ω_r(t) = ω_r(0) ∘ Φ_t⁻¹`, Part II Lemma 2.2 (`lem:reduction`)). -/
 theorem hasDerivAt_ringPart (hc : c.Hyp T) (t : ℝ) (x : ℂ) :
     HasDerivAt (fun s => c.ringPart s x)
       (-(fderiv ℝ (c.ringPart t) x (velocity (c.sol t) x))) t := by

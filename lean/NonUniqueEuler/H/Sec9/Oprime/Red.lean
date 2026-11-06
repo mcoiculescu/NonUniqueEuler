@@ -6,11 +6,11 @@ import NonUniqueEuler.H.Sec9.Oprime.Defined
 
 Helper file of `P/Sec9/Oprime.lean`. Everything here is proved.
 
-* `op_red` (`eq:Op-red`, `09_relay.tex:643-662`): for `t' ∈ [t♯_k, t]`, `k = j+1 ≥ 2`,
+* `op_red` (`eq:Op-red`, `lem:Oprime`, Part II Lemma C.10): for `t' ∈ [t♯_k, t]`, `k = j+1 ≥ 2`,
   `h^out_k(A_kt') ∈ C^{M_h}(N')` and `η^out_k(A_kt') ≤ 2C_OC_Q b_{j,k} maj_j(A_jt')`
   (`lem:transfer-step`(2) with `s' = s_h`, `thm:quiet`(c), `lem:O`, and
   `Σ_{i<j} b_{i,j}P̃_{i,j} ≤ 1/3`);
-* `relayHyp` (`09_relay.tex:664-679`): the hypotheses (H1)–(H4) of `prop:relay` for `j = k-1`,
+* `relayHyp` (`lem:Oprime`, Part II Lemma C.10): the hypotheses (H1)–(H4) of `prop:relay` for `j = k-1`,
   `τ = A_jt` and the present `C₀`, `K₁` (with `maj_n(t̄♯_n) = maj_n(0) = 0` if `k = n`).
 -/
 
@@ -34,7 +34,7 @@ theorem sigb_pos {S : Standing} (hS : S.Holds) : 0 < S.sigb := by
 
 variable {S : Standing} {C₀ K₁ CF : ℝ} {t : ℝ}
 
-/-- **`eq:Op-red`** (`09_relay.tex:643-662`): for `t' ∈ [t♯_{j+1}, t]`,
+/-- **`eq:Op-red`** (`lem:Oprime`, Part II Lemma C.10): for `t' ∈ [t♯_{j+1}, t]`,
 `h^out_{j+1}(A_{j+1}t') ∈ C^{M_h}(N')` and
 `η^out_{j+1}(A_{j+1}t') ≤ 2C_OC_Q b_{j,j+1} maj_j(A_jt')`. -/
 theorem op_red (hS : S.Holds) {j : ℕ} (hj : 1 ≤ j) (h : S.OprimeHyp C₀ K₁ CF (j + 1) t)
@@ -120,7 +120,7 @@ theorem tash_n : S.P.tash S.P.n = 0 := by
   rw [Approx.tash_def, S.P.tsh_n, mul_zero]
 
 /-- **The hypotheses (H1)–(H4) of `prop:relay`** for `j = k-1`, `τ = A_jt`
-(`09_relay.tex:664-679`). -/
+(`lem:Oprime`, Part II Lemma C.10). -/
 theorem relayHyp (hS : S.Holds) (hK₁ : 0 < K₁) (hCF : CF ∈ Ioc 0 C₀) {j : ℕ} (hj : 1 ≤ j)
     (h : S.OprimeHyp C₀ K₁ CF (j + 1) t) : S.RelayHyp C₀ K₁ j (S.P.A j * t) where
   one_le := hj

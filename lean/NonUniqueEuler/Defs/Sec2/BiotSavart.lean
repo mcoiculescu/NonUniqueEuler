@@ -4,32 +4,32 @@ import NonUniqueEuler.Defs.Infra.ConvMinkowski
 import Mathlib.Data.Real.ConjExponents
 
 /-!
-# Section 2: the Biot–Savart law (definitions)
+# Biot–Savart definitions for Part I §2.2 and Part II §1.4
 
-Definitions for `02_prelim.tex` §2.2 (`02_prelim.tex:133-512`):
-`lem:BS-basic`, `lem:velocity`, `lem:LpLinf`, `lem:hollow`, `lem:ext-multipole`, and the complex
-form of the velocity.
+Sources: Part I, Lemmas 2.1–2.2 (`lem:BS-basic`, `lem:velocity`), and Part II,
+Lemmas 1.5 and 1.7 (`lem:hollow`, `lem:ext-multipole`) and Equation (3)
+(`eq:BS-complex`). The legacy `Sec2` path also retains the auxiliary `LpLinf`
+estimate, formerly `lem:LpLinf`, which has no numbered counterpart in the current manuscripts.
 
 The kernel `K_BS = biotSavartKernel` and the velocity `v = K_BS ∗ g = velocity g` of a **real**
 vorticity `g : ℂ → ℝ` are in the statement layer (`Statement/Plane.lean`; a real vector field is
 encoded in `ℂ`, D1, D6). This file adds:
 
-* `kernelNear = 1_{B₁} K_BS`, `kernelFar = 1_{ℝ²∖B₁} K_BS` (`02_prelim.tex:135-139`);
+* `kernelNear = 1_{B₁} K_BS`, `kernelFar = 1_{ℝ²∖B₁} K_BS` (Part I, §2.2, Biot–Savart law (`sec:prelim`));
 * `kernelComp i z = (K_BS)_i(z)`, the two real components (`lem:BS-basic`(a));
 * `velocityRe g`, `velocityIm g`: the Biot–Savart law for a **complex** vorticity
-  `g = g₁ + i g₂` (functions are complex valued unless said otherwise, `02_prelim.tex:52`): the
+  `g = g₁ + i g₂` (functions are complex valued unless said otherwise, Part I, §2.1, Conventions (`sec:prelim`)): the
   complex vector field `K_BS ∗ g = K_BS ∗ g₁ + i K_BS ∗ g₂` is represented by its real part
   `K_BS ∗ g₁ = velocityRe g` and its imaginary part `K_BS ∗ g₂ = velocityIm g`, each a real vector
-  field encoded in `ℂ` (used by `lem:Hk-calculus`(3) and Section 5);
+  field encoded in `ℂ` (used by `lem:Hk-calculus`(3) and Part II, Section 2 (`sec:single`));
 * `normHC2 k u₁ u₂`: the `H^k` norm of the complex vector field `u₁ + i u₂` (`u₁, u₂` real vector
-  fields in `ℂ`), summed over the entries (`02_prelim.tex:62-64`);
+  fields in `ℂ`), summed over the entries (Part I, §2.1, Conventions (`sec:prelim`));
 * `complexVelocity g = u₁ - i u₂ = conj (velocity g)`, with
-  `complexVelocity_eq : u₁ - i u₂ = (2πi)⁻¹ ∫ g(w)/(z - w) dw` (`02_prelim.tex:430-433`,
-  eq:complex-velocity of `07_several_rings.tex:49`; from I-MULT);
+  `complexVelocity_eq : u₁ - i u₂ = (2πi)⁻¹ ∫ g(w)/(z - w) dw` (Part II, Equation (3) (`eq:BS-complex`); from I-MULT);
 * `monopole g`, `extField g = velocity g - monopole g` (the field `E` of `lem:ext-multipole`);
-* the explicit constants `cLpLinf p = c_p` (`lem:LpLinf`) and `cExtMultipole m q = C_{m,q}`
-  (`lem:ext-multipole`), which later definitions use (`06_datum.tex:365`,
-  `07_several_rings.tex:126`).
+* the explicit constants `cLpLinf p = c_p` (the retained `LpLinf` estimate) and `cExtMultipole m q = C_{m,q}`
+  (`lem:ext-multipole`). Lean retains these explicit constants; the current proof of
+  Part II, Lemma 4.1 (`lem:transfer`) absorbs the corresponding exterior bounds into `C_vel`.
 
 Majorants `(|K_BS| ∗ |g|)(x)` are `Conv.convAbs biotSavartKernel g x : ℝ≥0∞` (I-CONV); the
 angular average `ν̄` of `lem:hollow` is `Polar.angAvg ν`; the stream function `ψ` of
@@ -43,16 +43,16 @@ open scoped ENNReal
 
 namespace NonUniqueEuler.BS
 
-/-- The near part `K_near = 1_{B₁} K_BS` of the Biot–Savart kernel (`02_prelim.tex:135-136`). -/
+/-- The near part `K_near = 1_{B₁} K_BS` of the Biot–Savart kernel (Part I, §2.2, Biot–Savart law (`sec:prelim`)). -/
 def kernelNear (z : ℂ) : ℂ :=
   (ball (0 : ℂ) 1).indicator biotSavartKernel z
 
-/-- The far part `K_far = 1_{ℝ²∖B₁} K_BS` of the Biot–Savart kernel (`02_prelim.tex:135-136`). -/
+/-- The far part `K_far = 1_{ℝ²∖B₁} K_BS` of the Biot–Savart kernel (Part I, §2.2, Biot–Savart law (`sec:prelim`)). -/
 def kernelFar (z : ℂ) : ℂ :=
   (ball (0 : ℂ) 1)ᶜ.indicator biotSavartKernel z
 
 /-- The real components `(K_BS)₁(z) = -z₂/(2π|z|²)`, `(K_BS)₂(z) = z₁/(2π|z|²)` of the kernel
-(`lem:BS-basic`(a), `02_prelim.tex:184-185`); index `0, 1` for the manuscript's `1, 2`. -/
+(Part I, Lemma 2.1(a) (`lem:BS-basic`)); index `0, 1` for the manuscript's `1, 2`. -/
 def kernelComp (i : Fin 2) (z : ℂ) : ℝ :=
   Prelim.comp2 i (biotSavartKernel z)
 
@@ -68,31 +68,30 @@ def velocityIm (g : ℂ → ℂ) : ℂ → ℂ :=
 
 /-- `‖u₁ + i u₂‖_{H^k}` for the complex vector field with real part `u₁` and imaginary part `u₂`
 (real vector fields in `ℂ`): `(‖u₁‖²_{H^k} + ‖u₂‖²_{H^k})^{1/2}`, which is the sum over the
-entries of `02_prelim.tex:62-64`. Junk unless `Sob.MemH k u₁` and `Sob.MemH k u₂`. -/
+entries of Part I, §2.1, Conventions (`sec:prelim`). Junk unless `Sob.MemH k u₁` and `Sob.MemH k u₂`. -/
 def normHC2 (k : ℕ) (u₁ u₂ : ℂ → ℂ) : ℝ :=
   Real.sqrt (Sob.normH k u₁ ^ 2 + Sob.normH k u₂ ^ 2)
 
 /-- The complex velocity `u₁ - i u₂ = conj (K_BS ∗ g)` of a real vorticity
-(`02_prelim.tex:430-433`, `07_several_rings.tex:49`). -/
+(Part II, Equation (3) (`eq:BS-complex`)). -/
 def complexVelocity (g : ℂ → ℝ) (z : ℂ) : ℂ :=
   conj (velocity g z)
 
 /-- The monopole `(2π)⁻¹ (∫ g) x^⊥/|x|² = (∫ g) K_BS(x)` of a real vorticity
-(`lem:ext-multipole`, `02_prelim.tex:477-478`). -/
+(Part II, Lemma 1.7 (`lem:ext-multipole`)). -/
 def monopole (g : ℂ → ℝ) (x : ℂ) : ℂ :=
   ((∫ y, g y : ℝ) : ℂ) * biotSavartKernel x
 
-/-- The field `E = K_BS ∗ g - monopole` of `lem:ext-multipole` (`02_prelim.tex:476-478`). -/
+/-- The field `E = K_BS ∗ g - monopole` of Part II, Lemma 1.7 (`lem:ext-multipole`). -/
 def extField (g : ℂ → ℝ) (x : ℂ) : ℂ :=
   velocity g x - monopole g x
 
-/-- The constant `c_p = (2π/(2 - p'))^{1/p'}`, `p' = p/(p-1)`, of `lem:LpLinf`
-(`02_prelim.tex:389-390`); meaningful for `2 < p < ∞`. -/
+/-- The constant `c_p = (2π/(2 - p'))^{1/p'}`, `p' = p/(p-1)`, of the retained `LpLinf` estimate; meaningful for `2 < p < ∞`. -/
 def cLpLinf (p : ℝ) : ℝ :=
   (2 * Real.pi / (2 - p.conjExponent)) ^ (1 / p.conjExponent)
 
 /-- The constant `C_{m,q} = 2^q/(2π) · sup_{0<ρ≤1/2} ρ^{-m} Σ_{l ∈ mℕ} (l+q)^q ρ^l` of
-`lem:ext-multipole` (`02_prelim.tex:479-482`), with `l = m(j+1)`, `j ≥ 0`. Its finiteness (the
+Part II, Lemma 1.7 (`lem:ext-multipole`), with `l = m(j+1)`, `j ≥ 0`. Its finiteness (the
 supremum is attained at `ρ = 1/2`) is part of the lemma. -/
 def cExtMultipole (m q : ℕ) : ℝ :=
   2 ^ q / (2 * Real.pi) *

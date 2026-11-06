@@ -10,7 +10,7 @@ import NonUniqueEuler.H.Sec9.TransferStep.Decomp
 /-!
 # Proof: `lem:transfer-step` (`lem:transfer` in terms of the field majorants)
 
-Proof of `I/Sec9/TransferStep.lean` (`09_relay.tex:167-225`).
+Proof of `I/Sec9/TransferStep.lean` (`lem:transfer-step`, Part II Lemma C.7).
 
 (1) On `N'_i`, `ω_{≥i+1}(t) = A_{i+1}Φ(·/r_{i+1}) + A_{i+1}w_{i+1}(t,·/r_{i+1}) + ω_{≥i+2}(t)`; the
 radial term has only a monopole there and the second term none, so `h^in_i(A_it)` (which is the
@@ -73,7 +73,7 @@ theorem memCk_hIn (P : Approx) (hP : P.Valid) (hN : NumericalHypothesis P.χ) {k
       exact hin) M).1 _ ⟨le_rfl, le_rfl⟩
 
 /-- `sup_{|y| = a/4} |(E_g)_{[i+1]}(y)| ≤ η^in_{i+1}(A_{i+1}t)` for `g = ω_{≥i+2}(t)`, pointwise on
-`N'` (`09_relay.tex:212-216`). -/
+`N'` (`lem:transfer-step`, Part II Lemma C.7). -/
 theorem norm_unitsField_extField_le (S : Standing) (hS : S.Holds) {i : ℕ} (hi : 1 ≤ i)
     (hin : i < S.P.n) {t : ℝ} (ht : 0 ≤ t) (hdi1 : S.P.HDefined (i + 1) t) {y : ℂ}
     (hy : y ∈ annN') :
@@ -96,7 +96,7 @@ theorem norm_unitsField_extField_le (S : Standing) (hS : S.Holds) {i : ℕ} (hi 
     rw [hz', norm_zero]
     exact normCk_nonneg _ _ _
 
-/-- The identity of `lem:transfer-step`(1) on `N'` (`09_relay.tex:198-206`):
+/-- The identity of `lem:transfer-step`(1) on `N'` (`lem:transfer-step`, Part II Lemma C.7):
 `h^in_i(A_it) = T₁ + T₂`, `T₁` the field of `A_{i+1}w_{i+1}(t,·/r_{i+1})` and `T₂ = (E_g)_{[i]}`,
 `g = ω_{≥i+2}(t)`, both in ring-`i` units. -/
 theorem hIn_eq_add (S : Standing) (hS : S.Holds) {i : ℕ} (hi : 1 ≤ i) (hin : i < S.P.n)
@@ -123,7 +123,7 @@ theorem hIn_eq_add (S : Standing) (hS : S.Holds) {i : ℕ} (hi : 1 ≤ i) (hin :
 end TransferStepAux
 
 open TransferStepAux in
-/-- **`lem:transfer-step`(1)** (`09_relay.tex:170-175`): for `1 ≤ i < n` and `t ≥ 0`, if
+/-- **`lem:transfer-step`(1)** (`lem:transfer-step`, Part II Lemma C.7): for `1 ≤ i < n` and `t ≥ 0`, if
 `S_{i+1}(t) ⊂ N_{i+1}` and `h_i`, `h_{i+1}` are defined at `t`, then for every integer `s' ≥ 0`,
 `h^in_i(A_i t) ∈ C^{M_h}(N')` and
 `η^in_i(A_i t) ≤ C_M ε_i (‖w_{i+1}(t)‖_{H^{s'}} + η^in_{i+1}(A_{i+1} t))`. -/
@@ -199,7 +199,7 @@ theorem transfer_step_one (S : Standing) (hS : S.Holds) {i : ℕ} (hi : 1 ≤ i)
         ring
 
 open TransferStepAux in
-/-- **`lem:transfer-step`(2)** (`09_relay.tex:176-183`): for `1 ≤ k ≤ n` and `t ≥ 0`, if `h_k` is
+/-- **`lem:transfer-step`(2)** (`lem:transfer-step`, Part II Lemma C.7): for `1 ≤ k ≤ n` and `t ≥ 0`, if `h_k` is
 defined at `t` and `S_i(t) ⊂ N_i` for every `i < k`, then for every integer `s' ≥ 0`,
 `h^out_k(A_k t) ∈ C^{M_h}(N')` and `η^out_k(A_k t) ≤ C_O Σ_{i<k} b_{i,k} ‖w_i(t)‖_{H^{s'}}`. -/
 theorem transfer_step_two (S : Standing) (hS : S.Holds) {k : ℕ} (hk : 1 ≤ k) (hkn : k ≤ S.P.n)

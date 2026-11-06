@@ -10,8 +10,8 @@ import Mathlib.MeasureTheory.Function.LocallyIntegrable
 # Helper for `P/Evans/ODE`: the Riccati coefficient
 
 Facts about the profile `ϖ = prof χ`, the angular velocity `Ω_G = OmegaG χ G` and the Riccati
-coefficient `V = riccatiCoeff χ ℓ z G` of `04_ring.tex` (`def:sector-setting`, `lem:sector`(3),
-`hyp:N`):
+coefficient `V = riccatiCoeff χ ℓ z G` of Part I, Definition 4.3
+(`def:sector-setting`), Lemma 4.5(3) (`lem:sector`) and Hypothesis 4.17 (`hyp:N`):
 * `ϖ` is `C^∞` with compact support, so `ϖ'` is bounded (`exists_bound_deriv_prof`);
 * `Ω_G` is `C^∞` (`contDiff_OmegaG`; the integral over `(-∞, ξ]` is a constant plus a
   primitive), and `Ω_G - Ω_{G'} = e^{-2ξ}(G - G')`;

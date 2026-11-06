@@ -7,9 +7,9 @@ import Mathlib.MeasureTheory.Constructions.BorelSpace.Basic
 import Mathlib.Topology.Algebra.Support
 
 /-!
-# Proof of the setting of Section 5 and the configuration of `lem:reduction`
+# Proof of the setting of Part II Section 2 and the configuration of `lem:reduction`
 
-Proof of `I/Sec5/Setting.lean` (`05_single_ring.tex:28-40`, `:129-145`).
+Proof of `I/Sec5/Setting.lean` (Part II Section 2 (`sec:single`), Part II Lemma 2.2).
 
 Structure (following the first paragraph of the proof of `lem:reduction`):
 1. the datum `ω(0)` is an admissible datum of `thm:smooth` (`exists_isSmoothDatum`);
@@ -46,7 +46,7 @@ private theorem exists_isSmoothDatum {c : RingConfig} {T : ℝ} (hc : c.Hyp T) :
   exact ⟨R, hc.datum_contDiff, hR⟩
 
 /-- A part `f` of a smooth compactly supported `D = f + g + k`, whose `tsupport` is disjoint from
-those of `g` and `k`, is smooth with compact support (`05_single_ring.tex:130-133`). -/
+those of `g` and `k`, is smooth with compact support (Part II Lemma 2.2 (`lem:reduction`)). -/
 private theorem part_smooth {D f g k : ℂ → ℝ} (hD : ContDiff ℝ ((⊤ : ℕ∞) : WithTop ℕ∞) D)
     (hDc : HasCompactSupport D) (hsum : ∀ x, D x = f x + g x + k x)
     (hfg : Disjoint (tsupport f) (tsupport g)) (hfk : Disjoint (tsupport f) (tsupport k)) :
@@ -143,7 +143,7 @@ private theorem datum_sym {c : RingConfig} {T : ℝ} (hc : c.Hyp T) :
 
 /-! ### The interface statements -/
 
-/-- **The parts of the configuration are smooth** (`05_single_ring.tex:130-139`): under the
+/-- **The parts of the configuration are smooth** (Part II Lemma 2.2): under the
 hypotheses of `lem:reduction`, each part `ω_•(0)` of the datum is `C_c^∞`, and each transported
 part `ω_•(t,x) = ω_•(0)(Φ_t⁻¹(x))` is `C^∞` on `ℝ × ℝ²`. -/
 theorem setting_parts_smooth {c : RingConfig} {T : ℝ} (hc : c.Hyp T) :
@@ -159,7 +159,7 @@ theorem setting_parts_smooth {c : RingConfig} {T : ℝ} (hc : c.Hyp T) :
   exact ⟨⟨hr, hrc⟩, ⟨hi, hic⟩, ⟨ho, hoc⟩, hr.comp hfi, hi.comp hfi, ho.comp hfi⟩
 
 /-- **The solution is the sum of the transported parts; the flow at time `0`**
-(`05_single_ring.tex:88-93`, `:133-139`): `ω(t) = ω_r(t) + ω_i(t) + ω_o(t)`, `Φ_t⁻¹` is the
+(Part II Lemma 2.2 (`lem:reduction`), Part II Lemma 2.2 (`lem:reduction`)): `ω(t) = ω_r(t) + ω_i(t) + ω_o(t)`, `Φ_t⁻¹` is the
 two-sided inverse of `Φ_t`, `Φ_0 = Φ_0⁻¹ = id`, and therefore `w(0) = ω_r(0) - Φ`. -/
 theorem setting_sol_eq_parts {c : RingConfig} {T : ℝ} (hc : c.Hyp T) :
     (∀ (t : ℝ) (x : ℂ), c.sol t x = c.ringPart t x + c.innerPart t x + c.outerPart t x) ∧
@@ -176,7 +176,7 @@ theorem setting_sol_eq_parts {c : RingConfig} {T : ℝ} (hc : c.Hyp T) :
   rw [c.sol_eq, Smooth.sol_eq_comp_flowInv hsd t x]
   rfl
 
-/-- **Supports of the transported parts** (`05_single_ring.tex:36-37`, `:139`):
+/-- **Supports of the transported parts** (Part II Section 2 (`sec:single`), Part II Lemma 2.2 (`lem:reduction`)):
 `supp ω_•(t) = Φ_t(supp ω_•(0))` for every `t`. -/
 theorem setting_tsupport_parts {c : RingConfig} {T : ℝ} (hc : c.Hyp T) (t : ℝ) :
     tsupport (c.ringPart t) = c.flow t '' tsupport c.ring0 ∧
@@ -186,7 +186,7 @@ theorem setting_tsupport_parts {c : RingConfig} {T : ℝ} (hc : c.Hyp T) (t : �
   exact ⟨tsupport_comp_flowInv hsd t c.ring0, tsupport_comp_flowInv hsd t c.inner0,
     tsupport_comp_flowInv hsd t c.outer0⟩
 
-/-- **The inner circulation is conserved** (`05_single_ring.tex:139-140`): `Φ_t` preserves area,
+/-- **The inner circulation is conserved** (Part II Lemma 2.2 (`lem:reduction`)): `Φ_t` preserves area,
 so `∫ ω_i(t) = ∫ ω_i(0) = 2πG` for every `t`. -/
 theorem setting_integral_innerPart {c : RingConfig} {T : ℝ} (hc : c.Hyp T) (t : ℝ) :
     ∫ x, c.innerPart t x = 2 * Real.pi * c.G := by
@@ -195,7 +195,7 @@ theorem setting_integral_innerPart {c : RingConfig} {T : ℝ} (hc : c.Hyp T) (t 
   have hpi : (2 * Real.pi : ℝ) ≠ 0 := by positivity
   rw [h1, G, mul_inv_cancel_left₀ hpi]
 
-/-- **Symmetry of the configuration** (`05_single_ring.tex:140-145`): `ω(t)` is `3`-fold
+/-- **Symmetry of the configuration** (Part II Lemma 2.2 (`lem:reduction`)): `ω(t)` is `3`-fold
 symmetric, the flow commutes with `O = O_{2π/3}`, and each `ω_•(t)` is `3`-fold symmetric (stated
 pointwise; the parts are continuous). -/
 theorem setting_symmetric {c : RingConfig} {T : ℝ} (hc : c.Hyp T) :
@@ -219,7 +219,7 @@ theorem setting_symmetric {c : RingConfig} {T : ℝ} (hc : c.Hyp T) :
   · exact (congrArg c.inner0 (hinv t x)).trans (sym_pointwise hi.continuous hc.sym_inner _)
   · exact (congrArg c.outer0 (hinv t x)).trans (sym_pointwise ho.continuous hc.sym_outer _)
 
-/-- **Radial motion controls the support** (`05_single_ring.tex:33-40`): if every trajectory of
+/-- **Radial motion controls the support** (Part II Section 2 (`sec:single`)): if every trajectory of
 `ω_r` moves radially by at most `δ` on `[0,t]`, then for `τ ∈ [0,t]` every point `x` of
 `supp ω_r(τ) = Φ_τ(supp ω_r(0))` is `x = Φ_τ(y)` for some `y ∈ supp ω_r(0)` with
 `||x| - |y|| ≤ δ`: the support of `ω_r(τ)` lies within radial distance `δ` of

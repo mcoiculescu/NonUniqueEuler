@@ -12,9 +12,9 @@ import Mathlib.Data.Nat.Pairing
 
 Proof of `NonUniqueEuler/I/Infra/WeakL2/Paths.lean` (same declarations, same statements).
 
-Used by `lem:weak-cont` (`03_compactness.tex:160-246`), `prop:compact`(i)
-(`03_compactness.tex:277-292`), the gluing of representatives (`03_compactness.tex:251-262`)
-and `thm:criterion`.
+Used by Part I, Lemma 3.2 (`lem:weak-cont`), Section 3.2 (`sec:weak-rep`),
+and the compactness argument in the proof of Theorem 3.8 (`thm:criterion`).
+Lean retains the former separate `prop:compact` decomposition.
 
 Structure of the proof.
 * `PathsAux.neBot_nhdsWithin_of_ae`: if a property holds for a.e. `t ∈ (a, b)`, then every

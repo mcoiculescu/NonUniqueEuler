@@ -5,7 +5,7 @@ import NonUniqueEuler.H.Infra.Sobolev.Local.Basic
 
 For `V ⊆ ℂ` open, a smooth compactly supported multiplier `χ` maps `H^k(V)` boundedly into
 `H^k(V)` (`LocalAux.memHOn_mul_testFn`). This is the local Leibniz rule used in the extension
-lemma (`02_prelim.tex:687-692`). Instead of the explicit Leibniz formula we induct on `k`:
+lemma (Part II, Lemma 1.10 (`lem:Hk-calculus`), local-cutoff argument in the proof). Instead of the explicit Leibniz formula we induct on `k`:
 
 * first order (`hasWeakDerivOn_mul_single`): `∂_v(χF) = (∂_vχ) F + χ ∂_vF` weakly on `V`
   (test with `χφ`, which is a test function supported in `V`);

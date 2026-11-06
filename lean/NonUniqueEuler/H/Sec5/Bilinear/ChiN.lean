@@ -1,7 +1,7 @@
 import NonUniqueEuler.Defs.Sec5.All
 
 /-!
-# Helper for `lem:bilinear`: the cutoff `χ_N` (`05_single_ring.tex:221-223`)
+# Helper for `lem:bilinear`: the cutoff `χ_N` (Part II Lemma 2.3)
 
 Helper of `P/Sec5/Bilinear.lean`. The cutoff `χ_N ∈ C_c^∞(N₁)` equal to `1` near `N` is the
 difference `b₂ - b₁` of two smooth bumps centred at `0`: `b₂ = 1` on `\bar B_{5/2}`, supported in
@@ -86,7 +86,7 @@ theorem tsupport_chiN_subset : tsupport chiN ⊆ annN1 := by
   intro x hx
   exact ⟨by linarith [hx.1], by linarith [hx.2]⟩
 
-/-- `05_single_ring.tex:221-223`: the setting of `lem:Hk-calculus` for `(N, N₁, χ_N)`. -/
+/-- Part II Lemma 2.3 (`lem:bilinear`): the setting of `lem:Hk-calculus` for `(N, N₁, χ_N)`. -/
 theorem hkCalcSetting_chiN : Sob.HkCalcSetting annN annN1 chiN where
   isCompact := isCompact_annN
   isOpen := isOpen_annN1

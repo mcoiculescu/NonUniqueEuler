@@ -5,7 +5,7 @@ import Mathlib.Analysis.Calculus.Deriv.Basic
 /-!
 # Helper for `P/Sec3/Criterion/Limit`: restriction of solutions to a shorter time interval
 
-Manuscript: proof of `thm:criterion`, `03_compactness.tex:989-992`: "since `𝒟_{T'} ⊂ 𝒟_{T_j}`,
+Manuscript: proof of `thm:criterion`, Part I Theorem 3.8 (`thm:criterion`) and its proof: "since `𝒟_{T'} ⊂ 𝒟_{T_j}`,
 the restriction of `ω^{[j]}` to `[0, T']` is a renormalized weak solution in `X₂(T')` with datum
 `f`".
 
@@ -93,7 +93,7 @@ theorem isWeakSolution_mono {q T T' : ℝ} {ωin : ℂ → ℝ} {ω : ℝ → �
   weak := solvesTransport_mono h.weak hT
 
 /-- A renormalized weak solution in `X_q(T)` restricts to a renormalized weak solution in
-`X_q(T')`, `0 < T' ≤ T` (`03_compactness.tex:989-992`). -/
+`X_q(T')`, `0 < T' ≤ T` (Part I Theorem 3.8 (`thm:criterion`) and its proof). -/
 theorem isRenormalizedWeakSolution_mono {q T T' : ℝ} {ωin : ℂ → ℝ} {ω : ℝ → ℂ → ℝ}
     (h : IsRenormalizedWeakSolution q T ωin ω) (hT' : 0 < T') (hT : T' ≤ T) :
     IsRenormalizedWeakSolution q T' ωin ω :=

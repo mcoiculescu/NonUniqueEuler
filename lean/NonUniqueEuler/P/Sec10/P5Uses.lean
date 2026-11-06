@@ -5,11 +5,14 @@ import NonUniqueEuler.I.Sec10.ConstantsPos
 /-!
 # Proof: (κ7) bounds the term `Ξ_{j+1}` (remark after `def:P5`)
 
-Proof of `I/Sec10/P5Uses.lean` (`10_parameters.tex:122-130`, `:224-225`; the computation of
-`11_bootstrap.tex:364-367`): same declarations, same statements.
+Proof of `I/Sec10/P5Uses.lean`: the discussion after Part II Definition C.3
+(`def:P5`) and the computation in Appendix C.16 (`sec:bootstrap-handoff-checks`).
+Lean retains the separate coefficient `C_Ξ`; the current manuscript uses the common
+constant `C_relay`, as explained in `Defs/Sec10/Lists.lean`.
 
 With `κ = κ♯_{j+1}` and `x = κ/δ₀ ∈ (0, 1]` (`κ ≤ 2κ_seed < δ₀`, `KappaList.two_lt_δ₀`):
-* `lem:gamma` (`gamma`) gives `γ'_μ ≤ 1 - γ_j`, so `x^{1-γ_j} ≤ x^{γ'_μ}`
+* the historical exponent helper `gamma` (comparison in Part II Appendix C.16,
+  `sec:bootstrap-handoff-checks`; exponents defined in Appendix C.11) gives `γ'_μ ≤ 1 - γ_j`, so `x^{1-γ_j} ≤ x^{γ'_μ}`
   (`Real.rpow_le_rpow_of_exponent_ge`);
 * the prefactor `C_Ξ(C₀,K₁)(1 + 1/(σ_b(μ-1)))` and `⟨log(δ₀/κ)⟩^{m+1}` are nonnegative
   (`constants_pos`: `K₁ > 0`, `σ_b > 0`, `C₂ ≥ 1`; `C(C₀) ≥ C₀ ≥ 1`);
@@ -46,8 +49,8 @@ private theorem CXi_nonneg_P5 (S : Standing) (hpos : S.ConstPos) :
     div_nonneg hnum hden.le
   linarith
 
-/-- **(κ7) bounds `Ξ_{j+1}`** (remark after `def:P5`, `10_parameters.tex:127-129`, `:224-225`;
-the computation of `11_bootstrap.tex:364-367`): under (SA), (Det) and the κ-list for `κ_seed`,
+/-- **(κ7) bounds `Ξ_{j+1}`** (discussion after Part II Definition C.3, `def:P5`,
+and Appendix C.16, `sec:bootstrap-handoff-checks`): under (SA), (Det) and the κ-list for `κ_seed`,
 for every level `1 ≤ j < n` with `κ♯_{j+1} ∈ (0, 2κ_seed]`,
 `Ξ_{j+1} ≤ δ₀/(σ_b(μ-1))` (with `C₀`, `K₁` of (P4), `def:K1`). -/
 theorem kappa7_XiNext (S : Standing) (hS : S.Holds) (hDet : S.Det)
@@ -65,7 +68,7 @@ theorem kappa7_XiNext (S : Standing) (hS : S.Holds) (hDet : S.Det)
   -- `x = κ/δ₀ ∈ (0, 1]`
   have hx0 : 0 < κ / S.P.δ₀ := div_pos hκpos hδ
   have hx1 : κ / S.P.δ₀ ≤ 1 := (div_le_one hδ).2 hκδ.le
-  -- `lem:gamma`
+  -- Exponent comparison: Part II Appendix C.16 (`sec:bootstrap-handoff-checks`).
   have hγ := (gamma S hS hDet j (Finset.mem_Ico.2 ⟨hj, hjn⟩)).1
   have hrpow : (κ / S.P.δ₀) ^ (1 - S.gammaJ j) ≤ (κ / S.P.δ₀) ^ S.gammaMu' :=
     Real.rpow_le_rpow_of_exponent_ge hx0 hx1 hγ

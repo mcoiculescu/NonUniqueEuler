@@ -4,7 +4,7 @@ import NonUniqueEuler.H.Sec4.PropSemigroup.EllSector
 /-!
 # Helpers for `P/Sec4/PropSemigroup`: `ℓ_*(G)(e^{tL}w) = e^{λ_* t} ℓ_*(G)(w)`
 
-`04_ring.tex:1497-1500`: `ℓ_*(G)(e^{tL}w) = n_* ℓ_*(exp(tL_3)w_3) = e^{λ_*t} ℓ_*(G)(w)`.
+The proof of Part I Proposition 4.22 (`prop:semigroup`): `ℓ_*(G)(e^{tL}w) = n_* ℓ_*(exp(tL_3)w_3) = e^{λ_*t} ℓ_*(G)(w)`.
 Here the sector identity `ℓ_*(exp(tL_3)g) = e^{λ_*t}ℓ_*(g)` is read off the projection identity
 `P(e^{tL_3}g) = e^{tL_3}Pg = e^{λ_*t}Pg` for the rank-one Riesz projection `P = ℓ_*(·)g_*`
 (`R_sector`: `R` commutes with `e^{tL}`; `Dunford.exp_mul_proj`; `ℓ_*(g_*) = 1` from `lam_SU`),
@@ -44,7 +44,7 @@ theorem rankOne_exp_apply (A : X →L[ℂ] X) (f : X →L[ℂ] ℂ) (g : X) (hfg
 end Generic
 
 /-- **`ℓ_*(G)(e^{tL(G)}w) = e^{λ_*(G)t} ℓ_*(G)(w)`** for every `w ∈ Y^s(N)`
-(`04_ring.tex:1497-1500`). -/
+(proof of Part I Proposition 4.22 (`prop:semigroup`)). -/
 theorem ell_S (χ : ℝ → ℝ) (hχ : IsAdmissibleCutoff χ) (hN : NumericalHypothesis χ) {G : ℝ}
     (hG : G ∈ Icc (0 : ℝ) Gbar) (s : ℕ) {t : ℝ} (ht : 0 ≤ t) (w : Y s annN) :
     Eig.ell χ s G (Lin.S χ s G t w) = Complex.exp (Eig.lam χ G * (t : ℂ)) * Eig.ell χ s G w := by

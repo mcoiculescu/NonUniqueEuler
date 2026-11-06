@@ -6,7 +6,7 @@ import Mathlib.Analysis.Calculus.FDeriv.Mul
 /-!
 # Helper for `P/Sec3/Transport/Mollified`: the space part (step 3)
 
-Step 3 of the sketch in `I/Sec3/Transport/Mollified.lean` (`03_compactness.tex:505-508`): for a
+Step 3 of the sketch in `I/Sec3/Transport/Mollified.lean` (Part I Lemma 3.4 (`lem:transport`) and its proof): for a
 weakly divergence-free `v ∈ L¹_loc`, `f ∈ C¹` and `ψ ∈ C¹_c`,
 `∫ f v·∇ψ = -∫ ψ v·∇f` (`integral_mul_fderiv_eq_neg`), from the `C¹_c` form of
 `div v = 0` (`I/Infra/Sobolev/DivFreeC1.lean`) applied to `ψ f` and the product rule. With
@@ -35,7 +35,7 @@ theorem integrable_clm_apply_of_hasCompactSupport {L : ℂ → ℂ →L[ℝ] ℝ
     exact (L x).le_opNorm _
 
 /-- Integration by parts against a weakly divergence-free field: `∫ f v·∇ψ = -∫ ψ v·∇f` for
-`f ∈ C¹`, `ψ ∈ C¹_c` (`03_compactness.tex:505-508`). -/
+`f ∈ C¹`, `ψ ∈ C¹_c` (Part I Lemma 3.4 (`lem:transport`) and its proof). -/
 theorem integral_mul_fderiv_eq_neg {v : ℂ → ℂ} (hdiv : Prelim.IsWeaklyDivFree v)
     (hv : LocallyIntegrable v volume) {f : ℂ → ℝ} (hf : ContDiff ℝ 1 f) {ψ : ℂ → ℝ}
     (hψ : ContDiff ℝ 1 ψ) (hψc : HasCompactSupport ψ) :

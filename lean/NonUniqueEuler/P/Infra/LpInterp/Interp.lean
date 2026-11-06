@@ -132,7 +132,7 @@ theorem memLp_of_memLp_of_memLp {f : α → E} {p q r : ℝ≥0∞} (hp : 0 < p)
   ⟨hfp.1, (eLpNorm_le_eLpNorm_add_eLpNorm hfp.1 hp hpq hqr).trans_lt
     (ENNReal.add_lt_top.2 ⟨hfp.2, hfr.2⟩)⟩
 
-/-- The `L¹`–`L²` case (`03_compactness.tex:291-293`): `‖f‖_q ≤ ‖f‖₁^{2/q-1} ‖f‖₂^{2-2/q}`,
+/-- The `L¹`–`L²` case (Part I, Lemma 3.5 (`lem:renorm-all-t`), interpolation at the end of the proof): `‖f‖_q ≤ ‖f‖₁^{2/q-1} ‖f‖₂^{2-2/q}`,
 `q ∈ [1,2]`. -/
 theorem eLpNorm_le_of_one_two {f : α → E} (hf : AEStronglyMeasurable f μ) {q : ℝ}
     (hq1 : 1 ≤ q) (hq2 : q ≤ 2) :

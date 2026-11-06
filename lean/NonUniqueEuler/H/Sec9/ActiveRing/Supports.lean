@@ -3,7 +3,7 @@ import NonUniqueEuler.H.Sec9.ActiveRing.Units
 /-!
 # Helpers for `P/Sec9/ActiveRing`: supports and symmetry of `P.activeConfig k`
 
-Helper file of `P/Sec9/ActiveRing.lean` (`09_relay.tex:759-767`, `06_datum.tex:323-330`).
+Helper file of `P/Sec9/ActiveRing.lean` (`sec:bootstrap-active-checks`, Part II, Appendix C.17, active-time pullback, `lem:regions-basic`, Part II Lemma 3.6 and the following continuity discussion).
 * `tsupport_unitsVort`: `supp (A_k⁻¹ g(r_k ·)) = r_k⁻¹ supp g`;
 * `tsupport_omegaRing`: `supp ω(t)1_{S_k(t)} = S_k(t)` (`t ≥ 0`; `ω(t)1_{S_k(t)} = f^{(n)}_k ∘ Φ_t⁻¹`
   and `Φ_t` is a homeomorphism);

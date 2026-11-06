@@ -4,7 +4,7 @@ import NonUniqueEuler.H.SmoothB.IterHs.Gronwall
 /-!
 # Helper for `lem:iter-Hs`: the induction step `s - 1 → s` (`s ≥ 2`)
 
-Helper of `P/SmoothB/IterHs.lean` (`B_global_smooth.tex:320-348`). Assume
+Helper of `P/SmoothB/IterHs.lean` (Part II, Lemma B.8 (`lem:iter-Hs`)). Assume
 `‖ω^{[i]}(t)‖_{H^{s-1}} ≤ 𝓜 = 𝓜_{s-1}(T)` for all `i` and `|t| ≤ T` (`s = n + 2`).
 
 * `j = 0`: `𝓜_s(T) ≥ ‖ω₀‖_{H^s}` (`normH_datum_le_calM`).

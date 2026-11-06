@@ -12,14 +12,14 @@ import Mathlib.Analysis.Calculus.MeanValue
 /-!
 # Helper for `constants_pos`: the signs of the eigendata constants
 
-Helper of `P/Sec10/ConstantsPos.lean` (`lem:nonempty`, `10_parameters.tex:295-315`). For an
+Helper of `P/Sec10/ConstantsPos.lean` (`lem:nonempty`, Part II Appendix C.4, `sec:param-verification`). For an
 admissible cutoff with (N1)–(N3):
 * `sigb_pos`, `sigma_zero_pos`, `z_norm_pos`: `σ_b > 211/2500 > 0`, `σ = σ(0) ≥ σ_b`,
-  `|z| ≥ Re z = σ` (`prop:U`(a));
-* `cN_pos`, `cout_pos` (`lem:uniform`), `CN_pos` (`C_N ≥ |β(0)||pout_*(0)| > 0`, `prop:U`(b));
-* `ellNorm_pos`: `‖ℓ_*‖ ≥ ‖ℓ_*(0)‖ > 0`, since `ℓ_*(0)(φ_*(0)) = 1` (`def:eigendata`);
+  `|z| ≥ Re z = σ` (Part I `prop:U`(a));
+* `cN_pos`, `cout_pos` (Part I `lem:uniform`), `CN_pos` (`C_N ≥ |β(0)||pout_*(0)| > 0`, Part I `prop:U`(b));
+* `ellNorm_pos`: `‖ℓ_*‖ ≥ ‖ℓ_*(0)‖ > 0`, since `ℓ_*(0)(φ_*(0)) = 1` (Part I `def:eigendata`);
 * `gradPhiL2_pos`: `‖∇Φ‖_{L²} > 0`, since `Φ` is smooth, compactly supported and `Φ ≢ 0`
-  (`lem:ring-facts`);
+  (Part I `lem:ring-facts`);
 * `Cls_pos`: `C_ls = ‖ℓ_*‖‖∇Φ‖_{L²} > 0`.
 
 The lemmas `angularSector_congr_ae`, `ellFn_congr_ae` (`ℓ_*(G)` on functions only sees the a.e.
@@ -113,12 +113,12 @@ theorem zero_mem_Icc_Gbar : (0 : ℝ) ∈ Icc (0 : ℝ) Gbar := by
   unfold Gbar
   positivity
 
-/-- `σ_b > 0` (`prop:U`(a): `σ_b > 211/2500`). -/
+/-- `σ_b > 0` (Part I `prop:U`(a): `σ_b > 211/2500`). -/
 theorem sigb_pos (hχ : IsAdmissibleCutoff χ) (hN : NumericalHypothesis χ) : 0 < Eig.sigb χ := by
   have h := (Eig.propU_a χ hχ hN).2.2.2.1
   linarith
 
-/-- `σ_b ≤ σ = σ(0)` (`prop:U`(a), `0 ∈ [0,G₁]`). -/
+/-- `σ_b ≤ σ = σ(0)` (Part I `prop:U`(a), `0 ∈ [0,G₁]`). -/
 theorem sigb_le_sigma_zero (hχ : IsAdmissibleCutoff χ) (hN : NumericalHypothesis χ) :
     Eig.sigb χ ≤ Eig.sigma χ 0 := by
   obtain ⟨-, -, ⟨G₀, -, hsigb, hmin⟩, -, -⟩ := Eig.propU_a χ hχ hN
@@ -137,21 +137,21 @@ theorem z_norm_pos (hχ : IsAdmissibleCutoff χ) (hN : NumericalHypothesis χ) :
   have h2 := Complex.re_le_norm (Eig.z χ)
   linarith [sigma_zero_pos hχ hN]
 
-/-- `c_N > 0` (`lem:uniform`). -/
+/-- `c_N > 0` (Part I `lem:uniform`). -/
 theorem cN_pos (hχ : IsAdmissibleCutoff χ) (hN : NumericalHypothesis χ) : 0 < Eig.cN χ :=
   (Eig.uniform_constants χ hχ hN).2.2.2.2.2.2.1
 
-/-- `c_out > 0` (`lem:uniform`). -/
+/-- `c_out > 0` (Part I `lem:uniform`). -/
 theorem cout_pos (hχ : IsAdmissibleCutoff χ) (hN : NumericalHypothesis χ) : 0 < Eig.cout χ :=
   (Eig.uniform_constants χ hχ hN).2.2.2.2.2.2.2.1
 
-/-- `C_N ≥ |β(0)||pout_*(0)| > 0` (`lem:uniform`, `prop:U`(b)). -/
+/-- `C_N ≥ |β(0)||pout_*(0)| > 0` (Part I `lem:uniform`, Part I `prop:U`(b)). -/
 theorem CN_pos (hχ : IsAdmissibleCutoff χ) (hN : NumericalHypothesis χ) : 0 < Eig.CN χ := by
   have hle := ((Eig.uniform_constants χ hχ hN).2.2.2.2.2.2.2.2 0 zero_mem_Icc_Gbar).2.1
   obtain ⟨hp, -, -, hb⟩ := (Eig.propU_b χ hχ hN).2.2.2.2.2.2 0 zero_mem_Icc_Gbar
   exact lt_of_lt_of_le (mul_pos hb hp) hle
 
-/-- `‖ℓ_*(0)‖_{(X^0)^*} > 0`, since `ℓ_*(0)(φ_*(0)) = 1` (`def:eigendata`). -/
+/-- `‖ℓ_*(0)‖_{(X^0)^*} > 0`, since `ℓ_*(0)(φ_*(0)) = 1` (Part I `def:eigendata`). -/
 theorem ell_zero_norm_pos (hχ : IsAdmissibleCutoff χ) (hN : NumericalHypothesis χ) :
     0 < ‖Eig.ell χ 0 0‖ := by
   have hG := zero_mem_Icc_Gbar

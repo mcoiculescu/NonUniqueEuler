@@ -8,14 +8,14 @@ import NonUniqueEuler.H.Sec9.KickTrue.RingMoment
 /-!
 # Helpers for `P/Sec9/KickTrue`: hypothesis (Q1) of `prop:kick`
 
-Helper file of `P/Sec9/KickTrue.lean` (`lem:kicktrue`, step (Q1), `09_relay.tex:1288-1308`).
+Helper file of `P/Sec9/KickTrue.lean` (`lem:kicktrue`, step (Q1), `lem:kicktrue`, Part II Lemma C.14).
 For `1 ≤ k < n`, `κ = κ♯_{k+1}`, `T_g = T̂_{k+1}`, `η_b = S.etab C₀ K₁`, `ι = 1_{k+1<n}`:
 * `kickErrE S C₀ K₁ k`: the continuous part `errE` of `err` with the constants of the lemma;
 * `kickQs_mul_exp`: `q_s e^{z'τ} = 2π pout_*(G_{k+1}) c_{k+1}(T_g) e^{z'(τ + T_g)}`;
 * `q1_bound`: `|q_{k+1}(τ) - q_s e^{z'τ}| ≤ errE(τ + T_g) + |q^deep(τ)|` on `[-T_g, 0]`
-  (`lem:deep`(1), `qRing_eq`, `cor:active-moment`, `thm:active` "Moreover", `eq:drift-interval`);
+  (`lem:deep`(1) (historical), `qRing_eq`, `cor:active-moment`, `thm:active` "Moreover", `eq:drift-interval`);
 * `deep_facts`: integrability of `|q^deep|` and of `e^{-xτ}|q^deep|` on `[-T_g, 0]`, and
-  `∫ e^{-xτ}|q^deep| ≤ 1_{k+1<n} C_deep δ₀(κ/δ₀)^{ϑ_μ}L³` (`lem:deep`(1),(3)).
+  `∫ e^{-xτ}|q^deep| ≤ 1_{k+1<n} C_deep δ₀(κ/δ₀)^{ϑ_μ}L³` (`lem:deep`(1),(3) (historical)).
 Everything here is proved.
 -/
 
@@ -33,7 +33,7 @@ open RingData Datum
 
 variable (S : Standing)
 
-/-- The continuous part of `err` for `lem:kicktrue` at level `k` (`09_relay.tex:1304-1308`), in active
+/-- The continuous part of `err` for `lem:kicktrue` at level `k` (`lem:kicktrue`, Part II Lemma C.14), in active
 time `u` of ring `k+1`. -/
 def kickErrE (C₀ K₁ : ℝ) (k : ℕ) : ℝ → ℝ :=
   errE S.C3 (S.Cact C₀) (S.P.ksh (k + 1)) S.σ' (S.P.sigma (k + 1)) (S.etab C₀ K₁) S.poutMax
@@ -44,7 +44,7 @@ theorem kickErrE_def (C₀ K₁ : ℝ) (k : ℕ) : kickErrE S C₀ K₁ k =
       (if k + 1 < S.P.n then 1 else 0) S.P.Tpin S.P.μ S.sigma0 (Eig.Cls S.P.χ)
       (S.P.That (k + 1)) := rfl
 
-/-- `q_s e^{z'τ} = 2π pout_*(G_{k+1}) (c_{k+1}(T_g) e^{z'(τ + T_g)})` (`09_relay.tex:1297`). -/
+/-- `q_s e^{z'τ} = 2π pout_*(G_{k+1}) (c_{k+1}(T_g) e^{z'(τ + T_g)})` (`lem:kicktrue`, Part II Lemma C.14). -/
 theorem kickQs_mul_exp (k : ℕ) (τ : ℝ) :
     S.P.kickQs k * Complex.exp (Eig.lam S.P.χ (S.P.G (k + 1)) * τ) =
       2 * Real.pi * Eig.pout S.P.χ (S.P.G (k + 1)) *
@@ -70,7 +70,7 @@ theorem norm_two_pi_mul (a b z : ℂ) (u : ℝ) :
   norm_num
   ring
 
-/-- **(Q1) of `prop:kick`** (`09_relay.tex:1288-1308`): for `τ ∈ [-T_g, 0]`,
+/-- **(Q1) of `prop:kick`** (`lem:kicktrue`, Part II Lemma C.14): for `τ ∈ [-T_g, 0]`,
 `|q_{k+1}(τ) - q_s e^{z'τ}| ≤ errE(τ + T_g) + |q^deep(τ)|`. -/
 theorem q1_bound (hS : S.Holds) (hDet : S.Det) {C₀ K₁ : ℝ} (hC₀ : 1 ≤ C₀) {k : ℕ} (hk : 1 ≤ k)
     (hkn : k < S.P.n) (hc : S.P.ClockUpTo (k + 1)) (h : S.KickTrueHyp C₀ K₁ k) {τ : ℝ}
@@ -175,7 +175,7 @@ theorem q1_bound (hS : S.Holds) (hDet : S.Det) {C₀ K₁ : ℝ} (hC₀ : 1 ≤ 
       unfold errE
       linarith [hM, hD]
 
-/-- **The deep term** (`lem:deep`(1),(3), `09_relay.tex:1369-1372`): `|q^deep|` and `e^{-xτ}|q^deep|`
+/-- **The deep term** (`lem:deep`(1),(3) (historical), `lem:kicktrue`, Part II Lemma C.14): `|q^deep|` and `e^{-xτ}|q^deep|`
 are integrable on `[-T_g, 0]`, and `∫_{-T_g}^0 e^{-xτ}|q^deep| ≤ 1_{k+1<n} C_deep δ₀(κ/δ₀)^{ϑ_μ}L³`. -/
 theorem deep_facts (hS : S.Holds) (hDet : S.Det) {C₀ K₁ : ℝ} {k : ℕ} (hk : 1 ≤ k)
     (hkn : k < S.P.n) (hc : S.P.ClockUpTo (k + 1)) (h : S.KickTrueHyp C₀ K₁ k) :

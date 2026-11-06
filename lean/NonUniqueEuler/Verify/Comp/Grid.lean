@@ -3,13 +3,13 @@ import NonUniqueEuler.Verify.Comp.Series
 /-!
 # Part 2 algorithms: the grid and the `λ`-independent Taylor data
 
-Manuscript: §A.3, step (i) (`A_verification.tex:239-300`).
+Manuscript: Part II §A.3, step (i) (`app:procedure`).
 Reference: `euler-ring-certificate/src/ringcert/evans.py` (`_H`, `_H_pair_iv`, `_coeffs`,
 `_omega`, class `Grid`) and `data.py` (`rn_binary64`, the data).
 
 Everything here is computed once per run; it does not depend on `λ` or `G`.
 
-* `RD.a0 … RD.ξR`: the pinned data as exact dyadics (`data.py`, `04_ring.tex:29-31`).
+* `RD.a0 … RD.ξR`: the pinned data as exact dyadics (`data.py`, Part I Definition 4.1 (`def:ring`)).
 * `rnBinary64`: exact port of `data.rn_binary64` (round to the nearest binary64, ties to even).
 * `gridPts hpow`: the points `s_0 = ξa`, `s_j = RN(ξa + (ξb - ξa) j/n)`, `s_n = ξb`,
   `n = ⌈(ξb - ξa) 2^hpow⌉` (`n = 360` for `hpow = 8`).

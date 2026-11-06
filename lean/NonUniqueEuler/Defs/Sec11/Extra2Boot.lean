@@ -1,29 +1,31 @@
 import NonUniqueEuler.Defs.Sec11.All
 
 /-!
-# Section 11: the conclusions of the steps of the proof of `prop:bootstrap` (definitions)
+# Bundles for the historical bootstrap decomposition (legacy `Sec11`)
 
-Manuscript: the proof of
-`prop:bootstrap`, `11_bootstrap.tex:220-605`.
+These definitions retain the earlier Lean steps 0–7. Current Part II organizes the same
+estimates around Proposition 6.2 (`prop:relay-step`) and the proof of Proposition 8.1
+(`prop:bootstrap`). There is no single declaration here claiming to encode Proposition 6.2
+with its present chronological hypotheses.
 
-The proof of `prop:bootstrap` is split (restructuring R10) into the
-interfaces `I/Sec11/Boot*.lean`, one per step of the manuscript's proof. The bundles below are the
-conclusions of the steps, so that a later step can take the conclusions of the earlier steps as
-hypotheses ("each step uses (BA°)(t), the conclusions of the steps already carried out, and nothing
-else", `11_bootstrap.tex:255-257`):
-* `S.BootStartConcl`: Step 0 (the initial time, `:230-250`, with `eq:boot-start`);
-* `S.QuietStep j t'`, `S.QuietStepAt t'`: Step 2 (quiet rings at the time `t'`, `:270-296`, with
-  `eq:boot-quiet`);
-* `S.HandoffStep k`: Step 3 (the hand-off of ring `k < n` at `t♯_k`, `:298-388`, with
-  `eq:boot-kappa`, `eq:boot-kick`, `eq:boot-theta`, `eq:handoff`, `eq:boot-switch`);
-* `S.ActiveStep k ū`: Step 4 (the active phase of ring `k` up to the active time `ū > 0`,
-  `:390-484`, with `eq:boot-inner`);
-* `S.BootStepsConcl t`: Steps 1–6 together at the time `t` (the conclusion of "(BA°)(t) implies
-  (BA)(t) and (BA*)(t), together with the hand-off and the bounds on the active rings up to time
-  `t`", `:221-224`, `:532-538`).
-Step 1 is `lem:geometry` (`S.GeometryConcl`), Step 5 is `S.BA2At S.Abar` (`(BA2)` with `Ā`), Step 6
-is `S.BA t ∧ S.BAstar t`. Throughout, `C₀ = S.C0` of (P4), `K₁ = S.K1` of `def:K1`,
-`η_{b,k} = S.etabK S.C0 S.K1 k` and `m = 3`. Only definitions; nothing to prove.
+The current counterparts of the bundles are:
+* `S.BootStartConcl` (Lean step 0): §8, “The seed”, including Equation (34) (`eq:boot-start`);
+* `S.QuietStep j t'`, `S.QuietStepAt t'` (Lean step 2): §6 (`par:relay-quiet`,
+  Equation (32), `eq:boot-quiet`) and Appendix C.15 (`sec:bootstrap-quiet-control`);
+* `S.HandoffStep k` (Lean step 3): §6 (`par:relay-handoff`) and Appendix C.16
+  (`sec:bootstrap-handoff-checks`), including Equations (53)–(55)
+  (`eq:boot-kappa`, `eq:boot-kick`, `eq:boot-theta`), (50) (`eq:handoff`) and (33)
+  (`eq:boot-switch`);
+* `S.ActiveStep k ū` (Lean step 4): §6 (`par:relay-active`) and Appendix C.17
+  (`sec:bootstrap-active-checks`), including Equation (56) (`eq:boot-inner`);
+* `S.BootStepsConcl t` (Lean steps 1–6): the all-history improvement used in §8,
+  “Improvement through a fixed time”, with the individual checks in Appendices C.14–C.18.
+
+Lean step 1 is Lemma C.17 (`lem:geometry`, `S.GeometryConcl`); Lean step 5 is the quiet-size
+improvement of Appendix C.18 (`S.BA2At S.Abar`); Lean step 6 collects `S.BA t ∧ S.BAstar t`.
+The labels (BA), (BA*) and (BA°) below are the Lean conventions: current manuscript (BA)
+corresponds to `BAcirc`, as explained in `Defs/Sec11/Bootstrap.lean`. Throughout,
+`C₀ = S.C0`, `K₁ = S.K1`, `η_{b,k} = S.etabK S.C0 S.K1 k`, and `m = 3`.
 -/
 
 noncomputable section
@@ -40,10 +42,11 @@ namespace Standing
 
 variable (S : Standing)
 
-/-! ### Step 0 (`11_bootstrap.tex:230-250`) -/
+/-! ### Lean step 0 (Part II §8 (`prop:bootstrap`), “The seed” and `eq:boot-start`) -/
 
-/-- **The conclusions of Step 0 of the proof of `prop:bootstrap`** (the initial time,
-`11_bootstrap.tex:230-250`): the clock is defined up to level `n`; `κ♯_n ∈ [½κ_seed, 2κ_seed]`;
+/-- **The conclusions of Lean step 0 of the historical bootstrap decomposition** (the initial time,
+Part II §8 (`prop:bootstrap`), “The seed” and `eq:boot-start`): the clock is defined up to level
+`n`; `κ♯_n ∈ [½κ_seed, 2κ_seed]`;
 (Init) for ring `n` with `C₀` (`‖w_n(0)‖_{H^{M-1}} ≤ C₀κ♯_n`, `S_n = S_n(0) ⊂ 𝒩₋_n`; `t♯_n = 0`);
 `ρ̂_n(0) = C₀`; `eq:boot-start`: `‖w_n(0)‖_{H^s} ≤ C₀κ♯_n < C₂â_n(0)(1 + ρ̂_n(0))`; for `j < n`:
 `S_j(0) ⊂ 𝒩₋_j`, `w_j(0) = 0` (ring `j` starts at `Φ` in ring-`j` units; `maj_j(0) = 0` is
@@ -59,10 +62,10 @@ structure BootStartConcl : Prop where
     S.P.St j 0 ⊆ S.P.Nmk j ∧ S.P.w j 0 = 0 ∧ S.P.HDefined j 0
   ba_star : S.BAstar 0
 
-/-! ### Step 2 (`11_bootstrap.tex:270-296`) -/
+/-! ### Lean step 2 (Part II Appendix C.15 (`sec:bootstrap-quiet-control`)) -/
 
-/-- **The conclusions of Step 2 for the quiet ring `j < n` at the time `t'`**
-(`11_bootstrap.tex:270-296`), with `τ = A_j t'`:
+/-- **The conclusions of Lean step 2 for the quiet ring `j < n` at the time `t'`**
+(Part II Appendix C.15 (`sec:bootstrap-quiet-control`)), with `τ = A_j t'`:
 * `eq:boot-quiet`: for `t'' ∈ [0, t']`, `S_j(t'') ⊂ 𝒩₋_j` and `‖w_j(t'')‖_{H^{s_h}} ≤ C_Q maj_j(A_jt'')`;
 * `thm:quiet` applies to ring `j` on `[0, τ]` (`QuietHyp`, `QuietConcl`);
 * if `t♯_j` is defined: the hypotheses and conclusions of `lem:O` for `j` and `τ` (`OHyp`, `OConcl`;
@@ -79,23 +82,28 @@ structure QuietStep (j : ℕ) (t' : ℝ) : Prop where
     S.maj j (S.P.A j * t') ≤
       3 / 4 * S.Ptil j S.P.stopLevel * S.maj S.P.stopLevel (S.P.A S.P.stopLevel * t')
 
-/-- **The conclusions of Step 2 at the time `t'`** (`11_bootstrap.tex:270-296`): `QuietStep j t'`
+/-- **The conclusions of Lean step 2 at the time `t'`** (Part II Appendix C.15
+(`sec:bootstrap-quiet-control`)): `QuietStep j t'`
 for every ring `j < n` that is quiet at `t'`. -/
 def QuietStepAt (t' : ℝ) : Prop :=
   ∀ j ∈ Finset.Ico 1 S.P.n, S.P.QuietAt j t' → S.QuietStep j t'
 
-/-! ### Step 3 (`11_bootstrap.tex:298-388`) -/
+/-! ### Lean step 3 (Part II Appendix C.16 (`sec:bootstrap-handoff-checks`)) -/
 
-/-- **The conclusions of Step 3, the hand-off of ring `k < n` at `t♯_k`** (`11_bootstrap.tex:298-388`),
+/-- **The conclusions of Lean step 3, the hand-off of ring `k < n` at `t♯_k`** (Part II Appendix
+C.16 (`sec:bootstrap-handoff-checks`)),
 with `C₀ = S.C0`, `K₁ = S.K1`:
 * `eq:boot-kappa`: `0 < κ♯_{k+1} ≤ 2κ_seed`;
-* `eq:boot-kick` (the conclusions of `lem:kicktrue`): `|q_s| ∈ [15/16, 17/16]·2π|pout_*(G_{k+1})|δ₀`
-  and `|β_k||q_s|/(10|z|(μ-1)) ≤ |A^in(τ_K)| ≤ 3|β_k||q_s|μ/(|z|(μ-1))` for `τ_K ∈ [0, T_pin]`;
+* the Lean kick bundle: `|q_s| ∈ [15/16, 17/16]·2π|pout_*(G_{k+1})|δ₀` and
+  `|β_k||q_s|/(10|z|(μ-1)) ≤ |A^in(τ_K)| ≤ 3|β_k||q_s|μ/(|z|(μ-1))` for `τ_K ∈ [0, T_pin]`.
+  Current Lemma C.14 (`lem:kicktrue`) and Equation (54) (`eq:boot-kick`) state the endpoint
+  consequence at `τ_K = T_pin`; they do not state this full-interval clause;
 * `eq:boot-theta`: `θ_k t̄♯_k ≤ θ_k τ̄♯_k ≤ min{1/2, 1/(4C_lsK₁)}`;
-* `eq:relay` at `t̄♯_k` (`prop:relay`), and (`lem:K1`) `maj_k(t̄♯_k) ≤ Āε_k`,
+* `eq:relay` at `t̄♯_k` (`prop:relay`), and (the `K₁` comparison in §6 (`par:relay-handoff`))
+  `maj_k(t̄♯_k) ≤ Āε_k`,
   `2maj_k(t̄♯_k) ≤ ½K₁|c^in_k|`;
 * `eq:handoff` at `t♯_k` (`HandoffEq`);
-* (`cor:amp`) `K_lo s_k^{m+2} ≤ κ♯_k ≤ K_up s_k^{m+2}`;
+* (the amplitude bounds in §6 (`par:relay-handoff`)) `K_lo s_k^{m+2} ≤ κ♯_k ≤ K_up s_k^{m+2}`;
 * the clock is defined up to level `k`;
 * `eq:boot-switch`: `‖w_k(t♯_k)‖_{H^s} ≤ C_hand κ♯_k ≤ C₀κ♯_k < C₂â_k(0)(1 + ρ̂_k(0))`. -/
 structure HandoffStep (k : ℕ) : Prop where
@@ -120,13 +128,13 @@ structure HandoffStep (k : ℕ) : Prop where
   switch_C0 : S.Chand * S.P.ksh k ≤ S.C0 * S.P.ksh k
   switch_lt : S.C0 * S.P.ksh k < S.C2 * S.ahatK k 0 * (1 + S.rhoHatK S.C0 k 0)
 
-/-! ### Step 4 (`11_bootstrap.tex:390-484`) -/
+/-! ### Lean step 4 (Part II Appendix C.17 (`sec:bootstrap-active-checks`)) -/
 
-/-- **The conclusions of Step 4 for ring `k` up to the active time `ū ∈ (0, T̂_k]`**
-(`11_bootstrap.tex:390-484`; the real time is `t' = t♯_k + ū/A_k ∈ Ph_k`), with `C₀ = S.C0`,
+/-- **The conclusions of Lean step 4 for ring `k` up to the active time `ū ∈ (0, T̂_k]`**
+(Part II Appendix C.17 (`sec:bootstrap-active-checks`); the real time is `t' = t♯_k + ū/A_k ∈ Ph_k`), with `C₀ = S.C0`,
 `K₁ = S.K1`, `C_F = S.CF`, `η_{b,k} = S.etabK S.C0 S.K1 k`; for `u ∈ [0, ū]`:
-* `eq:boot-inner`: `h^in_k(t̄♯_k + u) ∈ C^{M_h}(N')` with norm `≤ C_F κ♯_k ⟨u⟩^m` (for `k = n`,
-  `h^in_n = 0`);
+* the inner bound underlying `eq:boot-inner`: `h^in_k(t̄♯_k + u) ∈ C^{M_h}(N')` with norm
+  `≤ C_F κ♯_k ⟨u⟩^m`; current Equation (56) uses `C₀ ≥ C_F` (for `k = n`, `h^in_n = 0`);
 * (`lem:Oprime`) `h^out_k(t̄♯_k + u) ∈ C^{M_h}(N')` with norm `≤ η_{b,k} â_k(u)`;
 * (Field) of `thm:active` on `[0, ū]` with `C₀` and `η_{b,k}` (`ActiveFieldK`);
 * the hypotheses (i)–(iv) of `lem:drift` for ring `k`, `ū` and `η = η_{b,k}` (`DriftHyp`), and
@@ -151,17 +159,18 @@ structure ActiveStep (k : ℕ) (ubar : ℝ) : Prop where
       Icc (15 / 16 * S.P.δ₀) (17 / 16 * S.P.δ₀)
   concl : ∀ u ∈ Icc (0 : ℝ) ubar, S.ActiveConclAt S.C0 (S.etabK S.C0 S.K1 k) k u
 
-/-! ### Steps 1–6 together (`11_bootstrap.tex:221-224`, `:251-260`, `:532-538`) -/
+/-! ### The all-history improvement (Lean steps 1–6) -/
 
-/-- **The conclusions of Steps 1–6 at the time `t ∈ [0, T_end]`** (`11_bootstrap.tex:221-224`,
-`:251-260`, `:532-538`), i.e. what (BA°)(t) implies:
-* Step 1: `lem:geometry` with `t` (`GeometryConcl t`);
-* Step 2: `QuietStepAt t'` for every `t' ∈ [0, t]`;
-* Step 3: `HandoffStep k` for every level `k < n` with `t♯_k` defined and `t♯_k ≤ t`;
-* Step 4: `ActiveStep k (A_k(t' - t♯_k))` for every ring `k` with `T_k` defined and every
+/-- **The conclusions of Lean steps 1–6 at `t ∈ [0, T_end]`**, assuming (BA°)(t).
+This is the historical all-history bundle corresponding to the improvement argument in
+Part II §8 (`prop:bootstrap`), assembled from the checks in Appendices C.14–C.18:
+* Lean step 1: `lem:geometry` with `t` (`GeometryConcl t`);
+* Lean step 2: `QuietStepAt t'` for every `t' ∈ [0, t]`;
+* Lean step 3: `HandoffStep k` for every level `k < n` with `t♯_k` defined and `t♯_k ≤ t`;
+* Lean step 4: `ActiveStep k (A_k(t' - t♯_k))` for every ring `k` with `T_k` defined and every
   `t' ∈ Ph_k ∩ [0, t]` with `t' > t♯_k`;
-* Step 5: (BA2) with `Ā` at every `t' ∈ [0, t]`;
-* Step 6: (BA)(t) and (BA*)(t). -/
+* Lean step 5: (BA2) with `Ā` at every `t' ∈ [0, t]`;
+* Lean step 6: (BA)(t) and (BA*)(t). -/
 structure BootStepsConcl (t : ℝ) : Prop where
   geom : S.GeometryConcl t
   quiet : ∀ t' ∈ Icc (0 : ℝ) t, S.QuietStepAt t'

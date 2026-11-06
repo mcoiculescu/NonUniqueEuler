@@ -5,11 +5,11 @@ import NonUniqueEuler.I.Verify.ProfileBasic
 import NonUniqueEuler.I.Verify.ProfileOmega
 
 /-!
-# Proof: Proposition A.3, step (iii): the coefficients `V_k` and `Ψ_k`
+# Proof: Part II Proposition A.3, step (iii): the coefficients `V_k` and `Ψ_k`
 
 Proof of `NonUniqueEuler/I/Verify/Sound/StepCoeffs.lean` (same declarations, statements copied
-verbatim). Manuscript: proof of Proposition A.3 (`prop:enclosure`), step (iii)
-(`A_verification.tex:404-412` and `428-430`). Code: `Verify/Comp/Evans.lean` (`stepCoeffs`,
+verbatim). Manuscript: proof of Part II Proposition A.3, step (iii)
+(`prop:enclosure`). Code: `Verify/Comp/Evans.lean` (`stepCoeffs`,
 `psiCoeffs`).
 
 Used black boxes: `taylorCoeff_add`, `taylorCoeff_const`, `taylorCoeff_const_mul`,

@@ -10,7 +10,7 @@ import Mathlib.Analysis.Distribution.AEEqOfIntegralContDiff
 /-!
 # Helper for `P/Sec5/Energy/FieldBounds`: the field `K_BS * Re w` on `N₁`
 
-Step 3 of the proof of `lem:energy` (`05_single_ring.tex:338-344`). Let `W = K_BS * Re w`
+Step 3 of the Lean proof decomposition for Part II Lemma 2.4 (`lem:energy`). Let `W = K_BS * Re w`
 (`BS.velocityRe w`) and `W_B = χ_B W`. Since `χ_B = 1` on `\bar B_{7/2} ⊇ N₁` (`chiB_eq_one`),
 `W = W_B` on `N₁`, so the local weak derivatives and norms of `W` on `N₁` are those of `W_B`
 (`FieldBoundsAux.weakDerivOn_congr_on`). Then:

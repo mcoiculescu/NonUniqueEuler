@@ -7,10 +7,14 @@ import NonUniqueEuler.I.Sec4.Uniform
 import NonUniqueEuler.I.Sec4.RingFacts
 
 /-!
-# Proof: `lem:readout` (reading the instability off ring `1` at `T₁`)
+# Proof: `lem:readout` (historical) (reading the instability off ring `1` at `T₁`)
 
-Proof of `I/Sec9/Readout.lean` (`09_relay.tex:1409-1463`). Same declaration, statement copied
-verbatim.
+The label `lem:readout` is historical. Its current counterpart is the
+ring-1 moment calculation in the proof of Part II Proposition 1.2
+(`prop:reduction`) in Section 8 (`sec:bootstrap`). The formal statement isolates
+this calculation with its own hypotheses; no current lemma has that label.
+
+Proof of `I/Sec9/Readout.lean` (`prop:reduction`, Part II Proposition 1.2, readout proof in Section 8). The existing Lean interface statement is retained.
 
 Uses: `standing_levels` (`I/Sec9/Standing.lean`: `σ_1 ≥ σ_b > 0`, `G_1 ∈ [0,G₁]`),
 `activeConfig_units` (`I/Sec9/ActiveRing.lean`: `t♯_1 ≥ 0`), `regions_basic_two` and
@@ -34,7 +38,7 @@ namespace Relay
 
 open RingData Datum
 
-/-- `∫ Φ(y) ȳ³ dy = 0`: `Φ(-y) = Φ(y)` and `(-ȳ)³ = -ȳ³` (`09_relay.tex:1437`, "`Φ` is radial,
+/-- `∫ Φ(y) ȳ³ dy = 0`: `Φ(-y) = Φ(y)` and `(-ȳ)³ = -ȳ³` (`prop:reduction`, Part II Proposition 1.2, readout proof in Section 8, "`Φ` is radial,
 so `pout_m[Φ] = 0`"). -/
 private theorem integral_ringPhi_mul_conj_pow_three (χ : ℝ → ℝ) :
     ∫ y, ((ringPhi χ y : ℝ) : ℂ) * conj y ^ 3 = 0 := by
@@ -101,7 +105,7 @@ private theorem omegaRing_one_eq (P : Approx) (hA : P.A 1 ≠ 0) (hr : P.r 1 = 1
   field_simp
   ring
 
-/-- **`lem:readout`** (`09_relay.tex:1409-1423`). Assume (SA), (Det), `C₀ ≥ 1`, a readout cutoff
+/-- **`lem:readout` (historical)** (`prop:reduction`, Part II Proposition 1.2, readout proof in Section 8). Assume (SA), (Det), `C₀ ≥ 1`, a readout cutoff
 `χ_out`, the clock defined up to level `1`, the conclusions (a)–(b) of `thm:active` for ring `1` on
 `Ph_1` with `C₀` and `η_b = 0`, `|c_1(T̂_1)|e^{σ_1T̂_1} ≥ 15δ₀/16`, `D_2(T_1) ⊂ B_{a/8}`,
 `C_pC₂δ₀ ≤ c_out/(16π)` and `C_pC₂(ρ̂_1(T̂_1) + κ♯_1^{1/2}) ≤ c_out/(16π)`. Then

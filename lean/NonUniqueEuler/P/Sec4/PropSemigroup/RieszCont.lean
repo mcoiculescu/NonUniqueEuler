@@ -13,7 +13,7 @@ import NonUniqueEuler.H.Sec4.PropSemigroup.RieszCont.Basic
 /-!
 # Proof: continuity in `G` of the sector Riesz projections at `λ_*(G)` (step of `prop:semigroup`)
 
-Proof of `I/Sec4/PropSemigroup/RieszCont.lean` (`04_ring.tex:1466-1484`, restructuring R2).
+Proof of `I/Sec4/PropSemigroup/RieszCont.lean` (Part I Proposition 4.22 (`prop:semigroup`), restructuring R2).
 With `n = n_*(G)`, `P_ℓ = secProj s N ℓ`, `C` complex conjugation on `Y^s(N)` (`cjY`):
 * `n_*(G) = 6e^{-3(ξL-ξR)}/|pin_3[φ_*(G)]|` is continuous (`pinPhi_eq`, `propU_b`);
 * `g_* e^{3iθ} = n P_3 φ_*(G)` and `conj(g_*) e^{-3iθ} = n P_{-3}(C φ_*(G))` (`gStarY_eq`,
@@ -245,7 +245,7 @@ namespace Eig
 open RingData Sect Sect.RieszContH
 
 /-- **Continuity of the sector Riesz projections** (step of `prop:semigroup`,
-`04_ring.tex:1466-1484`, R2): for every `s`, `G ↦ rieszSec s 3 λ_*(G) G` on `Y^s_3(N)` and
+Part I Proposition 4.22 (`prop:semigroup`), R2): for every `s`, `G ↦ rieszSec s 3 λ_*(G) G` on `Y^s_3(N)` and
 `G ↦ rieszSecBar s 3 λ_*(G) G` on `Y^s_{-3}(N)` are continuous on `[0,G₁]` in the operator norm. -/
 theorem rieszSec_continuousOn (χ : ℝ → ℝ) (hχ : IsAdmissibleCutoff χ)
     (hN : NumericalHypothesis χ) (s : ℕ) :

@@ -7,7 +7,7 @@ import Mathlib.Analysis.SpecialFunctions.ExpDeriv
 # Helpers for `quiet_approx`: the scalar integrals of `eq:Q-hier`
 
 Helper of `P/Sec5/Quiet/Approx.lean` (fully proved). Namespace `NonUniqueEuler.OneRing.QAppH`.
-Manuscript `05_single_ring.tex:481-492`: by (M1) `e^{σ(t-τ)} maj(τ)^j ≤ e^{-(j-1)σ(t-τ)} maj(t)^j`,
+Manuscript Part II Theorem 2.8 (`thm:quiet`): by (M1) `e^{σ(t-τ)} maj(τ)^j ≤ e^{-(j-1)σ(t-τ)} maj(t)^j`,
 whose integral over `[0,t]` is `≤ maj(t)^j/((j-1)σ)`, and `e^{σ(t-τ)} η(τ) maj(τ)^{j-1} ≤
 η(τ) maj(t)^{j-1}`, whose integral is `≤ maj(t)^j` by (M2).
 

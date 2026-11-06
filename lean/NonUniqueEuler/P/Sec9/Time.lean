@@ -5,7 +5,7 @@ import NonUniqueEuler.I.Sec4.Uniform
 /-!
 # Proof: `lem:time` (the saturation time `T₁` is bounded independently of `n`)
 
-Proof of `I/Sec9/Time.lean` (`09_relay.tex:1465-1474`, proof `:1476-1494`).
+Proof of `I/Sec9/Time.lean` (`lem:time`, Part II Lemma C.15).
 
 The manuscript proof bounds each increment `T_k - T_{k+1} ≤ A_k⁻¹[T_z + (m+2)σ'⁻¹log(1/s_k)]`
 (`k < n`) and `T_n ≤ σ'⁻¹log(2δ₀/κ_seed)/A₁`, then telescopes and sums two geometric series.
@@ -105,7 +105,7 @@ theorem F_one {μ a b c : ℝ} (hμ : 1 < μ) :
 end TimeAux
 
 open TimeAux in
-/-- **`lem:time`** (`09_relay.tex:1465-1474`). Assume (SA), (Det), the clock defined up to level
+/-- **`lem:time`** (`lem:time`, Part II Lemma C.15). Assume (SA), (Det), the clock defined up to level
 `1`, `κ♯_k ≥ K_lo s_k⁵` for `1 ≤ k < n` and `κ♯_n ≥ ½κ_seed`. Then `T_1 ≤ T_*`. -/
 theorem time (S : Standing) (hS : S.Holds) (hDet : S.Det) (hc : S.P.ClockUpTo 1)
     (hκ : ∀ k ∈ Finset.Ico 1 S.P.n, S.Klo * S.P.s k ^ (3 + 2) ≤ S.P.ksh k)

@@ -10,8 +10,8 @@ import Mathlib.MeasureTheory.Measure.SeparableMeasure
 /-!
 # Weak convergence in real Hilbert spaces (definitions; library I-WEAKL2)
 
-Manuscript-independent infrastructure (library I-WEAKL2). Section 3 of the
-manuscript (`03_compactness.tex`) works with weakly continuous `L²`-valued paths
+Manuscript-independent infrastructure (library I-WEAKL2). Part I, Section 3
+(`sec:compact`) works with weakly continuous `L²`-valued paths
 (restructuring R5, decision D9: exponent `b = 2` only). This file fixes the vocabulary.
 
 * `WeakTendsto u l x`: `u i ⇀ x` along the filter `l` in a real inner product space `E`,
@@ -19,15 +19,18 @@ manuscript (`03_compactness.tex`) works with weakly continuous `L²`-valued path
   weak convergence (`weakTendsto_iff_forall_dual` in `I/Infra/WeakL2/Norm.lean`).
 * `WeakContinuousOn u s`: `t ↦ ⟪u t, y⟫` is continuous on `s` for every `y`.
 * `WeakTendstoUniformlyOn u U l s`: `⟪u i t, y⟫ → ⟪U t, y⟫` uniformly in `t ∈ s`, for every `y`
-  (the convergence of `prop:compact`(i)).
+  (the compactness argument in the proof of Part I, Theorem 3.8, `thm:criterion`;
+  Lean retains the former separate `prop:compact` decomposition).
 * `IsTestFamily F`: a sequence `F : ℕ → ℂ → ℝ` of real `C_c^∞` functions which, inside every
   open ball, is dense in `C¹` among the `C_c^∞` functions supported in that ball (the family
-  `𝓕` of the proof of `lem:weak-cont`, `03_compactness.tex:146-153`). Its existence and its
+  `𝓕` in the proof of Part I, Lemma 3.2, `lem:weak-cont`). Its existence and its
   density in `L²` are in `I/Infra/WeakL2/TestFamily.lean`.
 
 Everything is stated for a general real inner product space `E`. The consumers instantiate
 `E := Lp ℝ 2 (volume : Measure ℂ)` (vorticities at a fixed time) or
-`E := Lp ℝ 2 ((volume.restrict (Ioo 0 T)).prod volume)` (space–time, `prop:stable`).
+`E := Lp ℝ 2 ((volume.restrict (Ioo 0 T)).prod volume)` (space–time, the retained
+`prop:stable` decomposition of the limit-passage argument in the proof of
+Part I, Theorem 3.8, `thm:criterion`).
 For `E = Lp ℝ 2 μ`, `inner_toLp_eq_integral` turns the inner product with a function into the
 integral `∫ f ψ`, and `weakTendsto_toLp_iff` states weak convergence of functions `g i ⇀ g₀`
 (through their classes `MemLp.toLp`) as convergence of `∫ g i ψ` for every `ψ ∈ L²`.
@@ -58,7 +61,8 @@ def WeakContinuousOn {τ : Type*} [TopologicalSpace τ] (u : τ → E) (s : Set 
   ∀ y : E, ContinuousOn (fun t => ⟪u t, y⟫_ℝ) s
 
 /-- Uniform weak convergence on `s`: for every `y`, `⟪u i t, y⟫ → ⟪U t, y⟫` uniformly in
-`t ∈ s` (`prop:compact`(i), `03_compactness.tex:262-263`). -/
+`t ∈ s` (the compactness argument in the proof of Part I, Theorem 3.8,
+`thm:criterion`; the former `prop:compact` is retained as a Lean component). -/
 def WeakTendstoUniformlyOn {ι τ : Type*} (u : ι → τ → E) (U : τ → E) (l : Filter ι)
     (s : Set τ) : Prop :=
   ∀ y : E, TendstoUniformlyOn (fun i t => ⟪u i t, y⟫_ℝ) (fun t => ⟪U t, y⟫_ℝ) l s
@@ -226,7 +230,7 @@ end L2
 /-- A countable family of real `C_c^∞` functions on the plane such that for every `R` and every
 `ψ ∈ C_c^∞` with `tsupport ψ ⊆ B_R`, there are members of the family, also supported in `B_R`,
 arbitrarily close to `ψ` in the `C¹` norm (sup of the values and of the derivatives). This is
-the family `𝓕` of `03_compactness.tex:146-153` (proof of `lem:weak-cont`). -/
+the family `𝓕` in the proof of Part I, Lemma 3.2 (`lem:weak-cont`). -/
 structure IsTestFamily (F : ℕ → ℂ → ℝ) : Prop where
   contDiff : ∀ i, ContDiff ℝ ∞ (F i)
   hasCompactSupport : ∀ i, HasCompactSupport (F i)

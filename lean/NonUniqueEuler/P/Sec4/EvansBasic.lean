@@ -15,7 +15,7 @@ import NonUniqueEuler.H.Sec4.EvansBasic.RefUnits
 /-!
 # Proof: `def:evans` (the solution `ψ_ℓ`) and `lem:evans-basic`
 
-Proof of `NonUniqueEuler/I/Sec4/EvansBasic.lean` (`04_ring.tex:187-198`, `:285-352`). Same
+Proof of `NonUniqueEuler/I/Sec4/EvansBasic.lean` (Part I Definition 4.4 (`def:evans`), Part I Lemma 4.6 (`lem:evans-basic`)). Same
 declarations, statements copied verbatim.
 
 Method (following the manuscript).
@@ -25,13 +25,15 @@ Method (following the manuscript).
   `e^{ℓ(ξ-ξ₁)}` by uniqueness (`EvansBasicH.sol_left`).
 * (1) Holomorphy and joint continuity come from I-ODE `differentiableOn_sol`, `continuousOn_sol`
   (the manuscript's Picard-iterate argument is the content of those interface lemmas).
-* (2) `eq:evans-coef` from `exists_eq_exp_add_exp` on `[ξ₂, ∞)` (`EvansBasicH.right_coef`).
-  Independence of `(ξ₁, ξ₂)`: `EvansBasicH.evans_val_indep`. Instead of the smallest interval
-  `[α, β₀]` containing `supp f_ξ` used in the manuscript, we compare the solutions `ψ_L` of the
+* Retained auxiliary statements: the growing-mode coefficient identity from `exists_eq_exp_add_exp` on `[ξ₂, ∞)` (`EvansBasicH.right_coef`).
+  Independence of `(ξ₁, ξ₂)`: `EvansBasicH.evans_val_indep`. These remain Lean auxiliaries;
+  current Part I Lemma 4.6 (`lem:evans-basic`) states holomorphy and the Wronskian identity.
+  Instead of the smallest interval `[α, β₀]` containing `supp f_ξ` used in the earlier proof,
+  we compare the solutions `ψ_L` of the
   two normalizations at `min ξ₁ ξ₁'` and the quantity `e^{-ℓξ}(ψ_L' + ℓψ_L) = 2ℓA₊` on
   `[min ξ₂ ξ₂', ∞)` (same argument, no need to define the minimal interval; the case
   `ω̄' ≡ 0` needs no separate treatment).
-* (3) `W' = 0` (`wronskian_eq`), evaluated at `ξ₂`.
+* Current part (2): `W' = 0` (`wronskian_eq`), evaluated at `ξ₂`.
 * Last assertion: `f_ξ = ϖ'` (chain rule), `Ω(e^ξ;G) = Ω_G(ξ)` (`circ_comp_norm` and the
   substitution `ρ = e^{ξ'}`), so `V_ℓ = riccatiCoeff`; conclude with
   `evans_eq_of_isEvansSolution`.
@@ -64,9 +66,9 @@ theorem EvansBasicH.vric_facts (S : SectorSetting) (hS : S.Valid) (ℓ : ℕ) (h
 
 /-! ### `def:evans`: the solution `ψ_ℓ` -/
 
-/-- `def:evans` (`04_ring.tex:189-191`): `(ψ_ℓ, ψ_ℓ')` is a smooth solution on `ℝ` of
+/-- Part I Definition 4.4 (`def:evans`): `(ψ_ℓ, ψ_ℓ')` is a smooth solution on `ℝ` of
 `ψ'' = V_ℓ(·;λ,G) ψ` with `ψ(ξ₁) = 1`, `ψ'(ξ₁) = ℓ`; and `ψ_ℓ = e^{ℓ(ξ-ξ₁)}` on `(-∞, ξ₁]`
-(`04_ring.tex:305-306`). -/
+(Part I Lemma 4.6 (`lem:evans-basic`)). -/
 theorem psi_spec (S : SectorSetting) (hS : S.Valid) (ℓ : ℕ) (hℓ : 1 ≤ ℓ) (z : ℂ)
     (hz : 0 < z.re) (G : ℝ) :
     LinODE.IsSolOn (S.Vric ℓ z G) univ (S.psi ℓ z G) (S.dpsi ℓ z G) ∧
@@ -91,7 +93,7 @@ theorem psi_spec (S : SectorSetting) (hS : S.Valid) (ℓ : ℕ) (hℓ : 1 ≤ �
 
 /-- `lem:evans-basic`(1): `ψ_ℓ(ξ;λ,G)` and its `ξ`-derivative are holomorphic in
 `λ ∈ {Re λ > 0}`, locally uniformly in `ξ` (holomorphic for each `ξ`, jointly continuous in
-`(ξ, λ)`); the same holds for `ψ_R` (`04_ring.tex:319-320`); and `E_ℓ(·;G)` is holomorphic on
+`(ξ, λ)`); the same holds for `ψ_R` (Part I Lemma 4.6 (`lem:evans-basic`)); and `E_ℓ(·;G)` is holomorphic on
 `{Re λ > 0}`. -/
 theorem evans_basic_holo (S : SectorSetting) (hS : S.Valid) (ℓ : ℕ) (hℓ : 1 ≤ ℓ) (G : ℝ) :
     (∀ ξ : ℝ,
@@ -128,10 +130,12 @@ theorem evans_basic_holo (S : SectorSetting) (hS : S.Valid) (ℓ : ℕ) (hℓ : 
     (S.dpsi ℓ z G S.ξ₂ + (ℓ : ℂ) * S.psi ℓ z G S.ξ₂)) {z : ℂ | 0 < z.re}
   exact ((hpsi S.ξ₂).snd.add ((hpsi S.ξ₂).fst.const_mul _)).const_mul _
 
-/-! ### `lem:evans-basic`(2) and `eq:evans-coef` -/
+/-! ### the retained normalization-independence statement (formerly `lem:evans-basic`(2)) and the retained growing-mode coefficient identity -/
 
-/-- `eq:evans-coef` (`04_ring.tex:325-333`): on `[ξ₂, ∞)`, `ψ_ℓ = A₊e^{ℓξ} + A₋e^{-ℓξ}`, and
-`E_ℓ(λ;G) = 2ℓ e^{ℓξ₁} A₊`. -/
+/-- The retained growing-mode coefficient identity from the unnumbered discussion
+before Part I, Definition 4.4 (`def:evans`): on `[ξ₂, ∞)`,
+`ψ_ℓ = A₊e^{ℓξ} + A₋e^{-ℓξ}` and `E_ℓ(λ;G) = 2ℓ e^{ℓξ₁} A₊`.
+The current manuscript uses the shifted-origin coefficient `A = e^{ℓξ₂} A₊`. -/
 theorem evans_coef (S : SectorSetting) (hS : S.Valid) (ℓ : ℕ) (hℓ : 1 ≤ ℓ) (z : ℂ)
     (hz : 0 < z.re) (G : ℝ) :
     ∃ Ap Am : ℂ,
@@ -152,7 +156,7 @@ theorem evans_coef (S : SectorSetting) (hS : S.Valid) (ℓ : ℕ) (hℓ : 1 ≤ 
   rw [evans_def, e]
   linear_combination ((Real.exp (ℓ * S.ξ₁) : ℝ) : ℂ) * k
 
-/-- `lem:evans-basic`(2): `E_ℓ(λ;G)` does not change if `(ξ₁, ξ₂)` is replaced by any pair
+/-- the retained normalization-independence statement (formerly `lem:evans-basic`(2)): `E_ℓ(λ;G)` does not change if `(ξ₁, ξ₂)` is replaced by any pair
 `(log r₁', log r₂')` with `supp ω̄' ⊆ [r₁', r₂']` (the radii `ρ₋, ρ₊` do not enter `E_ℓ`). -/
 theorem evans_indep (S : SectorSetting) (hS : S.Valid) (ℓ : ℕ) (hℓ : 1 ≤ ℓ) (z : ℂ)
     (hz : 0 < z.re) (G : ℝ) {r₁' r₂' : ℝ} (h₁ : 0 < r₁') (h₁₂ : r₁' ≤ r₂')
@@ -172,9 +176,9 @@ theorem evans_indep (S : SectorSetting) (hS : S.Valid) (ℓ : ℕ) (hℓ : 1 ≤
       (hsupp _ (Real.exp_pos ξ) (fun h => (not_le.2 ((Real.log_lt_iff_lt_exp h₂).1 hξ)) h.2)))
   exact NonUniqueEuler.EvansBasicH.evans_val_indep hc hℓ0 hL' hL hR' hR
 
-/-! ### `lem:evans-basic`(3): `ψ_L`, `ψ_R` and the Wronskian -/
+/-! ### Part I Lemma 4.6(2) (`lem:evans-basic`): `ψ_L`, `ψ_R` and the Wronskian -/
 
-/-- `lem:evans-basic`(3): `ψ_R` is a smooth solution on `ℝ` of `ψ'' = V_ℓ ψ` with
+/-- Part I Lemma 4.6(2) (`lem:evans-basic`): `ψ_R` is a smooth solution on `ℝ` of `ψ'' = V_ℓ ψ` with
 `ψ_R(ξ) = e^{-ℓξ}` for `ξ ≥ ξ₂`. -/
 theorem psiR_spec (S : SectorSetting) (hS : S.Valid) (ℓ : ℕ) (hℓ : 1 ≤ ℓ) (z : ℂ)
     (hz : 0 < z.re) (G : ℝ) :
@@ -207,7 +211,7 @@ theorem psiR_spec (S : SectorSetting) (hS : S.Valid) (ℓ : ℕ) (hℓ : 1 ≤ �
   push_cast
   ring
 
-/-- `lem:evans-basic`(3): `ψ_L = e^{ℓξ₁}ψ_ℓ` equals `e^{ℓξ}` for `ξ ≤ ξ₁`, and the Wronskian
+/-- Part I Lemma 4.6(2) (`lem:evans-basic`): `ψ_L = e^{ℓξ₁}ψ_ℓ` equals `e^{ℓξ}` for `ξ ≤ ξ₁`, and the Wronskian
 `W = ψ_Lψ_R' - ψ_L'ψ_R` is independent of `ξ` and equals `-E_ℓ(λ;G)`. -/
 theorem wronskian_eq_neg_evans (S : SectorSetting) (hS : S.Valid) (ℓ : ℕ) (hℓ : 1 ≤ ℓ)
     (z : ℂ) (hz : 0 < z.re) (G : ℝ) :
@@ -239,14 +243,14 @@ end SectorSetting
 
 open RingData
 
-/-- Proof of `lem:evans-basic`, last assertion (`04_ring.tex:347-349`): for the ring in reference
+/-- Proof of `lem:evans-basic`, last assertion (Part I Lemma 4.6 (`lem:evans-basic`)): for the ring in reference
 units, `f_ξ = ϖ'`. -/
 theorem ringRefSetting_fxi {χ : ℝ → ℝ} (hχ : IsAdmissibleCutoff χ) (ξ : ℝ) :
     (ringRefSetting χ).fxi ξ = deriv (prof χ) ξ := by
   rw [SectorSetting.fxi, EvansBasicH.ringRefSetting_dom hχ (Real.exp_pos ξ), Real.log_exp,
     mul_left_comm, mul_inv_cancel₀ (Real.exp_ne_zero ξ), mul_one]
 
-/-- Proof of `lem:evans-basic`, last assertion (`04_ring.tex:348-350`):
+/-- Proof of `lem:evans-basic`, last assertion (Part I Lemma 4.6 (`lem:evans-basic`)):
 `Ω(e^ξ;G) = Ω_G(ξ)` for the ring in reference units. -/
 theorem ringRefSetting_Omega {χ : ℝ → ℝ} (hχ : IsAdmissibleCutoff χ) (G ξ : ℝ) :
     (ringRefSetting χ).Omega G (Real.exp ξ) = OmegaG χ G ξ := by
@@ -257,12 +261,12 @@ theorem ringRefSetting_Omega {χ : ℝ → ℝ} (hχ : IsAdmissibleCutoff χ) (G
   rw [he, mul_div_cancel_left₀ _ hπ, add_comm]
 
 /-- The Riccati coefficient of the ring in reference units is the statement layer's
-`riccatiCoeff` (`04_ring.tex:350-352`). -/
+`riccatiCoeff` (Part I Lemma 4.6 (`lem:evans-basic`)). -/
 theorem ringRefSetting_Vric {χ : ℝ → ℝ} (hχ : IsAdmissibleCutoff χ) (ℓ : ℕ) (z : ℂ)
     (G ξ : ℝ) : (ringRefSetting χ).Vric ℓ z G ξ = riccatiCoeff χ ℓ z G ξ := by
   rw [SectorSetting.Vric, ringRefSetting_fxi hχ, ringRefSetting_Omega hχ, riccatiCoeff]
 
-/-- `lem:evans-basic`, last assertion (`04_ring.tex:300-302`): for the ring in reference units
+/-- `lem:evans-basic`, last assertion (Part I Lemma 4.6 (`lem:evans-basic`)): for the ring in reference units
 (`ω̄ = ω̄_c`, `(ξ₁,ξ₂) = (ξL, ξR)`), the Evans function of `def:evans` is the function `E_ℓ` of
 Hypothesis (N) (the statement layer's `evans`). -/
 theorem ringRefSetting_evans {χ : ℝ → ℝ} (hχ : IsAdmissibleCutoff χ) (ℓ : ℕ) (hℓ : 1 ≤ ℓ)

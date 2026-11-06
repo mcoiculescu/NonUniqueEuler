@@ -7,9 +7,11 @@ import Mathlib.MeasureTheory.Function.LocallyIntegrable
 import Mathlib.MeasureTheory.Integral.Bochner.ContinuousLinearMap
 
 /-!
-# Proof of `prop:defect` (`I/Sec3/Defect.lean`)
+# Proof of Part I Corollary 3.9 (`cor:defect`; formerly `prop:defect`) (`I/Sec3/Defect.lean`)
 
-Manuscript: `prop:defect`, `03_compactness.tex:1134-1153`, proof `03_compactness.tex:1155-1177`.
+Current manuscript: Part I Corollary 3.9 (`cor:defect`, formerly `prop:defect`).
+The Lean proof retains the intermediate real-pairing argument from the legacy
+equivalence decomposition; the current proof bounds the complex moment directly.
 
 Structure of the proof.
 1. `DefectAux.contDiff_defectTest`, `DefectAux.hasCompactSupport_defectTest`: `Ψ ∈ C_c^∞(ℝ²)`
@@ -19,8 +21,8 @@ Structure of the proof.
    Lebesgue measure: `Ψ(O_θ x) = e^{-imθ} Ψ(x)`, so with `θ = π/m` the change of variables
    `x ↦ O_θ x` and `f ∘ O_θ = f` a.e. give `∫ f Ψ = -∫ f Ψ`. This avoids the a.e. radial
    profile `f₀` of the manuscript.
-3. `DefectAux.hasPairingDefect`: `prop:equiv`(d) with `T = T̄` for `ψ = Re Ψ` or `ψ = Im Ψ`.
-   **Deviation (harmless):** instead of "one index occurs infinitely often" we use
+3. `DefectAux.hasPairingDefect`: legacy `prop:equiv`(d) with `T = T̄` for `ψ = Re Ψ` or `ψ = Im Ψ`.
+   **Legacy-proof deviation:** instead of "one index occurs infinitely often" we use
    `|z| ≤ |Re z| + |Im z|`: if both limsups were `0`, eventually `aₙ + bₙ < c₀`.
 4. `defect`: `equiv_d_imp_a` (`T₀ = ∞`) and `criterion` give `ω_∞`; the conclusions are read off
    `IsCriterionLimit` ((i), (ii), (iii) with R8 for `r = q + 1`, (v), (vi) with `Q = O_{2π/3}`).
@@ -103,7 +105,7 @@ theorem conj_exp_pow_eq_neg_one {m : ℕ} (hm : 1 ≤ m) :
   rw [this, Complex.exp_pi_mul_I]
   simp
 
-/-- `∫ f Ψ = 0` for radial `f` and `m ≥ 1` (`03_compactness.tex:1156-1159`), by rotation
+/-- `∫ f Ψ = 0` for radial `f` and `m ≥ 1` (Part I Corollary 3.9 (`cor:defect`) and its proof), by rotation
 invariance with `θ = π/m`. -/
 theorem integral_mul_defectTest_eq_zero {f : ℂ → ℝ} (hrad : IsRadial f) (χ : ℝ → ℝ) {m : ℕ}
     (hm : 1 ≤ m) : ∫ x, (f x : ℂ) * defectTest χ m x = 0 := by
@@ -173,7 +175,7 @@ theorem ofReal_le_enorm_add_enorm {f w : ℂ → ℝ} (hrad : IsRadial f) {χ : 
     ← ENNReal.ofReal_add (abs_nonneg _) (abs_nonneg _)]
   exact ENNReal.ofReal_le_ofReal hle
 
-/-- `prop:equiv`(d) for `T = T̄`, with `ψ = Re Ψ` or `ψ = Im Ψ` (`03_compactness.tex:1159-1167`). -/
+/-- legacy `prop:equiv`(d) for `T = T̄`, with `ψ = Re Ψ` or `ψ = Im Ψ` (Part I Corollary 3.9 (`cor:defect`) and its proof). -/
 theorem hasPairingDefect {f : ℂ → ℝ} {m : ℕ} {χ : ℝ → ℝ} {ωs : ℕ → ℝ → ℂ → ℝ}
     {c₀ Tbar : ℝ} {Tn : ℕ → ℝ} (hf1 : MemLp f 1 volume) (hrad : IsRadial f) (hm : 1 ≤ m)
     (hχ : IsRadialTestProfile χ) (hcont : ∀ n, IsWeakContL2On (Ici 0) (ωs n)) (hc₀ : 0 < c₀)
@@ -218,7 +220,7 @@ theorem hasPairingDefect {f : ℂ → ℝ} {m : ℕ} {χ : ℝ → ℝ} {ωs : �
 
 end DefectAux
 
-/-- **`prop:defect`** (`03_compactness.tex:1134-1153`), with the extra conjunct "renormalized in
+/-- **Part I Corollary 3.9 (`cor:defect`; formerly `prop:defect`)** (Part I Corollary 3.9 (`cor:defect`) and its proof), with the extra conjunct "renormalized in
 every `X_q(T)`" from `thm:criterion`(ii). -/
 theorem defect {f : ℂ → ℝ} {m : ℕ} {χ : ℝ → ℝ} {fs : ℕ → ℂ → ℝ} {ωs : ℕ → ℝ → ℂ → ℝ}
     {c₀ Tbar : ℝ} {Tn : ℕ → ℝ}

@@ -9,9 +9,14 @@ import NonUniqueEuler.H.Sec9.Deep.Real
 import NonUniqueEuler.H.Sec9.Deep.Split
 
 /-!
-# Proof: `lem:deep` (the moment of the deeper rings during the active phase of ring `k+1`)
+# Proof: `lem:deep` (historical) (the moment of the deeper rings during the active phase of ring `k+1`)
 
-Proof of `I/Sec9/Deep.lean` (`09_relay.tex:1103-1132`, proof `:1134-1177`). Helpers:
+The label `lem:deep` is historical. Its current counterpart is the moment
+splitting in (Q1) and the deep-term bound in (Kick3), within the proof of Part II
+Lemma C.14 (`lem:kicktrue`), Appendix C.12. Lean retains the separate three-part
+lemma and explicit `C_deep`, absorbed in the manuscript's `C_err`.
+
+Proof of `I/Sec9/Deep.lean` (`lem:kicktrue`, Part II Lemma C.14, proof of (Q1) and the deep term in (Kick3)). Helpers:
 `H/Sec9/Deep/Split.lean` (the splitting `q_{k+1} = q^ring + q^deep` and the kick time of ring `k+1`),
 `H/Sec9/Deep/Real.lean` (the elementary integral and exponent identities of part (3)).
 
@@ -65,7 +70,7 @@ theorem kickTime_of_kick (S : Standing) (hS : S.Holds) (k : ℕ) (τK : ℝ) :
   field_simp
   ring
 
-/-- `t ∈ Ph_{k+1}` iff `τ_K = A_{k+1}(t - T_{k+1}) ∈ [-T_g, 0]` (`09_relay.tex:1135-1137`). -/
+/-- `t ∈ Ph_{k+1}` iff `τ_K = A_{k+1}(t - T_{k+1}) ∈ [-T_g, 0]` (`lem:kicktrue`, Part II Lemma C.14, proof of (Q1) and the deep term in (Kick3)). -/
 theorem deep_phase (S : Standing) (hS : S.Holds) {k : ℕ} (hk : 1 ≤ k) (hkn : k < S.P.n)
     (hc : S.P.ClockUpTo (k + 1)) (t : ℝ) :
     t ∈ S.P.Phase (k + 1) ↔ S.P.kickTime k t ∈ Icc (-S.P.That (k + 1)) 0 := by
@@ -103,7 +108,7 @@ theorem kick_mem_phase (S : Standing) (hS : S.Holds) {k : ℕ} (hk : 1 ≤ k) (h
     exact hτ
   exact ⟨hmem, le_trans htsh0 hmem.1⟩
 
-/-- **Part (1)** (`09_relay.tex:1135-1150`). -/
+/-- **Part (1)** (`lem:kicktrue`, Part II Lemma C.14, proof of (Q1) and the deep term in (Kick3)). -/
 theorem deep_one (S : Standing) (hS : S.Holds) {k : ℕ} (hk : 1 ≤ k) (hkn : k < S.P.n)
     (hc : S.P.ClockUpTo (k + 1)) :
     (∀ t : ℝ, t ∈ S.P.Phase (k + 1) ↔ S.P.kickTime k t ∈ Icc (-S.P.That (k + 1)) 0) ∧
@@ -125,7 +130,7 @@ theorem qDeep_eq_q (S : Standing) (hS : S.Holds) {k : ℕ} (hk : 1 ≤ k) (hkn1 
   simp only [Approx.qDeep, Approx.qKick]
   rw [kick_time_succ S.P hS.valid hk hkn1 τK]
 
-/-- **Part (2)** (`09_relay.tex:1152-1157`). -/
+/-- **Part (2)** (`lem:kicktrue`, Part II Lemma C.14, proof of (Q1) and the deep term in (Kick3)). -/
 theorem deep_two (S : Standing) (hS : S.Holds) {k : ℕ} (hk : 1 ≤ k) (hkn : k < S.P.n)
     (hc : S.P.ClockUpTo (k + 1)) (hkn1 : k + 1 < S.P.n)
     (hconf : S.P.ConfineHyp (k + 1) (S.P.T (k + 1))) :
@@ -185,7 +190,7 @@ theorem deep_integrable (S : Standing) (hS : S.Holds) {k : ℕ} (hk : 1 ≤ k) (
   exact ((Real.continuous_exp.comp (continuous_const.mul continuous_id).neg).continuousOn).mul
     hcont.norm
 
-/-- **The elementary estimate of part (3)** (`09_relay.tex:1159-1172`), with abstract data: if
+/-- **The elementary estimate of part (3)** (`lem:kicktrue`, Part II Lemma C.14, proof of (Q1) and the deep term in (Kick3)), with abstract data: if
 `0 ≤ f(τ) ≤ μ s₅ C_m (1 + T_pin + μ(τ + T_g))³` on `[-T_g, 0]`, `T_g = σ₁⁻¹L`, `σ₁ ≥ 15σ/16`,
 `x ≥ σ/4`, `L ≥ 1`, `μ ≤ 2` and `K_lo s₅ ≤ κ`, then
 `∫_{-T_g}^0 e^{-xτ}f ≤ (4μC_m(1 + T_pin + 32/(15σ))³/(σK_lo)) κ e^{xT_g} L³`. -/
@@ -273,7 +278,7 @@ theorem Klo_pos (S : Standing) (hS : S.Holds) : 0 < S.Klo := by
   rw [Standing.Klo_def]
   exact div_pos (mul_pos hcN hS.δ₀_pos) (mul_pos (mul_pos (by norm_num) hz) hμ1)
 
-/-- **Part (3), first inequality** (`09_relay.tex:1159-1172`). -/
+/-- **Part (3), first inequality** (`lem:kicktrue`, Part II Lemma C.14, proof of (Q1) and the deep term in (Kick3)). -/
 theorem deep_three_first (S : Standing) (hS : S.Holds) (hDet : S.Det) {k : ℕ} (hk : 1 ≤ k)
     (hkn : k < S.P.n) (hc : S.P.ClockUpTo (k + 1)) (hkn1 : k + 1 < S.P.n)
     (hconf : S.P.ConfineHyp (k + 1) (S.P.T (k + 1)))
@@ -301,7 +306,7 @@ theorem deep_three_first (S : Standing) (hS : S.Holds) (hDet : S.Det) {k : ℕ} 
   rw [hTg, kappa_mul_exp_eq _ hκ.1 hS.δ₀_pos hσ1.ne', Standing.Cdeep_def]
   ring
 
-/-- **Part (3), second inequality** (`09_relay.tex:1173-1177`): `1 - x/σ_{k+1} ≥ ϑ_μ` and
+/-- **Part (3), second inequality** (`lem:kicktrue`, Part II Lemma C.14, proof of (Q1) and the deep term in (Kick3)): `1 - x/σ_{k+1} ≥ ϑ_μ` and
 `κ < δ₀`. -/
 theorem deep_three_second (S : Standing) (hS : S.Holds) (hDet : S.Det) {k : ℕ} (hk : 1 ≤ k)
     (hkn : k < S.P.n) (hc : S.P.ClockUpTo (k + 1)) :
@@ -357,7 +362,7 @@ theorem deep_three_second (S : Standing) (hS : S.Holds) (hDet : S.Det) {k : ℕ}
 
 end DeepAux
 
-/-- **`lem:deep`** (`09_relay.tex:1103-1132`). Assume (SA), (Det), `1 ≤ k < n` and the clock
+/-- **`lem:deep` (historical)** (`lem:kicktrue`, Part II Lemma C.14, proof of (Q1) and the deep term in (Kick3)). Assume (SA), (Det), `1 ≤ k < n` and the clock
 defined up to level `k+1`; `T_g = T̂_{k+1}`, `κ = κ♯_{k+1}`, `x = x_k`.
 (1) `t ∈ Ph_{k+1}` iff the kick time `τ_K` of ring `k` lies in `[-T_g, 0]`; there
 `q_{k+1} = q^ring + q^deep`; and `q^deep ≡ 0` if `k+1 = n`.

@@ -5,7 +5,7 @@ import NonUniqueEuler.I.Verify.ContourGeom
 # Proof: the segment boxes of the certification contain their contour segments
 
 Proof of `NonUniqueEuler/I/Verify/Sound/ContourBoxes.lean` (same declarations, statements copied
-verbatim). Manuscript: the certification (`A_verification.tex:559-571`): by (CP),
+verbatim). Manuscript: the certification (`app:runs`): by (CP),
 `Λ^b = (X_p ∪ X_q) + i(Y_p ∪ Y_q) ⊇ [p, q]`.
 
 Used black box: `QRect.bdryPath_mem_segHullQ` (`I/Verify/ContourGeom`): on one edge the image

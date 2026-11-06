@@ -5,9 +5,9 @@ import Mathlib.Analysis.Complex.Basic
 import Mathlib.LinearAlgebra.Complex.FiniteDimensional
 
 /-!
-# Helper for `prop:iter-limit`, step 5: `C^{n+1}` from the partial derivatives
+# Helper for formal decomposition of `prop:iter-limit`, step 5: `C^{n+1}` from the partial derivatives
 
-Helper of `P/SmoothB/IterLimit/Bootstrap.lean` (`B_global_smooth.tex:449-472`). This replaces the
+Helper of `P/SmoothB/IterLimit/Bootstrap.lean` (Part II, Proposition B.10 (`prop:iter-limit`)). This replaces the
 manuscript's appeal to Schwarz's theorem and the classes `𝒞^l(T)`: a function `F(t, x)` on
 `ℝ × ℝ²` whose time derivative `∂_t F` exists everywhere, whose slices `F(t, ·)` are
 differentiable, and whose partial derivatives `∂_t F`, `∂_1 F = DF(t)(x)·1`, `∂_2 F = DF(t)(x)·i`

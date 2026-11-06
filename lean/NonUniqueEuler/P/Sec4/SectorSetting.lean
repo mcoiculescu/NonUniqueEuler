@@ -10,7 +10,7 @@ import Mathlib.Analysis.Calculus.ContDiff.Deriv
 /-!
 # Proof of `I/Sec4/SectorSetting.lean`: the facts stated inside `def:sector-setting`
 
-Manuscript `04_ring.tex:140-185` (`def:sector-setting` and the remarks after it).
+Manuscript Part I Definition 4.3 (`def:sector-setting`) (`def:sector-setting` and the remarks after it).
 
 * `circ_eq_integral`: `ω̄` is radial, so `ω̄(y) = ω̄(|y|)` (`om_eq_omR`) and the disk integral is a
   radial integral (`Polar.setIntegral_ball_comp_norm`).
@@ -159,7 +159,7 @@ private theorem memH1On_zero_of_isProfileL2 (S : SectorSetting) {h : ℝ → ℂ
 
 /-! ### The statements of `I/Sec4/SectorSetting.lean` -/
 
-/-- `Circ_ω̄(r) = 2π ∫_0^r ω̄(ρ) ρ dρ` (`04_ring.tex:174`). -/
+/-- `Circ_ω̄(r) = 2π ∫_0^r ω̄(ρ) ρ dρ` (Part I Definition 4.3 (`def:sector-setting`)). -/
 theorem circ_eq_integral (S : SectorSetting) (hS : S.Valid) {r : ℝ} (hr : 0 ≤ r) :
     Polar.circ S.om r = 2 * π * ∫ ρ in (0 : ℝ)..r, S.omR ρ * ρ := by
   have h1 : Polar.circ S.om r = ∫ y in Metric.ball (0 : ℂ) r, S.omR ‖y‖ := by
@@ -171,7 +171,7 @@ theorem circ_eq_integral (S : SectorSetting) (hS : S.Valid) {r : ℝ} (hr : 0 �
   simp only [smul_eq_mul]
   ring
 
-/-- `Ω(·;G)` is smooth on `(0,∞)` (`04_ring.tex:176-177`). -/
+/-- `Ω(·;G)` is smooth on `(0,∞)` (Part I Definition 4.3 (`def:sector-setting`)). -/
 theorem contDiffOn_Omega (S : SectorSetting) (hS : S.Valid) (G : ℝ) :
     ContDiffOn ℝ ∞ (S.Omega G) (Ioi 0) := by
   have hF := contDiff_primitive S hS
@@ -186,7 +186,7 @@ theorem contDiffOn_Omega (S : SectorSetting) (hS : S.Valid) (G : ℝ) :
     mul_div_cancel_left₀ _ (by positivity : (2 * π : ℝ) ≠ 0)]
 
 /-- The profile of `g ∈ Y^0_ℓ` lies in `L²([ρ₋,ρ₊])`, vanishes off `[ρ₋,ρ₊]`, and
-`‖g‖²_{Y^0_ℓ} = 2π ∫_0^∞ |g_ℓ|² r dr` (`04_ring.tex:159-160`). -/
+`‖g‖²_{Y^0_ℓ} = 2π ∫_0^∞ |g_ℓ|² r dr` (Part I Definition 4.3 (`def:sector-setting`)). -/
 theorem isProfileL2_angularSector (S : SectorSetting) (hS : S.Valid) (ℓ : ℤ)
     (g : Sect.Ysec 0 S.Nstar ℓ) :
     S.IsProfileL2 (Polar.angularSector g.fn ℓ) ∧
@@ -207,7 +207,7 @@ theorem isProfileL2_angularSector (S : SectorSetting) (hS : S.Valid) (ℓ : ℤ)
   exact (Ang.memLp_ofProfile_iff hL2.aestronglyMeasurable).2
 
 /-- Every profile in `L²([ρ₋,ρ₊])` vanishing off `[ρ₋,ρ₊]` is the profile of an element of
-`Y^0_ℓ` (`04_ring.tex:159-160`). -/
+`Y^0_ℓ` (Part I Definition 4.3 (`def:sector-setting`)). -/
 theorem exists_Ysec_zero_of_isProfileL2 (S : SectorSetting) (hS : S.Valid) (ℓ : ℤ)
     {h : ℝ → ℂ} (hh : S.IsProfileL2 h) :
     ∃ g : Sect.Ysec 0 S.Nstar ℓ, g.fn =ᵐ[volume] Ang.ofProfile ℓ h ∧

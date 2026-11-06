@@ -4,8 +4,8 @@ import Mathlib.Analysis.SpecificLimits.Normed
 /-!
 # Helper for `lem:ext-multipole`: the series defining `C_{m,q}`
 
-Helper lemmas for `NonUniqueEuler/P/Sec2/ExtMultipole.lean` (`02_prelim.tex:479-482` and the
-last sentence of the proof, `02_prelim.tex:508-510`).
+Helper lemmas for `NonUniqueEuler/P/Sec2/ExtMultipole.lean`: the constant in Part II,
+Lemma 1.7 (`lem:ext-multipole`) and the convergence argument at the end of its proof.
 
 Write `T_ρ(j) = (m(j+1)+q)^q ρ^{m(j+1)}`, so that `C_{m,q} = 2^q/(2π) sup_{0<ρ≤1/2} ρ^{-m} Σ_j T_ρ(j)`.
 * `summable_extSeries`: `Σ_j T_ρ(j)` converges for `0 ≤ ρ < 1` (comparison with

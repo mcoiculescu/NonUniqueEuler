@@ -7,7 +7,7 @@ import NonUniqueEuler.I.Infra.SectorSpace.Projection
 /-!
 # Helpers for `P/Sec4/PropSemigroup`: `ℓ_*(G)` only sees the sector `3`
 
-`ℓ_*(G)(w) = n_* ℓ_*(w_3)` (`04_ring.tex:1313-1317`, `04_ring.tex:1499-1500`): on `Y^s(N)`,
+`ℓ_*(G)(w) = n_* ℓ_*(w_3)` (Part I Definition 4.20 (`def:eigendata`), proof of Part I Proposition 4.22 (`prop:semigroup`)): on `Y^s(N)`,
 `Eig.ell χ s G w = n_*(G) · ellStarY s 3 λ_* G (P_3 w)` (`ell_eq_ellStarY_secProj`).
 
 * `angularSector_congr_ae`: the angular sectors of a.e. equal functions agree a.e. on `(0, ∞)`
@@ -102,7 +102,7 @@ theorem angularSector_sectorProj_self (ℓ : ℤ) (f : ℂ → ℂ) {r : ℝ} (h
   field_simp
 
 /-- **`ℓ_*(G)` only sees the sector `3`**: `ℓ_*(G)(w) = n_*(G) ℓ_*((P_3 w)_3)` on `Y^s(N)`
-(`04_ring.tex:1313-1317`). -/
+(Part I Definition 4.20 (`def:eigendata`)). -/
 theorem ell_eq_ellStarY_secProj (χ : ℝ → ℝ) (hχ : IsAdmissibleCutoff χ)
     (hN : NumericalHypothesis χ) {G : ℝ} (hG : G ∈ Icc (0 : ℝ) Gbar) (s : ℕ) (w : Y s annN) :
     Eig.ell χ s G w = (Eig.nstar χ G : ℂ) *

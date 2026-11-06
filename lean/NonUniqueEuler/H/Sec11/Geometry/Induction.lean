@@ -4,7 +4,8 @@ import NonUniqueEuler.I.Sec7.Confine
 /-!
 # Helper for `P/Sec11/Geometry.lean`: the downward induction
 
-Helper of the proof of `lem:geometry` (`11_bootstrap.tex:159-200`): the downward induction on the
+Helper of the proof of `lem:geometry` (Part II Appendix C.14 (`lem:geometry`, Lemma C.17)): the
+downward induction on the
 level `j = n, n-1, …, 1`, which proves `D_{j+1}(t') ⊂ B_{ar_j/8}` at every `t' ∈ [0, t]` at which
 ring `j` is not debris, and, for `j < n`, conclusion (a) for `k = j`.
 * `window_step`: (a) for `k = j` from the claim for `j + 1` (hypotheses (i)–(iv) of
@@ -32,7 +33,8 @@ variable {S : Standing}
 theorem r_succ {j : ℕ} (hj : 1 ≤ j) : S.P.r (j + 1) = S.P.s j * S.P.r j :=
   radius_succ _ _ hj
 
-/-- **(a) for `k = j`** (`11_bootstrap.tex:166-191`), from the claim of the induction for `j + 1`:
+/-- **(a) for `k = j`** (Part II Appendix C.14 (`lem:geometry`, Lemma C.17)), from the claim of the
+induction for `j + 1`:
 the hypotheses of `prop:confine` with `t₀ = T_{j+1}`, `t₁ = min(t, e_j)`, and its conclusions,
 with `\bar B_{ϱ_j(t')} ⊂ B_{ar_j/8}`. -/
 theorem window_step (hS : S.Holds) (hL : S.ParamLists) {t : ℝ} (h : S.GeometryHyp t) {j : ℕ}
@@ -104,7 +106,8 @@ theorem window_step (hS : S.Holds) (hL : S.ParamLists) {t : ℝ} (h : S.Geometry
     _ ≤ a / 8 * S.P.r j := mul_le_mul_of_nonneg_right hb5.1 hrj.le
     _ = a * S.P.r j / 8 := by ring
 
-/-- **The claim on `D_{j+1}`** (`11_bootstrap.tex:192-200`), from the claim for `j + 1` and (a) for
+/-- **The claim on `D_{j+1}`** (Part II Appendix C.14 (`lem:geometry`, Lemma C.17)), from the claim
+for `j + 1` and (a) for
 `k = j`: `D_{j+1}(t') ⊂ B_{ar_j/8}` at every `t' ∈ [0, t]` at which ring `j` is not debris. -/
 theorem inner_step (hS : S.Holds) {t : ℝ} (ht : t ∈ Icc (0 : ℝ) S.P.Tend)
     (h : S.GeometryHyp t) {j : ℕ} (hj1 : 1 ≤ j) (hjn : j < S.P.n)
@@ -134,7 +137,8 @@ theorem inner_step (hS : S.Holds) {t : ℝ} (ht : t ∈ Icc (0 : ℝ) S.P.Tend)
       have h2 : a * S.P.r (j + 1) ≤ a * S.P.r j := mul_le_mul_of_nonneg_left hr1' ha.le
       linarith
 
-/-- **The downward induction** (`11_bootstrap.tex:159-200`): for every level `j ∈ [1, n]`,
+/-- **The downward induction** (Part II Appendix C.14 (`lem:geometry`, Lemma C.17)): for every level
+`j ∈ [1, n]`,
 `D_{j+1}(t') ⊂ B_{ar_j/8}` at every `t' ∈ [0, t]` at which ring `j` is not debris, and, if `j < n`,
 (a) holds for `k = j`. Stated with `j + m = n`, by induction on `m`. -/
 theorem inner_all (hS : S.Holds) (hL : S.ParamLists) {t : ℝ} (ht : t ∈ Icc (0 : ℝ) S.P.Tend)

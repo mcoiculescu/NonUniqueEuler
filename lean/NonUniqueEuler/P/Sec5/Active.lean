@@ -3,11 +3,13 @@ import NonUniqueEuler.H.Sec5.Active.WindowCase
 /-!
 # Proof of `thm:active` (an active ring) and of `cor:active-moment`
 
-Proof of `NonUniqueEuler/I/Sec5/Active.lean` (`05_single_ring.tex:863-1122`). Same declaration
-(`active`), statement copied verbatim. The facts on `t₁` (`tOneOf_spec`, `active_tOne`) are in
+Proof of `NonUniqueEuler/I/Sec5/Active.lean` (Part II Theorem 2.12). Same declaration
+(`active`) and the same Lean interface statement. It also packages the radial
+motion estimate from the proof and Part II Corollary 2.13 (`cor:active-moment`).
+The facts on `t₁` (`tOneOf_spec`, `active_tOne`) are in
 `I/Sec5/ActiveT1.lean` (a separate proof) and are used as black boxes by the helpers.
 
-* `active` (`:913-1094`, with `cor:active-moment`, `:1112-1122`). The constants: `C_L ≥ 0` of the
+* `active` (Part II Theorem 2.12, with `cor:active-moment`, Part II Corollary 2.13). The constants: `C_L ≥ 0` of the
   initial layer (`I/Sec5/Active/Layer.lean`, it is `C_lin(M-2)`), `C_φ = max_G ‖φ_*(G)‖_{H^{M-2}}`,
   `C♮ = max(4, 6C_φ + 2C_L + 1)`, `(δ_W, κ_W, C_W)` of `lem:window` for `C♮`,
   `C₂ = 6C_φ + 3(C_W + C_L + 1)`, `C₃ = (1 + C_p)C₂`, `d_H = min(δ_W, a/(32C₂))`; for `C₀ ≥ 1`,
@@ -17,10 +19,11 @@ Proof of `NonUniqueEuler/I/Sec5/Active.lean` (`05_single_ring.tex:863-1122`). Sa
   `Classical.choose`. The case `u ≤ t₁` is `ActiveH.concl_layer`, the case `u > t₁` (restart,
   `lem:window`) is `ActiveH.concl_window` (`H/Sec5/Active/Core.lean`, `WindowCase.lean`).
 
-Deviations: `κ₀(C₀)` is an admissible value, not
-the largest one (the statement is existential, so this is immaterial); the constants `C♮`, `C₂`
-use `C_L = C_lin(M-2)` and `C_φ` at level `M-2` (the manuscript's `C_lin`, `C_φ` are maxima over
-levels, which only makes them larger); the bound of `(1-R)wlin` and `eq:A-layer` are packaged in
+Deviations: `κ₀(C₀)` is an admissible value (the current Part II Theorem 2.12
+is existential). The explicit constants `C♮`, `C₂` use `C_L = C_lin(M-2)` and `C_φ`
+at level `M-2`. This retains the Lean decomposition; the current proof chooses a
+uniform constant `C` large enough for these estimates. The bound of `(1-R)wlin`
+and Equation (23) (`eq:A-layer`) are packaged in
 the interface `active_layer`, and the coefficient bound `|c(u)e^{λu}| ≤ â(3 + ρ̂)` is used in both
 cases (the manuscript uses `â(2 + ρ̂)` and `3â` separately).
 -/
@@ -35,7 +38,7 @@ namespace OneRing
 
 open RingData
 
-/-- **`thm:active`** (`05_single_ring.tex:863-900`). Assume (N1)–(N3). Fix an integer `s ≥ 3`
+/-- **`thm:active`** (Part II Theorem 2.12). Assume (N1)–(N3). Fix an integer `s ≥ 3`
 and `σ' ∈ (9/200, σ_b)`; `p = 3`, `N_G`, `M = s + N_G + 2`, `η_max = 1`. There are
 `d_H ∈ (0,1)`, `C₂ ≥ 1` and `C₃ > 0`, depending only on `(Φ, G₁, s, σ')`, and for every
 `C₀ ≥ 1` a number `κ₀(C₀) > 0`, depending only on `C₀` and `(Φ, G₁, s, σ')`, such that: for

@@ -9,10 +9,10 @@ import Mathlib.MeasureTheory.Integral.IntervalIntegral.FundThmCalculus
 import Mathlib.Topology.Order.ProjIcc
 
 /-!
-# Helper for `lem:duhamel`: the semigroup in ring units, sector-wise Duhamel, continuity
+# Helper for Part II Lemma 2.1 (`lem:duhamel`): the semigroup in ring units, sector-wise Duhamel, continuity
 
 Helper of `P/Sec4/Duhamel.lean` (restructuring R1: the proof is sector-wise with bounded
-operators). For the ring in ring units (`ringPhiSetting χ`, valid by `lem:ring-facts`):
+operators). For the ring in ring units (`ringPhiSetting χ`, valid by Part I Lemma 4.2 (`lem:ring-facts`)):
 
 * `S_jointCont`: `(t, w) ↦ e^{tL(G)}w` is jointly continuous on `[0,T] × Y^s(N)`
   (`semigroup_bound`, `semigroup_continuousOn`);
@@ -26,7 +26,7 @@ operators). For the ring in ring units (`ringPhiSetting χ`, valid by `lem:ring-
 * `secProj_L`: `P_ℓ L(G) w = L_ℓ(G) P_ℓ w` for `w ∈ Y^{k+1}` (the generator identity
   `semigroup_hasDerivWithinAt` at `t = 0`, compared sector-wise with `d/dt exp(tL_ℓ)` at `0`);
 * `ext_secProj`: elements of `Y^s(N)` are determined by their sector projections;
-* `hasDerivWithinAt_lower_duhamel`: the main step of `lem:duhamel`, `∂_t u = L(G)u + g` in `Y^k`.
+* `hasDerivWithinAt_lower_duhamel`: the main step of Part II Lemma 2.1 (`lem:duhamel`), `∂_t u = L(G)u + g` in `Y^k`.
 -/
 
 noncomputable section
@@ -151,7 +151,7 @@ theorem secProj_duhamel (s : ℕ) {f : Y s annN} {F : ℝ → Y s annN}
     rw [uIcc_of_le ht.1] at hτ
     exact (semigroup_sector (ringPhiSetting χ) hS s G (sub_nonneg.2 hτ.2) ℓ).1 (F τ)
 
-/-- `lem:sector`(2), typed: `P_ℓ L(G) w = L_ℓ(G) P_ℓ w` for `w ∈ Y^{k+1}(N)`. -/
+/-- Part I Lemma 4.5(2) (`lem:sector`), typed: `P_ℓ L(G) w = L_ℓ(G) P_ℓ w` for `w ∈ Y^{k+1}(N)`. -/
 theorem secProj_L (k : ℕ) (G : ℝ) (w : Y (k + 1) annN) (ℓ : ℤ) :
     secProj k annN ℓ (L χ k G w) =
       Lsec χ k ℓ G (secProj k annN ℓ (lowerY k (k + 1) annN w)) := by

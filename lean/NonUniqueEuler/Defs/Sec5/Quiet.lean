@@ -1,14 +1,17 @@
 import NonUniqueEuler.Defs.Sec5.Constants
 
 /-!
-# Section 5.2: a quiet ring — the constants of `thm:quiet` (definitions)
+# Part II Section 2.2: a quiet ring — the constants of `thm:quiet` (definitions)
 
-Manuscript `thm:quiet`
-(`05_single_ring.tex:408-429`).
+Manuscript Part II Theorem 2.8 (`thm:quiet`).
 
-The constants `maj_*`, `C_Q`, `C_Δ` of `thm:quiet` are used by value in later definitions
-(`09_relay.tex:39-40` (SA2), `:232` `K_O`, `:394` `C_Ξ`, `:609` `C_op`, `:943` `C_hand = K₁ C_Q`).
-Following decision D11, the conclusion of the theorem is the Prop `IsQuietConst χ s_h N_Q maj_* C_Q C_Δ`
+The Lean constants `maj_*`, `C_Q`, `C_Δ` for `thm:quiet` are used by value in later definitions
+(Part II Appendix C.1, `sec:relay-data`, and the quiet-ring, transmitted-field,
+outer-feedback and hand-off estimates in Appendix C.6–C.10). The explicit `C_Δ`
+is retained by the Lean decomposition; the current proof of Theorem 2.8
+(`thm:quiet`) uses the displacement coefficient `1 + C_BS C_Q / σ_b` without
+naming `C_Δ`.
+Following decision D11, the strengthened Lean conclusion is the Prop `IsQuietConst χ s_h N_Q maj_* C_Q C_Δ`
 ("these constants work"), and the constants are chosen from the existence statement
 (`quietConsts`; the interface theorem `thm:quiet` proves `∃ maj_* C_Q C_Δ, IsQuietConst …` under
 (N1)–(N3), `s_h ≥ 3`, `N_Q ≥ 2`, `N_Q σ_b ≥ Λ(s_h)`).
@@ -27,7 +30,7 @@ namespace OneRing
 open RingData
 
 /-- **The constants `maj_* ∈ (0,1]`, `C_Q`, `C_Δ` work in `thm:quiet`** for `s_h`, `N_Q`
-(`05_single_ring.tex:408-429`): `C_Δ maj_* ≤ a/16`, and for every configuration of
+(Part II Theorem 2.8): `C_Δ maj_* ≤ a/16`, and for every configuration of
 `lem:reduction` on `[0,T]` with `ω_r(0) = Φ` and `G ∈ [0,G₁]`, every measurable `η` with
 `‖h(t)‖_{C^{M_h}(N')} ≤ η(t) ≤ 1` on `[0,T]` whose Duhamel majorant satisfies `maj ≤ maj_*` on
 `[0,T]`:
@@ -35,8 +38,10 @@ open RingData
 trajectory of `ω_r` moves radially by at most `C_Δ maj(t)` on `[0,t]` and `supp ω_r(t) ⊂ 𝒩₋`;
 (b) `‖w(t) - wlin(t)‖_{H^{s_h}} ≤ C_Q maj(t)²`, with the linear response `wlin` (`OneRing.wlin`);
 (c) `‖w(t)‖_{H^{s_h}} ≤ C_Q maj(t)`.
-Here `maj = maj σ(G) η` (`def:majorant`). The manuscript says `C_Q, C_Δ < ∞`; they are also
-nonnegative (`C_Δ ≥ 1` in the proof), which we include. The `C^{M_h}(N')` norm of `h(t)` is finite
+Here `maj = maj σ(G) η` (`def:majorant`). This retains the explicit displacement
+constant `C_Δ` from the Lean proof decomposition; the current theorem states the support
+conclusion and its proof gives the displacement estimate. Both constants are taken
+nonnegative (`C_Δ ≥ 1` in the proof). The `C^{M_h}(N')` norm of `h(t)` is finite
 under the hypotheses (`lem:reduction`(1)), so the bound by `η` is not a junk-value bound. -/
 def IsQuietConst (χ : ℝ → ℝ) (sh NQ : ℕ) (majst CQ CΔ : ℝ) : Prop :=
   majst ∈ Ioc (0 : ℝ) 1 ∧ 0 ≤ CQ ∧ 0 ≤ CΔ ∧ CΔ * majst ≤ a / 16 ∧
@@ -58,13 +63,14 @@ when none exist). -/
 def quietConsts (χ : ℝ → ℝ) (sh NQ : ℕ) : ℝ × ℝ × ℝ :=
   if h : ∃ x : ℝ × ℝ × ℝ, IsQuietConst χ sh NQ x.1 x.2.1 x.2.2 then h.choose else (1, 0, 0)
 
-/-- `maj_*` of `thm:quiet` (`05_single_ring.tex:411-413`). -/
+/-- `maj_*` of Part II Theorem 2.8 (`thm:quiet`). -/
 def majst (χ : ℝ → ℝ) (sh NQ : ℕ) : ℝ := (quietConsts χ sh NQ).1
 
-/-- `C_Q` of `thm:quiet` (`05_single_ring.tex:411-413`). -/
+/-- `C_Q` of Part II Theorem 2.8 (`thm:quiet`). -/
 def CQ (χ : ℝ → ℝ) (sh NQ : ℕ) : ℝ := (quietConsts χ sh NQ).2.1
 
-/-- `C_Δ` of `thm:quiet` (`05_single_ring.tex:411-413`). -/
+/-- The retained Lean displacement constant `C_Δ` from the proof of Part II
+Theorem 2.8 (`thm:quiet`); it is unnamed in the current manuscript. -/
 def CDelta (χ : ℝ → ℝ) (sh NQ : ℕ) : ℝ := (quietConsts χ sh NQ).2.2
 
 /-! ### Basic lemmas (fully proved) -/

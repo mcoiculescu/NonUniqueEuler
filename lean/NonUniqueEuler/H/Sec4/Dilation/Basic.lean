@@ -8,10 +8,11 @@ import Mathlib.Analysis.Normed.Module.Ball.Pointwise
 import Mathlib.LinearAlgebra.Complex.FiniteDimensional
 
 /-!
-# Helpers for `lem:dilation`: the elementary scaling identities
+# Helpers for the retained general dilation identities: the elementary scaling identities
 
-Helper of `P/Sec4/Dilation.lean` (`lem:dilation`, `04_ring.tex:653-712`). All lemmas are
-pointwise identities or changes of variables that hold unconditionally (Lean's Bochner integral
+Helper of `P/Sec4/Dilation.lean`. The current manuscript gives the ring-specific scaling
+argument before Part I Equation 13 (`eq:evans-units`); these general dilation identities
+are retained as auxiliary Lean results. All lemmas are pointwise identities or changes of variables that hold unconditionally (Lean's Bochner integral
 is `0` for non-integrable functions on both sides).
 
 * `DilationH.dilate_dom`: `ω̄_R'(r) = R ω̄'(Rr)`;

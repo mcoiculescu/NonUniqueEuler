@@ -1,11 +1,11 @@
 import NonUniqueEuler.H.Sec4.Adjoint.Stream
 
 /-!
-# Helper for `lem:adjoint`(3): assembly
+# Helper for Part I Lemma 4.9(2) (`lem:adjoint`): assembly
 
-Helper of `P/Sec4/Adjoint.lean` (`04_ring.tex:620-629`): the statement `adjoint_stream`, proved
+Helper of `P/Sec4/Adjoint.lean` (proof of Part I Lemma 4.9 (`lem:adjoint`)): the statement `adjoint_stream`, proved
 from `Stream.lean`. The manuscript's identification "the stream function of `g_*e^{iℓθ}` is
-`(𝒢_ℓ g_*) e^{iℓθ}`" (`lem:sector`(1)) is an a.e. statement; the pointwise statement follows by
+`(𝒢_ℓ g_*) e^{iℓθ}`" (Part I Lemma 4.5(1) (`lem:sector`)) is an a.e. statement; the pointwise statement follows by
 continuity of both sides on `ℂ \ {0}` and, at `0`, of the log potential.
 -/
 

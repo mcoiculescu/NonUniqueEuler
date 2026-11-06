@@ -5,7 +5,7 @@ import NonUniqueEuler.H.SmoothB.IterCauchy.Calculus
 /-!
 # Helper for `lem:iter-cauchy`: the energy step
 
-`B_global_smooth.tex:362-375`. For `j = k + 1 ≥ 1`, `δ = ω^{[j+1]} - ω^{[j]}` satisfies
+Part II, Lemma B.9 (`lem:iter-cauchy`). For `j = k + 1 ≥ 1`, `δ = ω^{[j+1]} - ω^{[j]}` satisfies
 `∂_t δ + v^{[j]}·∇δ = -(K ∗ (ω^{[j]} - ω^{[j-1]}))·∇ω^{[j]}`; multiplying by `δ` and integrating,
 the transport term vanishes and
 
@@ -28,7 +28,7 @@ namespace NonUniqueEuler.Smooth.IterCauchyAux
 variable {ω₀ : ℂ → ℝ} {R₀ : ℝ}
 
 /-- The energy identity: `d/dt e_{k+2}² = -2 ∫ δ (v^{[k+1]} - v^{[k]})·∇ω^{[k+1]}` with
-`δ = ω^{[k+2]} - ω^{[k+1]}` (`B_global_smooth.tex:364-370`). -/
+`δ = ω^{[k+2]} - ω^{[k+1]}` (Part II, Lemma B.9 (`lem:iter-cauchy`)). -/
 theorem hasDerivAt_iterErr_sq (h : IsSmoothDatum ω₀ R₀) (hne : ω₀ ≠ 0) (k : ℕ) (t : ℝ) :
     HasDerivAt (fun τ => iterErr ω₀ (k + 2) τ ^ 2)
       (-2 * ∫ x, (iter ω₀ (k + 2) t x - iter ω₀ (k + 1) t x) *
@@ -106,7 +106,7 @@ theorem hasDerivAt_iterErr_sq (h : IsSmoothDatum ω₀ R₀) (hne : ω₀ ≠ 0)
     integral_const_mul, htr]
   simp only [hδ_def, mul_zero, zero_add]
 
-/-- The bound of the forcing term (`B_global_smooth.tex:370-373`): for `|t| ≤ T`,
+/-- The bound of the forcing term (Part II, Lemma B.9 (`lem:iter-cauchy`)): for `|t| ≤ T`,
 `|∫ δ (v^{[k+1]} - v^{[k]})·∇ω^{[k+1]}| ≤ Ψ(T) e_{k+2}(t) · 2R(T) e_{k+1}(t)`. -/
 theorem abs_integral_le (h : IsSmoothDatum ω₀ R₀) (hne : ω₀ ≠ 0) (k : ℕ) {T : ℝ}
     {t : ℝ} (ht : t ∈ Icc (-T) T) :
@@ -196,7 +196,7 @@ theorem abs_integral_le (h : IsSmoothDatum ω₀ R₀) (hne : ω₀ ≠ 0) (k : 
   rw [iterErr_succ, iterErr_succ]
   ring
 
-/-- `|d/dt e_{k+2}²| ≤ 4R(T)Ψ(T) e_{k+1} e_{k+2}` on `[-T, T]` (`B_global_smooth.tex:373-374`). -/
+/-- `|d/dt e_{k+2}²| ≤ 4R(T)Ψ(T) e_{k+1} e_{k+2}` on `[-T, T]` (Part II, Lemma B.9 (`lem:iter-cauchy`)). -/
 theorem iterErr_sq_deriv_bound (h : IsSmoothDatum ω₀ R₀) (hne : ω₀ ≠ 0) (k : ℕ) {T : ℝ}
     {t : ℝ} (ht : t ∈ Icc (-T) T) :
     ∃ D : ℝ, HasDerivAt (fun τ => iterErr ω₀ (k + 2) τ ^ 2) D t ∧

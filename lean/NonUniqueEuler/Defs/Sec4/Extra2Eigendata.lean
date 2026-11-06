@@ -1,15 +1,15 @@
 import NonUniqueEuler.Defs.Sec4.Eigendata
 
 /-!
-# Section 4.5: two auxiliary objects of the eigendata (definitions)
+# Part I Section 4.6: two auxiliary objects of the eigendata (definitions)
 
-Manuscript `04_ring.tex:1333-1338` (the representer of
-`ℓ_*(G)` on `L²(N)`, the remark after `def:eigendata`) and `04_ring.tex:1522-1530`
+Manuscript Part I Definition 4.20 (`def:eigendata`) (the representer of
+`ℓ_*(G)` on `L²(N)`, the remark after `def:eigendata`) and Part I Lemma 4.23 (`lem:uniform`)
 (`lem:uniform`: the field term `h·∇Φ`).
 
 * `Eig.ellRep χ G`: the function
   `x ↦ (n_*/(2π conj J)) conj(ψ_*(log|x|) M_*(|x|)) e^{3iθ}` restricted to `N`, which represents
-  `ℓ_*(G)` on `L²(N)`: `ℓ_*(G)(w) = ∫ w conj(ellRep)` (`04_ring.tex:1333-1338`). With
+  `ℓ_*(G)` on `L²(N)`: `ℓ_*(G)(w) = ∫ w conj(ellRep)` (Part I Definition 4.20 (`def:eigendata`)). With
   `S.adjEig ℓ z G r = conj(ψ_*(log r) M_*(r))` this is `n_*/(2π conj J) · ofProfile 3 adjEig` on
   `N`. Check: `∫_N w · conj(ellRep) = (n_*/(2πJ)) ∫ (∫_0^{2π} w e^{-3iθ} dθ) ψ_* M_* r dr
   = n_* J⁻¹ ∫ w_3 ψ_* M_* r dr = n_* ℓ_*(w_3)`.
@@ -30,7 +30,7 @@ namespace Eig
 
 open RingData
 
-/-- The representer of `ℓ_*(G)` on `L²(N)` (`04_ring.tex:1333-1338`):
+/-- The representer of `ℓ_*(G)` on `L²(N)` (Part I Definition 4.20 (`def:eigendata`)):
 `x ↦ (n_*/(2π conj J)) conj(ψ_*(log|x|) M_*(|x|)) e^{3iθ}` on `N`, and `0` outside `N`. -/
 def ellRep (χ : ℝ → ℝ) (G : ℝ) : ℂ → ℂ :=
   annN.indicator fun x =>
@@ -38,7 +38,7 @@ def ellRep (χ : ℝ → ℝ) (G : ℝ) : ℂ → ℂ :=
       Ang.ofProfile 3 ((ringPhiSetting χ).adjEig 3 (lam χ G) G) x
 
 /-- The field term `h·∇Φ = h₁ ∂₁Φ + h₂ ∂₂Φ` for a vector field `h = h₁ + i h₂ : ℂ → ℂ`
-(`04_ring.tex:1522-1530`), with the complexified ring `Φ`. -/
+(Part I Lemma 4.23 (`lem:uniform`)), with the complexified ring `Φ`. -/
 def hGradPhi (χ : ℝ → ℝ) (h : ℂ → ℂ) : ℂ → ℂ :=
   Sob.dotGrad h fun y => ((ringPhi χ y : ℝ) : ℂ)
 

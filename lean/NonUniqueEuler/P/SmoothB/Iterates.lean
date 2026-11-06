@@ -10,7 +10,7 @@ import Mathlib.MeasureTheory.Function.LpSpace.Indicator
 /-!
 # Proof of `lem:iterates` (the iterates are defined, smooth, transported, norm-preserving)
 
-Proof of the interface `I/SmoothB/Iterates.lean` (`lem:iterates`, `B_global_smooth.tex:208-260`).
+Proof of the interface `I/SmoothB/Iterates.lean` (Part II, Lemma B.6 (`lem:iterates`)).
 
 The manuscript argues by induction on `j`. The induction predicate (`IterGood ω₀ j`, private)
 is (i) together with (ii) for **every** `p ∈ [0, ∞]` (the measure-preservation argument does not

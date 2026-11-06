@@ -6,10 +6,11 @@ import NonUniqueEuler.I.Sec6.Clock
 /-!
 # Helper for `P/Sec11/BootQuietSize.lean`: elementary facts
 
-Helper of the proof of Step 5 of `prop:bootstrap` (`11_bootstrap.tex:486-530`): positivity of
+Helper of the proof of Lean step 5 of the historical bootstrap decomposition (Part II Appendix C.18
+(`sec:bootstrap-quiet-checks`)): positivity of
 `A_k`, `s_k`, `σ_k`, `T̂_k`; `A_{j+1} = μA_j`; `ε_p ≤ μs̄^{m+2}`; rings are not debris while quiet;
 `t♯_i ≥ 0`; the signs of `maj`, `θ_j`, `C_*`, `C_D(T_pin)`, `C_M(2C_Q/(σ_b(μ-1)) + 1)`. All proved.
-(Some of these are also proved, independently, in the helpers of other Section 11 steps; helper
+(Some of these are also proved, independently, in the helpers of other `Sec11` steps; helper
 files of other proofs may not be imported (import rules, `README.md`).)
 -/
 

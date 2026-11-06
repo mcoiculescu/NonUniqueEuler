@@ -9,7 +9,8 @@ import NonUniqueEuler.I.Sec4.Resolvent.Reduction
 /-!
 # Helpers for `P/Sec4/EvansSimple/Range`: the boundary value problem at a zero of `E_ℓ`
 
-The argument of `thm:evans-simple`(3) (`04_ring.tex:536-551`) with a general right side `g`:
+The retained generalized-eigenvector argument with a general right side `g`. This is
+auxiliary material beyond the current Part I Theorem 4.8 (`thm:evans-simple`):
 at a zero `λ_*` of `E_ℓ`, let `φ₂` solve `φ₂'' = V_ℓφ₂` with `ψ_*φ₂' - ψ_*'φ₂ = 1`
 (`exists_second_sol`); with `F = e^{2ξ}(M_* g)(e^ξ)` and `c < log ρ₋`,
 `ψ = φ₂ ∫_c^ξ ψ_*F - ψ_* ∫_c^ξ φ₂F` solves `ψ'' = V_ℓψ + F` (integrated form,
@@ -61,8 +62,8 @@ theorem exists_second_sol (S : SectorSetting) (hS : S.Valid) (ℓ : ℕ) (hℓ :
   rw [h, hu0, hu1, hv0, hv1]
   ring
 
-/-- **The boundary value problem at a zero of `E_ℓ`** (`04_ring.tex:540-551`, general right
-side): if `E_ℓ(λ;G) = 0` and `∫_0^∞ g ψ_*(log r) M_* r dr = 0`, then `ψ'' = V_ℓψ + F`
+/-- **The boundary value problem at a zero of `E_ℓ`**, an auxiliary extension beyond
+Part I Theorem 4.8 (`thm:evans-simple`): if `E_ℓ(λ;G) = 0` and `∫_0^∞ g ψ_*(log r) M_* r dr = 0`, then `ψ'' = V_ℓψ + F`
 (`F = S.Fres ℓ z G g`) has a `C¹` solution, in integrated form, that is a multiple of `e^{ℓξ}`
 on a left half-line and of `e^{-ℓξ}` on a right half-line. -/
 theorem bvp_of_orth (S : SectorSetting) (hS : S.Valid) (ℓ : ℕ) (hℓ : 1 ≤ ℓ) {z : ℂ}

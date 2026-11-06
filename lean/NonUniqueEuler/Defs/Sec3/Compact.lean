@@ -1,24 +1,24 @@
 import NonUniqueEuler.Defs.Sec3.Paths
 
 /-!
-# Section 3: the setting and the conclusions of `prop:compact`
+# Part I Section 3: the setting and the conclusions of legacy `prop:compact`
 
-Manuscript source: `prop:compact` (`03_compactness.tex:251-271`), reused verbatim by
-`prop:stable` ("In Proposition compact, assume in addition …", `03_compactness.tex:716-723`) and
-by the proof of `thm:criterion` (`03_compactness.tex:969-1077`).
+Current manuscript: the compactness argument in the proof of Part I Theorem 3.8
+(`thm:criterion`). The standalone labels `prop:compact` and `prop:stable` belong to the
+legacy decomposition retained by Lean; neither is a current manuscript proposition.
 
-* `IsCompactSeq T M gs g ωs`: the hypotheses of `prop:compact`: `T > 0`; `gₙ, g ∈ L¹ ∩ L²`,
+* `IsCompactSeq T M gs g ωs`: the hypotheses of legacy `prop:compact`: `T > 0`; `gₙ, g ∈ L¹ ∩ L²`,
   `gₙ ⇀ g` weakly in `L²`; `ωₙ` weak solutions in `X₂(T)` with data `gₙ`, identified with their
   weakly continuous representatives on `[0, T]` (`IsWeakContL2On`, the convention of
-  `03_compactness.tex:238-247`), and `sup_n sup_{t ∈ [0,T]} ‖ωₙ(t)‖_{L¹ ∩ L²} ≤ M`.
-* `IsCompactLimit T g ωs ω`: the conclusions of `prop:compact` for the (already extracted)
+  Part I §3.2 (`sec:weak-rep`)), and `sup_n sup_{t ∈ [0,T]} ‖ωₙ(t)‖_{L¹ ∩ L²} ≤ M`.
+* `IsCompactLimit T g ωs ω`: the conclusions of legacy `prop:compact` for the (already extracted)
   sequence `ωs` and the limit `ω`: `ω` is a weak solution in `X₂(T)` with datum `g`, weakly
   continuous on `[0, T]`, and (i) uniform weak convergence on `[0, T]`, (ii) lower
   semicontinuity of `‖·‖_{L^q}`, `q ∈ [1, 2]`, at every `t ∈ [0, T]`, (iii) `K ∗ ωₙ → K ∗ ω`
   in `L^s(0, T; L²(B_R))` for all `s ∈ [1, ∞)`, `R > 0`.
 
-`prop:compact` then reads `IsCompactSeq T M gs g ωs → ∃ φ, StrictMono φ ∧ ∃ ω,
-IsCompactLimit T g (fun n => ωs (φ n)) ω`, and `prop:stable` takes `IsCompactSeq` and
+legacy `prop:compact` then reads `IsCompactSeq T M gs g ωs → ∃ φ, StrictMono φ ∧ ∃ ω,
+IsCompactLimit T g (fun n => ωs (φ n)) ω`, and legacy `prop:stable` takes `IsCompactSeq` and
 `IsCompactLimit` as hypotheses. Both predicates pass to subsequences (`IsCompactSeq.subseq`,
 `IsCompactLimit.subseq`).
 
@@ -34,7 +34,7 @@ namespace NonUniqueEuler.Compact
 
 open Weak
 
-/-- The hypotheses of `prop:compact` (`03_compactness.tex:253-260`). -/
+/-- The hypotheses of legacy `prop:compact` (the compactness argument in the proof of Part I Theorem 3.8 (`thm:criterion`)). -/
 structure IsCompactSeq (T M : ℝ) (gs : ℕ → ℂ → ℝ) (g : ℂ → ℝ) (ωs : ℕ → ℝ → ℂ → ℝ) :
     Prop where
   T_pos : 0 < T
@@ -46,17 +46,17 @@ structure IsCompactSeq (T M : ℝ) (gs : ℕ → ℂ → ℝ) (g : ℂ → ℝ) 
   weakTendsto : Prelim.WeakTendstoLp 2 gs g
   /-- `ωₙ` is a weak solution in `X₂(T)` with datum `gₙ`. -/
   weakSolution : ∀ n, IsWeakSolution 2 T (gs n) (ωs n)
-  /-- `ωₙ` is its own weakly continuous representative on `[0, T]` (`03_compactness.tex:238-247`). -/
+  /-- `ωₙ` is its own weakly continuous representative on `[0, T]` (Part I §3.2 (`sec:weak-rep`)). -/
   weakCont : ∀ n, IsWeakContL2On (Icc 0 T) (ωs n)
   /-- `sup_n sup_{t ∈ [0,T]} ‖ωₙ(t)‖_{L¹ ∩ L²} ≤ M`. -/
   bound : ∀ n, ∀ t ∈ Icc 0 T, normL1LpE 2 (ωs n t) ≤ ENNReal.ofReal M
 
-/-- The conclusions of `prop:compact` (`03_compactness.tex:260-271`) for the sequence `ωs` (the
+/-- The conclusions of legacy `prop:compact` (the compactness argument in the proof of Part I Theorem 3.8 (`thm:criterion`)) for the sequence `ωs` (the
 extracted subsequence) and the limit `ω`. -/
 structure IsCompactLimit (T : ℝ) (g : ℂ → ℝ) (ωs : ℕ → ℝ → ℂ → ℝ) (ω : ℝ → ℂ → ℝ) : Prop where
   /-- `ω` is a weak solution in `X₂(T)` with datum `g`. -/
   weakSolution : IsWeakSolution 2 T g ω
-  /-- `ω` is weakly continuous into `L²` on `[0, T]` (`03_compactness.tex:288-289`, `:337-338`). -/
+  /-- `ω` is weakly continuous into `L²` on `[0, T]` (the compactness argument in the proof of Part I Theorem 3.8 (`thm:criterion`)). -/
   weakCont : IsWeakContL2On (Icc 0 T) ω
   /-- (i) `sup_{t ∈ [0,T]} |∫ (ωₙ(t) - ω(t)) ψ| → 0` for every `ψ ∈ L²`. -/
   weakTendstoUnif : WeakTendstoUnifL2On ωs ω (Icc 0 T)

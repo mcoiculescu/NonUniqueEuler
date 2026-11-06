@@ -3,7 +3,7 @@ import NonUniqueEuler.Statement.Ring
 /-!
 # Proof: the explicit cutoff is admissible
 
-Proof of `I/Ring/ChiStd.lean` (`lem:ring-facts`, `04_ring.tex:71-76`).
+Proof of `I/Ring/ChiStd.lean` (the cutoff construction in Part I, Lemma 4.2, `lem:ring-facts`).
 -/
 
 namespace NonUniqueEuler.RingData

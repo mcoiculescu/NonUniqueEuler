@@ -8,7 +8,7 @@ import Mathlib.Analysis.Complex.CauchyIntegral
 # Proof: circulation and flux of Biot–Savart fields through circles (I-MULT, R11)
 
 Proof of `NonUniqueEuler/I/Infra/Multipole/Circulation.lean` (same declarations, same
-statements). Manuscript: `05_single_ring.tex:165-176` (proof of `lem:reduction`(1)), restructured
+statements). Manuscript: Part II, Lemma 2.2(1) (`lem:reduction`), proof, restructured
 through the complex form of the Biot–Savart law (restructuring R11: no general winding numbers).
 
 * Point vortex: `conj (K (z - y)) = (2πi)⁻¹ (z - y)⁻¹` (`conj_biotSavartKernel`); inside the

@@ -7,7 +7,7 @@ import Mathlib.Analysis.Calculus.BumpFunction.InnerProduct
 /-!
 # Proof: `lem:dbr` (du Bois-Reymond lemma on a half-open time interval)
 
-Proof of `I/Sec3/Dbr.lean` (`03_compactness.tex:68-90`).
+Proof of `I/Sec3/Dbr.lean` (Part I Lemma 3.1 (`lem:dbr`)).
 
 We follow the alternative route recorded in the interface docstring (a restructuring of the
 manuscript's mollification argument, same statement):
@@ -135,7 +135,7 @@ theorem exists_test_one {t₀ T : ℝ} (hT : t₀ < T) :
 
 end Dbr
 
-/-- `lem:dbr` (`03_compactness.tex:68-76`): if `B ∈ L^∞(t₀,T)` satisfies
+/-- `lem:dbr` (Part I Lemma 3.1 (`lem:dbr`)): if `B ∈ L^∞(t₀,T)` satisfies
 `∫_{t₀}^T α' B + α(t₀) b₀ = 0` for every `α ∈ C_c^∞((-∞,T))`, then `B = b₀` a.e. on `(t₀,T)`. -/
 theorem duBoisReymond {t₀ T b₀ : ℝ} (hT : t₀ < T) {B : ℝ → ℝ}
     (hB : MemLp B ⊤ (volume.restrict (Ioo t₀ T)))

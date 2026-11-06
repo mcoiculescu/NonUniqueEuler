@@ -4,7 +4,7 @@ import NonUniqueEuler.I.Sec3.Transport.Mollified
 /-!
 # Helper for `P/Sec3/Transport`: `(te)` for `Υ(u)`, `Υ` a renormalization
 
-`lem:transport`(i) for `C¹` renormalizations (`03_compactness.tex:494-518`):
+`lem:transport`(i) for `C¹` renormalizations (Part I Lemma 3.4 (`lem:transport`) and its proof):
 `solvesTE_renormalization`. For `φ ∈ 𝒟_T` the mollified identity
 (`transport_mollified_identity`, `I/Sec3/Transport/Mollified.lean`) holds for every
 `ε_n = 1/(n+1)`; its three terms converge (`H/Sec3/Transport/Limit.lean`) to the transport term

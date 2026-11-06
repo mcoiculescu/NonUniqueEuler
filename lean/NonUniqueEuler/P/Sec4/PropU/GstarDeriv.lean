@@ -8,7 +8,7 @@ import NonUniqueEuler.H.Sec4.PropU.GstarDeriv.Slice
 # Proof: the `r`-derivatives of `g_λ = M_λ k_ℓ ψ_ℓ(log r)` are jointly continuous in
 `(r, λ, G)` (sub-step of `prop:U`(b))
 
-Proof of `I/Sec4/PropU/GstarDeriv.lean` (`04_ring.tex:1403-1410`), following its sketch.
+Proof of `I/Sec4/PropU/GstarDeriv.lean` (Part I Proposition 4.21 (`prop:U`)), following its sketch.
 1. `GstarDerivP.contDiffOn_Vric`: `V_ℓ(ξ;λ,G)` is jointly `C^∞` on `ℝ × {Re λ > 0} × ℝ`
    (`Omega_eq_add`, `contDiffOn_Omega`; the denominator has real part `Re λ > 0`), so its
    `ξ`-derivatives are jointly continuous (`GstarDerivH.continuousOn_iteratedDeriv_slice`).
@@ -141,7 +141,7 @@ theorem gStar_eq (S : SectorSetting) (hS : S.Valid) (ℓ : ℕ) (hℓ : 1 ≤ �
 
 end GstarDerivP
 
-/-- `prop:U`(b), core of the regularity in `C^k([r₁,r₂])` (`04_ring.tex:1403-1410`): for a valid
+/-- `prop:U`(b), core of the regularity in `C^k([r₁,r₂])` (Part I Proposition 4.21 (`prop:U`)): for a valid
 sector setting and `ℓ ≥ 1`, every `r`-derivative of `g_λ(r;G) = M_λ(r) k_ℓ(r) ψ_ℓ(log r;λ,G)` is
 jointly continuous in `(r, λ, G)` on `(0,∞) × {Re λ > 0} × ℝ`. -/
 theorem gStar_iteratedDeriv_continuousOn (S : SectorSetting) (hS : S.Valid) (ℓ : ℕ)

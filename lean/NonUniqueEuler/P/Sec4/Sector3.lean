@@ -8,8 +8,10 @@ import NonUniqueEuler.I.Sec4.RingFacts
 /-!
 # Proof: `cor:sector-3` (the sector `ℓ = 3` in reference units)
 
-Proof of `I/Sec4/Sector3.lean` (`04_ring.tex:1205-1216`, proof `:1217-1231`). Same declaration,
-statement copied verbatim.
+This retains the interface `I/Sec4/Sector3.lean`. Current Part I Corollary 4.18
+(`cor:sector-3`) states the simple-zero conclusion. The spectral and Riesz-projection
+conclusions here also use Part I Lemma 4.7 (`lem:resolvent`) and Theorem 4.8
+(`thm:evans-simple`), as in the proof of Proposition 4.19 (`prop:SU`).
 
 Proof (as in the manuscript). Fix `G ∈ [0,1/50]` and `s`; `S = ringRefSetting χ` is a sector
 setting (`ringRefSetting_valid`), and its Evans function is the statement layer's `evans χ 3` on
@@ -41,7 +43,7 @@ private lemma deriv_ringRefSetting_evans {χ : ℝ → ℝ} (hχ : IsAdmissibleC
   filter_upwards [hopen.mem_nhds hz] with w hw
   exact ringRefSetting_evans hχ 3 (by norm_num) w hw G
 
-/-- **`cor:sector-3`** (`04_ring.tex:1205-1216`): assume (N1), (N2). For `G ∈ [0, 1/50]` and every
+/-- **`cor:sector-3`** (Part I Corollary 4.18 (`cor:sector-3`)): assume (N1), (N2). For `G ∈ [0, 1/50]` and every
 `s`, on `Y^s_3` of the ring in reference units: `L_3(G)` has exactly one eigenvalue
 `λ_*^c(G) = Eig.lamC χ G` with `Re ≥ 9/200`; it is a simple zero of `E_3(·;G)`, `J ≠ 0`, it is
 algebraically simple with the Riesz projection `g ↦ ℓ_*(g) g_*` of `thm:evans-simple`(2), and

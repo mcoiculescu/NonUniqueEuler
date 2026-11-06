@@ -8,17 +8,22 @@ import NonUniqueEuler.I.Sec6.Adm
 import NonUniqueEuler.I.Sec4.Uniform
 
 /-!
-# Proof: `thm:main-explicit` (the main theorem in explicit form)
+# The limit solution in the proof of the reduction proposition
 
-Proof of `I/Sec11/MainExplicit.lean` (`11_bootstrap.tex:665-683`, proof `:685-721`).
+Current source: Part II §8, proof of Proposition 1.2 (`prop:reduction`), in
+`manuscript/part2/sections/11_bootstrap.tex`. The retired label `thm:main-explicit`
+is retained only as the historical provenance of the Lean bundle `Params.MainExplicit`.
+This file proves that bundle; the current manuscript has no separate numbered theorem
+with that label.
 
-1. `T_* ≥ 1/A₁` (`Tstar_ge`): the bracket of `T_*` is `1` plus nonnegative terms
-   (`T_pin > 0`, `σ' > 9/200`, `μ > 1`, `0 < s̄ ≤ a/16 < 1`, `2κ_seed < δ₀`).
-2. `c₀ = ½A₁c_outδ₀ > 0` (`c0_pos`, `c_out > 0` by `Eig.uniform_constants`).
-3. `prop:defect` (`Compact.defect`) with `T̄ = T_*`, `χ = χ_out = Relay.chiOut`, `m = 3`,
-   `fs n = f^{(n+2)}`, `ωs n = ω^{(n+2)}`: hypotheses from `prop:integrability`
-   (`Datum.integrability`), `lem:adm` (`Datum.adm`, `q = 2`), `approx_weakCont`, `thm:Rsharp`.
-4. (ii) from `lem:radial-stationary` (`Compact.radial_stationary`) and the conclusions of step 3.
+1. `T_* ≥ 1/A₁` (`Tstar_ge`): the bracket defining `T_*` is `1` plus nonnegative terms.
+2. `c₀ = ½A₁c_outδ₀ > 0` (`c0_pos`), using `Eig.uniform_constants`.
+3. Part I Corollary 3.9 (`cor:defect`, Lean `Compact.defect`) applies with `T̄ = T_*`,
+   `χ = χ_out = Relay.chiOut`, `m = 3`, `fs n = f^{(n+2)}` and `ωs n = ω^{(n+2)}`.
+   Inputs are Proposition 3.2 (`prop:integrability`), Lemma 3.4 (`lem:adm`),
+   `approx_weakCont`, and the uniform moment bound `Rsharp`.
+4. Part I Lemma 3.6 (`lem:radial-stationary`) supplies the stationary solution and
+   completes the non-uniqueness conclusion.
 -/
 
 noncomputable section
@@ -33,7 +38,7 @@ open RingData Datum
 
 namespace MainExplicitProof
 
-/-- The bracket of `T_*` is at least `1` (`11_bootstrap.tex:687-689`). -/
+/-- The bracket of `T_*` is at least `1` (Part II §8, proof of Proposition 1.2 (`prop:reduction`)). -/
 theorem one_le_bracket (p : Params) (hL : p.Lists) (A₁ : ℝ) :
     1 ≤ p.μ / (p.μ - 1) * ((p.standing A₁ 2).Tz + (3 + 2) / p.σ' * Real.log (1 / p.sbar)) +
       (3 + 2) * Real.log (2 * p.μ) / p.σ' * (p.μ ^ 2 / (p.μ - 1) ^ 2) + 1 +
@@ -79,7 +84,7 @@ theorem one_le_bracket (p : Params) (hL : p.Lists) (A₁ : ℝ) :
     mul_nonneg (div_nonneg zero_le_one hσ.le) hlogδ
   linarith
 
-/-- `T_* ≥ 1/A₁` (`11_bootstrap.tex:687-689`). -/
+/-- `T_* ≥ 1/A₁` (Part II §8, proof of Proposition 1.2 (`prop:reduction`)). -/
 theorem Tstar_ge (p : Params) (hL : p.Lists) {A₁ : ℝ} (hA₁ : 0 < A₁) :
     1 / A₁ ≤ p.Tstar A₁ := by
   have hb := one_le_bracket p hL A₁
@@ -88,7 +93,7 @@ theorem Tstar_ge (p : Params) (hL : p.Lists) {A₁ : ℝ} (hA₁ : 0 < A₁) :
   calc A₁⁻¹ = A₁⁻¹ * 1 := (mul_one _).symm
     _ ≤ _ := mul_le_mul_of_nonneg_left hb (inv_nonneg.mpr hA₁.le)
 
-/-- `c₀ = ½A₁c_outδ₀ > 0` (`11_bootstrap.tex:696-698`). -/
+/-- `c₀ = ½A₁c_outδ₀ > 0` (Part II §8, proof of Proposition 1.2 (`prop:reduction`)). -/
 theorem c0_pos (p : Params) (hχ : IsAdmissibleCutoff p.χ) (hN : NumericalHypothesis p.χ)
     (hL : p.Lists) {A₁ : ℝ} (hA₁ : 0 < A₁) : 0 < p.c0 A₁ := by
   rw [Params.c0_def]
@@ -99,7 +104,8 @@ theorem c0_pos (p : Params) (hχ : IsAdmissibleCutoff p.χ) (hN : NumericalHypot
 end MainExplicitProof
 
 open MainExplicitProof in
-/-- **`thm:main-explicit`** (`11_bootstrap.tex:665-683`). Assume (N1)–(N3), an admissible cutoff,
+/-- **The historical `thm:main-explicit` decomposition** (Part II §8, proof of Proposition 1.2
+(`prop:reduction`)). Assume (N1)–(N3), an admissible cutoff,
 parameters `p` with (P0)–(P6), and `A₁ > 0`. Then `T_* ∈ [1/A₁, ∞)`, and there are a renormalized
 weak solution `ω_∞` on `[0, ∞)` with datum `f` (`q = 2`) and `t₀ ∈ [0, T_*)` with the properties
 (i), (ii) (`p.MainExplicit A₁`). -/
@@ -125,7 +131,7 @@ theorem main_explicit (p : Params) (hχ : IsAdmissibleCutoff p.χ) (hN : Numeric
     approx_weakCont p.χ hχ hN hdp hκ (by omega : 2 ≤ n + 2)
   have hsym : ∀ n, ∀ t : ℝ, 0 ≤ t → IsMFoldSymmetric 3 (p.approxVort A₁ (n + 2) t) :=
     fun n t _ => ((hadm1 (n + 2) (by omega)).2.2.2.2) t
-  -- `thm:Rsharp` with `χ_out = chiOut`
+  -- the historical `thm:Rsharp` decomposition with `χ_out = chiOut`
   have hR := Rsharp p hχ hN hL hA₁ isReadoutCutoff_chiOut
   choose! Tn hTn hlowR using hR
   have hlow : ∀ᶠ n in atTop, Tn (n + 2) ∈ Icc 0 (p.Tstar A₁) ∧
@@ -133,7 +139,7 @@ theorem main_explicit (p : Params) (hχ : IsAdmissibleCutoff p.χ) (hN : Numeric
         Compact.defectTest chiOut 3 x‖ :=
     Filter.Eventually.of_forall fun n =>
       ⟨hTn (n + 2) (by omega), hlowR (n + 2) (by omega)⟩
-  -- `prop:defect` with `T̄ = T_*`, `c₀ = p.c0 A₁`
+  -- Part I Corollary 3.9 (`cor:defect`) with `T̄ = T_*`, `c₀ = p.c0 A₁`
   obtain ⟨ωinf, hhalf, heq, hcLp, ⟨t₀, ht₀, ht₀T, hdist⟩, hren⟩ :=
     Compact.defect (f := p.datum A₁) (m := 3) (χ := chiOut)
       (fs := fun n => approxDatum p.χ A₁ p.μ p.sbar p.κs (n + 2))

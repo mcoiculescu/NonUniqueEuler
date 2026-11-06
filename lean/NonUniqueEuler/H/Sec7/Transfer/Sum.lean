@@ -10,7 +10,7 @@ import NonUniqueEuler.H.Sec7.Transfer.Outer
 /-!
 # Helper for `lem:transfer`(4): the field of `ω(t)1_{S_1(t)∪…∪S_{k-1}(t)}` on `N'_k`
 
-Helper of `P/Sec7/Transfer.lean` (`07_several_rings.tex:229-237`).
+Helper of `P/Sec7/Transfer.lean` (Part II Lemma 4.1 (`lem:transfer`)).
 * `velocity_radial_eq_zero`: the field of the radial `A_iΦ(·/r_i)`, supported in `{|x| ≥ ar_i}`,
   vanishes on `B_{ar_i}` (`lem:hollow`, with `angAvg Φ(·/r_i) = Φ(·/r_i)`);
 * `velocity_wPhys_eq`: since `ω(t)1_{S_i(t)} = A_iΦ(·/r_i) + A_iw_i(t,·/r_i)`, the two fields
@@ -174,7 +174,7 @@ theorem velocity_wPhys_eq (P : Approx) (hP : P.Valid) (hN : NumericalHypothesis 
   rfl
 
 /-- **`lem:transfer`(4), the identity**, on `B_4 ⊃ N'` in ring-`k` units
-(`07_several_rings.tex:229-237`). -/
+(Part II Lemma 4.1 (`lem:transfer`)). -/
 theorem outer_sum_eq_ball (P : Approx) (hP : P.Valid) (hN : NumericalHypothesis P.χ) {k : ℕ}
     (hk : 1 ≤ k) (hkn : k ≤ P.n) {t : ℝ} (ht : 0 ≤ t) :
     ∀ y ∈ ball (0 : ℂ) 4, P.unitsField k (velocity (P.omegaOut k t)) y =

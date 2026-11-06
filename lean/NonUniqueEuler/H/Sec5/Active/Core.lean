@@ -11,9 +11,9 @@ Helper of `P/Sec5/Active.lean` (fully proved, modulo the interface files it impo
 * `LayerProp`: the property of the layer constants (`I/Sec5/Active/Layer.lean`);
 * `concl_of_core`: from the displacement bound (a), the bound (b) on `w - 2Re(ce^{λu}φ_*)` with
   some constant `K` (`6C_φ + 3K ≤ C₂`) and `|c(u)e^{λu}| ≤ â(3 + ρ̂)`, all conclusions of
-  `thm:active` and `cor:active-moment` follow (`05_single_ring.tex:1015-1020`, `:1078-1094`,
-  `:1112-1122`);
-* `concl_layer`: the case `u ≤ t₁` (`05_single_ring.tex:1001-1020`).
+  `thm:active` and `cor:active-moment` follow (Part II Theorem 2.12,
+  Part II Corollary 2.13);
+* `concl_layer`: the case `u ≤ t₁` (Part II Theorem 2.12).
 -/
 
 noncomputable section
@@ -49,7 +49,7 @@ theorem sqrt_le_one_of {κ : ℝ} (hκ1 : κ ≤ 1) : Real.sqrt κ ≤ 1 := by
   rw [show (1 : ℝ) = Real.sqrt 1 by simp]
   exact Real.sqrt_le_sqrt hκ1
 
-/-- **The final step** (`05_single_ring.tex:1015-1020`, `:1078-1094`, `:1112-1122`). -/
+/-- **The final step** (Part II Theorem 2.12 (`thm:active`), Part II Theorem 2.12 (`thm:active`), Part II Corollary 2.13 (`cor:active-moment`)). -/
 theorem concl_of_core (χ : ℝ → ℝ) (hχ : IsAdmissibleCutoff χ) (hN : NumericalHypothesis χ)
     {s : ℕ} {σ' C₀ : ℝ} (hC₀ : 0 ≤ C₀) {c : RingConfig} {ubar : ℝ}
     (hc : c.Hyp ubar) (hG : c.G ∈ Icc (0 : ℝ) Gbar) (h0 : tsupport c.ring0 ⊆ annNm)
@@ -120,7 +120,7 @@ theorem norm_coef_exp (χ : ℝ → ℝ) (G : ℝ) (z : ℂ) (u : ℝ) :
     ‖z * Complex.exp (Eig.lam χ G * u)‖ = ‖z‖ * Real.exp (Eig.sigma χ G * u) := by
   rw [norm_mul, norm_exp_lam]
 
-/-- **The case `u ≤ t₁`** (`05_single_ring.tex:1001-1020`). -/
+/-- **The case `u ≤ t₁`** (Part II Theorem 2.12 (`thm:active`)). -/
 theorem concl_layer (χ : ℝ → ℝ) (hχ : IsAdmissibleCutoff χ) (hN : NumericalHypothesis χ)
     {s : ℕ} {σ' : ℝ} (hσ' : σ' ∈ Ioo (9 / 200 : ℝ) (Eig.sigb χ))
     {CL C₀ κL C₄ C₂ C₃ : ℝ} (hCL : 0 ≤ CL) (hC₀ : 1 ≤ C₀) (hC₄ : 0 ≤ C₄)

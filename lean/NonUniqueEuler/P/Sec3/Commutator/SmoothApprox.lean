@@ -5,7 +5,11 @@ import NonUniqueEuler.H.Sec3.Commutator.SmoothApprox.Sobolev
 /-!
 # Proof: smooth divergence-free approximation of an `H¹_loc` divergence-free field
 
-Proof of `I/Sec3/Commutator/SmoothApprox.lean` (`03_compactness.tex:440-447`, inside the proof
+Current manuscript: Part I Lemma 3.3 (`lem:commutator`). This file retains components
+of the older smooth-field proof. The current proof obtains convergence by smoothing
+`u`; the Lean decomposition smooths the vector field and uses the kernel moments.
+
+Proof of `I/Sec3/Commutator/SmoothApprox.lean` (the legacy smooth-field commutator argument; current treatment: Part I Lemma 3.3 (`lem:commutator`), inside the proof
 of `lem:commutator`, "We now remove the smoothness").
 
 `g_n = ρ_n ⋆ f` with `ρ_n` the normed bump of outer radius `δ_n = (1/2)/(n+1)`
@@ -28,7 +32,7 @@ open scoped ENNReal Topology
 namespace NonUniqueEuler.Weak
 
 open SmoothApproxAux in
-/-- `03_compactness.tex:440-447`: an `H¹_loc` field with `div f = 0` is the `H¹(B_R)`-limit of
+/-- the legacy smooth-field commutator argument; current treatment: Part I Lemma 3.3 (`lem:commutator`): an `H¹_loc` field with `div f = 0` is the `H¹(B_R)`-limit of
 smooth fields `g_n` with `div g_n = 0`, and `f - g_n ∈ H¹_loc`. -/
 theorem exists_smooth_divFree_approx {f : ℂ → ℂ}
     (hf : ∀ r : ℝ, 0 < r → Sob.MemHOn 1 (ball (0 : ℂ) r) f) (hdiv : Prelim.IsWeaklyDivFree f)

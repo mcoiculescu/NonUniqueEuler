@@ -1,30 +1,32 @@
 import NonUniqueEuler.Defs.Sec2.BiotSavart
 
 /-!
-# Section 2: Sobolev calculus (`lem:Hk-calculus`), definitions and named constants
+# Part II, Lemma 1.10: Sobolev calculus, definitions and named constants
 
-Definitions for Lemma `lem:Hk-calculus` (`02_prelim.tex:643-668`). Sobolev spaces are I-HK
+Definitions for Part II, Lemma 1.10 (`lem:Hk-calculus`). Sobolev spaces are I-HK
 (`Defs/Infra/Sobolev.lean`, namespace `Sob`): `MemH`, `normH`, `MemHOn`, `normHOn`, `MemW1infOn`,
 `normW1infOn`, `weakPartial(On)`, and `dotGrad U w = U·∇w` for a real vector field `U : ℂ → ℂ`. The
-embeddings `lem:embed` (E1)–(E3) are the I-HK interface theorems `Sob.L4_le`, `Sob.Linf_le_H2`,
+embeddings of Part II, Lemma 1.9 (`lem:embed`), (E1)–(E3), are the I-HK interface theorems
+`Sob.L4_le`, `Sob.Linf_le_H2`,
 `Sob.interp` (`I/Infra/Sobolev/Embed*.lean`, `Interp.lean`); they need no definitions.
 
 * `hkComm N₁ α U w`: the commutator `[∂^α, U·∇]w = ∂^α(U·∇w) - U·∇∂^α w`, both terms extended by
-  `0` outside `N₁` (`02_prelim.tex:667-668`);
+  `0` outside `N₁` (Part II, Lemma 1.10 (`lem:Hk-calculus`));
 * `weakDivOn V U`: the weak divergence `∂₁U₁ + ∂₂U₂` on `V` ("`div U = 0` on `N₁`");
 * `HkCalcSetting N N₁ χN`: the standing assumptions of the lemma (`N` compact, `N₁ ⊇ N` open and
   bounded, `χ_N ∈ C_c^∞(N₁)` equal to `1` near `N`);
-* the named constants. Section 5 fixes "a constant `C_P(k)` of `lem:Hk-calculus` for `max(k,3)`,
-  `N`, `N₁`, `χ_N`" and "a constant `C^el_j` of `lem:Hk-calculus`(3) for `j`, `χ_B`, `ρ = 4`"
-  (`05_single_ring.tex:222-227`) and builds later constants from them (`C_B`, `C_BS`, `C_HK`).
+* the Lean-selected constants `C_P(k)` for items (1), (2), and `C^el_j` for item (3).
+  These retain the explicit constant choices of the earlier proof decomposition. The current
+  manuscript uses the same calculus with the cutoffs fixed before Part II, Lemma 2.3
+  (`lem:bilinear`), but no longer assigns these constants the names `C_P(k)` and `C^el_j`.
   Following decision D11 the defining properties are Props here (`IsHkCommConst`,
   `IsHkProdConst`, `IsHkCalcConst`, `IsHkBSConst`) and the constants are chosen
   (`hkCalcConst`, `elConst`); the existence statements `∃ C, 0 < C ∧ …` are proved in the
   interface layer (`I/Sec2/…`).
 
 Deviation: in item (1) the manuscript allows complex vector fields `U`; here
-`U : ℂ → ℂ` is a real vector field (D1), which covers every use (`lem:energy`,
-`05_single_ring.tex:345-352`, applies (1) to the real field `U = Ω x^⊥ + h + K_BS ∗ w`). The
+`U : ℂ → ℂ` is a real vector field (D1), which covers every use: Part II, Lemma 2.4
+(`lem:energy`) applies (1) to the real field `U = Ω x^⊥ + h + K_BS ∗ w`. The
 complex case follows by linearity from the real and imaginary parts. The cutoffs `χ_N`, `χ` are
 real valued. Supports of Sobolev functions are a.e. statements (`∀ᵐ x, x ∉ N → w x = 0`), as in
 I-HK; this weakens the hypotheses (and so strengthens the lemma) only on null sets, plus, in (3),
@@ -42,7 +44,7 @@ open scoped ENNReal ContDiff
 namespace NonUniqueEuler.Sob
 
 /-- The commutator `[∂^α, U·∇]w = ∂^α(U·∇w) - U·∇∂^α w` of `lem:Hk-calculus`(1), "with both terms
-extended by `0` outside `N₁`" (`02_prelim.tex:667-668`). `∂^α(U·∇w)` is the weak derivative on
+extended by `0` outside `N₁`" (Part II, Lemma 1.10 (`lem:Hk-calculus`)). `∂^α(U·∇w)` is the weak derivative on
 `N₁` (the field `U` is only given on `N₁`); `∂^α w` and `∇∂^α w` are weak derivatives on the
 plane (`w ∈ H^{k+1}(ℝ²)`). -/
 def hkComm (N₁ : Set ℂ) (α : ℕ × ℕ) (U w : ℂ → ℂ) : ℂ → ℂ :=
@@ -52,7 +54,7 @@ def hkComm (N₁ : Set ℂ) (α : ℕ × ℕ) (U w : ℂ → ℂ) : ℂ → ℂ 
 def weakDivOn (V : Set ℂ) (U : ℂ → ℂ) (x : ℂ) : ℝ :=
   (weakPartialOn V (1, 0) U x).re + (weakPartialOn V (0, 1) U x).im
 
-/-- The standing assumptions of `lem:Hk-calculus` (`02_prelim.tex:646-649`), apart from the
+/-- The standing assumptions of Part II, Lemma 1.10 (`lem:Hk-calculus`), apart from the
 integer `k ≥ 3`: `N ⊆ ℝ²` compact, `N₁ ⊇ N` open and bounded, and `χ_N ∈ C_c^∞(N₁)` with
 `χ_N = 1` on a neighborhood of `N`. -/
 structure HkCalcSetting (N N₁ : Set ℂ) (χN : ℂ → ℝ) : Prop where
@@ -65,7 +67,7 @@ structure HkCalcSetting (N N₁ : Set ℂ) (χN : ℂ → ℝ) : Prop where
   tsupport_subset : tsupport χN ⊆ N₁
   eq_one_near : ∃ V : Set ℂ, IsOpen V ∧ N ⊆ V ∧ ∀ x ∈ V, χN x = 1
 
-/-- `C` is a constant for `lem:Hk-calculus`(1) (`02_prelim.tex:651-660`): for `w ∈ H^{k+1}`
+/-- `C` is a constant for Part II, Lemma 1.10(1) (`lem:Hk-calculus`): for `w ∈ H^{k+1}`
 vanishing outside `N`, a real vector field `U ∈ W^{1,∞}(N₁) ∩ H^k(N₁)` and `|α| ≤ k`, the weak
 derivative `∂^α(U·∇w)` exists in `L²(N₁)`, the commutator lies in `L²` with
 `‖[∂^α, U·∇]w‖_{L²} ≤ C (‖U‖_{W^{1,∞}(N₁)} + ‖U‖_{H^k(N₁)}) ‖w‖_{H^k}`, and if `div U = 0` on
@@ -88,18 +90,18 @@ def IsHkCommConst (k : ℕ) (N N₁ : Set ℂ) (C : ℝ) : Prop :=
             (Prelim.innerL2 (N₁.indicator (weakPartialOn N₁ α (dotGrad U w)))
               (weakPartial α w)).im = 0))
 
-/-- `C` is a constant for `lem:Hk-calculus`(2) (`02_prelim.tex:661-662`):
+/-- `C` is a constant for Part II, Lemma 1.10(2) (`lem:Hk-calculus`):
 `‖gh‖_{H^j} ≤ C ‖g‖_{H^j} ‖h‖_{H^j}` for every `2 ≤ j ≤ k` and `g, h ∈ H^j`. -/
 def IsHkProdConst (k : ℕ) (C : ℝ) : Prop :=
   ∀ j : ℕ, 2 ≤ j → j ≤ k → ∀ g h : ℂ → ℂ, MemH j g → MemH j h →
     MemH j (g * h) ∧ normH j (g * h) ≤ C * normH j g * normH j h
 
-/-- `C` is a constant of `lem:Hk-calculus` for `k`, `N`, `N₁` in the sense of
-`05_single_ring.tex:226` (`C_P(k)`): it works in items (1) and (2). -/
+/-- `C` is a constant for items (1), (2) of Part II, Lemma 1.10 (`lem:Hk-calculus`),
+for `k`, `N`, `N₁`. Lean retains the earlier name `C_P(k)` for this choice. -/
 def IsHkCalcConst (k : ℕ) (N N₁ : Set ℂ) (C : ℝ) : Prop :=
   IsHkCommConst k N N₁ C ∧ IsHkProdConst k C
 
-/-- `C'` is a constant for `lem:Hk-calculus`(3) (`02_prelim.tex:663-666`) for `j`, `χ`, `ρ`:
+/-- `C'` is a constant for Part II, Lemma 1.10(3) (`lem:Hk-calculus`) for `j`, `χ`, `ρ`:
 for every `w ∈ H^j` vanishing outside `B_ρ`, `χ (K_BS ∗ w) ∈ H^{j+1}` and
 `‖χ (K_BS ∗ w)‖_{H^{j+1}} ≤ C' ‖w‖_{H^j}`. For complex `w` the field `K_BS ∗ w` has real part
 `BS.velocityRe w` and imaginary part `BS.velocityIm w`; the norm is summed over the entries
@@ -111,14 +113,16 @@ def IsHkBSConst (j : ℕ) (χ : ℂ → ℝ) (ρ C : ℝ) : Prop :=
     BS.normHC2 (j + 1) (fun x => (χ x : ℂ) * BS.velocityRe w x)
       (fun x => (χ x : ℂ) * BS.velocityIm w x) ≤ C * normH j w
 
-/-- The constant `C_P(k)` of `lem:Hk-calculus` for `k`, `N`, `N₁` (`05_single_ring.tex:226`):
+/-- The Lean-selected constant `C_P(k)` for Part II, Lemma 1.10 (`lem:Hk-calculus`),
+items (1), (2), with `k`, `N`, `N₁`:
 a positive constant with `IsHkCalcConst`, chosen when one exists (proved in the interface layer
 under `HkCalcSetting N N₁ χN` and `3 ≤ k`); junk value `1` otherwise. -/
 @[irreducible] def hkCalcConst (k : ℕ) (N N₁ : Set ℂ) : ℝ :=
   open scoped Classical in
   if h : ∃ C : ℝ, 0 < C ∧ IsHkCalcConst k N N₁ C then h.choose else 1
 
-/-- The constant `C^el_j` of `lem:Hk-calculus`(3) for `j`, `χ`, `ρ` (`05_single_ring.tex:224`):
+/-- The Lean-selected constant `C^el_j` for Part II, Lemma 1.10(3) (`lem:Hk-calculus`),
+with `j`, `χ`, `ρ`:
 a positive constant with `IsHkBSConst`, chosen when one exists; junk value `1` otherwise. -/
 @[irreducible] def elConst (j : ℕ) (χ : ℂ → ℝ) (ρ : ℝ) : ℝ :=
   open scoped Classical in

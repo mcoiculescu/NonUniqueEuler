@@ -7,7 +7,7 @@ import NonUniqueEuler.H.Sec6.Integrability.Lq
 /-!
 # Proof: `prop:integrability` (the datum `f`)
 
-Proof of `I/Sec6/Integrability.lean` (`06_datum.tex:27-66`); the statement is copied verbatim.
+Proof of `I/Sec6/Integrability.lean` (Part II Proposition 3.2 (`prop:integrability`)); the formal interface is unchanged.
 
 Uses `ringFacts_of_admissible` (`I/Sec4/RingFacts.lean`, `lem:ring-facts`) and the helpers
 `H/Sec6/Integrability/{Radii,Terms,Lq}.lean`:
@@ -33,10 +33,10 @@ namespace Datum
 
 open RingData
 
-/-- **`prop:integrability`** (`06_datum.tex:27-34`). For an admissible cutoff and parameters as in
+/-- **Part II Proposition 3.2 (`prop:integrability`)**. For an admissible cutoff and parameters as in
 `def:datum`: `DatumProperties` (disjoint annuli, `f` radial, `f ≥ 0`, `f ∈ L¹ ∩ L^q` for
 `q ∈ [1,∞)`, `f ∉ L^∞`); at every point at most one term of the series is nonzero and the series
-is summable (`06_datum.tex:44-46`); `log(1/r_k) = (k-1)log(1/s̄) + k(k-1)/2 · log(2μ)` for `k ≥ 1`;
+is summable (Part II Proposition 3.2 (`prop:integrability`)); `log(1/r_k) = (k-1)log(1/s̄) + k(k-1)/2 · log(2μ)` for `k ≥ 1`;
 and `Σ_{k ≥ 1} A_k^q r_k² < ∞` for every real `q ≥ 1`. -/
 theorem integrability (χ : ℝ → ℝ) (hχ : IsAdmissibleCutoff χ) {A₁ μ sbar : ℝ}
     (hp : DatumParams A₁ μ sbar) :

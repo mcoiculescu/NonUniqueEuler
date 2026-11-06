@@ -8,11 +8,12 @@ import NonUniqueEuler.I.Sec9.Standing
 /-!
 # Helper for `P/Sec11/BootActive.lean`: (Coef), the hypotheses of `lem:drift`
 
-Step 4 of the proof of `prop:bootstrap`, "(Coef)" (`11_bootstrap.tex:461-480`):
+Lean step 4 of the historical bootstrap decomposition, "(Coef)" (Part II Appendix C.17
+(`sec:bootstrap-active-checks`)):
 * `boot_driftHyp`: the hypotheses (i)–(iv) of `lem:drift` for ring `k`, `ū = A_k(t' - t♯_k)` and
   `η = η_{b,k}`: (i) `lem:geometry`(a) on `W_k` (the kick time of `t` is `T_pin + μ A_k(t - t♯_k)`);
   (ii) `lem:geometry`(b) on `[0, t♯_k]`, `lem:coupling`(2) with `eq:handoff`
-  (`κ♯_k ≥ ½|c^in_k| = ½e^{x_kT_pin}|A^in(T_pin)|`), `q' = q_s` of Step 3, `lem:uniform` and (P2);
+  (`κ♯_k ≥ ½|c^in_k| = ½e^{x_kT_pin}|A^in(T_pin)|`), `q' = q_s` of Lean step 3, `lem:uniform` and (P2);
   (iii) the outer bound (`lem:Oprime`), as `‖·‖_{C^0} ≤ ‖·‖_{C^{M_h}}`; (iv) `lem:geometry`(b);
 * `boot_cls`: `C_ls η_{b,k} T̂_k ≤ 1/32` (`η_{b,1} = 0`; (B8) with `σ_k ≥ σ'` and
   `κ♯_k ≥ K_lo s_k^{m+2}` for `2 ≤ k < n`; (B8) with `κ♯_n ≥ κ_seed/2` and `η_{b,n} ≤ η_b` for `k = n`).
@@ -32,7 +33,7 @@ namespace BootActiveH
 open RingData Datum
 
 /-- **The hypotheses (i)–(iv) of `lem:drift`** for ring `k`, `ū = A_k(t' - t♯_k)` and
-`η = η_{b,k}` (`11_bootstrap.tex:461-474`). -/
+`η = η_{b,k}` (Part II Appendix C.17 (`sec:bootstrap-active-checks`)). -/
 theorem boot_driftHyp (S : Standing) (hS : S.Holds) (hL : S.ParamLists) {k : ℕ}
     (hk : k ∈ Finset.Icc 1 S.P.n) (hc : S.P.ClockUpTo k) {t' : ℝ} (ht' : t' ∈ S.P.Phase k)
     (htsh : S.P.tsh k < t') (h0 : S.BootStartConcl)
@@ -86,7 +87,7 @@ theorem boot_driftHyp (S : Standing) (hS : S.Holds) (hL : S.ParamLists) {k : ℕ
     have h := (hwin.2 t'' ht''W).2.2
     rw [hkick''] at h
     exact h
-  · -- (ii): `lem:coupling`(2), `eq:handoff`, Step 3, `lem:uniform`, (P2)
+  · -- (ii): `lem:coupling`(2), `eq:handoff`, Lean step 3, `lem:uniform`, (P2)
     intro hkn'
     have hc1 : S.P.ClockUpTo (k + 1) := hc.mono (Nat.le_succ k)
     have hin0 : ∀ t ∈ Icc (0 : ℝ) (S.P.tsh k), S.P.HInDefined k t := fun t ht =>
@@ -156,7 +157,7 @@ theorem That_le_of {S : Standing} (hS : S.Holds) {k : ℕ} (hk : k ∈ Finset.Ic
     _ ≤ S.σ'⁻¹ * Real.log (S.P.δ₀ / S.P.ksh k) := mul_le_mul_of_nonneg_right hinv hlog0
     _ ≤ S.σ'⁻¹ * Real.log (S.P.δ₀ / κ) := mul_le_mul_of_nonneg_left hlog (inv_nonneg.2 hσ'.le)
 
-/-- **`C_ls η_{b,k} T̂_k ≤ 1/32`** (`11_bootstrap.tex:474-479`). -/
+/-- **`C_ls η_{b,k} T̂_k ≤ 1/32`** (Part II Appendix C.17 (`sec:bootstrap-active-checks`)). -/
 theorem boot_cls (S : Standing) (hS : S.Holds) (hL : S.ParamLists) {k : ℕ}
     (hk : k ∈ Finset.Icc 1 S.P.n) (hc : S.P.ClockUpTo k) (h0 : S.BootStartConcl)
     (hlev : ∀ i ∈ Finset.Ico k S.P.n, S.HandoffStep i)

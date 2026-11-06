@@ -4,7 +4,7 @@ import NonUniqueEuler.I.Sec9.Standing
 /-!
 # Proof of `lem:detuning` (the rate gap between neighbouring rings)
 
-Proof of the interface `I/Sec9/Detuning.lean` (`09_relay.tex:104-136`).
+Proof of the interface `I/Sec9/Detuning.lean` (`lem:detuning`, Part II Lemma C.6).
 
 * `standing_levels` (`I/Sec9/Standing.lean`) gives `0 < σ_b ≤ σ` and `G_i ∈ [0, C_G μ s̄²]` for
   every level, so (Det) gives `|σ_i - σ| = |Re(λ_*(G_i) - z)| ≤ e_μ σ`.
@@ -94,7 +94,7 @@ private theorem detuning_real_zpow {μ σb σi σl : ℝ} {i l : ℕ} (h1 : 1 < 
 
 /-! ### The lemma -/
 
-/-- **`lem:detuning`** (`09_relay.tex:104-111`): under (SA) and (Det), with `e_μ = (μ-1)/(8μ)`:
+/-- **`lem:detuning`** (`lem:detuning`, Part II Lemma C.6): under (SA) and (Det), with `e_μ = (μ-1)/(8μ)`:
 `e_μ ≤ 1/136`, `e_μ(μ+1) ≤ (μ-1)/4`, and for all levels `i, l ∈ [1,n]`: `|σ_i - σ| ≤ e_μσ`,
 `σ_i ≥ 15σ/16 > σ'`, `σ/4 ≤ x_i ≤ 17σ/16`,
 `μσ_i - σ_l ≥ σ((μ-1) - e_μ(μ+1)) ≥ (3/4)σ(μ-1) ≥ (1/2)σ_b(μ-1)`, and

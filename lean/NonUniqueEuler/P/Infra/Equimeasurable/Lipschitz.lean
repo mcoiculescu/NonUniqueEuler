@@ -13,7 +13,7 @@ import Mathlib.Dynamics.Ergodic.MeasurePreserving
 Proof of `NonUniqueEuler/I/Infra/Equimeasurable/Lipschitz.lean` (same declarations, same
 statements).
 
-* `of_integral_lipO_eq` (`lem:renorm-all-t`, `03_compactness.tex:670-677`): the ramps
+* `of_integral_lipO_eq` (Part I, Lemma 3.5 (`lem:renorm-all-t`), proof): the ramps
   `β_n(z) = min 1 ((n+1) (z - s)⁺)` are in `Lip₀` for `s > 0`, are nonnegative, increase in
   `n` and converge pointwise to `1_{(s,∞)}`; monotone convergence
   (`lintegral_tendsto_of_tendsto_of_monotone`) identifies `|{g > s}|` as the limit of

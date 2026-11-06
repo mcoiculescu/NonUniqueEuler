@@ -7,8 +7,8 @@ import Mathlib.Topology.Order.Compact
 # Proof: geometry of rectangles and of the boundary curve `QRect.bdryPath`
 
 Proof of the interface `NonUniqueEuler/I/Verify/ContourGeom.lean` (same declarations, same
-statements). Manuscript: Proposition A.4 (`A_verification.tex:470-475`) and the certification
-(`:569-581`).
+statements). Manuscript: Part II Proposition A.4 (`prop:winding`) and the certification
+(`app:runs`).
 
 The proofs follow the sketch of the interface file: elementary facts about `clamp01`
 (values in `[0, 1]`, monotone, piecewise affine with integer breakpoints), then the affine form

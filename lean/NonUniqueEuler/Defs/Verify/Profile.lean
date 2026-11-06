@@ -2,12 +2,12 @@ import NonUniqueEuler.Statement.Evans
 import Mathlib.Analysis.Complex.Trigonometric
 
 /-!
-# Profile objects of Appendix A (definitions)
+# Profile objects of Part II Appendix A (definitions)
 
-Manuscript: the notation at the start of Appendix A (`A_verification.tex:21-41`: `x_a`, `y_b`,
-`G'_max = d`, `|Y|_w`), Lemma A.1 (`lem:end-regions`: `A`, `B`, `ε_end`, the comparison
-solution `ψ₀`), Lemma A.2 (`lem:apriori`: `TV`, `Ω_max`), and the proof of Proposition A.3
-(`A_verification.tex:346-370`: `Ā`, `B̄`, `q`, `g`).
+Manuscript: the notation at the start of Part II Appendix A (`app:verify`: `x_a`, `y_b`,
+`G'_max = d`, `|Y|_w`), Part II Lemma A.1 (`lem:end-regions`: `A`, `B`, `ε_end`, the comparison
+solution `ψ₀`), Part II Lemma A.2 (`lem:apriori`: `TV`, `Ω_max`), and the proof of Part II Proposition A.3
+(`prop:enclosure`: `Ā`, `B̄`, `q`, `g`).
 
 All objects are stated with the statement-layer objects `H`, `prof χ`, `OmegaG`,
 `riccatiCoeff` (namespace `NonUniqueEuler`, `NonUniqueEuler.RingData`). Everything is in the
@@ -21,13 +21,13 @@ namespace `NonUniqueEuler.AppA`.
 | `profQ ξ = profW ξ · e^{2ξ}` | `q = ϖ e^{2ξ}` on `[ξa, ξb]` |
 | `gInt χ ξ = ∫_{-∞}^ξ ϖ e^{2ξ'}` | `g`; `Ω_G = e^{-2ξ}(G + g)` (`OmegaG_eq`) |
 | `xa`, `yb` | `x_a = (ξa - a₀)/d`, `y_b = -ξb/d` |
-| `TV χ = ∫_ℝ |ϖ'|` | `TV` (Lemma A.2) |
-| `OmegaMax = 1/2 + d e^{-2ξL}` | `Ω_max` (Lemma A.2, with `G'_max = d`) |
-| `epsEnd z = 3e^{-50}/Re z` | `ε_end` (Lemma A.1(2)) |
+| `TV χ = ∫_ℝ |ϖ'|` | `TV` (Part II Lemma A.2) |
+| `OmegaMax = 1/2 + d e^{-2ξL}` | `Ω_max` (Part II Lemma A.2, with `G'_max = d`) |
+| `epsEnd z = 3e^{-50}/Re z` | `ε_end` (Part II Lemma A.1(2)) |
 | `evansDelta χ ℓ z G ξ = iℓϖ'/(λ + iℓΩ_G)` | `δ`; `V = ℓ² + δ` (`riccatiCoeff_eq_add_evansDelta`) |
 | `wnorm ℓ u v = max(ℓ|u|, |v|)` | `|(u, v)|_w` |
 | `cmpSol ℓ α u v`, `cmpSol' ℓ α u v` | `ψ₀`, `ψ₀'`: the solution of `ψ₀'' = ℓ²ψ₀`, `ψ₀(α) = u`, `ψ₀'(α) = v` |
-| `endL = ξa - ξL`, `endR = ξR - ξb` | `L₁`, `L₂` (Proposition A.3 (ii), (iv)) |
+| `endL = ξa - ξL`, `endR = ξR - ξb` | `L₁`, `L₂` (Part II Proposition A.3 (ii), (iv)) |
 -/
 
 noncomputable section

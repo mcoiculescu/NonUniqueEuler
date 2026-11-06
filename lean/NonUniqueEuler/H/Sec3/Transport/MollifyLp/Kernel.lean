@@ -10,7 +10,7 @@ import Mathlib.LinearAlgebra.Complex.FiniteDimensional
 # Helper for `P/Sec3/Transport/MollifyLp`: the rescaled kernel `ρ_ε` and the mollification
 
 Basic facts on `ρ_ε = scaled ρ ε` and on `g ⋆ ρ_ε = mollify ρ ε g`
-(`03_compactness.tex:27-30`), for a mollifier `ρ` (`IsMollifier`):
+(Part I §3 (`sec:compact`), auxiliary-function conventions), for a mollifier `ρ` (`IsMollifier`):
 
 * `ρ_ε` is continuous, nonnegative, has compact support in `B_ε`, and `∫ ρ_ε = 1`
   (scaling `x ↦ ε⁻¹ x` in real dimension `2`, `Measure.integral_comp_inv_smul`);

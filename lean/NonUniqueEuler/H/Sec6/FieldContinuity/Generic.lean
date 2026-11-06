@@ -8,7 +8,7 @@ import Mathlib.MeasureTheory.Integral.Bochner.Set
 # Helpers for `P/Sec6/FieldContinuity`: generic lemmas
 
 Proved helper lemmas (no manuscript content of their own) for the proof of
-`I/Sec6/FieldContinuity.lean` (`06_datum.tex:294-321`):
+`I/Sec6/FieldContinuity.lean` (the continuity discussion after Part II Lemma 3.6 (`lem:regions-basic`)):
 
 * `ckPathOn_of_ext`, `continuousOn_normCk_of_ext`: if a time-dependent field `h` agrees, at every
   time `τ ≥ 0`, with a field `H` that is jointly `C^∞` in `(τ, y)` on `ℝ × (ℂ ∖ {0})`, then
@@ -16,7 +16,7 @@ Proved helper lemmas (no manuscript content of their own) for the proof of
   (from `I/Infra/CkNorm/Continuity.lean`, with `W = {p | p.2 ≠ 0} ⊇ J × N'`);
 * `contDiffOn_monopole`: `(τ, y) ↦ G y^⊥/|y|²` is `C^∞` on `ℝ × (ℂ ∖ {0})`;
 * `maj_continuousOn`: the Duhamel majorant of a function continuous on `[0, B]` is continuous on
-  `[0, B]` (`06_datum.tex:319-321`);
+  `[0, B]` (the continuity discussion after Part II Lemma 3.6 (`lem:regions-basic`));
 * `continuous_integral_of_slab`: `t ↦ ∫ F(t, x) dx` is continuous if `F` is jointly continuous and
   its supports are bounded locally uniformly in time (dominated convergence, here through
   `continuous_parametric_integral_of_continuous` on a ball).
@@ -115,7 +115,7 @@ theorem contDiffOn_monopole (G : ℝ) :
   refine h4.congr fun p _ => ?_
   simp only [div_eq_mul_inv]
 
-/-- **Continuity of a Duhamel majorant** (`06_datum.tex:202-209`, `:319-321`): if `η` is
+/-- **Continuity of a Duhamel majorant** (Part II Definition 3.5 (`def:regions`), the continuity discussion after Part II Lemma 3.6 (`lem:regions-basic`)): if `η` is
 continuous on `[0, B]`, then `maj σ η` is continuous on `[0, B]`. -/
 theorem maj_continuousOn {σ : ℝ} {η : ℝ → ℝ} {B : ℝ} (hB : 0 ≤ B)
     (hη : ContinuousOn η (Icc 0 B)) : ContinuousOn (OneRing.maj σ η) (Icc 0 B) := by

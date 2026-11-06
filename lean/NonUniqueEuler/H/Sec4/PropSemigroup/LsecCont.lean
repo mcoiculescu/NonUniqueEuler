@@ -9,7 +9,7 @@ import NonUniqueEuler.I.Infra.CkNorm.Basic
 
 `L_ℓ(G) = -iℓΩ(·;G) + k_ℓ𝒢_ℓ` with `Ω(r;G) = Ω(r;0) + Gr⁻²` (`Omega_eq_add`), so
 `L_ℓ(G) = L_ℓ(0)`-part `+ G • (multiplication by -iℓr⁻²)` is affine in `G` (`radialMul_add`;
-`04_ring.tex:1466-1467`: "`L_ℓ(G) = L_ℓ(0) - iℓGr⁻²` is bounded and affine in `G`").
+The proof of Part I Proposition 4.22 (`prop:semigroup`): "`L_ℓ(G) = L_ℓ(0) - iℓGr⁻²` is bounded and affine in `G`").
 -/
 
 noncomputable section

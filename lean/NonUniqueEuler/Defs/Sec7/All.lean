@@ -2,8 +2,8 @@ import NonUniqueEuler.Defs.Sec7.Transfer
 import NonUniqueEuler.Defs.Sec7.Confine
 
 /-!
-# Section 7 definitions (all)
+# Part II Section 4 definitions (all)
 
-Imports every definition file of Section 7
-(`07_several_rings.tex`) and, through them, Section 6.
+Imports every definition file of Part II Section 4
+(`07_several_rings.tex`) and, through them, Part II Section 3.
 -/

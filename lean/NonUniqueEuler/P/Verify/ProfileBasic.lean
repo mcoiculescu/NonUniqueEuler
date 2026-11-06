@@ -9,8 +9,8 @@ import Mathlib.Analysis.Calculus.Deriv.Inv
 # Proof: the functions `H`, `A`, `Ā`, `B`, `B̄` and the profile `ϖ = χAB`
 
 Proof of the interface `NonUniqueEuler/I/Verify/ProfileBasic.lean` (same declarations, same
-statements). Manuscript: proof of Lemma A.1(1) (`A_verification.tex:153-170`) and step (i) of
-the proof of Proposition A.3 (`A_verification.tex:346-362`).
+statements). Manuscript: proof of Part II Lemma A.1(1) (`lem:end-regions`) and step (i) of
+the proof of Part II Proposition A.3 (`prop:enclosure`).
 
 The only interface used is `I/Verify/TaylorRecurrence.lean`
 (`iteratedDeriv_eq_of_eqOn_Icc`, `taylorCoeff_eq_of_eqOn_Icc`).

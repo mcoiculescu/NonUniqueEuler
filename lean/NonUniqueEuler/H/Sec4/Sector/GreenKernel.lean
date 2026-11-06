@@ -4,9 +4,9 @@ import Mathlib.Analysis.Calculus.Deriv.Pow
 import Mathlib.Analysis.Calculus.Deriv.Inv
 
 /-!
-# Helper for `lem:sector`(1): the kernel of the Green operator, one source point at a time
+# Helper for Part I Lemma 4.5(1) (`lem:sector`): the kernel of the Green operator, one source point at a time
 
-Helper file of `P/Sec4/Sector.lean` (fully proved). Manuscript `04_ring.tex:224-243`.
+Helper file of `P/Sec4/Sector.lean` (fully proved). See the proof of Part I Lemma 4.5 (`lem:sector`).
 
 For a source point `ρ > 0` and `n ≥ 0`, the kernel of `𝒢_ℓ` (`n = |ℓ|`) is
 `ker n t ρ = (min(t,ρ)/max(t,ρ))ⁿ ρ`, i.e. `(t/ρ)ⁿρ` for `t ≤ ρ` and `(ρ/t)ⁿρ` for `t ≥ ρ`.

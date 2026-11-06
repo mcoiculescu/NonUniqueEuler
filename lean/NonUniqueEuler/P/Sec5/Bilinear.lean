@@ -14,10 +14,10 @@ import NonUniqueEuler.H.Sec5.Bilinear.Symm
 import NonUniqueEuler.H.Sec5.Bilinear.Velocity
 
 /-!
-# Proof: the fixed auxiliary objects of Section 5 and `lem:bilinear`
+# Proof: the fixed auxiliary objects of Part II Section 2 and `lem:bilinear`
 
-Proof of `I/Sec5/Bilinear.lean` (`05_single_ring.tex:220-227`, `lem:bilinear` `:229-246`, proof
-`:247-275`).
+Proof of `I/Sec5/Bilinear.lean` (Part II Lemma 2.3, `lem:bilinear` Part II Lemma 2.3, proof
+Part II Lemma 2.3).
 
 * `exists_chiN`: the cutoff `χ_N = b₂ - b₁` (`H/Sec5/Bilinear/ChiN.lean`).
 * `CP_isHkCalcConst`, `Cel_isHkBSConst`: `lem:Hk-calculus` (`I/Sec2/HkCalculus.lean`).
@@ -48,19 +48,19 @@ namespace OneRing
 
 open RingData
 
-/-- `05_single_ring.tex:221-223`: there is `χ_N ∈ C_c^∞(N₁)` with `χ_N = 1` on a neighbourhood
+/-- Part II Lemma 2.3 (`lem:bilinear`): there is `χ_N ∈ C_c^∞(N₁)` with `χ_N = 1` on a neighbourhood
 of `N`; together with `N` compact and `N₁ ⊇ N` open and bounded, this is the setting of
 `lem:Hk-calculus` for `(N, N₁, χ_N)`. -/
 theorem exists_chiN : ∃ χN : ℂ → ℝ, Sob.HkCalcSetting annN annN1 χN :=
   ⟨BilinearH.chiN, BilinearH.hkCalcSetting_chiN⟩
 
-/-- `05_single_ring.tex:225-227`: the fixed `C_P(k)` is a constant of `lem:Hk-calculus`(1),(2)
+/-- Part II Lemma 2.3 (`lem:bilinear`): the fixed `C_P(k)` is a constant of `lem:Hk-calculus`(1),(2)
 for `max(k,3)`, `N`, `N₁`. -/
 theorem CP_isHkCalcConst (k : ℕ) : Sob.IsHkCalcConst (max k 3) annN annN1 (CP k) := by
   obtain ⟨χN, hχN⟩ := exists_chiN
   exact Sob.isHkCalcConst_hkCalcConst (le_max_right k 3) hχN
 
-/-- `05_single_ring.tex:223-225`: the fixed `C^el_j` is a constant of `lem:Hk-calculus`(3) for
+/-- Part II Lemma 2.3 (`lem:bilinear`): the fixed `C^el_j` is a constant of `lem:Hk-calculus`(3) for
 `j`, `χ_B` and `ρ = 4`. -/
 theorem Cel_isHkBSConst (j : ℕ) : Sob.IsHkBSConst j chiB 4 (Cel j) :=
   Sob.isHkBSConst_elConst j (by norm_num) chiB_contDiff chiB_hasCompactSupport
@@ -186,7 +186,7 @@ theorem normH_hGrad_le_eps {k : ℕ} {w hf : ℂ → ℂ} (hw : Lin.MemXFn (k + 
 
 end BilinearH
 
-/-- **`lem:bilinear`, `C_h` is finite** (`05_single_ring.tex:232-235`): for `k ≥ 2` the set whose
+/-- **`lem:bilinear`, `C_h` is finite** (Part II Lemma 2.3): for `k ≥ 2` the set whose
 supremum is `C_h(k)` (the values `‖h·∇w‖_{H^k}` over `w ∈ X^{k+1}`, `h ∈ C^k(N';ℝ²)` with
 `‖w‖_{H^{k+1}} ≤ 1`, `‖h‖_{C^k(N')} ≤ 1`) is bounded above; in particular `0 ≤ C_h(k) < ∞`. -/
 theorem bilinear_Ch {k : ℕ} (hk : 2 ≤ k) :
@@ -307,7 +307,7 @@ theorem supp_ball_four {v : ℂ → ℂ} (hv : ∀ᵐ x ∂(volume : Measure ℂ
 end BilinearH
 
 open BilinearH in
-/-- **`lem:bilinear`(1)** (`05_single_ring.tex:236`, `:244-246`): for `k ≥ 2` and
+/-- **`lem:bilinear`(1)** (Part II Lemma 2.3): for `k ≥ 2` and
 `v, w ∈ X^{k+1}`, `B(v,w) = -(K_BS*v)·∇w` lies in `X^k` (in particular in `H^k` and supported in
 `N`) and `‖B(v,w)‖_{H^k} ≤ C_B‖v‖_{H^k}‖w‖_{H^{k+1}}`. -/
 theorem bilinear_B {k : ℕ} (hk : 2 ≤ k) {v w : ℂ → ℂ} (hv : Lin.MemXFn (k + 1) v)
@@ -382,7 +382,7 @@ theorem bilinear_B {k : ℕ} (hk : 2 ≤ k) {v w : ℂ → ℂ} (hv : Lin.MemXFn
       _ = CB k * Sob.normH k v * Sob.normH (k + 1) w := by unfold CB; ring
 
 open BilinearH in
-/-- **`lem:bilinear`(2)** (`05_single_ring.tex:237`, `:244-246`): for `k ≥ 2`, `w ∈ X^{k+1}` and
+/-- **`lem:bilinear`(2)** (Part II Lemma 2.3): for `k ≥ 2`, `w ∈ X^{k+1}` and
 a vector field `h ∈ C^k(N';ℝ²)`, `h·∇w ∈ H^k` vanishes a.e. outside `N`,
 `‖h·∇w‖_{H^k} ≤ C_h‖h‖_{C^k(N')}‖w‖_{H^{k+1}}`, and `h·∇w ∈ X^k` if `h` is `3`-fold symmetric. -/
 theorem bilinear_h {k : ℕ} (hk : 2 ≤ k) {w hf : ℂ → ℂ} (hw : Lin.MemXFn (k + 1) w)
@@ -412,7 +412,7 @@ theorem bilinear_h {k : ℕ} (hk : 2 ≤ k) {w hf : ℂ → ℂ} (hw : Lin.MemXF
     (grad_zero_outside' hgrad) hsym
 
 open BilinearH in
-/-- **`lem:bilinear`(3)** (`05_single_ring.tex:238-239`, `:244-246`): for `k ≥ 2` and a vector
+/-- **`lem:bilinear`(3)** (Part II Lemma 2.3): for `k ≥ 2` and a vector
 field `h ∈ C^k(N';ℝ²)`, `h·∇Φ ∈ H^k` vanishes a.e. outside `N`,
 `‖h·∇Φ‖_{H^k} ≤ C_∇(k)‖h‖_{C^k(N')}` with `C_∇(k)` of `lem:uniform`, and `h·∇Φ ∈ X^k` if `h` is
 `3`-fold symmetric. -/
@@ -447,7 +447,7 @@ theorem bilinear_Phi (χ : ℝ → ℝ) (hχ : IsAdmissibleCutoff χ) (hN : Nume
   exact dotGrad_isMFoldSymmetricC hPH hPsym (grad_zero_outside' hgrad) hsym
 
 open BilinearH in
-/-- **`lem:bilinear`(4)** (`05_single_ring.tex:240-243`): for `k ≥ 2` and `v ∈ X^{k+1}`,
+/-- **`lem:bilinear`(4)** (Part II Lemma 2.3): for `k ≥ 2` and `v ∈ X^{k+1}`,
 `|(K_BS*v)(x)| ≤ C_BS‖v‖_{H^1}` for every `|x| ≤ 3`. -/
 theorem bilinear_BS {k : ℕ} (hk : 2 ≤ k) {v : ℂ → ℂ} (hv : Lin.MemXFn (k + 1) v) :
     ∀ x : ℂ, ‖x‖ ≤ 3 → bsNorm v x ≤ CBS * Sob.normH 1 v := by

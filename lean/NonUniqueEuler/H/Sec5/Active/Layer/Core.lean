@@ -5,7 +5,7 @@ import NonUniqueEuler.H.Sec5.Active.Layer.Comparison
 # Helpers for the initial layer of `thm:active`: the improvement step of the continuity argument
 
 Helper of `P/Sec5/Active/Layer.lean` (fully proved modulo the interface files it imports).
-Namespace `NonUniqueEuler.OneRing.LayerH`. Manuscript `05_single_ring.tex:961-988`.
+Namespace `NonUniqueEuler.OneRing.LayerH`. Manuscript Part II Theorem 2.12.
 
 * `layer_core`: on `[0,t] ⊆ [0,ū]`, `t ≤ t̄`, if every trajectory of `ω_r` moves radially by at
   most `a/16` (from `supp ω_r(0) ⊂ 𝒩₋`, so `supp ω_r ⊂ N`) and `‖w‖_{H^n} ≤ 1`, and an
@@ -29,7 +29,7 @@ open RingData
 namespace LayerH
 
 /-- **The improvement step** of the continuity argument on the initial layer
-(`05_single_ring.tex:961-988`, in the one-step form: the comparison with `w_app = wlin` at level
+(Part II Theorem 2.12 (`thm:active`), in the one-step form: the comparison with `w_app = wlin` at level
 `n = M-2` both bounds `w - wlin` and closes the bootstrap). -/
 theorem layer_core {χ : ℝ → ℝ} (hχ : IsAdmissibleCutoff χ) (hN : NumericalHypothesis χ)
     {n : ℕ} (hn : 3 ≤ n) {c : RingConfig} {ubar t tb : ℝ} (hc : c.Hyp ubar)

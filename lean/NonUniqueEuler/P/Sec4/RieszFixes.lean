@@ -1,10 +1,12 @@
 import NonUniqueEuler.Defs.Infra.Dunford
 
 /-!
-# Proof: the Riesz projection fixes generalized eigenvectors (remark before `lem:resolvent`)
+# Proof: a simple spectral projection fixes generalized eigenvectors
 
-Proof of `NonUniqueEuler/I/Sec4/RieszFixes.lean` (`04_ring.tex:361-364`), in the Laurent form R2
-of the Riesz projection (`Dunford.IsSimpleSpectralProj`).
+This retained auxiliary result is exposed by `I/Sec4/RieszFixes.lean` in Laurent form
+(`Dunford.IsSimpleSpectralProj`). The current manuscript defines the Riesz projection and
+algebraic multiplicity immediately before Part I Lemma 4.7 (`lem:resolvent`); it no longer
+includes the earlier generalized-eigenvector argument there.
 
 **Argument.** Write `N = A - z₀`. From `P A = z₀ P` we get `P N = 0`, and from `A P = z₀ P` we
 get `N P = 0`.
@@ -18,7 +20,7 @@ get `N P = 0`.
   Then `u = v - P v` satisfies `N u = N v - N P v = 0` and `P u = P v - P² v = 0`, so `u = 0` by
   the key step.
 
-This replaces the manuscript's explicit Neumann-sum formula for `(λ - A)⁻¹ v` by the same
+This replaces the earlier manuscript's explicit Neumann-sum formula for `(λ - A)⁻¹ v` by the same
 mechanism (the `(z - z₀)⁻¹` blow-up) applied one Jordan level at a time; it is the downward
 induction of the interface docstring, run upwards on `k` with the vector `N v`.
 -/
@@ -69,7 +71,7 @@ private lemma rieszFixes_eq_zero_of_eigen {A P : X →L[ℂ] X} {z₀ : ℂ}
   exact tendsto_nhds_unique tendsto_const_nhds h4
 
 /-- The spectral projection of `A` at `z₀` (Laurent form R2) fixes every generalized eigenvector:
-`(A - z₀)^k v = 0` implies `P v = v` (`04_ring.tex:361-364`). -/
+`(A - z₀)^k v = 0` implies `P v = v` (the Riesz-projection discussion before Part I Lemma 4.7 (`lem:resolvent`)). -/
 theorem IsSimpleSpectralProj.apply_eq_self_of_pow_apply_eq_zero {A P : X →L[ℂ] X} {z₀ : ℂ}
     (h : IsSimpleSpectralProj A P z₀) {v : X} {k : ℕ}
     (hv : ((A - z₀ • (1 : X →L[ℂ] X)) ^ k) v = 0) : P v = v := by

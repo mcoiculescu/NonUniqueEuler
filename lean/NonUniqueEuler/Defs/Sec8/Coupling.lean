@@ -2,11 +2,10 @@ import NonUniqueEuler.Defs.Sec6.All
 import NonUniqueEuler.Defs.Sec8.Kick
 
 /-!
-# Section 8: the coupling of ring `k` to its inner region (definitions)
+# Part II Section 5: the coupling of ring `k` to its inner region (definitions)
 
-Manuscript `lem:coupling`
-(`08_kick.tex:21-64`) and the instance of the kick setting described before `lem:pinning`
-(`08_kick.tex:168-171`, `:293-296`).
+Manuscript Part II Lemma 5.1 (`lem:coupling`) and the instance of the kick setting described before the legacy pinning helper for the proof of `prop:kick`
+(the scalar setting around Part II Equation (31) (`eq:kick-A`), Part II Proposition 5.2 (`prop:kick`)).
 
 For an approximation `P` and a level `1 ≤ k < n` (ring-`k` time `τ = A_k t`, kick time
 `τ_K = A_{k+1}(t - T_{k+1}) = μτ + τ₀`):
@@ -38,29 +37,29 @@ open RingData
 variable (P : Approx)
 
 /-- `wlin_{in,k}(τ) = ∫₀^τ e^{(τ-v)L(G_k)}(-h^in_k(v)·∇Φ) dv` in `Y^s(N)`
-(`lem:coupling`(2), `08_kick.tex:38-42`). -/
+(`lem:coupling`(2), Part II Lemma 5.1 (`lem:coupling`)). -/
 def wlinIn (s k : ℕ) (τ : ℝ) : Sect.Y s annN := OneRing.wlin P.χ s (P.G k) (P.hIn k) τ
 
 /-- `wlin_{out,k}(τ) = ∫₀^τ e^{(τ-v)L(G_k)}(-h^out_k(v)·∇Φ) dv` in `Y^s(N)`
-(`lem:coupling`(3), `08_kick.tex:59`). -/
+(`lem:coupling`(3), Part II Lemma 5.1 (`lem:coupling`)). -/
 def wlinOut (s k : ℕ) (τ : ℝ) : Sect.Y s annN := OneRing.wlin P.χ s (P.G k) (P.hOut k) τ
 
-/-- `ζ₀ = λ_k/μ`, the growth rate of ring `k` in the time of ring `k+1` (`eq:kick`, `08_kick.tex:48`). -/
+/-- `ζ₀ = λ_k/μ`, the growth rate of ring `k` in the time of ring `k+1` (`eq:kick`, Part II Lemma 5.1 (`lem:coupling`)). -/
 def zeta0 (k : ℕ) : ℂ := P.lam k / P.μ
 
 /-- `c^in(τ_K) = ℓ_*(G_k)(wlin_{in,k}(τ))`, `τ = (τ_K - τ₀)/μ`, as a function of the kick time
-(`lem:coupling`(2), `08_kick.tex:43-44`, `:128-129`). -/
+(`lem:coupling`(2), Part II Lemma 5.1 (`lem:coupling`)). -/
 def cin (k : ℕ) (τK : ℝ) : ℂ :=
   Eig.ellFn P.χ (P.G k) (P.wlinIn 0 k ((τK - P.tau0 k) / P.μ)).fn
 
-/-- The kick amplitude `A^in(τ_K) = e^{-ζ₀ τ_K} c^in(τ_K)` (`08_kick.tex:51`). -/
+/-- The kick amplitude `A^in(τ_K) = e^{-ζ₀ τ_K} c^in(τ_K)` (Part II Lemma 5.1 (`lem:coupling`)). -/
 def Ain (k : ℕ) (τK : ℝ) : ℂ := Complex.exp (-(P.zeta0 k * τK)) * P.cin k τK
 
-/-- `c^in_k = ℓ_*(G_k)(wlin_{in,k}(t̄♯_k))` (`08_kick.tex:52-53`). -/
+/-- `c^in_k = ℓ_*(G_k)(wlin_{in,k}(t̄♯_k))` (Part II Lemma 5.1 (`lem:coupling`)). -/
 def cinK (k : ℕ) : ℂ := Eig.ellFn P.χ (P.G k) (P.wlinIn 0 k (P.tash k)).fn
 
 /-- `q_{k+1}` as a function of the kick time `τ_K` of ring `k`: `t = T_{k+1} + τ_K/A_{k+1}`
-(`08_kick.tex:43-44`). -/
+(Part II Lemma 5.1 (`lem:coupling`)). -/
 def qKick (k : ℕ) (τK : ℝ) : ℂ := P.q (k + 1) (P.T (k + 1) + τK / P.A (k + 1))
 
 /-! ### Basic lemmas (fully proved) -/

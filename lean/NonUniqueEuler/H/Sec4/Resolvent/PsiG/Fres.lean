@@ -9,7 +9,7 @@ import Mathlib.Analysis.SpecialFunctions.Log.Deriv
 /-!
 # Helpers for `P/Sec4/Resolvent/PsiG`: the forcing `F = S.Fres ℓ z G g`
 
-Step 1 of the proof of `psiG_spec` (proof of `lem:resolvent`(1), `04_ring.tex:412-422`): for
+Step 1 of the proof of `psiG_spec` (proof of Part I Lemma 4.7(1) (`lem:resolvent`)): for
 `g ∈ Y^0_ℓ` (`IsProfileL2`), the forcing `F(ξ) = e^{2ξ}(M_λ g)(e^ξ)`
 * vanishes almost everywhere off `[log ρ₋, log ρ₊]` (`Fres_ae_eq_zero`): null sets of `(0,∞)`
   pull back under `exp` to null sets, being images of null sets under the differentiable map

@@ -5,7 +5,7 @@ import Mathlib.MeasureTheory.Measure.Lebesgue.Basic
 /-!
 # Helper: angular sectors of `x ↦ log|x - y|` and Fubini (for `P/Infra/Multipole/LogPotential`)
 
-* Factorizations (`02_prelim.tex:461-469`): for `x = r e^{iθ}`,
+* Factorizations (Part I, discussion following Definition 2.3 (`def:multipole`)): for `x = r e^{iθ}`,
   `log|x - y| = log r + log|1 - (ȳ/r) e^{iθ}|` if `|y| < r`, and
   `log|x - y| = log|y| + log|1 - (r/y) e^{iθ}|` if `r < |y|`.
 * The bound `|log|1 - w|| ≤ -log(1 - |w|)` for `|w| < 1`.

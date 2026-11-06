@@ -2,10 +2,10 @@ import Mathlib.Analysis.SpecialFunctions.Exponential
 import Mathlib.Analysis.Normed.Operator.Mul
 
 /-!
-# Helper for `lem:adjoint`(2): a left eigenfunctional of `A` is one of `exp(tA)`
+# Helper for Part I Lemma 4.9(1) (`lem:adjoint`): a left eigenfunctional of `A` is one of `exp(tA)`
 
 Helper of `P/Sec4/Adjoint.lean`. If `φ : X →L[ℂ] ℂ` satisfies `φ(A g) = z φ(g)` for all `g`, then
-`φ(exp(tA) g) = e^{zt} φ(g)` (`04_ring.tex:616-618`). The manuscript differentiates
+`φ(exp(tA) g) = e^{zt} φ(g)` (proof of Part I Lemma 4.9 (`lem:adjoint`)). The manuscript differentiates
 `t ↦ ℓ_*(e^{tL}g)`; here we use the exponential series directly (equivalent, shorter).
 -/
 

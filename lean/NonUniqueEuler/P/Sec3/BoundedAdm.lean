@@ -4,20 +4,22 @@ import NonUniqueEuler.I.Sec3.RenormAllT
 import NonUniqueEuler.I.Infra.LpInterp.Interp
 
 /-!
-# Proof: `lem:bounded-adm`, bounded solutions are admissible; conservation of norms
+# Proof: legacy `lem:bounded-adm`, bounded solutions are admissible; conservation of norms
 
 Proof of `I/Sec3/BoundedAdm.lean` (same declarations, statements copied verbatim).
 
-Manuscript: `lem:bounded-adm`, `03_compactness.tex:888-904` (statement), proof
-`03_compactness.tex:906-931`.
+The former `lem:bounded-adm` is retained as a Lean auxiliary. Current Part I uses the
+conservation statements of Lemma 3.5 (`lem:renorm-all-t`) and derives the sequence bound
+at the start of the proof of Theorem 3.8 (`thm:criterion`). The bounded-vorticity
+admissibility implication below is not a standalone current manuscript statement.
 
 Structure.
 * (i) `BoundedAdmAux.memLinfLp_of_one_top`: `L^∞(I; L¹) ∩ L^∞(I; L^∞) ⊆ L^∞(I; L^p)` for
   `p ∈ [1, ∞]` (I-LPINT, `‖g‖_p ≤ ‖g‖₁ + ‖g‖_∞`). The Lean `MemX` asks for joint measurability on
-  the slab, which `MemLinfLp` already provides, so the manuscript's Pettis/truncation argument for
+  the slab, which `MemLinfLp` already provides, so the legacy proof's Pettis/truncation argument for
   strong measurability into `L¹ ∩ L^q` is not needed. `BoundedAdmAux.isWeakSolution_of_exponent`:
   the fields `velocity_convergent` and `weak` of `IsWeakSolution` do not involve the exponent.
-  Then `cor:L2-renorm` (`IsWeakSolution.isRenormalized_of_memLinfLp_two`).
+  Then legacy `cor:L2-renorm` (`IsWeakSolution.isRenormalized_of_memLinfLp_two`).
 * For the sequence: `f ∈ L¹ ∩ L^q` from `f = f⁽ᴺ⁾ - (f⁽ᴺ⁾ - f)` with `N` such that
   `‖f⁽ᴺ⁾ - f‖_{L¹∩L^q} < ∞`.
 * (ii) For `t ∈ [0, T₀)` choose `T ∈ (t, T₀)` (`BoundedAdmAux.exists_gt_lt`) and apply
@@ -38,7 +40,7 @@ open Weak
 namespace BoundedAdmAux
 
 /-- `L^∞(I; L¹) ∩ L^∞(I; L^∞) ⊆ L^∞(I; L^p)` for `1 ≤ p` (interpolation,
-`03_compactness.tex:908-911`). -/
+the boundedness step in the proof of Part I Theorem 3.8 (`thm:criterion`) and Lemma 3.5 (`lem:renorm-all-t`)). -/
 theorem memLinfLp_of_one_top {I : Set ℝ} {Ω : Set ℂ} {u : ℝ → ℂ → ℝ} {p : ℝ≥0∞}
     (h1 : Prelim.MemLinfLp I Ω 1 u) (hinf : Prelim.MemLinfLp I Ω ⊤ u) (hp : 1 ≤ p) :
     Prelim.MemLinfLp I Ω p u := by
@@ -59,7 +61,7 @@ theorem memLinfLp_of_one_top {I : Set ℝ} {Ω : Set ℂ} {u : ℝ → ℂ → �
     _ ≤ M₁ + M₂ := add_le_add hb1 hb2
 
 /-- The weak formulation and the convergence of the Biot–Savart integral do not involve the
-exponent (`03_compactness.tex:919-920`): a weak solution with exponent `q₀` that lies in
+exponent (the boundedness step in the proof of Part I Theorem 3.8 (`thm:criterion`) and Lemma 3.5 (`lem:renorm-all-t`)): a weak solution with exponent `q₀` that lies in
 `X_q(T)`, with datum in `L^q`, is a weak solution with exponent `q`. -/
 theorem isWeakSolution_of_exponent {q₀ q T : ℝ} {g : ℂ → ℝ} {ω : ℝ → ℂ → ℝ}
     (h : IsWeakSolution q₀ T g ω) (hq : 4 / 3 < q) (hgq : MemLp g (ENNReal.ofReal q) volume)
@@ -114,7 +116,7 @@ end BoundedAdmAux
 open BoundedAdmAux
 
 set_option linter.unusedVariables false in
-/-- **`lem:bounded-adm`(i)**, one solution (`03_compactness.tex:891-896`): a weak solution on
+/-- **legacy `lem:bounded-adm`(i)**, one solution (the boundedness step in the proof of Part I Theorem 3.8 (`thm:criterion`) and Lemma 3.5 (`lem:renorm-all-t`)): a weak solution on
 `[0, T₀)` (exponent `q₀ ∈ (4/3, ∞)`) with datum `g ∈ L¹ ∩ L^∞` that lies in
 `L^∞(0, T; L¹ ∩ L^∞)` for every `T < T₀` is a renormalized weak solution in `X_q(T)` for every
 `q ∈ (4/3, ∞)` and every `T < T₀`. -/
@@ -134,7 +136,7 @@ theorem boundedAdm_renormalized {T₀ : ℝ≥0∞} {q₀ : ℝ} {g : ℂ → �
   have h2 : Prelim.MemLinfLp (Ioo 0 T) univ 2 ω := memLinfLp_of_one_top h1 hinf one_le_two
   exact hw.isRenormalized_of_memLinfLp_two h2
 
-/-- **`lem:bounded-adm`(i)**, the sequence (`03_compactness.tex:896-898`): under the hypotheses of
+/-- **legacy `lem:bounded-adm`(i)**, the sequence (the boundedness step in the proof of Part I Theorem 3.8 (`thm:criterion`) and Lemma 3.5 (`lem:renorm-all-t`)): under the hypotheses of
 `boundedAdm_renormalized` for every `n`, if `q ∈ (4/3, ∞)` and `f⁽ⁿ⁾ → f` in `L¹ ∩ L^q`, then
 `(f⁽ⁿ⁾, ω⁽ⁿ⁾)` is `q`-admissible for `f` on `[0, T₀)`. -/
 theorem boundedAdm_admissible {T₀ : ℝ≥0∞} {q₀ q : ℝ} {f : ℂ → ℝ} {fs : ℕ → ℂ → ℝ}
@@ -172,7 +174,7 @@ theorem boundedAdm_admissible {T₀ : ℝ≥0∞} {q₀ q : ℝ} {f : ℂ → �
       renormalized := fun n =>
         boundedAdm_renormalized hT₀ (hfs1 n) (hfsinf n) hq₀ (hωs n) (hbd n) q hq }
 
-/-- **`lem:bounded-adm`(ii)**, conservation of norms (`03_compactness.tex:899-901`): for a
+/-- **legacy `lem:bounded-adm`(ii)**, conservation of norms (the boundedness step in the proof of Part I Theorem 3.8 (`thm:criterion`) and Lemma 3.5 (`lem:renorm-all-t`)): for a
 `2`-admissible sequence (identified with weakly continuous representatives on `[0, T₀)`),
 `‖ω⁽ⁿ⁾(t)‖_{L^r} = ‖f⁽ⁿ⁾‖_{L^r}` for every `n`, `t ∈ [0, T₀)` and `r ∈ [1, 2]`. -/
 theorem boundedAdm_eLpNorm_eq {T₀ : ℝ≥0∞} {f : ℂ → ℝ} {fs : ℕ → ℂ → ℝ} {ωs : ℕ → ℝ → ℂ → ℝ}
@@ -187,7 +189,7 @@ theorem boundedAdm_eLpNorm_eq {T₀ : ℝ≥0∞} {f : ℂ → ℝ} {fs : ℕ �
   have hc := (hcont n).mono (Icc_subset_timeInterval hT)
   exact renormAllT_eLpNorm_eq hren hc t ⟨ht.1, htT⟩ r hr1 hr2
 
-/-- **`lem:bounded-adm`(ii)**, the uniform bound (`03_compactness.tex:901-903`): for a
+/-- **legacy `lem:bounded-adm`(ii)**, the uniform bound (the boundedness step in the proof of Part I Theorem 3.8 (`thm:criterion`) and Lemma 3.5 (`lem:renorm-all-t`)): for a
 `2`-admissible sequence, `sup_n sup_{t<T₀} ‖ω⁽ⁿ⁾(t)‖_{L¹∩L²} = sup_n ‖f⁽ⁿ⁾‖_{L¹∩L²} < ∞`. -/
 theorem boundedAdm_iSup_eq {T₀ : ℝ≥0∞} {f : ℂ → ℝ} {fs : ℕ → ℂ → ℝ} {ωs : ℕ → ℝ → ℂ → ℝ}
     (hadm : IsAdmissibleSeq 2 T₀ f fs ωs)

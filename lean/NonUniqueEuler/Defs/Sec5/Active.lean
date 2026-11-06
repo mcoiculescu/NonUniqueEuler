@@ -2,12 +2,10 @@ import NonUniqueEuler.Defs.Sec5.Constants
 import NonUniqueEuler.Defs.Sec2.Multipole
 
 /-!
-# Section 5.3: an active ring — envelopes, the transient, and the constants of `thm:active`
+# Part II Section 2.3: an active ring — envelopes, the transient, and the constants of `thm:active`
 (definitions)
 
-Manuscript `lem:window`
-(`05_single_ring.tex:678-704`), `thm:active` (`:863-912`) and `cor:active-moment`
-(`:1104-1111`).
+Manuscript Part II Lemma 2.11 (`lem:window`), Part II Theorem 2.12 (`thm:active`) and Part II Corollary 2.13 (`cor:active-moment`).
 
 * explicit functions of the statements: `ahat κ σ u = κ e^{σu}` (`â`, `â₁`), `That σ δ₀ κ =
   σ⁻¹ log(δ₀/κ)` (`T̂`, `T̂₁`), `rhoOne σ σ' u = ⟨u⟩^p e^{-(σ-σ')u}` (`ρ₁` of `lem:window`),
@@ -19,7 +17,7 @@ Manuscript `lem:window`
   `ActiveField`, `ActiveCoef`) and its conclusions (a), (b) together with the bound of
   `cor:active-moment` (`RingConfig.ActiveConcl`);
 * `IsActiveConst χ s σ' d_H C₂ C₃ κ₀`: "these constants work in `thm:active` and
-  `cor:active-moment`" (D11: Sections 9–10 use `d_H, C₂, C₃, κ₀(·)` by value), and the chosen
+  `cor:active-moment`" (D11: Part II Sections 6–7 and Appendix C use `d_H, C₂, C₃, κ₀(·)` by value), and the chosen
   constants `activeConsts`, `dH`, `C2`, `C3`, `kappa0`.
 
 All lemmas here are fully proved.
@@ -37,36 +35,36 @@ open RingData
 
 /-! ### Envelopes and the transient -/
 
-/-- `η_max = 1` (`thm:active`, `05_single_ring.tex:868`). -/
+/-- `η_max = 1` (`thm:active`, Part II Theorem 2.12). -/
 def etaMax : ℝ := 1
 
-/-- The envelope `â(u) = κ e^{σu}` (`thm:active`, `05_single_ring.tex:873`; `â₁` of
-`lem:window`, `:697`; `â_k` of `def:standing`). -/
+/-- The envelope `â(u) = κ e^{σu}` (`thm:active`, Part II Theorem 2.12; `â₁` of
+`lem:window`, Part II Lemma 2.11; `â_k` of `def:standing`). -/
 def ahat (κ σ u : ℝ) : ℝ := κ * Real.exp (σ * u)
 
-/-- The window end `T̂ = σ⁻¹ log(δ₀/κ)` (`thm:active`, `05_single_ring.tex:874`; `T̂₁` of
-`lem:window`, `:686`). -/
+/-- The window end `T̂ = σ⁻¹ log(δ₀/κ)` (`thm:active`, Part II Theorem 2.12; `T̂₁` of
+`lem:window`, Part II Lemma 2.11). -/
 def That (σ δ₀ κ : ℝ) : ℝ := σ⁻¹ * Real.log (δ₀ / κ)
 
-/-- `ρ₁(u) = ⟨u⟩^p e^{-(σ-σ')u}` (`lem:window`, `05_single_ring.tex:697`). -/
+/-- `ρ₁(u) = ⟨u⟩^p e^{-(σ-σ')u}` (`lem:window`, Part II Lemma 2.11). -/
 def rhoOne (σ σ' u : ℝ) : ℝ := Prelim.jap u ^ pW * Real.exp (-((σ - σ') * u))
 
 /-- The least `t ≥ 0` such that `2^{p/2} C₀ ⟨t'⟩^p e^{-(σ-σ')t'} ≤ 1` for all `t' ≥ t`
-(`thm:active`, `05_single_ring.tex:874-875` with `σ = σ(G)`, and `:901-905` with `σ = σ_b`), as an
+(`thm:active`, Part II Theorem 2.12 with `σ = σ(G)`, and Part II Theorem 2.12 with `σ = σ_b`), as an
 infimum (the set is a closed half-line when `σ > σ'`; junk `0` when it is empty). -/
 def tOneOf (σ σ' C₀ : ℝ) : ℝ :=
   sInf {t : ℝ | 0 ≤ t ∧ ∀ t' : ℝ, t ≤ t' →
     (2 : ℝ) ^ ((pW : ℝ) / 2) * C₀ * Prelim.jap t' ^ pW * Real.exp (-((σ - σ') * t')) ≤ 1}
 
-/-- `t₁ = t₁(C₀,G)` (`thm:active`, `05_single_ring.tex:874-875`). -/
+/-- `t₁ = t₁(C₀,G)` (`thm:active`, Part II Theorem 2.12). -/
 def tOne (χ : ℝ → ℝ) (σ' C₀ G : ℝ) : ℝ := tOneOf (Eig.sigma χ G) σ' C₀
 
-/-- `t̄₁(C₀)` (`thm:active`, `05_single_ring.tex:901-905`). -/
+/-- `t̄₁(C₀)` (`thm:active`, Part II Theorem 2.12). -/
 def tOneBar (χ : ℝ → ℝ) (σ' C₀ : ℝ) : ℝ := tOneOf (Eig.sigb χ) σ' C₀
 
 /-- The **transient** `ρ̂(u) = C₀⟨u⟩^p e^{-(σ-σ')u}` for `0 ≤ u < t₁` and
 `ρ̂(u) = ⟨u-t₁⟩^p e^{-(σ-σ')(u-t₁)}` for `u ≥ t₁`, with `t₁ = tOneOf σ σ' C₀`
-(`thm:active`, `05_single_ring.tex:876-880`). -/
+(`thm:active`, Part II Theorem 2.12). -/
 def rhoHatOf (σ σ' C₀ u : ℝ) : ℝ :=
   if u < tOneOf σ σ' C₀ then C₀ * Prelim.jap u ^ pW * Real.exp (-((σ - σ') * u))
   else Prelim.jap (u - tOneOf σ σ' C₀) ^ pW * Real.exp (-((σ - σ') * (u - tOneOf σ σ' C₀)))
@@ -74,7 +72,7 @@ def rhoHatOf (σ σ' C₀ u : ℝ) : ℝ :=
 /-- The transient `ρ̂` of `thm:active` for `G` (`σ = σ(G)`; `ρ̂_k` of `def:standing`). -/
 def rhoHat (χ : ℝ → ℝ) (σ' C₀ G u : ℝ) : ℝ := rhoHatOf (Eig.sigma χ G) σ' C₀ u
 
-/-- `C(C₀) = max(C₀, e^{σ_max t̄₁(C₀)})` (`thm:active`, `05_single_ring.tex:906-911`). -/
+/-- `C(C₀) = max(C₀, e^{σ_max t̄₁(C₀)})` (`thm:active`, Part II Theorem 2.12). -/
 def Cact (χ : ℝ → ℝ) (σ' C₀ : ℝ) : ℝ := max C₀ (Real.exp (sigmaMax χ * tOneBar χ σ' C₀))
 
 /-! ### The hypotheses and conclusions of `thm:active` -/
@@ -83,12 +81,12 @@ namespace RingConfig
 
 variable (c : RingConfig)
 
-/-- Hypothesis **(Init)** of `thm:active` (`05_single_ring.tex:886`):
+/-- Hypothesis **(Init)** of Part II Theorem 2.12 (`thm:active`):
 `‖w(0)‖_{H^{M-1}} ≤ C₀κ` and `supp(Φ + w(0)) = supp ω_r(0) ⊂ 𝒩₋`. -/
 def ActiveInit (χ : ℝ → ℝ) (s : ℕ) (C₀ κ : ℝ) : Prop :=
   Sob.normH (Mact χ s - 1) (c.pert0 χ) ≤ C₀ * κ ∧ tsupport c.ring0 ⊆ annNm
 
-/-- Hypothesis **(Field)** of `thm:active` (`05_single_ring.tex:887-889`): `h = h₁ + h₂` on
+/-- Hypothesis **(Field)** of Part II Theorem 2.12 (`thm:active`): `h = h₁ + h₂` on
 `[0,ū]` (as fields on a neighborhood of `N'`, which is what the `C^M(N')` norms see), with
 `‖h₁(u)‖_{C^M(N')} ≤ C₀κ⟨u⟩^p` and `‖h₂(u)‖_{C^M(N')} ≤ η_b â(u)`. The memberships `h_i(u) ∈
 C^M(N')` are explicit: with a junk (infinite) norm the bounds would say nothing. -/
@@ -100,15 +98,15 @@ def ActiveField (χ : ℝ → ℝ) (s : ℕ) (ubar C₀ κ ηb : ℝ) : Prop :=
       MemCk (Mact χ s) annN' (h₂ u) ∧
       normCk (Mact χ s) annN' (h₂ u) ≤ ηb * ahat κ (Eig.sigma χ c.G) u
 
-/-- Hypothesis **(Coef)** of `thm:active` (`05_single_ring.tex:890`):
+/-- Hypothesis **(Coef)** of Part II Theorem 2.12 (`thm:active`):
 `|c(u)| ≤ κ(2 + C₀⟨u⟩^p e^{-σu})` on `[0,ū]`, for the running coefficient `c` with `w₀ = w(0)`. -/
 def ActiveCoef (χ : ℝ → ℝ) (ubar C₀ κ : ℝ) : Prop :=
   ∀ u ∈ Icc (0 : ℝ) ubar,
     ‖runCoef χ c.G (c.pert0 χ) c.h u‖ ≤
       κ * (2 + C₀ * Prelim.jap u ^ pW * Real.exp (-(Eig.sigma χ c.G * u)))
 
-/-- **The conclusions of `thm:active` at time `u`** (`05_single_ring.tex:893-899`), together with
-that of `cor:active-moment` (`:1104-1111`), for `G = c.G`, `σ = σ(G)`, `λ = λ_*(G)`,
+/-- **The conclusions of `thm:active` at time `u`** (Part II Theorem 2.12), together with
+that of Part II Corollary 2.13 (`cor:active-moment`), for `G = c.G`, `σ = σ(G)`, `λ = λ_*(G)`,
 `â(u) = κe^{σu}`, the transient `ρ̂` and the running coefficient `c(u)` with `w₀ = w(0)`:
 (a) every trajectory of `ω_r` moves radially by at most `C₂δ₀ + κ^{1/2}` on `[0,u]`, and
 `supp(Φ + w(u)) = supp ω_r(u) ⊂ 𝒩`;
@@ -133,8 +131,8 @@ def ActiveConcl (χ : ℝ → ℝ) (s : ℕ) (σ' C₀ κ ηb δ₀ C₂ C₃ u 
 end RingConfig
 
 /-- **The constants `d_H ∈ (0,1)`, `C₂ ≥ 1`, `C₃ > 0` and the function `κ₀(·) > 0` work in
-`thm:active` and `cor:active-moment`** for `s` and `σ'` (`05_single_ring.tex:863-899`,
-`:1104-1111`; `p = 3`, `M = Mact χ s`, `η_max = 1`): for every `C₀ ≥ 1`, every configuration of
+`thm:active` and `cor:active-moment`** for `s` and `σ'` (Part II Theorem 2.12,
+Part II Corollary 2.13; `p = 3`, `M = Mact χ s`, `η_max = 1`): for every `C₀ ≥ 1`, every configuration of
 `lem:reduction` on `[0,ū]` with `G ∈ [0,G₁]`, every `κ > 0`, `η_b ∈ [0,η_max]`,
 `δ₀ ∈ (0,d_H]`, if (Init), (Field), (Coef) hold and (Small) `κ ≤ κ₀(C₀)`, then the conclusions
 (a), (b) and that of `cor:active-moment` hold for every `u ∈ [0, min(ū, T̂)]`,
@@ -158,16 +156,16 @@ def activeConsts (χ : ℝ → ℝ) (s : ℕ) (σ' : ℝ) : ℝ × ℝ × ℝ ×
     h.choose
   else (1 / 2, 1, 1, fun _ => 1)
 
-/-- `d_H` of `thm:active` (`05_single_ring.tex:868-869`). -/
+/-- `d_H` of Part II Theorem 2.12 (`thm:active`). -/
 def dH (χ : ℝ → ℝ) (s : ℕ) (σ' : ℝ) : ℝ := (activeConsts χ s σ').1
 
-/-- `C₂` of `thm:active` (`05_single_ring.tex:868-869`). -/
+/-- `C₂` of Part II Theorem 2.12 (`thm:active`). -/
 def C2 (χ : ℝ → ℝ) (s : ℕ) (σ' : ℝ) : ℝ := (activeConsts χ s σ').2.1
 
-/-- `C₃` of `thm:active` (`05_single_ring.tex:868-869`; used in `cor:active-moment`). -/
+/-- `C₃` of `thm:active` (Part II Theorem 2.12; used in `cor:active-moment`). -/
 def C3 (χ : ℝ → ℝ) (s : ℕ) (σ' : ℝ) : ℝ := (activeConsts χ s σ').2.2.1
 
-/-- The function `κ₀(·)` of `thm:active` (`05_single_ring.tex:869-870`). -/
+/-- The function `κ₀(·)` of Part II Theorem 2.12 (`thm:active`). -/
 def kappa0 (χ : ℝ → ℝ) (s : ℕ) (σ' : ℝ) : ℝ → ℝ := (activeConsts χ s σ').2.2.2
 
 /-! ### Basic lemmas (fully proved) -/

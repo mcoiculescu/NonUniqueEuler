@@ -6,9 +6,9 @@ import Mathlib.Data.Rat.Cast.Order
 /-!
 # Rectangles, their boundary curve, and boundary chains (definitions)
 
-Manuscript: the rectangles `R_A = [9/200, 3] × [-5, 3]` and `R_i` of Definition A.5
-(`A_verification.tex:518-534`), the counterclockwise contour "from `(x₀, y₀)`" of the
-certification (`A_verification.tex:569-575`), and Proposition A.4 (`prop:winding`).
+Manuscript: the rectangles `R_A = [9/200, 3] × [-5, 3]` and `R_i` of Part II Definition A.5
+(`def:Nprime`), the counterclockwise contour "from `(x₀, y₀)`" of the
+certification (`app:runs`), and Part II Proposition A.4 (`prop:winding`).
 Checker design decision D8 (see `FORMALIZATION_NOTES.md`).
 
 Rectangles are the statement-layer `QRect` (rational vertices `x₀ x₁ y₀ y₁`, JSON order

@@ -5,9 +5,13 @@ import NonUniqueEuler.I.Sec3.VelocityField
 import NonUniqueEuler.I.Infra.Equimeasurable.Lipschitz
 
 /-!
-# Proof: `cor:L2-renorm` (weak solutions in `L^∞(0,T;L²)` are renormalized)
+# Proof: legacy `cor:L2-renorm` (weak solutions in `L^∞(0,T;L²)` are renormalized)
 
-Proof of `I/Sec3/L2Renorm.lean` (`03_compactness.tex:549-574`).
+The former `cor:L2-renorm` is retained as a Lean auxiliary. The current manuscript
+applies Lemma 3.4(i) (`lem:transport`) to an Euler weak solution using §3.2
+(`sec:weak-rep`), in the proof of Theorem 3.8(i) (`thm:criterion`).
+
+Proof of `I/Sec3/L2Renorm.lean` (the renormalization argument in the proof of Part I Theorem 3.8(i) (`thm:criterion`)).
 
 **Proof.** `ω ∈ L^∞(0,T;L¹)` by `memX_iff`, `ω ∈ L^∞(0,T;L²)` by hypothesis; the field
 `v = K∗ω` is in `L^∞(0,T;W^{1,2}_loc)` and divergence-free
@@ -18,8 +22,8 @@ Proof of `I/Sec3/L2Renorm.lean` (`03_compactness.tex:549-574`).
 `Υ ∈ Lip₀`, in particular for every renormalization (`IsRenormalization.isLipO`); this is
 `(renorm)` (`solvesTE_zero_iff`).
 
-**Deviation (D9).** The manuscript obtains `ω^in ∈ L²` from the weakly continuous representative
-of `ω` in `L^q` (`lem:weak-cont` with `b = q`, `03_compactness.tex:563-570`). Here
+**Deviation from the legacy proof (D9).** The earlier draft obtained `ω^in ∈ L²` from the weakly continuous representative
+of `ω` in `L^q` (`lem:weak-cont` with `b = q`, the renormalization argument in the proof of Part I Theorem 3.8(i) (`thm:criterion`)). Here
 `lem:weak-cont` with `b = 2`, stated for a locally integrable datum and concluding `u₀ ∈ L²`
 (`I/Sec3/WeakCont.lean`), is applied with `u = ω`, `w = v`, `u₀ = ω^in`.
 -/
@@ -43,7 +47,7 @@ private theorem exists_nonneg_ae_eLpNorm_two_le {I : Set ℝ} {u : ℝ → ℂ �
         (ENNReal.ofReal_toReal hmem.eLpNorm_ne_top).symm
     _ ≤ ENNReal.ofReal (max M 0) := ENNReal.ofReal_le_ofReal (hle.trans (le_max_left M 0))
 
-/-- `cor:L2-renorm` (`03_compactness.tex:549-554`): a weak solution in `X_q(T)`, `4/3 < q < ∞`,
+/-- legacy `cor:L2-renorm` (the renormalization argument in the proof of Part I Theorem 3.8(i) (`thm:criterion`)): a weak solution in `X_q(T)`, `4/3 < q < ∞`,
 with `ω ∈ L^∞(0,T;L²)` is a renormalized weak solution. -/
 theorem _root_.NonUniqueEuler.IsWeakSolution.isRenormalized_of_memLinfLp_two {q T : ℝ}
     {ωin : ℂ → ℝ} {ω : ℝ → ℂ → ℝ} (h : IsWeakSolution q T ωin ω)

@@ -10,9 +10,16 @@ import NonUniqueEuler.I.Sec3.RadialStationary
 /-!
 # Proof: `thm:criterion`, the non-uniqueness criterion (with eq:defect)
 
-Proof of `I/Sec3/Criterion.lean` (manuscript `03_compactness.tex:933-1077`).
+The current manuscript specializes to `T₀ = ∞`. Lean retains arbitrary `T₀`,
+uniform convergence on compact time intervals in every `L^q`, `q ∈ [1,2]`,
+and signed orthogonal symmetries. Current Theorem 3.8(iv) states `L¹` convergence
+on the defect interval, and (vi) states three-fold rotational symmetry. For `q > 2`,
+Lean still requires a higher finite moment `f ∈ L^r`, `r > q` (R8), while the
+current theorem proves continuity assuming only `f ∈ L^q`.
 
-Structure (following the manuscript proof):
+Proof of `I/Sec3/Criterion.lean` (manuscript Part I Theorem 3.8 (`thm:criterion`) and its proof).
+
+Structure of the retained Lean decomposition:
 * pass to a subsequence along which `sup_{t ≤ T} ‖ω⁽ⁿ⁾(t) - f‖₁ → c`
   (`CriterionAux.exists_strictMono_tendsto_limsup`);
 * step 1, construction of `ω_∞`, (i) and the uniform weak convergence: `criterion_limit`
@@ -33,7 +40,7 @@ namespace NonUniqueEuler.Compact
 
 open Weak
 
-/-- **`thm:criterion`** (`03_compactness.tex:933-968`): for radial `f`, a `2`-admissible sequence
+/-- **Part I Theorem 3.8 (`thm:criterion`)**: for radial `f`, a `2`-admissible sequence
 `(f⁽ⁿ⁾, ω⁽ⁿ⁾)` for `f` on `[0, T₀)` (weakly continuous representatives) and `T ∈ (0, T₀)` with
 eq:defect `limsup_n sup_{t ≤ T} ‖ω⁽ⁿ⁾(t) - f‖_{L¹} > 0`, there are a subsequence `φ` and a limit
 `ω_∞` satisfying (i)–(vi) (`IsCriterionLimit`). -/

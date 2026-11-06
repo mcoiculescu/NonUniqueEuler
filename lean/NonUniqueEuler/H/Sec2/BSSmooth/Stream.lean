@@ -5,7 +5,7 @@ import Mathlib.Analysis.Calculus.FDeriv.Symmetric
 /-!
 # Helper for `lem:BS-basic`(d): the stream function
 
-Helper of `P/Sec2/BSSmooth.lean` (`02_prelim.tex:212-240`). For real `h ∈ C_c^∞` and
+Helper of `P/Sec2/BSSmooth.lean` (Part I, Lemma 2.1 (`lem:BS-basic`)). For real `h ∈ C_c^∞` and
 `ψ = Multipole.logPotentialReal h`:
 * `velocity_eq_perpGrad`: `K ∗ h = ∇^⊥ψ` (the weak derivative of `log|·|`,
   `Polar.integral_log_norm_mul_fderiv`, replaces the integration by parts on `{|z| > ε}`, R6);

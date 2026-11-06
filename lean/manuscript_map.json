@@ -1,0 +1,1741 @@
+{
+  "schema_version": 1,
+  "description": "Curated semantic entry points. TeX source owns current labels and numbers; see tools/manuscript_map.py.",
+  "current": [
+    {
+      "part": "part1",
+      "label": "thm:main",
+      "modules": [
+        "NonUniqueEuler/Statement/MainTheorem.lean",
+        "NonUniqueEuler/Final.lean"
+      ],
+      "relation": "variant",
+      "note": "MainTheorem includes explicit global-solution/restriction clauses; every admissible cutoff is quantified. Final result retains the checker-acceptance hypothesis.",
+      "declarations": [
+        "MainTheorem",
+        "main_theorem_of_certificate"
+      ]
+    },
+    {
+      "part": "part1",
+      "label": "thm:conditional",
+      "modules": [
+        "NonUniqueEuler/P/Sec3/Defect.lean",
+        "NonUniqueEuler/P/Sec3/Criterion.lean",
+        "NonUniqueEuler/P/Sec3/RadialStationary.lean"
+      ],
+      "relation": "components",
+      "note": "Introductory collection of the criterion, moment defect and stationary solution; no single declaration matches this complete package."
+    },
+    {
+      "part": "part1",
+      "label": "thm:linear",
+      "modules": [
+        "NonUniqueEuler/P/Sec4/PropSU.lean",
+        "NonUniqueEuler/P/Sec4/PropU.lean",
+        "NonUniqueEuler/P/Sec4/PropSemigroup.lean",
+        "NonUniqueEuler/P/Sec4/Uniform.lean",
+        "NonUniqueEuler/P/Sec4/SemigroupConstruct.lean"
+      ],
+      "relation": "components",
+      "note": "Collected linear conclusions; sector-wise evolution and explicit projections replace some full-space spectral assertions (R1–R2). No single corresponding theorem bundle."
+    },
+    {
+      "part": "part1",
+      "label": "lem:BS-basic",
+      "modules": [
+        "NonUniqueEuler/P/Sec2/BSBasic.lean"
+      ],
+      "relation": "entry point",
+      "note": "Biot–Savart identities; smooth estimates are also in BSSmooth."
+    },
+    {
+      "part": "part1",
+      "label": "lem:velocity",
+      "modules": [
+        "NonUniqueEuler/P/Sec2/Velocity.lean"
+      ],
+      "relation": "entry point",
+      "note": "Velocity estimates and convergence; WeakL2 helpers supply compactness."
+    },
+    {
+      "part": "part1",
+      "label": "def:multipole",
+      "modules": [
+        "NonUniqueEuler/Defs/Sec2/Multipole.lean"
+      ],
+      "relation": "definition",
+      "note": "Complex-valued multipole moments and normalization.",
+      "declarations": [
+        "pout",
+        "pin",
+        "Qm"
+      ]
+    },
+    {
+      "part": "part1",
+      "label": "def:equimeasurable",
+      "modules": [
+        "NonUniqueEuler/Statement/WeakSolution.lean"
+      ],
+      "relation": "definition",
+      "note": "Equimeasurability is a predicate on real functions."
+    },
+    {
+      "part": "part1",
+      "label": "def:weak",
+      "modules": [
+        "NonUniqueEuler/Statement/WeakSolution.lean",
+        "NonUniqueEuler/P/Sec2/WeakIntegrability.lean"
+      ],
+      "relation": "variant",
+      "note": "Weak formulation explicitly includes integrability conditions; WeakIntegrability derives them from the stated spaces (D4–D6)."
+    },
+    {
+      "part": "part1",
+      "label": "lem:dbr",
+      "modules": [
+        "NonUniqueEuler/P/Sec3/Dbr.lean"
+      ],
+      "relation": "entry point",
+      "note": "Distributional bounded-derivative argument."
+    },
+    {
+      "part": "part1",
+      "label": "lem:weak-cont",
+      "modules": [
+        "NonUniqueEuler/P/Sec3/WeakCont.lean"
+      ],
+      "relation": "entry point",
+      "note": "Weakly continuous L² representative and initial trace."
+    },
+    {
+      "part": "part1",
+      "label": "lem:commutator",
+      "modules": [
+        "NonUniqueEuler/P/Sec3/Commutator.lean"
+      ],
+      "relation": "entry point",
+      "note": "Commutator convergence used in transport renormalization."
+    },
+    {
+      "part": "part1",
+      "label": "lem:transport",
+      "modules": [
+        "NonUniqueEuler/P/Sec3/Transport.lean"
+      ],
+      "relation": "entry point",
+      "note": "L² transport/renormalization proof; LipRenorm supplies the Lipschitz extension."
+    },
+    {
+      "part": "part1",
+      "label": "lem:renorm-all-t",
+      "modules": [
+        "NonUniqueEuler/P/Sec3/RenormAllT.lean"
+      ],
+      "relation": "entry point",
+      "note": "Equimeasurability and time continuity through L² norms."
+    },
+    {
+      "part": "part1",
+      "label": "lem:radial-stationary",
+      "modules": [
+        "NonUniqueEuler/P/Sec3/RadialStationary.lean"
+      ],
+      "relation": "entry point",
+      "note": "Stationary radial weak solution."
+    },
+    {
+      "part": "part1",
+      "label": "def:adm",
+      "modules": [
+        "NonUniqueEuler/Defs/Sec3/Criterion.lean"
+      ],
+      "relation": "definition",
+      "note": "Admissible sequences and their solution/representative hypotheses.",
+      "declarations": [
+        "IsAdmissibleSeq"
+      ]
+    },
+    {
+      "part": "part1",
+      "label": "thm:criterion",
+      "modules": [
+        "NonUniqueEuler/P/Sec3/Criterion.lean",
+        "NonUniqueEuler/P/Sec3/Compact.lean",
+        "NonUniqueEuler/P/Sec3/Stable.lean"
+      ],
+      "relation": "variant",
+      "note": "Criterion assembled through compactness/stability auxiliaries. Its L^q continuity argument uses an extra exponent r>q, sufficient for the main datum (R8)."
+    },
+    {
+      "part": "part1",
+      "label": "cor:defect",
+      "modules": [
+        "NonUniqueEuler/P/Sec3/Defect.lean"
+      ],
+      "relation": "entry point",
+      "note": "Moment-defect consequence; the formal proof retains intermediate equivalence propositions. Formerly prop:defect.",
+      "declarations": [
+        "defect"
+      ]
+    },
+    {
+      "part": "part1",
+      "label": "def:ring",
+      "modules": [
+        "NonUniqueEuler/Statement/Ring.lean",
+        "NonUniqueEuler/Defs/Sec4/Ring.lean"
+      ],
+      "relation": "definition",
+      "note": "Ring built from an arbitrary admissible cutoff; canonical cutoff supplied separately."
+    },
+    {
+      "part": "part1",
+      "label": "lem:ring-facts",
+      "modules": [
+        "NonUniqueEuler/P/Sec4/RingFacts.lean",
+        "NonUniqueEuler/P/Ring/ChiStd.lean"
+      ],
+      "relation": "entry point",
+      "note": "Ring properties and admissibility of the explicit cutoff."
+    },
+    {
+      "part": "part1",
+      "label": "def:sector-setting",
+      "modules": [
+        "NonUniqueEuler/Defs/Sec4/Setting.lean",
+        "NonUniqueEuler/P/Sec4/SectorSetting.lean"
+      ],
+      "relation": "definition",
+      "note": "Sector setting and operators. Rotations/projections are bounded; the current paper already uses this convention."
+    },
+    {
+      "part": "part1",
+      "label": "def:evans",
+      "modules": [
+        "NonUniqueEuler/Defs/Sec4/Evans.lean",
+        "NonUniqueEuler/Statement/Evans.lean",
+        "NonUniqueEuler/P/Evans/ODE.lean"
+      ],
+      "relation": "definition",
+      "note": "Evans function via the first-order ODE pair, including endpoint conventions (D13)."
+    },
+    {
+      "part": "part1",
+      "label": "lem:sector",
+      "modules": [
+        "NonUniqueEuler/P/Sec4/Sector.lean"
+      ],
+      "relation": "entry point",
+      "note": "Angular-mode reduction."
+    },
+    {
+      "part": "part1",
+      "label": "lem:evans-basic",
+      "modules": [
+        "NonUniqueEuler/P/Sec4/EvansBasic.lean"
+      ],
+      "relation": "entry point",
+      "note": "Basic Evans function properties."
+    },
+    {
+      "part": "part1",
+      "label": "lem:resolvent",
+      "modules": [
+        "NonUniqueEuler/P/Sec4/Resolvent.lean"
+      ],
+      "relation": "entry point",
+      "note": "Sector resolvent formula and eigenfunction properties."
+    },
+    {
+      "part": "part1",
+      "label": "lem:adjoint",
+      "modules": [
+        "NonUniqueEuler/P/Sec4/Adjoint.lean"
+      ],
+      "relation": "entry point",
+      "note": "Adjoint eigenfunctional and normalization."
+    },
+    {
+      "part": "part1",
+      "label": "lem:edge",
+      "modules": [
+        "NonUniqueEuler/P/Sec4/Edge.lean"
+      ],
+      "relation": "entry point",
+      "note": "Endpoint properties."
+    },
+    {
+      "part": "part1",
+      "label": "lem:closed-form",
+      "modules": [
+        "NonUniqueEuler/P/Sec4/ClosedForm.lean"
+      ],
+      "relation": "entry point",
+      "note": "Closed form used for moment and coupling calculations."
+    },
+    {
+      "part": "part1",
+      "label": "lem:norm-equiv",
+      "modules": [
+        "NonUniqueEuler/P/Sec4/NormEquiv.lean"
+      ],
+      "relation": "entry point",
+      "note": "Angular Sobolev norm equivalence."
+    },
+    {
+      "part": "part1",
+      "label": "cor:K-bound",
+      "modules": [
+        "NonUniqueEuler/P/Sec4/KBound.lean"
+      ],
+      "relation": "entry point",
+      "note": "Green-operator bound; elliptic estimate also in Elliptic."
+    },
+    {
+      "part": "part1",
+      "label": "prop:large-sectors",
+      "modules": [
+        "NonUniqueEuler/P/Sec4/LargeSectors.lean"
+      ],
+      "relation": "entry point",
+      "note": "Large-mode exponential bounds."
+    },
+    {
+      "part": "part1",
+      "label": "lem:sector-sum",
+      "modules": [
+        "NonUniqueEuler/P/Sec4/SectorSum.lean"
+      ],
+      "relation": "entry point",
+      "note": "Summation of sector bounds."
+    },
+    {
+      "part": "part1",
+      "label": "cor:sector-3",
+      "modules": [
+        "NonUniqueEuler/P/Sec4/Sector3.lean"
+      ],
+      "relation": "entry point",
+      "note": "Mode-3 spectral conclusions from the numerical hypothesis."
+    },
+    {
+      "part": "part1",
+      "label": "lem:uniform",
+      "modules": [
+        "NonUniqueEuler/P/Sec4/Uniform.lean"
+      ],
+      "relation": "entry point",
+      "note": "Uniform eigendata and moment bounds."
+    },
+    {
+      "part": "part1",
+      "label": "thm:evans-simple",
+      "modules": [
+        "NonUniqueEuler/P/Sec4/EvansSimple.lean"
+      ],
+      "relation": "variant",
+      "note": "Pole removal and generalized eigenspace statements are packaged sector-wise; unused converse directions are not needed (R2, R13)."
+    },
+    {
+      "part": "part1",
+      "label": "lem:semigroup-construct",
+      "modules": [
+        "NonUniqueEuler/P/Sec4/SemigroupConstruct.lean",
+        "NonUniqueEuler/P/Sec4/SemigroupLaw.lean"
+      ],
+      "relation": "variant",
+      "note": "Sector-wise exponentials, semigroup law and differentiability replace a full abstract C₀-generator treatment (R1)."
+    },
+    {
+      "part": "part1",
+      "label": "hyp:N",
+      "modules": [
+        "NonUniqueEuler/Statement/Evans.lean"
+      ],
+      "relation": "definition",
+      "note": "NumericalHypothesis combines N1, N2 and N3; simplicity is expressed by a nonzero derivative (D13).",
+      "declarations": [
+        "NumericalHypothesis"
+      ]
+    },
+    {
+      "part": "part1",
+      "label": "prop:SU",
+      "modules": [
+        "NonUniqueEuler/P/Sec4/PropSU.lean"
+      ],
+      "relation": "variant",
+      "note": "Formal SU predicate and sector statements omit the unused full unbounded-operator spectrum/projection paragraph (R2).",
+      "declarations": [
+        "SU_holds"
+      ]
+    },
+    {
+      "part": "part1",
+      "label": "def:eigendata",
+      "modules": [
+        "NonUniqueEuler/Defs/Sec4/Eigendata.lean",
+        "NonUniqueEuler/P/Sec4/Eigendata.lean"
+      ],
+      "relation": "definition",
+      "note": "Explicit eigenfunctions, eigenfunctionals and projections."
+    },
+    {
+      "part": "part1",
+      "label": "prop:U",
+      "modules": [
+        "NonUniqueEuler/P/Sec4/PropU.lean"
+      ],
+      "relation": "entry point",
+      "note": "Continuity via compactness and unique-zero arguments; the current paper also states continuity (R9)."
+    },
+    {
+      "part": "part1",
+      "label": "prop:semigroup",
+      "modules": [
+        "NonUniqueEuler/P/Sec4/PropSemigroup.lean"
+      ],
+      "relation": "variant",
+      "note": "Uniform evolution and gap bounds using explicit projections and sector exponentials (R1–R2)."
+    },
+    {
+      "part": "part2",
+      "label": "thm:main",
+      "modules": [
+        "NonUniqueEuler/Statement/MainTheorem.lean",
+        "NonUniqueEuler/Final.lean"
+      ],
+      "relation": "variant",
+      "note": "Same main theorem as Part I, with explicit global-solution/restriction clauses and quantified admissible cutoff. Checker acceptance remains a hypothesis.",
+      "declarations": [
+        "MainTheorem",
+        "main_theorem_of_certificate"
+      ]
+    },
+    {
+      "part": "part2",
+      "label": "prop:reduction",
+      "modules": [
+        "NonUniqueEuler/P/Main/Reduction.lean",
+        "NonUniqueEuler/P/Sec11/MainExplicit.lean"
+      ],
+      "relation": "entry point",
+      "note": "Conditional main theorem; explicit limit construction is in MainExplicit. Current paper proof is in Section 8.",
+      "declarations": [
+        "main_theorem_of_N"
+      ]
+    },
+    {
+      "part": "part2",
+      "label": "thm:N-holds",
+      "modules": [
+        "NonUniqueEuler/Final.lean",
+        "NonUniqueEuler/P/Verify/Final.lean",
+        "NonUniqueEuler/P/Verify/N3.lean"
+      ],
+      "relation": "variant",
+      "note": "N3 is proved unconditionally. Kernel theorems derive N1/N2 from checker acceptance, supplied by the recorded compiled run outside kernel evaluation.",
+      "declarations": [
+        "main_theorem_full",
+        "check_sound",
+        "n3_holds"
+      ]
+    },
+    {
+      "part": "part2",
+      "label": "lem:annuli",
+      "modules": [
+        "NonUniqueEuler/P/Sec4/Annuli.lean"
+      ],
+      "relation": "entry point",
+      "note": "Annular support facts; path retains legacy Sec4."
+    },
+    {
+      "part": "part2",
+      "label": "lem:hollow",
+      "modules": [
+        "NonUniqueEuler/P/Sec2/Hollow.lean"
+      ],
+      "relation": "entry point",
+      "note": "Interior multipole bound; path retains legacy Sec2."
+    },
+    {
+      "part": "part2",
+      "label": "lem:exterior-mode",
+      "modules": [
+        "NonUniqueEuler/P/Sec2/MultipoleStream.lean",
+        "NonUniqueEuler/P/Infra/Multipole/LogPotential.lean"
+      ],
+      "relation": "variant",
+      "note": "Existing exterior-mode identities: annular support in BS, a.e. disk support in the infrastructure, complex-valued data. No declaration is asserted to match the complete new real-valued statement literally.",
+      "declarations": [
+        "angularSector_stream_exterior",
+        "angularSector_logPotential_exterior_pos"
+      ]
+    },
+    {
+      "part": "part2",
+      "label": "lem:ext-multipole",
+      "modules": [
+        "NonUniqueEuler/P/Sec2/ExtMultipole.lean"
+      ],
+      "relation": "entry point",
+      "note": "Exterior velocity remainder after subtracting circulation."
+    },
+    {
+      "part": "part2",
+      "label": "thm:smooth",
+      "modules": [
+        "NonUniqueEuler/P/SmoothB/Smooth.lean",
+        "NonUniqueEuler/P/SmoothB/SmoothUnique.lean",
+        "NonUniqueEuler/P/SmoothB/SmoothRot.lean"
+      ],
+      "relation": "components",
+      "note": "Global smooth existence, uniqueness and symmetry assembled from the Appendix B development."
+    },
+    {
+      "part": "part2",
+      "label": "lem:embed",
+      "modules": [
+        "NonUniqueEuler/P/Infra/Sobolev/EmbedL4.lean",
+        "NonUniqueEuler/P/Infra/Sobolev/EmbedLinf.lean",
+        "NonUniqueEuler/P/Infra/Sobolev/Interp.lean"
+      ],
+      "relation": "variant",
+      "note": "Sobolev interpolation and embeddings; the L∞ bound used formally has a support-dependent constant (R3)."
+    },
+    {
+      "part": "part2",
+      "label": "lem:Hk-calculus",
+      "modules": [
+        "NonUniqueEuler/P/Sec2/HkCalculus.lean"
+      ],
+      "relation": "variant",
+      "note": "Product bound is stated with one factor in a fixed support ball, sufficient for the construction (R3)."
+    },
+    {
+      "part": "part2",
+      "label": "lem:duhamel",
+      "modules": [
+        "NonUniqueEuler/P/Sec4/Duhamel.lean"
+      ],
+      "relation": "variant",
+      "note": "Sector-wise Duhamel argument (R1); current location is Part II, Section 2."
+    },
+    {
+      "part": "part2",
+      "label": "lem:reduction",
+      "modules": [
+        "NonUniqueEuler/P/Sec5/ReductionEq.lean",
+        "NonUniqueEuler/P/Sec5/ReductionField.lean",
+        "NonUniqueEuler/P/Sec5/ReductionVelocity.lean"
+      ],
+      "relation": "components",
+      "note": "Physical-to-ring coordinate reduction, split among equation, field and velocity modules."
+    },
+    {
+      "part": "part2",
+      "label": "lem:bilinear",
+      "modules": [
+        "NonUniqueEuler/P/Sec5/Bilinear.lean"
+      ],
+      "relation": "entry point",
+      "note": "Bilinear estimates."
+    },
+    {
+      "part": "part2",
+      "label": "lem:energy",
+      "modules": [
+        "NonUniqueEuler/P/Sec5/Energy.lean"
+      ],
+      "relation": "entry point",
+      "note": "Remainder energy estimate."
+    },
+    {
+      "part": "part2",
+      "label": "lem:majorant",
+      "modules": [
+        "NonUniqueEuler/P/Sec5/Majorant.lean"
+      ],
+      "relation": "entry point",
+      "note": "Estimates for the Duhamel bound (called majorant in Lean)."
+    },
+    {
+      "part": "part2",
+      "label": "thm:quiet",
+      "modules": [
+        "NonUniqueEuler/P/Sec5/Quiet.lean"
+      ],
+      "relation": "entry point",
+      "note": "Quiet-ring theorem; Approx helpers construct its hierarchy."
+    },
+    {
+      "part": "part2",
+      "label": "lem:running",
+      "modules": [
+        "NonUniqueEuler/P/Sec5/Running.lean"
+      ],
+      "relation": "entry point",
+      "note": "Running-coefficient estimates."
+    },
+    {
+      "part": "part2",
+      "label": "lem:linear-part",
+      "modules": [
+        "NonUniqueEuler/P/Sec5/LinearPart.lean"
+      ],
+      "relation": "entry point",
+      "note": "Unstable linear component and remainder."
+    },
+    {
+      "part": "part2",
+      "label": "lem:window",
+      "modules": [
+        "NonUniqueEuler/P/Sec5/Window.lean"
+      ],
+      "relation": "entry point",
+      "note": "Window approximation uses Picard increments (not the literal quiet hierarchy)."
+    },
+    {
+      "part": "part2",
+      "label": "thm:active",
+      "modules": [
+        "NonUniqueEuler/P/Sec5/Active.lean"
+      ],
+      "relation": "entry point",
+      "note": "Active-ring theorem and quantitative auxiliary bounds."
+    },
+    {
+      "part": "part2",
+      "label": "cor:active-moment",
+      "modules": [
+        "NonUniqueEuler/P/Sec5/ActiveMoment.lean"
+      ],
+      "relation": "entry point",
+      "note": "Moment lower bound on an active ring."
+    },
+    {
+      "part": "part2",
+      "label": "lem:seed",
+      "modules": [
+        "NonUniqueEuler/P/Sec5/Seed.lean"
+      ],
+      "relation": "entry point",
+      "note": "Construction of the seeded ring."
+    },
+    {
+      "part": "part2",
+      "label": "lem:hier-res",
+      "modules": [
+        "NonUniqueEuler/H/Sec5/Quiet/Approx/Residual.lean",
+        "NonUniqueEuler/H/Sec5/Quiet/Approx/Hierarchy.lean"
+      ],
+      "relation": "variant",
+      "note": "Existing rapp_ae proves the residual identity for the constructed quiet hierarchy with NQ≥2, as an a.e. identity. The paper packages arbitrary J and initial values together; no one-to-one declaration of that full statement.",
+      "declarations": [
+        "rapp_ae"
+      ]
+    },
+    {
+      "part": "part2",
+      "label": "def:majorant",
+      "modules": [
+        "NonUniqueEuler/Defs/Sec5/RingEq.lean",
+        "NonUniqueEuler/P/Sec5/Majorant.lean"
+      ],
+      "relation": "definition",
+      "note": "Duhamel bound (called majorant in Lean) and its representation."
+    },
+    {
+      "part": "part2",
+      "label": "def:datum",
+      "modules": [
+        "NonUniqueEuler/Statement/Datum.lean"
+      ],
+      "relation": "definition",
+      "note": "Geometric datum, with zero-based Lean ring indices."
+    },
+    {
+      "part": "part2",
+      "label": "def:approx",
+      "modules": [
+        "NonUniqueEuler/Defs/Sec6/Approx.lean"
+      ],
+      "relation": "definition",
+      "note": "Seeded finite-ring approximants."
+    },
+    {
+      "part": "part2",
+      "label": "def:regions",
+      "modules": [
+        "NonUniqueEuler/Defs/Sec6/Regions.lean"
+      ],
+      "relation": "definition",
+      "note": "Transported ring regions and their unions."
+    },
+    {
+      "part": "part2",
+      "label": "def:clock",
+      "modules": [
+        "NonUniqueEuler/Defs/Sec6/Clock.lean"
+      ],
+      "relation": "definition",
+      "note": "Phase clock; existence and domain facts in P/Sec6/DefClock."
+    },
+    {
+      "part": "part2",
+      "label": "prop:integrability",
+      "modules": [
+        "NonUniqueEuler/P/Sec6/Integrability.lean"
+      ],
+      "relation": "entry point",
+      "note": "Finite L^q norms and failure of L∞."
+    },
+    {
+      "part": "part2",
+      "label": "lem:adm",
+      "modules": [
+        "NonUniqueEuler/P/Sec6/Adm.lean"
+      ],
+      "relation": "entry point",
+      "note": "Admissibility of the approximate solutions."
+    },
+    {
+      "part": "part2",
+      "label": "lem:regions-basic",
+      "modules": [
+        "NonUniqueEuler/P/Sec6/RegionsBasic.lean"
+      ],
+      "relation": "entry point",
+      "note": "Transported-region properties."
+    },
+    {
+      "part": "part2",
+      "label": "lem:inner-circ",
+      "modules": [
+        "NonUniqueEuler/P/Sec6/InnerCirc.lean"
+      ],
+      "relation": "entry point",
+      "note": "Inner circulation."
+    },
+    {
+      "part": "part2",
+      "label": "lem:speed",
+      "modules": [
+        "NonUniqueEuler/P/Sec6/Speed.lean"
+      ],
+      "relation": "entry point",
+      "note": "Speed bound; generic Lp–L∞ auxiliary remains in P/Sec2/LpLinf."
+    },
+    {
+      "part": "part2",
+      "label": "lem:clock",
+      "modules": [
+        "NonUniqueEuler/P/Sec6/Clock.lean"
+      ],
+      "relation": "entry point",
+      "note": "Clock ordering and causality, using circulation and flow uniqueness."
+    },
+    {
+      "part": "part2",
+      "label": "lem:transfer",
+      "modules": [
+        "NonUniqueEuler/P/Sec7/Transfer.lean"
+      ],
+      "relation": "entry point",
+      "note": "Transfer of multipole moments."
+    },
+    {
+      "part": "part2",
+      "label": "lem:inner-field",
+      "modules": [
+        "NonUniqueEuler/P/Sec7/InnerField.lean"
+      ],
+      "relation": "entry point",
+      "note": "Inner-field estimates."
+    },
+    {
+      "part": "part2",
+      "label": "prop:confine",
+      "modules": [
+        "NonUniqueEuler/P/Sec7/Confine.lean"
+      ],
+      "relation": "entry point",
+      "note": "Confinement bounds; formal version preserves additional sufficient parameter hypotheses."
+    },
+    {
+      "part": "part2",
+      "label": "lem:field-bound",
+      "modules": [
+        "NonUniqueEuler/P/Sec7/FieldBound.lean"
+      ],
+      "relation": "entry point",
+      "note": "Localized external field bound."
+    },
+    {
+      "part": "part2",
+      "label": "def:loc",
+      "modules": [
+        "NonUniqueEuler/Defs/Sec7/Confine.lean"
+      ],
+      "relation": "definition",
+      "note": "Localization predicate.",
+      "declarations": [
+        "Loc"
+      ]
+    },
+    {
+      "part": "part2",
+      "label": "lem:coupling",
+      "modules": [
+        "NonUniqueEuler/P/Sec8/Coupling.lean"
+      ],
+      "relation": "entry point",
+      "note": "Coupling coefficient and field-to-mode estimates."
+    },
+    {
+      "part": "part2",
+      "label": "prop:kick",
+      "modules": [
+        "NonUniqueEuler/P/Sec8/Kick.lean"
+      ],
+      "relation": "variant",
+      "note": "Formal scalar kick theorem gives the bounds throughout the nonnegative part of its interval, with lower constant 1/10; the current proposition states the endpoint estimate."
+    },
+    {
+      "part": "part2",
+      "label": "def:stop",
+      "modules": [
+        "NonUniqueEuler/Defs/Sec11/Stop.lean",
+        "NonUniqueEuler/P/Sec11/Stop.lean"
+      ],
+      "relation": "definition",
+      "note": "Stopping-time definitions and their properties."
+    },
+    {
+      "part": "part2",
+      "label": "prop:relay-step",
+      "modules": [
+        "NonUniqueEuler/P/Sec11/BootSteps.lean",
+        "NonUniqueEuler/P/Sec11/BootHandoff.lean",
+        "NonUniqueEuler/P/Sec11/BootActive.lean",
+        "NonUniqueEuler/P/Sec11/BootQuiet.lean",
+        "NonUniqueEuler/P/Sec11/BootQuietSize.lean",
+        "NonUniqueEuler/P/Sec11/Geometry.lean",
+        "NonUniqueEuler/P/Sec11/BootStart.lean"
+      ],
+      "relation": "components",
+      "note": "New grouping of relay and bootstrap steps; no direct one-to-one Lean declaration. BA uses the strictly-after-activation convention represented by BAcirc. The older relay theorem corresponds to Proposition C.9."
+    },
+    {
+      "part": "part2",
+      "label": "lem:nonempty",
+      "modules": [
+        "NonUniqueEuler/P/Sec10/Nonempty.lean",
+        "NonUniqueEuler/P/Sec10/ConstantsPos.lean"
+      ],
+      "relation": "entry point",
+      "note": "Existence of parameters satisfying the formal lists, retaining explicit sufficient constants."
+    },
+    {
+      "part": "part2",
+      "label": "prop:bootstrap",
+      "modules": [
+        "NonUniqueEuler/P/Sec11/Bootstrap.lean"
+      ],
+      "relation": "variant",
+      "note": "Formal BootConcl retains five all-ring conclusions, stronger packaging than the current four ring-1 conclusions; BAcirc handles active-time endpoints.",
+      "declarations": [
+        "bootstrap"
+      ]
+    },
+    {
+      "part": "part2",
+      "label": "lem:end-regions",
+      "modules": [
+        "NonUniqueEuler/P/Verify/EndRegions.lean"
+      ],
+      "relation": "entry point",
+      "note": "Endpoint enclosures; scalar variation-of-constants proof (T2–T3)."
+    },
+    {
+      "part": "part2",
+      "label": "lem:apriori",
+      "modules": [
+        "NonUniqueEuler/P/Verify/APriori.lean"
+      ],
+      "relation": "entry point",
+      "note": "A priori bounds."
+    },
+    {
+      "part": "part2",
+      "label": "prop:winding",
+      "modules": [
+        "NonUniqueEuler/P/Verify/SegmentFormula.lean"
+      ],
+      "relation": "entry point",
+      "note": "Winding formula, with separate soundness infrastructure."
+    },
+    {
+      "part": "part2",
+      "label": "lem:Nprime-N",
+      "modules": [
+        "NonUniqueEuler/P/Verify/NPrimeN.lean"
+      ],
+      "relation": "entry point",
+      "note": "Finite numerical statements imply N1 and N2."
+    },
+    {
+      "part": "part2",
+      "label": "prop:N3",
+      "modules": [
+        "NonUniqueEuler/P/Verify/N3.lean"
+      ],
+      "relation": "entry point",
+      "note": "Written proof of N3, with no certificate premise."
+    },
+    {
+      "part": "part2",
+      "label": "prop:enclosure",
+      "modules": [
+        "NonUniqueEuler/P/Verify/Sound/EvansEncl.lean",
+        "NonUniqueEuler/P/Verify/TaylorRecurrence.lean",
+        "NonUniqueEuler/P/Verify/TaylorCoef.lean"
+      ],
+      "relation": "variant",
+      "note": "Taylor/ball enclosure components; formal soundness holds at arbitrary precision and for a wider parameter range."
+    },
+    {
+      "part": "part2",
+      "label": "def:Nprime",
+      "modules": [
+        "NonUniqueEuler/Defs/Verify/NPrime.lean"
+      ],
+      "relation": "definition",
+      "note": "Finite winding and coverage statements."
+    },
+    {
+      "part": "part2",
+      "label": "prop:runs",
+      "modules": [
+        "NonUniqueEuler/P/Verify/Sound/Runs.lean",
+        "NonUniqueEuler/P/Verify/Final.lean",
+        "NonUniqueEuler/Verify/Data/Cells.lean",
+        "NonUniqueEuler/Verify/Data/CellsPar.lean"
+      ],
+      "relation": "variant",
+      "note": "Soundness of accepted runs and identification with the executable. Acceptance itself is supplied by the recorded compiled computation, not kernel reduction."
+    },
+    {
+      "part": "part2",
+      "label": "lem:ode",
+      "modules": [
+        "NonUniqueEuler/P/SmoothB/ODE.lean"
+      ],
+      "relation": "entry point",
+      "note": "ODE existence and parameter derivatives (Mathlib and vendored flow input)."
+    },
+    {
+      "part": "part2",
+      "label": "lem:flow",
+      "modules": [
+        "NonUniqueEuler/P/SmoothB/Flow.lean"
+      ],
+      "relation": "entry point",
+      "note": "Flow construction; companion FlowFacts proves its properties."
+    },
+    {
+      "part": "part2",
+      "label": "lem:grad-bound",
+      "modules": [
+        "NonUniqueEuler/P/SmoothB/GradBound.lean"
+      ],
+      "relation": "entry point",
+      "note": "Velocity gradient bound."
+    },
+    {
+      "part": "part2",
+      "label": "lem:comm-R2",
+      "modules": [
+        "NonUniqueEuler/P/SmoothB/CommR2.lean"
+      ],
+      "relation": "entry point",
+      "note": "Whole-plane commutator bound."
+    },
+    {
+      "part": "part2",
+      "label": "lem:iterates",
+      "modules": [
+        "NonUniqueEuler/P/SmoothB/Iterates.lean"
+      ],
+      "relation": "entry point",
+      "note": "Iterate construction and identities."
+    },
+    {
+      "part": "part2",
+      "label": "lem:iter-lip",
+      "modules": [
+        "NonUniqueEuler/P/SmoothB/IterLip.lean"
+      ],
+      "relation": "entry point",
+      "note": "Uniform Lipschitz bounds."
+    },
+    {
+      "part": "part2",
+      "label": "lem:iter-cauchy",
+      "modules": [
+        "NonUniqueEuler/P/SmoothB/IterCauchy.lean"
+      ],
+      "relation": "entry point",
+      "note": "Cauchy estimate, with IterLip as an explicit input."
+    },
+    {
+      "part": "part2",
+      "label": "prop:iter-limit",
+      "modules": [
+        "NonUniqueEuler/P/SmoothB/IterLimit.lean"
+      ],
+      "relation": "entry point",
+      "note": "Limit equation, regularity and bootstrap split across helper modules."
+    },
+    {
+      "part": "part2",
+      "label": "lem:smooth-bounds",
+      "modules": [
+        "NonUniqueEuler/P/SmoothB/SmoothBounds.lean"
+      ],
+      "relation": "entry point",
+      "note": "Uniform smooth-solution bounds."
+    },
+    {
+      "part": "part2",
+      "label": "def:iterates",
+      "modules": [
+        "NonUniqueEuler/Defs/SmoothB/Iteration.lean"
+      ],
+      "relation": "definition",
+      "note": "Iteration definitions."
+    },
+    {
+      "part": "part2",
+      "label": "lem:iter-Hs",
+      "modules": [
+        "NonUniqueEuler/P/SmoothB/IterHs.lean"
+      ],
+      "relation": "variant",
+      "note": "Formal proof retains explicit majorants refining the current uniform H^s existence statement."
+    },
+    {
+      "part": "part2",
+      "label": "def:standing",
+      "modules": [
+        "NonUniqueEuler/Defs/Sec9/Standing.lean",
+        "NonUniqueEuler/P/Sec9/Standing.lean"
+      ],
+      "relation": "definition",
+      "note": "Standing data and positivity conditions; Standing.Holds retains auxiliary fields from the original formal parameter bookkeeping."
+    },
+    {
+      "part": "part2",
+      "label": "def:P0-P4",
+      "modules": [
+        "NonUniqueEuler/Defs/Sec10/Lists.lean",
+        "NonUniqueEuler/Defs/Sec10/Params.lean"
+      ],
+      "relation": "definition",
+      "note": "Formal parameter list retains explicit sufficient constants; consult the corresponding list structure."
+    },
+    {
+      "part": "part2",
+      "label": "def:P5",
+      "modules": [
+        "NonUniqueEuler/Defs/Sec10/Lists.lean",
+        "NonUniqueEuler/Defs/Sec10/Params.lean"
+      ],
+      "relation": "definition",
+      "note": "Formal parameter list retains explicit sufficient constants; consult the corresponding list structure."
+    },
+    {
+      "part": "part2",
+      "label": "def:P6",
+      "modules": [
+        "NonUniqueEuler/Defs/Sec10/Lists.lean",
+        "NonUniqueEuler/Defs/Sec10/Params.lean"
+      ],
+      "relation": "definition",
+      "note": "Formal parameter list retains explicit sufficient constants; consult the corresponding list structure."
+    },
+    {
+      "part": "part2",
+      "label": "lem:theta-quiet",
+      "modules": [
+        "NonUniqueEuler/P/Sec10/ThetaQuiet.lean"
+      ],
+      "relation": "entry point",
+      "note": "Quiet-time exponent estimate."
+    },
+    {
+      "part": "part2",
+      "label": "lem:detuning",
+      "modules": [
+        "NonUniqueEuler/P/Sec9/Detuning.lean"
+      ],
+      "relation": "variant",
+      "note": "Formal Det uses the sufficient interval [0, C_G μ sbar²]; current Standing Assumptions use [0, μ sbar²]. Auxiliary radius conditions and constants remain explicit in Lean."
+    },
+    {
+      "part": "part2",
+      "label": "lem:transfer-step",
+      "modules": [
+        "NonUniqueEuler/P/Sec9/TransferStep.lean"
+      ],
+      "relation": "entry point",
+      "note": "One-step field transfer estimate."
+    },
+    {
+      "part": "part2",
+      "label": "lem:O",
+      "modules": [
+        "NonUniqueEuler/P/Sec9/O.lean"
+      ],
+      "relation": "variant",
+      "note": "Formal quiet outer-field estimate includes a zero endpoint and retains explicit constants and ring-time pullbacks; the current statement takes a positive endpoint."
+    },
+    {
+      "part": "part2",
+      "label": "prop:relay",
+      "modules": [
+        "NonUniqueEuler/P/Sec9/Relay.lean"
+      ],
+      "relation": "entry point",
+      "note": "Transmitted-field estimate, distinct from the new Proposition 6.2 relay-step package."
+    },
+    {
+      "part": "part2",
+      "label": "lem:Oprime",
+      "modules": [
+        "NonUniqueEuler/P/Sec9/Oprime.lean"
+      ],
+      "relation": "variant",
+      "note": "Formal outer-field estimate permits a zero endpoint and keeps an auxiliary C_F≤C0 bound; the current statement takes a positive endpoint and uses C0."
+    },
+    {
+      "part": "part2",
+      "label": "lem:drift",
+      "modules": [
+        "NonUniqueEuler/P/Sec9/Drift.lean"
+      ],
+      "relation": "entry point",
+      "note": "Running-coefficient drift on the active interval."
+    },
+    {
+      "part": "part2",
+      "label": "lem:handoff",
+      "modules": [
+        "NonUniqueEuler/P/Sec9/Handoff.lean"
+      ],
+      "relation": "entry point",
+      "note": "Quiet-to-active hand-off estimates."
+    },
+    {
+      "part": "part2",
+      "label": "lem:kicktrue",
+      "modules": [
+        "NonUniqueEuler/P/Sec9/KickTrue.lean"
+      ],
+      "relation": "variant",
+      "note": "Formal true-field kick bounds hold throughout [0, Tpin]; current Lemma C.14 states the endpoint bound. Explicit error coefficients and separate Prehistory/Deep auxiliaries are retained."
+    },
+    {
+      "part": "part2",
+      "label": "lem:time",
+      "modules": [
+        "NonUniqueEuler/P/Sec9/Time.lean"
+      ],
+      "relation": "entry point",
+      "note": "Total clock time bound."
+    },
+    {
+      "part": "part2",
+      "label": "lem:quiet-time",
+      "modules": [
+        "NonUniqueEuler/P/Sec9/QuietTime.lean"
+      ],
+      "relation": "entry point",
+      "note": "Upper bound on quiet-phase ring time."
+    },
+    {
+      "part": "part2",
+      "label": "def:K1",
+      "modules": [
+        "NonUniqueEuler/Defs/Sec9/Handoff.lean",
+        "NonUniqueEuler/P/Sec9/K1.lean"
+      ],
+      "relation": "definition",
+      "note": "Definition of the hand-off constant; K1 module proves the auxiliary absorption bounds."
+    },
+    {
+      "part": "part2",
+      "label": "lem:geometry",
+      "modules": [
+        "NonUniqueEuler/P/Sec11/Geometry.lean"
+      ],
+      "relation": "entry point",
+      "note": "Geometry and window estimates used in the bootstrap."
+    }
+  ],
+  "legacy": [
+    {
+      "label": "prop:defect",
+      "modules": [
+        "NonUniqueEuler/P/Sec3/Defect.lean"
+      ],
+      "destinations": [
+        {
+          "part": "part1",
+          "label": "cor:defect"
+        }
+      ],
+      "note": "Renamed and reclassified as the current corollary."
+    },
+    {
+      "label": "prop:compact",
+      "modules": [
+        "NonUniqueEuler/P/Sec3/Compact.lean"
+      ],
+      "destinations": [
+        {
+          "part": "part1",
+          "label": "thm:criterion"
+        }
+      ],
+      "note": "Subsequence-extraction component of the current criterion proof."
+    },
+    {
+      "label": "prop:stable",
+      "modules": [
+        "NonUniqueEuler/P/Sec3/Stable.lean"
+      ],
+      "destinations": [
+        {
+          "part": "part1",
+          "label": "thm:criterion"
+        }
+      ],
+      "note": "Limit equation/equimeasurability component of the current criterion proof."
+    },
+    {
+      "label": "prop:equiv",
+      "modules": [
+        "NonUniqueEuler/P/Sec3/Equiv.lean",
+        "NonUniqueEuler/P/Sec3/EquivRemaining.lean"
+      ],
+      "destinations": [
+        {
+          "part": "part1",
+          "label": "thm:criterion"
+        }
+      ],
+      "note": "Former equivalent-criteria package is retained formally; current paper uses direct defect arguments."
+    },
+    {
+      "label": "cor:L2-renorm",
+      "modules": [
+        "NonUniqueEuler/P/Sec3/L2Renorm.lean"
+      ],
+      "destinations": [
+        {
+          "part": "part1",
+          "label": "thm:criterion"
+        }
+      ],
+      "note": "L² renormalization step in the criterion proof."
+    },
+    {
+      "label": "lem:lip-renorm",
+      "modules": [
+        "NonUniqueEuler/P/Sec3/LipRenorm.lean"
+      ],
+      "destinations": [
+        {
+          "part": "part1",
+          "label": "lem:transport"
+        }
+      ],
+      "note": "Lipschitz-renormalization step inside the transport proof."
+    },
+    {
+      "label": "lem:RR",
+      "modules": [
+        "NonUniqueEuler/P/Sec3/RR.lean"
+      ],
+      "destinations": [
+        {
+          "part": "part1",
+          "label": "lem:renorm-all-t"
+        }
+      ],
+      "note": "Radon–Riesz step; also used in the criterion proof."
+    },
+    {
+      "label": "lem:bounded-adm",
+      "modules": [
+        "NonUniqueEuler/P/Sec3/BoundedAdm.lean"
+      ],
+      "destinations": [
+        {
+          "part": "part1",
+          "label": "def:adm"
+        },
+        {
+          "part": "part2",
+          "label": "lem:adm"
+        }
+      ],
+      "note": "Generic formal admissibility auxiliary; current approximant proof assembles this property directly."
+    },
+    {
+      "label": "lem:dilation",
+      "modules": [
+        "NonUniqueEuler/P/Sec4/Dilation.lean",
+        "NonUniqueEuler/P/Sec4/EvansUnits.lean"
+      ],
+      "destinations": [
+        {
+          "part": "part1",
+          "label": "eq:evans-units"
+        }
+      ],
+      "note": "Unnumbered reference-to-ring-unit calculation."
+    },
+    {
+      "label": "lem:elliptic",
+      "modules": [
+        "NonUniqueEuler/P/Sec4/Elliptic.lean"
+      ],
+      "destinations": [
+        {
+          "part": "part1",
+          "label": "cor:K-bound"
+        }
+      ],
+      "note": "Elliptic estimate in the Green-operator-bound proof."
+    },
+    {
+      "label": "cor:sector-6",
+      "modules": [
+        "NonUniqueEuler/P/Sec4/Sector6.lean"
+      ],
+      "destinations": [
+        {
+          "part": "part1",
+          "label": "prop:SU"
+        }
+      ],
+      "note": "Modes ±6 in the spectral proof."
+    },
+    {
+      "label": "cor:sectors-9",
+      "modules": [
+        "NonUniqueEuler/P/Sec4/Sectors9.lean"
+      ],
+      "destinations": [
+        {
+          "part": "part1",
+          "label": "prop:SU"
+        }
+      ],
+      "note": "Modes of absolute value at least 9 in the spectral proof."
+    },
+    {
+      "label": "def:SU",
+      "modules": [
+        "NonUniqueEuler/Defs/Sec4/Eigendata.lean"
+      ],
+      "destinations": [
+        {
+          "part": "part1",
+          "label": "prop:SU"
+        }
+      ],
+      "note": "Formal SU predicate retains the old name; the current proposition states the properties directly."
+    },
+    {
+      "label": "lem:mild",
+      "modules": [
+        "NonUniqueEuler/P/Sec4/Duhamel.lean"
+      ],
+      "destinations": [
+        {
+          "part": "part2",
+          "label": "lem:duhamel"
+        }
+      ],
+      "note": "Legacy abstract mild-solution step is bypassed by the formal sector-wise Duhamel proof."
+    },
+    {
+      "label": "lem:LpLinf",
+      "modules": [
+        "NonUniqueEuler/P/Sec2/LpLinf.lean",
+        "NonUniqueEuler/P/Sec6/Speed.lean"
+      ],
+      "destinations": [
+        {
+          "part": "part2",
+          "label": "lem:speed"
+        }
+      ],
+      "note": "Generic split-and-optimize estimate; the current speed proof uses p=4."
+    },
+    {
+      "label": "lem:Lq-growth",
+      "modules": [
+        "NonUniqueEuler/P/Sec6/LqGrowth.lean"
+      ],
+      "destinations": [
+        {
+          "part": "part2",
+          "label": "prop:integrability"
+        }
+      ],
+      "note": "Related datum estimates only: the stronger quantitative growth/Osgood auxiliary has no current statement counterpart and is off the main proof path."
+    },
+    {
+      "label": "lem:nesting",
+      "modules": [
+        "NonUniqueEuler/P/Sec7/Nesting.lean"
+      ],
+      "destinations": [
+        {
+          "part": "part2",
+          "label": "lem:geometry"
+        }
+      ],
+      "note": "Generic formal nesting auxiliary; related support nesting occurs inside the current geometry proof."
+    },
+    {
+      "label": "lem:window-length",
+      "modules": [
+        "NonUniqueEuler/P/Sec7/WindowLength.lean"
+      ],
+      "destinations": [
+        {
+          "part": "part2",
+          "label": "lem:geometry"
+        },
+        {
+          "part": "part2",
+          "label": "prop:relay-step"
+        }
+      ],
+      "note": "Kick-window duration calculation now occurs inside these proofs."
+    },
+    {
+      "label": "cor:quiet-handoff",
+      "modules": [
+        "NonUniqueEuler/P/Sec5/QuietHandoff.lean"
+      ],
+      "destinations": [
+        {
+          "part": "part2",
+          "label": "lem:handoff"
+        }
+      ],
+      "note": "Quiet-approximation estimate in the hand-off proof."
+    },
+    {
+      "label": "lem:pinning",
+      "modules": [
+        "NonUniqueEuler/P/Sec8/Pinning.lean"
+      ],
+      "destinations": [
+        {
+          "part": "part2",
+          "label": "lem:drift"
+        },
+        {
+          "part": "part2",
+          "label": "eq:kick-A"
+        }
+      ],
+      "note": "Scalar weighted-tail auxiliary used by kick/drift estimates."
+    },
+    {
+      "label": "lem:kick-lower",
+      "modules": [
+        "NonUniqueEuler/P/Sec8/KickLower.lean"
+      ],
+      "destinations": [
+        {
+          "part": "part2",
+          "label": "prop:kick"
+        }
+      ],
+      "note": "Three-interval scalar lower bound inside the kick proof."
+    },
+    {
+      "label": "lem:gamma",
+      "modules": [
+        "NonUniqueEuler/P/Sec9/Gamma.lean"
+      ],
+      "destinations": [
+        {
+          "part": "part2",
+          "label": "sec:bootstrap-handoff-checks"
+        }
+      ],
+      "note": "Exponent gap proved in the hand-off checks; exponent definitions appear in the quantitative relay setup."
+    },
+    {
+      "label": "lem:K1",
+      "modules": [
+        "NonUniqueEuler/P/Sec9/K1.lean"
+      ],
+      "destinations": [
+        {
+          "part": "part2",
+          "label": "def:K1"
+        },
+        {
+          "part": "part2",
+          "label": "sec:bootstrap-handoff-checks"
+        }
+      ],
+      "note": "Absorption/majorant comparison inside hand-off verification; the constant itself remains a numbered definition."
+    },
+    {
+      "label": "cor:amp",
+      "modules": [
+        "NonUniqueEuler/P/Sec9/Amp.lean"
+      ],
+      "destinations": [
+        {
+          "part": "part2",
+          "label": "prop:relay-step"
+        },
+        {
+          "part": "part2",
+          "label": "sec:bootstrap-handoff-checks"
+        }
+      ],
+      "note": "Two-sided activation-amplitude bounds, now part (b) of the relay step."
+    },
+    {
+      "label": "lem:deep",
+      "modules": [
+        "NonUniqueEuler/P/Sec9/Deep.lean"
+      ],
+      "destinations": [
+        {
+          "part": "part2",
+          "label": "lem:kicktrue"
+        }
+      ],
+      "note": "Deeper-ring moment calculation for (Q1)."
+    },
+    {
+      "label": "lem:prehistory",
+      "modules": [
+        "NonUniqueEuler/P/Sec9/Prehistory.lean"
+      ],
+      "destinations": [
+        {
+          "part": "part2",
+          "label": "lem:kicktrue"
+        }
+      ],
+      "note": "Pre-activation estimates for (Q2)/(Kick4)."
+    },
+    {
+      "label": "def:BA",
+      "modules": [
+        "NonUniqueEuler/Defs/Sec11/Bootstrap.lean",
+        "NonUniqueEuler/P/Sec11/BA.lean"
+      ],
+      "destinations": [
+        {
+          "part": "part2",
+          "label": "def:stop"
+        }
+      ],
+      "note": "Unnumbered (BA1)–(BA3) follow Definition 6.1. Current strict-after-activation BA3 corresponds to BAcirc; BA is the stronger endpoint-inclusive formal predicate."
+    },
+    {
+      "label": "thm:Rsharp",
+      "modules": [
+        "NonUniqueEuler/P/Sec11/Rsharp.lean"
+      ],
+      "destinations": [
+        {
+          "part": "part2",
+          "label": "sec:bootstrap"
+        },
+        {
+          "part": "part2",
+          "label": "prop:reduction"
+        }
+      ],
+      "note": "Uniform ring-1 moment defect. Now inside the reduction proof in Section 8."
+    },
+    {
+      "label": "thm:main-explicit",
+      "modules": [
+        "NonUniqueEuler/P/Sec11/MainExplicit.lean",
+        "NonUniqueEuler/Statement/MainTheorem.lean"
+      ],
+      "destinations": [
+        {
+          "part": "part2",
+          "label": "sec:bootstrap"
+        },
+        {
+          "part": "part2",
+          "label": "prop:reduction"
+        }
+      ],
+      "note": "Passage to the limiting solution; explicit clauses remain in MainTheorem. Now inside the reduction proof in Section 8."
+    },
+    {
+      "label": "lem:readout",
+      "modules": [
+        "NonUniqueEuler/P/Sec9/Readout.lean"
+      ],
+      "destinations": [
+        {
+          "part": "part2",
+          "label": "sec:bootstrap"
+        },
+        {
+          "part": "part2",
+          "label": "prop:reduction"
+        }
+      ],
+      "note": "Moment extraction at the ring-1 terminal time. Now inside the reduction proof in Section 8."
+    },
+    {
+      "label": "eq:Abar",
+      "modules": [
+        "NonUniqueEuler/P/Sec9/K1.lean"
+      ],
+      "destinations": [
+        {
+          "part": "part2",
+          "label": "sec:bootstrap-handoff-checks"
+        }
+      ],
+      "note": "Unnumbered majorant absorption comparison in the hand-off checks."
+    },
+    {
+      "label": "eq:Rsharp",
+      "modules": [
+        "NonUniqueEuler/P/Sec11/Rsharp.lean"
+      ],
+      "destinations": [
+        {
+          "part": "part2",
+          "label": "sec:bootstrap"
+        },
+        {
+          "part": "part2",
+          "label": "prop:reduction"
+        }
+      ],
+      "note": "Uniform moment-defect bound inside the Section 8 reduction proof."
+    },
+    {
+      "label": "eq:drift",
+      "modules": [
+        "NonUniqueEuler/P/Sec9/Drift.lean"
+      ],
+      "destinations": [
+        {
+          "part": "part2",
+          "label": "eq:drift-interval"
+        }
+      ],
+      "note": "Activation-time specialization of the current interval drift estimate."
+    },
+    {
+      "label": "eq:Leibniz-comm",
+      "modules": [
+        "NonUniqueEuler/H/Sec2/HkCalculus/Commutator.lean",
+        "NonUniqueEuler/P/Sec2/HkCalculus/ProductLeibniz.lean"
+      ],
+      "destinations": [
+        {
+          "part": "part2",
+          "label": "lem:Hk-calculus"
+        }
+      ],
+      "note": "Unnumbered commutator expansion in the calculus lemma proof."
+    },
+    {
+      "label": "eq:Smi",
+      "modules": [
+        "NonUniqueEuler/P/Sec7/Smq.lean",
+        "NonUniqueEuler/Defs/Sec7/Transfer.lean"
+      ],
+      "destinations": [
+        {
+          "part": "part2",
+          "label": "lem:transfer"
+        }
+      ],
+      "note": "Convergent derivative-series constant in the transfer proof, retained as a named formal auxiliary."
+    },
+    {
+      "label": "eq:complex-velocity",
+      "modules": [
+        "NonUniqueEuler/P/Sec7/ComplexVelocity.lean"
+      ],
+      "destinations": [
+        {
+          "part": "part2",
+          "label": "eq:BS-complex"
+        }
+      ],
+      "note": "Current complex Biot–Savart convention V₁−iV₂."
+    },
+    {
+      "label": "eq:derivative-norm",
+      "modules": [
+        "NonUniqueEuler/P/Sec7/ComplexVelocity.lean"
+      ],
+      "destinations": [
+        {
+          "part": "part2",
+          "label": "eq:BS-complex-deriv"
+        }
+      ],
+      "note": "Current derivative convention and bound; formal operator-norm version."
+    },
+    {
+      "label": "eq:Uk",
+      "modules": [
+        "NonUniqueEuler/H/Sec3/RenormAllT/Conservation.lean"
+      ],
+      "destinations": [
+        {
+          "part": "part1",
+          "label": "lem:renorm-all-t"
+        }
+      ],
+      "note": "Legacy truncated-renormalization proof auxiliary. The current all-time proof applies the transport lemma directly to obtain conservation; this is a containing-proof destination, not an identical current equation."
+    },
+    {
+      "label": "eq:evans-coef",
+      "modules": [
+        "NonUniqueEuler/P/Sec4/EvansBasic.lean"
+      ],
+      "destinations": [
+        {
+          "part": "part1",
+          "label": "def:evans"
+        }
+      ],
+      "note": "Unnumbered growing/decaying-mode calculation immediately before Definition 4.4. Lean uses unshifted coefficients A₊, A₋; the current paper uses a shifted-origin coefficient A, with the corresponding exponential normalization."
+    }
+  ]
+}

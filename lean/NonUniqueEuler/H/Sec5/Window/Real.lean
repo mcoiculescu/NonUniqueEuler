@@ -9,10 +9,10 @@ Helper file of `P/Sec5/Window.lean`. Everything here is
 elementary and fully proved:
 * exponential integrals `∫₀^τ e^{A(τ-τ')} e^{Bτ'} dτ'` (`integral_exp_mul_exp`, and the two bounds
   `integral_exp_le_of_lt`, `integral_exp_le_of_gt`), used for `eq:W-v` and the displacement
-  (`05_single_ring.tex:807-823`, `:846-855`);
+  (Part II Lemma 2.11);
 * the Japanese bracket and `ς`: `⟨u⟩ ≤ 1 + u`, `ς ≥ 1`, and the window bookkeeping of
-  `05_single_ring.tex:737-741` (`u ≤ T̂₁ ⟹ 1 + u ≤ ς(κ₁)`, `â₁(u) ≤ δ₀`, `κ₁ ≤ â₁(u)`);
-* the existence of `κ_W` (`05_single_ring.tex:731-733`: `x ς(x)^N → 0` as `x → 0⁺`), in the
+  Part II Lemma 2.11 (`u ≤ T̂₁ ⟹ 1 + u ≤ ς(κ₁)`, `â₁(u) ≤ δ₀`, `κ₁ ≤ â₁(u)`);
+* the existence of `κ_W` (Part II Lemma 2.11: `x ς(x)^N → 0` as `x → 0⁺`), in the
   explicit form `x ς(x)^N ≤ K^N √x`.
 -/
 
@@ -97,7 +97,7 @@ theorem one_le_varsigma {χ : ℝ → ℝ} (hσb : 0 < Eig.sigb χ) {x : ℝ} (h
   have := mul_nonneg (inv_nonneg.2 hσb.le) this
   linarith
 
-/-- The window bookkeeping (`05_single_ring.tex:737-741`): for `σ ≥ σ_b > 0`,
+/-- The window bookkeeping (Part II Lemma 2.11 (`lem:window`)): for `σ ≥ σ_b > 0`,
 `0 < κ₁`, `δ₀ ≤ 1` and `0 ≤ u ≤ T̂₁ = σ⁻¹ log(δ₀/κ₁)`: `κ₁ ≤ δ₀`, `1 + u ≤ ς(κ₁)`,
 `κ₁ ≤ â₁(u) ≤ δ₀`. -/
 theorem window_bookkeeping {χ : ℝ → ℝ} {σ κ₁ δ₀ u : ℝ} (hσb : 0 < Eig.sigb χ)
@@ -190,7 +190,7 @@ theorem mul_exp_log_inv_half {x : ℝ} (hx0 : 0 < x) :
   rw [this, ← Real.exp_add, one_div, Real.log_inv]
   ring_nf
 
-/-- **Existence of `κ_W`** (`05_single_ring.tex:731-733`): for `C > 0`, `ε > 0` and `N`, there is
+/-- **Existence of `κ_W`** (Part II Lemma 2.11 (`lem:window`)): for `C > 0`, `ε > 0` and `N`, there is
 `κ ∈ (0,1]` with `C x ς(x)^N ≤ ε` for every `x ∈ (0,κ]`. -/
 theorem exists_kappa {χ : ℝ → ℝ} (hσb : 0 < Eig.sigb χ) (N : ℕ) {C ε : ℝ} (hC : 0 < C)
     (hε : 0 < ε) :

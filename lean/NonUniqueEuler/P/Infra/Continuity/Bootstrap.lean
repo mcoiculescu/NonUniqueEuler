@@ -8,7 +8,9 @@ import Mathlib.Data.Fintype.Card
 
 Proof of `NonUniqueEuler/I/Infra/Continuity/Bootstrap.lean` (same declarations, statements
 copied verbatim). See the docstring of the interface file for the manuscript uses
-(`thm:quiet`, `lem:window`, `thm:active`, `prop:bootstrap` Step 7).
+(Part II, Theorem 2.8, `thm:quiet`; Lemma 2.11, `lem:window`; Theorem 2.12,
+`thm:active`; and the continuation-in-time paragraph in the proof of
+Proposition 8.1, `prop:bootstrap`).
 
 * `forall_Icc_of_history`: supremum argument on `S = {t ∈ [a, b] | Q on [a, t]}`.
 * `bootstrap_le`: `forall_Icc_of_history` applied to `Q' t := t ∈ [a, b] → ∀ i, F i t ≤ G i t`

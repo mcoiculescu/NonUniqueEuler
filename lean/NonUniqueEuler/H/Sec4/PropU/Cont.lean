@@ -7,7 +7,7 @@ import Mathlib.MeasureTheory.Integral.DominatedConvergence
 # Helpers for `P/Sec4/PropU`: joint continuity in `(r, λ, G)` and parametric integrals
 
 * `psi_continuousOn_param`: `ψ_ℓ(ξ;λ,G)` is jointly continuous on `ℝ × {Re λ > 0} × ℝ`
-  (`04_ring.tex:1403-1404`, "by the Picard argument"; `LinODE.continuousOn_sol`);
+  (proof of Part I Proposition 4.21 (`prop:U`), using the Picard argument; `LinODE.continuousOn_sol`);
 * `Omega_continuousOn`, `Mres_continuousOn`, `psiLog_continuousOn`: `Ω(r;G)`, `M_λ(r;G)` and
   `ψ_ℓ(log r;λ,G)` are jointly continuous on `(0,∞) × {Re λ > 0} × ℝ`;
 * `continuousOn_comp_path`: composition with `G ↦ (λ(G), G)`;
@@ -73,7 +73,7 @@ theorem Mres_continuousOn (S : SectorSetting) (hS : S.Valid) (ℓ : ℤ) :
   exact (ne_of_gt hq.2.1) hre
 
 /-- `ψ_ℓ(ξ;λ,G)` is jointly continuous in `(ξ, λ, G)` on `ℝ × {Re λ > 0} × ℝ`
-(`04_ring.tex:1403-1404`; `LinODE.continuousOn_sol`). -/
+(proof of Part I Proposition 4.21 (`prop:U`); `LinODE.continuousOn_sol`). -/
 theorem psi_continuousOn_param (S : SectorSetting) (hS : S.Valid) (ℓ : ℕ) :
     ContinuousOn (fun q : ℝ × ℂ × ℝ => S.psi ℓ q.2.1 q.2.2 q.1)
       (univ ×ˢ ({z : ℂ | 0 < z.re} ×ˢ univ)) := by

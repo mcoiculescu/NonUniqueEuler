@@ -3,9 +3,9 @@ import Mathlib.Analysis.SpecialFunctions.ExpDeriv
 import Mathlib.Topology.MetricSpace.ProperSpace.Lemmas
 
 /-!
-# Proof: the constants of §B.3 (monotonicity, `𝓛' = V`, the inner radius `R₀'`)
+# Proof: the constants of Part II, §B.3 (monotonicity, `𝓛' = V`, the inner radius `R₀'`)
 
-Proof of `I/SmoothB/Constants.lean` (`B_global_smooth.tex:193-197`).
+Proof of `I/SmoothB/Constants.lean` (Part II, §B.3, before Definition B.5 (`def:iterates`)).
 
 * Monotonicity: `𝓛(t) = (log₊(N₀/A) + c_*) e^{2A|t|} - c_*` with `log₊(N₀/A) + c_* ≥ 0` and
   `A ≥ 0`; `Ψ = A e^{𝓛}` and `V = 2A(𝓛 + c_*)` are monotone functions of `𝓛`.
@@ -21,7 +21,7 @@ open Set Metric
 
 namespace NonUniqueEuler.Smooth
 
-/-- `𝓛` is nondecreasing in `|t|` (`B_global_smooth.tex:193-194`). -/
+/-- `𝓛` is nondecreasing in `|t|` (Part II, §B.3, before Definition B.5 (`def:iterates`)). -/
 theorem calL_mono (ω₀ : ℂ → ℝ) {t t' : ℝ} (h : |t| ≤ |t'|) : calL ω₀ t ≤ calL ω₀ t' := by
   have hA : 0 ≤ 2 * Amax ω₀ := mul_nonneg zero_le_two (Amax_nonneg ω₀)
   have hP : 0 ≤ Real.posLog (N0 ω₀ / Amax ω₀) + cstar ω₀ :=
@@ -32,16 +32,16 @@ theorem calL_mono (ω₀ : ℂ → ℝ) {t t' : ℝ} (h : |t| ≤ |t'|) : calL �
   simp only [calL]
   linarith
 
-/-- `Ψ` is nondecreasing in `|t|` (`B_global_smooth.tex:193-194`). -/
+/-- `Ψ` is nondecreasing in `|t|` (Part II, §B.3, before Definition B.5 (`def:iterates`)). -/
 theorem Psi_mono (ω₀ : ℂ → ℝ) {t t' : ℝ} (h : |t| ≤ |t'|) : Psi ω₀ t ≤ Psi ω₀ t' :=
   mul_le_mul_of_nonneg_left (Real.exp_le_exp.mpr (calL_mono ω₀ h)) (Amax_nonneg ω₀)
 
-/-- `V` is nondecreasing in `|t|` (`B_global_smooth.tex:193-194`). -/
+/-- `V` is nondecreasing in `|t|` (Part II, §B.3, before Definition B.5 (`def:iterates`)). -/
 theorem Vbd_mono (ω₀ : ℂ → ℝ) {t t' : ℝ} (h : |t| ≤ |t'|) : Vbd ω₀ t ≤ Vbd ω₀ t' :=
   mul_le_mul_of_nonneg_left (by linarith [calL_mono ω₀ h])
     (mul_nonneg zero_le_two (Amax_nonneg ω₀))
 
-/-- `𝓛' = V` on `(0, ∞)` (`B_global_smooth.tex:195`). -/
+/-- `𝓛' = V` on `(0, ∞)` (Part II, §B.3, before Definition B.5 (`def:iterates`)). -/
 theorem hasDerivAt_calL (ω₀ : ℂ → ℝ) {t : ℝ} (ht : 0 < t) :
     HasDerivAt (calL ω₀) (Vbd ω₀ t) t := by
   set P := Real.posLog (N0 ω₀ / Amax ω₀) + cstar ω₀
@@ -61,7 +61,7 @@ theorem hasDerivAt_calL (ω₀ : ℂ → ℝ) {t : ℝ} (ht : 0 < t) :
   rw [← hval]
   exact hmodel.congr_of_eventuallyEq heq.symm
 
-/-- The inner radius (`B_global_smooth.tex:195-197`): if `supp ω₀ ⊂ B_{R₀}` with `ω₀ ∈ C_c^∞`,
+/-- The inner radius (Part II, §B.3, before Definition B.5 (`def:iterates`)): if `supp ω₀ ⊂ B_{R₀}` with `ω₀ ∈ C_c^∞`,
 there is `R₀' < R₀` with `ω₀ = 0` outside `\bar B_{R₀'}`. -/
 theorem exists_inner_radius {ω₀ : ℂ → ℝ} {R₀ : ℝ} (h : IsSmoothDatum ω₀ R₀) :
     ∃ R₀' : ℝ, R₀' < R₀ ∧ ∀ x : ℂ, R₀' < ‖x‖ → ω₀ x = 0 := by

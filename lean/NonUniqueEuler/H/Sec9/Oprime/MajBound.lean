@@ -7,17 +7,17 @@ import NonUniqueEuler.H.Sec9.Oprime.Integral
 /-!
 # Helpers for `lem:Oprime`: the bound of `maj^in_{k-1}` by the envelope of ring `k`
 
-Helper file of `P/Sec9/Oprime.lean` (`09_relay.tex:680-729`). Everything here is proved.
+Helper file of `P/Sec9/Oprime.lean` (`lem:Oprime`, Part II Lemma C.10). Everything here is proved.
 With `k = j+1 ≥ 2`, `τ^act = A_jt♯_k`, `D = σ_b(μ-1)` and
 `B = 2C_QK₁ + 4C₂ + σ_bK₁ + 2σ_b(2C₂C(C₀) + C₀)I_m(9σ/64)` (so `C_op = 4C_OC_QC_M B`):
 
 * `detune_facts`: `μσ_k - σ_j ≥ σ_b(μ-1)/2`, `σ_j ≥ 15σ/16`, `σ > 0` (`lem:detuning`);
-* `etaIn_le` (`09_relay.tex:691-698`): for `x ≥ 0` with `μx ≤ A_k(t - t♯_k)`,
+* `etaIn_le` (`lem:Oprime`, Part II Lemma C.10): for `x ≥ 0` with `μx ≤ A_k(t - t♯_k)`,
   `η^in_j(τ^act + x) ≤ C_Mε_j[2C₂κ♯_ke^{μσ_kx} + 4C₂C(C₀)κ♯_k(1+x)^3e^{μσ'x} + 2C_Fκ♯_k(1+x)^3]`
   (`lem:transfer-step`(1) with `s' = s`, the active and inner bounds, `thm:active`'s last assertion,
   `⟨μx⟩^m ≤ 2(1+x)^m`);
-* `alg_bound`: the sum of the coefficients is at most `B/D` (`09_relay.tex:726-729`);
-* `majIn_le` (`09_relay.tex:680-729`): `maj^in_j(A_j(t♯_k + u/A_k)) ≤ C_Mε_jâ_k(u)B/D` for
+* `alg_bound`: the sum of the coefficients is at most `B/D` (`lem:Oprime`, Part II Lemma C.10);
+* `majIn_le` (`lem:Oprime`, Part II Lemma C.10): `maj^in_j(A_j(t♯_k + u/A_k)) ≤ C_Mε_jâ_k(u)B/D` for
   `u ∈ [0, A_k(t - t♯_k)]`.
 -/
 
@@ -58,7 +58,7 @@ theorem mu_pow_le {S : Standing} (hS : S.Holds) : S.P.μ ^ 3 ≤ 2 := by
   norm_num at this
   linarith
 
-/-- **The integrand of the second term** (`09_relay.tex:691-698`). -/
+/-- **The integrand of the second term** (`lem:Oprime`, Part II Lemma C.10). -/
 theorem etaIn_le {S : Standing} {C₀ K₁ CF t : ℝ} (hS : S.Holds) (hC₀ : 1 ≤ C₀) (hCF : 0 ≤ CF)
     {j : ℕ} (hj : 1 ≤ j) (h : S.OprimeHyp C₀ K₁ CF (j + 1) t) {x : ℝ} (hx0 : 0 ≤ x)
     (hx : S.P.μ * x ≤ S.P.activeTime (j + 1) t) :
@@ -150,7 +150,7 @@ theorem etaIn_le {S : Standing} {C₀ K₁ CF t : ℝ} (hS : S.Holds) (hC₀ : 1
         mul_le_mul_of_nonneg_left (add_le_add hw hi) hCMe
     _ = _ := by ring
 
-/-- **The sum of the coefficients** (`09_relay.tex:726-729`): with `E = C_Mε_{k-1}κ♯_k`,
+/-- **The sum of the coefficients** (`lem:Oprime`, Part II Lemma C.10): with `E = C_Mε_{k-1}κ♯_k`,
 `D = σ_b(μ-1) ≤ σ_b`, `g = μσ_k - σ_{k-1} ≥ D/2` and `C_F ≤ C₀`. -/
 theorem alg_bound {E CQ K₁ C2 Cact C₀ CF I D sb g : ℝ} (hE : 0 ≤ E) (hD : 0 < D) (hDsb : D ≤ sb)
     (hg : D / 2 ≤ g) (hK : 0 ≤ K₁) (hC2 : 0 ≤ C2) (hCact : 0 ≤ Cact)
@@ -190,7 +190,7 @@ theorem alg_bound {E CQ K₁ C2 Cact C₀ CF I D sb g : ℝ} (hE : 0 ≤ E) (hD 
     ring
   linarith
 
-/-- **`maj^in_{k-1}` follows the envelope of ring `k`** (`09_relay.tex:680-729`): for
+/-- **`maj^in_{k-1}` follows the envelope of ring `k`** (`lem:Oprime`, Part II Lemma C.10): for
 `u ∈ [0, A_k(t - t♯_k)]`, `k = j+1`,
 `maj^in_j(A_j(t♯_k + u/A_k)) ≤ C_Mε_jâ_k(u) B/(σ_b(μ-1))`. -/
 theorem majIn_le {S : Standing} {C₀ K₁ CF t : ℝ} (hS : S.Holds) (hDet : S.Det) (hC₀ : 1 ≤ C₀)

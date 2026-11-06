@@ -7,10 +7,10 @@ import NonUniqueEuler.I.Infra.WeakL2.Paths
 import NonUniqueEuler.I.Infra.WeakL2.TestFamily
 
 /-!
-# Helpers for `prop:compact`: extraction of a weakly convergent subsequence
+# Helpers for legacy `prop:compact`: extraction of a weakly convergent subsequence
 
-Helper file of `P/Sec3/Compact.lean`. Manuscript: proof of `prop:compact`, first paragraph
-(`03_compactness.tex:273-290`).
+Helper file of `P/Sec3/Compact.lean`. Legacy proof decomposition: `prop:compact`, first paragraph
+(the compactness argument in the proof of Part I Theorem 3.8 (`thm:criterion`)).
 
 * `seq_lipschitz`: by `lem:weak-cont`(b) (`Weak.weakCont`, applied to `ωₙ` with field `vₙ`, and
   identified with `ωₙ` by uniqueness of weakly continuous representatives,
@@ -40,7 +40,7 @@ theorem hasCompactSupport_of_tsupport_subset_ball {ψ : ℂ → ℝ} {R : ℝ}
     (hψR.trans ball_subset_closedBall)
 
 /-- `lem:weak-cont`(b) for the members of the sequence: `t ↦ ∫ ωₙ(t) ψ` is Lipschitz on `[0,T]`
-with constant `M · C M · G`, independent of `n` (`03_compactness.tex:277-281`). -/
+with constant `M · C M · G`, independent of `n` (the compactness argument in the proof of Part I Theorem 3.8 (`thm:criterion`)). -/
 theorem seq_lipschitz (h : IsCompactSeq T M gs g ωs) (hM : 0 ≤ M) {R : ℝ}
     {C : ℝ} (hC0 : 0 < C)
     (hC : ∀ ω : ℂ → ℝ, MemLp ω 1 volume → MemLp ω 2 volume →
@@ -88,7 +88,7 @@ theorem seq_lipschitz (h : IsCompactSeq T M gs g ωs) (hM : 0 ≤ M) {R : ℝ}
   rw [← hint]
   exact hb
 
-/-- **Step 1 of the proof of `prop:compact`** (`03_compactness.tex:273-290`): a subsequence of
+/-- **Step 1 of the proof of legacy `prop:compact`** (the compactness argument in the proof of Part I Theorem 3.8 (`thm:criterion`)): a subsequence of
 the `L²` paths `t ↦ [ωₙ(t)]` converges weakly, uniformly on `[0,T]`, to a weakly continuous path
 `U` with `‖U(t)‖₂ ≤ M`. -/
 theorem exists_subseq_weakLimit (h : IsCompactSeq T M gs g ωs) (hM : 0 ≤ M) :

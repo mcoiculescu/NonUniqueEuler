@@ -5,8 +5,9 @@ import Mathlib.Analysis.SpecialFunctions.ExpDeriv
 /-!
 # Helper for `lem:coupling`(2): the variation-of-constants formula in kick time
 
-Helper of `P/Sec8/Coupling.lean` (fully proved; elementary real analysis). Manuscript
-`08_kick.tex:121-138`: "The substitution `v = (τ_K' - τ₀)/μ` gives
+Helper of `P/Sec8/Coupling.lean` (fully proved; elementary real analysis).
+In the legacy ring-time coordinates, the calculation corresponding to current
+Part II Lemma 5.1 (`lem:coupling`) is: "The substitution `v = (τ_K' - τ₀)/μ` gives
 `c^in(τ_K) = β_k∫_{τ₀}^{τ_K} e^{ζ₀(τ_K-τ_K')} q_{k+1}(τ_K') dτ_K'`. Since `q_{k+1}` is continuous,
 `c^in ∈ C¹([τ₀,T_pin])`, `c^in(τ₀) = 0`, and differentiation gives `eq:kick`."
 
@@ -62,7 +63,7 @@ theorem coef_hasDerivWithinAt_Icc {ζ β : ℂ} {a b : ℝ} {q : ℝ → ℂ}
     rw [← Complex.exp_add, add_neg_cancel, Complex.exp_zero]
   linear_combination (β * q τ) * he
 
-/-- **The running coefficient in kick time** (`08_kick.tex:128-135`): with `u = (τ_K - τ₀)/μ`
+/-- **The running coefficient in kick time** (Part II Lemma 5.1 (`lem:coupling`)): with `u = (τ_K - τ₀)/μ`
 and `Q(v) = q(μv + τ₀)`, `e^{λu}∫₀ᵘ e^{-λv} μβQ(v) dv = Kick.coef (λ/μ) β τ₀ q τ_K`. -/
 theorem coef_eq_of_running {lam : ℂ} {μ τ₀ τK : ℝ} (hμ : 0 < μ) (β : ℂ) {Q qk : ℝ → ℂ}
     (hQ : ∀ v, Q v = qk (μ * v + τ₀)) :

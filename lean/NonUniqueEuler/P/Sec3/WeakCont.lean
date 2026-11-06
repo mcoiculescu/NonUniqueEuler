@@ -13,9 +13,13 @@ import Mathlib.Analysis.Distribution.AEEqOfIntegralContDiff
 /-!
 # Proof: `lem:weak-cont` (weakly continuous representative of a solution of `(te)`), `b = 2`
 
-Proof of `I/Sec3/WeakCont.lean` (`03_compactness.tex:120-225`).
+Current manuscript: Part I Lemma 3.2 (`lem:weak-cont`). Lean assumes only a locally
+integrable datum and derives its `L²` membership; the current manuscript assumes the
+datum is in `L²`.
 
-Structure (following the manuscript, `03_compactness.tex:147-225`):
+Proof of `I/Sec3/WeakCont.lean` (Part I Lemma 3.2 (`lem:weak-cont`)).
+
+Structure (following the manuscript, Part I Lemma 3.2 (`lem:weak-cont`)):
 1. Hölder bounds and integrability of the flux `c_ψ(t) = ∫ u(t) w(t)·∇ψ`
    (`I/Sec3/WeakCont/Bounds.lean`).
 2. The a.e. identity `∫ u(t)ψ = ∫ u₀ψ + ∫_0^t c_ψ` for every `ψ ∈ C_c^∞`, via `lem:dbr`
@@ -24,7 +28,7 @@ Structure (following the manuscript, `03_compactness.tex:147-225`):
    (`H/Sec3/WeakCont/Path.lean`: weak limits along a countable test family, Riesz); `ũ` is its
    jointly measurable representative (I-JOINT).
 4. (b) for every `ψ ∈ C_c^∞` and every `t ∈ [0,T]`: both sides are continuous on `[0,T]` and agree
-   a.e. (step 2). This replaces the manuscript's `C¹` approximation `ψ_i → ψ` (`:191-198`) by a
+   a.e. (step 2). This replaces the manuscript's `C¹` approximation `ψ_i → ψ` (Part I Lemma 3.2(b), `lem:weak-cont`) by a
    continuity argument (deviation, same conclusion). Then `ũ(0) = u₀` (fundamental lemma,
    `u₀ ∈ L¹_loc`), so `u₀ ∈ L²`; the Lipschitz bound from step 1; the `L¹` bound from weak lower
    semicontinuity (`WeakL2.WeakContinuousOn.eLpNorm_le_of_ae`).
@@ -39,7 +43,7 @@ open scoped ENNReal
 
 namespace NonUniqueEuler.Weak
 
-/-- `lem:weak-cont` with `b = 2` (`03_compactness.tex:120-145`): a solution `u ∈ L^∞(0,T;L²)` of
+/-- `lem:weak-cont` with `b = 2` (Part I Lemma 3.2 (`lem:weak-cont`)): a solution `u ∈ L^∞(0,T;L²)` of
 `(te)` on `[0,T)` with field `w ∈ L^∞(0,T;L²(B_R))` (every `R`) and a locally integrable datum
 `u₀` has a jointly measurable representative `ũ`, weakly continuous into `L²` on `[0,T]`, with
 (a) `u₀ ∈ L²`, `ũ(0) = u₀`, `‖ũ(t)‖₂ ≤ N` and `‖ũ(t)‖₁ ≤ N₁` for every `t ∈ [0,T]` (`N`, `N₁`

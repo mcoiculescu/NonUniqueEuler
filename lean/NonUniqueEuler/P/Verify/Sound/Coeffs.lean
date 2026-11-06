@@ -5,10 +5,10 @@ import NonUniqueEuler.I.Verify.ProfileBasic
 import NonUniqueEuler.I.Verify.ProfileOmega
 
 /-!
-# Proof: Proposition A.3, step (i): the coefficient data `coeffs` and `omegaCoeffs`
+# Proof: Part II Proposition A.3, step (i): the coefficient data `coeffs` and `omegaCoeffs`
 
-Proof of `NonUniqueEuler/I/Verify/Sound/Coeffs.lean`. Manuscript: proof of Proposition A.3
-(`prop:enclosure`), step (i) (`A_verification.tex:360-393`). Code: `Verify/Comp/Grid.lean`
+Proof of `NonUniqueEuler/I/Verify/Sound/Coeffs.lean`. Manuscript: proof of Part II Proposition A.3,
+step (i) (`prop:enclosure`). Code: `Verify/Comp/Grid.lean`
 (`hPairIv`, `hRec`, `coeffs`, `omegaCoeffs`).
 
 We follow the manuscript (and the interface's proof sketch):

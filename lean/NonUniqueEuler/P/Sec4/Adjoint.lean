@@ -10,17 +10,19 @@ import NonUniqueEuler.H.Sec4.Adjoint.Field
 /-!
 # Proof of `lem:adjoint` (adjoint eigenfunction, `ℓ_*`, multipole data `pout_*`, `pin_*`, `β`)
 
-Proof of `I/Sec4/Adjoint.lean` (`04_ring.tex:575-651`). Same declarations, statements copied
-verbatim. Helpers: `H/Sec4/Adjoint/*.lean`.
-* (1) `AdjointAux.weak_eigen` (Fubini on the symmetric kernel of `𝒢_ℓ`, `𝒢_ℓg_* = ψ_*(log r)`),
+Proof of `I/Sec4/Adjoint.lean` (Part I Lemma 4.9 (`lem:adjoint`)). Same declarations, statements copied
+verbatim from the Lean interface. The current manuscript has four numbered parts;
+the separate adjoint-eigenfunction lemma below formalizes the calculation in its proof of (1).
+Helpers: `H/Sec4/Adjoint/*.lean`. The following list uses the retained Lean decomposition.
+* (legacy 1) `AdjointAux.weak_eigen` (Fubini on the symmetric kernel of `𝒢_ℓ`, `𝒢_ℓg_* = ψ_*(log r)`),
   `AdjointAux.adjEig_not_ae_zero` (`ψ_*(ξ₁) = 1`, continuity);
-* (2) the profile identities from (1); on `Y^s_ℓ` from `thm:evans-simple`(2)
+* (legacy 2) the profile identities from (1); on `Y^s_ℓ` from `thm:evans-simple`(2)
   (`P L = λ_* P` for `P = ℓ_*(·)g_*`, `ℓ_*(g_*) = 1`) and the exponential series
   (`AdjointAux.apply_exp_smul_of_comp_eq`);
-* (3) `AdjointAux.adjoint_stream_aux`;
-* (4) pointwise algebra `b ψ_* M_* r = -(2ℓ)⁻¹ r^{1-ℓ} g_*`, and
+* (legacy 3) `AdjointAux.adjoint_stream_aux`;
+* (legacy 4) pointwise algebra `b ψ_* M_* r = -(2ℓ)⁻¹ r^{1-ℓ} g_*`, and
   `AdjointAux.angularSector_forcing`;
-* (5) from (3), (4), `thm:evans-simple`(1) (`ψ_*(ξ₂) ≠ 0`) and (2) (`J ≠ 0`).
+* (legacy 5) from (3), (4), `thm:evans-simple`(1) (`ψ_*(ξ₂) ≠ 0`) and (2) (`J ≠ 0`).
 -/
 
 noncomputable section
@@ -33,7 +35,7 @@ namespace SectorSetting
 
 open Sect
 
-/-- `lem:adjoint`(1): `conj(ψ_*(log r)M_*(r))` is an eigenfunction of the adjoint `L_ℓ(G)^*` with
+/-- the adjoint calculation in the proof of Part I Lemma 4.9(1) (`lem:adjoint`): `conj(ψ_*(log r)M_*(r))` is an eigenfunction of the adjoint `L_ℓ(G)^*` with
 eigenvalue `conj λ_*` (weak form: `⟨L_ℓ(G)g, conj X⟩ = λ_* ⟨g, conj X⟩` for every `g ∈ Y^0_ℓ`,
 `⟨f, h⟩ = ∫_0^∞ f h̄ r dr`), and it is not zero in `L²([ρ₋,ρ₊])`. -/
 theorem adjoint_eigen (S : SectorSetting) (hS : S.Valid) (ℓ : ℕ) (hℓ : 1 ≤ ℓ) (z : ℂ)
@@ -49,7 +51,7 @@ theorem adjoint_eigen (S : SectorSetting) (hS : S.Valid) (ℓ : ℕ) (hℓ : 1 �
   simp_rw [hc]
   exact AdjointAux.weak_eigen S hS ℓ hℓ z hz G hE hg
 
-/-- `lem:adjoint`(2): `ℓ_*(g_*) = 1`, `ℓ_*(L_ℓ(G)g) = λ_*ℓ_*(g)` for `g ∈ Y^0_ℓ` (on profiles),
+/-- Part I Lemma 4.9(1) (`lem:adjoint`): `ℓ_*(g_*) = 1`, `ℓ_*(L_ℓ(G)g) = λ_*ℓ_*(g)` for `g ∈ Y^0_ℓ` (on profiles),
 and, as functionals on every `Y^s_ℓ`: `ℓ_*(g_*) = 1`, `ℓ_*(L_ℓ g) = λ_*ℓ_*(g)` and
 `ℓ_*(e^{tL_ℓ}g) = e^{λ_*t}ℓ_*(g)` for `t ≥ 0`, `e^{tL_ℓ}` the exponential series of the bounded
 operator `L_ℓ(G)`. -/
@@ -93,7 +95,7 @@ theorem adjoint_ellStar (S : SectorSetting) (hS : S.Valid) (ℓ : ℕ) (hℓ : 1
     exact ⟨hone, hcomp, fun t _ g =>
       AdjointAux.apply_exp_smul_of_comp_eq (S.Lsec s ℓ G) (S.ellStarY s ℓ z G) z hcomp (t : ℂ) g⟩
 
-/-- `lem:adjoint`(3): outside `supp ω̄'` the stream function `(2π)⁻¹ log|·| * (g_*e^{iℓθ})` of
+/-- Part I Lemma 4.9(2) (`lem:adjoint`): outside `supp ω̄'` the stream function `(2π)⁻¹ log|·| * (g_*e^{iℓθ})` of
 `g_*e^{iℓθ}` is `-(pout_*/(2ℓ)) r^{-ℓ} e^{iℓθ}` for `r ≥ r₂` and `-(pin_*/(2ℓ)) r^ℓ e^{iℓθ}` for
 `r ≤ r₁`; `pin_* = -2ℓe^{-ℓξ₁}`, `pout_* = -2ℓe^{ℓξ₂}ψ_*(ξ₂)`; and `pout_*`, `pin_*` are the
 multipole coefficients `pout_ℓ`, `pin_ℓ` of `g_*e^{iℓθ}` (`def:multipole`). -/
@@ -114,8 +116,8 @@ theorem adjoint_stream (S : SectorSetting) (hS : S.Valid) (ℓ : ℕ) (hℓ : 1 
       S.pinStar ℓ z G = BS.pin ℓ (Ang.ofProfile ℓ (S.gStar ℓ z G)) :=
   AdjointAux.adjoint_stream_aux S hS ℓ hℓ z hz G hE
 
-/-- `lem:adjoint`(4): with `b(r) = -(i/2)r^{-ℓ-1}ω̄'(r)`, `β = ℓ_*(b) = -pin_*/(2ℓJ)`; and for
-every `m ∈ ℂ` the real field `h = ∇^⊥(-(m/(2ℓ))r^{-ℓ}e^{iℓθ} + c.c.)` satisfies
+/-- Part I Lemma 4.9(3) (`lem:adjoint`): with `b(r) = -(i/2)r^{-ℓ-1}ω̄'(r)`, `β = ℓ_*(b) = -pin_*/(2ℓJ)`. The retained general-mode forcing identity below extends
+the mode-3 calculation before Part I Definition 4.20 (`def:eigendata`): for every `m ∈ ℂ` the real field `h = ∇^⊥(-(m/(2ℓ))r^{-ℓ}e^{iℓθ} + c.c.)` satisfies
 `ℓ_*((-h·∇ω̄)_ℓ) = β m`, `(·)_ℓ` the sector-`ℓ` profile. -/
 theorem adjoint_beta (S : SectorSetting) (hS : S.Valid) (ℓ : ℕ) (hℓ : 1 ≤ ℓ) (z : ℂ)
     (hz : 0 < z.re) (G : ℝ) (hE : S.evans ℓ z G = 0)
@@ -153,7 +155,7 @@ theorem adjoint_beta (S : SectorSetting) (hS : S.Valid) (ℓ : ℕ) (hℓ : 1 �
     rw [setIntegral_congr_fun measurableSet_Ioi hpt, integral_const_mul]
     ring
 
-/-- `lem:adjoint`(5): `pout_* ≠ 0`, `pin_* ≠ 0` and `β ≠ 0`. -/
+/-- Part I Lemma 4.9(4) (`lem:adjoint`): `pout_* ≠ 0`, `pin_* ≠ 0` and `β ≠ 0`. -/
 theorem adjoint_ne_zero (S : SectorSetting) (hS : S.Valid) (ℓ : ℕ) (hℓ : 1 ≤ ℓ) (z : ℂ)
     (hz : 0 < z.re) (G : ℝ) (hE : S.evans ℓ z G = 0)
     (hE' : deriv (fun w => S.evans ℓ w G) z ≠ 0) :

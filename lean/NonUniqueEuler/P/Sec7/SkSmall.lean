@@ -3,7 +3,7 @@ import NonUniqueEuler.Defs.Sec7.All
 /-!
 # Proof: `eq:sk-small` (elementary bounds on the ratios `s_k` and radii `r_k`)
 
-Proof of `I/Sec7/SkSmall.lean` (`07_several_rings.tex:17-25`). Uses only `a < 1` (proved
+Proof of `I/Sec7/SkSmall.lean` (Part II Section 4 (`sec:several`)). Uses only `a < 1` (proved
 here from the explicit values of `ξL`, `ξR`; the same fact as the last conjunct of
 `ringData_order`), the parameter ranges `DatumParams` (part of `P.Valid`) and the closed forms
 `ratio`, `radius`. No interface file is used.
@@ -50,7 +50,7 @@ private lemma radius_div {sbar μ : ℝ} (hs : 0 < sbar) (hμ : 0 < μ) {i k : �
   have hpos : 0 < radius sbar μ i := radius_pos hs hμ i
   rw [div_eq_iff hpos.ne', radius, radius, ← Finset.prod_Ico_consecutive _ hi hik, mul_comm]
 
-/-- **`eq:sk-small`** (`07_several_rings.tex:17-25`). For a valid approximation `P`
+/-- **`eq:sk-small`** (Part II Section 4 (`sec:several`)). For a valid approximation `P`
 (`μ ∈ (1,2]`, `s̄ ∈ (0,a/16]`): `0 < s_k ≤ s̄/2 ≤ a/32` for `k ≥ 1`;
 `r_k/r_i ≤ s_{k-1} s̄^{k-i-1}` for `1 ≤ i < k`; `μ⁴ s̄² < 1/8`; and `s̄^{m-2} < 1/2` (`m = 3`). -/
 theorem sk_small (P : Approx) (hP : P.Valid) :

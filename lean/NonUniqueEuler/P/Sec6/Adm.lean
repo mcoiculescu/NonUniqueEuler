@@ -11,19 +11,19 @@ import NonUniqueEuler.H.Sec6.Adm.Conv
 /-!
 # Proof: `lem:adm` (the approximate data form an admissible sequence)
 
-Proof of `I/Sec6/Adm.lean` (`06_datum.tex:83-92`, proof `:93-136`); same declaration, statement
-copied verbatim.
+Proof of `I/Sec6/Adm.lean` (Part II Lemma 3.4 (`lem:adm`) and its proof); the formal interface is unchanged.
 
-* Step 1 (`06_datum.tex:94-99`): `f^{(n)}` is a finite sum of nonnegative `3`-fold symmetric
+* Step 1 (Part II Lemma 3.4 (`lem:adm`)): `f^{(n)}` is a finite sum of nonnegative `3`-fold symmetric
   `C_c^∞` functions (`AdmH.isGoodProfile_approxDatum`, from `lem:ring-facts` and `lem:seed`);
   `thm:smooth`(6) (`Smooth.smooth_rot`) gives the symmetry of `ω^{(n)}(t)`.
-* Step 2 (`06_datum.tex:101-113`): `f^{(n)} → f` in `L^q`, `q ∈ [1,∞)`
+* Step 2 (Part II Lemma 3.4 (`lem:adm`)): `f^{(n)} → f` in `L^q`, `q ∈ [1,∞)`
   (`AdmH.tendsto_eLpNorm_approxDatum_sub`; uses `prop:integrability` and the measure preservation
   of `Y_κ`).
-* Step 3 (`06_datum.tex:114-136`): `thm:smooth`(7) (`Smooth.smooth_weak`) already gives a
+* Step 3 (Part II Lemma 3.4 (`lem:adm`)): `thm:smooth`(7) (`Smooth.smooth_weak`) already gives a
   renormalized weak solution in `X_q(T)` for every `T > 0` and `q > 4/3`, so the admissibility
-  is assembled directly (the manuscript's detour through `lem:bounded-adm`(i), whose content is
-  this renormalization, is not needed).
+  is assembled directly, as in the current proof of Part II Lemma 3.4 (`lem:adm`).
+  The Lean statement retains `q`-admissibility for every `q > 4/3`, whereas the
+  current lemma records the `2`-admissibility used in the final reduction.
 -/
 
 noncomputable section
@@ -36,7 +36,7 @@ namespace Datum
 
 open RingData
 
-/-- **`lem:adm`** (`06_datum.tex:83-92`). Under (N1)–(N3), for an admissible `χ`, parameters as in
+/-- **Part II Lemma 3.4 (`lem:adm`)**. Under (N1)–(N3), for an admissible `χ`, parameters as in
 `def:datum` and `κ_seed ∈ (0, κ_L]`: for every `n ≥ 2`, `f^{(n)} ∈ C_c^∞`, `f^{(n)} ≥ 0`, `f^{(n)}`
 and every `ω^{(n)}(t)` are `3`-fold symmetric; `f^{(n)} → f` in `L^q` for every `q ∈ [1,∞)`; and
 `(f^{(n+2)}, ω^{(n+2)})_{n ≥ 0}` is `q`-admissible for `f` on `[0,∞)` for every `q ∈ (4/3,∞)`. -/

@@ -4,7 +4,7 @@ import NonUniqueEuler.H.Sec5.Window.Approx.Scalar
 /-!
 # Helpers for `window_approx`: one step of the hierarchy
 
-Helper of `P/Sec5/Window/Approx.lean` (`05_single_ring.tex:747-786`). Namespace
+Helper of `P/Sec5/Window/Approx.lean` (Part II Lemma 2.11 (`lem:window`)). Namespace
 `NonUniqueEuler.OneRing.WAppH`.
 
 The manuscript's hierarchy `w^{[j]} = ∫₀ᵘ e^{(u-v)L} g^{[j]}`,
@@ -187,7 +187,7 @@ theorem gNext_spec {χ : ℝ → ℝ} {G ubar κ σ ε σi : ℝ} {p Ktop : ℕ}
       (normH_mono_order' (Nat.le_succ j) (w u)) (hwb u hu) (hPb u hu) hd' hhb
       (normCk_nonneg _ _ _) (normH_nonneg _ _) (normH_nonneg _ _) hb1 hb2 hb3)
 
-/-- **One step of the hierarchy** (`05_single_ring.tex:747-786`): from the induction hypothesis
+/-- **One step of the hierarchy** (Part II Lemma 2.11 (`lem:window`)): from the induction hypothesis
 at level `k+2` and step `n`, the next increment `w' = ∫₀ᵘ e^{(u-v)L}g_{n+1}` and
 `P + w'` satisfy the induction hypothesis at level `k+1` and step `n+1`, with
 `C' = C_S(k+1) K_n (σi + 1)`, `K_n = C(C_B(k+1)(2D + C) + C_h(k+1))`. -/

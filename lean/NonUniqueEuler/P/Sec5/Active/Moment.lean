@@ -8,7 +8,7 @@ import NonUniqueEuler.I.Infra.Sobolev.ReIm
 /-!
 # Proof of the moment bound behind `cor:active-moment`
 
-Proof of `NonUniqueEuler/I/Sec5/Active/Moment.lean` (`05_single_ring.tex:1112-1122`). Same
+Proof of `NonUniqueEuler/I/Sec5/Active/Moment.lean` (Part II Corollary 2.13). Same
 declaration, statement copied verbatim.
 
 Proof (as in the manuscript).
@@ -133,7 +133,7 @@ theorem memH_modeFn {χ : ℝ → ℝ} {G : ℝ} {k : ℕ} (hφ : Sob.MemH k (Ei
 end ActiveMomentAux
 
 open ActiveMomentAux in
-/-- **The moment bound behind `cor:active-moment`** (`05_single_ring.tex:1112-1122`): for
+/-- **The moment bound behind `cor:active-moment`** (Part II Corollary 2.13): for
 `G ∈ [0,G₁]`, `f ∈ H^k` vanishing a.e. off `N` and `X ∈ ℂ`,
 `|2π pout_3[f] - 2π pout_*(G)X| ≤ 2π C_p ‖f - 2Re(Xφ_*(G))‖_{H^k}`. -/
 theorem active_moment_bound (χ : ℝ → ℝ) (hχ : IsAdmissibleCutoff χ)

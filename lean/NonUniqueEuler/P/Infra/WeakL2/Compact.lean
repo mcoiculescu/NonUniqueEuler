@@ -10,7 +10,10 @@ import Mathlib.Topology.Instances.Real.Lemmas
 
 Weak sequential compactness and diagonal extraction. Same declarations, same statements as the
 interface file; see its docstring for the description and the manuscript consumers
-(`03_compactness.tex`: `lem:weak-cont`, `prop:compact`; `prop:stable`; `lem:velocity`(b)).
+(Part I, Lemmas 3.2, `lem:weak-cont`, and 2.2(b), `lem:velocity`, and
+Theorem 3.8, `thm:criterion`). Lean retains the former `prop:compact` and
+`prop:stable` decomposition of the compactness and limit-passage portions
+of the proof of Theorem 3.8.
 
 Proof structure.
 * `exists_diagonal_subseq`: the nested subsequences `nestSeq ψ k` (`φ_0 = ψ_0`,

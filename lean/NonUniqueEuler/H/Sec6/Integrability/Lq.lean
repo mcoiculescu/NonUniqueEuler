@@ -5,13 +5,13 @@ import Mathlib.Analysis.SpecialFunctions.Pow.NNReal
 /-!
 # Helpers for `prop:integrability`: `f ∈ L^q` for `q < ∞`, `f ∉ L^∞`
 
-Helper of `P/Sec6/Integrability.lean` (`06_datum.tex:46-66`).
+Helper of `P/Sec6/Integrability.lean` (Part II Proposition 3.2 (`prop:integrability`)).
 
 * `IntegrabilityH.memLp_datum`: `f ∈ L^q` for `1 ≤ q < ∞`. Instead of the identity
-  `∫ f^q = Σ_k A_k^q r_k² ‖Φ‖_q^q` (`06_datum.tex:47-50`) we use the bound
+  `∫ f^q = Σ_k A_k^q r_k² ‖Φ‖_q^q` (Part II Proposition 3.2 (`prop:integrability`)) we use the bound
   `|f|^q ≤ Σ_k A_k^q 1_{B̄_{r_k}}` (`0 ≤ Φ < 1`, `supp Φ(·/r_k) ⊆ B̄_{r_k}`, at most one nonzero
   term), whence `∫ |f|^q ≤ π Σ_k A_k^q r_k² < ∞` by monotone convergence (`lintegral_tsum`).
-* `IntegrabilityH.not_memLp_top`: `f ∉ L^∞` (`06_datum.tex:61-66`): `Φ > c` on a disk
+* `IntegrabilityH.not_memLp_top`: `f ∉ L^∞` (Part II Proposition 3.2 (`prop:integrability`)): `Φ > c` on a disk
   `B_ρ(y₀)`, so `f > A_k c` on `B_{ρ r_k}(r_k y₀)`, of positive measure, and `A_k → ∞`.
 -/
 
@@ -82,7 +82,7 @@ theorem lintegral_enorm_datum_rpow_lt_top (hR : RingFacts χ) (hp : DatumParams 
           (summable_amp_rpow_mul_radius_sq hp q)]
         exact ENNReal.mul_lt_top ENNReal.ofReal_lt_top ENNReal.coe_lt_top
 
-/-- `f ∈ L^q` for every `q ∈ [1, ∞)` (`06_datum.tex:46-60`). -/
+/-- `f ∈ L^q` for every `q ∈ [1, ∞)` (Part II Proposition 3.2 (`prop:integrability`)). -/
 theorem memLp_datum (hR : RingFacts χ) (hp : DatumParams A₁ μ sbar) {q : ℝ} (hq : 1 ≤ q) :
     MemLp (datum χ A₁ μ sbar) (ENNReal.ofReal q) volume := by
   have hq0 : 0 < q := by linarith
@@ -102,7 +102,7 @@ theorem exists_ball_phi_gt (hR : RingFacts χ) :
   obtain ⟨ρ, hρ, h⟩ := Metric.eventually_nhds_iff_ball.1 hev
   exact ⟨y₀, ringPhi χ y₀ / 2, by linarith, ρ, hρ, h⟩
 
-/-- `f ∉ L^∞` (`06_datum.tex:61-66`). -/
+/-- `f ∉ L^∞` (Part II Proposition 3.2 (`prop:integrability`)). -/
 theorem not_memLp_top (hR : RingFacts χ) (hp : DatumParams A₁ μ sbar) :
     ¬ MemLp (datum χ A₁ μ sbar) ⊤ volume := by
   intro hf

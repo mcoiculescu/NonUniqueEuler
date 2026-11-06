@@ -4,10 +4,10 @@ import NonUniqueEuler.I.Infra.ConvMinkowski.Measurable
 import NonUniqueEuler.I.Infra.JointRep.Slab
 
 /-!
-# Helpers for `prop:compact`: the limit is a weak solution with datum `g`
+# Helpers for legacy `prop:compact`: the limit is a weak solution with datum `g`
 
-Helper file of `P/Sec3/Compact.lean`. Manuscript: proof of `prop:compact`, last paragraph
-(`03_compactness.tex:322-340`).
+Helper file of `P/Sec3/Compact.lean`. Legacy proof decomposition: `prop:compact`, last paragraph
+(the compactness argument in the proof of Part I Theorem 3.8 (`thm:criterion`)).
 
 Restructured argument (recorded as a deviation; same ingredients). Fix `φ ∈ 𝒟_T` with
 `supp φ ⊂ ℝ × B_r`. For each `t ∈ (0,T)` the inner integral
@@ -166,7 +166,7 @@ theorem toReal_eLpNorm_le_of_bound {a : ℂ → ℝ} {r D : ℝ} (hab : ∀ x, |
   exact ENNReal.toReal_mono (ENNReal.mul_ne_top (ENNReal.rpow_ne_top_of_nonneg (by norm_num)
     measure_ball_lt_top.ne) ENNReal.ofReal_ne_top) hle
 
-/-- **The limit is a weak solution with datum `g`** (`03_compactness.tex:322-340`). -/
+/-- **The limit is a weak solution with datum `g`** (the compactness argument in the proof of Part I Theorem 3.8 (`thm:criterion`)). -/
 theorem isWeakSolution_limit (h : IsCompactSeq T M gs g ωs) (hM : 0 ≤ M) {ω : ℝ → ℂ → ℝ}
     (hX : MemX 2 T ω) (hi : WeakTendstoUnifL2On ωs ω (Icc 0 T))
     (hω2 : ∀ t ∈ Icc 0 T, MemLp (ω t) 2 volume)

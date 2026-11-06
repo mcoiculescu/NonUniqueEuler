@@ -8,7 +8,7 @@ import Mathlib.MeasureTheory.Function.LpSpace.Indicator
 
 Consequences of `lem:iterates` (`I/SmoothB/Iterates.lean`) and of the inner radius
 (`I/SmoothB/Constants.lean`) used in the energy estimate of `lem:iter-cauchy`
-(`B_global_smooth.tex:362-379`):
+(Part II, Lemma B.9 (`lem:iter-cauchy`)):
 
 * smoothness of the slices `ω^{[j]}(t)`, `v^{[j]}(t)`;
 * `ω^{[j]}(t, x) = 0` and `∇ω^{[j]}(t, x) = 0` for `|t| ≤ T` and `|x| ≥ R(T)`;

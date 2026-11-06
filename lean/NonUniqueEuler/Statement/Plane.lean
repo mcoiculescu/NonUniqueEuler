@@ -8,12 +8,11 @@ import Mathlib.MeasureTheory.Integral.Bochner.Basic
 
 Statement layer: definitions and statements only, no proofs.
 
-Manuscript sources (`manuscript/tex/sections/`):
-* `02_prelim.tex:13-14`  we identify `ℝ²` with `ℂ`;
-* `02_prelim.tex:21-26`  rotations `O_θ` (multiplication by `e^{iθ}`), `m`-fold symmetry
-  and radial functions (both almost everywhere);
-* `01_intro.tex:12-14`, `02_prelim.tex:36-38`  the Biot–Savart kernel
-  `K(x) = x^⊥ / (2π|x|²)`, `x^⊥ = (-x₂, x₁)`, and `v = K * ω`.
+Current manuscript source: Part I, Section 2.1 (Conventions), within Section 2
+(`sec:prelim`) in `manuscript/part1/sections/02_prelim.tex`. It identifies `ℝ²` with
+`ℂ`, defines rotations `O_θ`, almost-everywhere rotational symmetry and radiality,
+and fixes the Biot–Savart kernel `K(x) = x^⊥ / (2π|x|²)`, `x^⊥ = (-x₂, x₁)`,
+and `v = K * ω`.
 
 Conventions.
 * The plane is `ℂ`, with its Euclidean norm `‖·‖` and its Lebesgue measure `volume`
@@ -31,16 +30,16 @@ open MeasureTheory
 namespace NonUniqueEuler
 
 /-- The rotation `O_θ` of the plane by the angle `θ`: multiplication by `e^{iθ}`
-(`02_prelim.tex:21-22`). -/
+(Part I, Section 2.1, `sec:prelim`). -/
 def rot (θ : ℝ) (x : ℂ) : ℂ := Complex.exp ((θ : ℂ) * Complex.I) * x
 
 /-- A function on the plane is `m`-fold symmetric if `g ∘ O_{2π/m} = g` almost everywhere
-(`02_prelim.tex:23-25`). -/
+(Part I, Section 2.1, `sec:prelim`). -/
 def IsMFoldSymmetric (m : ℕ) (g : ℂ → ℝ) : Prop :=
   (fun x => g (rot (2 * Real.pi / m) x)) =ᵐ[volume] g
 
 /-- A function on the plane is radial if `g ∘ O_θ = g` almost everywhere, for every `θ`
-(`02_prelim.tex:25-26`). -/
+(Part I, Section 2.1, `sec:prelim`). -/
 def IsRadial (g : ℂ → ℝ) : Prop :=
   ∀ θ : ℝ, (fun x => g (rot θ x)) =ᵐ[volume] g
 
@@ -50,13 +49,13 @@ def IsRadialPointwise (g : ℂ → ℝ) : Prop :=
   ∀ θ : ℝ, ∀ x : ℂ, g (rot θ x) = g x
 
 /-- The Biot–Savart kernel `K(z) = z^⊥ / (2π|z|²)` with `z^⊥ = i z`
-(`01_intro.tex:12`, `02_prelim.tex:36`). At `z = 0` Lean's division gives `0`; this single
+(Part I, Section 2.1, `sec:prelim`). At `z = 0` Lean's division gives `0`; this single
 point is a null set and plays no role. -/
 def biotSavartKernel (z : ℂ) : ℂ :=
   (Complex.I * z) / ((2 * Real.pi * ‖z‖ ^ 2 : ℝ) : ℂ)
 
 /-- The Biot–Savart velocity `v = K * g`, `v(x) = ∫ K(x - y) g(y) dy`
-(`02_prelim.tex:37-38`: "whenever the integral converges"). Lean's Bochner integral is `0`
+(Part I, Section 2.1, `sec:prelim`: "whenever the integral converges"). Lean's Bochner integral is `0`
 where the integrand is not integrable; the weak-solution definitions require separately that
 the integral converges absolutely almost everywhere (`IsWeakSolution.velocity_convergent`), so
 this junk value never enters. -/

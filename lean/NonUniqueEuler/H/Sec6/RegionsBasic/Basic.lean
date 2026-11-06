@@ -8,19 +8,19 @@ import Mathlib.LinearAlgebra.Complex.FiniteDimensional
 /-!
 # Helpers for `lem:regions-basic`: generic facts
 
-Helper of `P/Sec6/RegionsBasic.lean` (`06_datum.tex:244-292`). Nothing here depends on the
+Helper of `P/Sec6/RegionsBasic.lean` (Part II Lemma 3.6 (`lem:regions-basic`)). Nothing here depends on the
 approximation `P`.
 
-* `RegionsBasicAux.eq_zero_of_rot_eq`: `O_{2π/3}` fixes only `0` (`06_datum.tex:262-263`);
+* `RegionsBasicAux.eq_zero_of_rot_eq`: `O_{2π/3}` fixes only `0` (Part II Lemma 3.6 (`lem:regions-basic`));
 * `RegionsBasicAux.IsGood θ G` (`G ∈ C_c^∞`, `G ≥ 0`, `G ∘ O_θ = G` pointwise) and its closure
   under dilations `c G(·/r)`, finite sums and composition with a smooth homeomorphism commuting
-  with `O_θ` (`06_datum.tex:275-279`);
+  with `O_θ` (Part II Lemma 3.6 (`lem:regions-basic`));
 * `RegionsBasicAux.image_rot_tsupport`: the support of an `O_θ`-invariant function is
   `O_θ`-invariant;
 * `RegionsBasicAux.tsupport_scale_subset`, `integral_scale`, `integral_scale_mul`: supports and
   integrals of `c G(·/r)` and `c G(r ·)`;
 * `RegionsBasicAux.eLpNorm_one_of_nonneg`, `eLpNorm_one_le_CL1`: `‖g‖_{L¹} = ∫ g` for `g ≥ 0`,
-  and Cauchy–Schwarz on `N` (`06_datum.tex:291-292`).
+  and Cauchy–Schwarz on `N` (Part II Lemma 3.6 (`lem:regions-basic`)).
 -/
 
 noncomputable section
@@ -68,7 +68,7 @@ theorem exp_two_pi_three_ne_one :
   have h8 : 3 * n = 1 := Int.cast_injective h7
   omega
 
-/-- `O_{2π/3}` fixes only `0` (`06_datum.tex:262-263`). -/
+/-- `O_{2π/3}` fixes only `0` (Part II Lemma 3.6 (`lem:regions-basic`)). -/
 theorem eq_zero_of_rot_eq {z : ℂ} (h : rot (2 * Real.pi / 3) z = z) : z = 0 := by
   have h' : (Complex.exp (((2 * Real.pi / 3 : ℝ) : ℂ) * Complex.I) - 1) * z = 0 := by
     have : rot (2 * Real.pi / 3) z = Complex.exp (((2 * Real.pi / 3 : ℝ) : ℂ) * Complex.I) * z :=
@@ -218,7 +218,7 @@ theorem volume_annN_lt_top : volume annN < ⊤ := by
   exact (measure_mono h).trans_lt measure_closedBall_lt_top
 
 /-- Cauchy–Schwarz on `N`: `‖g‖_{L¹} ≤ |N|^{1/2} ‖g‖_{L²}` for `g` vanishing outside `N`
-(`06_datum.tex:291-292`). -/
+(Part II Lemma 3.6 (`lem:regions-basic`)). -/
 theorem eLpNorm_one_le_CL1 {g : ℂ → ℝ} (hg : AEStronglyMeasurable g volume)
     (hs : ∀ y, y ∉ annN → g y = 0) :
     eLpNorm g 1 volume ≤ ENNReal.ofReal Rings.CL1 * eLpNorm g 2 volume := by

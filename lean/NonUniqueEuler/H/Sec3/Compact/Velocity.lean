@@ -2,10 +2,10 @@ import NonUniqueEuler.H.Sec3.Compact.Basic
 import NonUniqueEuler.I.Sec2.Velocity
 
 /-!
-# Helpers for `prop:compact`: convergence of the velocities, property (iii)
+# Helpers for legacy `prop:compact`: convergence of the velocities, property (iii)
 
-Helper file of `P/Sec3/Compact.lean`. Manuscript: proof of `prop:compact`(iii)
-(`03_compactness.tex:316-320`).
+Helper file of `P/Sec3/Compact.lean`. Legacy proof decomposition: `prop:compact`(iii)
+(the compactness argument in the proof of Part I Theorem 3.8 (`thm:criterion`)).
 
 * `velocity_slice_tendsto`: for every `t ∈ [0,T]`, `vₙ(t) → v(t)` in `L²(B_R)`, by
   `lem:velocity`(b) (`BS.velocity_weak_tendsto_two`) and (i) at the time `t`.
@@ -65,7 +65,7 @@ theorem velocity_slice_tendsto (h : IsCompactSeq T M gs g ωs) {ω : ℝ → ℂ
       fun ψ hψ => (hi ψ hψ).tendsto_at ht⟩
   exact (BS.velocity_weak_tendsto_two hR hconv (fun n => seq_eLpNorm_one_le h n ht)).2
 
-/-- **(iii) of `prop:compact`**: `K ∗ ωₙ → K ∗ ω` in `L^s(0,T;L²(B_R))`, `s ∈ [1,∞)`, `R > 0`. -/
+/-- **(iii) of legacy `prop:compact`**: `K ∗ ωₙ → K ∗ ω` in `L^s(0,T;L²(B_R))`, `s ∈ [1,∞)`, `R > 0`. -/
 theorem velocity_tendsto_bochner (h : IsCompactSeq T M gs g ωs) (hM : 0 ≤ M)
     {ω : ℝ → ℂ → ℝ} (hi : WeakTendstoUnifL2On ωs ω (Icc 0 T))
     (hω2 : ∀ t ∈ Icc 0 T, MemLp (ω t) 2 volume)

@@ -14,7 +14,7 @@ derivatives `radDeriv F = cos θ ∂₁F + sin θ ∂₂F` and `thetaDeriv F = x
 vanish outside `N_*`, and `‖·‖_{H^m} ≤ C ‖F‖_{H^{m+1}}` (Leibniz with the coefficients, which are
 smooth near `N_*`). Iterating: `∂_θ^n ∂_r^i w ∈ H^{k-i-n}` for `w ∈ H^k`, `i + n ≤ k`, with norm
 `≤ C ‖w‖_{H^k}` (`polar_iter`). This is the "easy direction" of the manuscript's comparison of
-`‖w‖_{H^k}` with the polar derivatives (`04_ring.tex:851-857`).
+`‖w‖_{H^k}` with the polar derivatives (Part I, Lemma 4.12 (`lem:norm-equiv`), proof).
 -/
 
 noncomputable section

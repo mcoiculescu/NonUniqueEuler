@@ -1,9 +1,9 @@
 import NonUniqueEuler.Defs.Infra.Multipole
 
 /-!
-# Section 2: the multipole coefficients (`def:multipole`)
+# Part I, Section 2: the multipole coefficients (`def:multipole`)
 
-Definitions for `def:multipole` (`02_prelim.tex:448-457`).
+Definitions for Part I, Definition 2.3 (`def:multipole`).
 
 For an integer `m ≥ 1` and `g ∈ L¹(ℝ²; ℂ)` with compact support in `ℝ² ∖ {0}`:
 `pout_m[g] = (2π)⁻¹ ∫ g(y) ȳ^m dy`, `pin_m[g] = (2π)⁻¹ ∫ g(y) y^{-m} dy`,
@@ -11,7 +11,7 @@ For an integer `m ≥ 1` and `g ∈ L¹(ℝ²; ℂ)` with compact support in `�
 integrals, `0` if not integrable); the hypotheses of `def:multipole` go into the statements that
 use them. They are the I-MULT moments up to normalization (`pout_eq_conjMoment`,
 `pin_eq_moment`, `Qm_eq_moment`). The stream-function identities after the definition
-(`02_prelim.tex:459-468`: the angular sector `m` of `(2π)⁻¹ log|·| ∗ g` equals
+(the discussion after Part I, Definition 2.3 (`def:multipole`): the angular sector `m` of `(2π)⁻¹ log|·| ∗ g` equals
 `-(2m)⁻¹ pout_m[g] r^{-m}` for `r > ρ₂` and `-(2m)⁻¹ pin_m[g] r^m` for `r < ρ₁`) are the I-MULT
 interface theorems `Multipole.angularSector_logPotential_exterior_pos` and
 `Multipole.angularSector_logPotential_interior_pos` (`I/Infra/Multipole/LogPotential.lean`).
@@ -27,17 +27,15 @@ open MeasureTheory ComplexConjugate
 
 namespace NonUniqueEuler.BS
 
-/-- The outer multipole coefficient `pout_m[g] = (2π)⁻¹ ∫ g(y) ȳ^m dy` (`def:multipole`,
-`02_prelim.tex:452-453`). -/
+/-- The outer multipole coefficient `pout_m[g] = (2π)⁻¹ ∫ g(y) ȳ^m dy` (Part I, Definition 2.3 (`def:multipole`)). -/
 def pout (m : ℕ) (g : ℂ → ℂ) : ℂ :=
   (2 * Real.pi : ℂ)⁻¹ * ∫ y, g y * conj y ^ m
 
-/-- The inner multipole coefficient `pin_m[g] = (2π)⁻¹ ∫ g(y) y^{-m} dy` (`def:multipole`,
-`02_prelim.tex:453`). -/
+/-- The inner multipole coefficient `pin_m[g] = (2π)⁻¹ ∫ g(y) y^{-m} dy` (Part I, Definition 2.3 (`def:multipole`)). -/
 def pin (m : ℕ) (g : ℂ → ℂ) : ℂ :=
   (2 * Real.pi : ℂ)⁻¹ * ∫ y, g y * (y ^ m)⁻¹
 
-/-- The moment `Q_m[g] = ∫ g(y) y^m dy` (`def:multipole`, `02_prelim.tex:454`). -/
+/-- The moment `Q_m[g] = ∫ g(y) y^m dy` (Part I, Definition 2.3 (`def:multipole`)). -/
 def Qm (m : ℕ) (g : ℂ → ℂ) : ℂ :=
   ∫ y, g y * y ^ m
 
@@ -54,7 +52,7 @@ theorem pin_eq_moment (m : ℕ) (g : ℂ → ℂ) :
 theorem Qm_eq_moment (m : ℕ) (g : ℂ → ℂ) : Qm m g = Multipole.moment g m := by
   simp [Qm, Multipole.moment, zpow_natCast]
 
-/-- For real `g`, `2π pout_m[g]` is the complex conjugate of `Q_m[g]` (`02_prelim.tex:468`). -/
+/-- For real `g`, `2π pout_m[g]` is the complex conjugate of `Q_m[g]` (the discussion after Part I, Definition 2.3 (`def:multipole`)). -/
 theorem two_pi_mul_pout_ofReal (m : ℕ) (g : ℂ → ℝ) :
     (2 * Real.pi : ℂ) * pout m (fun y => (g y : ℂ)) = conj (Qm m fun y => (g y : ℂ)) := by
   have hpi : (2 * Real.pi : ℂ) ≠ 0 := by

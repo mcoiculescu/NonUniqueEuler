@@ -8,7 +8,7 @@ import Mathlib.Analysis.Calculus.ContDiff.Operations
 # Proof: the scaling rule for `C^k` norms (library I-CK)
 
 Proof of `NonUniqueEuler/I/Infra/CkNorm/Scaling.lean`: the manuscript's scaling rule
-(`07_several_rings.tex:39-41`): if `W(y) = a V(c y)` then `∇^q W(y) = a c^q (∇^q V)(c y)`, and
+(Part II, Section 4 (`sec:several`), scaling rule): if `W(y) = a V(c y)` then `∇^q W(y) = a c^q (∇^q V)(c y)`, and
 `‖W‖_{C^k(U)} ≤ |a| max(1, |c|^k) ‖V‖_{C^k(c U)}`.
 
 For `c ≠ 0` (resp. `a ≠ 0`), `y ↦ c • y` (resp. `v ↦ a • v`) is a continuous linear

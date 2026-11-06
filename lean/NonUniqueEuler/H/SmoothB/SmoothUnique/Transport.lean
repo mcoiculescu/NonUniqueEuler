@@ -7,10 +7,10 @@ import Mathlib.Analysis.Calculus.ContDiff.Operations
 # Helper for `P/SmoothB/SmoothUnique`: the energy estimate at a fixed time
 
 * `integral_mul_fderiv_apply_eq_zero`: `∫ δ (v·∇δ) = -½ ∫ (div v) δ² = 0` for `δ ∈ C¹_c` and a
-  divergence-free `v ∈ C¹` ("the transport term vanishes", `B_global_smooth.tex:502-503`);
+  divergence-free `v ∈ C¹` ("the transport term vanishes", Part II, §B.5, proof of Theorem 1.8 (`thm:smooth`));
 * `abs_integral_le_of_transport`: if `A = -2 δ (v·∇δ) - 2 δ (D(K ∗ δ))` with `|D(x) w| ≤ L|w|`
   on `B_ρ` and `δ = 0` outside `B_ρ`, then `|∫ A| ≤ L (1 + 4ρ²) ∫ δ²` (`lem:BS-basic`(c) and
-  `2|δ||w| ≤ δ² + |w|²`; `B_global_smooth.tex:503-507`, with the Cauchy–Schwarz step replaced
+  `2|δ||w| ≤ δ² + |w|²`; Part II, §B.5, proof of Theorem 1.8 (`thm:smooth`), with the Cauchy–Schwarz step replaced
   by the pointwise AM–GM inequality, which gives the constant `L(1 + 4ρ²)` instead of `4ρL`).
 -/
 

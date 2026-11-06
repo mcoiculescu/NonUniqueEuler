@@ -4,7 +4,7 @@ import NonUniqueEuler.I.Sec9.TransferStep
 /-!
 # Helpers for `P/Sec9/O`: the transfer chain and the pointwise bound on `η_i`
 
-The bounds of `lem:O` at a fixed real time `s` (`09_relay.tex:323-350`):
+The bounds of `lem:O` at a fixed real time `s` (`lem:O`, Part II Lemma C.8):
 * `OProof.inner_chain`: `lem:transfer-step`(1) applied at the levels `i, i+1, …, j-1` (with
   `s' = s_h`) gives, by induction,
   `η^in_i(A_is) ≤ Σ_{l=i+1}^{j} Π_{i,l}‖w_l(s)‖_{H^{s_h}} + Π_{i,j} η^in_j(A_js)`,
@@ -12,7 +12,7 @@ The bounds of `lem:O` at a fixed real time `s` (`09_relay.tex:323-350`):
 * `OProof.eta_pointwise`: with `lem:transfer-step`(2), `eq:O-Q` and `eq:O-BH` at time `s`
   (`‖w_l(s)‖ ≤ C_Q P̃_{l,j} m` for `i < l ≤ j` and `l < i`),
   `η_i(A_is) ≤ P̃_{i,j}(a₁m + a₂η^in_j(A_js))`, `a₁ = (8/7)(C_M/K_O)C_Q + (4/3)C_OC_QK_Os̄^{2m}`,
-  `a₂ = C_M/K_O` (the three groups of terms of `09_relay.tex:330-350`).
+  `a₂ = C_M/K_O` (the three groups of terms of `lem:O`, Part II Lemma C.8).
 -/
 
 noncomputable section
@@ -23,7 +23,7 @@ namespace NonUniqueEuler.Relay.OProof
 
 open RingData Datum
 
-/-- **The inner transfer chain** (`09_relay.tex:325-329`): `lem:transfer-step`(1) at the levels
+/-- **The inner transfer chain** (`lem:O`, Part II Lemma C.8): `lem:transfer-step`(1) at the levels
 `i, …, j-1` with `s' = s_h`. -/
 theorem inner_chain (S : Standing) (hS : S.Holds) {j : ℕ} (hjn : j < S.P.n) {s : ℝ} (hs : 0 ≤ s)
     (hdef : ∀ p ∈ Finset.Icc 1 j, S.P.HDefined p s)
@@ -78,7 +78,7 @@ theorem inner_chain (S : Standing) (hS : S.Holds) {j : ℕ} (hjn : j < S.P.n) {s
         _ = _ := by ring
   exact key (j - i) i hi (by omega)
 
-/-- **The pointwise bound on `η_i`** (`09_relay.tex:323-350`), at a real time `s ≥ 0`, under the
+/-- **The pointwise bound on `η_i`** (`lem:O`, Part II Lemma C.8), at a real time `s ≥ 0`, under the
 geometric hypotheses for the rings `p ≤ j`, `S_p(s) ⊂ N_p`, `eq:O-Q` and `eq:O-BH` at `s`
 (`m` is the regularized majorant `maj^ε_j(A_js)`, `maj_j(A_js) ≤ m`). -/
 theorem eta_pointwise (S : Standing) (hS : S.Holds) (hsm : S.OSmall) {i j : ℕ} (hi : 1 ≤ i)

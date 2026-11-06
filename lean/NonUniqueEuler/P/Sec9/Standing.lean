@@ -3,9 +3,9 @@ import NonUniqueEuler.I.Sec6.InnerCirc
 import NonUniqueEuler.I.Sec4.PropU
 
 /-!
-# Proof of the facts stated with the standing assumptions (SA) of Section 9
+# Proof of the facts stated with the standing assumptions (SA), Part II Definition C.1
 
-Proof of the interface `I/Sec9/Standing.lean` (`09_relay.tex:84-91`, `:117-118`).
+Proof of the interface `I/Sec9/Standing.lean` (`sec:relay-data`, Part II, Appendix C.1, `lem:detuning`, Part II Lemma C.6).
 
 * `standing_levels`: `inner_circ` (`I/Sec6/InnerCirc.lean`) with (SA3) `C_G μ s̄² ≤ G₁` gives
   `G_k ∈ [0, C_G μ s̄²] ⊆ [0, G₁]` and `P.GSmall`; `propU_a` (`I/Sec4/PropU.lean`) gives
@@ -30,7 +30,7 @@ private theorem Gbar_pos' : (0 : ℝ) < Gbar := by
   unfold Gbar Rc
   positivity
 
-/-- **Consequences of (SA) for every level** (`09_relay.tex:84-87`, `:117-118`): `σ_b > 0`,
+/-- **Consequences of (SA) for every level** (`sec:relay-data`, Part II, Appendix C.1, `lem:detuning`, Part II Lemma C.6): `σ_b > 0`,
 `σ_b ≤ σ = σ(0)`, `G_k ≤ G₁` for all levels (`P.GSmall`), and for every level `1 ≤ k ≤ n`:
 `0 ≤ G_k ≤ C_G μ s̄²`, `G_k ∈ [0, G₁]` and `σ_k ≥ σ_b`. -/
 theorem standing_levels (S : Standing) (hS : S.Holds) :
@@ -55,7 +55,7 @@ theorem standing_levels (S : Standing) (hS : S.Holds) :
     rw [hsb]
     exact hmin _ (hGbar k hk)
 
-/-- **(Det) is a smallness condition on `s̄` at fixed `μ`** (`09_relay.tex:88-91`): for an
+/-- **(Det) is a smallness condition on `s̄` at fixed `μ`** (`sec:param-verification`, Part II, Appendix C.4, choice of small radius): for an
 admissible cutoff with (N1)–(N3) and `μ > 1` there is `s₀ > 0` such that for every `s̄ ∈ (0, s₀]`,
 `|λ_*(G) - z| ≤ σ(μ-1)/(8μ)` for all `G ∈ [0, C_G μ s̄²]`. -/
 theorem det_of_small (χ : ℝ → ℝ) (hχ : IsAdmissibleCutoff χ) (hN : NumericalHypothesis χ)

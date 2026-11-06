@@ -7,7 +7,7 @@ import NonUniqueEuler.I.Infra.SectorSpace.Projection
 
 * `exists_norm_le_of_secProj_le`: on `Y^s` of an annulus, sector-wise bounds
   `‖P_ℓ v‖ ≤ K‖P_ℓ w‖` (all `ℓ`) give `‖v‖ ≤ B K ‖w‖`, with `B` depending only on `s` and the
-  annulus (`exists_norm_equiv_Y`, the norm equivalence of `lem:norm-equiv`);
+  annulus (`exists_norm_equiv_Y`, the norm equivalence of Part I Lemma 4.12 (`lem:norm-equiv`));
 * `exists_uniform_of_large`: a property `Q ℓ C`, monotone in `C`, that holds for each `ℓ` with
   some `C` and for all `|ℓ| ≥ M` with one `C₀`, holds for all `ℓ` with one `C` (finitely many
   remaining sectors);

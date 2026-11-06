@@ -6,9 +6,9 @@ import Mathlib.Analysis.SpecialFunctions.Log.Deriv
 import Mathlib.Analysis.Calculus.ContDiff.Defs
 
 /-!
-# Helpers for `lem:evans-basic`, last assertion: the ring in reference units
+# Helpers for Part I Lemma 4.6 (`lem:evans-basic`), last assertion: the ring in reference units
 
-Helper file of `P/Sec4/EvansBasic.lean` (`04_ring.tex:345-352`). For the ring in reference units
+Helper file of `P/Sec4/EvansBasic.lean` (proof of Part I Lemma 4.6 (`lem:evans-basic`)). For the ring in reference units
 `ω̄_c(x) = ϖ(log|x|)`:
 
 * `differentiable_prof`: `ϖ = χ H((·-a₀)/d) H(-·/d)` is differentiable;
@@ -67,7 +67,7 @@ theorem ringRefSetting_dom {χ : ℝ → ℝ} (hχ : IsAdmissibleCutoff χ) {r :
   rw [SectorSetting.dom, hev.deriv_eq]
   exact hd.deriv
 
-/-- `Circ_{ω̄_c}(e^ξ) = 2π ∫_{-∞}^ξ ϖ(ξ') e^{2ξ'} dξ'` (`04_ring.tex:348-350`). -/
+/-- `Circ_{ω̄_c}(e^ξ) = 2π ∫_{-∞}^ξ ϖ(ξ') e^{2ξ'} dξ'` (proof of Part I Lemma 4.6 (`lem:evans-basic`)). -/
 theorem circ_ringRef_exp (χ : ℝ → ℝ) (ξ : ℝ) :
     Polar.circ (ringRef χ) (Real.exp ξ) =
       2 * π * ∫ ξ' in Iic ξ, prof χ ξ' * Real.exp (2 * ξ') := by

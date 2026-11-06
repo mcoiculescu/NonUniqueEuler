@@ -5,7 +5,7 @@ import Mathlib.Analysis.SpecificLimits.Basic
 # Helper for `lem:transfer-step`: a radial vorticity has only its monopole outside its support
 
 Helper of `P/Sec9/TransferStep.lean`: the "third fact" of the proof of `lem:transfer-step`
-(`09_relay.tex:190-196`). Let `g ∈ L¹(ℝ²)` be real and radial with `supp g ⊂ \bar B_ρ`. Then `g` is
+(`lem:transfer-step`, Part II Lemma C.7). Let `g ∈ L¹(ℝ²)` be real and radial with `supp g ⊂ \bar B_ρ`. Then `g` is
 `m'`-fold symmetric for every `m' ≥ 1`, and `lem:ext-multipole` with no derivatives bounds the
 non-monopole field `E = K_BS * g - monopole` at `|x| ≥ 2ρ` by `C_{m',0}‖g‖_{L¹}ρ^{m'}|x|^{-m'-1}`,
 with `C_{m',0} ≤ 1/π`. Letting `m' → ∞` gives `E(x) = 0`.
@@ -21,7 +21,7 @@ open MeasureTheory Set Metric Filter Topology
 
 namespace NonUniqueEuler.Relay.TransferStepAux
 
-/-- `C_{m,0} = (2π)⁻¹ sup_{0<ρ≤1/2} (1 - ρ^m)⁻¹ ≤ 1/π` for `m ≥ 1` (`09_relay.tex:193-194`). -/
+/-- `C_{m,0} = (2π)⁻¹ sup_{0<ρ≤1/2} (1 - ρ^m)⁻¹ ≤ 1/π` for `m ≥ 1` (`lem:transfer-step`, Part II Lemma C.7). -/
 theorem cExtMultipole_zero_le {m : ℕ} (hm : 1 ≤ m) : BS.cExtMultipole m 0 ≤ 1 / Real.pi := by
   have : Nonempty (Ioc (0 : ℝ) (1 / 2)) := ⟨⟨1 / 2, by norm_num, le_rfl⟩⟩
   have hsup : (⨆ ρ : Ioc (0 : ℝ) (1 / 2),
@@ -56,7 +56,7 @@ theorem iterDerivArrayNorm_zero {F : Type*} [NormedAddCommGroup F] [NormedSpace 
   unfold iterDerivArrayNorm
   rw [Fintype.sum_unique, iteratedFDeriv_zero_apply, Real.sqrt_sq (norm_nonneg _)]
 
-/-- **A radial vorticity has no non-monopole field outside its support** (`09_relay.tex:190-196`):
+/-- **A radial vorticity has no non-monopole field outside its support** (`lem:transfer-step`, Part II Lemma C.7):
 for real radial `g ∈ L¹` vanishing outside `\bar B_ρ`, `ρ > 0`, and `|x| ≥ 2ρ`,
 `K_BS * g(x) = (2π)⁻¹(∫ g) x^⊥/|x|²`, i.e. `E(x) = 0`. -/
 theorem extField_eq_zero_of_radial {g : ℂ → ℝ} (hg : MemLp g 1 volume)

@@ -10,7 +10,11 @@ import Mathlib.MeasureTheory.Measure.Prod
 /-!
 # Proof: `lem:commutator` (DiPerna–Lions commutator lemma), `a = b = 2`
 
-Proof of `NonUniqueEuler/I/Sec3/Commutator.lean` (`03_compactness.tex:365-461`).
+Current manuscript: Part I Lemma 3.3 (`lem:commutator`). This file retains components
+of the older smooth-field proof. The current proof obtains convergence by smoothing
+`u`; the Lean decomposition smooths the vector field and uses the kernel moments.
+
+Proof of `NonUniqueEuler/I/Sec3/Commutator.lean` (the bound in the proof of Part I Lemma 3.3 (`lem:commutator`)).
 
 **Structure (restructured proof).** The
 manuscript proves the uniform bound eq:comm-bound, the smooth case with dominated convergence on
@@ -34,7 +38,7 @@ open scoped ENNReal Topology
 
 namespace NonUniqueEuler.Weak
 
-/-- `lem:commutator` with `a = b = 2` (`03_compactness.tex:365-372`): for an open interval `I`,
+/-- `lem:commutator` with `a = b = 2` (the bound in the proof of Part I Lemma 3.3 (`lem:commutator`)): for an open interval `I`,
 a field `w ∈ L¹_loc(I; W^{1,2}_loc)` with `div w = 0`, and `u ∈ L^∞_loc(I; L²_loc)`,
 `C_ε[u,w] → 0` in `L¹(J × B_R)` as `ε → 0⁺`, for every compact `J ⊆ I` and every `R > 0`. -/
 theorem commutator_tendsto {ρ : ℂ → ℝ} (hρ : IsMollifier ρ) {I : Set ℝ} (hI : IsOpen I)

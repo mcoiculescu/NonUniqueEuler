@@ -11,12 +11,12 @@ Helper of `P/Sec6/RegionsBasic.lean`.
 
 * `RegionsBasicAux.term_eq_scale`: `f^{(n)}_k = A_k G(·/r_k)` with `G = Φ` (`k < n`) or
   `G = Φ^{κ_seed}` (`k = n`), a nonnegative `3`-fold symmetric `C_c^∞` profile supported in `𝒩₋`
-  with `∫ G = ‖Φ‖_{L¹}` (`lem:ring-facts`, `lem:seed`; `06_datum.tex:246-250`, `:280-284`);
+  with `∫ G = ‖Φ‖_{L¹}` (`lem:ring-facts`, `lem:seed`; Part II Lemma 3.6 (`lem:regions-basic`));
 * consequences: `term_isGood`, `S_subset_Nmk`, `S_subset_ann`, `norm_le_of_mem_S`,
   `integral_term`;
-* radii: `r_succ_le`, `r_le_of_lt` (`r_k ≤ (a/16) r_i` for `i < k`, `06_datum.tex:251-253`);
+* radii: `r_succ_le`, `r_le_of_lt` (`r_k ≤ (a/16) r_i` for `i < k`, Part II Lemma 3.6 (`lem:regions-basic`));
 * the flow of a valid approximation (`thm:smooth`(4), the symmetry part of `lem:regions-basic`(2),
-  `06_datum.tex:255-267`): `f_isGood`, `flow_props`, `exists_flowInv_homeomorph`.
+  Part II Lemma 3.6 (`lem:regions-basic`)): `f_isGood`, `flow_props`, `exists_flowInv_homeomorph`.
 -/
 
 noncomputable section
@@ -59,7 +59,7 @@ theorem isRingProfile_seed {χ : ℝ → ℝ} (hR : RingFacts χ)
 
 variable {P : Approx}
 
-/-- **The terms of `f^{(n)}`** (`06_datum.tex:162-164`): `f^{(n)}_k = A_k G(·/r_k)` for a ring
+/-- **The terms of `f^{(n)}`** (Part II Definition 3.5 (`def:regions`)): `f^{(n)}_k = A_k G(·/r_k)` for a ring
 profile `G`, which is `Φ` for `k < n`. -/
 theorem term_eq_scale (hP : P.Valid) (hN : NumericalHypothesis P.χ) {k : ℕ}
     (hk : k ∈ Finset.Icc 1 P.n) :
@@ -87,7 +87,7 @@ theorem term_isGood (hP : P.Valid) (hN : NumericalHypothesis P.χ) {k : ℕ}
 theorem norm_div_r (hP : P.Valid) (k : ℕ) (x : ℂ) : ‖x / (P.r k : ℂ)‖ = ‖x‖ / P.r k := by
   rw [norm_div, Complex.norm_real, Real.norm_of_nonneg (hP.r_pos k).le]
 
-/-- `S_k ⊂ 𝒩₋_k` (`06_datum.tex:246-250`). -/
+/-- `S_k ⊂ 𝒩₋_k` (Part II Lemma 3.6 (`lem:regions-basic`)). -/
 theorem S_subset_Nmk (hP : P.Valid) (hN : NumericalHypothesis P.χ) {k : ℕ}
     (hk : k ∈ Finset.Icc 1 P.n) : P.S k ⊆ P.Nmk k := by
   obtain ⟨G, hG, he, -⟩ := term_eq_scale hP hN hk
@@ -100,7 +100,7 @@ theorem S_subset_Nmk (hP : P.Valid) (hN : NumericalHypothesis P.χ) {k : ℕ}
   rw [← div_eq_inv_mul]
   exact hG.2.1 hx'
 
-/-- `S_k ⊂ {a r_k ≤ |x| ≤ r_k}` for `k < n` (`06_datum.tex:246-247`). -/
+/-- `S_k ⊂ {a r_k ≤ |x| ≤ r_k}` for `k < n` (Part II Lemma 3.6 (`lem:regions-basic`)). -/
 theorem S_subset_ann (hP : P.Valid) (hN : NumericalHypothesis P.χ) {k : ℕ} (hk : 1 ≤ k)
     (hkn : k < P.n) : P.S k ⊆ {x : ℂ | a * P.r k ≤ ‖x‖ ∧ ‖x‖ ≤ P.r k} := by
   have hkI : k ∈ Finset.Icc 1 P.n := Finset.mem_Icc.2 ⟨hk, hkn.le⟩
@@ -127,7 +127,7 @@ theorem norm_le_of_mem_S (hP : P.Valid) (hN : NumericalHypothesis P.χ) {k : ℕ
   rw [← div_eq_inv_mul, norm_div_r hP, div_le_iff₀ (hP.r_pos k)] at h2
   exact h2
 
-/-- `∫ f^{(n)}_k = A_k r_k² ‖Φ‖_{L¹}` (`06_datum.tex:280-284`). -/
+/-- `∫ f^{(n)}_k = A_k r_k² ‖Φ‖_{L¹}` (Part II Lemma 3.6 (`lem:regions-basic`)). -/
 theorem integral_term (hP : P.Valid) (hN : NumericalHypothesis P.χ) {k : ℕ}
     (hk : k ∈ Finset.Icc 1 P.n) : ∫ x, P.term k x = P.A k * P.r k ^ 2 * PhiL1 P.χ := by
   obtain ⟨G, hG, he, -⟩ := term_eq_scale hP hN hk
@@ -160,7 +160,7 @@ theorem r_succ_le_self (hP : P.Valid) (k : ℕ) : P.r (k + 1) ≤ P.r k := by
 theorem r_antitone (hP : P.Valid) : Antitone P.r :=
   antitone_nat_of_succ_le (r_succ_le_self hP)
 
-/-- `r_k ≤ (a/16) r_i` for `1 ≤ i < k` (`06_datum.tex:251-253`). -/
+/-- `r_k ≤ (a/16) r_i` for `1 ≤ i < k` (Part II Lemma 3.6 (`lem:regions-basic`)). -/
 theorem r_le_of_lt (hP : P.Valid) {i k : ℕ} (hi : 1 ≤ i) (hik : i < k) :
     P.r k ≤ a / 16 * P.r i :=
   (r_antitone hP (Nat.succ_le_of_lt hik)).trans (r_succ_le hP hi)
@@ -179,7 +179,7 @@ theorem exists_isSmoothDatum (hP : P.Valid) (hN : NumericalHypothesis P.χ) :
   obtain ⟨R, hR⟩ := (isBounded_iff_subset_ball (0 : ℂ)).1 hG.2.1.isCompact.isBounded
   exact ⟨R, ⟨hG.1, hR⟩⟩
 
-/-- **The flow of `v^{(n)}`** (`thm:smooth`(4), `06_datum.tex:255-270`): `Φ_t` and `Φ_t⁻¹` are
+/-- **The flow of `v^{(n)}`** (`thm:smooth`(4), Part II Lemma 3.6 (`lem:regions-basic`)): `Φ_t` and `Φ_t⁻¹` are
 inverse `C^∞` maps, `Φ_t⁻¹` preserves area, `ω(t) = f^{(n)} ∘ Φ_t⁻¹`, and both maps commute with
 `O = O_{2π/3}`. -/
 theorem flow_props (hP : P.Valid) (hN : NumericalHypothesis P.χ) (t : ℝ) :

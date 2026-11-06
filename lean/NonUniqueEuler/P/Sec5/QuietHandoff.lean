@@ -5,9 +5,13 @@ import NonUniqueEuler.I.Sec4.Eigendata
 import NonUniqueEuler.H.Sec5.QuietHandoff.Basic
 
 /-!
-# Proof: `cor:quiet-handoff` (the quiet ring at the hand-off)
+# Proof: the quiet ring at the hand-off
 
-Proof of `I/Sec5/QuietHandoff.lean` (`05_single_ring.tex:565-577`).
+Proof of `I/Sec5/QuietHandoff.lean`. This retains the former
+`cor:quiet-handoff` as a Lean consequence of Part II Theorem 2.8 (`thm:quiet`).
+It is no longer a separately numbered manuscript corollary. The current use is
+in the hand-off proof of Part II Proposition 6.2 (`prop:relay-step`,
+`par:relay-handoff`) and Appendix C.16 (`sec:bootstrap-handoff-checks`).
 
 The first two assertions are `thm:quiet`(a) and (c) (`quiet`, through `quietConsts_spec`). For
 the third: `w(t)` lies in `X^{s_h}` (`thm:quiet`(a): `w` solves `eq:ring`, `RingConfig.PertEq`)
@@ -56,7 +60,8 @@ theorem QuietHandoffH.norm_ellFn_sub_le (χ : ℝ → ℝ) (hχ : IsAdmissibleCu
   rw [← hn, ← (hm.congr_ae hae).2]
   exact (hf.sub hg).1.normH_mono (Nat.zero_le s)
 
-/-- **`cor:quiet-handoff`** (`05_single_ring.tex:565-570`). Under the assumptions of
+/-- **Quiet-ring hand-off consequence** of Part II Theorem 2.8 (`thm:quiet`),
+retaining the former `cor:quiet-handoff` decomposition. Under the assumptions of
 `thm:quiet` (with its constants `maj_* = majst χ sh NQ`, `C_Q = CQ χ sh NQ`), for every
 `t ∈ [0,T]`: `supp(Φ + w(t)) ⊂ 𝒩₋`, `‖w(t)‖_{H^{s_h}} ≤ C_Q maj(t)`, and
 `|ℓ_*(w(t)) - ℓ_*(wlin(t))| ≤ ‖ℓ_*‖ C_Q maj(t)²`. -/

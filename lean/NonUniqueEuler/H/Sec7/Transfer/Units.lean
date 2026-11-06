@@ -5,8 +5,8 @@ import NonUniqueEuler.I.Infra.CkNorm.Scaling
 /-!
 # Helper for `lem:transfer`: ring units and the scaling rule
 
-Helper of `P/Sec7/Transfer.lean` (`07_several_rings.tex:39-41`, `:138-140`, `:165-169`,
-`:222-226`).
+Helper of `P/Sec7/Transfer.lean` (Part II Section 4 (`sec:several`), Part II Lemma 4.1 (`lem:transfer`),
+Part II Lemma 4.1 (`lem:transfer`)).
 * `unitsField_eq_smul`, `norm_iteratedFDeriv_unitsField`: `V_{[k]}(y) = (A_kr_k)⁻¹V(r_ky)` and the
   scaling rule `|∇^qV_{[k]}(y)| = (A_kr_k)⁻¹ r_k^q |∇^qV(r_ky)|`;
 * `unitsField_change`, `norm_iteratedFDeriv_unitsField_change`: from ring-`i` to ring-`k` units,

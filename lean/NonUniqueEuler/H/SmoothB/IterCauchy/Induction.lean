@@ -5,7 +5,7 @@ import Mathlib.Data.Nat.Factorial.Basic
 /-!
 # Helper for `lem:iter-cauchy`: the induction on `j`
 
-`B_global_smooth.tex:362-379`. With `c = 2‖ω₀‖_{L²}` and `K = 2R(T)Ψ(T)`:
+Part II, Lemma B.9 (`lem:iter-cauchy`). With `c = 2‖ω₀‖_{L²}` and `K = 2R(T)Ψ(T)`:
 * `j = 1`: `e₁(t) ≤ ‖ω^{[1]}(t)‖₂ + ‖ω₀‖₂ = c` (`lem:iterates`(ii));
 * `j → j + 1`: `e_{j+1}(0) = 0` and `|d/dt e_{j+1}²| ≤ 2 e_{j+1} · K e_j`; with the induction
   hypothesis `K e_j(τ) ≤ c K^j |τ|^{j-1}/(j-1)! = g'(|τ|)`, `g(s) = c K^j s^j / j!`, the comparison
@@ -24,7 +24,7 @@ namespace NonUniqueEuler.Smooth.IterCauchyAux
 
 variable {ω₀ : ℂ → ℝ} {R₀ : ℝ}
 
-/-- `e₁(t) ≤ 2‖ω₀‖_{L²}` (`B_global_smooth.tex:363-364`). -/
+/-- `e₁(t) ≤ 2‖ω₀‖_{L²}` (Part II, Lemma B.9 (`lem:iter-cauchy`)). -/
 theorem eLpNorm_iter_one_sub_le (h : IsSmoothDatum ω₀ R₀) (hne : ω₀ ≠ 0) (t : ℝ) :
     eLpNorm (iter ω₀ 1 t - iter ω₀ 0 t) 2 volume ≤ 2 * eLpNorm ω₀ 2 volume := by
   have h1 := eLpNorm_sub_le (iter_memLp h hne 1 t 2).aestronglyMeasurable

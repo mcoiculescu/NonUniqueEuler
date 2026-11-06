@@ -15,7 +15,7 @@ a helper of another proof cannot be imported), in the namespace `CouplingAux`:
   (`lem:uniform`, `lem:bilinear`(3));
 * `forcing_path`: continuity into `Y^s(N)` (`lem:uniform`: `‖h·∇Φ‖_{H^s} ≤ C_∇(s)‖h‖_{C^s(N')}`).
 
-New here: `forcing_pathC` (`08_kick.tex:113-120`, `:140-147`): a field continuous into
+New here: `forcing_pathC` (Part II Lemma 5.1 (`lem:coupling`)): a field continuous into
 `C^s(N')` and `3`-fold symmetric on `[0,T]` gives `-h·∇Φ ∈ C([0,T];X^s)` (`OneRing.PathC`).
 -/
 
@@ -200,7 +200,7 @@ theorem forcing_path (χ : ℝ → ℝ) (hχ : IsAdmissibleCutoff χ) (hN : Nume
   exact eventually_nhdsWithin_of_forall hbound
 
 /-- **`-h·∇Φ ∈ C([0,T];X^s)`** (`OneRing.PathC`) for a field `h` continuous on `[0,T]` into
-`C^s(N')` and `3`-fold symmetric (`08_kick.tex:113-120`, via `lem:uniform`). -/
+`C^s(N')` and `3`-fold symmetric (Part II Lemma 5.1 (`lem:coupling`), via `lem:uniform`). -/
 theorem forcing_pathC (χ : ℝ → ℝ) (hχ : IsAdmissibleCutoff χ) (hN : NumericalHypothesis χ)
     {s : ℕ} {T : ℝ} {h : ℝ → ℂ → ℂ} (hh : CkPathOn s annN' (Icc 0 T) h)
     (hsym : ∀ u ∈ Icc (0 : ℝ) T, IsSymFieldOn annN' (h u)) :

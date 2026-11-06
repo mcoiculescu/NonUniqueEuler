@@ -9,7 +9,7 @@ import NonUniqueEuler.Defs.Infra.Sobolev
 * `sum_choose_leIdx`: `∑_{β ≤ γ} C(γ₁,β₁) C(γ₂,β₂) = 2^{|γ|}`;
 * `card_multiIdx`: `#multiIdx k = (k+1)(k+2)/2` (as real numbers);
 * `norm_re_mul_add_im_mul_le`: `|Re z · A + Im z · B| ≤ |z| (|A|² + |B|²)^{1/2}`
-  (Cauchy–Schwarz in `ℝ²`, `04_ring.tex:1561-1563`).
+  (Cauchy–Schwarz in `ℝ²`, Part I, Lemma 4.23(3) (`lem:uniform`), proof).
 
 (`sum_choose_leIdx` follows the helper of the same name in `H/Infra/Sobolev/Leibniz/L2.lean`.)
 -/

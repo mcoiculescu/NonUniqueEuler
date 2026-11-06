@@ -1,13 +1,14 @@
 import NonUniqueEuler.Defs.Sec5.Constants
 
 /-!
-# Section 5.4: the seeded ring (`lem:seed`) (definitions)
+# Part II Section 2.4: the seeded ring (`lem:seed`) (definitions)
 
-Manuscript `lem:seed`
-(`05_single_ring.tex:1131-1147`).
+Manuscript Part II Lemma 2.14 (`lem:seed`). The Lean decomposition also exposes
+the generating flow `Y_κ`, the seed field, and the Taylor constants from its
+proof; these are no longer separate assertions of the current lemma.
 
-The seeded ring `Φ^κ = Φ ∘ Y_κ` enters the approximate data of Section 6 (`06_datum.tex:74-80`,
-`f^{(n)} = … + A_n Φ^{κ_seed}(·/r_n)`), and `κ_L`, `C_seed` are used by value in Sections 9–10
+The seeded ring `Φ^κ = Φ ∘ Y_κ` enters the approximate data of Part II Section 3 (Part II Definition 3.3 (`def:approx`),
+`f^{(n)} = … + A_n Φ^{κ_seed}(·/r_n)`), and `κ_L`, `C_seed` are used by value in Part II Sections 6–7 and Appendix C
 ((SA3), (P4) `C₀ = max{1, 2C_seed, …}`). Following decision D11, the properties of `lem:seed`
 are Props and the objects are chosen:
 * `PhiOf χ Y κ = Φ ∘ Y_κ` and `seedDiffOf χ Y κ = Φ ∘ Y_κ - Φ` (complexified) for any flow `Y`;
@@ -31,14 +32,14 @@ namespace OneRing
 
 open RingData
 
-/-- `Φ ∘ Y_κ` for a flow `Y` (`05_single_ring.tex:1139`). -/
+/-- `Φ ∘ Y_κ` for a flow `Y` (Part II Lemma 2.14 (`lem:seed`)). -/
 def PhiOf (χ : ℝ → ℝ) (Y : ℝ → ℂ → ℂ) (κ : ℝ) (y : ℂ) : ℝ := ringPhi χ (Y κ y)
 
-/-- `Φ ∘ Y_κ - Φ`, complexified (an element of `X^0`; `05_single_ring.tex:1143-1144`). -/
+/-- `Φ ∘ Y_κ - Φ`, complexified (an element of `X^0`; Part II Lemma 2.14 (`lem:seed`)). -/
 def seedDiffOf (χ : ℝ → ℝ) (Y : ℝ → ℂ → ℂ) (κ : ℝ) (y : ℂ) : ℂ :=
   ((PhiOf χ Y κ y - ringPhi χ y : ℝ) : ℂ)
 
-/-- **The properties of `lem:seed` that depend only on `Φ`** (`05_single_ring.tex:1131-1147`):
+/-- **The properties of `lem:seed` that depend only on `Φ`** (Part II Lemma 2.14):
 `(Y_κ)_{κ∈ℝ}` is a smooth area-preserving flow on `ℝ²` (jointly `C^∞`, `Y_0 = id`,
 `Y_{κ+κ'} = Y_κ ∘ Y_{κ'}`, each `Y_κ` measure preserving), the identity outside a compact subset
 of `{a/2 < |y| < 2}`, commuting with `O = O_{2π/3}`; `κ_L > 0`; and for every `κ ∈ (0,κ_L]`,
@@ -74,19 +75,19 @@ def seedData (χ : ℝ → ℝ) : (ℝ → ℂ → ℂ) × ℝ × (ℕ → ℝ) 
   if h : ∃ d : (ℝ → ℂ → ℂ) × ℝ × (ℕ → ℝ), IsSeedFlow χ d.1 d.2.1 d.2.2 then h.choose
   else (fun _ y => y, 1, fun _ => 0)
 
-/-- The flow `(Y_κ)` of `lem:seed` (`05_single_ring.tex:1134-1136`). -/
+/-- The flow `(Y_κ)` of Part II Lemma 2.14 (`lem:seed`). -/
 def seedFlow (χ : ℝ → ℝ) : ℝ → ℂ → ℂ := (seedData χ).1
 
-/-- `κ_L` of `lem:seed` (`05_single_ring.tex:1137`). -/
+/-- `κ_L` of Part II Lemma 2.14 (`lem:seed`). -/
 def kL (χ : ℝ → ℝ) : ℝ := (seedData χ).2.1
 
-/-- The numbers `C'_k` of `lem:seed` (`05_single_ring.tex:1137`). -/
+/-- The numbers `C'_k` of Part II Lemma 2.14 (`lem:seed`). -/
 def Cprime (χ : ℝ → ℝ) : ℕ → ℝ := (seedData χ).2.2
 
-/-- **The seeded ring** `Φ^κ = Φ ∘ Y_κ` (`05_single_ring.tex:1139`). -/
+/-- **The seeded ring** `Φ^κ = Φ ∘ Y_κ` (Part II Lemma 2.14 (`lem:seed`)). -/
 def PhiSeed (χ : ℝ → ℝ) (κ : ℝ) (y : ℂ) : ℝ := PhiOf χ (seedFlow χ) κ y
 
-/-- `C` works as `C_seed` for `s` (`05_single_ring.tex:1143`): for `κ ∈ (0,κ_L]`,
+/-- `C` works as `C_seed` for `s` (Part II Lemma 2.14 (`lem:seed`)): for `κ ∈ (0,κ_L]`,
 `Φ^κ - Φ ∈ H^{M-1}` and `‖Φ^κ - Φ‖_{H^{M-1}} ≤ Cκ`, `M = Mact χ s = s + N_G + 2`. -/
 def IsSeedConst (χ : ℝ → ℝ) (s : ℕ) (C : ℝ) : Prop :=
   ∀ κ ∈ Ioc (0 : ℝ) (kL χ),

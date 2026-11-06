@@ -16,7 +16,7 @@ import Mathlib.Analysis.SpecificLimits.Basic
 
 Proof of `NonUniqueEuler/I/Infra/Sobolev/DensityL1L2.lean`.
 
-Manuscript: `lem:velocity`(c), `02_prelim.tex:376-377` ("Choose `ω_j ∈ C_c^∞(ℝ²)` with
+Manuscript: Part I, Lemma 2.2(c) (`lem:velocity`), proof ("Choose `ω_j ∈ C_c^∞(ℝ²)` with
 `ω_j → ω` in `L¹` and in `L²`"), a standard fact the manuscript uses without proof.
 
 Argument (the interface sketch, with one simplification: the `L²` approximation is applied to

@@ -5,7 +5,7 @@ import Mathlib.Analysis.SpecialFunctions.Integrals.Basic
 /-!
 # Proof: `def:majorant` and `lem:majorant` (the Duhamel majorant)
 
-Proof of `I/Sec5/Majorant.lean` (`lem:majorant`, `05_single_ring.tex:390-398`, proof `:399-406`).
+Proof of `I/Sec5/Majorant.lean` (Part II Lemma 2.7, `lem:majorant`).
 
 The proof factors the kernel: `maj(t) = e^{σt} F(t)` with `F(t) = ∫₀ᵗ e^{-στ}η(τ) dτ`
 (`maj_eq_exp_mul`). `F` is nonnegative and nondecreasing on `[0,T]` (the integrand
@@ -43,7 +43,7 @@ theorem integral_exp_mul_self {σ : ℝ} (hσ : σ ≠ 0) (t : ℝ) :
   rw [intervalIntegral.integral_comp_mul_left (fun v => Real.exp v) hσ, integral_exp]
   simp
 
-/-- **`lem:majorant` for a general rate `σ > 0`** (`05_single_ring.tex:390-398`): if `η` is
+/-- **`lem:majorant` for a general rate `σ > 0`** (Part II Lemma 2.7): if `η` is
 integrable and nonnegative on `[0,T]`, then for `0 ≤ τ ≤ t ≤ T`:
 (M1) `e^{σ(t-τ)} maj(τ) ≤ maj(t)`; (M2) `∫_τ^t η ≤ maj(t)`; (M3) `∫₀ᵗ maj ≤ maj(t)/σ`;
 and `maj` is nondecreasing on `[0,T]`. -/
@@ -133,7 +133,7 @@ theorem majorant_of_pos {σ T : ℝ} (hσ : 0 < σ) {η : ℝ → ℝ} (hη : In
             (Real.one_le_exp (mul_nonneg hσ.le (sub_nonneg.2 hab)))
       _ ≤ maj σ η b := hM1 a b ha.1 hab hb.2
 
-/-- **`lem:majorant`** (`05_single_ring.tex:390-398`). Let `G ∈ [0,G₁]` and let `η` be
+/-- **`lem:majorant`** (Part II Lemma 2.7). Let `G ∈ [0,G₁]` and let `η` be
 integrable and nonnegative on `[0,T]`, with Duhamel majorant `maj = maj (σ(G)) η`
 (`def:majorant`). Then for `0 ≤ τ ≤ t ≤ T`: (M1) `e^{σ(G)(t-τ)} maj(τ) ≤ maj(t)`;
 (M2) `∫_τ^t η ≤ maj(t)`; (M3) `∫₀ᵗ maj ≤ maj(t)/σ(G)`; in particular `maj` is nondecreasing. -/

@@ -9,7 +9,7 @@ import NonUniqueEuler.I.Sec3.Transport.Mollified.ChainRule
 /-!
 # Proof of `I/Sec3/Transport/Mollified.lean` (the mollified renormalized identity)
 
-The proof of `lem:transport`(i) (`03_compactness.tex:494-510`) at a fixed `ε > 0`, with the datum
+The proof of `lem:transport`(i) (Part I Lemma 3.4 (`lem:transport`) and its proof) at a fixed `ε > 0`, with the datum
 kept from the start (deviation recorded in the I file). With `U = u ⋆ ρ_ε`,
 `D = (div(wu)) ⋆ ρ_ε`, `G = w·∇(u ⋆ ρ_ε)` (so `C_ε[u,w] = G - D`) and `μ = volume.restrict (t₀,T)`:
 
@@ -34,7 +34,7 @@ namespace NonUniqueEuler.Weak
 set_option linter.unusedVariables false in
 open MollifiedH in
 /-- The mollified renormalized identity of the proof of `lem:transport`(i)
-(`03_compactness.tex:494-510`), with `a = b = 2`, at a fixed `ε > 0`: with
+(Part I Lemma 3.4 (`lem:transport`) and its proof), with `a = b = 2`, at a fixed `ε > 0`: with
 `u_ε(t) = u(t) ⋆ ρ_ε` and `u₀,ε = u₀ ⋆ ρ_ε`, for every renormalization `Υ` and `φ ∈ 𝒟_T`, the
 functions `Υ(u_ε)(∂_tφ + w·∇φ)` and `φ Υ'(u_ε) C_ε[u,w]` are integrable on `(t₀,T)×ℝ²` and
 `∫_{t₀}^T∫ Υ(u_ε)(∂_tφ + w·∇φ) + ∫ Υ(u₀,ε)φ(t₀) = -∫_{t₀}^T∫ φ Υ'(u_ε) C_ε[u,w]`. -/

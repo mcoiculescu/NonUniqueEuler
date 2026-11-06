@@ -2,10 +2,12 @@ import NonUniqueEuler.H.Sec4.Dilation.Psi
 import NonUniqueEuler.I.Infra.Sobolev.Symmetry
 
 /-!
-# Proof: `lem:dilation` (dilations of the profile)
+# Proof: the retained dilation identities (dilations of the profile)
 
-Proof of `I/Sec4/Dilation.lean` (same declarations, statements copied verbatim). Manuscript
-`lem:dilation`, `04_ring.tex:653-712`.
+Proof of the retained interface `I/Sec4/Dilation.lean`. The general dilation lemma is no
+longer a numbered manuscript statement. Its ring specialization is the scaling argument for
+Part I Equation 13 (`eq:evans-units`), in Section 4.6. The numbered items below refer to the
+retained Lean decomposition; the general eigendata identities are additional formal results.
 
 Structure (helpers in `H/Sec4/Dilation/*`):
 * `dilate_valid`: `DilationH.dilate_valid'`;
@@ -22,8 +24,8 @@ Structure (helpers in `H/Sec4/Dilation/*`):
   (changes of variables `u = Rρ`); dividing by the normalizations gives the factors of the
   statement. These identities hold without the simple-zero hypotheses, which are not used.
 
-**Deviation.** For (3) the manuscript computes `β` through `β = -pin_*/(2ℓJ)`
-(`lem:adjoint`(4)); here `β = ℓ_*(b)` is transformed directly (`b^{ω̄_R}(r) = R^{ℓ+2}b(Rr)`),
+**Deviation from the earlier dilation proof.** For (3) that proof computes `β` through `β = -pin_*/(2ℓJ)`
+(Part I Lemma 4.9(3) (`lem:adjoint`)); here `β = ℓ_*(b)` is transformed directly (`b^{ω̄_R}(r) = R^{ℓ+2}b(Rr)`),
 which avoids the adjoint lemma. The answer is the same.
 -/
 
@@ -179,12 +181,12 @@ theorem dilate_valid (S : SectorSetting) (hS : S.Valid) {R : ℝ} (hR : 0 < R) :
     (S.dilate R).Valid := by
   exact DilationH.dilate_valid' S hS hR
 
-/-- `lem:dilation`(1): `Ω^{ω̄_R}(r;G) = Ω^{ω̄}(Rr;R²G)`. -/
+/-- the retained dilation identities, part (1): `Ω^{ω̄_R}(r;G) = Ω^{ω̄}(Rr;R²G)`. -/
 theorem dilate_Omega (S : SectorSetting) (hS : S.Valid) {R : ℝ} (hR : 0 < R) (G r : ℝ) :
     (S.dilate R).Omega G r = S.Omega (R ^ 2 * G) (R * r) := by
   exact DilationH.Omega_dilate S hR G r
 
-/-- `lem:dilation`(1), sector by sector: `L^{ω̄_R}_ℓ(G) 𝒮_R = 𝒮_R L^{ω̄}_ℓ(R²G)` on profiles,
+/-- the retained dilation identities, part (1), sector by sector: `L^{ω̄_R}_ℓ(G) 𝒮_R = 𝒮_R L^{ω̄}_ℓ(R²G)` on profiles,
 i.e. `k^{ω̄_R}_ℓ𝒢_ℓ𝒮_R = 𝒮_Rk^{ω̄}_ℓ𝒢_ℓ` and `Ω^{ω̄_R}(·;G)𝒮_R = 𝒮_RΩ^{ω̄}(·;R²G)`. -/
 theorem dilate_LsecFn (S : SectorSetting) (hS : S.Valid) {R : ℝ} (hR : 0 < R) (ℓ : ℤ) (G : ℝ)
     (g : ℝ → ℂ) {r : ℝ} (hr : 0 < r) :
@@ -195,7 +197,7 @@ theorem dilate_LsecFn (S : SectorSetting) (hS : S.Valid) {R : ℝ} (hR : 0 < R) 
     rw [← Complex.ofReal_mul, mul_inv_cancel₀ (by positivity), Complex.ofReal_one]
   linear_combination (S.kcoef ℓ (R * r) * green ℓ g (R * r)) * h
 
-/-- `lem:dilation`(1) on `ℝ²`: `L^{ω̄_R}(G) = 𝒮_R L^{ω̄}(R²G) 𝒮_R⁻¹`, i.e.
+/-- the retained dilation identities, part (1) on `ℝ²`: `L^{ω̄_R}(G) = 𝒮_R L^{ω̄}(R²G) 𝒮_R⁻¹`, i.e.
 `L^{ω̄_R}(G)(w(R·)) = (L^{ω̄}(R²G)w)(R·)` (almost everywhere) for `w ∈ H¹`. -/
 theorem dilate_linFn (S : SectorSetting) (hS : S.Valid) {R : ℝ} (hR : 0 < R) (G : ℝ)
     {w : ℂ → ℂ} (hw : Sob.MemH 1 w) :
@@ -221,14 +223,14 @@ theorem dilate_linFn (S : SectorSetting) (hS : S.Valid) {R : ℝ} (hR : 0 < R) (
   push_cast
   ring
 
-/-- `lem:dilation`(2): `E^{ω̄_R}_ℓ(λ;G) = E^{ω̄}_ℓ(λ;R²G)` for `ℓ ≥ 1`, `Re λ > 0`, where
+/-- the retained dilation identities, part (2): `E^{ω̄_R}_ℓ(λ;G) = E^{ω̄}_ℓ(λ;R²G)` for `ℓ ≥ 1`, `Re λ > 0`, where
 `E^{ω̄_R}` is computed with `(ξ₁ - log R, ξ₂ - log R)`. -/
 theorem dilate_evans (S : SectorSetting) (hS : S.Valid) {R : ℝ} (hR : 0 < R) (ℓ : ℕ)
     (hℓ : 1 ≤ ℓ) (z : ℂ) (hz : 0 < z.re) (G : ℝ) :
     (S.dilate R).evans ℓ z G = S.evans ℓ z (R ^ 2 * G) := by
   exact DilationH.evans_dilate S hS hR ℓ hℓ z hz G
 
-/-- `lem:dilation`(3): at a simple zero `λ_*` of `E^{ω̄}_ℓ(·;R²G)`, for the eigenprofiles
+/-- the retained dilation identities, part (3): at a simple zero `λ_*` of `E^{ω̄}_ℓ(·;R²G)`, for the eigenprofiles
 normalized in `L²(ℝ²)` (normalizing factors `n₀`, `n₁`), `|pout_*|`, `|pin_*|`, `|J|`, `|β|` for
 `(ω̄_R, G)` equal `R^{-(ℓ+1)}`, `R^{ℓ-1}`, `R^{-2}`, `R^{ℓ+1}` times those for `(ω̄, R²G)`; and
 `|β pout_*|` is invariant. -/

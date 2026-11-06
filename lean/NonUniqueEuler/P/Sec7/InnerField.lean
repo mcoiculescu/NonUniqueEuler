@@ -11,7 +11,7 @@ import Mathlib.LinearAlgebra.Complex.FiniteDimensional
 /-!
 # Proof: `lem:inner-field` (the inner field under a mass hypothesis)
 
-Proof of `I/Sec7/InnerField.lean` (`07_several_rings.tex:243-272`).
+Proof of `I/Sec7/InnerField.lean` (Part II Lemma 4.2 (`lem:inner-field`)).
 
 1. `inner_field`. `C_in = M_vort Σ_{q≤M_h} C_{3,q} (4/a)^{4+q}`. For `g = ω_{≥k+1}(t)` (real,
    `C_c^∞`, `3`-fold symmetric by `lem:regions-basic`(3)), supported in `\bar B_R`, every
@@ -54,7 +54,7 @@ private theorem norm_iteratedFDeriv_unitsField (P : Approx) (hP : P.Valid) (k q 
     abs_of_pos (by positivity)]
 
 /-- The bound of `lem:inner-field` for a fixed approximation, with the explicit constant
-`C_in = M_vort Σ_{q≤M_h} C_{3,q} (4/a)^{4+q}` (`07_several_rings.tex:255-263`). -/
+`C_in = M_vort Σ_{q≤M_h} C_{3,q} (4/a)^{4+q}` (Part II Lemma 4.2 (`lem:inner-field`)). -/
 private theorem inner_field_bound (P : Approx) (hP : P.Valid) (hN : NumericalHypothesis P.χ)
     (Mh : ℕ) {k : ℕ} (hk : 1 ≤ k) (hkn : k < P.n) {t : ℝ} (ht : 0 ≤ t) {R : ℝ} (hR : 0 < R)
     (hRa : R ≤ a * P.r k / 8) (hsupp : tsupport (P.omegaGe (k + 1) t) ⊆ closedBall 0 R)
@@ -166,7 +166,7 @@ private theorem inner_field_bound (P : Approx) (hP : P.Valid) (hN : NumericalHyp
   simp only [hM_def]
   rw [Finset.mul_sum, Finset.sum_mul, Finset.sum_mul, Finset.sum_mul]
 
-/-- **`lem:inner-field`** (`07_several_rings.tex:243-250`), existence of `C_in`. Under (N1)–(N3),
+/-- **Part II Lemma 4.2 (`lem:inner-field`)**, existence of `C_in`. Under (N1)–(N3),
 for an admissible `χ` and `M_h ≥ 1` there is `C_in` such that for every valid approximation with
 cutoff `χ`, `1 ≤ k < n`, `t ≥ 0` and `0 < R ≤ a r_k/8`: if `ω_{≥k+1}(t)` is supported in `\bar B_R`
 and `‖ω_{≥k+1}(t)‖_{L¹} ≤ M_vort A_{k+1}r_{k+1}²`, then the non-monopole field `E` of `ω_{≥k+1}(t)`
@@ -185,7 +185,7 @@ theorem inner_field (χ : ℝ → ℝ) (hχ : IsAdmissibleCutoff χ) (hN : Numer
     subst hPχ
     exact inner_field_bound P hP hN Mh hk hkn ht hR hRa hsupp hL1
 
-/-- **`lem:inner-field`, the identity** (`07_several_rings.tex:250-251`, proof `:264-271`). If
+/-- **`lem:inner-field`, the identity** (Part II Lemma 4.2 (`lem:inner-field`) and its proof). If
 `D_{k+1}(t) ⊂ B_{a r_k/8}` (`1 ≤ k < n`, `t ≥ 0`), the non-monopole field of `ω_{≥k+1}(t)` in
 ring-`k` units is the inner field `h^in_k(A_k t)` on `N'`. -/
 theorem inner_field_eq (P : Approx) (hP : P.Valid) (hN : NumericalHypothesis P.χ)

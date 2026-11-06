@@ -11,24 +11,29 @@ import NonUniqueEuler.I.Sec11.BootActive
 import NonUniqueEuler.I.Sec11.BootQuietSize
 
 /-!
-# Proof: Steps 1–6 of the proof of `prop:bootstrap` ((BA°)(t) implies (BA)(t) and (BA*)(t))
+# All-history improvement in the historical Lean bootstrap decomposition
 
-Proof of `I/Sec11/BootSteps.lean` (`11_bootstrap.tex:221-224`, `:251-260`, `:532-538`).
+Current counterparts: Part II Proposition 6.2 (`prop:relay-step`) and §8,
+“Improvement through a fixed time” in the proof of Proposition 8.1 (`prop:bootstrap`).
+This file retains the earlier induction through Lean steps 1–6; it does not directly
+encode the reorganized one-step proposition with its present hypotheses.
 
-The manuscript treats the phase intervals of `[0, t]` in chronological order. The only conclusion
-that a later step needs from an earlier *level* is the hand-off (Step 3): Step 1 (`lem:geometry`) at
-a time `τ` needs `κ♯_k ≥ K_lo s_k^{m+2}` at the levels with `t♯_k < τ`, and Steps 2, 4 at a time
-`τ` need nothing else from earlier levels (`boot_quiet`, `boot_active` take Steps 1, 2 at `τ` and
-Step 3 at the levels with `t♯_i < τ`). So the chronological order is formalized as follows.
-* `BootStepsH.geom_of`, `quiet_of`, `active_of`: Steps 1, 2, 4 at (or up to) a time `τ ≤ t`, given
-  Step 3 at every level `k` with `t♯_k < τ`.
-* `BootStepsH.handoff_of`: Step 3 at the level `k`, given Step 3 at the levels `i` with
-  `t♯_i < t♯_k`; it uses Steps 1, 2 on `[0, t♯_k]` and Step 4 for ring `k+1` at `T_{k+1} < t♯_k`.
-* `BootStepsH.handoff_all`: Step 3 at every level `k` with `t♯_k ≤ t`, by downward induction on the
-  level (`t♯_i < t♯_k` forces `i > k`, `lem:clock`(1)).
-* `BootStepsH.bastar_of`: Step 6 ((BA*)(t)), from Steps 0, 2, 3, 4, 5.
-The main theorem `boot_steps` assembles these with Step 5 (`boot_quiet_size`) and
-(BA*)(t) ⇒ (BA)(t) (`BA_of_BAstar`).
+At a time `τ`, the Lean geometry and quiet/active checks use the hand-offs at levels with
+`t♯_i < τ`. The active check for ring `k+1` is then available at `T_{k+1} < t♯_k`, which
+supplies the completed active history needed for the next hand-off. The dependencies are:
+* `BootStepsH.geom_of`, `quiet_of`, `active_of`: geometry and quiet/active control at or up
+  to `τ ≤ t`, given the earlier hand-offs;
+* `BootStepsH.handoff_of`: the hand-off at `k`, from those at levels `i` with
+  `t♯_i < t♯_k`, geometry and quiet control through `t♯_k`, and the completed active
+  estimates for ring `k+1`;
+* `BootStepsH.handoff_all`: all hand-offs reached by `t`, by downward induction on the
+  level, using Lemma 3.10(1) (`lem:clock`);
+* `BootStepsH.bastar_of`: the improved bounds, assembled from the seed, quiet, hand-off,
+  active and quiet-size estimates.
+
+`boot_steps` combines these with `boot_quiet_size` and `BA_of_BAstar`. Lean (BA°) corresponds
+to the current manuscript's (BA); the Lean steps and bundles are documented in
+`Defs/Sec11/Extra2Boot.lean`.
 -/
 
 noncomputable section
@@ -137,9 +142,9 @@ theorem activeTime_nonneg (hS : S.Holds) {k : ℕ} {t' : ℝ} (h : S.P.tsh k ≤
 theorem Nmk_subset_Nnk (j : ℕ) : S.P.Nmk j ⊆ S.P.Nnk j := fun _ hx =>
   Datum.mem_scaleSet.2 (annuli_chain.2.1 (Datum.mem_scaleSet.1 hx))
 
-/-! ### Steps 1, 2, 4 at a time `τ`, given the hand-offs before `τ` -/
+/-! ### Lean steps 1, 2, 4 at a time `τ`, given the hand-offs before `τ` -/
 
-/-- **Step 1 at `τ`**: `lem:geometry` with `τ`, given (BA°)(τ) and Step 3 at the levels `k` with
+/-- **Lean step 1 at `τ`**: `lem:geometry` with `τ`, given (BA°)(τ) and Lean step 3 at the levels `k` with
 `t♯_k < τ` (which gives `κ♯_k ≥ K_lo s_k^{m+2}`). -/
 theorem geom_of (hS : S.Holds) (hL : S.ParamLists) {τ : ℝ} (hτ : τ ∈ Icc (0 : ℝ) S.P.Tend)
     (hBA : S.BAcirc τ)
@@ -147,7 +152,7 @@ theorem geom_of (hS : S.Holds) (hL : S.ParamLists) {τ : ℝ} (hτ : τ ∈ Icc 
     S.GeometryConcl τ :=
   geometry S hS hL hτ ⟨hBA.ba1, fun k hk hc hlt => (hH k hk hc hlt).amp_lo⟩
 
-/-- **Step 2 on `[0, τ]`**, given (BA°)(τ) and Step 3 at the levels `k` with `t♯_k < τ`. -/
+/-- **Lean step 2 on `[0, τ]`**, given (BA°)(τ) and Lean step 3 at the levels `k` with `t♯_k < τ`. -/
 theorem quiet_of (hS : S.Holds) (hL : S.ParamLists) {τ : ℝ} (hτ : τ ∈ Icc (0 : ℝ) S.P.Tend)
     (h0 : S.BootStartConcl) (hBA : S.BAcirc τ)
     (hH : ∀ k ∈ Finset.Ico 1 S.P.n, S.P.ClockUpTo (k + 1) → S.P.tsh k < τ → S.HandoffStep k) :
@@ -159,7 +164,7 @@ theorem quiet_of (hS : S.Holds) (hL : S.ParamLists) {τ : ℝ} (hτ : τ ∈ Icc
   exact boot_quiet S hS hL ht'T h0 hBA'
     (geom_of hS hL ht'T hBA' fun k hk hc hlt => hH k hk hc (hlt.trans_le hle))
 
-/-- **Step 4 for ring `k` up to `t' ∈ Ph_k`**, `t♯_k < t' ≤ T_end`, given (BA°)(t') and Step 3 at
+/-- **Lean step 4 for ring `k` up to `t' ∈ Ph_k`**, `t♯_k < t' ≤ T_end`, given (BA°)(t') and Lean step 3 at
 the levels `i` with `t♯_i < t'`. -/
 theorem active_of (hS : S.Holds) (hL : S.ParamLists) {k : ℕ} (hk : k ∈ Finset.Icc 1 S.P.n)
     (hc : S.P.ClockUpTo k) {t' : ℝ} (ht' : t' ∈ S.P.Phase k) (htsh : S.P.tsh k < t')
@@ -176,11 +181,12 @@ theorem active_of (hS : S.Holds) (hL : S.ParamLists) {k : ℕ} (hk : k ∈ Finse
   exact hH i (Finset.mem_Ico.2 ⟨by omega, hi'.2⟩) (hc.mono (by omega))
     ((tsh_le_tsh hS hk'.1 hc hi'.1 hi'.2.le).trans_lt htsh)
 
-/-! ### Step 3 by downward induction on the level -/
+/-! ### Lean step 3 by downward induction on the level -/
 
-/-- **Step 3 at the level `k`**, given (BA°)(t♯_k) and Step 3 at the levels `i` with `t♯_i < t♯_k`
-(`11_bootstrap.tex:255-260`: Step 3 at `t♯_k` uses Steps 1, 2 on `[0, t♯_k]`, Step 4 on
-`[0, T_{k+1}]` and Step 3 at the levels `i > k`). -/
+/-- **Lean step 3 at the level `k`**, given (BA°)(t♯_k) and Lean step 3 at the levels `i` with `t♯_i < t♯_k`
+(Part II §6 (`prop:relay-step`) and §8, “Improvement through a fixed time”: Lean step 3 at `t♯_k`
+uses Lean steps 1, 2 on `[0, t♯_k]`, Lean step 4 on
+`[0, T_{k+1}]` and Lean step 3 at the levels `i > k`). -/
 theorem handoff_of (hS : S.Holds) (hL : S.ParamLists) {k : ℕ} (hk : k ∈ Finset.Ico 1 S.P.n)
     (hc : S.P.ClockUpTo (k + 1)) (hkT : S.P.tsh k ≤ S.P.Tend) (h0 : S.BootStartConcl)
     (hBA : S.BAcirc (S.P.tsh k))
@@ -203,7 +209,7 @@ theorem handoff_of (hS : S.Holds) (hL : S.ParamLists) {k : ℕ} (hk : k ∈ Fins
   exact boot_handoff S hS hL hk hc hkT h0 hBA (geom_of hS hL hkI hBA hH)
     (quiet_of hS hL hkI h0 hBA hH) hdeep hact
 
-/-- **Step 3 at every level `k < n` with `t♯_k ≤ t`**, by downward induction on the level. -/
+/-- **Lean step 3 at every level `k < n` with `t♯_k ≤ t`**, by downward induction on the level. -/
 theorem handoff_all (hS : S.Holds) (hL : S.ParamLists) {t : ℝ} (ht : t ∈ Icc (0 : ℝ) S.P.Tend)
     (h0 : S.BootStartConcl) (hBA : S.BAcirc t) :
     ∀ k ∈ Finset.Ico 1 S.P.n, S.P.ClockUpTo (k + 1) → S.P.tsh k ≤ t → S.HandoffStep k := by
@@ -225,11 +231,13 @@ theorem handoff_all (hS : S.Holds) (hL : S.ParamLists) {t : ℝ} (ht : t ∈ Icc
     have hki : k < i := lt_of_tsh_lt hS hk'.2.le hi'.1 hci hlt
     exact ih i hi (by omega) hci (hlt.le.trans hkt)
 
-/-! ### Step 6: (BA*)(t) -/
+/-! ### Lean step 6: (BA*)(t) -/
 
-/-- **Step 6** (`11_bootstrap.tex:532-538`): (BA1) with `𝒩_j` from `eq:boot-quiet` (quiet rings;
-ring `n` by Step 0), Step 4 and `eq:handoff` (active rings); (BA2) with `Ā` from Step 5; (BA3) with
-`C₂` from Step 4, `eq:boot-switch` and `eq:boot-start`. -/
+/-- **Lean step 6** (Part II §8 (`prop:bootstrap`), “Improvement through a fixed time”): (BA1) with
+`𝒩_j` from `eq:boot-quiet` (quiet rings;
+ring `n` by Lean step 0), Lean step 4 and `eq:handoff` (active rings); (BA2) with `Ā` from Lean step
+5; (BA3) with
+`C₂` from Lean step 4, `eq:boot-switch` and `eq:boot-start`. -/
 theorem bastar_of (hS : S.Holds) {t : ℝ} (ht : t ∈ Icc (0 : ℝ) S.P.Tend)
     (h0 : S.BootStartConcl)
     (hhand : ∀ k ∈ Finset.Ico 1 S.P.n, S.P.ClockUpTo (k + 1) → S.P.tsh k ≤ t → S.HandoffStep k)
@@ -290,8 +298,10 @@ theorem bastar_of (hS : S.Holds) {t : ℝ} (ht : t ∈ Icc (0 : ℝ) S.P.Tend)
 
 end BootStepsH
 
-/-- **Steps 1–6 of the proof of `prop:bootstrap`** (`11_bootstrap.tex:221-224`, `:251-538`): for
-`t ∈ [0, T_end]`, Step 0 and (BA°)(t) imply the conclusions of Steps 1–6 on `[0, t]`
+/-- **Lean steps 1–6 of the historical bootstrap decomposition** (Part II §8 (`prop:bootstrap`),
+“Improvement through a fixed time”, Part II §6 (`prop:relay-step`) and §8, “Improvement through a
+fixed time”): for
+`t ∈ [0, T_end]`, Lean step 0 and (BA°)(t) imply the conclusions of Lean steps 1–6 on `[0, t]`
 (`S.BootStepsConcl t`), in particular (BA)(t) and (BA*)(t). -/
 theorem boot_steps (S : Standing) (hS : S.Holds) (hL : S.ParamLists) {t : ℝ}
     (ht : t ∈ Icc (0 : ℝ) S.P.Tend) (h0 : S.BootStartConcl) (hBA : S.BAcirc t) :

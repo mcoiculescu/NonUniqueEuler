@@ -11,11 +11,17 @@ import NonUniqueEuler.I.Infra.Ip.Ip
 import NonUniqueEuler.H.Sec9.Drift.EllLinear
 
 /-!
-# Proof: `lem:drift`, `eq:drift-interval`, `eq:drift` (the drift of the running coefficient)
+# Proof: `lem:drift`, `eq:drift-interval`, `eq:drift` (historical) (the drift of the running coefficient)
 
-Proof of `I/Sec9/Drift.lean` (`09_relay.tex:769-861`).
+Current counterpart: Part II Lemma C.11 (`lem:drift`) and Equation (49)
+(`eq:drift-interval`), Appendix C.9 (`sec:relay-coefficient`). The historical
+`eq:drift` is the specialization starting at activation, which the current
+proof uses without a separate equation label. The formal statement describes
+these estimates in active local time.
 
-Structure (following `09_relay.tex:803-861`):
+Proof of `I/Sec9/Drift.lean` (`lem:drift`, Part II Lemma C.11).
+
+Structure (following `lem:drift`, Part II Lemma C.11):
 * `DriftProof.drift_interval` (`eq:drift-interval`):
   1. `c_k(u') - c_k(u) = ∫_u^{u'} e^{-λ_k v} ℓ_*(G_k)(F_k(v)) dv` from `OneRing.runCoef_shift`
      (`I/Sec5/Active/RunCoefShift.lean`), the field `v ↦ h_k(t̄♯_k + v)` being continuous into
@@ -28,7 +34,7 @@ Structure (following `09_relay.tex:803-861`):
   3. the substitution `τ_K = T_pin + μv` and `intervalIntegral_le_mul_Ip`
      (`DriftProof.integral_inner_le`), `x_k ≥ σ/4` (`detuning`), `I_3` decreasing, and (ii)
      (`DriftProof.inner_const_le`) give the inner bound `2κ r_T(T_pin + μu)`.
-* `drift_from_zero` (`eq:drift`): the pair `(0, u)`.
+* `drift_from_zero` (`eq:drift` (historical)): the pair `(0, u)`.
 * `drift`: the interval bound, `2/64 + 1/32 = 1/16`, `|c_k(0)| = κ♯_k`, (Coef) since
   `|c_k| ≤ 17κ/16 ≤ 2κ`, and `κ♯_k e^{σ_k T̂_k} = δ₀`.
 
@@ -62,7 +68,7 @@ theorem ckPathOn_shift {M : ℕ} {U : Set ℂ} {a b : ℝ} {f : ℝ → ℂ → 
     ((continuous_const.add continuous_id).continuousWithinAt).tendsto_nhdsWithin hmaps
   exact (hf.2 (a + t) (hmaps ht)).comp hc
 
-/-- `h^in_n = 0`: `D_{n+1} = ∅` and `G_n = 0` (`09_relay.tex:819-820`). -/
+/-- `h^in_n = 0`: `D_{n+1} = ∅` and `G_n = 0` (`lem:drift`, Part II Lemma C.11). -/
 theorem hIn_n (P : Approx) (τ : ℝ) : P.hIn P.n τ = 0 := by
   funext y
   simp [Approx.hIn, Approx.nuIn, Approx.unitsVort, scaleVort, Approx.omegaGe_succ_n,
@@ -89,7 +95,7 @@ theorem norm_integral_le_add {g : ℝ → ℂ} {B : ℝ → ℝ} {C u u' : ℝ} 
         rw [intervalIntegral.integral_add hBi hCi, intervalIntegral.integral_const, smul_eq_mul]
         ring
 
-/-- **The inner integral** (`09_relay.tex:824-834`): with `x = σ/μ`, the substitution
+/-- **The inner integral** (`lem:drift`, Part II Lemma C.11): with `x = σ/μ`, the substitution
 `τ = T + μw` and `eq:Ip` (`intervalIntegral_le_mul_Ip`) give
 `∫_u^{u'} e^{-σw} μ(1 + T + μw)³ dw ≤ e^{xT}(1 + τ_a)³e^{-xτ_a} I_3(x)`, `τ_a = T + μu`. -/
 theorem integral_inner_le {σ μ T u u' : ℝ} (hμ : 0 < μ) (hσ : 0 < σ) (hT : 0 ≤ T) (hu : 0 ≤ u)
@@ -119,7 +125,7 @@ theorem integral_inner_le {σ μ T u u' : ℝ} (hμ : 0 < μ) (hσ : 0 < σ) (hT
   rw [show T + μ * u = μ * u + T by ring]
   exact mul_le_mul_of_nonneg_left h3 (Real.exp_pos _).le
 
-/-- **The constants of (ii)** (`09_relay.tex:840-845`): from
+/-- **The constants of (ii)** (`lem:drift`, Part II Lemma C.11): from
 `|β||q'|/(10|z|(μ-1)) ≤ |A^in|` and `μ - 1 ≤ |q'|/(10|z|C_mom I)`, `|β| C_mom I ≤ |A^in|`. -/
 theorem inner_const_le {β Cm I A z μ q : ℝ} (hβ : 0 ≤ β) (hCm : 0 ≤ Cm) (hI : 0 ≤ I)
     (hz : 0 ≤ z) (hμ : 1 < μ) (h1 : β * q / (10 * z * (μ - 1)) ≤ A)
@@ -147,7 +153,7 @@ theorem inner_const_le {β Cm I A z μ q : ℝ} (hβ : 0 ≤ β) (hCm : 0 ≤ Cm
 
 /-! ### `eq:drift-interval` -/
 
-/-- **`eq:drift-interval`** (`09_relay.tex:786-790`, proof `:803-848`). -/
+/-- **`eq:drift-interval`** (`lem:drift`, Part II Lemma C.11). -/
 theorem drift_interval (S : Standing) (hS : S.Holds) (hDet : S.Det) {k : ℕ} (hk : 1 ≤ k)
     (hkn : k ≤ S.P.n) (hc : S.P.ClockUpTo k) {ubar η : ℝ} (_hu : ubar ∈ Icc 0 (S.P.That k))
     (_hη : 0 ≤ η) (h : S.DriftHyp k ubar η) :
@@ -421,7 +427,7 @@ theorem drift_interval (S : Standing) (hS : S.Holds) (hDet : S.Det) {k : ℕ} (h
 
 end DriftProof
 
-/-- **`lem:drift`** (`09_relay.tex:769-801`). Assume (SA), (Det), `1 ≤ k ≤ n`, the clock defined up
+/-- **`lem:drift`** (`lem:drift`, Part II Lemma C.11). Assume (SA), (Det), `1 ≤ k ≤ n`, the clock defined up
 to level `k`, `0 ≤ ū ≤ T̂_k`, `η ≥ 0` and the hypotheses (i)–(iv) (`S.DriftHyp k ū η`). Then
 `eq:drift-interval` holds for `0 ≤ u ≤ u' ≤ ū` (without the inner term if `k = n`); and if
 `r_T(T_pin) ≤ 1/64` and `C_ls η T̂_k ≤ 1/32`, then `|c_k(u) - c_k(0)| ≤ κ♯_k/16` on `[0,ū]`, (Coef)
@@ -496,7 +502,7 @@ theorem drift (S : Standing) (hS : S.Holds) (hDet : S.Det) {k : ℕ} (hk : 1 ≤
     · rw [mul_div_assoc', div_le_iff₀ hκpos]
       nlinarith [hS.δ₀_pos]
 
-/-- **`eq:drift`** (`09_relay.tex:791-795`, the "in particular" of `lem:drift`): under the
+/-- **`eq:drift` (historical)** (`lem:drift`, Part II Lemma C.11, the activation-time specialization of `eq:drift-interval`): under the
 hypotheses of `lem:drift`, for `u ∈ [0, ū]`,
 `|c_k(u) - c_k(0)| ≤ (2 r_T(T_pin) + C_ls η T̂_k) κ♯_k`, without the first term if `k = n`. -/
 theorem drift_from_zero (S : Standing) (hS : S.Holds) (hDet : S.Det) {k : ℕ} (hk : 1 ≤ k)

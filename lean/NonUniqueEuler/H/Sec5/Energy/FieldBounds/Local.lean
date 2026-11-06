@@ -5,7 +5,7 @@ import NonUniqueEuler.I.Infra.Sobolev.WeakDeriv
 # Helper for `P/Sec5/Energy/FieldBounds`: local Sobolev bookkeeping on an open set
 
 Generic facts about `H^k(V)`, `W^{1,∞}(V)` and the weak divergence on an open set `V ⊆ ℂ`, used
-in step 4 of the proof of `lem:energy` (`05_single_ring.tex:333-346`: the norms of
+in step 4 of the Lean proof decomposition for `lem:energy` (Part II Lemma 2.4: the norms of
 `U = Ω x^⊥ + h + K_BS*w` on `N₁`).
 
 * `FieldBoundsAux.weakDerivOn_congr_on` and its consequences: the local weak derivatives, the

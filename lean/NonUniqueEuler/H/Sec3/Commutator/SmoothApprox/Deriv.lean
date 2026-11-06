@@ -8,10 +8,10 @@ For a smooth compactly supported real kernel `ρ` and `f ∈ L¹_loc(ℝ²; ℂ)
 
 * `fderiv_conv_apply`: `D(ρ ⋆ f)(x) v = ∫ (Dρ(t) v) f(x - t) dt`;
 * `divFree_conv`: if `div f = 0` in `𝒟'`, then `div(ρ ⋆ f) = 0` classically
-  (`03_compactness.tex:440-447`: "`div w_δ = 0`");
+  (the legacy smooth-field commutator argument; current treatment: Part I Lemma 3.3 (`lem:commutator`): "`div w_δ = 0`");
 * `iterDirDeriv_conv_eq_conv`: if `G = ∂_{vs} f` weakly on `V` (`|vs| ≤ 1`) and
   `closedBall x r ⊆ V` with `supp ρ ⊆ B_r`, then `∂_{vs}(ρ ⋆ f)(x) = (ρ ⋆ G)(x)`
-  (`03_compactness.tex:440-447`: "`∇w_δ = (∇w) ⋆ ρ_δ`"). The proof tests the weak derivative
+  (the legacy smooth-field commutator argument; current treatment: Part I Lemma 3.3 (`lem:commutator`): "`∇w_δ = (∇w) ⋆ ρ_δ`"). The proof tests the weak derivative
   against `y ↦ ρ(x - y)`.
 -/
 
@@ -83,7 +83,7 @@ theorem hasCompactSupport_reflect {ρ : ℂ → ℝ} {r : ℝ} (hr : support ρ 
     by_contra h
     exact hy (ball_subset_closedBall (support_reflect_subset hr x h))
 
-/-- **The mollification is divergence free** (`03_compactness.tex:440-447`). -/
+/-- **The mollification is divergence free** (the legacy smooth-field commutator argument; current treatment: Part I Lemma 3.3 (`lem:commutator`)). -/
 theorem divFree_conv {ρ : ℂ → ℝ} (hρs : ContDiff ℝ ∞ ρ) {r : ℝ} (hr : support ρ ⊆ ball 0 r)
     {f : ℂ → ℂ} (hf : LocallyIntegrable f volume) (hdiv : Prelim.IsWeaklyDivFree f) (x : ℂ) :
     (fderiv ℝ (conv ρ f) x 1).re + (fderiv ℝ (conv ρ f) x Complex.I).im = 0 := by
@@ -156,7 +156,7 @@ theorem conv_eq_integral_reflect (ρ : ℂ → ℝ) (G : ℂ → ℂ) (x : ℂ) 
   ring
 
 /-- **Weak derivatives commute with mollification at interior points**
-(`03_compactness.tex:440-447`, `∇w_δ = (∇w) ⋆ ρ_δ`): if `G = ∂_{vs} f` weakly on `V`,
+(the legacy smooth-field commutator argument; current treatment: Part I Lemma 3.3 (`lem:commutator`), `∇w_δ = (∇w) ⋆ ρ_δ`): if `G = ∂_{vs} f` weakly on `V`,
 `|vs| ≤ 1`, `supp ρ ⊆ B_r` and `closedBall x r ⊆ V`, then `∂_{vs}(ρ ⋆ f)(x) = (ρ ⋆ G)(x)`. -/
 theorem iterDirDeriv_conv_eq_conv {ρ : ℂ → ℝ} (hρs : ContDiff ℝ ∞ ρ) {r : ℝ}
     (hr : support ρ ⊆ ball 0 r) {V : Set ℂ} {x : ℂ} (hxV : closedBall x r ⊆ V)

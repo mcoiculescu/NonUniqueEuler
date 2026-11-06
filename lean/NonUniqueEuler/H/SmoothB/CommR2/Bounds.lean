@@ -9,7 +9,7 @@ import NonUniqueEuler.Defs.Infra.Instances
 # Helper for `lem:comm-R2`: the bound on each term of the commutator formula
 
 Helper of `P/SmoothB/CommR2.lean`, steps 2-4 of the proof of `lem:comm-R2`
-(`B_global_smooth.tex:165-175`). For `T = ∂^β u_l ∂^γ g` with `|β| ≥ 1`, `|γ| ≥ 1`,
+(Part II, Lemma B.4 (`lem:comm-R2`)). For `T = ∂^β u_l ∂^γ g` with `|β| ≥ 1`, `|γ| ≥ 1`,
 `|β| + |γ| = s + 1` (`commTerm_bound`):
 * `|β| = 1`: `‖T‖₂ ≤ |∇u|_max ‖∂^γ g‖₂ ≤ |∇u|_max ‖g‖_{H^s}`;
 * `|β| = s`: `‖T‖₂ ≤ ‖∂^β u‖₂ ‖∂_m g‖_∞ ≤ ‖∇u‖_{H^{s-1}} ‖∇g‖_{L^∞}`;

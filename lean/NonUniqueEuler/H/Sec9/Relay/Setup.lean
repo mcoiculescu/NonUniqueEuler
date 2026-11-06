@@ -6,7 +6,7 @@ import NonUniqueEuler.I.Sec6.FieldContinuity
 /-!
 # Helpers for `prop:relay`: constants, the clock of ring `j+1`, definedness of the fields
 
-Helper file of `P/Sec9/Relay.lean` (`09_relay.tex:440-458`, `:519-527`). Everything here is
+Helper file of `P/Sec9/Relay.lean` (`prop:relay`, Part II Proposition C.9). Everything here is
 proved. Under `S.RelayHyp C₀ K₁ j τ` (with `τ^act = A_jt♯_{j+1}`, `τ^sat = A_jT_{j+1}`):
 
 * signs of the chosen constants (`C_M > 0`, `C_Q ≥ 0`, `C₂ ≥ 1`, `C_* ≥ 0`), `σ_k ≥ σ_b > 0`;
@@ -253,7 +253,7 @@ theorem hDefined_succ_quiet (h : S.RelayHyp C₀ K₁ j τ) {t : ℝ}
   have hl := (h.h1 t ht).2 (j + 1) (succ_mem h) (Or.inr hts)
   exact ⟨hl.2.1, hl.1⟩
 
-/-- `h^out_{j+1}` is defined on `[0, τ/A_j]` (`09_relay.tex:521-526`): the rings `i < j` lie
+/-- `h^out_{j+1}` is defined on `[0, τ/A_j]` (`prop:relay`, Part II Proposition C.9): the rings `i < j` lie
 outside `B_{6r_j} ⊃ B_{6r_{j+1}}`, and ring `j` lies in `N_j`, which misses `B_{6r_{j+1}}`. -/
 theorem hOutDefined_succ (h : S.RelayHyp C₀ K₁ j τ) (hS : S.Holds) {t : ℝ}
     (ht : t ∈ Icc (0 : ℝ) (τ / S.P.A j)) : S.P.HOutDefined (j + 1) t := by

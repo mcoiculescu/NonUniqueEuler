@@ -6,20 +6,20 @@ import NonUniqueEuler.H.Sec3.Criterion.Uniform.Abstract
 /-!
 # Helper for `P/Sec3/Criterion/Uniform`: the claim of `thm:criterion`(iv)
 
-Manuscript: proof of `thm:criterion`(iv), the claim and its proof, `03_compactness.tex:1023-1056`:
+Manuscript: proof of `thm:criterion`(iv), the claim and its proof, Part I Theorem 3.8 (`thm:criterion`) and its proof:
 if `nᵢ → ∞` and `tᵢ ∈ [0, T']`, `tᵢ → t₀`, then `ω^{(nᵢ)}(tᵢ) → ω_∞(t₀)` in `L²` and in `L¹`.
 
 * `tendsto_eLpNorm_sub_one`, `tendsto_eLpNorm_two`: `‖f⁽ⁿ⁾ - f‖₁ → 0` and
   `‖f⁽ⁿ⁾‖₂ → ‖f‖₂` for a `2`-admissible sequence.
-* `claim_two` (`03_compactness.tex:1038-1046`): weak convergence in `L²` from the uniform weak
-  convergence and the weak continuity of `ω_∞`, norm convergence from `lem:bounded-adm`(ii) and
-  the conservation `‖ω_∞(t)‖₂ = ‖f‖₂`, then `lem:RR` (`radonRiesz_filter`).
+* `claim_two` (Part I Theorem 3.8 (`thm:criterion`) and its proof): weak convergence in `L²` from the uniform weak
+  convergence and the weak continuity of `ω_∞`, norm convergence from legacy `lem:bounded-adm`(ii) and
+  the conservation `‖ω_∞(t)‖₂ = ‖f‖₂`, then legacy `lem:RR` (`radonRiesz_filter`).
 * `eLpNorm_one_le_ball_add_tail`: `‖g - h‖₁ ≤ |B_{2R}|^{1/2} ‖g - h‖₂ + ∫_{|x|≥2R}|g| + ∫_{|x|≥2R}|h|`
-  (Hölder on `B_{2R}`, `03_compactness.tex:1054-1055`).
-* `claim_one` (`03_compactness.tex:1046-1056`): the `L¹` convergence, from the `L²` convergence
+  (Hölder on `B_{2R}`, Part I Theorem 3.8 (`thm:criterion`) and its proof).
+* `claim_one` (Part I Theorem 3.8 (`thm:criterion`) and its proof): the `L¹` convergence, from the `L²` convergence
   and a uniform tail bound of the form eq:tail (an abstract hypothesis here; the P file derives
   it from `renormAllT_tail` and `renormAllT_flux_bound`).
-* `tendsto_eLpNorm_sub_sub`: the triangle inequality step `03_compactness.tex:1031-1033`.
+* `tendsto_eLpNorm_sub_sub`: the triangle inequality step Part I Theorem 3.8 (`thm:criterion`) and its proof.
 -/
 
 noncomputable section
@@ -81,7 +81,7 @@ theorem tendsto_sub_of_tendstoUniformlyOn {F : ℕ → ℝ → ℝ} {G : ℝ →
   have := hi (t i) (ht i)
   rwa [Real.dist_eq, sub_zero, ← Real.dist_eq, dist_comm]
 
-/-- **The claim, `L²` part** (`03_compactness.tex:1038-1046`): if `nᵢ → ∞` and `tᵢ ∈ K`,
+/-- **The claim, `L²` part** (Part I Theorem 3.8 (`thm:criterion`) and its proof): if `nᵢ → ∞` and `tᵢ ∈ K`,
 `tᵢ → t₀ ∈ K` (with `K ⊆ [0, T₀)` and uniform weak convergence on `K`), then
 `ω^{(nᵢ)}(tᵢ) → ω_∞(t₀)` in `L²`. -/
 theorem claim_two (hadm : IsAdmissibleSeq 2 T₀ f fs ωs)
@@ -164,7 +164,7 @@ theorem tendsto_ofReal_div_mul (G : ℝ) (c : ℝ≥0∞) (hc : c ≠ ∞) :
   have h2 := ENNReal.Tendsto.mul_const (b := c) (ENNReal.tendsto_ofReal h1) (Or.inr hc)
   simpa using h2
 
-/-- **The claim, `L¹` part** (`03_compactness.tex:1046-1056`): if `nᵢ → ∞`, `tᵢ ∈ K`,
+/-- **The claim, `L¹` part** (Part I Theorem 3.8 (`thm:criterion`) and its proof): if `nᵢ → ∞`, `tᵢ ∈ K`,
 `ω^{(nᵢ)}(tᵢ) → ω_∞(t₀)` in `L²`, and the tails of `ω⁽ⁿ⁾(s)`, `s ∈ K`, obey a bound of the
 form eq:tail, `∫_{|x|≥2R}|ω⁽ⁿ⁾(s)| ≤ ∫_{|x|≥R}|f⁽ⁿ⁾| + (G/R) C`, then
 `ω^{(nᵢ)}(tᵢ) → ω_∞(t₀)` in `L¹`. -/
@@ -225,7 +225,7 @@ theorem claim_one (hadm : IsAdmissibleSeq 2 T₀ f fs ωs) {K : Set ℝ}
         simp only [hxdef, hτdef]
         ring
 
-/-- The triangle inequality step (`03_compactness.tex:1031-1033`): if `aᵢ → c` and `bᵢ → c`
+/-- The triangle inequality step (Part I Theorem 3.8 (`thm:criterion`) and its proof): if `aᵢ → c` and `bᵢ → c`
 in `L^p`, `p ≥ 1`, then `‖aᵢ - bᵢ‖_p → 0`. -/
 theorem tendsto_eLpNorm_sub_sub {p : ℝ≥0∞} (hp : 1 ≤ p) {a b : ℕ → ℂ → ℝ} {c : ℂ → ℝ}
     (ha : ∀ i, AEStronglyMeasurable (a i) volume) (hb : ∀ i, AEStronglyMeasurable (b i) volume)

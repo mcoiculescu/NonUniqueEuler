@@ -13,8 +13,8 @@ import Mathlib.MeasureTheory.Integral.Prod
 # Proof: Newton's theorem for radial vorticities (I-POLAR)
 
 Proof of `NonUniqueEuler/I/Infra/Polar/Newton.lean`: same declarations, same statements.
-The argument is the manuscript's (`03_compactness.tex:840-857`, first paragraph of the proof of
-`lem:radial-stationary`).
+The argument is the first paragraph of the proof of Part I, Lemma 3.6
+(`lem:radial-stationary`).
 
 * `circ_comp_norm`: `setIntegral_ball_comp_norm` (`I/Infra/Polar/Radial.lean`).
 * Kernel split (private `ae_integrable_kernel_mul`): `K = K 1_{B_1} + K 1_{B_1ᶜ}` with
@@ -117,7 +117,7 @@ private theorem integrable_cauchy_of_integrable_kernel {g : ℂ → ℝ} {x : �
 /-! ### The Cauchy transform of a radial function -/
 
 /-- For every `x` at which the Cauchy integrand is integrable,
-`∫ h₀(|w|) (x - w)⁻¹ dw = Circ_h(|x|) x⁻¹` (`03_compactness.tex:845-857`). -/
+`∫ h₀(|w|) (x - w)⁻¹ dw = Circ_h(|x|) x⁻¹` (Part I, Lemma 3.6 (`lem:radial-stationary`), proof). -/
 private theorem cauchyTransform_comp_norm {h₀ : ℝ → ℝ} (x : ℂ)
     (hint : Integrable (fun w : ℂ => ((h₀ ‖w‖ : ℝ) : ℂ) * (x - w)⁻¹)) :
     Multipole.cauchyTransform (fun w => ((h₀ ‖w‖ : ℝ) : ℂ)) x =
@@ -158,7 +158,7 @@ theorem velocity_comp_norm {h₀ : ℝ → ℝ} (hint : Integrable (fun y : ℂ 
   ring
 
 /-- Newton's theorem for (a.e.) radial `h ∈ L¹`: `K ⋆ h (x) = Circ_h(|x|) K(x)` for a.e. `x`
-(`03_compactness.tex:834`). -/
+(Part I, Lemma 3.6 (`lem:radial-stationary`), proof). -/
 theorem velocity_of_isRadial {h : ℂ → ℝ} (hrad : IsRadial h) (hint : Integrable h) :
     ∀ᵐ x : ℂ, velocity h x = (circ h ‖x‖ : ℂ) * biotSavartKernel x := by
   have hae : h =ᵐ[volume] angAvg h := ae_eq_angAvg_of_isRadial hrad hint.aestronglyMeasurable

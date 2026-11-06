@@ -5,7 +5,7 @@ import NonUniqueEuler.I.Sec4.PropSemigroup
 /-!
 # Proof: the approximate solution of `lem:window` (`eq:W-hier`, `eq:W-res`)
 
-Proof of `I/Sec5/Window/Approx.lean` (`05_single_ring.tex:716-798`).
+Proof of `I/Sec5/Window/Approx.lean` (Part II Lemma 2.11).
 
 **Deviation (restructured hierarchy).** In place of the manuscript's homogeneous expansion
 `w^{[j]}` (`g^{[j]} = Σ_{i+l=j} B(w^{[i]},w^{[l]}) - h·∇w^{[j-1]}`) we use the Picard iteration in
@@ -61,7 +61,7 @@ private theorem le_capp_mul {x D E Cl Cn Kr a : ℝ} (hx : x ≤ |D| + |E| + |Cl
     (ha : 0 ≤ a) : x * a ≤ (|D| + |E| + |Cl| * Cn + |Cl| + |Kr|) * a :=
   mul_le_mul_of_nonneg_right hx ha
 
-/-- **The approximate solution of `lem:window`** (`05_single_ring.tex:716-798`, `eq:W-hier`,
+/-- **The approximate solution of `lem:window`** (Part II Lemma 2.11, `eq:W-hier`,
 `eq:W-res`). Assume (N1)–(N3), `s ≥ 3`, `σ' ∈ (9/200, σ_b)`, `C♮ ≥ 1`. There is `C_app ≥ 0`
 (depending only on `Φ, G₁, s, σ', C♮`) such that for `G ∈ [0,G₁]`, `ū > 0`, `κ₁ > 0`,
 `η_b ∈ [0,1]`, every field path `h ∈ C([0,ū];C^M(N'))`, `3`-fold symmetric on `N'`, and every real

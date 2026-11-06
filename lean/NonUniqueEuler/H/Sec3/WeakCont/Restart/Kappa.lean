@@ -6,7 +6,7 @@ import Mathlib.MeasureTheory.Integral.IntervalIntegral.FundThmCalculus
 /-!
 # Helpers for `P/Sec3/WeakCont/Restart.lean`: the shifted steps `ϰ_h(t) = ϰ((t - t₀)/h)`
 
-Manuscript: proof of `lem:weak-cont`(c) (`03_compactness.tex:209-225`). For `h > 0` the shifted
+Manuscript: proof of `lem:weak-cont`(c) (Part I Lemma 3.2 (`lem:weak-cont`)). For `h > 0` the shifted
 step `ϰ_h(t) = ϰ((t - t₀)/h)` is smooth, vanishes for `t ≤ t₀`, equals `1` for `t ≥ t₀ + h`, its
 derivative is continuous, nonnegative, vanishes off `[t₀, t₀ + h]` and has integral `1` over
 `(0, T)` when `0 ≤ t₀` and `t₀ + h ≤ T`. For `φ ∈ 𝒟_T` the product `ϰ_h φ` is in `𝒟_T`, and

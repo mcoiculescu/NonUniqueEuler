@@ -7,23 +7,23 @@ import Mathlib.Analysis.SpecialFunctions.SmoothTransition
 import Mathlib.Topology.MetricSpace.Lipschitz
 
 /-!
-# Section 3: auxiliary objects (cutoffs, mollifiers, truncations, time test functions)
+# Part I Section 3: auxiliary objects (cutoffs, mollifiers, truncations, time test functions)
 
-Manuscript source: `03_compactness.tex:23-41` ("Throughout this section … we use the following
-auxiliary objects"). The manuscript fixes, once and for all,
+The opening of Part I §3 (`sec:compact`) fixes the cutoffs and mollifiers below.
+The truncations are additional Lean auxiliaries retained from the legacy decomposition.
 
 * `ς ∈ C_c^∞(B₂)` with `0 ≤ ς ≤ 1`, `ς = 1` on `B₁`, and `ς_R = ς(·/R)`;
 * `ρ ∈ C_c^∞(B₁)` with `ρ ≥ 0`, `∫ρ = 1`, and `ρ_ε = ε⁻²ρ(·/ε)` (convolution in `x` only);
 * `ρ^t ∈ C_c^∞((-1,1))` with `ρ^t ≥ 0`, `∫ρ^t = 1`, and `ρ^t_δ = δ⁻¹ρ^t(·/δ)`;
 * `ϰ ∈ C^∞(ℝ)` nondecreasing, `ϰ = 0` on `(-∞,0]`, `ϰ = 1` on `[1,∞)`;
-* the truncations `T_k(s) = max(-k, min(k, s))`, `T_k ∈ Lip₀`.
+* the Lean truncations `T_k(s) = max(-k, min(k, s))`, `T_k ∈ Lip₀`.
 
 We record each list of properties as a predicate (`IsSpatialCutoff`, `IsMollifier`,
 `IsTimeMollifier`) and make one concrete choice satisfying it (`sigmaCut`, `rho`, `rhoT`, built
 from Mathlib's `ContDiffBump`; `kappa` is Mathlib's `Real.smoothTransition`). Lemmas that hold
 for every such choice should be stated for the predicate; the concrete objects are the ones
 that statements mention when the manuscript's formula involves the fixed choice (e.g.
-`‖∇ς‖_{L^∞}` in eq:tail, `03_compactness.tex:588-592`).
+`‖∇ς‖_{L^∞}` in eq:tail, Part I Lemma 3.5 (`lem:renorm-all-t`) and its proof).
 
 The class `Lip₀` is `Equimeas.IsLipO` (`Defs/Infra/Equimeasurable.lean`); the renormalizations of
 `def:weak` are `IsRenormalization` (statement layer).
@@ -45,7 +45,7 @@ namespace NonUniqueEuler.Weak
 
 /-! ### The spatial cutoff `ς` -/
 
-/-- The properties of the spatial cutoff `ς` of `03_compactness.tex:24-26`: `ς ∈ C_c^∞(B₂)`,
+/-- The properties of the spatial cutoff `ς` of Part I §3 (`sec:compact`), auxiliary-function conventions: `ς ∈ C_c^∞(B₂)`,
 `0 ≤ ς ≤ 1`, and `ς = 1` on `B₁`. -/
 structure IsSpatialCutoff (ς : ℂ → ℝ) : Prop where
   contDiff : ContDiff ℝ ((⊤ : ℕ∞) : WithTop ℕ∞) ς
@@ -59,11 +59,11 @@ structure IsSpatialCutoff (ς : ℂ → ℝ) : Prop where
 def sigmaBump : ContDiffBump (0 : ℂ) :=
   ⟨1, 3 / 2, one_pos, by norm_num⟩
 
-/-- The fixed spatial cutoff `ς` (`03_compactness.tex:24-26`). -/
+/-- The fixed spatial cutoff `ς` (Part I §3 (`sec:compact`), auxiliary-function conventions). -/
 def sigmaCut : ℂ → ℝ :=
   ⇑sigmaBump
 
-/-- The rescaled cutoff `ς_R = ς(·/R)` (`03_compactness.tex:26`). -/
+/-- The rescaled cutoff `ς_R = ς(·/R)` (Part I §3 (`sec:compact`), auxiliary-function conventions). -/
 def sigmaCutR (R : ℝ) (x : ℂ) : ℝ :=
   sigmaCut ((R : ℂ)⁻¹ * x)
 
@@ -113,7 +113,7 @@ theorem hasCompactSupport_sigmaCutR {R : ℝ} (hR : 0 < R) : HasCompactSupport (
 
 /-! ### The spatial mollifier `ρ` -/
 
-/-- The properties of the spatial mollifier `ρ` of `03_compactness.tex:27-30`:
+/-- The properties of the spatial mollifier `ρ` of Part I §3 (`sec:compact`), auxiliary-function conventions:
 `ρ ∈ C_c^∞(B₁)`, `ρ ≥ 0`, `∫ρ = 1`. -/
 structure IsMollifier (ρ : ℂ → ℝ) : Prop where
   contDiff : ContDiff ℝ ((⊤ : ℕ∞) : WithTop ℕ∞) ρ
@@ -126,7 +126,7 @@ structure IsMollifier (ρ : ℂ → ℝ) : Prop where
 def rhoBump : ContDiffBump (0 : ℂ) :=
   ⟨1 / 4, 1 / 2, by norm_num, by norm_num⟩
 
-/-- The fixed spatial mollifier `ρ` (`03_compactness.tex:27-28`), the normalized bump. -/
+/-- The fixed spatial mollifier `ρ` (Part I §3 (`sec:compact`), auxiliary-function conventions), the normalized bump. -/
 def rho : ℂ → ℝ :=
   rhoBump.normed volume
 
@@ -139,19 +139,19 @@ theorem isMollifier_rho : IsMollifier rho where
   nonneg := rhoBump.nonneg_normed
   integral_eq_one := rhoBump.integral_normed
 
-/-- The rescaled kernel `ρ_ε = ε⁻² ρ(·/ε)` (`03_compactness.tex:28-29`; the plane has
+/-- The rescaled kernel `ρ_ε = ε⁻² ρ(·/ε)` (Part I §3 (`sec:compact`), auxiliary-function conventions; the plane has
 dimension 2). It is used for any kernel `ρ`, in particular for the mollifier `rho` and for the
 kernels `ψ^{ij}(z) = z_j ∂_i ρ(z)` of the proof of `lem:commutator`. -/
 def scaled (ρ : ℂ → ℝ) (ε : ℝ) (x : ℂ) : ℝ :=
   (ε ^ 2)⁻¹ * ρ ((ε : ℂ)⁻¹ * x)
 
-/-- The spatial convolution `g ⋆ ρ_ε (x) = ∫ g(y) ρ_ε(x - y) dy` (`03_compactness.tex:29-30`). -/
+/-- The spatial convolution `g ⋆ ρ_ε (x) = ∫ g(y) ρ_ε(x - y) dy` (Part I §3 (`sec:compact`), auxiliary-function conventions). -/
 def mollify (ρ : ℂ → ℝ) (ε : ℝ) (g : ℂ → ℝ) (x : ℂ) : ℝ :=
   ∫ y, g y * scaled ρ ε (x - y)
 
 /-! ### The time mollifier `ρ^t` -/
 
-/-- The properties of the time mollifier `ρ^t` of `03_compactness.tex:30-32`:
+/-- The properties of the time mollifier `ρ^t` of Part I §3 (`sec:compact`), auxiliary-function conventions:
 `ρ^t ∈ C_c^∞((-1,1))`, `ρ^t ≥ 0`, `∫ρ^t = 1`. -/
 structure IsTimeMollifier (ρ : ℝ → ℝ) : Prop where
   contDiff : ContDiff ℝ ((⊤ : ℕ∞) : WithTop ℕ∞) ρ
@@ -164,7 +164,7 @@ structure IsTimeMollifier (ρ : ℝ → ℝ) : Prop where
 def rhoTBump : ContDiffBump (0 : ℝ) :=
   ⟨1 / 4, 1 / 2, by norm_num, by norm_num⟩
 
-/-- The fixed time mollifier `ρ^t` (`03_compactness.tex:30-31`). -/
+/-- The fixed time mollifier `ρ^t` (Part I §3 (`sec:compact`), auxiliary-function conventions). -/
 def rhoT : ℝ → ℝ :=
   rhoTBump.normed volume
 
@@ -179,13 +179,13 @@ theorem isTimeMollifier_rhoT : IsTimeMollifier rhoT where
   nonneg := rhoTBump.nonneg_normed
   integral_eq_one := rhoTBump.integral_normed
 
-/-- The rescaled time kernel `ρ^t_δ = δ⁻¹ ρ^t(·/δ)` (`03_compactness.tex:32-33`). -/
+/-- The rescaled time kernel `ρ^t_δ = δ⁻¹ ρ^t(·/δ)` (Part I §3 (`sec:compact`), auxiliary-function conventions). -/
 def scaledT (ρ : ℝ → ℝ) (δ : ℝ) (t : ℝ) : ℝ :=
   δ⁻¹ * ρ (δ⁻¹ * t)
 
 /-! ### The smooth step `ϰ` -/
 
-/-- The smooth step `ϰ` (`03_compactness.tex:33-35`): `C^∞`, nondecreasing, `0` on `(-∞,0]`,
+/-- The smooth step `ϰ` (Part I §3 (`sec:compact`), auxiliary-function conventions): `C^∞`, nondecreasing, `0` on `(-∞,0]`,
 `1` on `[1,∞)`. We take Mathlib's `Real.smoothTransition`. -/
 def kappa : ℝ → ℝ :=
   Real.smoothTransition
@@ -210,14 +210,14 @@ theorem kappa_le_one (t : ℝ) : kappa t ≤ 1 :=
 
 /-! ### Truncations -/
 
-/-- The truncation `T_k(s) = max(-k, min(k, s))` (`03_compactness.tex:35-36`). -/
+/-- The truncation `T_k(s) = max(-k, min(k, s))`, retained from the legacy proof decomposition. -/
 def trunc (k s : ℝ) : ℝ :=
   max (-k) (min k s)
 
 theorem lipschitzWith_trunc (k : ℝ) : LipschitzWith 1 (trunc k) :=
   (LipschitzWith.id.const_min k).const_max (-k)
 
-/-- `T_k ∈ Lip₀` for `k ≥ 0` (`03_compactness.tex:36`). -/
+/-- The retained Lean truncation satisfies `T_k ∈ Lip₀` for `k ≥ 0`. -/
 theorem isLipO_trunc {k : ℝ} (hk : 0 ≤ k) : Equimeas.IsLipO (trunc k) :=
   ⟨⟨1, lipschitzWith_trunc k⟩, by simp [trunc, hk]⟩
 
@@ -238,14 +238,14 @@ theorem abs_trunc_le_abs {k : ℝ} (hk : 0 ≤ k) (s : ℝ) : |trunc k s| ≤ |s
 
 /-! ### Time test functions -/
 
-/-- The time test class `C_c^∞((-∞, T))` of `lem:dbr` (`03_compactness.tex:68-76`). -/
+/-- The time test class `C_c^∞((-∞, T))` of `lem:dbr` (Part I Lemma 3.1 (`lem:dbr`)). -/
 structure IsTimeTestFn (T : ℝ) (α : ℝ → ℝ) : Prop where
   contDiff : ContDiff ℝ ((⊤ : ℕ∞) : WithTop ℕ∞) α
   hasCompactSupport : HasCompactSupport α
   support_lt : ∀ t ∈ tsupport α, t < T
 
 /-- For `α ∈ C_c^∞((-∞,T))` and `ψ ∈ C_c^∞(ℝ²)`, the function `α(t)ψ(x)` lies in `𝒟_T`
-(`03_compactness.tex:162-163`). -/
+(Part I Lemma 3.2 (`lem:weak-cont`)). -/
 theorem isTestFunction_mul {T : ℝ} {α : ℝ → ℝ} {ψ : ℂ → ℝ} (hα : IsTimeTestFn T α)
     (hψ : ContDiff ℝ ((⊤ : ℕ∞) : WithTop ℕ∞) ψ) (hψc : HasCompactSupport ψ) :
     IsTestFunction T (fun p : ℝ × ℂ => α p.1 * ψ p.2) := by

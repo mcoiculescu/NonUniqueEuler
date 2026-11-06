@@ -5,7 +5,7 @@ import NonUniqueEuler.Defs.Infra.Sobolev
 # Helper for `P/Sec2/HkCalculus/TransportEnergy`: Hölder-type bounds
 
 `L^∞ × L² × L²` bounds for the integrals in the density argument of
-`lem:Hk-calculus`(1), second claim (`02_prelim.tex:735-745`):
+`lem:Hk-calculus`(1), second claim (Part II, Lemma 1.10 (`lem:Hk-calculus`)):
 * `ae_norm_le_toReal_eLpNorm_top`: `|U(x)| ≤ ‖U‖_{L^∞}` a.e.;
 * `integral_norm_mul_norm_le_l2`: `∫ |f| |h| ≤ ‖f‖₂ ‖h‖₂` (Cauchy–Schwarz);
 * `norm_integral_le_of_ae_le`: if `|F| ≤ M |f| |h|` a.e. with `f, h ∈ L²`, then `F` is integrable

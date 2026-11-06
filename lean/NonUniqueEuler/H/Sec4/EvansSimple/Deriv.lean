@@ -9,10 +9,10 @@ import Mathlib.MeasureTheory.Function.JacobianOneDim
 import Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic
 
 /-!
-# Helper for `thm:evans-simple`: the two expressions of `J`, and part (1)
+# Helper for Part I Theorem 4.8 (`thm:evans-simple`): the two expressions of `J`, and part (1)
 
 Helper of `P/Sec4/EvansSimple.lean` (fully proved). Namespace `NonUniqueEuler.EvansSimpleAux`.
-Manuscript `04_ring.tex:455-457` (the two expressions of `J`) and `:479-497` (part (1)).
+Part I Theorem 4.8 (`thm:evans-simple`): the two expressions of `J` and part (1).
 
 * `J_eq_integral`: `J = iℓ ∫_ℝ f_ξ ψ_*² / (λ_* + iℓΩ(e^ξ))² dξ` (`r = e^ξ`, `r dr = e^{2ξ} dξ`,
   `e^{2ξ} g_* = iℓ f_ξ M_* ψ_*`; the substitution holds without integrability assumptions);
@@ -41,7 +41,7 @@ theorem denom_ne_zero' (S : SectorSetting) {z : ℂ} (hz : 0 < z.re) (ℓ : ℕ)
   simp at this
   linarith
 
-/-- **The two expressions of `J`** (`04_ring.tex:455-457`, `r = e^ξ`). -/
+/-- **The two expressions of `J`** (Part I Theorem 4.8 (`thm:evans-simple`), `r = e^ξ`). -/
 theorem J_eq_integral (S : SectorSetting) (ℓ : ℕ) (z : ℂ) (G : ℝ) :
     S.J ℓ z G = Complex.I * (ℓ : ℂ) *
       ∫ ξ : ℝ, ((S.fxi ξ : ℝ) : ℂ) * S.psi ℓ z G ξ ^ 2 /
@@ -92,7 +92,7 @@ theorem hasDerivAt_Vric (S : SectorSetting) (ℓ : ℕ) {z : ℂ} (hz : 0 < z.re
   · ring
   · exact Eventually.of_forall fun w => by simp only [Vric, div_eq_mul_inv, Pi.inv_apply]
 
-/-- **`thm:evans-simple`(1)** (`04_ring.tex:479-497`). -/
+/-- **Part I Theorem 4.8(1) (`thm:evans-simple`)**. -/
 theorem evans_deriv_identity (S : SectorSetting) (hS : S.Valid) (ℓ : ℕ) (hℓ : 1 ≤ ℓ) (z : ℂ)
     (hz : 0 < z.re) (G : ℝ) (hE : S.evans ℓ z G = 0) :
     S.psi ℓ z G S.ξ₂ ≠ 0 ∧

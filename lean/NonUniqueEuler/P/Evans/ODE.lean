@@ -8,7 +8,7 @@ import Mathlib.Analysis.Asymptotics.Lemmas
 /-!
 # Proof: the Evans ODE (existence, uniqueness, regularity)
 
-Proof of `NonUniqueEuler/I/Evans/ODE.lean` (`def:evans` and `lem:evans-basic`, `04_ring.tex`).
+Proof of `NonUniqueEuler/I/Evans/ODE.lean` (Part I, Definition 4.4, `def:evans`, and Lemma 4.6, `lem:evans-basic`).
 Same declarations, statements copied verbatim.
 
 Method.
@@ -22,10 +22,10 @@ Method.
   solution `φ` of the variational equation `φ'' = V φ + (∂_λ V) ψ`, `φ(ξ_L) = φ'(ξ_L) = 0`, and
   bound the remainder by `C |λ - λ₀|²`.
 
-Deviation from the manuscript: the manuscript states
-`lem:evans-basic`(1) without proof details (holomorphy in `λ` of solutions of ODEs with
-holomorphic coefficients). We prove holomorphy directly by the variational-equation estimate
-above instead of an argument through Picard iterates.
+Proof correspondence: the current proof of Part I, Lemma 4.6(1) (`lem:evans-basic`)
+establishes holomorphy in `λ` by locally uniform convergence of Picard iterates.
+Lean instead uses the variational-equation estimate above. Both arguments address
+holomorphy for solutions with holomorphic coefficients.
 -/
 
 namespace NonUniqueEuler
@@ -127,7 +127,7 @@ theorem contDiff_riccatiCoeff (χ : ℝ → ℝ) (hχ : IsAdmissibleCutoff χ) (
   contDiff_riccatiCoeff' hχ ℓ hz G
 
 /-- A global smooth solution of `ψ'' = V ψ` on `ℝ`, `ψ(ξ_L) = 1`, `ψ'(ξ_L) = ℓ`, and the Evans
-function is read off from it (`def:evans` solves the equation on all of `ℝ`). -/
+function is read off from it (Part I, Definition 4.4, `def:evans`, solves the equation on all of `ℝ`). -/
 theorem exists_global_evansSolution (χ : ℝ → ℝ) (hχ : IsAdmissibleCutoff χ) (ℓ : ℕ) (z : ℂ)
     (hz : 0 < z.re) (G : ℝ) :
     ∃ ψ : ℝ → ℂ, ContDiff ℝ ∞ ψ ∧
@@ -312,7 +312,7 @@ theorem evans_hasDerivAt {χ : ℝ → ℝ} (hχ : IsAdmissibleCutoff χ) (ℓ :
 
 end EvansODE
 
-/-- `lem:evans-basic`(1): `E_ℓ(·; G)` is holomorphic on `{Re λ > 0}`. -/
+/-- Part I, Lemma 4.6(1) (`lem:evans-basic`): `E_ℓ(·; G)` is holomorphic on `{Re λ > 0}`. -/
 theorem evans_differentiableOn (χ : ℝ → ℝ) (hχ : IsAdmissibleCutoff χ) (ℓ : ℕ) (G : ℝ) :
     DifferentiableOn ℂ (fun z => evans χ ℓ z G) {z : ℂ | 0 < z.re} := by
   intro z hz

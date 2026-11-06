@@ -2,16 +2,24 @@ import NonUniqueEuler.Defs.Sec9.KickTrue
 import Mathlib.Analysis.SpecialFunctions.Log.PosLog
 
 /-!
-# Section 9.5: readout and time — `lem:readout`, `lem:time`, `lem:quiet-time` (definitions)
+# Readout and time — `lem:readout` (historical), `lem:time`, `lem:quiet-time` (definitions)
 
-Manuscript `09_relay.tex:1399-1554`.
+Current correspondence: the historical `lem:readout` is the moment calculation
+in the proof of Part II Proposition 1.2 (`prop:reduction`) in Section 8
+(`sec:bootstrap`). The time bounds remain Lemmas C.15–C.16 (`lem:time`,
+`lem:quiet-time`) in Appendix C.13 (`sec:proof-time`). There is no separately
+numbered readout lemma in the current manuscript.
 
-* `lem:readout` (`:1409-1423`): the readout cutoffs `χ_out ∈ C_c^∞((a/4,3))`, `0 ≤ χ_out ≤ 1`,
+Definitions used in `11_bootstrap.tex` and `C_relay_details.tex`.
+
+* `lem:readout` (historical) (`prop:reduction`, Part II Proposition 1.2, readout proof in Section 8): the readout cutoffs `χ_out ∈ C_c^∞((a/4,3))`, `0 ≤ χ_out ≤ 1`,
   `χ_out = 1` on `[a/2,2]` (`Relay.IsReadoutCutoff`), the test function
   `Ψ₁(x) = χ_out(|x|) x̄^m` (`Relay.readoutTest χ_out`), a concrete readout cutoff `Relay.chiOut`
   (a `ContDiffBump`, `isReadoutCutoff_chiOut`), and `c₀ = ½ A₁ c_out δ₀` (`S.c0`);
-* `lem:time` (`:1465-1474`): `T_z` (`S.Tz`) and `T_*` (`S.Tstar`);
-* `lem:quiet-time` (`:1496-1509`): `τ̄♯_j` (`S.tauBarSh j`) and `C_τ` (`S.Ctau`).
+* `lem:time` (Part II Lemma C.15): `T_z` (`S.Tz`) and `T_*` (`S.Tstar`);
+* `lem:quiet-time` (Part II Lemma C.16): `τ̄♯_j` (`S.tauBarSh j`).
+* (P3) of Definition C.2 (`def:P0-P4`): Lean chooses a fixed `C_τ` (`S.Ctau`)
+  satisfying the manuscript's lower bound `C_τ ≥ max{3,15/σ'}`.
 
 Here `m = 3`. All lemmas here are fully proved.
 -/
@@ -26,9 +34,9 @@ namespace Relay
 
 open RingData Datum
 
-/-! ### `lem:readout` (`09_relay.tex:1409-1423`) -/
+/-! ### `lem:readout` (historical) (`prop:reduction`, Part II Proposition 1.2, readout proof in Section 8) -/
 
-/-- **A readout cutoff** (`lem:readout`, `09_relay.tex:1411-1412`): `χ_out ∈ C_c^∞((a/4, 3))` with
+/-- **A readout cutoff** (`lem:readout` (historical), `prop:reduction`, Part II Proposition 1.2, readout proof in Section 8): `χ_out ∈ C_c^∞((a/4, 3))` with
 `0 ≤ χ_out ≤ 1` and `χ_out = 1` on `[a/2, 2]` (smoothness `C^∞`, D15; compact support in the open
 interval is `tsupport χ_out ⊆ (a/4, 3)`, `IsReadoutCutoff.hasCompactSupport`). -/
 structure IsReadoutCutoff (χo : ℝ → ℝ) : Prop where
@@ -38,8 +46,8 @@ structure IsReadoutCutoff (χo : ℝ → ℝ) : Prop where
   le_one : ∀ r, χo r ≤ 1
   eq_one : ∀ r ∈ Icc (a / 2) 2, χo r = 1
 
-/-- The readout test function `Ψ₁(x) = χ_out(|x|) x̄^m`, `m = 3` (`lem:readout`,
-`09_relay.tex:1413`); the readout is `∫ ω^{(n)}(T₁) Ψ₁` (`‖∫ x, (ω x : ℂ) * readoutTest χo x‖`). -/
+/-- The readout test function `Ψ₁(x) = χ_out(|x|) x̄^m`, `m = 3` (`lem:readout` (historical),
+`prop:reduction`, Part II Proposition 1.2, readout proof in Section 8); the readout is `∫ ω^{(n)}(T₁) Ψ₁` (`‖∫ x, (ω x : ℂ) * readoutTest χo x‖`). -/
 def readoutTest (χo : ℝ → ℝ) (x : ℂ) : ℂ := ((χo ‖x‖ : ℝ) : ℂ) * conj x ^ 3
 
 theorem zero_lt_a : 0 < a := Real.exp_pos _
@@ -58,7 +66,7 @@ def chiOutBump : ContDiffBump (1 + a / 4 : ℝ) where
   rIn_lt_rOut := by linarith [zero_lt_a]
 
 /-- A concrete readout cutoff (`IsReadoutCutoff chiOut`, `isReadoutCutoff_chiOut`); the manuscript
-fixes some `χ_out` (`09_relay.tex:1411`), and every statement holds for every readout cutoff. -/
+fixes some `χ_out` (`prop:reduction`, Part II Proposition 1.2, readout proof in Section 8), and every statement holds for every readout cutoff. -/
 def chiOut : ℝ → ℝ := ⇑chiOutBump
 
 theorem IsReadoutCutoff.hasCompactSupport {χo : ℝ → ℝ} (h : IsReadoutCutoff χo) :
@@ -91,30 +99,32 @@ namespace Standing
 
 variable (S : Standing)
 
-/-- `c₀ = ½ A₁ c_out δ₀` (`lem:readout`, `09_relay.tex:1421`). -/
+/-- `c₀ = ½ A₁ c_out δ₀` (`lem:readout` (historical), `prop:reduction`, Part II Proposition 1.2, readout proof in Section 8). -/
 def c0 : ℝ := 1 / 2 * S.P.A₁ * Eig.cout S.P.χ * S.P.δ₀
 
-/-! ### `lem:time` (`09_relay.tex:1465-1474`) -/
+/-! ### `lem:time` (Part II Lemma C.15) -/
 
-/-- `T_z = T_pin + 1 + σ'⁻¹ log₊(δ₀/K_lo)` (`lem:time`, `09_relay.tex:1467`). -/
+/-- `T_z = T_pin + 1 + σ'⁻¹ log₊(δ₀/K_lo)` (`lem:time`, Part II Lemma C.15). -/
 def Tz : ℝ := S.P.Tpin + 1 + S.σ'⁻¹ * Real.posLog (S.P.δ₀ / S.Klo)
 
 /-- `T_* = A₁⁻¹[μ/(μ-1)(T_z + ((m+2)/σ') log(1/s̄)) + ((m+2) log(2μ)/σ') μ²/(μ-1)² + 1
- + σ'⁻¹ log(2δ₀/κ_seed)]` (`lem:time`, `09_relay.tex:1468-1471`); it does not involve `n`. -/
+ + σ'⁻¹ log(2δ₀/κ_seed)]` (`lem:time`, Part II Lemma C.15); it does not involve `n`. -/
 def Tstar : ℝ :=
   S.P.A₁⁻¹ * (S.P.μ / (S.P.μ - 1) * (S.Tz + (3 + 2) / S.σ' * Real.log (1 / S.P.sbar)) +
     (3 + 2) * Real.log (2 * S.P.μ) / S.σ' * (S.P.μ ^ 2 / (S.P.μ - 1) ^ 2) + 1 +
     1 / S.σ' * Real.log (2 * S.P.δ₀ / S.P.κs))
 
-/-! ### `lem:quiet-time` (`09_relay.tex:1496-1509`) -/
+/-! ### `lem:quiet-time` (Part II Lemma C.16) -/
 
 /-- `τ̄♯_j = (3T_z + (2m+5)σ'⁻¹ log(1/s_j))/(μ-1) + (m+2)μ log(2μ)/(σ'(μ-1)²)`
-(`lem:quiet-time`, `09_relay.tex:1500-1501`). -/
+(`lem:quiet-time`, Part II Lemma C.16). -/
 def tauBarSh (j : ℕ) : ℝ :=
   (3 * S.Tz + (2 * 3 + 5) * S.σ'⁻¹ * Real.log (1 / S.P.s j)) / (S.P.μ - 1) +
     (3 + 2) * S.P.μ * Real.log (2 * S.P.μ) / (S.σ' * (S.P.μ - 1) ^ 2)
 
-/-- `C_τ = max{3, (2m+5)/σ', 3(m+2)/σ'}` (`lem:quiet-time`, `09_relay.tex:1508`). -/
+/-- Lean's fixed `C_τ = max{3, (2m+5)/σ', 3(m+2)/σ'}`, with `m = 3`.
+It realizes (P3) of Part II Definition C.2 (`def:P0-P4`), which allows any
+`C_τ ≥ max{3,15/σ'}`. -/
 def Ctau : ℝ := max 3 (max ((2 * 3 + 5) / S.σ') (3 * (3 + 2) / S.σ'))
 
 /-! ### Basic lemmas (fully proved) -/

@@ -10,7 +10,7 @@ import Mathlib.Analysis.SpecialFunctions.ExpDeriv
 /-!
 # Proof: the exterior sector-`m` profile of the radial velocity `(K_BS * ν)·e_r`
 
-Proof of `I/Sec8/Coupling/RadialSector.lean` (`08_kick.tex:66-86`, proof of `lem:coupling`(1)).
+Proof of `I/Sec8/Coupling/RadialSector.lean` (Part II Lemma 5.1 (`lem:coupling`), proof of `lem:coupling`(1)).
 
 1. `ψ = logPotentialReal ν` is smooth on `U = {|z| > ρ}` and `Dψ(z)v = ⟨-i(K*ν)(z), v⟩` there
    (`I/Infra/Multipole/StreamFunction.lean`); hence `(K*ν)·e_r = -|z|⁻¹ Dψ(z)(iz)`
@@ -94,7 +94,7 @@ theorem integral_deriv_mul_exp {f f' : ℝ → ℝ} (hf : ∀ θ, HasDerivAt f (
 end RadialSectorAux
 
 open RadialSectorAux in
-/-- **The exterior sector-`m` profile of `(K_BS * ν)·e_r`** (`08_kick.tex:66-86`): for a real
+/-- **The exterior sector-`m` profile of `(K_BS * ν)·e_r`** (Part II Lemma 5.1 (`lem:coupling`)): for a real
 smooth `ν` vanishing outside `B_ρ`, `m ≥ 1` and `r > ρ`, the angular sector `m` of the radial
 velocity is `(i/2) pout_m[ν] r^{-m-1}`. -/
 theorem angularSector_radComp_velocity {ν : ℂ → ℝ}

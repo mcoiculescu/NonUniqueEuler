@@ -4,13 +4,13 @@ import NonUniqueEuler.I.Sec5.Active
 /-!
 # Proof of `cor:active-moment` (the sector-3 moment of an active ring)
 
-Proof of `NonUniqueEuler/I/Sec5/ActiveMoment.lean` (`05_single_ring.tex:1104-1122`).
+Proof of `NonUniqueEuler/I/Sec5/ActiveMoment.lean` (Part II Corollary 2.13).
 
 By the D11 packaging (constants as existentials), the conclusion `RingConfig.ActiveConcl` of
 `thm:active` already contains the bound of the corollary (its last conjunct), with the constant
 `C₃` chosen in `thm:active`. So the corollary is read off `activeConsts_spec (active …)`: apply
 the last field of `IsActiveConst` to `C₀`, the configuration and the hypotheses, and take the last
-conjunct of `ActiveConcl`. The manuscript's argument (`:1112-1122`) lives inside the proof of
+conjunct of `ActiveConcl`. The manuscript's argument (Part II Corollary 2.13) lives inside the proof of
 `active`.
 -/
 
@@ -24,7 +24,7 @@ namespace OneRing
 
 open RingData
 
-/-- **`cor:active-moment`** (`05_single_ring.tex:1104-1111`). Under the assumptions of
+/-- **`cor:active-moment`** (Part II Corollary 2.13). Under the assumptions of
 `thm:active` (with its constants `d_H = dH χ s σ'`, `C₃ = C3 χ s σ'`, `κ₀ = kappa0 χ s σ'`), put
 `q(u) = 2π pout_3[w(u)]`. Then for every `u ∈ [0, min(ū, T̂)]`,
 `|q(u) - 2π pout_*(G) c(u)e^{λu}| ≤ 2π C₃ â(u)[ρ̂(u) + â(u) + κ^{1/2} + η_b]`. -/

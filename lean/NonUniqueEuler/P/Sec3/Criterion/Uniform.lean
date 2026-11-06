@@ -9,7 +9,7 @@ import NonUniqueEuler.H.Sec3.Criterion.Uniform.Claim
 # Proof of `I/Sec3/Criterion/Uniform.lean`: `thm:criterion`(iv)
 
 Manuscript: proof of `thm:criterion`, paragraphs "We now prove (iv)" and "We prove the claim",
-`03_compactness.tex:1023-1056`.
+Part I Theorem 3.8 (`thm:criterion`) and its proof.
 
 Structure.
 1. Choose `T_j ∈ (T', T₀)`, `T_j > 0` (`ENNReal.lt_iff_exists_real_btwn`), the bound
@@ -38,7 +38,7 @@ open Weak
 
 -- `hren` is part of the interface statement; the proof does not need it.
 set_option linter.unusedVariables false in
-/-- **`thm:criterion`(iv)** (`03_compactness.tex:1023-1056`): for a `2`-admissible sequence
+/-- **`thm:criterion`(iv)** (Part I Theorem 3.8 (`thm:criterion`) and its proof): for a `2`-admissible sequence
 (weakly continuous representatives) converging uniformly weakly in `L²` on every `[0, T']`,
 `T' < T₀`, to a renormalized weak solution `ω_∞` on `[0, T₀)` with datum `f` that is weakly
 continuous, conserves the `L^p` norms of `f` and is continuous into `L^q`, `q ∈ [1, 2]`, the

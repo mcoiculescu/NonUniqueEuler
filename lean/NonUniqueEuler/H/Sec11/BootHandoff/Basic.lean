@@ -7,12 +7,14 @@ import NonUniqueEuler.I.Sec5.ActiveT1
 /-!
 # Helper for `P/Sec11/BootHandoff.lean`: elementary facts
 
-Helper of the proof of Step 3 of `prop:bootstrap` (`11_bootstrap.tex:298-388`): positivity of
+Helper of the proof of Lean step 3 of the historical bootstrap decomposition (Part II Appendix C.16
+(`sec:bootstrap-handoff-checks`)): positivity of
 `A_k`, `σ_k`, `T̂_k`; the order of the clock times around `t♯_k` (`lem:clock`(1)); rings are not
 debris before their activation time; `s_k ≤ s̄`; monotonicity of `‖·‖_{H^k}` in `k`; `𝒩₋_k ⊂ N_k`;
 `maj ≥ 0`; the signs of `θ_j`, `η_{b,k}`; `η_{b,k} ≤ η_b`; monotonicity of the conclusions of
-`thm:active` in `η_b` ("the bounds increase with `η_b`", `11_bootstrap.tex:316-318`); and
-`ρ̂_k(0) = C₀` (`11_bootstrap.tex:383`). All proved.
+`thm:active` in `η_b` ("the bounds increase with `η_b` ", Part II Appendix C.16
+(`sec:bootstrap-handoff-checks`)); and
+`ρ̂_k(0) = C₀` (Part II Appendix C.16 (`sec:bootstrap-handoff-checks`)). All proved.
 -/
 
 noncomputable section
@@ -210,7 +212,8 @@ theorem etabK_le_etab (hpos : S.ConstPos) (hS : S.Holds) (k : ℕ) :
     exact pow_le_pow_left₀ (s_pos hS _).le (s_le_sbar hS _) _
   · exact hetab
 
-/-- **The conclusions of `thm:active` increase with `η_b`** (`11_bootstrap.tex:316-318`). -/
+/-- **The conclusions of `thm:active` increase with `η_b`** (Part II Appendix C.16
+(`sec:bootstrap-handoff-checks`)). -/
 theorem activeConclAt_mono {C₀ η η' : ℝ} {k : ℕ} {u : ℝ} (hη : η ≤ η') (hC2 : 0 ≤ S.C2)
     (hC3 : 0 ≤ S.C3) (h : S.ActiveConclAt C₀ η k u) : S.ActiveConclAt C₀ η' k u where
   radial := h.radial
@@ -226,7 +229,8 @@ theorem activeConclAt_mono {C₀ η η' : ℝ} {k : ℕ} {u : ℝ} (hη : η ≤
       (mul_nonneg (mul_nonneg (by positivity) hC3) (S.ahatK_nonneg k u))
     linarith
 
-/-- **`ρ̂_k(0) = C₀`** (`11_bootstrap.tex:383`): `t₁(C₀, G_k) > 0` since `2^{p/2}C₀ > 1`, so
+/-- **`ρ̂_k(0) = C₀`** (Part II Appendix C.16 (`sec:bootstrap-handoff-checks`)): `t₁(C₀, G_k) > 0`
+since `2^{p/2}C₀ > 1`, so
 `ρ̂_k(0) = C₀⟨0⟩^p = C₀`. -/
 theorem rhoHatK_zero (hS : S.Holds) {k : ℕ} (hk : k ∈ Finset.Icc 1 S.P.n) :
     S.rhoHatK S.C0 k 0 = S.C0 := by

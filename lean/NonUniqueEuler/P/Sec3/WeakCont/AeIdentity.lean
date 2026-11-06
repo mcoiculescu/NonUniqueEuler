@@ -11,7 +11,7 @@ import Mathlib.MeasureTheory.Function.LpSeminorm.CompareExp
 /-!
 # Proof of `I/Sec3/WeakCont/AeIdentity.lean`: the a.e. identity `a_ψ = A_ψ`
 
-Manuscript: proof of `lem:weak-cont`, second paragraph (`03_compactness.tex:155-170`), `b = 2`.
+Manuscript: proof of `lem:weak-cont`, second paragraph (Part I Lemma 3.2 (`lem:weak-cont`)), `b = 2`.
 
 * `integral_deriv_mul_primitive`: Fubini on `(0,T)²` with the integrand `1_{s<t} α'(t) c(s)`,
   then `∫_s^T α' = -α(s)` (`α(T) = 0`).
@@ -80,7 +80,7 @@ theorem spaceDeriv_mul (α : ℝ → ℝ) {ψ : ℂ → ℝ} (hψ : Differentiab
 end AeIdentityAux
 
 open AeIdentityAux in
-/-- Integration by parts against a primitive (`03_compactness.tex:164-166`): for
+/-- Integration by parts against a primitive (Part I Lemma 3.2 (`lem:weak-cont`)): for
 `α ∈ C_c^∞((-∞,T))` and `c ∈ L¹(0,T)`, `∫_0^T α'(t) (∫_0^t c) dt = -∫_0^T α c`. -/
 theorem integral_deriv_mul_primitive {T : ℝ} {α c : ℝ → ℝ} (hα : IsTimeTestFn T α)
     (hc : IntegrableOn c (Ioo 0 T)) :
@@ -146,7 +146,7 @@ theorem integral_deriv_mul_primitive {T : ℝ} {α c : ℝ → ℝ} (hα : IsTim
     _ = -∫ t in Ioo 0 T, α t * c t := integral_neg _
 
 open AeIdentityAux in
-/-- The a.e. identity of `lem:weak-cont` (`03_compactness.tex:155-170`, `b = 2`): for
+/-- The a.e. identity of `lem:weak-cont` (Part I Lemma 3.2 (`lem:weak-cont`), `b = 2`): for
 `ψ ∈ C_c^∞`, `∫ u(t) ψ = ∫ u₀ ψ + ∫_0^t ∫ u w·∇ψ` for a.e. `t ∈ (0,T)`. -/
 theorem ae_integral_mul_eq {T : ℝ} (hT : 0 < T) {u : ℝ → ℂ → ℝ} {w : ℝ → ℂ → ℂ}
     {u₀ : ℂ → ℝ} (hw : ∀ R : ℝ, 0 < R → Prelim.MemLinfLp (Ioo 0 T) (ball (0 : ℂ) R) 2 w)

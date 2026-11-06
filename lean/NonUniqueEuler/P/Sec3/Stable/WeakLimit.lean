@@ -4,9 +4,9 @@ import NonUniqueEuler.H.Sec3.Stable.WeakLimit.Limit
 import NonUniqueEuler.H.Sec3.Stable.WeakLimit.Flux
 
 /-!
-# Proof of `I/Sec3/Stable/WeakLimit.lean`: `prop:stable`, step 1a
+# Proof of `I/Sec3/Stable/WeakLimit.lean`: legacy `prop:stable`, step 1a
 
-Manuscript: proof of `prop:stable`, second and third paragraphs (`03_compactness.tex:739-785`).
+Legacy proof decomposition: `prop:stable`, second and third paragraphs (related current criterion proof: Part I Theorem 3.8 (`thm:criterion`)).
 
 Helpers (`H/Sec3/Stable/WeakLimit/*`, namespace `NonUniqueEuler.Compact.WeakLimitAux`):
 * `Basic`: test functions, `Lip₀` (`isLipO_sq`: `β² ∈ Lip₀`), Tonelli on `I × Ω`;
@@ -31,7 +31,7 @@ namespace NonUniqueEuler.Compact
 
 open Weak
 
-/-- **`prop:stable`, step 1a** (`03_compactness.tex:739-785`): for bounded `β ∈ Lip₀`, along a
+/-- **legacy `prop:stable`, step 1a** (retained legacy stability step): for bounded `β ∈ Lip₀`, along a
 subsequence, `β(ωₙ)` and `β(ωₙ)²` converge weakly in `L²((0,T) × ℝ²)` to `ū`, `z̄`, which are
 bounded (`|ū| ≤ B`), lie in `L^∞(0,T; L¹ ∩ L²)`, have integrable fluxes `ū v`, `z̄ v`, and satisfy
 (te) on `[0,T)` with field `v = K ∗ ω` and data `β(g)`, `β(g)²`. -/

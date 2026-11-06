@@ -7,7 +7,7 @@ import Mathlib.Tactic.Positivity
 # Helpers for `lem:velocity`: the exponents `r_p`, `s_p`
 
 Helper file of `P/Sec2/Velocity.lean` (namespace `NonUniqueEuler.BS.VelH`):
-`02_prelim.tex:324-327`, `r_p = p'`, `s_p = p/(2p-2)` for `p ≤ 2`, `r_p = p`, `s_p = 1` for `p > 2`.
+Part I, Lemma 2.2 (`lem:velocity`), `r_p = p'`, `s_p = p/(2p-2)` for `p ≤ 2`, `r_p = p`, `s_p = 1` for `p > 2`.
 -/
 
 namespace NonUniqueEuler.BS

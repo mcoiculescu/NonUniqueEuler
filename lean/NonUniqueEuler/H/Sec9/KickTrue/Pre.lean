@@ -5,10 +5,10 @@ import NonUniqueEuler.H.Sec9.KickTrue.Setup
 # Helpers for `P/Sec9/KickTrue`: hypothesis (Kick4) of `prop:kick`
 
 Helper file of `P/Sec9/KickTrue.lean` (`lem:kicktrue`, steps (Q2), (Kick4),
-`09_relay.tex:1373-1397`), with `Q_pre = |q_{k+1}|`:
+`lem:kicktrue`, Part II Lemma C.14), with `Q_pre = |q_{k+1}|`:
 * `qKick_shift`: `q_{k+1}(v + τ₀) = q_{k+1}(v/A_{k+1})` in kick time (`τ₀ = -t̄♯_{k+1} - T_g`);
 * `pre_bound` (`k+1 < n`): `Err_pre ≤ δ₀ C_qr(4μC_{L1}C_Q/(3σ(μ-1)) + 1)K₁(κ/δ₀)^{ϑ_μ}`
-  (`lem:prehistory` with `σ_o = x`, `maj_{k+1}(t̄♯_{k+1}) ≤ K₁κ`, `eq:Rew`);
+  (`lem:prehistory` (historical) with `σ_o = x`, `maj_{k+1}(t̄♯_{k+1}) ≤ K₁κ`, `eq:Rew`);
 * `pre_seeded` (the seeded level `k+1 = n`, generic): for `q` continuous on `[-T_g, 0]` and `B > 0`
   there is `T'_g ∈ [17T_g/24, T_g)` with `∫_{-T_g}^{-T'_g} e^{-xτ}|q| ≤ B`.
 Everything here is proved.
@@ -34,7 +34,7 @@ theorem maj_nonneg' (k : ℕ) {τ : ℝ} (hτ : 0 ≤ τ) : 0 ≤ S.maj k τ := 
   exact intervalIntegral.integral_nonneg hτ fun v _ =>
     mul_nonneg (Real.exp_pos _).le (S.P.eta_nonneg _ _ _)
 
-/-- In kick time, `q_{k+1}(v + τ₀) = q_{k+1}(v/A_{k+1})` (`09_relay.tex:1378-1380`). -/
+/-- In kick time, `q_{k+1}(v + τ₀) = q_{k+1}(v/A_{k+1})` (`lem:kicktrue`, Part II Lemma C.14). -/
 theorem qKick_shift (hS : S.Holds) {k : ℕ} (hk : 1 ≤ k) (hkn : k < S.P.n)
     (hc : S.P.ClockUpTo (k + 1)) (v : ℝ) :
     S.P.qKick k (v + S.P.tau0 k) = S.P.q (k + 1) (v / S.P.A (k + 1)) := by
@@ -47,7 +47,7 @@ theorem qKick_shift (hS : S.Holds) {k : ℕ} (hk : 1 ≤ k) (hkn : k < S.P.n)
   field_simp
   ring
 
-/-- **(Kick4) for `k + 1 < n`** (`09_relay.tex:1374-1386`): with `Q_pre = |q_{k+1}|`,
+/-- **(Kick4) for `k + 1 < n`** (`lem:kicktrue`, Part II Lemma C.14): with `Q_pre = |q_{k+1}|`,
 `Err_pre ≤ δ₀ · C_qr(4μC_{L1}C_Q/(3σ(μ-1)) + 1)K₁(κ/δ₀)^{ϑ_μ}`. -/
 theorem pre_bound (hS : S.Holds) (hDet : S.Det) {C₀ K₁ : ℝ} (hK₁ : 0 < K₁) {k : ℕ}
     (hk : 1 ≤ k) (hkn : k < S.P.n) (hc : S.P.ClockUpTo (k + 1)) (h : S.KickTrueHyp C₀ K₁ k)
@@ -86,7 +86,7 @@ theorem pre_bound (hS : S.Holds) (hDet : S.Det) {C₀ K₁ : ℝ} (hK₁ : 0 < K
     rw [show ta + S.P.tau0 k = -Tg by rw [hτ₀]; ring] at h1
     rw [← h1]
   rw [hsub]
-  -- the bound of `lem:prehistory`, then `maj ≤ K₁κ`, `1/(σ₊-x) ≤ 4μ/(3σ(μ-1))`
+  -- the bound of `lem:prehistory` (historical), then `maj ≤ K₁κ`, `1/(σ₊-x) ≤ 4μ/(3σ(μ-1))`
   have hinv := inv_le_of_rew hσ hμ hlow
   have hCL1 := Rings.CL1_nonneg
   have hCQ := CQ_nonneg S.P.χ S.sh S.NQ
@@ -121,7 +121,7 @@ theorem pre_bound (hS : S.Holds) (hDet : S.Det) {C₀ K₁ : ℝ} (hK₁ : 0 < K
         mul_le_mul_of_nonneg_left hke (by positivity)
     _ = S.P.δ₀ * (Cqr * Ap * K₁ * (κ / S.P.δ₀) ^ S.varthetaMu) := by ring
 
-/-- **(Kick4) at the seeded level** (`09_relay.tex:1391-1395`), generic: for `q` continuous on
+/-- **(Kick4) at the seeded level** (`lem:kicktrue`, Part II Lemma C.14), generic: for `q` continuous on
 `[-T_g, 0]`, `x ≥ 0`, `T_g > 0` and `B > 0`, there is `T'_g ∈ [17T_g/24, T_g)` with
 `∫_{-T_g}^{-T'_g} e^{-xτ}|q(τ)| dτ ≤ B`. -/
 theorem pre_seeded {q : ℝ → ℂ} {x Tg B : ℝ} (hx : 0 ≤ x) (hTg : 0 < Tg) (hB : 0 < B)

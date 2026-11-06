@@ -4,9 +4,9 @@ import Mathlib.Analysis.Complex.Basic
 import NonUniqueEuler.Defs.Infra.Sobolev
 
 /-!
-# Helper for `prop:iter-limit`, step 4: calculus of iterated directional derivatives
+# Helper for formal decomposition of `prop:iter-limit`, step 4: calculus of iterated directional derivatives
 
-Helper of `P/SmoothB/IterLimit/Equation.lean` (`B_global_smooth.tex:432-448`). For smooth
+Helper of `P/SmoothB/IterLimit/Equation.lean` (Part II, Proposition B.10 (`prop:iter-limit`)). For smooth
 functions on the plane:
 * smoothness of directional derivatives, also jointly in a time parameter
   (`contDiff_iterDirDeriv`, `contDiff_iterDirDeriv_uncurry`);

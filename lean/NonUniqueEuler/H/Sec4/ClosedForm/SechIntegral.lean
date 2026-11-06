@@ -3,9 +3,9 @@ import Mathlib.Analysis.SpecialFunctions.Gamma.Beta
 import Mathlib.MeasureTheory.Function.JacobianOneDim
 
 /-!
-# Helper for `lem:closed-form`: the `sech²` integral
+# Helper for Part I Lemma 4.11 (`lem:closed-form`): the `sech²` integral
 
-Proof of the identity used in `lem:closed-form`(2) (`04_ring.tex:812-818`):
+Proof of the identity used in Part I Lemma 4.11(2) (`lem:closed-form`):
 `∫_ℝ e^{αx} ½ sech²x dx = πα/(2 sin(πα/2))` for `0 < α < 2`, written with
 `H'(x) = 2H(x)H(-x) = ½ sech²x` (`AppA.hasDerivAt_H`):
 
@@ -126,7 +126,7 @@ theorem betaIntegral_eq {β : ℝ} (h0 : 0 < β) (h2 : β < 2) :
   push_cast
   ring
 
-/-- **The `sech²` integral** (`04_ring.tex:812-818`): for `0 < β < 2`,
+/-- **The `sech²` integral** (proof of Part I Lemma 4.11 (`lem:closed-form`)): for `0 < β < 2`,
 `∫_ℝ e^{βx} · 2H(x)H(-x) dx = (β/2) π / sin(π β/2)`. -/
 theorem integral_exp_mul_dH {β : ℝ} (h0 : 0 < β) (h2 : β < 2) :
     ∫ x, Real.exp (β * x) * (2 * (H x * H (-x))) = β / 2 * π / Real.sin (π * (β / 2)) := by

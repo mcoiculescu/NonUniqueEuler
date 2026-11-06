@@ -11,11 +11,13 @@ import NonUniqueEuler.I.Sec10.ConstantsPos
 import NonUniqueEuler.I.Infra.Sobolev.NormDeriv
 
 /-!
-# Proof: Step 0 of the proof of `prop:bootstrap` (the initial time) and `eq:boot-start`
+# Proof: Lean step 0 of the historical bootstrap decomposition (the initial time) and `eq:boot-start`
 
-Proof of `I/Sec11/BootStart.lean` (`11_bootstrap.tex:230-250`): same declaration, same statement.
+Proof of `I/Sec11/BootStart.lean` (Part II §8 (`prop:bootstrap`), “The seed” and `eq:boot-start`):
+the declaration is re-exported by its interface.
 
-* Ring `n` (`:231-243`): `t♯_n = 0` (`tsh_n`), `G_n = 0` (`G_n`), `S_n(0) = S_n ⊂ 𝒩₋_n`,
+* Ring `n` (Part II §8 (`prop:bootstrap`), “The seed” and `eq:boot-start`): `t♯_n = 0` (`tsh_n`),
+  `G_n = 0` (`G_n`), `S_n(0) = S_n ⊂ 𝒩₋_n`,
   `S_n(0) ⊂ N_n`, `w_n(0) = Φ^{κ_seed} - Φ`, `c_n(0) = ℓ_*(0)(Φ^{κ_seed} - Φ)` (`clock_start`,
   `regions_basic_one`); `κ_seed ≤ κ_L` (`Valid.kseed_le`), so `lem:seed` (`seed`, `seed_const`)
   gives `κ♯_n ∈ [½κ_seed, 2κ_seed]` and `‖w_n(0)‖_{H^{M-1}} ≤ C_seedκ_seed ≤ 2C_seedκ♯_n ≤ C₀κ♯_n`
@@ -23,7 +25,8 @@ Proof of `I/Sec11/BootStart.lean` (`11_bootstrap.tex:230-250`): same declaration
   is defined up to level `n`. `t₁(C₀, 0) > 0` (`tOneOf_spec`, since `σ' < σ`) gives
   `ρ̂_n(0) = C₀`; `s ≤ M - 1` (`MemH.normH_mono`), `C₂ ≥ 1` (`constants_pos`) give
   `eq:boot-start`.
-* Rings `j < n` (`:244-249`): `S_j(0) = S_j ⊂ {ar_j ≤ |x| ≤ r_j} ⊂ r_j𝒩₋`; `w_j(0) = 0`
+* Rings `j < n` (Part II §8 (`prop:bootstrap`), “The seed” and `eq:boot-start`):
+  `S_j(0) = S_j ⊂ {ar_j ≤ |x| ≤ r_j} ⊂ r_j𝒩₋`; `w_j(0) = 0`
   (`f_j = A_jΦ(·/r_j)` and `Φ_0⁻¹ = id`, `regions_basic_three`); `h_j` is defined at `0`:
   `D_{j+1}(0) ⊂ \bar B_{5r_{j+1}/4} ⊂ B_{ar_j/8}` and, for `i < j`,
   `S_i ⊂ {|x| ≥ ar_i} ⊂ ℝ² ∖ B_{6r_j}` (`r_{j+1} ≤ (a/32) r_j` by `eq:sk-small`, `sk_small`).
@@ -274,7 +277,8 @@ theorem not_activeAt_zero (S : Standing) (hS : S.Holds) {k : ℕ} (hk : 1 ≤ k)
 end BootStartAux
 
 open BootStartAux in
-/-- **Step 0 of the proof of `prop:bootstrap`** (`11_bootstrap.tex:230-250`), with `eq:boot-start`:
+/-- **Lean step 0 of the historical bootstrap decomposition** (Part II §8 (`prop:bootstrap`), “The
+seed” and `eq:boot-start`), with `eq:boot-start`:
 under (N) and (P0)–(P6), the conclusions `S.BootStartConcl` hold. -/
 theorem boot_start (S : Standing) (hS : S.Holds) (hL : S.ParamLists) : S.BootStartConcl := by
   have hpos := constants_pos S hS.admissible hS.hN hS.σ'_gt hS.σ'_lt_sigma hS.δ₀_pos

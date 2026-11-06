@@ -7,7 +7,7 @@ import NonUniqueEuler.I.Infra.CkNorm.Basic
 # Helpers for `quiet_approx`: the terms of `eq:ring` along paths
 
 Helper of `P/Sec5/Quiet/Approx.lean` (fully proved). Namespace `NonUniqueEuler.OneRing.QAppH`.
-`05_single_ring.tex:477-480` ("By induction on `j`, `lem:duhamel` and `lem:bilinear` show that
+Part II Theorem 2.8 (`thm:quiet`) ("By induction on `j`, `lem:duhamel` and `lem:bilinear` show that
 `g^{[j]} ∈ C([0,T];X^{k_j})`"):
 
 * `pathC_Bfn`: `u, v ∈ C([0,T];X^{k+1})` ⇒ `B(u,v) ∈ C([0,T];X^k)` (`k ≥ 2`; bilinearity a.e. and

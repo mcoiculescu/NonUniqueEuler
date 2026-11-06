@@ -7,7 +7,7 @@ import Mathlib.Topology.Algebra.InfiniteSum.TsumUniformlyOn
 /-!
 # Helper for `lem:transfer`(4): termwise derivatives of a power series
 
-Helper of `P/Sec7/Transfer.lean` (`07_several_rings.tex:212-228`). The interior expansion of the
+Helper of `P/Sec7/Transfer.lean` (Part II Lemma 4.1 (`lem:transfer`)). The interior expansion of the
 field of an outer ring is a power series `F(z) = Σ_{l≥0} d_l z^l` on `B_{a/2}`
 (`hasSum_cauchyTransform_interior`), and item (4) differentiates it termwise. With
 `‖d_l‖ ≤ B R^{-l}` (`R > 0`):

@@ -5,15 +5,15 @@ import Mathlib.Analysis.SpecialFunctions.Integrals.Basic
 /-!
 # Helpers for `lem:Oprime`: the Duhamel integrals
 
-Helper file of `P/Sec9/Oprime.lean` (`09_relay.tex:681-725`). Everything here is proved.
+Helper file of `P/Sec9/Oprime.lean` (`lem:Oprime`, Part II Lemma C.10). Everything here is proved.
 
 * `integral_le_of_le`: comparison of interval integrals when only the larger integrand is known
   to be integrable (the smaller integral is then either bounded or the junk value `0`);
 * `maj_le_split`: `maj(τ') ≤ e^{σ(τ'-τ_a)} maj(τ_a) + ∫₀^{τ'-τ_a} e^{σ(τ'-τ_a-x)} η(τ_a+x) dx`
-  (`09_relay.tex:682-686`; an equality when the integrand is integrable, and `maj(τ') = 0`
+  (`lem:Oprime`, Part II Lemma C.10; an equality when the integrand is integrable, and `maj(τ') = 0`
   otherwise);
-* `jap_mul_pow_le`: `⟨μx⟩^m ≤ μ^m(1+x)^m ≤ 2(1+x)^m` (`09_relay.tex:707-708`);
-* `tail_bound`: the three integrals of the second term (`09_relay.tex:703-725`):
+* `jap_mul_pow_le`: `⟨μx⟩^m ≤ μ^m(1+x)^m ≤ 2(1+x)^m` (`lem:Oprime`, Part II Lemma C.10);
+* `tail_bound`: the three integrals of the second term (`lem:Oprime`, Part II Lemma C.10):
   `∫₀^L e^{σ_j(L-x)}[αe^{μσ_kx} + β(1+x)^3e^{μσ'x} + γ(1+x)^3] dx
    ≤ e^{μσ_kL}[α/(μσ_k - σ_j) + βI_3(X) + γI_3(X)]` when `X ≤ σ_j`, `X ≤ σ_j - μσ'`.
 -/
@@ -37,7 +37,7 @@ theorem integral_le_of_le {f g : ℝ → ℝ} {a b : ℝ} (hab : a ≤ b)
   · rw [intervalIntegral.integral_undef hf]
     exact hg0
 
-/-- **Splitting the Duhamel majorant at `τ_a`** (`09_relay.tex:682-686`). -/
+/-- **Splitting the Duhamel majorant at `τ_a`** (`lem:Oprime`, Part II Lemma C.10). -/
 theorem maj_le_split {σ : ℝ} {η : ℝ → ℝ} {τa τ' : ℝ} (h0 : 0 ≤ τa) (hτ : τa ≤ τ')
     (hη : ∀ v ∈ Icc (0 : ℝ) τ', 0 ≤ η v) :
     OneRing.maj σ η τ' ≤ Real.exp (σ * (τ' - τa)) * OneRing.maj σ η τa +
@@ -91,7 +91,7 @@ theorem jap_mul_le {μ x : ℝ} (hμ : 1 ≤ μ) (hx : 0 ≤ x) : Prelim.jap (μ
   rw [Real.sqrt_le_left (by positivity)]
   nlinarith [mul_nonneg (mul_nonneg hx (by linarith : (0 : ℝ) ≤ μ)) (by linarith : (0 : ℝ) ≤ μ)]
 
-/-- `⟨μx⟩^3 ≤ 2(1+x)^3` for `1 ≤ μ`, `μ^3 ≤ 2`, `x ≥ 0` (`09_relay.tex:707-708`). -/
+/-- `⟨μx⟩^3 ≤ 2(1+x)^3` for `1 ≤ μ`, `μ^3 ≤ 2`, `x ≥ 0` (`lem:Oprime`, Part II Lemma C.10). -/
 theorem jap_mul_pow_le {μ x : ℝ} (hμ : 1 ≤ μ) (hμ3 : μ ^ 3 ≤ 2) (hx : 0 ≤ x) :
     Prelim.jap (μ * x) ^ 3 ≤ 2 * (1 + x) ^ 3 := by
   have h0 : 0 ≤ Prelim.jap (μ * x) := Real.sqrt_nonneg _
@@ -110,7 +110,7 @@ theorem integral_exp_mul_le {g L : ℝ} (hg : 0 < g) :
   rw [div_eq_inv_mul]
   exact mul_le_mul_of_nonneg_left (by linarith) (inv_nonneg.mpr hg.le)
 
-/-- **The three integrals of the second term** (`09_relay.tex:703-725`). -/
+/-- **The three integrals of the second term** (`lem:Oprime`, Part II Lemma C.10). -/
 theorem tail_bound {σj σk μ σ' X L α β γ : ℝ} (hL : 0 ≤ L) (hX : 0 < X)
     (hg : 0 < μ * σk - σj) (hXj : X ≤ σj) (hXj' : X ≤ σj - μ * σ')
     (hα : 0 ≤ α) (hβ : 0 ≤ β) (hγ : 0 ≤ γ) {F : ℝ → ℝ}

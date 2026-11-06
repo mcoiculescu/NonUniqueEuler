@@ -6,7 +6,7 @@ import NonUniqueEuler.I.Sec5.Majorant
 /-!
 # Helpers for `prop:relay`: `maj_j ≤ 2maj^in_j` and item (o)
 
-Helper file of `P/Sec9/Relay.lean` (`09_relay.tex:460-498`). Everything here is proved.
+Helper file of `P/Sec9/Relay.lean` (`prop:relay`, Part II Proposition C.9). Everything here is proved.
 
 * `maj_le_two_of`, `maj_le_two_majIn`: `maj_j ≤ maj^in_j + θ_jτ'maj_j(τ') ≤ maj^in_j + maj_j/2`
   on `[0,τ]` ((H2), (M1));
@@ -30,7 +30,7 @@ open RingData Datum
 
 /-! ### Abstract forms -/
 
-/-- **`maj ≤ 2 maj^in`** (`09_relay.tex:460-470`): if `η = η^in + η^out` with both parts
+/-- **`maj ≤ 2 maj^in`** (`prop:relay`, Part II Proposition C.9): if `η = η^in + η^out` with both parts
 continuous and nonnegative on `[0,τ]`, `η^out ≤ θ maj` on `[0,τ]`, `θτ ≤ 1/2`, and (M1) holds at
 `τ' ∈ [0,τ]`, then `maj(τ') ≤ 2 maj^in(τ')`. -/
 theorem maj_le_two_of {σ θ τ τ' : ℝ} {ηi ηo : ℝ → ℝ} (hτ' : τ' ∈ Icc (0 : ℝ) τ)
@@ -87,7 +87,7 @@ theorem maj_le_two_of {σ θ τ τ' : ℝ} {ηi ηo : ℝ → ℝ} (hτ' : τ' �
     nlinarith
   linarith
 
-/-- **`eq:relay-quiet`, abstract form** (`09_relay.tex:470-492`): if
+/-- **`eq:relay-quiet`, abstract form** (`prop:relay`, Part II Proposition C.9): if
 `η^in_j(v) ≤ C(C_Q maj_{j+1}(μv) + η_{j+1}(μv))` on `[0,τ']`, (M1) holds for `maj_{j+1}` on
 `[0,μτ']`, `η_{j+1}` is continuous and nonnegative, and `μσ_{j+1} - σ_j ≥ c₀ > 0`, then
 `maj^in_j(τ') ≤ C(C_Q/c₀ + 1) maj_{j+1}(μτ')`. -/
@@ -217,7 +217,7 @@ theorem maj_M1 (hS : S.Holds) {k : ℕ} (hk : k ∈ Finset.Icc 1 S.P.n) {T : ℝ
   ((OneRing.majorant_of_pos (sigma_pos S hS hk) (hc.integrableOn_Icc)
     fun t _ => S.eta_nonneg k t).1 τ₁ τ₂ h0 h12 h2).1
 
-/-- **`maj_j ≤ 2maj^in_j` on `[0,τ]`** (`09_relay.tex:460-470`). -/
+/-- **`maj_j ≤ 2maj^in_j` on `[0,τ]`** (`prop:relay`, Part II Proposition C.9). -/
 theorem maj_le_two_majIn (h : S.RelayHyp C₀ K₁ j τ) (hS : S.Holds) {τ' : ℝ}
     (hτ' : τ' ∈ Icc (0 : ℝ) τ) : S.maj j τ' ≤ 2 * S.majIn j τ' := by
   obtain ⟨hci, hco, hc⟩ := eta_cont_j h hS
@@ -225,7 +225,7 @@ theorem maj_le_two_majIn (h : S.RelayHyp C₀ K₁ j τ) (hS : S.Holds) {τ' : �
     (fun v => S.etaIn_nonneg j v) (fun v => S.etaOut_nonneg j v)
     (fun v hv => maj_M1 hS (j_mem h) hc hv.1 hv.2 hτ'.2) h.h2.1 h.h2.2
 
-/-- The pointwise bound of the quiet phase (`09_relay.tex:478-480`):
+/-- The pointwise bound of the quiet phase (`prop:relay`, Part II Proposition C.9):
 `η^in_j(v) ≤ C_Mε_j(C_Q maj_{j+1}(μv) + η_{j+1}(μv))` for `v ∈ [0, min(τ, τ^act)]`. -/
 theorem quiet_pointwise (h : S.RelayHyp C₀ K₁ j τ) (hS : S.Holds) (hjn : j + 1 < S.P.n)
     {v : ℝ} (hv : v ∈ Icc (0 : ℝ) (min τ (S.P.A j * S.P.tsh (j + 1)))) :
@@ -268,7 +268,7 @@ theorem quiet_pointwise (h : S.RelayHyp C₀ K₁ j τ) (hS : S.Holds) (hjn : j 
     _ ≤ S.CM * S.P.eps j * (S.CQ * S.maj (j + 1) (S.P.μ * v) + S.eta (j + 1) (S.P.μ * v)) :=
         mul_le_mul_of_nonneg_left (add_le_add hq hle) hCMe
 
-/-- **Item (o) of `prop:relay`** (`eq:relay-quiet`, `09_relay.tex:488-492`). -/
+/-- **Item (o) of `prop:relay`** (`eq:relay-quiet`, `prop:relay`, Part II Proposition C.9). -/
 theorem quiet_o (h : S.RelayHyp C₀ K₁ j τ) (hS : S.Holds) (hDet : S.Det) (hjn : j + 1 < S.P.n)
     {τ' : ℝ} (hτ' : τ' ∈ Icc (0 : ℝ) (min τ (S.P.A j * S.P.tsh (j + 1)))) :
     S.majIn j τ' ≤ S.Crelay * S.P.eps j * S.maj (j + 1) (S.P.μ * τ') := by

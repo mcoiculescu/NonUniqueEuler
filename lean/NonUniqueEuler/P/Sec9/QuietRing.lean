@@ -11,7 +11,7 @@ import NonUniqueEuler.I.Infra.Sobolev.Norm
 # Proof: `thm:quiet` applied to ring `i` in ring-`i` units (bridge)
 
 Proof of `I/Sec9/QuietRing.lean` (`quiet_ring`), following its proof sketch
-(`09_relay.tex:71-84`, `06_datum.tex:138-156`, `:323-330`).
+(`sec:relay-data`, Part II, Appendix C.1, `def:regions`, Part II Definition 3.5, `lem:regions-basic`, Part II Lemma 3.6 and the following continuity discussion).
 
 * `T < 0`: nothing to prove.
 * `T = 0`: only `τ = 0`. `Φ_0 = id` (`maxFlow` at its own initial time is the identity, also in
@@ -191,7 +191,7 @@ end QuietRingAux
 
 open QuietRingAux
 
-/-- **`thm:quiet` for ring `i`** (`09_relay.tex:71-84`): if the hypotheses of `thm:quiet` hold for
+/-- **`thm:quiet` for ring `i`** (`sec:relay-data`, Part II, Appendix C.1): if the hypotheses of `thm:quiet` hold for
 ring `i` on the ring-`i` time interval `[0,T]` (with `G = G_i`, `h = h_i`, `η = η_i`,
 `maj = maj_i`), then so do its conclusions (a)–(c), with the constants of (SA2). -/
 theorem quiet_ring (S : Standing) (hS : S.Holds) {i : ℕ} {T : ℝ} (h : S.QuietHyp i T) :

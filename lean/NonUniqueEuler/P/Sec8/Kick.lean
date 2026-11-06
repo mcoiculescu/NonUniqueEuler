@@ -5,9 +5,9 @@ import NonUniqueEuler.I.Infra.Ip.Ip
 /-!
 # Proof: `prop:kick` (two-sided bound on a near-resonant kick)
 
-Proof of `NonUniqueEuler/I/Sec8/Kick.lean` (`08_kick.tex:229-255`, proof `:256-291`).
+Proof of `NonUniqueEuler/I/Sec8/Kick.lean` (Part II Proposition 5.2 (`prop:kick`) and its proof).
 
-Uses `lem:kick-lower` (`I/Sec8/KickLower.lean`: `Kick.kick_lower`) and `eq:Ip`
+Uses the legacy kick-lower helper for the proof of `prop:kick` (`I/Sec8/KickLower.lean`: `Kick.kick_lower`) and `eq:Ip`
 (`I/Infra/Ip/Ip.lean`: `Ip_pos`, `Ip_antitoneOn`).
 
 Deviation (minor): the manuscript takes `σ > 0` from `prop:U`(a) (`σ ≥ σ_b > 211/2500`). Here
@@ -44,7 +44,7 @@ private theorem norm_one_sub_exp_le (w : ℂ) (Tg : ℝ) :
       rw [norm_one, Complex.norm_exp, Complex.neg_re, Complex.re_mul_ofReal]
 
 set_option linter.unusedVariables false in
-/-- **`prop:kick`** (`08_kick.tex:229-255`). Assume (N1)–(N3) and the hypotheses of the
+/-- **Part II Proposition 5.2 (`prop:kick`)**. Assume (N1)–(N3) and the hypotheses of the
 proposition (`Kick.KickHyp`: the setting with `ζ₀ = λ_*(G)/μ`, `1 < μ ≤ 2`, `G, G' ∈ [0,G₁]`
 detuned, `T_g > 0`, `τ₀ < -T_g`, `τ₁ > 0`, `Q̄ > 0`, (Q1)–(Q3), (Kick1)–(Kick4)). Then
 `Re w ≥ (3/4)σ(μ-1)/μ` (`w = λ_*(G') - ζ₀`), `x = Re ζ₀ ≥ σ/4`, and for every `τ ∈ I ∩ [0,∞)`:

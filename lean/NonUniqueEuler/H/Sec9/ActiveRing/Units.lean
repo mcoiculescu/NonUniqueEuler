@@ -12,7 +12,7 @@ import Mathlib.LinearAlgebra.Complex.FiniteDimensional
 /-!
 # Helpers for `P/Sec9/ActiveRing`: ring `k` with time origin `t♯`, in ring-`k` units
 
-Helper file of `P/Sec9/ActiveRing.lean` (`09_relay.tex:759-767`). For a valid
+Helper file of `P/Sec9/ActiveRing.lean` (`sec:bootstrap-active-checks`, Part II, Appendix C.17, active-time pullback). For a valid
 approximation `P` and a time `t₀ ≥ 0` (applied with `t₀ = t♯_k`), the configuration
 `P.activeConfig k` (the three parts of `ω^{(n)}(t₀)` in ring-`k` units) has datum
 `A_k⁻¹ω^{(n)}(t₀, r_k ·)`; by the time-translation and scaling covariance of `thm:smooth`

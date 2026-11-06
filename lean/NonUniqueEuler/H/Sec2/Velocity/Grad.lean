@@ -6,7 +6,7 @@ import NonUniqueEuler.I.Infra.Sobolev.WeakDeriv
 # Helpers for `lem:velocity`(c): the weak gradient of `K ∗ w`
 
 Helper file of `P/Sec2/Velocity.lean` (namespace `NonUniqueEuler.BS.VelH`), following
-`02_prelim.tex:376-381`. Let `w_j ∈ C_c^∞` with `w_j → w` in `L¹` and `L²`, `v_j = K ∗ w_j`.
+Part I, Lemma 2.2 (`lem:velocity`). Let `w_j ∈ C_c^∞` with `w_j → w` in `L¹` and `L²`, `v_j = K ∗ w_j`.
 
 * `velocity_sub_of_smooth`, `pd_velocity_sub_of_smooth`: linearity for smooth compactly supported
   vorticities;

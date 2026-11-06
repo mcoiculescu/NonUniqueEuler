@@ -14,7 +14,7 @@ Helper file of `P/Sec2/Velocity.lean` (namespace `NonUniqueEuler.BS.VelH`). With
   `‖K ∗ ω‖_{L^q(B_R)} ≤ A |B_R|^{1/q-1/r} + ‖ω‖₁/(2π) |B_R|^{1/q}` (`eLpNorm_velocity_ball_le`);
 * the energy-type bound `∫ |ω| (|K| ∗ |ω|) ≤ ‖ω‖_{r'} A + ‖ω‖₁²/(2π)` (`lintegral_mul_convAbs_le`).
 
-These are the steps of the proof of `lem:velocity`(a) (`02_prelim.tex:323-343`), with the
+These are the steps of the proof of Part I, Lemma 2.2(a) (`lem:velocity`), with the
 exponents `r_p`, `s_p` left abstract.
 -/
 

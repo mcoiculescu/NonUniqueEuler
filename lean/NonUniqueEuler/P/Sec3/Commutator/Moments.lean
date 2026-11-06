@@ -4,7 +4,11 @@ import Mathlib.Analysis.Calculus.LineDeriv.IntegrationByParts
 /-!
 # Proof: the first moments of `∇ρ` (`∫ψ^{ij} = -δ_ij`)
 
-Proof of `I/Sec3/Commutator/Moments.lean` (`03_compactness.tex:415-417`).
+Current manuscript: Part I Lemma 3.3 (`lem:commutator`). This file retains components
+of the older smooth-field proof. The current proof obtains convergence by smoothing
+`u`; the Lean decomposition smooths the vector field and uses the kernel moments.
+
+Proof of `I/Sec3/Commutator/Moments.lean` (the legacy smooth-field commutator argument; current treatment: Part I Lemma 3.3 (`lem:commutator`)).
 
 Integration by parts (`integral_mul_fderiv_eq_neg_fderiv_mul_of_integrable`) with `f = ℓ`,
 `g = ρ`: `∫ ℓ Dρ v = -∫ Dℓ v ρ = -ℓ(v) ∫ρ = -ℓ(v)`. All integrands are continuous with compact
@@ -18,7 +22,7 @@ open MeasureTheory Set Metric
 
 namespace NonUniqueEuler.Weak
 
-/-- `∫ ℓ(z) Dρ(z)v dz = -ℓ(v)` (`03_compactness.tex:415-417`, `∫ψ^{ij} = -δ_ij`). -/
+/-- `∫ ℓ(z) Dρ(z)v dz = -ℓ(v)` (the legacy smooth-field commutator argument; current treatment: Part I Lemma 3.3 (`lem:commutator`), `∫ψ^{ij} = -δ_ij`). -/
 theorem integral_mul_fderiv_mollifier_eq_neg {ρ : ℂ → ℝ} (hρ : IsMollifier ρ)
     (ℓ : ℂ →L[ℝ] ℝ) (v : ℂ) :
     ∫ z, ℓ z * fderiv ℝ ρ z v = -ℓ v := by

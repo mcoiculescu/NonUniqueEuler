@@ -4,9 +4,9 @@ import Mathlib.MeasureTheory.Function.LpSeminorm.CompareExp
 import Mathlib.MeasureTheory.Integral.DominatedConvergence
 
 /-!
-# Helpers for `prop:stable`: generic lemmas
+# Helpers for legacy `prop:stable`: generic lemmas
 
-Helper file of `P/Sec3/Stable.lean` (`prop:stable`, `03_compactness.tex:716-827`).
+Helper file of `P/Sec3/Stable.lean` (legacy `prop:stable`, related current criterion proof: Part I Theorem 3.8 (`thm:criterion`)).
 
 * Tonelli bounds on `I × s` (`lintegral_prodSet_le`, `lintegral_slab_le_of_slice`) and
   integrability on the slab from slice bounds (`integrableOn_slab_of_bound`).

@@ -7,7 +7,7 @@ import NonUniqueEuler.H.Infra.Sobolev.EmbedLinf.LineFTC
 /-!
 # Helper for `lem:embed` (E2): the pointwise bound for test functions
 
-Helper of `P/Infra/Sobolev/EmbedLinf.lean` (manuscript `02_prelim.tex:604-606, 624-630`).
+Helper of `P/Infra/Sobolev/EmbedLinf.lean` (manuscript Part II, Lemma 1.9(E2) (`lem:embed`), proof).
 
 For a test function `g` and `h = |g|² = ⟪g, g⟫_ℝ`, the fundamental theorem of calculus along
 the lines `t ↦ x + t i` and `s ↦ y + s` gives

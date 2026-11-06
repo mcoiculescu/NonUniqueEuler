@@ -8,20 +8,21 @@ import Mathlib.Analysis.SpecialFunctions.Log.Basic
 
 Manuscript-independent infrastructure (library I-MULT; restructuring R11).
 With `z = x₁ + i x₂` and the statement-layer kernel `biotSavartKernel z = i z /(2π|z|²)`, the
-manuscript uses (`02_prelim.tex:430-433`, eq:complex-velocity of `07_several_rings.tex`)
+manuscript uses (Part II, Equation (3), `eq:BS-complex`)
 `u₁ - i u₂ = (2πi)⁻¹ ∫ ω(w)/(z-w) dw`, i.e. `conj (velocity ω z) = (2πi)⁻¹ · C[ω](z)` with the
 Cauchy transform `C[g](z) = ∫ g(w) (z-w)⁻¹ dw`.
 
 Definitions.
 * `cauchyTransform g z = ∫ g(w) (z - w)⁻¹ dw` (Bochner integral; `0` where not integrable).
 * `moment g l = ∫ g(w) w^l dw` for `l : ℤ`: the multipole coefficients. In the manuscript's
-  notation (`def:multipole`, `02_prelim.tex:450-460`, proofs of `lem:hollow`, `lem:ext-multipole`):
+  notation (Part I, Definition 2.3, `def:multipole`; Part II, Lemmas 1.5
+  (`lem:hollow`) and 1.7 (`lem:ext-multipole`)):
   `Q_l[g] = moment g l`, `c_l(ν) = moment ν (-l)`, `pin_m[g] = (2π)⁻¹ moment g (-m)`.
 * `conjMoment g l = ∫ g(w) w̄^l dw` for `l : ℤ`; `pout_m[g] = (2π)⁻¹ conjMoment g m`.
 * `laurentTail a z = ∑' l, a l / z^(l+1)`: the exterior Laurent series (the field outside a
-  confined body, `lem:ext-multipole`).
+  confined body, Part II, Lemma 1.7, `lem:ext-multipole`).
 * `logPotential g x = (2π)⁻¹ ∫ log|x - y| g(y) dy` (complex-valued `g`): the stream function of
-  `g` (`02_prelim.tex:38-43`; complex `g` for the sector functions `g(r) e^{iℓθ}` of
+  `g` (Part I, Section 2.1, conventions in `sec:prelim`; complex `g` for the sector functions `g(r) e^{iℓθ}` of
   `lem:sector`(1) and `lem:adjoint`(3)). For a real vorticity `ω` use
   `logPotential (fun y => (ω y : ℂ))`, whose values are real: it is `logPotentialReal ω`
   (`logPotential_ofReal`).

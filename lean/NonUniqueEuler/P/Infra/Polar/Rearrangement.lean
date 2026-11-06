@@ -7,7 +7,7 @@ import Mathlib.MeasureTheory.Group.Measure
 
 Proof of `NonUniqueEuler/I/Infra/Polar/Rearrangement.lean` (same declarations, same statements).
 
-The argument is the manuscript's bathtub argument (`02_prelim.tex:258-266`, `lem:BS-basic`(e)):
+The argument is the manuscript's bathtub argument (Part I, Lemma 2.1(e), `lem:BS-basic`, proof):
 with `B = ball 0 R`, `|D \ B| ≤ |B \ D|`, `φ ‖x‖ ≤ φ R` on `D \ B` and `φ ‖x‖ ≥ φ R` a.e. on
 `B \ D`; hence `∫_D φ ≤ ∫_{D∩B} φ + φ R |B \ D| ≤ ∫_B φ`. The other two statements follow by
 translation invariance of `volume` on `ℂ`.

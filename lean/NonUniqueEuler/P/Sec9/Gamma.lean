@@ -2,9 +2,13 @@ import NonUniqueEuler.Defs.Sec9.All
 import NonUniqueEuler.I.Sec9.Detuning
 
 /-!
-# Proof of `lem:gamma` (the exponent `γ_j` stays below `1`)
+# Proof of `lem:gamma` (historical) (the exponent `γ_j` stays below `1`)
 
-Proof of the interface `I/Sec9/Gamma.lean` (`09_relay.tex:139-163`).
+The label `lem:gamma` is historical. The current counterpart is the exponent
+comparison in Appendix C.16 (`sec:bootstrap-handoff-checks`), with the
+exponents defined in Appendix C.11 (`sec:relay-constants`).
+
+Proof of the interface `I/Sec9/Gamma.lean` (`sec:bootstrap-handoff-checks`, Part II, Appendix C.16, exponent comparison).
 
 * `detuning` (`I/Sec9/Detuning.lean`), applied at the levels `j` and `j+1`, gives
   `σ_{j+1} ≥ 15σ/16`, `σ' < 15σ/16`, `|σ_{j+1} - σ| ≤ e_μσ` with `e_μ ≤ 1/136`, and
@@ -31,7 +35,7 @@ namespace Relay
 
 open RingData Datum
 
-/-- The algebraic core of `lem:gamma`, over named real variables: `a = σ_j`, `b = σ_{j+1}`,
+/-- The algebraic core of `lem:gamma` (historical), over named real variables: `a = σ_j`, `b = σ_{j+1}`,
 `σ = σ(0)`, `σ'`, `e = e_μ`. -/
 private theorem gamma_real {μ σ σ' e a b : ℝ} (h1 : 1 < μ) (hσ'pos : 0 < σ')
     (hσ'15 : σ' < 15 / 16 * σ) (he : e ≤ 1 / 136) (hbabs : |b - σ| ≤ e * σ)
@@ -80,7 +84,7 @@ private theorem gamma_real {μ σ σ' e a b : ℝ} (h1 : 1 < μ) (hσ'pos : 0 < 
     · rw [sub_pos, div_lt_one (by positivity)]
       linarith
 
-/-- **`lem:gamma`** (`09_relay.tex:139-141`): under (SA) and (Det), for every level `1 ≤ j < n`,
+/-- **`lem:gamma` (historical)** (`sec:bootstrap-handoff-checks`, Part II, Appendix C.16, exponent comparison): under (SA) and (Det), for every level `1 ≤ j < n`,
 `1 - γ_j ≥ γ'_μ > 0`. -/
 theorem gamma (S : Standing) (hS : S.Holds) (hDet : S.Det) :
     ∀ j ∈ Finset.Ico 1 S.P.n, S.gammaMu' ≤ 1 - S.gammaJ j ∧ 0 < S.gammaMu' := by

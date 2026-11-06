@@ -6,7 +6,7 @@ import NonUniqueEuler.Defs.Sec2.Conventions
 /-!
 # Proof: weakly divergence-free fields tested against `C¹_c` functions
 
-Proof of `I/Infra/Sobolev/DivFreeC1.lean` (used at `03_compactness.tex:505-508`).
+Proof of `I/Infra/Sobolev/DivFreeC1.lean` (used at Part I, Lemma 3.4 (`lem:transport`), proof).
 
 Mollify `g` with normed bump functions `ρ_n` (`rOut = 1/(n+1)`): `φ_n = ρ_n ⋆ g` is a test
 function, `Dφ_n = ρ_n ⋆ Dg` (`DivFreeC1Aux.fderiv_mollify`), the `Dφ_n` are bounded by
@@ -102,7 +102,7 @@ end DivFreeC1Aux
 
 open DivFreeC1Aux in
 /-- A weakly divergence-free `v ∈ L¹_loc` satisfies `∫ v·∇g = 0` for every real `g ∈ C¹_c(ℝ²)`
-(used at `03_compactness.tex:505-508`). -/
+(used at Part I, Lemma 3.4 (`lem:transport`), proof). -/
 theorem IsWeaklyDivFree.integral_fderiv_eq_zero_of_contDiff_one {v : ℂ → ℂ}
     (hdiv : IsWeaklyDivFree v) (hv : LocallyIntegrable v volume) {g : ℂ → ℝ}
     (hg : ContDiff ℝ 1 g) (hgc : HasCompactSupport g) :

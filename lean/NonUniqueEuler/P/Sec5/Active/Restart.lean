@@ -7,7 +7,7 @@ import Mathlib.Topology.MetricSpace.Bounded
 /-!
 # Proof: restarting a configuration of `lem:reduction` at a later time
 
-Proof of `I/Sec5/Active/Restart.lean` (`05_single_ring.tex:1022-1031`, "We restart at `t₁`").
+Proof of `I/Sec5/Active/Restart.lean` (Part II Theorem 2.12 (`thm:active`), "We restart at `t₁`").
 
 The restarted configuration is `c' = ⟨ω_r(t₁), ω_i(t₁), ω_o(t₁)⟩`. Its datum is `ω(t₁)`
 (`setting_sol_eq_parts`), an admissible datum by `Smooth.sol_timeShift`, whose flow is
@@ -43,7 +43,7 @@ private theorem isMFoldSymmetric_three_of_forall {g : ℂ → ℝ}
   simp only [Nat.cast_ofNat]
   exact hg x
 
-/-- **Restart at `t₁`** (`05_single_ring.tex:1022-1031`): the configuration `c'` with
+/-- **Restart at `t₁`** (Part II Theorem 2.12 (`thm:active`)): the configuration `c'` with
 `c'.ring0 = ω_r(t₁)` satisfies the hypotheses of `lem:reduction` on `[0, T - t₁]`, has the same
 `G`, field `h(t₁ + ·)`, perturbation `w(t₁ + ·)`, and flow `Φ_{t₁+τ} ∘ Φ_{t₁}⁻¹`. -/
 theorem active_restart {c : RingConfig} {T t₁ : ℝ} (hc : c.Hyp T) (ht₁ : 0 ≤ t₁)

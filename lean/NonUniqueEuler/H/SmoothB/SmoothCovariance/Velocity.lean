@@ -8,9 +8,9 @@ import Mathlib.LinearAlgebra.Complex.FiniteDimensional
 # Helper for `P/SmoothB/SmoothCovariance`: covariance of the Biot–Savart law
 
 * `biotSavartKernel_real_smul`: `K_BS(r z) = r⁻¹ K_BS(z)` (homogeneity of degree `-1`);
-* `biotSavartKernel_rot`: `K_BS(O_θ z) = O_θ K_BS(z)` (`B_global_smooth.tex:534`);
-* `velocity_scale`: `K ∗ (A⁻¹ g(r ·)) (y) = (Ar)⁻¹ (K ∗ g)(r y)` (`06_datum.tex:142-143`);
-* `velocity_comp_rot`: `K ∗ (g ∘ O_θ) (x) = O_θ⁻¹ (K ∗ g)(O_θ x)` (`B_global_smooth.tex:536-537`).
+* `biotSavartKernel_rot`: `K_BS(O_θ z) = O_θ K_BS(z)` (Part II, §B.5, proof of Theorem 1.8 (`thm:smooth`));
+* `velocity_scale`: `K ∗ (A⁻¹ g(r ·)) (y) = (Ar)⁻¹ (K ∗ g)(r y)` (Part II, ring-unit scaling after Lemma 3.4 (`lem:adm`));
+* `velocity_comp_rot`: `K ∗ (g ∘ O_θ) (x) = O_θ⁻¹ (K ∗ g)(O_θ x)` (Part II, §B.5, proof of Theorem 1.8 (`thm:smooth`)).
 
 The identities hold for every `g` (Lean's junk value `0` for non-integrable integrands is
 respected by both changes of variables).
@@ -41,7 +41,7 @@ theorem biotSavartKernel_rot (θ : ℝ) (z : ℂ) :
   simp only [biotSavartKernel, rot, norm_mul, Complex.norm_exp_ofReal_mul_I, one_mul]
   ring
 
-/-- Scaling of the Biot–Savart law (`06_datum.tex:142-143`): for `r > 0`,
+/-- Scaling of the Biot–Savart law (Part II, ring-unit scaling after Lemma 3.4 (`lem:adm`)): for `r > 0`,
 `K ∗ (A⁻¹ g(r ·)) (y) = (Ar)⁻¹ (K ∗ g)(r y)`. -/
 theorem velocity_scale (A : ℝ) {r : ℝ} (hr : 0 < r) (g : ℂ → ℝ) (x : ℂ) :
     velocity (fun y => A⁻¹ * g ((r : ℂ) * y)) x =
@@ -86,7 +86,7 @@ theorem rot_neg_rot (θ : ℝ) (y : ℂ) : rot (-θ) (rot θ y) = y := by
 theorem rot_rot_neg (θ : ℝ) (y : ℂ) : rot θ (rot (-θ) y) = y := by
   simpa using rot_neg_rot (-θ) y
 
-/-- Rotation covariance of the Biot–Savart law (`B_global_smooth.tex:536-537`):
+/-- Rotation covariance of the Biot–Savart law (Part II, §B.5, proof of Theorem 1.8 (`thm:smooth`)):
 `K ∗ (g ∘ O_θ) (x) = O_θ⁻¹ (K ∗ g)(O_θ x)`. -/
 theorem velocity_comp_rot (g : ℂ → ℝ) (θ : ℝ) (x : ℂ) :
     velocity (fun y => g (rot θ y)) x = rot (-θ) (velocity g (rot θ x)) := by

@@ -21,7 +21,7 @@ namespace `CompLogH` because the helpers of another proof may not be imported). 
 * `hasWeakDerivOn_one_of_succ`: `∂^{p+1} f = ∂(∂^p f)`;
 * `hasWeakDerivOn_nil_self`, `derivList_succ_eq`.
 
-These are the identities `∂_r = e^{-x} ∂_x` of `04_ring.tex:888-897` for weak derivatives.
+These are the identities `∂_r = e^{-x} ∂_x` of Part I, Corollary 4.13 (`cor:K-bound`), elliptic estimate in the proof for weak derivatives.
 All proofs are complete.
 -/
 

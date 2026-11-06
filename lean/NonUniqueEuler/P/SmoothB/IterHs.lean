@@ -5,8 +5,10 @@ import NonUniqueEuler.H.SmoothB.IterHs.Step
 /-!
 # Proof of `lem:iter-Hs` (uniform `H^s` bounds on the iterates)
 
-Proof of `I/SmoothB/IterHs.lean` (same declaration, same statement), following
-`B_global_smooth.tex:315-349`: induction on `s`.
+Proof of `I/SmoothB/IterHs.lean`, retaining explicit majorants for Part II,
+Lemma B.8 (`lem:iter-Hs`). The current manuscript states existence of a uniform bound
+and uses an unspecified constant `C`; this formal proof keeps the earlier recurrence
+`𝓜_s(T)`, `𝓑_s(T)` and the induction on `s`.
 
 * Membership: every slice `ω^{[j]}(t)` is smooth with compact support
   (`IterHsH.memH_iter_slice`, from `lem:iterates`(i)).
@@ -28,7 +30,7 @@ namespace NonUniqueEuler.Smooth
 
 variable {ω₀ : ℂ → ℝ} {R₀ : ℝ}
 
-/-- `lem:iter-Hs`: for every integer `s ≥ 1`, `T > 0`, `j ≥ 0` and `|t| ≤ T`,
+/-- Explicit-majorant form of Part II, Lemma B.8 (`lem:iter-Hs`): for every integer `s ≥ 1`, `T > 0`, `j ≥ 0` and `|t| ≤ T`,
 `ω^{[j]}(t) ∈ H^s` and `‖ω^{[j]}(t)‖_{H^s} ≤ 𝓜_s(T)`. -/
 theorem iter_Hs (h : IsSmoothDatum ω₀ R₀) (hne : ω₀ ≠ 0) {s : ℕ} (hs : 1 ≤ s) {T : ℝ}
     (hT : 0 < T) (j : ℕ) {t : ℝ} (ht : |t| ≤ T) :

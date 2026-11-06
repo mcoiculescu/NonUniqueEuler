@@ -8,7 +8,7 @@ import NonUniqueEuler.H.Sec6.FieldContinuity.Generic
 /-!
 # Helpers for `P/Sec6/FieldContinuity`: smooth space–time extensions of the fields
 
-For a valid approximation `P` (`06_datum.tex:294-321`):
+For a valid approximation `P` (the continuity discussion after Part II Lemma 3.6 (`lem:regions-basic`)):
 
 * `flow_facts`: `(t, y) ↦ Φ_t(y)` and `(t, x) ↦ Φ_t⁻¹(x)` are `C^∞` on `ℝ × ℝ²`, and
   `Φ_t ∘ Φ_t⁻¹ = id` (`thm:smooth`(4): `Smooth.flow_contDiff`, `Smooth.flow_diffeo`, the datum
@@ -220,7 +220,7 @@ theorem hField_ext (hP : P.Valid) (hN : NumericalHypothesis P.χ) {k : ℕ} (hk 
       ∀ τ, 0 ≤ τ → P.hField k τ = H τ :=
   ext_add (hIn_ext hP hN hk hkn) (hOut_ext hP hN hk hkn)
 
-/-- **Continuity of the moment** (`08_kick.tex:125-127`): for `1 ≤ k ≤ n`,
+/-- **Continuity of the moment** (Part II Lemma 5.1 (`lem:coupling`)): for `1 ≤ k ≤ n`,
 `t ↦ Q_3[ω_{≥k+1}(t)]` agrees on `[0, ∞)` with a continuous function. -/
 theorem omegaGe_moment_continuous (hP : P.Valid) (hN : NumericalHypothesis P.χ) {k : ℕ}
     (hk : 1 ≤ k) (hkn : k ≤ P.n) :

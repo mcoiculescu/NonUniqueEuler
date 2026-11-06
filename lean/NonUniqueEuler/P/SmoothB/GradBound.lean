@@ -5,7 +5,7 @@ import NonUniqueEuler.H.SmoothB.GradBound.Optimize
 /-!
 # Proof: `lem:grad-bound` (the log-Lipschitz bound on `∇(K_BS ∗ g)`)
 
-Proof of `I/SmoothB/GradBound.lean` (`B_global_smooth.tex:114-147`). Same declaration, same
+Proof of `I/SmoothB/GradBound.lean` (Part II, Lemma B.3 (`lem:grad-bound`)). Same declaration, same
 statement.
 
 Structure (helpers in `H/SmoothB/GradBound/`):

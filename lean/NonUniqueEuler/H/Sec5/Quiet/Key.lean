@@ -12,7 +12,7 @@ import NonUniqueEuler.I.Sec4.PropU
 # Helpers for `thm:quiet`: the comparison step on `[0,t']`
 
 Helper of `P/Sec5/Quiet.lean` (fully proved). The heart of the continuity argument of
-`thm:quiet` (`05_single_ring.tex:514-549`): if on `[0,t']` the trajectories of the ring move
+Part II Theorem 2.8 (`thm:quiet`): if on `[0,t']` the trajectories of the ring move
 radially by at most `a/8` and `‖w‖_{H^{s_h}} ≤ 1`, then on `[0,t']` the improved bounds `eq:Q-b`
 and the radial displacement bound `δ_r ≤ C_Δ maj` hold (`key`).
 
@@ -54,7 +54,7 @@ theorem annN_subset_annN' (χ : ℝ → ℝ) (hχ : IsAdmissibleCutoff χ) : ann
   rw [mem_annN']
   constructor <;> linarith [hx.1, hx.2]
 
-/-- **The comparison step of `thm:quiet`** (`05_single_ring.tex:514-549`). Let `w_app` be the
+/-- **The comparison step of `thm:quiet`** (Part II Theorem 2.8). Let `w_app` be the
 approximate solution (`I/Sec5/Quiet/Approx.lean`, constant `C_app`) and `C_Q ≥ C_app(2 + σ_b⁻¹)`.
 If `0 < t' ≤ T`, every trajectory of `ω_r` moves radially by at most `a/8` on `[0,t']` and
 `‖w‖_{H^{s_h}} ≤ 1` on `[0,t']`, then for `τ ∈ [0,t']`: every trajectory moves radially by at most

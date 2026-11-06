@@ -8,7 +8,7 @@ import NonUniqueEuler.I.Infra.Multipole.Moments
 /-!
 # Helpers for `P/Sec9/KickTrue`: the ring moment `q^ring = 2π pout_3[w_{k+1}]`
 
-Helper file of `P/Sec9/KickTrue.lean` (`lem:kicktrue`, step (Q1), `09_relay.tex:1290-1296`):
+Helper file of `P/Sec9/KickTrue.lean` (`lem:kicktrue`, step (Q1), `lem:kicktrue`, Part II Lemma C.14):
 "in ring-`(k+1)` units the function `ω^{(n)}(t)1_{S_{k+1}(t)}` is `A_{k+1}(Φ + w_{k+1}(t))`. Since `Φ` is
 radial and `w_{k+1}(t)` is real, `q^ring(τ) = conj Q_m[w_{k+1}(t)] = 2π pout_3[w_{k+1}(t)]`".
 
@@ -94,7 +94,7 @@ theorem Qm_scaleVort (A r : ℝ) (hr : 0 < r) (g : ℂ → ℝ) :
   field_simp
 
 /-- **`conj Q_3[ω(t)1_{S_j(t)}]/(A_j r_j⁵) = 2π pout_3[w_j(t)]`** for a valid approximation and every
-level `j` and time `t` (`09_relay.tex:1290-1296`; `Φ` radial, `w_j(t)` real). -/
+level `j` and time `t` (`lem:kicktrue`, Part II Lemma C.14; `Φ` radial, `w_j(t)` real). -/
 theorem conjQm_omegaRing_eq (P : Approx) (hP : P.Valid) (j : ℕ) (t : ℝ) :
     conj (BS.Qm 3 fun x => ((P.omegaRing j t x : ℝ) : ℂ)) /
         ((P.A j * P.r j ^ (3 + 2) : ℝ) : ℂ) =
@@ -121,7 +121,7 @@ theorem conjQm_omegaRing_eq (P : Approx) (hP : P.Valid) (j : ℕ) (t : ℝ) :
   simp only [Complex.ofReal_mul, Complex.ofReal_inv, Complex.ofReal_pow]
   ring
 
-/-- **`q^ring(τ_K) = 2π pout_3[w_{k+1}(t)]`**, `t = T_{k+1} + τ_K/A_{k+1}` (`09_relay.tex:1290-1296`). -/
+/-- **`q^ring(τ_K) = 2π pout_3[w_{k+1}(t)]`**, `t = T_{k+1} + τ_K/A_{k+1}` (`lem:kicktrue`, Part II Lemma C.14). -/
 theorem qRing_eq (P : Approx) (hP : P.Valid) (k : ℕ) (τK : ℝ) :
     P.qRing k τK = 2 * Real.pi * BS.pout 3 (P.w (k + 1) (P.T (k + 1) + τK / P.A (k + 1))) :=
   conjQm_omegaRing_eq P hP (k + 1) _

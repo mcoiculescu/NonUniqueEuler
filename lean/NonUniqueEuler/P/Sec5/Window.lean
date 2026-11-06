@@ -13,7 +13,7 @@ import NonUniqueEuler.H.Sec5.Window.Comparison
 # Proof: `lem:window` (the window after the initial layer)
 
 Proof of `OneRing.window`, stated in `I/Sec5/Window.lean` (the statement is copied verbatim).
-Manuscript `05_single_ring.tex:678-704` (statement), `:705-861` (proof).
+Manuscript Part II Lemma 2.11 (`lem:window`), statement and proof.
 
 **Structure.**
 * The approximate solution `w_app = Σ_{j ≤ N_G} w^{[j]}` with `eq:W-hier`, `eq:W-res` and the bound on
@@ -47,7 +47,7 @@ namespace OneRing
 open RingData
 
 set_option maxHeartbeats 1000000 in
-/-- **`lem:window`** (`05_single_ring.tex:678-704`). Assume (N1)–(N3). Let `s ≥ 3`,
+/-- **`lem:window`** (Part II Lemma 2.11). Assume (N1)–(N3). Let `s ≥ 3`,
 `σ' ∈ (9/200, σ_b)`, `p = 3`, `N_G`, `M = s + N_G + 2`, `N_W = (p+2)N_G + 1` as in `eq:W-const`,
 and `C♮ ≥ 1`. There are `δ_W ∈ (0,1/2]`, `κ_W ∈ (0,1]`, `C_W ≥ 1`, depending only on
 `(Φ, G₁, s, σ', C♮)`, such that the following holds. Let `G ∈ [0,G₁]`, `σ = σ(G)`,

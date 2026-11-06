@@ -8,7 +8,7 @@ import Mathlib.Analysis.Convex.Basic
 /-!
 # Proof of `I/Sec8/KickODE.lean` (`eq:kick-A`, the kick ODE and the amplitude formula)
 
-Manuscript `08_kick.tex:156-167`. Same declarations as the interface file, now proved.
+The manuscript scalar setting around Part II Equation (31) (`eq:kick-A`). Same declarations as the interface file, now proved.
 
 * `Kick.coef_hasDerivWithinAt`: `c = e^{ζ₀τ}A` solves `c' = ζ₀c + βq` within `I`
   (fundamental theorem of calculus within `I` plus the product rule);
@@ -87,7 +87,7 @@ private theorem amp_hasDerivWithinAt {ζ₀ β : ℂ} {τ₀ : ℝ} {τ₁ : ERe
       ((continuous_const.mul Complex.continuous_ofReal).neg)).continuousOn
   exact (hasDerivWithinAt_integral_interval hg hτ).const_mul β
 
-/-- **The kick setting, existence** (`08_kick.tex:161-163`). `c = e^{ζ₀τ}A`, with `A` given by
+/-- **The kick setting, existence** (the scalar setting around Part II Equation (31) (`eq:kick-A`)). `c = e^{ζ₀τ}A`, with `A` given by
 `eq:kick-A`, solves `c' = ζ₀c + βq` on `I` (derivatives within `I`); `c(τ₀) = 0` is
 `Kick.coef_self`. -/
 theorem coef_hasDerivWithinAt {ζ₀ β : ℂ} {τ₀ : ℝ} {τ₁ : EReal} {q : ℝ → ℂ}
@@ -104,7 +104,7 @@ theorem coef_hasDerivWithinAt {ζ₀ β : ℂ} {τ₀ : ℝ} {τ₁ : EReal} {q 
   simp only [coef]
   linear_combination (β * q τ) * hexp
 
-/-- **`eq:kick-A`** (`08_kick.tex:161-167`). If `c' = ζ₀c + βq` on `I` (derivatives within `I`)
+/-- **`eq:kick-A`** (the scalar setting around Part II Equation (31) (`eq:kick-A`)). If `c' = ζ₀c + βq` on `I` (derivatives within `I`)
 and `c(τ₀) = 0`, then `A(τ) = e^{-ζ₀τ}c(τ) = β∫_{τ₀}^τ e^{-ζ₀s}q(s)ds` for every `τ ∈ I`. -/
 theorem amp_of_ode {ζ₀ β : ℂ} {τ₀ : ℝ} {τ₁ : EReal} {q : ℝ → ℂ}
     (h : IsSetting ζ₀ β τ₀ τ₁ q) {c : ℝ → ℂ}

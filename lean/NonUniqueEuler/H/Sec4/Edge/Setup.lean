@@ -4,9 +4,9 @@ import NonUniqueEuler.H.Sec4.Edge.Basic
 import Mathlib.Analysis.Calculus.ContDiff.Deriv
 
 /-!
-# Helpers for `P/Sec4/Edge`: notation and pointwise facts for `lem:edge`
+# Helpers for `P/Sec4/Edge`: notation and pointwise facts for Part I Lemma 4.10 (`lem:edge`)
 
-Manuscript `04_ring.tex:730-769`. Objects of the proof (for a sector setting `S`):
+See the proof of Part I Lemma 4.10 (`lem:edge`). Objects of the proof (for a sector setting `S`):
 * `dp S r = max(ω̄'(r), 0)`, `dn S r = max(-ω̄'(r), 0)`, so `|ω̄'| = dp + dn` and `ω̄' = dp - dn`
   (`dp > 0` exactly on `𝒰₊`, `dn > 0` exactly on `𝒰₋`);
 * `K0 n r ρ = (min(r,ρ)/max(r,ρ))^n`, the (unnormalized) kernel of `𝒢_ℓ`, `n = |ℓ|`;

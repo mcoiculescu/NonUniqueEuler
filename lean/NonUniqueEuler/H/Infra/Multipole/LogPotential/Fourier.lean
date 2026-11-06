@@ -12,7 +12,7 @@ integration against `e^{-inθ}` gives `∫₀^{2π} log(1 - a e^{iθ}) e^{-inθ}
 * `∫₀^{2π} log|1 - a e^{iθ}| dθ = 0`;
 * `∫₀^{2π} log|1 - a e^{iθ}| e^{-imθ} dθ = -π a^m/m` (`m ≥ 1`);
 * `∫₀^{2π} log|1 - a e^{iθ}| e^{imθ} dθ = -π ā^m/m` (`m ≥ 1`).
-This is the computation of the text after `def:multipole` (`02_prelim.tex:461-469`).
+This is the computation following Part I, Definition 2.3 (`def:multipole`).
 -/
 
 noncomputable section

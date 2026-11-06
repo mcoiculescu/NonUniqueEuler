@@ -4,12 +4,12 @@ import Mathlib.Analysis.SpecialFunctions.Complex.Arg
 import Mathlib.Algebra.BigOperators.Intervals
 
 /-!
-# Proof: Proposition A.4 (`prop:winding`), the segment formula for the winding number
+# Proof: Part II Proposition A.4 (`prop:winding`), the segment formula for the winding number
 
 Proof of `NonUniqueEuler/I/Verify/SegmentFormula.lean` (same declarations, statements copied
 verbatim).
 
-**Manuscript.** `A_verification.tex:466-512`.
+**Manuscript.** `prop:winding`.
 
 * `hasArgChange_of_admits_P`: the lift is `arg ∘ c`, continuous on the slit plane.
 * `hasArgChange_of_admits_N`: the lift is `arg (-c ·) + π`, continuous since `-c` stays in the
@@ -141,7 +141,7 @@ theorem hasArgChange_of_admits_N {c : ℝ → ℂ} {a b : ℝ} (hab : a ≤ b)
     exact eq_norm_mul_exp_arg_neg_add_pi (c s)
   · rw [argN_eq_arg_neg_add_pi (hN' b ⟨hab, le_rfl⟩), argN_eq_arg_neg_add_pi (hN' a ⟨le_rfl, hab⟩)]
 
-/-- **Proposition A.4** (segment formula). If each segment of a closed continuous curve is of
+/-- **Part II Proposition A.4** (segment formula). If each segment of a closed continuous curve is of
 the assigned type, then the curve avoids `0` and its winding number is the indicator sum over
 the type-N segments. -/
 theorem hasWinding_of_segments {c : ℝ → ℂ} {n : ℕ} {t : ℕ → ℝ} {κ : ℕ → SegKind}
@@ -249,7 +249,7 @@ theorem junctionSum_congr {n : ℕ} (κ : ℕ → SegKind) {x y : ℕ → ℤ}
         simp [IsJunction, h1, h3]
   · simp only [h1, Bool.false_eq_true, ↓reduceIte]
 
-/-- **Proposition A.4, as the certification evaluates it**: decided indicators `J i` at the
+/-- **Part II Proposition A.4, as the certification evaluates it**: decided indicators `J i` at the
 junctions (and nowhere else) give the winding number through `junctionSum`. -/
 theorem hasWinding_of_segments_junction {c : ℝ → ℂ} {n : ℕ} {t : ℕ → ℝ} {κ : ℕ → SegKind}
     (hn : 0 < n) (hmono : ∀ i < n, t i ≤ t (i + 1))

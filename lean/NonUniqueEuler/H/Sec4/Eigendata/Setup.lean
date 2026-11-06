@@ -9,15 +9,15 @@ import NonUniqueEuler.I.Infra.AngularFourier.Symmetry
 import NonUniqueEuler.I.Infra.Sobolev.Smooth
 
 /-!
-# Helpers for `def:eigendata`: the eigenvalue, `g_*`, `n_* > 0`, `φ_* ∈ X^s`
+# Helpers for Part I Definition 4.20 (`def:eigendata`): the eigenvalue, `g_*`, `n_* > 0`, `φ_* ∈ X^s`
 
 Helper of `P/Sec4/Eigendata.lean` (fully proved). Namespace `NonUniqueEuler.Eig.EigendataH`.
 
 * `rc_sq_mul_mem`: `R_c² G ∈ [0, 1/50]` for `G ∈ [0, G₁]`;
 * `LamFacts`, `lamFacts`: under (N), `λ_*(G)` is a simple zero of `E^Φ_3(·;G)` with
-  `Re λ_*(G) > 211/2500` (`hypN_lamC`, `eq:evans-units`), the ring setting is valid, and `J ≠ 0`;
+  `Re λ_*(G) > 211/2500` (`hypN_lamC`, Part I Equation 13 (`eq:evans-units`)), the ring setting is valid, and `J ≠ 0`;
 * `gstar_facts`: `g_*` is smooth on `(0,∞)`, vanishes off `[a, 1]`, is not zero
-  (`lem:resolvent`(2));
+  (Part I Lemma 4.7(2) (`lem:resolvent`));
 * `nstar_pos`: `n_*(G) > 0`;
 * `memXFn_const_mul_ofProfile`, `memXFn_phi`: `c g(r) e^{3iθ} ∈ X^s` for every `s`;
 * `angularSector_phi`, `ellFn_phi`, `ellFn_conj_phi`: `ℓ_*(G)(φ_*) = 1`, `ℓ_*(G)(conj φ_*) = 0`.
@@ -41,8 +41,8 @@ theorem rc_sq_mul_mem {G : ℝ} (hG : G ∈ Icc (0 : ℝ) Gbar) : Rc ^ 2 * G ∈
       have : Rc ≠ 0 := by unfold Rc; positivity
       unfold Gbar; field_simp
 
-/-- The facts about `λ_*(G)` used throughout (`hypN_lamC` at `R_c² G`, `eq:evans-units`,
-`lem:ring-facts`, `thm:evans-simple`(2)). -/
+/-- The facts about `λ_*(G)` used throughout (`hypN_lamC` at `R_c² G`, Part I Equation 13 (`eq:evans-units`),
+Part I Lemma 4.2 (`lem:ring-facts`), Part I Theorem 4.8(2) (`thm:evans-simple`)). -/
 structure LamFacts (χ : ℝ → ℝ) (G : ℝ) : Prop where
   valid : (ringPhiSetting χ).Valid
   re_gt : 211 / 2500 < (lam χ G).re
@@ -70,7 +70,7 @@ theorem a_pos : 0 < a := ringData_order.2.2.2.2.2.2.2.1
 
 theorem a_lt_one : a < 1 := ringData_order.2.2.2.2.2.2.2.2
 
-/-- `lem:resolvent`(2) for `g_*(G)`: smooth on `(0,∞)`, zero off `[a, 1]`, not zero. -/
+/-- Part I Lemma 4.7(2) (`lem:resolvent`) for `g_*(G)`: smooth on `(0,∞)`, zero off `[a, 1]`, not zero. -/
 theorem gstar_facts {χ : ℝ → ℝ} {G : ℝ} (hL : LamFacts χ G) :
     ContDiffOn ℝ ∞ (gstar χ G) (Ioi 0) ∧
       (∀ r : ℝ, 0 < r → r ∉ Icc a 1 → gstar χ G r = 0) ∧
@@ -107,7 +107,7 @@ theorem integral_sq_pos {g : ℝ → ℂ} (hc : ContinuousOn g (Ioi 0))
   rintro r ⟨hr1, hr2⟩
   exact ⟨hr2, hr1⟩
 
-/-- `n_*(G) > 0` (`04_ring.tex:1308`). -/
+/-- `n_*(G) > 0` (proof of Part I Proposition 4.21(b) (`prop:U`)). -/
 theorem nstar_pos {χ : ℝ → ℝ} {G : ℝ} (hL : LamFacts χ G) : 0 < nstar χ G := by
   obtain ⟨hcont, hsupp, r₀, hr₀, hne⟩ := gstar_facts hL
   have hm : AEStronglyMeasurable (gstar χ G) (volume.restrict (Ioi 0)) :=
@@ -197,7 +197,7 @@ theorem ellStar_const_mul (S : SectorSetting) (ℓ : ℕ) (z : ℂ) (G : ℝ) (c
   simp_rw [this, integral_const_mul]
   ring
 
-/-- `ℓ_*(G)(φ_*(G)) = 1` (`04_ring.tex:1315`). -/
+/-- `ℓ_*(G)(φ_*(G)) = 1` (Part I Definition 4.20 (`def:eigendata`)). -/
 theorem ellFn_phi {χ : ℝ → ℝ} {G : ℝ} (hL : LamFacts χ G) : ellFn χ G (phi χ G) = 1 := by
   have hn : ((nstar χ G : ℝ) : ℂ) ≠ 0 := Complex.ofReal_ne_zero.2 (nstar_pos hL).ne'
   rw [ellFn_eq_of_angularSector χ G (h := fun r => ((nstar χ G : ℝ) : ℂ)⁻¹ * gstar χ G r)
@@ -207,7 +207,7 @@ theorem ellFn_phi {χ : ℝ → ℝ} {G : ℝ} (hL : LamFacts χ G) : ellFn χ G
     SectorSetting.ellStar_gStar _ 3 _ G hL.J_ne
   rw [h1, mul_one, mul_inv_cancel₀ hn]
 
-/-- `ℓ_*(G)(conj φ_*(G)) = 0` (`04_ring.tex:1316`). -/
+/-- `ℓ_*(G)(conj φ_*(G)) = 0` (Part I Definition 4.20 (`def:eigendata`)). -/
 theorem ellFn_conj_phi (χ : ℝ → ℝ) (G : ℝ) :
     ellFn χ G (fun x => conj (phi χ G x)) = 0 := by
   rw [ellFn_eq_of_angularSector χ G (h := fun _ => 0) (fun r hr => ?_)]

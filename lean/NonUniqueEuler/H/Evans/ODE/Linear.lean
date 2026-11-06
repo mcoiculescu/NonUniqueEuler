@@ -8,7 +8,7 @@ import Mathlib.Analysis.Calculus.Deriv.Shift
 /-!
 # Helper for `P/Evans/ODE`: second-order linear ODEs `ψ'' = V ψ + F` with complex values
 
-Abstract facts, with no reference to the Evans function (`04_ring.tex`, `def:evans`):
+Abstract facts, with no reference to the Evans function (Part I, Definition 4.4, `def:evans`):
 * `gronwall2`: a Grönwall estimate for the pair `(d, d')` when `d'' = W d + R` on `[α, β]`,
   with one-sided derivatives within `[α, β]` (the form of `IsEvansSolution`);
 * `sol_bound`, `sol_sub_bound`, `sol_eqOn`: a priori bound, stability and uniqueness;

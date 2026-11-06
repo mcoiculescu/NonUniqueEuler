@@ -3,19 +3,19 @@ import NonUniqueEuler.H.Sec9.Relay.Basic
 /-!
 # Helpers for `prop:relay`: the real inequalities of the active phase and the final sum
 
-Helper file of `P/Sec9/Relay.lean` (`09_relay.tex:500-593`). Everything here is proved and
+Helper file of `P/Sec9/Relay.lean` (`prop:relay`, Part II Proposition C.9). Everything here is proved and
 independent of the standing data. Notation: `σ_j`, `σ_k = σ_{j+1}`, `κ = κ♯_{j+1}`,
 `T̂ = T̂_{j+1}`, `τ^act = τ_a`, `τ^sat = τ_a + T̂/μ`, `t̄♯_j = τ^sat + T_pin/μ`,
 `Y = (κ/δ₀)^{1-γ_j}`, `u = μ(v - τ_a)`.
 
-* `phase2_pt` (`09_relay.tex:527-562`): for `v ∈ [τ^act, τ^sat]`, a bound
+* `phase2_pt` (`prop:relay`, Part II Proposition C.9): for `v ∈ [τ^act, τ^sat]`, a bound
   `η ≤ C(2C₂κe^{σ_ku} + 2C₂C(C₀)κ⟨u⟩^me^{σ'u} + C₀κ⟨u⟩^m)` gives
   `e^{σ_j(τ-v)}η ≤ Ce^{x_jT_pin}[2C₂δ₀e^{-(μσ_k-σ_j)(τ^sat-v)} + (2C₂C(C₀)+C₀)δ₀Y⟨T̂⟩^m]`
   (`eq:relay-id`, `κe^{σ_kT̂} = δ₀`, `(σ_j/μ)(T̂-u) + σ'u ≤ γ_jσ_kT̂`);
 * `phase2_int`: the integral of that bound over `[τ^act, b]`;
-* `phase1_exp`: `κe^{σ_j(τ-τ^act)} ≤ e^{x_jT_pin}δ₀Y` (`09_relay.tex:507-515`);
+* `phase1_exp`: `κe^{σ_j(τ-τ^act)} ≤ e^{x_jT_pin}δ₀Y` (`prop:relay`, Part II Proposition C.9);
 * `final_alg`: the sum of the three parts and `C'_Ξ ≤ C_Ξ(1 + 1/(σ_b(μ-1)))`
-  (`09_relay.tex:575-590`).
+  (`prop:relay`, Part II Proposition C.9).
 -/
 
 noncomputable section
@@ -28,7 +28,7 @@ namespace Relay
 
 namespace RelayH
 
-/-- **The active phase of ring `j+1`, pointwise** (`09_relay.tex:527-562`). -/
+/-- **The active phase of ring `j+1`, pointwise** (`prop:relay`, Part II Proposition C.9). -/
 theorem phase2_pt {σj σk μ σ' κ δ₀ Th γ Y Tp τa τ v E CMe C2 Cact C0 : ℝ}
     (hμ : 0 < μ) (hσj : 0 ≤ σj) (hκ : 0 < κ) (hσ' : 0 ≤ σ')
     (hγ1 : σj / μ ≤ γ * σk) (hγ2 : σ' ≤ γ * σk)
@@ -121,7 +121,7 @@ theorem phase2_pt {σj σk μ σ' κ δ₀ Th γ Y Tp τa τ v E CMe C2 Cact C0 
     _ = CMe * Real.exp (σj / μ * Tp) * (e * B) := by ring
     _ ≤ _ := mul_le_mul_of_nonneg_left heB (mul_nonneg hCMe (Real.exp_pos _).le)
 
-/-- **The active phase of ring `j+1`, integrated** (`09_relay.tex:537-562`). -/
+/-- **The active phase of ring `j+1`, integrated** (`prop:relay`, Part II Proposition C.9). -/
 theorem phase2_int {F : ℝ → ℝ} {τa b τs c A₀ B₀ K : ℝ} (hab : τa ≤ b) (hbs : b ≤ τs)
     (hc : 0 < c) (hA₀ : 0 ≤ A₀) (hB₀ : 0 ≤ B₀) (hK : 0 ≤ K)
     (hpt : ∀ v ∈ Icc τa b, F v ≤ A₀ * (B₀ * Real.exp (-(c * (τs - v))) + K)) :
@@ -149,7 +149,7 @@ theorem phase2_int {F : ℝ → ℝ} {τa b τs c A₀ B₀ K : ℝ} (hab : τa 
   rw [h2]
   exact mul_le_mul_of_nonneg_left (by linarith) hA₀
 
-/-- **The weight of the quiet phase at `τ`** (`09_relay.tex:507-515`, `eq:relay-id`):
+/-- **The weight of the quiet phase at `τ`** (`prop:relay`, Part II Proposition C.9, `eq:relay-id`):
 `κ e^{σ_j(τ-τ^act)} ≤ e^{x_jT_pin} δ₀Y` for `τ ≤ τ^act + T̂/μ + T_pin/μ`. -/
 theorem phase1_exp {σj σk μ κ δ₀ Th γ Y Tp τa τ : ℝ} (hμ : 0 < μ) (hσj : 0 ≤ σj)
     (hκ : 0 < κ) (hTh : 0 ≤ Th) (hγ1 : σj / μ ≤ γ * σk)
@@ -166,7 +166,7 @@ theorem phase1_exp {σj σk μ κ δ₀ Th γ Y Tp τa τ : ℝ} (hμ : 0 < μ) 
         mul_le_mul_of_nonneg_left (Real.exp_le_exp.2 h1) hκ.le
     _ = Real.exp (σj / μ * Tp) * (κ * Real.exp (γ * σk * Th)) := by rw [Real.exp_add]; ring
 
-/-- **The sum of the three parts** (`09_relay.tex:575-590`): with `x = σ_b(μ-1)`,
+/-- **The sum of the three parts** (`prop:relay`, Part II Proposition C.9): with `x = σ_b(μ-1)`,
 `c ≥ x/2`, `T̂⟨T̂⟩^m ≤ ⟨L⟩^{m+1}/Z`, the parts `I₁ ≤ C(2C_Q/x + 1)EK₁δ₀Y`,
 `I₂ ≤ CE(2C₂δ₀/c + Dδ₀Y⟨T̂⟩^mT̂)`, `I₃ ≤ CE·C_D` sum to at most
 `CE[4C₂δ₀/x + C_D + (max(1,2C_Q)K₁ + D/Z)(1 + 1/x)δ₀Y⟨L⟩^{m+1}]`. -/

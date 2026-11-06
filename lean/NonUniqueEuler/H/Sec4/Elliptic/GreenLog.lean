@@ -8,7 +8,7 @@ import Mathlib.Analysis.Calculus.IteratedDeriv.Defs
 /-!
 # Helpers for `P/Sec4/Elliptic`: the Green operator in the log variable
 
-Manuscript `04_ring.tex:875-878`: with `x = log r`, `(min/max)^{|ℓ|} = e^{-|ℓ||x-y|}` and
+See the proof of Part I Corollary 4.13 (`cor:K-bound`): with `x = log r`, `(min/max)^{|ℓ|} = e^{-|ℓ||x-y|}` and
 `ρ dρ = e^{2y} dy`, so `𝒢_ℓ g (e^x) = yukawa ℓ (e^{2·} g(e^·)) (x)`.
 
 * `integral_Ioi_eq_exp`: `∫_{(0,∞)} G = ∫_ℝ e^x G(e^x) dx` (any `G`; the same substitution as
@@ -62,7 +62,7 @@ theorem kernel_log (ℓ : ℤ) {r : ℝ} (hr : 0 < r) (y : ℝ) :
   congr 3
   rw [Nat.cast_natAbs, Int.cast_abs]
 
-/-- `𝒢_ℓ g (r) = yukawa ℓ (e^{2·} g(e^·)) (log r)` for `r > 0` (`04_ring.tex:875-878`). -/
+/-- `𝒢_ℓ g (r) = yukawa ℓ (e^{2·} g(e^·)) (log r)` for `r > 0` (proof of Part I Corollary 4.13 (`cor:K-bound`)). -/
 theorem green_eq_yukawa_log (ℓ : ℤ) (g : ℝ → ℂ) {r : ℝ} (hr : 0 < r) :
     SectorSetting.green ℓ g r =
       yukawa ℓ (fun x => ((Real.exp (2 * x) : ℝ) : ℂ) * g (Real.exp x)) (Real.log r) := by

@@ -4,7 +4,7 @@ import NonUniqueEuler.H.Infra.AngularFourier.NormEquiv.Synthesis
 /-!
 # Proof: the norm equivalence on an annulus (`I/Infra/AngularFourier/NormEquiv.lean`)
 
-Manuscript `lem:norm-equiv` (`04_ring.tex:843-864`).
+Manuscript: Part I, Lemma 4.12 (`lem:norm-equiv`), proof.
 
 Structure of the proof (deviation from the manuscript):
 * **Lower bound** `c ∑_ℓ ‖g_ℓ‖²_{k,ℓ} ≤ ‖w‖²_{H^k}`, with summability: as in the manuscript, via

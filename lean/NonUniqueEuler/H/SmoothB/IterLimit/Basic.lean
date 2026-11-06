@@ -7,7 +7,7 @@ import Mathlib.Topology.Instances.ENNReal.Lemmas
 /-!
 # Helper for `prop:iter-limit`: generic calculus and limit lemmas
 
-Helper of `P/SmoothB/IterLimit.lean` (`B_global_smooth.tex:381-473`). Generic facts, independent
+Helper of `P/SmoothB/IterLimit.lean` (Part II, Proposition B.10 (`prop:iter-limit`)). Generic facts, independent
 of the iterates:
 * `spaceD` of order `0` and `1` (`spaceD_zero`, `spaceD_one_zero`, `spaceD_zero_one`) and the
   derivative of a real function viewed as complex valued (`fderiv_ofReal_apply`);

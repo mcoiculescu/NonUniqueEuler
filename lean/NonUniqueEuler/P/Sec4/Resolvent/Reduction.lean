@@ -9,7 +9,7 @@ import NonUniqueEuler.H.Sec4.Resolvent.Reduction.Basic
 # Proof: the reduction of the resolvent equation to the boundary value problem `eq:bvp`
 (sub-step of `lem:resolvent`)
 
-Proof of `I/Sec4/Resolvent/Reduction.lean` (`04_ring.tex:391-410`). Helpers:
+Proof of `I/Sec4/Resolvent/Reduction.lean` (Part I Lemma 4.7 (`lem:resolvent`)). Helpers:
 `H/Sec4/Resolvent/Reduction/Basic.lean` (namespace `NonUniqueEuler.ReductionAux`).
 
 * `bvp_of_resolvent_eq`: `h = M_λ(g + k_ℓψ)` a.e. (`ψ = 𝒢_ℓh`); `(rψ')' = r h + ℓ²ψ/r` in
@@ -33,7 +33,7 @@ namespace ReductionAux
 open SectorSetting
 
 /-- The integrated radial equation for `ψ = φ ∘ log` after the substitution `r = e^t`
-(`04_ring.tex:403-406`): from `φ'' = V_ℓφ + F` (integrated form), integration by parts against
+(Part I Lemma 4.7 (`lem:resolvent`)): from `φ'' = V_ℓφ + F` (integrated form), integration by parts against
 `v(t) = e^{-t}` and `e^{2t}M_λ(g + k_ℓφ) = F + (V_ℓ - ℓ²)φ`. -/
 theorem converse_integrated (S : SectorSetting) (hS : S.Valid) (ℓ : ℕ) (hℓ : 1 ≤ ℓ) {z : ℂ}
     (hz : 0 < z.re) (G : ℝ) {g : ℝ → ℂ} (hg : S.IsProfileL2 g) {φ φ' : ℝ → ℂ}
@@ -92,7 +92,7 @@ namespace SectorSetting
 
 open ReductionAux
 
-/-- Proof of `lem:resolvent`, reduction to `eq:bvp`, direct part (`04_ring.tex:391-402`): if
+/-- Proof of `lem:resolvent`, reduction to `eq:bvp`, direct part (Part I Lemma 4.7 (`lem:resolvent`)): if
 `h, g ∈ Y^0_ℓ` (profiles) satisfy `z h - L_ℓ(G) h = g` a.e. on `(0,∞)`, then
 `φ(ξ) = (𝒢_ℓ h)(e^ξ)` is `C¹` and solves `φ'' = V_ℓ φ + F` (`F = S.Fres ℓ z G g`) in integrated
 form, with `φ = A e^{ℓξ}` for `ξ ≤ log ρ₋` and `φ = B e^{-ℓξ}` for `ξ ≥ log ρ₊`. -/
@@ -154,7 +154,7 @@ theorem bvp_of_resolvent_eq (S : SectorSetting) (hS : S.Valid) (ℓ : ℕ) (hℓ
     have hρp : 0 < S.ρp := hS.ρm_pos.trans hS.ρm_lt_ρp
     rw [hB _ ((Real.log_le_iff_le_exp hρp).1 hξ), Real.exp_neg, Real.exp_nat_mul, inv_pow]
 
-/-- Proof of `lem:resolvent`, reduction to `eq:bvp`, converse part (`04_ring.tex:403-410`): if
+/-- Proof of `lem:resolvent`, reduction to `eq:bvp`, converse part (Part I Lemma 4.7 (`lem:resolvent`)): if
 `φ` is `C¹` and solves `φ'' = V_ℓ φ + F` (`F = S.Fres ℓ z G g`, `g ∈ Y^0_ℓ`) in integrated form,
 with `φ = A e^{ℓξ}` on a left half-line and `φ = B e^{-ℓξ}` on a right half-line, then
 `η = M_λ(g + k_ℓ φ(log r))` is in `Y^0_ℓ` and `𝒢_ℓ η = φ(log r)` on `(0, ∞)`. -/

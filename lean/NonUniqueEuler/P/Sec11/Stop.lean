@@ -5,8 +5,8 @@ import NonUniqueEuler.I.Sec9.Standing
 /-!
 # Proof: the remarks after `def:stop` (phase intervals and phases up to `T_end`)
 
-Proof of `I/Sec11/Stop.lean` (`11_bootstrap.tex:32-69`). Same declarations, statements copied
-verbatim.
+Proof of `I/Sec11/Stop.lean` (Part II Definition 6.1 (`def:stop`) and the phase conventions in §6).
+The interface imports the Lean proof module.
 
 * `stopsAt_not_cond`, `phase_trichotomy`: purely definitional (no ordering of the clock needed).
 * `quiet_of_lt`, `phase_intervals` (first three parts): the ordering of the clock,
@@ -106,7 +106,8 @@ private theorem cover_of_clockUpTo (d : ℕ) :
 
 end Helpers
 
-/-- **The phase intervals up to `T_end`** (`11_bootstrap.tex:49-56`): `T_end ≥ 0`; `Ph_k ⊂ [0, T_end]`
+/-- **The phase intervals up to `T_end`** (Part II Definition 6.1 (`def:stop`) and the phase
+conventions in §6): `T_end ≥ 0`; `Ph_k ⊂ [0, T_end]`
 whenever `T_k` is defined; `Pin_k ⊂ [0, T_end]` whenever `t♯_k` is defined (`k < n`); and, if the
 clock is defined up to level `n` (i.e. it does not stop at level `n`), every `t ∈ [0, T_end]` lies in
 some `Ph_k` with `T_k` defined or some `Pin_k` with `t♯_k` defined. -/
@@ -177,7 +178,8 @@ theorem phase_intervals (S : Standing) (hS : S.Holds) :
           (by omega) hcks t ⟨ht.1, h₁⟩
       · exact ⟨S.P.stopLevel, Finset.mem_Icc.2 ⟨hks1, hksn⟩, Or.inr ⟨hlt, hcks, h₁.le, ht.2⟩⟩
 
-/-- **The clock stops for a reason** (`11_bootstrap.tex:47-48`): if the clock stops at level `k`,
+/-- **The clock stops for a reason** (Part II Definition 6.1 (`def:stop`) and the phase conventions
+in §6): if the clock stops at level `k`,
 then `S_k(t♯_k) ⊄ N_k` or `κ♯_k ∉ (0, δ₀)`. -/
 theorem stopsAt_not_cond (S : Standing) {k : ℕ} (h : S.P.StopsAt k) :
     ¬ (S.P.St k (S.P.tsh k) ⊆ S.P.Nk k ∧ S.P.ksh k ∈ Ioo (0 : ℝ) S.P.δ₀) := by
@@ -192,7 +194,8 @@ theorem stopsAt_not_cond (S : Standing) {k : ℕ} (h : S.P.StopsAt k) :
     subst hik
     exact ⟨hSt, hk⟩
 
-/-- **Every ring has a phase at every `t ≤ T_end`** (`11_bootstrap.tex:61-66`): ring `j ∈ [1, n]` is
+/-- **Every ring has a phase at every `t ≤ T_end`** (Part II Definition 6.1 (`def:stop`) and the
+phase conventions in §6): ring `j ∈ [1, n]` is
 quiet, active or debris at `t` (conventions of `def:loc`). -/
 theorem phase_trichotomy (S : Standing) {t : ℝ} (ht : t ≤ S.P.Tend) {j : ℕ}
     (hj : j ∈ Finset.Icc 1 S.P.n) :
@@ -212,7 +215,8 @@ theorem phase_trichotomy (S : Standing) {t : ℝ} (ht : t ≤ S.P.Tend) {j : ℕ
       exact ht
     · exact Or.inl (Or.inl hcj1)
 
-/-- **Rings outside a quiet or active ring are quiet** (`11_bootstrap.tex:67-69`, by `lem:clock`(1)):
+/-- **Rings outside a quiet or active ring are quiet** (Part II Definition 6.1 (`def:stop`) and the
+phase conventions in §6, by `lem:clock` (1)):
 if ring `j ∈ [1, n]` is quiet or active at `t`, then every ring `i ∈ [1, j)` is quiet at `t`. -/
 theorem quiet_of_lt (S : Standing) (hS : S.Holds) {t : ℝ} {j : ℕ} (hj : j ∈ Finset.Icc 1 S.P.n)
     (h : S.P.QuietAt j t ∨ S.P.ActiveAt j t) : ∀ i ∈ Finset.Ico 1 j, S.P.QuietAt i t := by

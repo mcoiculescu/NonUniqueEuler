@@ -4,7 +4,7 @@ import Mathlib.Analysis.Calculus.Deriv.MeanValue
 /-!
 # Helper for `lem:iter-cauchy`: the comparison argument of the proof
 
-`B_global_smooth.tex:374-379`: from `|d/dt e²| ≤ 2 e g'` and `e(0) = 0` one gets
+Part II, Lemma B.9 (`lem:iter-cauchy`): from `|d/dt e²| ≤ 2 e g'` and `e(0) = 0` one gets
 `e(t) ≤ g(t) - g(0)` (the manuscript writes `|d/dt (e² + ε)^{1/2}| ≤ 2RΨ e_j` and lets
 `ε → 0`). Here `f = e²`; the argument is the one of the manuscript: for `ε > 0` the function
 `(f + ε)^{1/2} - g` has nonpositive derivative, hence is antitone, and `ε → 0`.

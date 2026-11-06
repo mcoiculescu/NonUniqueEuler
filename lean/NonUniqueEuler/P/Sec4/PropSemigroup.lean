@@ -12,7 +12,7 @@ import NonUniqueEuler.I.Sec4.RingFacts
 # Proof: `prop:semigroup` (uniform bounds for `e^{tL(G)}` on `X^s`)
 
 Proof of `I/Sec4/PropSemigroup.lean` (same declarations, statements copied verbatim).
-Manuscript `04_ring.tex:1430-1500`.
+Manuscript Part I Proposition 4.22 (`prop:semigroup`).
 
 Structure (restructuring R2 of the I file):
 * sector-wise bound `‖P_ℓ e^{tL}(1 - R)w‖ ≤ C e^{σ't}‖P_ℓ w‖` uniformly in `ℓ`, `G`, `t`, `w ∈ X^s`
@@ -39,7 +39,7 @@ namespace Eig
 
 open RingData Sect
 
-/-- **`prop:semigroup`, the bounds** (`04_ring.tex:1433-1441`): for `s ≥ 0` and
+/-- **`prop:semigroup`, the bounds** (Part I Proposition 4.22 (`prop:semigroup`)): for `s ≥ 0` and
 `σ' ∈ (9/200, σ_b)` there is `C_S` such that for all `G ∈ [0,G₁]` and `t ≥ 0`, on `X^s`:
 `‖e^{tL(G)}(1 - R(G))‖ ≤ C_S e^{σ't}`, `‖R(G)‖ ≤ C_S`, `‖e^{tL(G)}‖ ≤ C_S e^{σ(G)t}`. -/
 theorem propSemigroup_bounds (χ : ℝ → ℝ) (hχ : IsAdmissibleCutoff χ)
@@ -99,7 +99,7 @@ theorem propSemigroup_bounds (χ : ℝ → ℝ) (hχ : IsAdmissibleCutoff χ)
     have h0 : 0 ≤ Real.exp (sigma χ G * t) * ‖w‖ := by positivity
     nlinarith
 
-/-- **`prop:semigroup`, the formulas** (`04_ring.tex:1442-1447`): for `G ∈ [0,G₁]` and `t ≥ 0`,
+/-- **`prop:semigroup`, the formulas** (Part I Proposition 4.22 (`prop:semigroup`)): for `G ∈ [0,G₁]` and `t ≥ 0`,
 `e^{tL(G)}R(G)w = 2Re(ℓ_*(G)(w) e^{λ_*(G)t} φ_*(G))` for real `w ∈ X^s`, and
 `ℓ_*(G)(e^{tL(G)}w) = e^{λ_*(G)t} ℓ_*(G)(w)` for `w ∈ X^s` (in particular `w ∈ X^0`). -/
 theorem propSemigroup_formulas (χ : ℝ → ℝ) (hχ : IsAdmissibleCutoff χ)

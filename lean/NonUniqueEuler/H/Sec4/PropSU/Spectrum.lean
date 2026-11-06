@@ -10,17 +10,17 @@ import NonUniqueEuler.I.Sec4.SemigroupConstruct
 import NonUniqueEuler.H.Sec4.PropSU.Basic
 
 /-!
-# Helpers for `P/Sec4/PropSU`: the spectral part of `prop:SU`
+# Helpers for `P/Sec4/PropSU`: the spectral part of Part I Proposition 4.19 (`prop:SU`)
 
-The sector-by-sector proof of `(S_U)` (`04_ring.tex:1268-1288`), in ring units:
+The sector-by-sector proof of `(S_U)` (`prop:SU`), in ring units:
 
-* `ℓ = 3`: by `eq:evans-units` (`evans_units`, `evans_units_deriv`), the Evans function of `Φ` is
+* `ℓ = 3`: by Part I Equation 13 (`eq:evans-units`) (`evans_units`, `evans_units_deriv`), the Evans function of `Φ` is
   `E_3(·;R_c²G)`, so (N1), (N2) (`hypN_lamC`) give its unique zero `λ_*(G)` in `{Re ≥ 9/200}`,
-  simple, with `Re λ_*(G) > 211/2500`; `lem:resolvent` (`spectrum_re_pos`) identifies the spectrum
-  in `{Re > 0}` with the zeros, and `thm:evans-simple` (`evansSimple_riesz`) gives the Riesz
+  simple, with `Re λ_*(G) > 211/2500`; Part I Lemma 4.7 (`lem:resolvent`) (`spectrum_re_pos`) identifies the spectrum
+  in `{Re > 0}` with the zeros, and Part I Theorem 4.8 (`thm:evans-simple`) (`evansSimple_riesz`) gives the Riesz
   projection.
-* `ℓ = -3`: the last assertion of `lem:resolvent` and `evansSimple_riesz_conj`.
-* `|ℓ| = 6`, `|ℓ| ≥ 9`: `cor:sector-6`, `cor:sectors-9` and `spectrum_re_pos_eigen`.
+* `ℓ = -3`: the last assertion of Part I Lemma 4.7 (`lem:resolvent`) and `evansSimple_riesz_conj`.
+* `|ℓ| = 6`, `|ℓ| ≥ 9`: the mode-6 and large-mode bounds in the proof of Part I Proposition 4.19 (`prop:SU`) and `spectrum_re_pos_eigen`.
 * `ℓ = 0`: `L_0 = 0` (`semigroupConstruct_Lsec`, `LsecFn_zero`).
 -/
 
@@ -75,7 +75,7 @@ theorem sector_cases {ℓ : ℤ} (hdvd : (3 : ℤ) ∣ ℓ) (h0 : ℓ ≠ 0) (h3
   · rw [abs_of_neg h]
     omega
 
-/-- **The spectral part of `prop:SU`** (`04_ring.tex:1253-1259`, proof `:1268-1288`); the same
+/-- **The spectral part of Part I Proposition 4.19 (`prop:SU`)**; the same
 statement as `Eig.lam_SU`. -/
 theorem lam_SU_core (χ : ℝ → ℝ) (hχ : IsAdmissibleCutoff χ) (hN : NumericalHypothesis χ) {G : ℝ}
     (hG : G ∈ Icc (0 : ℝ) Gbar) (s : ℕ) :

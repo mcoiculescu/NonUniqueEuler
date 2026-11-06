@@ -9,7 +9,7 @@ import NonUniqueEuler.I.Evans.ODE
 # Proof: the soundness of the certification of one cell (`certifyCell`)
 
 Proves the interface `I/Verify/Sound/CertifyCell.lean` (same declarations, statements copied
-verbatim). See the docstring there for the manuscript location (Proposition A.7, with
+verbatim). See the docstring there for the manuscript location (Part II Proposition A.7, with
 Propositions A.3 and A.4) and the proof sketch.
 
 Helper (proved here): `exists_seg_of_mem` (a point of `[f 0, f (n+1)]` lies in one of the
@@ -65,7 +65,7 @@ theorem exists_seg_of_mem (f : ℕ → ℝ) {s : ℝ} (h0 : f 0 ≤ s) :
       exact ⟨i, by omega, h1, h2⟩
     · exact ⟨n + 1, le_rfl, (not_le.1 hs).le, h⟩
 
-/-- **The certification of one cell is sound** (Proposition A.7 for one cell, with
+/-- **The certification of one cell is sound** (Part II Proposition A.7 for one cell, with
 Propositions A.3 and A.4): if `certifyCell` succeeds on the cell `[lo, hi]` and the rectangle
 `R` with result `w`, then for every `G ∈ [lo, hi]` (`G ≥ 0`), `E_3(·; G)` is nonvanishing on the
 boundary of `R` and its winding number about `0` along it is `w`. -/

@@ -8,10 +8,13 @@ import NonUniqueEuler.I.Infra.Sobolev.Local
 import NonUniqueEuler.I.Infra.CkNorm.Basic
 
 /-!
-# Proof: the rate `Λ(s)` of `eq:Lambda` and its ingredients
+# Proof: the explicit energy rate for Part II Lemma 2.4
 
-Proof of `I/Sec5/Lambda.lean` (`eq:Lambda`, `05_single_ring.tex:282-298`; `lem:energy`,
-`:302-304`).
+Proof of `I/Sec5/Lambda.lean`. The current Part II Lemma 2.4 (`lem:energy`)
+requires a sufficiently large rate, with the lower bound in Equation (7)
+(`eq:Lambda`). This module verifies the ingredients of the explicit legacy
+choice retained in `Defs/Sec5/Constants.lean`; the current manuscript no longer
+specifies that formula.
 
 * `C^s(N')` controls `W^{1,∞}(N₁)` and `H^s(N₁)` (`Sob.MemCk.memW1infOn`, `Sob.MemCk.memHOn`,
   `I/Infra/Sobolev/Local.lean`) with the constant `3 + (s+1)|N₁|^{1/2}`, so the admissible set of
@@ -152,7 +155,8 @@ theorem Gbar_nonneg : 0 ≤ Gbar := by
 end LambdaAux
 
 open LambdaAux in
-/-- **The ingredients of `Λ(s)` are finite** (`05_single_ring.tex:284-298`), for an integer
+/-- **The ingredients of the retained explicit `Λ(s)` are finite**, supporting
+Part II Lemma 2.4 (`lem:energy`), for an integer
 `s ≥ 3`: the field `Ω(|x|;G)x^⊥` lies in `W^{1,∞}(N₁)` and `H^s(N₁)` for `G ∈ [0,G₁]` and the
 sums of its norms are bounded above (`C_Ω < ∞`); every `h ∈ C^s(N';ℝ²)` lies in `W^{1,∞}(N₁)` and
 `H^s(N₁)`, and `C_{N'} = CNprime s` is the least admissible constant; the maximum of `σ` on
@@ -182,7 +186,7 @@ theorem lambda_consts (χ : ℝ → ℝ) (hχ : IsAdmissibleCutoff χ) (hN : Num
 
 set_option linter.unusedVariables false in
 open LambdaAux in
-/-- **`Λ(s) ≥ 2 max σ`, and `Λ(s) > 0`** (`05_single_ring.tex:302-304`): for an integer `s ≥ 3`
+/-- **`Λ(s) ≥ 2 max σ`, and `Λ(s) > 0`** (Part II Lemma 2.4 (`lem:energy`)): for an integer `s ≥ 3`
 and every `G ∈ [0,G₁]`, `2σ(G) ≤ Λ(s)`; and `0 < Λ(s)`. -/
 theorem lambda_ge (χ : ℝ → ℝ) (hχ : IsAdmissibleCutoff χ) (hN : NumericalHypothesis χ)
     {s : ℕ} (hs : 3 ≤ s) :

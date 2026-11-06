@@ -10,10 +10,10 @@ import Mathlib.MeasureTheory.Integral.IntervalIntegral.FundThmCalculus
 import Mathlib.Topology.Order.Compact
 
 /-!
-# Proof: Lemma A.2 (`lem:apriori`), the a priori location of the zeros
+# Proof: Part II Lemma A.2 (`lem:apriori`), the a priori location of the zeros
 
 Proof of `NonUniqueEuler/I/Verify/APriori.lean` (same declarations, statements copied
-verbatim). Manuscript: `A_verification.tex:193-247`.
+verbatim). Manuscript: `lem:apriori`.
 
 Used black boxes:
 * `integrable_deriv_prof`, `endRegion_left_TV_interval`, `endRegion_right_TV_interval`
@@ -267,7 +267,7 @@ theorem apriori_exists_xi {χ : ℝ → ℝ} (hχ : IsAdmissibleCutoff χ) {ℓ 
   have := (Real.log_le_iff_le_exp two_pos).mpr hexp
   linarith
 
-/-- **Lemma A.2**: `Re λ < 2.9` and `-ℓΩ_max - 2.9 < Im λ < 2.9` for every zero with
+/-- **Part II Lemma A.2**: `Re λ < 2.9` and `-ℓΩ_max - 2.9 < Im λ < 2.9` for every zero with
 `Re λ > 0`. -/
 theorem apriori_zero_bounds {χ : ℝ → ℝ} (hχ : IsAdmissibleCutoff χ) {ℓ : ℕ} (hℓ : 1 ≤ ℓ)
     {G : ℝ} (hG : G ∈ Icc (0 : ℝ) d) {z : ℂ} (hz : 0 < z.re) (h0 : evans χ ℓ z G = 0) :
@@ -292,7 +292,7 @@ theorem apriori_zero_bounds {χ : ℝ → ℝ} (hχ : IsAdmissibleCutoff χ) {�
   have hb2 := abs_le.mp (h2.trans hnorm)
   refine ⟨by linarith [hb1.2], by linarith [hb2.1], by linarith [hb2.2]⟩
 
-/-- **Lemma A.2**, last assertion: every zero of `E_3(·; G)` with `Re λ ≥ 9/200` lies in
+/-- **Part II Lemma A.2**, last assertion: every zero of `E_3(·; G)` with `Re λ ≥ 9/200` lies in
 `[9/200, 2.9) × (-4.85, 2.9)`. -/
 theorem apriori_zero_mem_RA {χ : ℝ → ℝ} (hχ : IsAdmissibleCutoff χ) {G : ℝ}
     (hG : G ∈ Icc (0 : ℝ) d) {z : ℂ} (hre : 9 / 200 ≤ z.re) (h0 : evans χ 3 z G = 0) :

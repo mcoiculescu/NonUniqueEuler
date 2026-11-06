@@ -11,7 +11,7 @@ import NonUniqueEuler.I.Sec6.FieldContinuity
 * `OProof.contOn_facts`: under `S.OHyp j τ`, with `T = τ/A_j`, `η_i`, `η^in_j`, `η_j`, `maj_i` are
   continuous on `[0, A_iT]` (`I/Sec6/FieldContinuity.lean`), and `A_jT = τ`;
 * `OProof.majj_M1`: (M1) of `lem:majorant` for `maj_j` on `[0, τ]`;
-* `OProof.improve`: the improvement step of the continuity argument (`09_relay.tex:304-357`):
+* `OProof.improve`: the improvement step of the continuity argument (`lem:O`, Part II Lemma C.8):
   if `eq:O-BH` holds on `[0,t]` (with the regularized majorant
   `maj^ε_j(τ') = maj_j(τ') + εe^{σ_jτ'}`, `0 < ε ≤ maj_*e^{-σ_jτ}`), then
   `maj_i(A_it) ≤ (1/4)P̃_{i,j}maj^ε_j(A_jt)` for every `i < j` (`eq:O-improved`).
@@ -26,7 +26,7 @@ namespace NonUniqueEuler.Relay.OProof
 open RingData Datum
 
 /-- Continuity of the field norms and majorants of the rings `l ≤ j` on `[0, A_l τ/A_j]`, under
-`S.OHyp j τ` (paragraph after `lem:regions-basic`, `06_datum.tex:319-321`). -/
+`S.OHyp j τ` (paragraph after `lem:regions-basic`, Part II Lemma 3.6 and the following continuity discussion). -/
 theorem contOn_facts (S : Standing) (hS : S.Holds) {j : ℕ} {τ : ℝ} (h : S.OHyp j τ) {l : ℕ}
     (hl : l ∈ Finset.Icc 1 j) :
     ContinuousOn (S.P.eta S.Mh l) (Icc 0 (S.P.A l * (τ / S.P.A j))) ∧
@@ -42,7 +42,7 @@ theorem contOn_facts (S : Standing) (hS : S.Holds) {j : ℕ} {τ : ℝ} (h : S.O
   rw [mul_zero] at he
   exact ⟨he.2.2 hdef, he.1 fun s hs => (hdef s hs).1, hm.1 hdef⟩
 
-/-- **(M1) of `lem:majorant` for `maj_j`** on `[0, τ]` (`09_relay.tex:302-303`). -/
+/-- **(M1) of `lem:majorant` for `maj_j`** on `[0, τ]` (`lem:O`, Part II Lemma C.8). -/
 theorem majj_M1 (S : Standing) (hS : S.Holds) {j : ℕ} {τ : ℝ} (h : S.OHyp j τ) {v τ' : ℝ}
     (hv : 0 ≤ v) (hvτ' : v ≤ τ') (hτ' : τ' ≤ τ) :
     Real.exp (S.P.sigma j * (τ' - v)) * S.maj j v ≤ S.maj j τ' := by
@@ -55,7 +55,7 @@ theorem majj_M1 (S : Standing) (hS : S.Holds) {j : ℕ} {τ : ℝ} (h : S.OHyp j
     hc.integrableOn_Icc (fun t _ => S.P.eta_nonneg _ _ _)
   exact (hM.1 v τ' hv hvτ' hτ').1
 
-/-- **The improvement step** (`09_relay.tex:304-357`, `eq:O-improved`). -/
+/-- **The improvement step** (`lem:O`, Part II Lemma C.8, `eq:O-improved`). -/
 theorem improve (S : Standing) (hS : S.Holds) (hDet : S.Det) {j : ℕ} {τ : ℝ} (h : S.OHyp j τ)
     {ε : ℝ} (hε : 0 < ε) (hεle : ε ≤ S.majst * Real.exp (-(S.P.sigma j * τ)))
     {t : ℝ} (ht : t ∈ Icc 0 (τ / S.P.A j))

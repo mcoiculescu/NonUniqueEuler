@@ -6,18 +6,17 @@ import NonUniqueEuler.H.Sec6.RegionsBasic.Terms
 /-!
 # Proof: `lem:regions-basic` (elementary properties of the regions) and `eq:omega-ge`
 
-Proof of `I/Sec6/RegionsBasic.lean` (`06_datum.tex:215-242`, proof `:244-292`); same
-declarations, statements copied verbatim.
+Proof of `I/Sec6/RegionsBasic.lean` (Part II Lemma 3.6 (`lem:regions-basic`) and its proof); the formal interface is unchanged.
 
-* (1) (`06_datum.tex:245-254`): `f^{(n)}_k = A_k G(·/r_k)` with a ring profile `G`
+* (1) (Part II Lemma 3.6 (`lem:regions-basic`)): `f^{(n)}_k = A_k G(·/r_k)` with a ring profile `G`
   (`RegionsBasicAux.term_eq_scale`); `S_k ⊂ 𝒩₋_k`, `S_k ⊂ {a r_k ≤ |x| ≤ r_k}` for `k < n`;
   disjointness from `r_k ≤ (a/16) r_i` (`i < k`), which gives `(5/4) r_k < a r_i`.
-* (2) (`06_datum.tex:255-270`): `Φ_t ∘ O = O ∘ Φ_t` (`Smooth.vel_flow_rot_of_symm`), `Φ_t(0) = 0`
+* (2) (Part II Lemma 3.6 (`lem:regions-basic`)): `Φ_t ∘ O = O ∘ Φ_t` (`Smooth.vel_flow_rot_of_symm`), `Φ_t(0) = 0`
   because `O` fixes only `0`; `Φ_t` is a bijection, so the images inherit (1);
   `ω(t) = f^{(n)} ∘ Φ_t⁻¹` (`Smooth.sol_eq_comp_flowInv`).
-* (3) (`06_datum.tex:271-284`): `1_{S_k(t)} = 1_{S_k} ∘ Φ_t⁻¹`, the disjoint unions, area
+* (3) (Part II Lemma 3.6 (`lem:regions-basic`)): `1_{S_k(t)} = 1_{S_k} ∘ Φ_t⁻¹`, the disjoint unions, area
   preservation of `Φ_t⁻¹`.
-* (4) (`06_datum.tex:286-292`): `w_k(t) = A_k⁻¹(ω(t)1_{S_k(t)})(r_k ·) - Φ`; Cauchy–Schwarz on `N`.
+* (4) (Part II Lemma 3.6 (`lem:regions-basic`)): `w_k(t) = A_k⁻¹(ω(t)1_{S_k(t)})(r_k ·) - Φ`; Cauchy–Schwarz on `N`.
 
 Helper lemmas: `H/Sec6/RegionsBasic/{Basic,Terms}.lean`, namespace
 `NonUniqueEuler.Datum.Approx.RegionsBasicAux`.
@@ -90,7 +89,7 @@ end RegionsBasicAux
 
 open RegionsBasicAux
 
-/-- **`lem:regions-basic`(1)** (`06_datum.tex:219-222`): the sets `S_1, …, S_n` are compact, avoid
+/-- **`lem:regions-basic`(1)** (Part II Lemma 3.6 (`lem:regions-basic`)): the sets `S_1, …, S_n` are compact, avoid
 `0`, are invariant under `O_{2π/3}` and pairwise disjoint; `f^{(n)}1_{S_k} = f^{(n)}_k`;
 `S_k ⊂ {a r_k ≤ |x| ≤ r_k}` for `k < n` and `S_n ⊂ 𝒩₋_n`. -/
 theorem regions_basic_one (P : Approx) (hP : P.Valid) (hN : NumericalHypothesis P.χ) :
@@ -104,7 +103,7 @@ theorem regions_basic_one (P : Approx) (hP : P.Valid) (hN : NumericalHypothesis 
     S_disjoint hP hN, fun k hk hkn => S_subset_ann hP hN hk hkn,
     S_subset_Nmk hP hN (Finset.mem_Icc.2 ⟨hP.one_le_n, le_rfl⟩)⟩
 
-/-- **`lem:regions-basic`(2)** (`06_datum.tex:223-226`): for `t ≥ 0`, `Φ_t ∘ O = O ∘ Φ_t` and
+/-- **`lem:regions-basic`(2)** (Part II Lemma 3.6 (`lem:regions-basic`)): for `t ≥ 0`, `Φ_t ∘ O = O ∘ Φ_t` and
 `Φ_t(0) = 0`; the sets `S_k(t)` are compact, avoid `0`, are `O`-invariant and pairwise disjoint;
 `supp ω(t) ⊂ S_1(t) ∪ … ∪ S_n(t)`, hence `ω(t) = Σ_{k=1}^n ω(t)1_{S_k(t)}`. -/
 theorem regions_basic_two (P : Approx) (hP : P.Valid) (hN : NumericalHypothesis P.χ) {t : ℝ}
@@ -147,7 +146,7 @@ theorem regions_basic_two (P : Approx) (hP : P.Valid) (hN : NumericalHypothesis 
     rw [← Finset.indicator_biUnion_apply _ _ hpd,
       Set.indicator_eq_self.2 ((subset_tsupport _).trans hsupp)]
 
-/-- **`lem:regions-basic`(3)** and **`eq:omega-ge`** (`06_datum.tex:227-236`): for `1 ≤ k ≤ n` and
+/-- **`lem:regions-basic`(3)** and **`eq:omega-ge`** (Part II Lemma 3.6 (`lem:regions-basic`)): for `1 ≤ k ≤ n` and
 `t ≥ 0`, `ω(t)1_{S_k(t)} = f^{(n)}_k ∘ Φ_t⁻¹`, `ω_{≥k}(t) = (Σ_{i=k}^n f^{(n)}_i) ∘ Φ_t⁻¹ =
 Σ_{i=k}^n ω(t)1_{S_i(t)}`, likewise `ω(t)1_{S_1(t)∪…∪S_{k-1}(t)} = (Σ_{i<k} f^{(n)}_i) ∘ Φ_t⁻¹ =
 Σ_{i<k} ω(t)1_{S_i(t)}`, `∫ ω(t)1_{S_k(t)} = A_k r_k²‖Φ‖_{L¹}`, and `ω(t)1_{S_k(t)}` and
@@ -245,7 +244,7 @@ theorem regions_basic_three (P : Approx) (hP : P.Valid) (hN : NumericalHypothesi
   · rw [hge1]
     exact hgGe
 
-/-- **`lem:regions-basic`(4)** (`06_datum.tex:237-240`): if `S_k(t) ⊂ N_k` (`t ≥ 0`), then
+/-- **`lem:regions-basic`(4)** (Part II Lemma 3.6 (`lem:regions-basic`)): if `S_k(t) ⊂ N_k` (`t ≥ 0`), then
 `w_k(t) ∈ C_c^∞` is (pointwise) `3`-fold symmetric and supported in `N`, `w_k(t) ∈ X^s` for every
 `s`, `∫ w_k(t) = 0`, `‖w_k(t)‖_{L¹} ≤ 2‖Φ‖_{L¹}` and `‖w_k(t)‖_{L¹} ≤ |N|^{1/2}‖w_k(t)‖_{L²}`. -/
 theorem regions_basic_four (P : Approx) (hP : P.Valid) (hN : NumericalHypothesis P.χ) {k : ℕ}

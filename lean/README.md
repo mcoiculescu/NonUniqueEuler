@@ -6,18 +6,19 @@ This folder contains a Lean 4 / Mathlib formalization of the main theorem of
 > Equations with Vorticity in L¹ ∩ Lᵖ*, I: A Compactness Criterion and the Linear Analysis;
 > II: The Nonlinear Construction (LaTeX sources in [`../manuscript/`](../manuscript/)).
 
-**Manuscript references.** The formalization was written against an earlier, single-volume version
-of the manuscript, which was later divided into Parts I and II. Below and in the Lean sources,
-"the manuscript", its section and statement numbers, its LaTeX labels and its source files refer to
-that version. Theorem 1.1, Proposition 1.2, Theorem 1.3 and Appendix A (Lemma A.1 to
-Proposition A.8) have the same numbers in Part II. For everything else, see "How the code refers to
-the manuscript" in the [top-level README](../README.md).
+**Manuscript references.** References below and in module documentation use the current Part I
+or Part II and stable LaTeX labels. [MANUSCRIPT_MAP.md](MANUSCRIPT_MAP.md) gives current numbers,
+source links and Lean entry points, including removed labels whose arguments now occur inside
+proofs. The paths `Sec2`–`Sec11` preserve the original single-volume organization; they are not
+current section numbers. Some current results regroup several Lean modules or have a different
+statement boundary; these differences are recorded in the map and
+[FORMALIZATION_NOTES.md](FORMALIZATION_NOTES.md).
 
 The formalization has two parts.
 
 1. **The conditional theorem.** A proof that the numerical hypothesis (N1)–(N3) of the
-   manuscript implies Theorem 1.1 (the manuscript's Proposition 1.2, `prop:reduction`).
-2. **The verification algorithms of Appendix A.** These are a computable certificate checker,
+   Part I implies the main theorem (Part II, Proposition 1.2, `prop:reduction`).
+2. **The verification algorithms of Part II, Appendix A.** These are a computable certificate checker,
    written in Lean, and a proof that it is sound. The checker consists of rigorous ball
    arithmetic, a Taylor enclosure of the Evans function and a certified winding count.
 
@@ -29,7 +30,7 @@ pinned in `lake-manifest.json`). About 1,280 Lean files and 170,000 lines.
 
 ## What is proved (from the hypothesis `Verify.check Verify.cert = true`)
 
-**Theorem 1.1 of the manuscript (informal statement).** Let `Φ` be the ring of `def:ring` and
+**Theorem 1.1 of both parts (informal statement).** Let `Φ` be the ring of `def:ring` and
 let `a ∈ (0, 1)` be the inner radius defined there. Then there are numbers `μ ∈ (1, 17/16]` and
 `s̄ ∈ (0, a/16]` such that the following holds for every `A₁ > 0`. Consider the datum
 
@@ -51,7 +52,8 @@ let `a ∈ (0, 1)` be the inner radius defined there. Then there are numbers `μ
 
 **The Lean statement.** `NonUniqueEuler.MainTheorem χ` (`NonUniqueEuler/Statement/MainTheorem.lean`)
 is this statement for the ring built from a cutoff `χ`, with the manuscript's order of
-quantifiers. It also includes the explicit form `thm:main-explicit`:
+quantifiers. It also includes the explicit solution and restriction clauses used in the proof of Part II,
+Proposition 1.2 (Section 8; formerly labeled `thm:main-explicit`):
 - `ω_∞` is a renormalized weak solution on `[0, ∞)` with `q = 2`;
 - both solutions are renormalized weak solutions in `X_q(T)` for every `T > t₀`.
 
@@ -96,8 +98,8 @@ The proof combines four results:
 
 | Result | Lean theorem | File |
 |---|---|---|
-| Part 1, the conditional theorem | `main_theorem_of_N : ConditionalTheorem` | `P/Main/Reduction.lean` |
-| Part 2, soundness of the checker | `Verify.check_sound : CheckerSound Verify.check` | `P/Verify/Final.lean` |
+| Part II, Proposition 1.2: conditional theorem | `main_theorem_of_N : ConditionalTheorem` | `P/Main/Reduction.lean` |
+| Part II, Appendix A: checker soundness | `Verify.check_sound : CheckerSound Verify.check` | `P/Verify/Final.lean` |
 | (N3), proved without machine computation (Proposition A.8) | `n3_holds : N3` | `P/Verify/N3.lean` |
 | the explicit cutoff is admissible | `chiStd_admissible` | `P/Ring/ChiStd.lean` |
 
@@ -175,9 +177,9 @@ and exited with code 0. All 261 cells (25 for (N1′), 236 for (N2′)) were cer
 | Directory | Contents |
 |---|---|
 | `NonUniqueEuler/Statement/` | The statements: the plane and the Biot–Savart law, weak and renormalized weak solutions, the ring, the datum, the Evans function and (N1)–(N3), the main theorem, and the certificate types. Definitions only, no proofs. |
-| `NonUniqueEuler/Defs/` | Definitions used by the proofs, grouped by manuscript section (`Sec2` … `Sec11`, `SmoothB` for Appendix B, `Verify` for Appendix A), plus manuscript-independent infrastructure (`Infra`). |
+| `NonUniqueEuler/Defs/` | Definitions used by the proofs, in stable legacy folders `Sec2` … `Sec11`; `SmoothB` covers Part II, Appendix B, `Verify` covers Part II, Appendix A, and `Infra` supplies infrastructure. See the current section map in the top-level README. |
 | `NonUniqueEuler/I/` | Interface modules. `I/X.lean` is the single line `import NonUniqueEuler.P.X`, so it re-exports the proof module `P/X`. Other proofs import the statements they need through `I/…`. |
-| `NonUniqueEuler/P/` | Proofs. `P/X.lean` proves one manuscript statement, or a small group of statements. |
+| `NonUniqueEuler/P/` | Proof entry points. A module may prove a current statement, a formal variant, or auxiliary results now included inside a manuscript proof; the correspondence map distinguishes these cases. |
 | `NonUniqueEuler/H/` | Helper lemmas. `H/X/*` is used only by `P/X` and by its sibling helpers. |
 | `NonUniqueEuler/Verify/` | The certificate checker. `Comp/` holds the algorithms in core Lean: dyadic ball arithmetic, the Evans enclosure, the contour, the winding certification, the runs, and the parallel evaluation. The exception is `Runs.lean`, which defines `Verify.check` on the statement-layer data types. `Data/` holds the certificate. `Main.lean` is the executable `ncert`. |
 | `NonUniqueEuler/Vendor/` | Code adapted from the OpenAI `NavierStokesAndEuler` repository (Apache-2.0): global Picard existence and the flow of a bounded Lipschitz vector field. |
@@ -189,8 +191,8 @@ and exited with code 0. All 261 cells (25 for (N1′), 236 for (N2′)) were cer
   helpers `H/X/*`, and the interface modules `I/Y` of the statements it uses.
 - It never imports another `P` file, and never another proof's helper files.
 
-The import graph therefore follows the dependency order of the manuscript's statements, and it
-is acyclic. When two proofs need the same auxiliary lemma, the lemma is duplicated under
+The import graph is acyclic and records the formal proof dependencies. It retains the finer
+proof decomposition of the original development; it does not reproduce the current section order. When two proofs need the same auxiliary lemma, the lemma is duplicated under
 separate namespaces. Proof and helper files declare no global instances; the shared instances
 are in `Defs/Infra/Instances.lean`.
 
@@ -211,6 +213,17 @@ machine. Mathlib itself is not rebuilt.
 **Checking for `sorry` and forbidden tokens.** `python3 tools/status.py` counts the `sorry`s
 and forbidden tokens (`axiom`, `admit`, `native_decide`, `implemented_by`, `extern`, `unsafe`,
 …), ignoring comments. It should report `TOTAL sorry = 0` and list no forbidden tokens.
+
+**Checking manuscript navigation.** From this directory, run:
+
+```
+python3 tools/manuscript_map.py --check
+```
+
+This checks current statement coverage, generated numbers and source links, and module paths.
+After building both manuscripts, `--check --check-aux` also compares the numbers with their
+local `.aux` files. Run without `--check` to regenerate the map after editing the TeX source or
+`manuscript_map.json`; the map checker does not establish mathematical equivalence.
 
 **Checking the axioms.** After `lake build`, run:
 
@@ -270,38 +283,45 @@ comments and whitespace.
 - `NumericalHypothesis` is the manuscript's Hypothesis (N), `hyp:N`. Its parts are the Evans
   function condition (N1) (stated as "exactly one zero in `{Re λ ≥ 9/200}`, and it is
   simple"), the zero-free strip (N2), and the inequality (N3).
-- Part 2 formalizes Appendix A:
+- The checker formalizes Part II, Appendix A:
   - the reduction of (N1), (N2) to the finite statements (N1′), (N2′) (Lemma A.6);
   - the enclosure of the Evans function (Proposition A.3);
   - the winding formula (Proposition A.4);
   - the two runs (Proposition A.7).
 - The written proof of (N3) (Proposition A.8) is also formalized.
 
-**How it follows the manuscript.** The formalization follows the manuscript's argument, with
-restructured proofs in places. The statements are unchanged, or replaced by equivalent or
-sufficient forms. The design decisions and the list of restructurings are in
-`FORMALIZATION_NOTES.md`. More local deviations of proofs are described in the docstrings of
-the modules concerned.
+**Correspondence and formalization differences.** The current manuscript and the Lean proof
+share the construction, but their statement boundaries and proof organization differ. The
+[correspondence map](MANUSCRIPT_MAP.md) records the current destinations of the formal modules;
+[FORMALIZATION_NOTES.md](FORMALIZATION_NOTES.md) records representations, sufficient variants,
+and auxiliary results. In particular:
 
-**Inaccuracies found in the manuscript.** The formalization found three minor inaccuracies.
-None affects the results.
+- Part I, Theorem 1.3 collects linear results. The formal proof uses sector-wise exponentials
+  and explicit projections; it does not assert every full-space spectral statement appearing
+  in the paper (see R1–R2).
+- Part II, Lemma 1.6 (`lem:exterior-mode`) has corresponding exterior-mode identities in the
+  multipole library with different support and scalar conventions. Lemma 2.5 (`lem:hier-res`)
+  has corresponding hierarchy-residual calculations inside the quiet-ring proof. Neither
+  correspondence identifies a new one-to-one declaration with exactly the current statement.
+- Part II, Proposition 6.2 (`prop:relay-step`) collects stopping-time, hand-off and active-ring
+  estimates from `Sec9` and `Sec11`. The older `prop:relay` is now Proposition C.9, a different
+  statement. The formal bootstrap retains a stronger all-ring conclusion than the four
+  ring-1 conclusions of current Proposition 8.1.
+- Several former numbered lemmas remain useful Lean auxiliaries although their arguments are
+  now inside proofs. The map records their destinations rather than treating their old labels
+  as current citations.
 
-1. **Rotations on `H^s`.** The paragraph after `def:sector-setting` (`04_ring.tex:181-185`)
-   claims that rotations are isometries of `H^s(ℝ²)`, and that `P_ℓ` has norm at most 1 on
-   every `Y^s`. With the manuscript's norm `‖g‖²_{H^s} = Σ_{|γ|≤s} ‖∂^γ g‖²`, this is false for
-   `s ≥ 2`. The correct statements are `‖g ∘ O_θ‖_{H^s} ≤ 2^{s/2} ‖g‖_{H^s}` and
-   `‖P_ℓ‖ ≤ 2^{s/2}`. The formalization proves the bound `2^s`, which suffices, because every
-   later use needs only boundedness.
-2. **The dependency table (Appendix C)** omits some inputs:
-   - the row of `lem:iter-cauchy` omits `lem:iter-lip`;
-   - the row of `lem:clock` omits `lem:inner-circ` and the uniqueness of trajectories
-     (`thm:smooth`/`lem:flow`).
-3. **Some hypotheses are stronger than needed.**
-   - The conditions `μ⁴ s̄² ≤ 1/8` in `prop:confine`(iii), `s̄^{m-2} ≤ 1/2` in `lem:nesting`,
-     and the `+1` in `lem:window-length` are not used.
-   - `prop:kick` states the lower constant `1/10`, but its proof gives `1/5`.
+The current Part I text after Definition 4.3 already states that rotations and angular
+projections are uniformly bounded on the chosen `H^s` norm, and that rotations need not be
+isometries for `s ≥ 2`. Lean supplies a concrete bound `2^s`; this is a formalization choice,
+not an outstanding correction to the current manuscript. The former dependency table is no
+longer the current Appendix C. Dependencies such as `IterCauchy` on `IterLip`, and `Clock` on
+inner circulation and flow uniqueness, are visible in the corresponding formal modules.
 
-   The Lean statements keep the manuscript's forms.
+Some formal auxiliaries preserve hypotheses or explicit bounds from the earlier presentation,
+including the nesting and window-length estimates and the kick's stated lower bound `1/10`.
+Their presence is not evidence of an error in the current paper. Consult the actual declaration
+and its current destination before comparing strengths.
 
 ## Credits
 

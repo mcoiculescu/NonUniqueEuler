@@ -6,8 +6,8 @@ import NonUniqueEuler.I.Verify.NPrimeN
 
 Statement copied verbatim from `I/Verify/Final.lean`.
 
-The runs (`check_N1'_N2'`, `I/Verify/Sound/Runs`, Proposition A.7) give (N1′) and (N2′) from
-`check cert = true`; Lemma A.6 (`N1_N2_of_N1'_N2'`, `I/Verify/NPrimeN`) turns them into (N1)
+The runs (`check_N1'_N2'`, `I/Verify/Sound/Runs`, Part II Proposition A.7) give (N1′) and (N2′) from
+`check cert = true`; Part II Lemma A.6 (`N1_N2_of_N1'_N2'`, `I/Verify/NPrimeN`) turns them into (N1)
 and (N2).
 -/
 

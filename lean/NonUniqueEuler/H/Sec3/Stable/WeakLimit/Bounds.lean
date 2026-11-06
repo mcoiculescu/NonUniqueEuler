@@ -3,9 +3,9 @@ import NonUniqueEuler.H.Sec3.Stable.WeakLimit.Weak
 import Mathlib.MeasureTheory.Function.AEEqOfLIntegral
 
 /-!
-# Helpers for `prop:stable`, step 1a: bounds and extraction of the weak limits
+# Helpers for legacy `prop:stable`, step 1a: bounds and extraction of the weak limits
 
-Helper file of `P/Sec3/Stable/WeakLimit.lean` (`03_compactness.tex:743-755`).
+Helper file of `P/Sec3/Stable/WeakLimit.lean` (related current criterion proof: Part I Theorem 3.8 (`thm:criterion`)).
 
 For a continuous `γ` with `|γ(s)| ≤ C|s|` and `|γ| ≤ B` (the cases `γ = β` and `γ = β²`):
 * `lintegral_seq_le`: `∫_E ‖γ(ωₙ(t))‖_{L¹} dt ≤ C M |E ∩ (0,T)|` (Tonelli and the bound
@@ -14,7 +14,7 @@ For a continuous `γ` with `|γ(s)| ≤ C|s|` and `|γ| ≤ B` (the cases `γ = 
   `(B C M T)^{1/2}`; restructuring R5);
 * `exists_weak_limit`: along a subsequence `γ(ωₙ) ⇀ G` weakly in `L²((0,T) × ℝ²)`, with `G`
   measurable, `|G| ≤ B` everywhere, and `‖G(t)‖_{L¹} ≤ C M` for a.e. `t ∈ (0,T)` (testing with
-  `1_{E × ℝ²}`, `03_compactness.tex:749-752`);
+  `1_{E × ℝ²}`, the legacy stability decomposition; current criterion proof: Part I Theorem 3.8 (`thm:criterion`));
 * `memLinfLp_of_slice`: such a `G` lies in `L^∞(0,T; L¹) ∩ L^∞(0,T; L²)`
   (`‖G(t)‖₂² ≤ B ‖G(t)‖₁`).
 -/

@@ -5,7 +5,7 @@ import Mathlib.MeasureTheory.Integral.DominatedConvergence
 /-!
 # Helper for `lem:transfer`(1): the Laurent coefficients are bounded by the field on a circle
 
-Helper of `P/Sec7/Transfer.lean` (`07_several_rings.tex:150-157`). If `F(z) = Σ_{l≥0} c_l z^{-l-1}`
+Helper of `P/Sec7/Transfer.lean` (Part II Lemma 4.1 (`lem:transfer`)). If `F(z) = Σ_{l≥0} c_l z^{-l-1}`
 with `|c_l| ≤ K ϱ^l` and `ϱ < R₀`, then `c_l R₀^{-l-1}` is the Fourier coefficient of
 `θ ↦ F(R₀e^{iθ})` at the frequency `-(l+1)`, so `|c_l| ≤ sup_{|z|=R₀}|F| · R₀^{l+1}`
 (`norm_coeff_le_of_sphere`). The proof integrates the series termwise
@@ -19,7 +19,7 @@ open MeasureTheory Set Metric Real
 
 namespace NonUniqueEuler.Rings.TransferAux
 
-/-- **Cauchy's coefficient estimate for an exterior Laurent series** (`07_several_rings.tex:150-157`):
+/-- **Cauchy's coefficient estimate for an exterior Laurent series** (Part II Lemma 4.1 (`lem:transfer`)):
 if `|c_l| ≤ K ϱ^l`, `0 ≤ ϱ < R₀` and `|Σ_l c_l z^{-l-1}| ≤ M` on `|z| = R₀`, then
 `|c_l| ≤ M R₀^{l+1}`. -/
 theorem norm_coeff_le_of_sphere {c : ℕ → ℂ} {K ϱ R₀ M : ℝ} (hϱ : 0 ≤ ϱ) (hR₀ : ϱ < R₀)

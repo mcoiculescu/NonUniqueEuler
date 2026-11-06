@@ -7,9 +7,10 @@ import NonUniqueEuler.I.Sec10.ConstantsPos
 import NonUniqueEuler.I.Sec11.Stop
 
 /-!
-# Proof: Step 2 of the proof of `prop:bootstrap` (quiet rings) and `eq:boot-quiet`
+# Proof: Lean step 2 of the historical bootstrap decomposition (quiet rings) and `eq:boot-quiet`
 
-Proof of `I/Sec11/BootQuiet.lean` (`11_bootstrap.tex:270-296`): same declaration, same statement.
+Proof of `I/Sec11/BootQuiet.lean` (Part II Appendix C.15 (`sec:bootstrap-quiet-control`)): the
+declaration is re-exported by its interface.
 
 * `quietAt_anti_BQ`: a ring quiet at `t'` is quiet at every earlier time (`QuietAt` is
   `¬ ClockUpTo (j+1) ∨ t ≤ t♯_j`).
@@ -24,14 +25,15 @@ Proof of `I/Sec11/BootQuiet.lean` (`11_bootstrap.tex:270-296`): same declaration
   (the rings `i ≤ k` are quiet on `[0, t']`, `quiet_of_lt`; `lem:geometry`(b); (B7) for `OSmall`).
 * `boot_quiet`: `thm:quiet` for ring `j` (`quiet_ring`) gives `eq:boot-quiet`; if `t♯_j` is defined,
   `lem:O` (`O`, with (Det) = (B4)); otherwise the clock stops at `k_s` with `j < k_s < n`
-  (`stopsAt_stopLevel`, `StopsAt.clockUpTo_iff`, Step 0: the clock is defined up to level `n`),
+  (`stopsAt_stopLevel`, `StopsAt.clockUpTo_iff`, Lean step 0: the clock is defined up to level `n`),
   ring `k_s` is quiet on `[0, T_end] = [0, t♯_{k_s}]`, and `OConcl.maj_le` of `lem:O` for `k_s` at
   `t'` gives `maj_j(A_jt') ≤ ¾P̃_{j,k_s}maj_{k_s}(A_{k_s}t')`.
 
-Deviation (minor): in the case "`t♯_j` not defined" the manuscript obtains the hypotheses of
-`thm:quiet` for ring `j` from `lem:O` applied to `k_s`; here they are obtained directly, exactly as
-in the case "`t♯_j` defined" (ring `j` is quiet on `[0, t']`, so `lem:geometry`(b), (BA2) and (B9)
-apply to it). This also covers `t' = 0` without a separate argument.
+The Lean proof obtains the quiet hypotheses directly from geometry, (BA2) and (B9),
+including when `t♯_j` is unassigned, and treats the comparison using the stopping level `k_s`.
+Current Appendix C.15 instead invokes `lem:O` for the innermost quiet ring when `t♯_j` is
+unassigned. These are different decompositions of the quiet-ring argument. The direct Lean
+hypothesis check also covers `t' = 0`.
 -/
 
 noncomputable section
@@ -71,7 +73,8 @@ private theorem div_mem_Icc_BQ {A t' τ : ℝ} (hA : 0 < A) (hτ : τ ∈ Icc (0
   exact hτ.2
 
 /-- **The bound `maj_j ≤ maj_*`** on `[0, A_jt']` for a ring `j < n` quiet at `t'`
-(`11_bootstrap.tex:277-278`): (BA2) with `2Ā` and (B9), `maj_j ≤ 2Āε_j ≤ 2Āμs̄^{m+2} ≤ maj_*`. -/
+(Part II Appendix C.15 (`sec:bootstrap-quiet-control`)): (BA2) with `2Ā` and (B9),
+`maj_j ≤ 2Āε_j ≤ 2Āμs̄^{m+2} ≤ maj_*`. -/
 private theorem maj_le_majst_BQ (hS : S.Holds) (hL : S.ParamLists) {t' : ℝ}
     (hBA : S.BAcirc t') {j : ℕ} (hj : j ∈ Finset.Ico 1 S.P.n) (hq : S.P.QuietAt j t') :
     ∀ τ ∈ Icc (0 : ℝ) (S.P.A j * t'), S.maj j τ ≤ S.majst := by
@@ -95,7 +98,8 @@ private theorem maj_le_majst_BQ (hS : S.Holds) (hL : S.ParamLists) {t' : ℝ}
     exact mul_le_mul_of_nonneg_left (mul_le_mul_of_nonneg_left hpow hμ) (by positivity)
   exact hba.trans (heps.trans hL.sbar.b9_maj)
 
-/-- **The hypotheses of `thm:quiet` for ring `j` on `[0, A_jt']`** (`11_bootstrap.tex:288-292`), for a
+/-- **The hypotheses of `thm:quiet` for ring `j` on `[0, A_jt']`** (Part II Appendix C.15
+(`sec:bootstrap-quiet-control`)), for a
 ring `j < n` quiet at `t'`: ring `j` is quiet, hence not debris, on `[0, t']`, so
 `lem:geometry`(b) gives `HDefined` and `η_j ≤ 1`; `G_j ∈ [0, G₁]` (`lem:inner-circ`,
 `standing_levels`); `maj_j ≤ maj_*` (`maj_le_majst_BQ`). -/
@@ -122,7 +126,8 @@ private theorem quietHyp_BQ (hS : S.Holds) (hL : S.ParamLists) {t' : ℝ} (hBA :
     have h := (hring _ ht'').2.2.2 hj'.2
     rwa [mul_div_cancel₀ τ hA.ne'] at h
 
-/-- **The hypotheses of `lem:O` for the level `k` and `τ = A_kt'`** (`11_bootstrap.tex:273-280`), for a
+/-- **The hypotheses of `lem:O` for the level `k` and `τ = A_kt'`** (Part II Appendix C.15
+(`sec:bootstrap-quiet-control`)), for a
 level `k < n` with `t♯_k` defined and `0 ≤ t' ≤ t♯_k`: on `[0, t']` every ring `i ≤ k` is quiet
 (`quiet_of_lt`), so `lem:geometry`(b) gives the geometric hypotheses and `η_i ≤ 1`; (BA2), (B9)
 give `maj_k ≤ maj_*` on `[0, τ]`; (B7) gives the smallness conditions. -/
@@ -158,9 +163,10 @@ private theorem oHyp_BQ (hS : S.Holds) (hL : S.ParamLists) {t' : ℝ} (hBA : S.B
     have hg := hgeo.ring t ht i hiI (not_debris_of_quiet_BQ hS hiI hqi)
     exact ⟨hg.2.2.1.2, hg.2.2.1.1, hg.2.2.2 (lt_of_le_of_lt hi'.2 hk'.2)⟩
 
-/-- **Step 2 of the proof of `prop:bootstrap`** (`11_bootstrap.tex:270-296`), with
-`eq:boot-quiet`: if `t' ∈ [0, T_end]`, Step 0 holds, (BA°)(t') holds and the conclusions of
-`lem:geometry` with `t'` hold, then the conclusions of Step 2 hold at `t'` for every ring `j < n`
+/-- **Lean step 2 of the historical bootstrap decomposition** (Part II Appendix C.15
+(`sec:bootstrap-quiet-control`)), with
+`eq:boot-quiet`: if `t' ∈ [0, T_end]`, Lean step 0 holds, (BA°)(t') holds and the conclusions of
+`lem:geometry` with `t'` hold, then the conclusions of Lean step 2 hold at `t'` for every ring `j < n`
 quiet at `t'` (`S.QuietStepAt t'`). -/
 theorem boot_quiet (S : Standing) (hS : S.Holds) (hL : S.ParamLists) {t' : ℝ}
     (ht' : t' ∈ Icc (0 : ℝ) S.P.Tend) (h0 : S.BootStartConcl) (hBA : S.BAcirc t')

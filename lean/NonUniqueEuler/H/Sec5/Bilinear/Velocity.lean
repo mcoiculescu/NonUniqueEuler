@@ -4,7 +4,7 @@ import NonUniqueEuler.I.Infra.Sobolev.EmbedLinf
 import Mathlib.Analysis.Convolution
 
 /-!
-# Helper for `lem:bilinear`(4): continuity of `K_BS * v` (`05_single_ring.tex:240-243`, `:262-266`)
+# Helper for `lem:bilinear`(4): continuity of `K_BS * v` (Part II Lemma 2.3)
 
 Helper of `P/Sec5/Bilinear.lean`. Item (4) applies `lem:embed`(E2) to `χ_B K_BS * v`, which needs
 a pointwise (not only a.e.) bound, hence the continuity of `K_BS * v`. For `v ∈ H^2` vanishing

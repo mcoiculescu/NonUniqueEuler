@@ -5,7 +5,7 @@ import NonUniqueEuler.I.Infra.Sobolev.Space
 /-!
 # Proof of `lem:norm-equiv` in the sector setting (`I/Sec4/NormEquiv.lean`)
 
-Manuscript `04_ring.tex:843-864`. The statement is the generic annulus norm equivalence
+Manuscript Part I Lemma 4.12 (`lem:norm-equiv`). The statement is the generic annulus norm equivalence
 `Ang.exists_norm_equiv` (`I/Infra/AngularFourier/NormEquiv.lean`) applied to the function
 `w.fn` of `w ∈ Y^k(N_*)`:
 * `w.fn ∈ H^k` and `‖w‖ = ‖w.fn‖_{H^k}` (`Sob.Hk.memH_fn`, `I/Infra/Sobolev/Space.lean`; the

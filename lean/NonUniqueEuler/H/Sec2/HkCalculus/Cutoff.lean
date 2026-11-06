@@ -5,7 +5,7 @@ import NonUniqueEuler.I.Infra.Sobolev.Leibniz
 /-!
 # Helper for `P/Sec2/HkCalculus`: the cut-off field `Ũ = χ_N U` (proof of `lem:Hk-calculus`(1))
 
-`02_prelim.tex:690-696, 735-745`. Generic facts used for `Ũ = χ_N U`:
+Part II, Lemma 1.10 (`lem:Hk-calculus`). Generic facts used for `Ũ = χ_N U`:
 * `eLpNorm_weakPartial_re_le`, `eLpNorm_weakPartial_im_le`: for `Ũ ∈ W^{1,∞}(ℝ²)`, the first weak
   derivatives of `Re Ũ`, `Im Ũ` are bounded in `L^∞` by `‖Ũ‖_{W^{1,∞}}`;
 * `dotGrad_ae_eq_of_eqOn`, `indicator_dotGrad_ae_eq_of_eqOn`: `U·∇f = Ũ·∇f` a.e. when `Ũ = U` on a

@@ -9,10 +9,10 @@ import NonUniqueEuler.I.Sec4.ClosedForm
 import NonUniqueEuler.I.Sec4.RingFacts
 
 /-!
-# Proof: `cor:sectors-9` (no unstable eigenvalue with `Re λ ≥ 9/200` in sectors `|ℓ| ≥ 9`)
+# Proof: the large-mode argument in the proof of Part I Proposition 4.19 (`prop:SU`) (no unstable eigenvalue with `Re λ ≥ 9/200` in sectors `|ℓ| ≥ 9`)
 
-Proof of `I/Sec4/Sectors9.lean` (`04_ring.tex:1173-1178`, proof `:1179-1190`). Same
-declarations, statements copied verbatim.
+This retains the interface `I/Sec4/Sectors9.lean`. Its estimate is now the large-mode
+step in the proof of Part I Proposition 4.19 (`prop:SU`), rather than a separate corollary.
 
 Proof (as in the manuscript).
 * For any setting `S` and `R > 0`, the dilated setting has `ω̄_R'(r) = R ω̄'(Rr)`
@@ -145,14 +145,14 @@ private lemma Rc_pos : 0 < Rc := Real.exp_pos ξR
 
 /-! ### The three declarations of `I/Sec4/Sectors9.lean` -/
 
-/-- Proof of `cor:sectors-9` (`04_ring.tex:1180-1181`): the ring `Φ` satisfies the hypothesis of
+/-- Proof of the large-mode argument in the proof of Part I Proposition 4.19 (`prop:SU`): the ring `Φ` satisfies the hypothesis of
 `lem:edge`. -/
 theorem ringPhiSetting_edgeSplit {χ : ℝ → ℝ} (hχ : IsAdmissibleCutoff χ) :
     (ringPhiSetting χ).EdgeSplit := by
   rw [ringPhiSetting_eq_dilate]
   exact edgeSplit_dilate (ringRefSetting_edgeSplit hχ) Rc_pos
 
-/-- Proof of `cor:sectors-9` (`04_ring.tex:1181-1182`): `Z_ℓ` is the same for `Φ` and for
+/-- Proof of the large-mode argument in the proof of Part I Proposition 4.19 (`prop:SU`): `Z_ℓ` is the same for `Φ` and for
 `ω̄_c`. -/
 theorem Zedge_ringPhi {χ : ℝ → ℝ} (hχ : IsAdmissibleCutoff χ) (ℓ : ℕ) :
     (ringPhiSetting χ).Zedge ℓ = (ringRefSetting χ).Zedge ℓ := by
@@ -190,7 +190,7 @@ private lemma half_sqrt_Zedge9_lt {χ : ℝ → ℝ} (hχ : IsAdmissibleCutoff �
       _ = M := Real.sqrt_mul_self hM0
   linarith
 
-/-- `cor:sectors-9`: assume (N3). For the ring in reference or ring units, every `G ∈ ℝ`, every
+/-- the large-mode argument in the proof of Part I Proposition 4.19 (`prop:SU`): assume (N3). For the ring in reference or ring units, every `G ∈ ℝ`, every
 `ℓ ∈ ℤ` with `|ℓ| ≥ 9`, every eigenvalue `λ` of `L_ℓ(G)` on `Y^0_ℓ` with `Re λ > 0` satisfies
 `Re λ < 9/200`. -/
 theorem sectors_ge9 {χ : ℝ → ℝ} (hχ : IsAdmissibleCutoff χ) (h3 : N3) (S : SectorSetting)

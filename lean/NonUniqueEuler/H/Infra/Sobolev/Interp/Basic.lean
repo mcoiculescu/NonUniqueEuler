@@ -7,7 +7,7 @@ import NonUniqueEuler.Defs.Infra.Sobolev
 /-!
 # Helper for `P/Infra/Sobolev/Interp`: conjugation, the `L²` pairing, and `#multiIdx k`
 
-Manuscript `02_prelim.tex:632-643` (proof of (E3)), restructured as in restructuring R3
+Manuscript: proof of Part II, Lemma 1.9(E3) (`lem:embed`), restructured as in restructuring R3
 (integration by parts instead of Plancherel). Generic, `I`-independent facts:
 
 * `iterDirDeriv_conj`, `isTestFn_conj`: complex conjugation commutes with (real) directional

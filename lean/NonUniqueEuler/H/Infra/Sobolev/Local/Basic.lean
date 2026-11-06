@@ -12,8 +12,9 @@ import NonUniqueEuler.I.Infra.Sobolev.WeakDeriv
   `g = ∂_{vs} f` weakly on `V`, and `ζ` is a test function supported in `V` equal to `1` on an
   open `W ⊇ K`, then `ζ g = ∂_{vs} f` weakly on the plane. For a test function `φ`,
   `∂_{vs} φ = ∂_{vs}(ζ φ)` on `W` and `f = 0` a.e. off `K`, so
-  `∫ f ∂_{vs} φ = ∫ f ∂_{vs}(ζφ) = (-1)^{|vs|} ∫ g ζ φ` (`02_prelim.tex`, proof of the local
-  norms; the manuscript writes `φ = ζφ + (1-ζ)φ`);
+  `∫ f ∂_{vs} φ = ∫ f ∂_{vs}(ζφ) = (-1)^{|vs|} ∫ g ζ φ` (the local-cutoff
+  argument in Part II, Lemma 1.10, `lem:Hk-calculus`; the manuscript writes
+  `φ = ζφ + (1-ζ)φ`);
 * `LocalAux.memH_of_memHOn_of_support`, `LocalAux.normHOn_eq_normH_of_support`.
 
 Uses `weakDerivOn_ae_eq` (`I/Infra/Sobolev/WeakDeriv.lean`) as a black box.

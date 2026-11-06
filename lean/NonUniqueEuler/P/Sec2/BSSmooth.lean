@@ -7,7 +7,7 @@ import NonUniqueEuler.I.Infra.Sobolev.Smooth
 /-!
 # Proof: `lem:BS-basic`(d), the velocity of a smooth compactly supported vorticity
 
-Proof of `I/Sec2/BSSmooth.lean` (`02_prelim.tex:160-169`, proof `02_prelim.tex:208-262`).
+Proof of `I/Sec2/BSSmooth.lean` (Part I, Lemma 2.1(d), `lem:BS-basic`).
 Helpers in `H/Sec2/BSSmooth/`:
 * `Differentiate`: `u = K ⋆ g`, `ψ = (2π)⁻¹ log‖·‖ ⋆ g` as Mathlib convolutions; smoothness and
   `∂_{vs} u = K ⋆ ∂_{vs} g` (differentiation under the integral sign);

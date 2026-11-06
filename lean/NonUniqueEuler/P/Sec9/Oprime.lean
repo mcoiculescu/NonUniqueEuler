@@ -5,7 +5,14 @@ import NonUniqueEuler.H.Sec9.Oprime.MajBound
 /-!
 # Proof of `lem:Oprime` (the field of the quiet outer rings on the active ring)
 
-Proof of `I/Sec9/Oprime.lean` (`09_relay.tex:605-738`). Same declaration, same statement.
+Current counterpart: Part II Lemma C.10 (`lem:Oprime`), Appendix C.8
+(`sec:proof-Oprime`). The formal statement keeps the explicit feedback constant
+`C_op` and the auxiliary inner-field bound `C_F ≤ C_0`. The current statement
+uses an enlarged common `C_relay(C_0,K_1)` and states that bound with `C_0`.
+The formal theorem also includes endpoint `t = 0`, while current Lemma C.10
+requires `t > 0`. Time arguments below remain in the formal ring-time convention.
+
+Proof of `I/Sec9/Oprime.lean` (`lem:Oprime`, Part II Lemma C.10). The implementation retains the existing Lean interface statement.
 
 * `k = 1`: `h^out_1 = 0` (`P.hOut_one`, `P.etaOut_one`) and `η_{b,1} = 0`.
 * `k = j+1 ≥ 2`, `u ∈ [0, A_k(t - t♯_k)]`, `t' = t♯_k + u/A_k`, so `A_kt' = t̄♯_k + u`:
@@ -34,7 +41,7 @@ private theorem memCk_zero_fun (k : ℕ) (U : Set ℂ) : MemCk k U (0 : ℂ → 
     rw [show (0 : ℂ → ℂ) = fun _ => (0 : ℂ) from rfl, iteratedFDeriv_fun_zero]
     simp
 
-/-- **`lem:Oprime`** (`09_relay.tex:605-631`) with **`eq:etab`**: under (SA), (Det), `C₀ ≥ 1`,
+/-- **`lem:Oprime`** (`lem:Oprime`, Part II Lemma C.10) with **`eq:etab`**: under (SA), (Det), `C₀ ≥ 1`,
 `K₁ > 0`, `C_F ∈ (0, C₀]` and the hypotheses `S.OprimeHyp C₀ K₁ C_F k t` (`t ∈ Ph_k`), for every
 `u ∈ [0, A_k(t - t♯_k)]`: `h^out_k(t̄♯_k + u) ∈ C^{M_h}(N')` and
 `‖h^out_k(t̄♯_k + u)‖_{C^{M_h}(N')} ≤ η_{b,k}â_k(u)` (`η_{b,1} = 0`); and `η_{b,k} ≤ η_b`. -/

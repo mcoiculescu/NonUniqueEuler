@@ -7,8 +7,10 @@ import Mathlib.Order.LiminfLimsup
 # Proof of `I/Infra/WeakL2/Norm.lean` (I-WEAKL2): norms and weak limits; Radon–Riesz at `p = 2`
 
 Same declarations as `NonUniqueEuler/I/Infra/WeakL2/Norm.lean` (same names, statements copied
-verbatim), proved; see that file for the documentation. Used by `lem:RR`
-(`03_compactness.tex:692-715`, formalized for `p = 2`, restructuring R8).
+verbatim), proved; see that file for the documentation. This retains the
+`p = 2` component of the former separate `lem:RR` (restructuring R8). The
+current manuscript uses Hilbert-space norm identities inside the proofs of
+Part I, Lemma 3.5 (`lem:renorm-all-t`) and Theorem 3.8 (`thm:criterion`).
 
 Private helpers: `WeakTendsto.eventually_lt_norm` (real form of the weak lower semicontinuity)
 and `WeakTendsto.tendsto_of_limsup_norm_le_aux` (Radon–Riesz with an asymptotic upper bound,
@@ -117,7 +119,7 @@ private theorem WeakTendsto.tendsto_of_limsup_norm_le_aux (h : WeakTendsto u l x
     nlinarith
   exact lt_of_pow_lt_pow_left₀ 2 hδ.le hsq
 
-/-- **Radon–Riesz at `p = 2`** (`lem:RR`): weak convergence plus convergence of the norms gives
+/-- **Radon–Riesz at `p = 2`** (retained component of the former `lem:RR`): weak convergence plus convergence of the norms gives
 strong convergence. -/
 theorem WeakTendsto.tendsto_of_tendsto_norm (h : WeakTendsto u l x)
     (hn : Tendsto (fun i => ‖u i‖) l (𝓝 ‖x‖)) : Tendsto u l (𝓝 x) :=

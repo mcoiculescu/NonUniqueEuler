@@ -8,8 +8,8 @@ import Mathlib.Analysis.Complex.RealDeriv
 
 Proof of the interface `I/Verify/TaylorCoef.lean` (same declarations, statements verbatim).
 
-**Manuscript.** Proof of Proposition A.3 (`prop:enclosure`), steps (i) and (iii)
-(`A_verification.tex:346-362` and `:380-400`).
+**Manuscript.** Proof of Part II Proposition A.3, steps (i) and (iii)
+(`prop:enclosure`).
 
 Each lemma is a direct consequence of the corresponding Mathlib lemma on `iteratedDeriv`
 (`Mathlib/Analysis/Calculus/IteratedDeriv/Lemmas.lean`), after unfolding

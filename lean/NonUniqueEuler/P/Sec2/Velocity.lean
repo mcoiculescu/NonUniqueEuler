@@ -12,7 +12,7 @@ import NonUniqueEuler.I.Infra.LpInterp.Interp
 /-!
 # Proof of `lem:velocity` (`I/Sec2/Velocity.lean`)
 
-Manuscript: `lem:velocity`, `02_prelim.tex:304-381`.
+Manuscript: Part I, Lemma 2.2 (`lem:velocity`).
 
 * (a) `velocity_bounds`: the exponents `r_p, s_p` (`VelH.exists_exponents`,
   `H/Sec2/Velocity/Exponents.lean`), Young's inequality (`Conv.eLpNorm_convAbs_le_young`,

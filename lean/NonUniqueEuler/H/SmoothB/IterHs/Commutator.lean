@@ -6,7 +6,7 @@ import NonUniqueEuler.I.Sec2.BSBasic
 /-!
 # Helper for `lem:iter-Hs`: the bound on one top-order energy term
 
-Helper of `P/SmoothB/IterHs.lean` (`B_global_smooth.tex:322-343`). Fix `j`, `|t| ≤ T`, put
+Helper of `P/SmoothB/IterHs.lean` (Part II, Lemma B.8 (`lem:iter-Hs`)). Fix `j`, `|t| ≤ T`, put
 `g = ω^{[j+1]}(t)`, `v = v^{[j]}(t)`, `Z = ‖g‖_{H^s}` (`s = n + 2`) and `𝓜 ≥ ‖ω^{[j]}(t)‖_{H^{s-1}}`.
 
 * `timeDeriv_iter_succ`: `∂_t ω^{[j+1]} = -v^{[j]}·∇ω^{[j+1]}` (`lem:iterates`(iv)), for the

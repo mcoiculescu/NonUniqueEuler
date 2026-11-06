@@ -1,16 +1,20 @@
 import NonUniqueEuler.Defs.Sec7.Transfer
 
 /-!
-# Section 7.2: confinement on a window, localization, field bound (definitions)
+# Part II Section 4.2: confinement on a window, localization, field bound (definitions)
 
-Manuscript `prop:confine`
-(`07_several_rings.tex:285-314`), `def:loc` (`:464-478`), `lem:field-bound` (`:483-491`).
+**Statement correspondence.** Current Part II Proposition 4.3 (`prop:confine`)
+contains (a) confinement and (b) the normalized-moment bound. The Lean
+conclusion also retains the speed estimate proved inside that proposition
+and bounds for every moment. Its separate explicit constants are unchanged.
 
-* `Rings.Cmom = M_vort (2 max(1, C_*))^m` (`prop:confine`(c));
+Manuscript Part II Proposition 4.3 (`prop:confine`), Part II Definition 4.4 (`def:loc`), Part II Lemma 4.5 (`lem:field-bound`).
+
+* `Rings.Cmom = M_vort (2 max(1, C_*))^m` (`prop:confine`(b) (with additional moments in the Lean statement));
 * `P.confRadius k t = ϱ_k(t) = (2 + 2 C_* A_{k+1}(t - T_{k+1})) r_{k+1}` (`prop:confine`(a) with
   `t₀ = T_{k+1}`; `def:loc`(2)), `P.confLambda k t₁ = Λ = 2 + 2 C_* A_{k+1}(t₁ - T_{k+1})`;
 * `P.ConfineHyp k t₁`: the hypotheses (i)–(iv) of `prop:confine` (with `t₀ = T_{k+1}`);
-  `P.ConfineConcl k t₁ t`: its conclusions (a)–(c) at a time `t ∈ [t₀, t₁]`;
+  `P.ConfineConcl k t₁ t`: the retained formal conclusions (a)–(c) at a time `t ∈ [t₀, t₁]`;
 * `P.Loc t`: the localization hypothesis (Loc) of `def:loc`;
 * `IsFieldBoundConst χ M_h C_η` and the chosen `Rings.Ceta χ M_h` (`lem:field-bound`; `C_η` enters
   the parameter condition (B9), so it is used by value).
@@ -28,7 +32,8 @@ namespace Rings
 
 open RingData Datum
 
-/-- `C_mom = M_vort (2 max(1, C_*))^m`, `m = 3` (`prop:confine`(c), `07_several_rings.tex:310`). -/
+/-- `C_mom = M_vort (2 max(1, C_*))^m`, `m = 3` (an explicit constant for the normalized-moment bound of Part II Proposition 4.3(b),
+`prop:confine`; the Lean statement also bounds other moments). -/
 def Cmom : ℝ := Mvort * (2 * max 1 Cstar) ^ 3
 
 theorem Cmom_pos : 0 < Cmom :=
@@ -44,17 +49,17 @@ open RingData
 
 variable (P : Approx)
 
-/-! ### `prop:confine` (`07_several_rings.tex:285-314`) -/
+/-! ### Part II Proposition 4.3 (`prop:confine`) -/
 
-/-- `ϱ_k(t) = (2 + 2 C_* A_{k+1}(t - T_{k+1})) r_{k+1}` (`prop:confine`(a), `07_several_rings.tex:302`;
-`def:loc`(2), `:474-476`; with the kick time `τ_K = A_{k+1}(t - T_{k+1})`). -/
+/-- `ϱ_k(t) = (2 + 2 C_* A_{k+1}(t - T_{k+1})) r_{k+1}` (`prop:confine`(a), Part II Proposition 4.3 (`prop:confine`);
+`def:loc`(2), Part II Definition 4.4 (`def:loc`); with the kick time `τ_K = A_{k+1}(t - T_{k+1})`). -/
 def confRadius (k : ℕ) (t : ℝ) : ℝ := (2 + 2 * Cstar * P.kickTime k t) * P.r (k + 1)
 
-/-- `Λ = 2 + 2 C_* A_{k+1}(t₁ - t₀)` with `t₀ = T_{k+1}` (`prop:confine`, `07_several_rings.tex:289`). -/
+/-- `Λ = 2 + 2 C_* A_{k+1}(t₁ - t₀)` with `t₀ = T_{k+1}` (Part II Proposition 4.3 (`prop:confine`)). -/
 def confLambda (k : ℕ) (t₁ : ℝ) : ℝ := 2 + 2 * Cstar * P.kickTime k t₁
 
 /-- **The hypotheses of `prop:confine`** for the level `k` and the end time `t₁`
-(`07_several_rings.tex:287-298`): `1 ≤ k < n`, the clock is defined up to level `k+1`,
+(Part II Proposition 4.3 (`prop:confine`)): `1 ≤ k < n`, the clock is defined up to level `k+1`,
 `t₀ = T_{k+1} ≤ t₁`, and
 (i) `D_{k+1}(t₀) ⊂ \bar B_{2 r_{k+1}}`;
 (ii) (Cl): `S_j(t) ⊂ {|x| ≥ a r_j/2}` for every `t ∈ [t₀, t₁]` and every `j ≤ k`;
@@ -74,8 +79,8 @@ structure ConfineHyp (k : ℕ) (t₁ : ℝ) : Prop where
   lambda_le : P.confLambda k t₁ * P.s k ≤ a / 8
   lambda_pow_le : 8 / 3 * (2 / a) ^ 3 * P.confLambda k t₁ ^ (3 - 1) * P.s k ^ (3 - 2) ≤ P.μ * Cstar
 
-/-- **The conclusions of `prop:confine`** at a time `t ∈ [t₀, t₁]`, `t₀ = T_{k+1}`
-(`07_several_rings.tex:299-311`):
+/-- **The retained formal confinement conclusions** at a time `t ∈ [t₀, t₁]`, `t₀ = T_{k+1}`
+(Part II Proposition 4.3 (`prop:confine`)):
 (a) `D_{k+1}(t) ⊂ \bar B_{ϱ(t)}` and `ϱ(t) ≤ a r_k/8`;
 (b) `|v(t, x)| ≤ 2 C_* A_{k+1} r_{k+1}` for `x ∈ \bar B_{Λ r_{k+1}}`;
 (c) `∫ x^l ω_{≥k+1}(t) dx = 0` unless `m ∣ l`, `|∫ x^l ω_{≥k+1}(t) dx| ≤ M_vort A_{k+1} r_{k+1}² ϱ(t)^l`
@@ -91,9 +96,9 @@ structure ConfineConcl (k : ℕ) (t₁ t : ℝ) : Prop where
     Mvort * P.A (k + 1) * P.r (k + 1) ^ 2 * P.confRadius k t ^ l
   q_le : ‖P.q (k + 1) t‖ ≤ Rings.Cmom * (1 + P.kickTime k t) ^ 3
 
-/-! ### `def:loc` (`07_several_rings.tex:464-478`) -/
+/-! ### Part II Definition 4.4 (`def:loc`) -/
 
-/-- **The localization hypothesis (Loc) at `t`** (`def:loc`, `07_several_rings.tex:464-478`), with
+/-- **The localization hypothesis (Loc) at `t`** (Part II Definition 4.4 (`def:loc`)), with
 "`t ≤ T_i`" and "`t ≤ t♯_i`" read as true when `T_i`, resp. `t♯_i`, is not defined:
 (1) for every ring `i ∈ [1, n]` with `t ≤ T_i`: `S_i(t) ⊂ N_i`;
 (2) for every ring `j ∈ [1, n]` quiet at `t` (`QuietAt`): `S_i(t) ∩ B_{6 r_j} = ∅` for `i < j`
@@ -115,7 +120,7 @@ theorem confLambda_def (k : ℕ) (t₁ : ℝ) :
     P.confLambda k t₁ = 2 + 2 * Cstar * P.A (k + 1) * (t₁ - P.T (k + 1)) := by
   simp [confLambda, kickTime, mul_assoc]
 
-/-- `ϱ(t₁) = Λ r_{k+1}` (`07_several_rings.tex:362`). -/
+/-- `ϱ(t₁) = Λ r_{k+1}` (Part II Proposition 4.3 (`prop:confine`)). -/
 theorem confRadius_eq_confLambda (k : ℕ) (t₁ : ℝ) :
     P.confRadius k t₁ = P.confLambda k t₁ * P.r (k + 1) := rfl
 
@@ -127,9 +132,9 @@ namespace Rings
 
 open RingData Datum
 
-/-! ### `lem:field-bound` (`07_several_rings.tex:483-491`) -/
+/-! ### Part II Lemma 4.5 (`lem:field-bound`) -/
 
-/-- **The constant `C_η` works in `lem:field-bound` at order `M_h`** (`07_several_rings.tex:483-491`):
+/-- **The constant `C_η` works in `lem:field-bound` at order `M_h`** (Part II Lemma 4.5 (`lem:field-bound`)):
 `C_η > 0`, and for every valid approximation `P` with cutoff `χ` and `s̄^{m-2} ≤ 1/2`
 (`s̄ ≤ a/16` is part of `Approx.Valid`), every `1 ≤ j < n` and `t ≥ 0` with `S_i(t) ⊂ N_i` and
 `S_i(t) ∩ B_{6 r_j} = ∅` for every `i < j` and `D_{j+1}(t) ⊂ B_{a r_j/8}`:
@@ -144,7 +149,7 @@ structure IsFieldBoundConst (χ : ℝ → ℝ) (Mh : ℕ) (C : ℝ) : Prop where
         P.eta Mh j (P.A j * t) ≤ C * (P.μ * P.sbar ^ 2 + P.sbar ^ (3 - 2))
 
 open Classical in
-/-- `C_η` of `lem:field-bound` at order `M_h` (`07_several_rings.tex:485`; chosen, junk `1`). -/
+/-- `C_η` of `lem:field-bound` at order `M_h` (Part II Lemma 4.5 (`lem:field-bound`); chosen, junk `1`). -/
 def Ceta (χ : ℝ → ℝ) (Mh : ℕ) : ℝ :=
   if h : ∃ C : ℝ, IsFieldBoundConst χ Mh C then h.choose else 1
 

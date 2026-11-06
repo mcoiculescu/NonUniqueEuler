@@ -7,14 +7,14 @@ import NonUniqueEuler.I.Infra.Ip.Ip
 /-!
 # Helpers for `P/Sec9/KickTrue`: elementary real estimates
 
-Helper file of `P/Sec9/KickTrue.lean` (`lem:kicktrue`, `09_relay.tex:1233-1397`). Pure real
+Helper file of `P/Sec9/KickTrue.lean` (`lem:kicktrue`, Part II Lemma C.14). Pure real
 analysis, no project objects except `Prelim.jap` and `Ip`:
 * `kappa_mul_exp_eq`, `kappa_mul_exp_le`, `kappa_mul_exp_self`: `κe^{yT_g} = δ₀(κ/δ₀)^{1-y/σ₊}` for
-  `T_g = σ₊⁻¹log(δ₀/κ)` (`09_relay.tex:1258-1259`), and the consequences;
-* `one_lt_log_four`, `one_le_log_of_le_rpow`: (c) gives `L ≥ 1` (`09_relay.tex:1257`);
+  `T_g = σ₊⁻¹log(δ₀/κ)` (`lem:kicktrue`, Part II Lemma C.14), and the consequences;
+* `one_lt_log_four`, `one_le_log_of_le_rpow`: (c) gives `L ≥ 1` (`lem:kicktrue`, Part II Lemma C.14);
 * `integral_exp_mul_eq`, `integral_weight_exp_le`, `integral_v_exp_le`: the three elementary
   integrals;
-* `errT1_le` … `errT6_le`: the six error terms of `Err_g` (`09_relay.tex:1316-1372`), in active time
+* `errT1_le` … `errT6_le`: the six error terms of `Err_g` (`lem:kicktrue`, Part II Lemma C.14), in active time
   `u ∈ [0, T_g]` with the weight `e^{x(T_g-u)}`.
 The first four lemmas are copies of `Relay.DeepAux` (`H/Sec9/Deep/Real.lean`, proved there).
 Everything here is proved.
@@ -30,7 +30,7 @@ namespace Relay
 
 namespace KickTrueAux
 
-/-- `κ e^{x T_g} = δ₀ (κ/δ₀)^{1 - x/σ₁}` for `T_g = σ₁⁻¹ log(δ₀/κ)` (`09_relay.tex:1258-1259`). -/
+/-- `κ e^{x T_g} = δ₀ (κ/δ₀)^{1 - x/σ₁}` for `T_g = σ₁⁻¹ log(δ₀/κ)` (`lem:kicktrue`, Part II Lemma C.14). -/
 theorem kappa_mul_exp_eq {κ δ₀ σ₁ : ℝ} (x : ℝ) (hκ : 0 < κ) (hδ : 0 < δ₀) (hσ : σ₁ ≠ 0) :
     κ * Real.exp (x * (σ₁⁻¹ * Real.log (δ₀ / κ))) = δ₀ * (κ / δ₀) ^ (1 - x / σ₁) := by
   have hq : 0 < κ / δ₀ := div_pos hκ hδ
@@ -67,7 +67,7 @@ theorem one_lt_log_four : 1 < Real.log 4 := by
   linarith
 
 /-- `κ ≤ δ₀ 4^{-μ/(μ-1)}` with `κ > 0`, `μ > 1` gives `log(δ₀/κ) ≥ (μ/(μ-1)) log 4`
-(`09_relay.tex:1257`). -/
+(`lem:kicktrue`, Part II Lemma C.14). -/
 theorem log_ge_of_le_rpow {κ δ₀ μ : ℝ} (hκ : 0 < κ)
     (h : κ ≤ δ₀ * (4 : ℝ) ^ (-(μ / (μ - 1)))) : μ / (μ - 1) * Real.log 4 ≤ Real.log (δ₀ / κ) := by
   set p : ℝ := μ / (μ - 1) with hp
@@ -82,7 +82,7 @@ theorem log_ge_of_le_rpow {κ δ₀ μ : ℝ} (hκ : 0 < κ)
   rw [← Real.log_rpow (by norm_num)]
   exact Real.log_le_log h4p hle
 
-/-- `κ ≤ δ₀ 4^{-μ/(μ-1)}` with `κ > 0`, `μ > 1` gives `log(δ₀/κ) ≥ 1` (`09_relay.tex:1257`). -/
+/-- `κ ≤ δ₀ 4^{-μ/(μ-1)}` with `κ > 0`, `μ > 1` gives `log(δ₀/κ) ≥ 1` (`lem:kicktrue`, Part II Lemma C.14). -/
 theorem one_le_log_of_le_rpow {κ δ₀ μ : ℝ} (hκ : 0 < κ) (hμ : 1 < μ)
     (h : κ ≤ δ₀ * (4 : ℝ) ^ (-(μ / (μ - 1)))) : 1 ≤ Real.log (δ₀ / κ) := by
   have hlog := log_ge_of_le_rpow hκ h
@@ -177,7 +177,7 @@ theorem inv_le_of_rew {σ μ R : ℝ} (hσ : 0 < σ) (hμ : 1 < μ) (hR : 3 / 4 
       have : μ - 1 ≠ 0 := by linarith
       field_simp
 
-/-! ### The six terms of `Err_g` (`09_relay.tex:1316-1372`), in active time with weight
+/-! ### The six terms of `Err_g` (`lem:kicktrue`, Part II Lemma C.14), in active time with weight
 `e^{x(T_g - u)}` -/
 
 /-- A generic exponential term: `∫₀^{T} e^{x(T-u)} K e^{bu} du ≤ K e^{bT}/(b-x)`. -/
@@ -190,7 +190,7 @@ theorem errT_exp_le {x b T K : ℝ} (hxb : x < b) (hK : 0 ≤ K) :
   rw [heq, intervalIntegral.integral_const_mul, mul_div_assoc]
   exact mul_le_mul_of_nonneg_left (integral_weight_exp_le hxb) hK
 
-/-- **The transient term** (`09_relay.tex:1334-1343`):
+/-- **The transient term** (`lem:kicktrue`, Part II Lemma C.14):
 `∫₀^{T_g} e^{x(T_g-u)} 2πC₃ C(C₀)κ⟨u⟩³e^{σ'u} du ≤ C_tr δ₀(κ/δ₀)^γ L⁴`. -/
 theorem errT1_le {x σp σ σ' κ δ₀ C₃ Cact Ctr Tg γ : ℝ} (hκ : 0 < κ) (hκδ : κ < δ₀)
     (hσ : 0 < σ) (hσp : 15 / 16 * σ ≤ σp) (hσ' : 0 ≤ σ') (hC₃ : 0 ≤ C₃)
@@ -275,7 +275,7 @@ theorem errT1_le {x σp σ σ' κ δ₀ C₃ Cact Ctr Tg γ : ℝ} (hκ : 0 < κ
     _ = Ctr * δ₀ * (κ / δ₀) ^ γ * L ^ (3 + 1) := by
       rw [hCtr]; ring
 
-/-- **The `â²`-term** (`09_relay.tex:1318-1324`):
+/-- **The `â²`-term** (`lem:kicktrue`, Part II Lemma C.14):
 `∫₀^{T_g} e^{x(T_g-u)} 2πC₃(κe^{σ₊u})² du ≤ (16/15)(2πC₃δ₀²/σ)`. -/
 theorem errT2_le {x σp σ κ δ₀ C₃ Tg : ℝ} (hκ : 0 < κ) (hδ : 0 < δ₀) (hσ : 0 < σ)
     (hσp : 15 / 16 * σ ≤ σp) (hx : x < σp) (hC₃ : 0 ≤ C₃)
@@ -301,7 +301,7 @@ theorem errT2_le {x σp σ κ δ₀ C₃ Tg : ℝ} (hκ : 0 < κ) (hδ : 0 < δ�
       div_le_div_of_nonneg_left (by positivity) (by positivity) hden
     _ = 16 / 15 * (2 * Real.pi * C₃ * δ₀ ^ 2 / σ) := by field_simp
 
-/-- **The `κ^{1/2}`- and `η_b`-terms** (`09_relay.tex:1325-1330`): for `c ≥ 0`,
+/-- **The `κ^{1/2}`- and `η_b`-terms** (`lem:kicktrue`, Part II Lemma C.14): for `c ≥ 0`,
 `∫₀^{T_g} e^{x(T_g-u)} 2πC₃(κe^{σ₊u} c) du ≤ 2πC₃ c (4μδ₀/(3σ(μ-1)))`. -/
 theorem errT34_le {x σp σ κ δ₀ μ C₃ c Tg : ℝ} (hκ : 0 < κ) (hδ : 0 < δ₀) (hσ : 0 < σ)
     (hσp0 : 0 < σp) (hμ : 1 < μ) (hrew : 3 / 4 * σ * ((μ - 1) / μ) ≤ σp - x) (hC₃ : 0 ≤ C₃)
@@ -326,7 +326,7 @@ theorem errT34_le {x σp σ κ δ₀ μ C₃ c Tg : ℝ} (hκ : 0 < κ) (hδ : 0
       mul_le_mul_of_nonneg_left hinv hA
     _ = 2 * Real.pi * C₃ * c * (4 * μ * δ₀ / (3 * σ * (μ - 1))) := by ring
 
-/-- **The inner drift term** (`09_relay.tex:1347-1359`), with `r_T(T) = (1+T)³e^{-σT/4}` and a
+/-- **The inner drift term** (`lem:kicktrue`, Part II Lemma C.14), with `r_T(T) = (1+T)³e^{-σT/4}` and a
 weight `ι ≥ 0` (`ι = 1_{k+1<n}`):
 `∫₀^{T_g} e^{x(T_g-u)} 2πP(ι·2r_T(T_pin+μu)κ)e^{σ₊u} du ≤ ι C_id r_T(T_pin) I_3(σ/8) δ₀(κ/δ₀)^ϑ`,
 `C_id = 4π(17/16)³P`. -/
@@ -401,7 +401,7 @@ theorem errT5_le {x σp σ κ δ₀ μ P ι Tpin Tg ϑ : ℝ} (hκ : 0 < κ) (h�
     _ = ι * (4 * Real.pi * (17 / 16) ^ 3 * P) * ((1 + Tpin) ^ 3 * Real.exp (-(σ * Tpin / 4))) *
           Ip 3 (σ / 8) * (δ₀ * (κ / δ₀) ^ ϑ) := by ring
 
-/-- **The outer drift term** (`09_relay.tex:1360-1368`):
+/-- **The outer drift term** (`lem:kicktrue`, Part II Lemma C.14):
 `∫₀^{T_g} e^{x(T_g-u)} 2πP(C_ls η_b (T_g-u) κ)e^{σ₊u} du ≤ C_od η_b δ₀ μ²/(σ²(μ-1)²)`,
 `C_od = (32π/9) C_ls P`. -/
 theorem errT6_le {x σp σ κ δ₀ μ P Cls ηb Tg : ℝ} (hκ : 0 < κ) (hδ : 0 < δ₀) (hσ : 0 < σ)

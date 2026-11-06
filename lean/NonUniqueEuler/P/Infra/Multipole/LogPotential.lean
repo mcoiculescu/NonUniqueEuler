@@ -6,7 +6,7 @@ import NonUniqueEuler.H.Infra.Multipole.LogPotential.Formula
 /-!
 # Proof: expansions of `log|x - y|` and angular sectors of the logarithmic potential (I-MULT)
 
-Proof of `NonUniqueEuler/I/Infra/Multipole/LogPotential.lean` (`02_prelim.tex:461-469`).
+Proof of `NonUniqueEuler/I/Infra/Multipole/LogPotential.lean` (Part I, discussion following Definition 2.3 (`def:multipole`)).
 
 * Expansions: `log|x - y| = log|x| + Re log(1 - y/x)` and the Taylor series of `-log(1 - w)`
   (`Complex.hasSum_taylorSeries_neg_log'`), mapped by `Re`.

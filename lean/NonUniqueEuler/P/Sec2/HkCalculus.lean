@@ -7,7 +7,7 @@ import NonUniqueEuler.I.Infra.Sobolev.ReIm
 /-!
 # Proof of `I/Sec2/HkCalculus.lean`: `lem:Hk-calculus`
 
-Manuscript: `lem:Hk-calculus`, `02_prelim.tex:645-766`.
+Manuscript: Part II, Lemma 1.10 (`lem:Hk-calculus`).
 
 * (2): `HkCalcAux.exists_isHkProdConst` (`H/Sec2/HkCalculus/Product.lean`), constant `(k+1) 2^k`.
 * (1): the cut-off field `Ũ = χ_N U` (`exists_normW1inf_mul_testFn_le`,
@@ -130,14 +130,14 @@ theorem exists_isHkBSConst (j : ℕ) {ρ : ℝ} (hρ : 0 < ρ) {χ : ℂ → ℝ
           normH j (fun x => ((w x).im : ℂ)) ^ 2) := by ring
     _ = (C * normH j w) ^ 2 := by rw [hnorm]; ring
 
-/-- The chosen constant `C_P(k) = hkCalcConst k N N₁` of `05_single_ring.tex:226` works in
-`lem:Hk-calculus`(1), (2). -/
+/-- The Lean-selected constant `C_P(k) = hkCalcConst k N N₁` works in
+Part II, Lemma 1.10 (`lem:Hk-calculus`), items (1), (2). -/
 theorem isHkCalcConst_hkCalcConst {k : ℕ} (hk : 3 ≤ k) {N N₁ : Set ℂ} {χN : ℂ → ℝ}
     (hset : HkCalcSetting N N₁ χN) : IsHkCalcConst k N N₁ (hkCalcConst k N N₁) :=
   hkCalcConst_spec (exists_isHkCalcConst hk hset)
 
-/-- The chosen constant `C^el_j = elConst j χ ρ` of `05_single_ring.tex:224` works in
-`lem:Hk-calculus`(3). -/
+/-- The Lean-selected constant `C^el_j = elConst j χ ρ` works in
+Part II, Lemma 1.10(3) (`lem:Hk-calculus`). -/
 theorem isHkBSConst_elConst (j : ℕ) {ρ : ℝ} (hρ : 0 < ρ) {χ : ℂ → ℝ} (hχ : ContDiff ℝ ∞ χ)
     (hχc : HasCompactSupport χ) (hχs : tsupport χ ⊆ ball (0 : ℂ) ρ) :
     IsHkBSConst j χ ρ (elConst j χ ρ) :=

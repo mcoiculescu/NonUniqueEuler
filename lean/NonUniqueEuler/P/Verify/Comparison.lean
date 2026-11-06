@@ -7,8 +7,8 @@ import Mathlib.Analysis.Complex.RealDeriv
 /-!
 # Proof: the comparison estimate (variation of constants + integral Grönwall)
 
-Proof of `NonUniqueEuler/I/Verify/Comparison.lean` (manuscript: proof of Lemma A.1(2),
-`A_verification.tex:172-190`, reused in Lemma A.2).
+Proof of `NonUniqueEuler/I/Verify/Comparison.lean` (manuscript: proof of Part II Lemma A.1(2),
+`lem:end-regions`, reused in Part II Lemma A.2).
 
 * The `cmpSol` lemmas: derivatives of `cosh`/`sinh` (`HasDerivAt.cosh`, `HasDerivAt.sinh`,
   `HasDerivAt.ofReal_comp`) and `cosh + sinh = exp` (`Real.cosh_add_sinh`).

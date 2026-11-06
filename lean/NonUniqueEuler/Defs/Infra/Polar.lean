@@ -13,13 +13,13 @@ with `volume` (decision D1); rotations are `NonUniqueEuler.rot θ x = exp (θ I)
 
 Definitions.
 * `angAvg g x`: the angular average `ḡ(x) = (2π)⁻¹ ∫₀^{2π} g(O_φ x) dφ` of
-  `lem:hollow` (`02_prelim.tex:413-414`). It is *defined* as Mathlib's circle average
+  Part II, Lemma 1.5 (`lem:hollow`). It is *defined* as Mathlib's circle average
   `Real.circleAverage g 0 ‖x‖`; the rotation form is `angAvg_eq_intervalIntegral_rot`
   (`I/Infra/Polar/AngularAverage.lean`). So `angAvg g` is pointwise radial by definition.
 * `angularSector g ℓ r`: the angular sector `g_ℓ(r) = (2π)⁻¹ ∫₀^{2π} g(r e^{iθ}) e^{-iℓθ} dθ`
-  (`02_prelim.tex:27-33`). The library I-ANG builds
+  (Part I, Section 2.1, conventions in `sec:prelim`). The library I-ANG builds
   the `L²` theory on top of it.
-* `circ g r`: the manuscript's `Circ_g(r) = ∫_{B_r} g` (`02_prelim.tex:131`).
+* `circ g r`: the manuscript's `Circ_g(r) = ∫_{B_r} g` (Part I, Section 2.1, conventions in `sec:prelim`).
 * `annulus a b`: the open annulus `{a < ‖x‖ < b}`.
 
 Fully proved basic lemmas: `norm_rot`, `rot_eq_rotation`, `measurePreserving_rot`, `rot_add`,
@@ -35,18 +35,18 @@ open MeasureTheory Set Metric Real
 
 namespace NonUniqueEuler.Polar
 
-/-- The angular average `ḡ(x) = (2π)⁻¹ ∫₀^{2π} g(O_φ x) dφ` (`02_prelim.tex:413-414`), defined as
+/-- The angular average `ḡ(x) = (2π)⁻¹ ∫₀^{2π} g(O_φ x) dφ` (Part II, Lemma 1.5 (`lem:hollow`)), defined as
 the circle average of `g` over the circle of radius `‖x‖` centred at `0`. -/
 def angAvg {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] (g : ℂ → E) (x : ℂ) : E :=
   Real.circleAverage g 0 ‖x‖
 
-/-- The angular sector `g_ℓ(r) = (2π)⁻¹ ∫₀^{2π} g(r e^{iθ}) e^{-iℓθ} dθ` (`02_prelim.tex:30-31`).
+/-- The angular sector `g_ℓ(r) = (2π)⁻¹ ∫₀^{2π} g(r e^{iθ}) e^{-iℓθ} dθ` (Part I, Section 2.1, conventions in `sec:prelim`).
 It is the junk value `0` where `θ ↦ g (r e^{iθ})` is not integrable. -/
 def angularSector (g : ℂ → ℂ) (ℓ : ℤ) (r : ℝ) : ℂ :=
   (2 * π : ℂ)⁻¹ * ∫ θ in (0 : ℝ)..2 * π,
     g ((r : ℂ) * Complex.exp ((θ : ℂ) * Complex.I)) * Complex.exp (-((ℓ : ℂ) * θ * Complex.I))
 
-/-- The manuscript's `Circ_g(r) = ∫_{B_r} g` (`02_prelim.tex:131`), with `B_r` the open disk. -/
+/-- The manuscript's `Circ_g(r) = ∫_{B_r} g` (Part I, Section 2.1, conventions in `sec:prelim`), with `B_r` the open disk. -/
 def circ (g : ℂ → ℝ) (r : ℝ) : ℝ :=
   ∫ y in ball (0 : ℂ) r, g y
 

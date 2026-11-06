@@ -9,7 +9,7 @@ import NonUniqueEuler.H.Sec3.VelocityField.NormHOnMeas
 import NonUniqueEuler.H.Sec3.VelocityField.LocalH1
 
 /-!
-# Proof: the velocity field of a weak solution (`03_compactness.tex:57-66`, `:228-237`, `:243-247`)
+# Proof: the velocity field of a weak solution (Part I Equation (6) (`eq:te`) and its integrability conventions)
 
 Proof of `I/Sec3/VelocityField.lean`.
 
@@ -57,7 +57,7 @@ theorem _root_.NonUniqueEuler.H.VelocityField.lintegral_const_Ioo_lt_top (T c : 
   exact ENNReal.mul_lt_top ENNReal.ofReal_lt_top ENNReal.ofReal_lt_top
 
 open NonUniqueEuler.H.VelocityField in
-/-- `03_compactness.tex:228-233`: for a weak solution in `X_q(T)`, `4/3 < q < ∞`, the velocity
+/-- Part I §3.2 (`sec:weak-rep`): for a weak solution in `X_q(T)`, `4/3 < q < ∞`, the velocity
 `v = K ∗ ω` lies in `L^∞(0,T;L²(B_R))` and in `L^∞(0,T;L^{q'}(B_R))` for every `R > 0`. -/
 theorem _root_.NonUniqueEuler.IsWeakSolution.memLinfLp_velocityField {q T : ℝ}
     {ωin : ℂ → ℝ} {ω : ℝ → ℂ → ℝ} (h : IsWeakSolution q T ωin ω) {R : ℝ} (hR : 0 < R) :
@@ -90,7 +90,7 @@ theorem _root_.NonUniqueEuler.IsWeakSolution.memLinfLp_velocityField {q T : ℝ}
   · exact ENNReal.toReal_le_of_le_ofReal hCM (le_trans le_self_add ht.2.2)
 
 open NonUniqueEuler.H.VelocityField in
-/-- `03_compactness.tex:233-235`: for a weak solution in `X_q(T)`, `ωv ∈ L¹((0,T)×ℝ²)`. -/
+/-- Part I §3.2 (`sec:weak-rep`): for a weak solution in `X_q(T)`, `ωv ∈ L¹((0,T)×ℝ²)`. -/
 theorem _root_.NonUniqueEuler.IsWeakSolution.integrable_smul_velocityField {q T : ℝ}
     {ωin : ℂ → ℝ} {ω : ℝ → ℂ → ℝ} (h : IsWeakSolution q T ωin ω) :
     Integrable (fun p : ℝ × ℂ => ω p.1 p.2 • velocityField ω p.1 p.2)
@@ -115,7 +115,7 @@ theorem _root_.NonUniqueEuler.IsWeakSolution.integrable_smul_velocityField {q T 
     _ < ⊤ := lintegral_const_Ioo_lt_top T _
 
 open NonUniqueEuler.H.VelocityField in
-/-- `03_compactness.tex:57-66`: a weak solution in `X_q(T)` satisfies the standing assumptions of
+/-- Part I Equation (6) (`eq:te`) and its integrability conventions: a weak solution in `X_q(T)` satisfies the standing assumptions of
 `(te)` on `[0,T)` with field `v = K ∗ ω` and datum `ω^in` (`u = ω`, `v`, `ωv` integrable on
 `(0,T') × B_R`, `ω^in ∈ L¹_loc`). -/
 theorem _root_.NonUniqueEuler.IsWeakSolution.isTEData {q T : ℝ} {ωin : ℂ → ℝ}
@@ -172,7 +172,7 @@ theorem _root_.NonUniqueEuler.IsWeakSolution.isTEData {q T : ℝ} {ωin : ℂ �
   · exact prod_mono (Ioo_subset_Ioo_right hT'.le) (subset_univ _)
 
 open NonUniqueEuler.H.VelocityField in
-/-- `03_compactness.tex:243-247`: if `ω ∈ L^∞(0,T;L¹) ∩ L^∞(0,T;L²)`, then
+/-- Part I §3.2 (`sec:weak-rep`): if `ω ∈ L^∞(0,T;L¹) ∩ L^∞(0,T;L²)`, then
 `v = K ∗ ω ∈ L^∞(0,T;W^{1,2}(B_R))` for every `R > 0` and `div v = 0`
 (`lem:velocity`(c), `lem:BS-basic`(e)). -/
 theorem isBddH1DivFreeField_velocityField {T : ℝ} {ω : ℝ → ℂ → ℝ}

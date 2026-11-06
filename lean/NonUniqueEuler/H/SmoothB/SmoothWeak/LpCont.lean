@@ -8,7 +8,7 @@ import Mathlib.MeasureTheory.Measure.Lebesgue.Complex
 # Helper for `P/SmoothB/SmoothWeak`: `L^p` bounds and `L^p` continuity of continuous families
 
 For a jointly continuous `F : ℝ → ℂ → ℝ` whose slices `F(t)` vanish outside one compact set
-`K` for `t` in a time interval (`B_global_smooth.tex:558-562`: "`ω` is continuous and `ω(t)`
+`K` for `t` in a time interval (Part II, §B.5, proof of Theorem 1.8 (`thm:smooth`): "`ω` is continuous and `ω(t)`
 vanishes outside `B_{R(T)}` for `|t| ≤ T`, so `ω` is uniformly continuous on `[0,T] × ℝ²`"):
 
 * `eLpNorm_le_of_bound`: `‖f‖_{L^p} ≤ |K|^{1/p} sup |f|` for `f` vanishing outside `K`;

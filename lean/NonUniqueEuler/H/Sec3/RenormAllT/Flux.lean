@@ -6,7 +6,7 @@ import NonUniqueEuler.I.Sec2.Velocity
 
 Helper file of `P/Sec3/RenormAllT.lean` (fully proved).
 
-`flux_bound` (`03_compactness.tex:597-600`): with `C_v = C(2,1)` of `lem:velocity`(a),
+`flux_bound` (Part I Lemma 3.5 (`lem:renorm-all-t`) and its proof): with `C_v = C(2,1)` of `lem:velocity`(a),
 `‖ω(t)v(t)‖_{L¹} ≤ ∫|ω(t)|(|K|∗|ω(t)|) ≤ C_v‖ω(t)‖²_{L¹∩L²} ≤ C_v M²` for every
 `t ∈ (0,T)`, and Tonelli gives `‖ωv‖_{L¹((0,T)×ℝ²)} ≤ C_v T M²`.
 -/

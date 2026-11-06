@@ -7,7 +7,7 @@ import NonUniqueEuler.H.Sec4.Sector.CouplingOfProfile.RealAxis
 /-!
 # Proof: the coupling term on a sector function, `-(K_BS * (g e^{iℓθ}))·∇ω̄ = (k_ℓ𝒢_ℓ g) e^{iℓθ}`
 
-Proof of `I/Sec4/Sector/CouplingOfProfile.lean` (`04_ring.tex:257-263`, proof of
+Proof of `I/Sec4/Sector/CouplingOfProfile.lean` (Part I Lemma 4.5 (`lem:sector`), proof of
 `lem:sector`(2)).
 
 **Deviation (proof only).** As planned in the interface docstring, the formula is computed
@@ -45,7 +45,7 @@ private theorem couplingFn_const_mul' (S : SectorSetting) (c : ℂ) (w : ℂ →
 
 open CouplingOfProfileH in
 /-- The coupling term of the sector function `g(r)e^{iℓθ}` is `(k_ℓ𝒢_ℓ g)(r)e^{iℓθ}`, for every
-profile `g ∈ Y^0_ℓ` and every `ℓ` (`04_ring.tex:257-263`). -/
+profile `g ∈ Y^0_ℓ` and every `ℓ` (Part I Lemma 4.5 (`lem:sector`)). -/
 theorem couplingFn_ofProfile (S : SectorSetting) (hS : S.Valid) {g : ℝ → ℂ}
     (hg : S.IsProfileL2 g) (ℓ : ℤ) :
     S.couplingFn (Ang.ofProfile ℓ g) =ᵐ[volume] Ang.ofProfile ℓ (S.KsecFn ℓ g) := by

@@ -5,7 +5,7 @@ import Mathlib.MeasureTheory.Function.L2Space
 /-!
 # Helper for `lem:BS-basic`(d): decay of the velocity and its derivatives
 
-Helper of `P/Sec2/BSSmooth.lean` (`02_prelim.tex:241-250`). For real `h ∈ C_c^∞` with support in
+Helper of `P/Sec2/BSSmooth.lean` (Part I, Lemma 2.1 (`lem:BS-basic`)). For real `h ∈ C_c^∞` with support in
 `B_ρ` and `|x| ≥ 2ρ`, `|D^q (K ∗ h)(x)| ≤ (2π)⁻¹ q! ‖h‖₁ (|x|/2)^{-(q+1)}`
 (`Multipole.norm_iteratedFDeriv_velocity_le`, with `δ = |x|/2`). Consequences: `∂_v u` is
 `O(|x|^{-2})`, hence in `L² ∩ L^∞`; `u = O(|x|^{-1})`, `∂_v∂_w u = O(|x|^{-3})`.

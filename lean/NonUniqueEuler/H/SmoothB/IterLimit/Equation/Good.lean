@@ -5,9 +5,9 @@ import Mathlib.Analysis.Normed.Group.Bounded
 import Mathlib.Topology.MetricSpace.Pseudo.Lemmas
 
 /-!
-# Helper for `prop:iter-limit`, step 4: families with uniformly convergent derivatives
+# Helper for formal decomposition of `prop:iter-limit`, step 4: families with uniformly convergent derivatives
 
-Helper of `P/SmoothB/IterLimit/Equation.lean` (`B_global_smooth.tex:432-448`). This is the
+Helper of `P/SmoothB/IterLimit/Equation.lean` (Part II, Proposition B.10 (`prop:iter-limit`)). This is the
 "Leibniz formula" step of the manuscript ("the integrand is a finite sum of products of
 `x`-derivatives of `v^{[j]}` and of `ω^{[j+1]}`, each converging uniformly and bounded"), in a
 form that avoids writing the formula out.

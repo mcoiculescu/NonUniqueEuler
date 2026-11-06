@@ -3,11 +3,11 @@ import NonUniqueEuler.H.Sec4.EvansSimple.Profile
 import NonUniqueEuler.I.Sec4.SemigroupConstruct
 
 /-!
-# Helper for `thm:evans-simple`(2): the functional `ℓ_*` on `Y^s_ℓ`
+# Helper for Part I Theorem 4.8(2) (`thm:evans-simple`): the functional `ℓ_*` on `Y^s_ℓ`
 
 Helper of `P/Sec4/EvansSimple.lean` (fully proved). Namespace `NonUniqueEuler.EvansSimpleAux`.
-Manuscript `04_ring.tex:462-469` (`ℓ_*`), `:529` (`ℓ_*(g_*) = 1`), `lem:adjoint`(2)
-(`ℓ_*(L_ℓ g) = λ_* ℓ_*(g)`, `04_ring.tex:602-614`).
+Part I Theorem 4.8(2) (`thm:evans-simple`) defines `ℓ_*` and proves `ℓ_*(g_*) = 1`;
+Lemma 4.9(1) (`lem:adjoint`) gives `ℓ_*(L_ℓ g) = λ_* ℓ_*(g)`.
 
 * `isProfileL2_angularSector_Ysec`: the profile of `g ∈ Y^s_ℓ` is in `Y^0_ℓ`;
 * `exists_ellStarY`, `ellStarY_spec`: `ℓ_*` is a bounded functional on every `Y^s_ℓ`
@@ -66,7 +66,7 @@ theorem ellStar_congr_ae (S : SectorSetting) (ℓ : ℕ) (z : ℂ) (G : ℝ) {h�
   filter_upwards [h] with r hr
   rw [hr]
 
-/-- `ℓ_*(g_*) = 1` on `Y^s_ℓ` when `J ≠ 0` (`04_ring.tex:529`). -/
+/-- `ℓ_*(g_*) = 1` on `Y^s_ℓ` when `J ≠ 0` (proof of Part I Theorem 4.8(2) (`thm:evans-simple`)). -/
 theorem ellStarY_gStarY (S : SectorSetting) (hS : S.Valid) (s : ℕ) (ℓ : ℕ) (hℓ : 1 ≤ ℓ)
     {z : ℂ} (hz : 0 < z.re) (G : ℝ) (hE : S.evans ℓ z G = 0) (hJ : S.J ℓ z G ≠ 0) :
     S.ellStarY s ℓ z G (S.gStarY s ℓ z G) = 1 := by
@@ -81,7 +81,7 @@ theorem angularSector_Lsec (S : SectorSetting) (hS : S.Valid) (s : ℕ) (ℓ : �
       S.LsecFn ℓ G (Polar.angularSector g.fn ℓ) :=
   angularSector_ae_of_ae_ofProfile (semigroupConstruct_Lsec S hS s ℓ G g)
 
-/-- `∫ (L_ℓ g)_ℓ ψ_* M_* r dr = λ_* ∫ g_ℓ ψ_* M_* r dr` on `Y^s_ℓ` (`lem:adjoint`(1)). -/
+/-- `∫ (L_ℓ g)_ℓ ψ_* M_* r dr = λ_* ∫ g_ℓ ψ_* M_* r dr` on `Y^s_ℓ` (the adjoint calculation in the proof of Part I Lemma 4.9(1) (`lem:adjoint`)). -/
 theorem integral_Lsec_eq (S : SectorSetting) (hS : S.Valid) (s : ℕ) (ℓ : ℕ) (hℓ : 1 ≤ ℓ)
     {z : ℂ} (hz : 0 < z.re) (G : ℝ) (hE : S.evans ℓ z G = 0) (g : Ysec s S.Nstar ℓ) :
     ∫ r in Ioi (0 : ℝ), Polar.angularSector (S.Lsec s ℓ G g).fn ℓ r *
@@ -103,7 +103,7 @@ theorem integral_Lsec_eq (S : SectorSetting) (hS : S.Valid) (s : ℕ) (ℓ : ℕ
   simp only
   ring
 
-/-- `ℓ_*(L_ℓ g) = λ_* ℓ_*(g)` on `Y^s_ℓ` (`lem:adjoint`(2), `04_ring.tex:613-614`). -/
+/-- `ℓ_*(L_ℓ g) = λ_* ℓ_*(g)` on `Y^s_ℓ` (Part I Lemma 4.9(1) (`lem:adjoint`)). -/
 theorem ellStarY_Lsec (S : SectorSetting) (hS : S.Valid) (s : ℕ) (ℓ : ℕ) (hℓ : 1 ≤ ℓ)
     {z : ℂ} (hz : 0 < z.re) (G : ℝ) (hE : S.evans ℓ z G = 0) (g : Ysec s S.Nstar ℓ) :
     S.ellStarY s ℓ z G (S.Lsec s ℓ G g) = z * S.ellStarY s ℓ z G g := by

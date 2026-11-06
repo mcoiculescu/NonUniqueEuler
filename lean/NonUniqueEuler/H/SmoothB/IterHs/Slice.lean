@@ -6,7 +6,7 @@ import NonUniqueEuler.I.Infra.Sobolev.Smooth
 /-!
 # Helper for `lem:iter-Hs`: the time slices of the iterates and classical `H^k` norms
 
-Helper of `P/SmoothB/IterHs.lean` (`B_global_smooth.tex:302-349`).
+Helper of `P/SmoothB/IterHs.lean` (Part II, Lemma B.8 (`lem:iter-Hs`)).
 
 * Sobolev norms of smooth compactly supported functions, computed classically
   (`normH_sq_eq`, `l2_partialD_le_normH`), and the splitting of `multiIdx (k+1)` into

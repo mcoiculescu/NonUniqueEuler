@@ -4,7 +4,7 @@ import Mathlib.Analysis.SpecialFunctions.Integrals.Basic
 /-!
 # Helpers for `window_approx`: scalar estimates
 
-Helper of `P/Sec5/Window/Approx.lean` (`05_single_ring.tex:766-786`, the integrals in the proof
+Helper of `P/Sec5/Window/Approx.lean` (Part II Lemma 2.11 (`lem:window`), the integrals in the proof
 of `eq:W-hier`). Namespace `NonUniqueEuler.OneRing.WAppH`. Only real analysis.
 
 With `â₁(v) = κe^{σv}` (`ahat κ σ v`), `ε ≥ 0` and `𝔟(v) = â₁(v) + ε⟨v⟩^{p+2}`:
@@ -12,7 +12,7 @@ With `â₁(v) = κe^{σv}` (`ahat κ σ v`), `ε ≥ 0` and `𝔟(v) = â₁(v)
 * `jap_mono`, `le_jap`, `continuous_jap`, `ahat_mono`, `ahat_shift` (`e^{σ(u-v)}â₁(v) = â₁(u)`);
 * `integral_ahat_le`: `∫₀ᵘ â₁ ≤ â₁(u)/σ`; `integral_jap_pow_le`: `∫₀ᵘ ⟨v⟩^p ≤ ⟨u⟩^{p+1}`;
 * `hier_integral_le`: `∫₀ᵘ (â₁ + ε⟨v⟩^p) 𝔟^n ≤ (σ⁻¹ + 1) 𝔟(u)^{n+1}` — a simplification of the
-  binomial computation of the manuscript (`:766-786`): `𝔟` is nondecreasing, so
+  binomial computation of the manuscript (Part II Lemma 2.11 (`lem:window`)): `𝔟` is nondecreasing, so
   `𝔟(v)^n ≤ 𝔟(u)^n`, and `∫₀ᵘ â₁ ≤ â₁(u)/σ ≤ 𝔟(u)/σ`, `∫₀ᵘ ε⟨v⟩^p ≤ ε⟨u⟩^{p+2} ≤ 𝔟(u)`;
 * `duhamel_hier_le`: the resulting bound of the Duhamel integral of
   `K â₁(â₁ + ε⟨v⟩^p)𝔟^n` with growth `Ce^{σ(u-v)}`, and `duhamel_hier_integrable`.
@@ -115,7 +115,7 @@ theorem field_le_bW {κ σ ε : ℝ} (hε : 0 ≤ ε) (p : ℕ) (v : ℝ) :
   add_le_add le_rfl
     (mul_le_mul_of_nonneg_left (jap_pow_le_pow (u := v) (p := p) (q := p + 2) (by omega)) hε)
 
-/-- **The integral of the hierarchy** (`05_single_ring.tex:766-786`, simplified):
+/-- **The integral of the hierarchy** (Part II Lemma 2.11 (`lem:window`), simplified):
 `∫₀ᵘ (â₁ + ε⟨v⟩^p) 𝔟^n ≤ (σ⁻¹ + 1) 𝔟(u)^{n+1}`. -/
 theorem hier_integral_le {κ σ ε u : ℝ} (p n : ℕ) (hκ : 0 ≤ κ) (hσ : 0 < σ) (hε : 0 ≤ ε)
     (hu : 0 ≤ u) :

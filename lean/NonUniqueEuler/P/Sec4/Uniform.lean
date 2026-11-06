@@ -17,7 +17,7 @@ import Mathlib.Analysis.Calculus.ContDiff.Deriv
 /-!
 # Proof of `lem:uniform` (the uniform constants of the eigendata)
 
-Proof of `I/Sec4/Uniform.lean` (`04_ring.tex:1502-1567`). Same declarations, statements copied
+Proof of `I/Sec4/Uniform.lean` (Part I Lemma 4.23 (`lem:uniform`)). Same declarations, statements copied
 verbatim.
 
 * `uniform_constants`: extrema of the continuous functions of `prop:U`(b) on the compact
@@ -26,7 +26,8 @@ verbatim.
   `ℓ_*(G)` is bounded on `L²(N)` by `‖ℓ_*‖`; (2) Cauchy–Schwarz with
   `‖|y|³‖²_{L²(N)} ≤ ∫_{B_2}|y|⁶ = 64π`; (3) the sharp transport bound
   `I/Infra/Sobolev/DotGradSharp.lean`.
-* `uniform_continuous`: `λ_*` by `prop:U`(a); `φ_*` into `H^k` by `I/Sec4/Uniform/PhiCont.lean`;
+* `uniform_continuous` (retained continuity refinement of the proof of Part I
+  Proposition 4.21(b), `prop:U`): `λ_*` by `prop:U`(a); `φ_*` into `H^k` by `I/Sec4/Uniform/PhiCont.lean`;
   `ℓ_*(G)` in operator norm by the representer (`ell_representer`) and
   `I/Sec4/Uniform/EllRepCont.lean`; `β(G) = ℓ_*(G)(b e^{3iθ})` and `pout_*(G) = pout_3[φ_*(G)]`
   then follow (`pout_3` is bounded on `L²(N)`, inequality (2)).
@@ -57,7 +58,7 @@ theorem extrema_of_continuousOn {f : ℝ → ℝ} (hf : ContinuousOn f (Icc 0 Gb
   have hne : (f '' Icc 0 Gbar).Nonempty := (nonempty_Icc.2 Gbar_pos.le).image f
   exact ⟨hc.isLeast_sInf hne, hc.isGreatest_sSup hne⟩
 
-/-- **`lem:uniform`, the constants** (`04_ring.tex:1507-1518`): the extrema over `[0,G₁]` of `|β|`,
+/-- **`lem:uniform`, the constants** (Part I Lemma 4.23 (`lem:uniform`)): the extrema over `[0,G₁]` of `|β|`,
 `|pout_*|`, `‖ℓ_*(G)‖`, `‖φ_*(G)‖_{H^k}` are attained; `c_N = min|β|·min|pout_*| > 0`,
 `C_N = max|β|·max|pout_*|`, `c_out = 2π min|pout_*| > 0`, `‖ℓ_*‖ = max‖ℓ_*(G)‖`,
 `max‖φ_*(G)‖_{H^k}` are finite, with the corresponding bounds at every `G ∈ [0,G₁]`. -/
@@ -373,7 +374,7 @@ theorem ellFn_hGradPhi_bound (χ : ℝ → ℝ) (hχ : IsAdmissibleCutoff χ)
         exact mul_le_mul hell hl2 (Sob.l2_nonneg _) hE0
     _ = Cls χ * normCk 0 annN' h := by rw [Cls]; ring
 
-/-- **`lem:uniform`, the three inequalities** (`04_ring.tex:1519-1533`), with the constants
+/-- **`lem:uniform`, the three inequalities** (Part I Lemma 4.23 (`lem:uniform`)), with the constants
 `C_ls = ‖ℓ_*‖‖∇Φ‖_{L²}`, `C_p = 4/√π`, `C_∇(k) = 2^k((k+1)(k+2)/2)^{1/2}‖Φ‖_{H^{k+1}}`: for
 `G ∈ [0,G₁]`, vector fields `h ∈ C^k(N';ℝ²)` and `g ∈ L²(N)`,
 `|ℓ_*(G)(-h·∇Φ)| ≤ C_ls‖h‖_{C^0(N')}`, `|pout_3[g]| ≤ C_p‖g‖_{L²(N)}`,
@@ -583,7 +584,7 @@ theorem continuousOn_pout (χ : ℝ → ℝ) (hχ : IsAdmissibleCutoff χ)
   rw [pout_sub hχ hN hG hG₀, (Sob.normH_zero hd).2]
   exact pout3_bound hd hdz
 
-/-- **`lem:uniform`, continuity** (`04_ring.tex:1504-1506`): `λ_*`, `φ_*` (into `X^k` for every
+/-- **`lem:uniform`, continuity** (Part I Lemma 4.23 (`lem:uniform`)): `λ_*`, `φ_*` (into `X^k` for every
 `k`), `ℓ_*` (into `(X^0)^*`, here `(Y^0(N))^*`), `β`, `pout_*` are continuous on `[0,G₁]`. -/
 theorem uniform_continuous (χ : ℝ → ℝ) (hχ : IsAdmissibleCutoff χ) (hN : NumericalHypothesis χ) :
     ContinuousOn (lam χ) (Icc 0 Gbar) ∧

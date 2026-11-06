@@ -6,8 +6,10 @@ import Mathlib.Analysis.Convolution
 # Convolution majorants on `ℂ` (definitions; library I-CONV)
 
 Manuscript-independent infrastructure (library I-CONV). The manuscript's
-convolution bounds (`lem:BS-basic`(b),(c),(e), `lem:velocity`(a),(b) with `p = 2` (D9),
-`lem:LpLinf`) are all bounds on the nonnegative majorant `(|K| ⋆ |g|)(x)`. We define it as a
+convolution bounds (Part I, Lemma 2.1(b),(c),(e), `lem:BS-basic`, and
+Lemma 2.2(a),(b), `lem:velocity`, with `p = 2` (D9)) are bounds on the
+nonnegative majorant `(|K| ⋆ |g|)(x)`. The retained auxiliary `lem:LpLinf`
+uses the same majorant but has no current numbered counterpart. We define it as a
 lower Lebesgue integral, so that it is always meaningful (possibly `∞`) and no integrability
 side condition is needed to *state* a bound.
 

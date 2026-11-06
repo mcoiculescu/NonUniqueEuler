@@ -3,12 +3,13 @@ import NonUniqueEuler.H.Sec11.BootHandoff.Basic
 /-!
 # Helper for `P/Sec11/BootHandoff.lean`: `eq:boot-kappa` and the hypotheses of `lem:kicktrue`
 
-Step 3 of the proof of `prop:bootstrap` (`11_bootstrap.tex:304-334`):
-* `kappa`: `eq:boot-kappa`, `0 < κ♯_{k+1} ≤ 2κ_seed` (Step 3 for ring `k+1` with (B6), or Step 0 if
+Lean step 3 of the historical bootstrap decomposition (Part II Appendix C.16
+(`sec:bootstrap-handoff-checks`)):
+* `kappa`: `eq:boot-kappa`, `0 < κ♯_{k+1} ≤ 2κ_seed` (Lean step 3 for ring `k+1` with (B6), or Lean step 0 if
   `k+1 = n`);
 * `kickTrueHyp`: the hypotheses `S.KickTrueHyp S.C0 S.K1 k` of `lem:kicktrue`, from `lem:geometry`
-  (a), (b), Step 2, Step 3 for ring `k+1`, Step 4 for ring `k+1`, (P1)–(P3), (κ1)–(κ3) at
-  `κ♯_{k+1}` and (B11) (the list at `11_bootstrap.tex:316-334`). All proved.
+  (a), (b), Lean step 2, Lean step 3 for ring `k+1`, Lean step 4 for ring `k+1`, (P1)–(P3), (κ1)–(κ3) at
+  `κ♯_{k+1}` and (B11) (the list at Part II Appendix C.16 (`sec:bootstrap-handoff-checks`)). All proved.
 -/
 
 noncomputable section
@@ -37,8 +38,9 @@ theorem tsh_le_endW (hS : S.Holds) {k : ℕ} (hk : k ∈ Finset.Icc 1 S.P.n) :
   · exact tsh_le_T hS hk (h.ksh_mem le_rfl (Finset.mem_Icc.1 hk).2)
   · exact le_rfl
 
-/-- **`eq:boot-kappa`** (`11_bootstrap.tex:304-308`): `0 < κ♯_{k+1} ≤ 2κ_seed`, by Step 3 for ring
-`k+1` (`κ♯_{k+1} ≤ K_up s_{k+1}^{m+2} ≤ K_up s̄^{m+2} ≤ κ_seed`, (B6)) or by Step 0 if `k+1 = n`. -/
+/-- **`eq:boot-kappa`** (Part II Appendix C.16 (`sec:bootstrap-handoff-checks`)):
+`0 < κ♯_{k+1} ≤ 2κ_seed`, by Lean step 3 for ring
+`k+1` (`κ♯_{k+1} ≤ K_up s_{k+1}^{m+2} ≤ K_up s̄^{m+2} ≤ κ_seed`, (B6)) or by Lean step 0 if `k+1 = n`. -/
 theorem kappa (hS : S.Holds) (hL : S.ParamLists) {k : ℕ} (hk : k ∈ Finset.Ico 1 S.P.n)
     (hc : S.P.ClockUpTo (k + 1)) (h0 : S.BootStartConcl)
     (hdeep : ∀ i ∈ Finset.Ioo k S.P.n, S.HandoffStep i) :
@@ -58,7 +60,7 @@ theorem kappa (hS : S.Holds) (hL : S.ParamLists) {k : ℕ} (hk : k ∈ Finset.Ic
     exact h0.ksh_n.2
 
 /-- **The hypotheses of `lem:kicktrue`** for the level `k` with `C₀ = S.C0`, `K₁ = S.K1`
-(`11_bootstrap.tex:311-334`). -/
+(Part II Appendix C.16 (`sec:bootstrap-handoff-checks`)). -/
 theorem kickTrueHyp (hS : S.Holds) (hL : S.ParamLists) {k : ℕ} (hk : k ∈ Finset.Ico 1 S.P.n)
     (hc : S.P.ClockUpTo (k + 1)) (h0 : S.BootStartConcl) (hgeo : S.GeometryConcl (S.P.tsh k))
     (hquiet : ∀ t' ∈ Icc (0 : ℝ) (S.P.tsh k), S.QuietStepAt t')

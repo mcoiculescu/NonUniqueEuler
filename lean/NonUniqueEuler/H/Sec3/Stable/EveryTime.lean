@@ -4,12 +4,12 @@ import NonUniqueEuler.I.Sec3.RR
 import NonUniqueEuler.I.Infra.LpInterp.Tendsto
 
 /-!
-# Helpers for `prop:stable`: convergence at every time
+# Helpers for legacy `prop:stable`: convergence at every time
 
-Helper file of `P/Sec3/Stable.lean`. Manuscript: proof of `prop:stable`, last paragraph
-(`03_compactness.tex:817-827`). Once `ω` is renormalized: fix `t ∈ [0,T)`.
+Helper file of `P/Sec3/Stable.lean`. Legacy proof decomposition: `prop:stable`, last paragraph
+(related current criterion proof: Part I Theorem 3.8 (`thm:criterion`)). Once `ω` is renormalized: fix `t ∈ [0,T)`.
 * `L²`: `‖ωₙ(t)‖₂ = ‖gₙ‖₂ → ‖g‖₂ = ‖ω(t)‖₂` (`lem:renorm-all-t`, `Weak.renormAllT_eLpNorm_eq`),
-  `ωₙ(t) ⇀ ω(t)` (`prop:compact`(i)), and `lem:RR` (`radonRiesz`).
+  `ωₙ(t) ⇀ ω(t)` (legacy `prop:compact`(i)), and legacy `lem:RR` (`radonRiesz`).
 * `L¹`: eq:tail for `ωₙ` and `ω` (`Weak.renormAllT_tail`, `Weak.renormAllT_flux_bound`), Hölder on
   `B_{2R}`, then `n → ∞` and `R → ∞`.
 * `q ∈ (1,2)`: interpolation (`LpInterp.tendsto_eLpNorm_of_interp`).
@@ -93,7 +93,7 @@ theorem tendsto_tail_zero {g : ℂ → ℝ} (hg : MemLp g 1 volume) :
     exact ⟨‖x‖ + 1, by linarith⟩
   rwa [hempty, measure_empty] at h
 
-/-- `ωₙ(t) → ω(t)` in `L²` (`lem:renorm-all-t`, `prop:compact`(i), `lem:RR`). -/
+/-- `ωₙ(t) → ω(t)` in `L²` (`lem:renorm-all-t`, legacy `prop:compact`(i), legacy `lem:RR`). -/
 theorem tendsto_eLpNorm_two_time (hseq : IsCompactSeq T M gs g ωs)
     (hlim : IsCompactLimit T g ωs ω)
     (hstrong : Tendsto (fun n => normL1LpE 2 (gs n - g)) atTop (𝓝 0))
@@ -211,7 +211,7 @@ theorem tendsto_eLpNorm_one_time (hseq : IsCompactSeq T M gs g ωs)
     have h2 := hτ.add (ENNReal.Tendsto.mul_const hG (Or.inr hK'))
     simpa [A] using h1.add h2
 
-/-- **Convergence at every time** (`03_compactness.tex:817-827`). -/
+/-- **Convergence at every time** (retained legacy stability step). -/
 theorem stable_tendsto_time (hseq : IsCompactSeq T M gs g ωs) (hlim : IsCompactLimit T g ωs ω)
     (hstrong : Tendsto (fun n => normL1LpE 2 (gs n - g)) atTop (𝓝 0))
     (hren : ∀ n, IsRenormalizedWeakSolution 2 T (gs n) (ωs n))

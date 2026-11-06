@@ -3,8 +3,8 @@ import NonUniqueEuler.Verify.Comp.Contour
 /-!
 # Part 2 algorithms: the certification of one cell (`certifyCell`) and adaptive halving
 
-Checker design decision D7 (see `FORMALIZATION_NOTES.md`). Manuscript: §A.6, "certification" and
-"run" (`A_verification.tex:559-608`), Proposition A.4 (`prop:winding`).
+Checker design decision D7 (see `FORMALIZATION_NOTES.md`). Manuscript: Part II §A.5,
+"certification" and "run" (`app:runs`), and Proposition A.4 (`prop:winding`).
 Reference: `euler-ring-certificate/src/ringcert/winding.py` (`certify_cell`,
 `certify_cell_adaptive`), a line-by-line port.
 

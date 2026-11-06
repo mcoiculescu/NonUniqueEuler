@@ -6,8 +6,8 @@ import NonUniqueEuler.Defs.Sec5.Active
 import NonUniqueEuler.Defs.Sec5.Seed
 
 /-!
-# Section 5 definitions (all)
+# Part II Section 2 definitions (all)
 
-Imports every definition file of Section 5 (`05_single_ring.tex`). Interface files of Section 5 may
+Imports every definition file of Part II Section 2 (`manuscript/part2/sections/05_single_ring.tex`). Interface files of Part II Section 2 may
 simply import this module.
 -/

@@ -8,7 +8,7 @@ import NonUniqueEuler.H.Sec9.KickTrue.Real
 /-!
 # Helpers for `P/Sec9/KickTrue`: the numerical setting of `lem:kicktrue`
 
-Helper file of `P/Sec9/KickTrue.lean` (`lem:kicktrue`, `09_relay.tex:1239-1260`). For
+Helper file of `P/Sec9/KickTrue.lean` (`lem:kicktrue`, Part II Lemma C.14). For
 `1 ≤ k < n` with `σ = σ(0)`, `σ₊ = σ_{k+1}`, `x = x_k`, `κ = κ♯_{k+1}`, `L = log(δ₀/κ)`, `T_g = T̂_{k+1}`:
 * `C3_pos`, `CQ_nonneg`: signs of the chosen constants of `thm:active` / `thm:quiet`;
 * `sigma_facts`: `0 < σ_b ≤ σ ≤ |z|`;
@@ -17,7 +17,7 @@ Helper file of `P/Sec9/KickTrue.lean` (`lem:kicktrue`, `09_relay.tex:1239-1260`)
 * `level_facts`: `G_k, G_{k+1} ∈ [0,G₁]`, both detuned (`lem:inner-circ`, (SA3), (Det));
 * `rew_facts`: `eq:Rew` and its consequences (`lem:detuning`);
 * `kappa_facts`: `0 < κ < δ₀`, `L ≥ (μ/(μ-1))log 4 ≥ 1`, `T_g = σ₊⁻¹L > 0` ((c));
-* `kick2_of_ge`: `e^{-Re w T} ≤ 1/2` for `T ≥ (17/24)T_g` ((Kick2), `09_relay.tex:1281-1287`);
+* `kick2_of_ge`: `e^{-Re w T} ≤ 1/2` for `T ≥ (17/24)T_g` ((Kick2), `lem:kicktrue`, Part II Lemma C.14);
 * `clock_facts`: `τ₀ = -t̄♯_{k+1} - T_g`, `T_{k+1} = t♯_{k+1} + T_g/A_{k+1}`, `t̄♯_{k+1} > 0` if
   `k+1 < n` and `= 0` if `k+1 = n` (`def:clock`, `lem:clock`(1)).
 Everything here is proved.
@@ -83,7 +83,7 @@ theorem level_facts (hS : S.Holds) (hDet : S.Det) {k : ℕ} (hk : 1 ≤ k) (hkn 
   have h2 := hlev (k + 1) (Finset.mem_Icc.2 ⟨by omega, hkn⟩)
   exact ⟨h1.2.1, h2.2.1, hDet _ h1.1, hDet _ h2.1, hGs⟩
 
-/-- **`eq:Rew`** and its consequences (`09_relay.tex:1243-1255`): with `σ₊ = σ_{k+1}`, `x = x_k`,
+/-- **`eq:Rew`** and its consequences (`lem:kicktrue`, Part II Lemma C.14): with `σ₊ = σ_{k+1}`, `x = x_k`,
 `15σ/16 ≤ σ₊ ≤ 17σ/16`, `x ≥ σ/4`, `(3/4)σ(μ-1)/μ ≤ σ₊ - x ≤ σ/8`, `1 - x/σ₊ ≥ ϑ_μ`, and
 `Re w = σ₊ - x`. -/
 theorem rew_facts (hS : S.Holds) (hDet : S.Det) {k : ℕ} (hk : 1 ≤ k) (hkn : k < S.P.n) :
@@ -165,7 +165,7 @@ theorem rew_facts (hS : S.Holds) (hDet : S.Det) {k : ℕ} (hk : 1 ≤ k) (hkn : 
   rfl
 
 /-- `0 < κ < δ₀`, `L = log(δ₀/κ) ≥ (μ/(μ-1)) log 4`, `L ≥ 1`, `T_g = σ₊⁻¹L > 0`, `κ = κ♯_{k+1}`,
-`T_g = T̂_{k+1}` (`09_relay.tex:1255-1259`; (c)). -/
+`T_g = T̂_{k+1}` (`lem:kicktrue`, Part II Lemma C.14; (c)). -/
 theorem kappa_facts (hS : S.Holds) (hDet : S.Det) {k : ℕ} (hk : 1 ≤ k) (hkn : k < S.P.n)
     (hc : S.P.ClockUpTo (k + 1)) (hC : S.kickIneqC (S.P.ksh (k + 1))) :
     0 < S.P.ksh (k + 1) ∧ S.P.ksh (k + 1) < S.P.δ₀ ∧
@@ -183,7 +183,7 @@ theorem kappa_facts (hS : S.Holds) (hDet : S.Det) {k : ℕ} (hk : 1 ≤ k) (hkn 
   show 0 < (S.P.sigma (k + 1))⁻¹ * Real.log (S.P.δ₀ / S.P.ksh (k + 1))
   exact mul_pos (inv_pos.2 hσp0) (by linarith)
 
-/-- **(Kick2) for `T ≥ (17/24)T_g`** (`09_relay.tex:1281-1287`, `:1388-1390`):
+/-- **(Kick2) for `T ≥ (17/24)T_g`** (`lem:kicktrue`, Part II Lemma C.14):
 `Re w T ≥ (17/24)(24/17) log 2 = log 2`, so `e^{-Re w T} ≤ 1/2`. -/
 theorem kick2_of_ge (hS : S.Holds) (hDet : S.Det) {k : ℕ} (hk : 1 ≤ k) (hkn : k < S.P.n)
     (hc : S.P.ClockUpTo (k + 1)) (hC : S.kickIneqC (S.P.ksh (k + 1))) {T : ℝ}
@@ -231,7 +231,7 @@ theorem kick2_of_ge (hS : S.Holds) (hDet : S.Det) {k : ℕ} (hk : 1 ≤ k) (hkn 
   calc Real.exp (-(a * T)) ≤ Real.exp (-Real.log 2) := Real.exp_le_exp.2 (by linarith)
     _ = 1 / 2 := by rw [Real.exp_neg, Real.exp_log (by norm_num)]; norm_num
 
-/-- **The clock at level `k+1`** (`def:clock`, `lem:clock`(1), `09_relay.tex:1374-1377`, `:1383-1384`):
+/-- **The clock at level `k+1`** (`def:clock`, `lem:clock`(1), `lem:kicktrue`, Part II Lemma C.14):
 `T_{k+1} = t♯_{k+1} + T_g/A_{k+1}`, `τ₀ = -t̄♯_{k+1} - T_g`, `t̄♯_{k+1} ≥ 0`, `t̄♯_{k+1} > 0` if `k+1 < n`,
 and `t♯_{k+1} = 0` if `k+1 = n`. -/
 theorem clock_facts (hS : S.Holds) {k : ℕ} (hk : 1 ≤ k) (hkn : k < S.P.n)

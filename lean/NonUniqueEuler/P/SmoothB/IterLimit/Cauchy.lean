@@ -15,9 +15,9 @@ import Mathlib.Analysis.Calculus.ContDiff.Operations
 import Mathlib.MeasureTheory.Function.LpSeminorm.TriangleInequality
 
 /-!
-# Proof: `prop:iter-limit`, step 1 — the spatial derivatives of the iterates are uniformly Cauchy
+# Proof: formal decomposition of `prop:iter-limit`, step 1 — the spatial derivatives of the iterates are uniformly Cauchy
 
-Proof of `I/SmoothB/IterLimit/Cauchy.lean` (`B_global_smooth.tex:401-411`).
+Proof of `I/SmoothB/IterLimit/Cauchy.lean` (Part II, Proposition B.10 (`prop:iter-limit`)).
 
 For `t ∈ [-T, T]`, `i ≤ j`, `d = ω^{[j]}(t) - ω^{[i]}(t)` (complex valued, a test function) and
 `K = 2 + |γ|`:
@@ -99,7 +99,7 @@ theorem isTestFn_sub (h : IsSmoothDatum ω₀ R₀) (hne : ω₀ ≠ 0) (i j : �
 /-! ### The pointwise bound by (E2) and (E3) -/
 
 /-- `|∂^γ d(x)|² ≤ 3^K ‖d‖_{L²} ‖d‖_{H^{2K}}` for a test function `d`, `K = 2 + |γ|`
-(`B_global_smooth.tex:405-408`). -/
+(Part II, Proposition B.10 (`prop:iter-limit`)). -/
 theorem norm_partialD_sq_le {d : ℂ → ℂ} (hd : Sob.IsTestFn univ d) (γ : ℕ × ℕ) (x : ℂ) :
     ‖Sob.partialD γ d x‖ ^ 2 ≤
       3 ^ (2 + (γ.1 + γ.2)) * Sob.l2 d * Sob.normH (2 * (2 + (γ.1 + γ.2))) d := by
@@ -153,7 +153,7 @@ theorem coeff_le {L x y : ℝ} (hL : 0 ≤ L) (hxy : |x| ≤ y) (n : ℕ) :
   gcongr
 
 /-- `sup_{|t| ≤ T} ‖ω^{[j]}(t) - ω^{[i]}(t)‖_{L²} ≤ b i` for `i ≤ j`, with `b i → 0`
-(`B_global_smooth.tex:401-404`). -/
+(Part II, Proposition B.10 (`prop:iter-limit`)). -/
 theorem exists_l2_bound (h : IsSmoothDatum ω₀ R₀) (hne : ω₀ ≠ 0) {T : ℝ} (hT : 0 < T) :
     ∃ b : ℕ → ℝ, Tendsto b atTop (𝓝 0) ∧ (∀ i, 0 ≤ b i) ∧
       ∀ i j : ℕ, i ≤ j → ∀ t ∈ Icc (-T) T,
@@ -239,7 +239,7 @@ theorem exists_spaceD_bound (h : IsSmoothDatum ω₀ R₀) (hne : ω₀ ≠ 0) {
 end IterLimitCauchyAux
 
 open IterLimitCauchyAux in
-/-- `prop:iter-limit`, step 1 (`B_global_smooth.tex:401-411`): for `T > 0` and every multi-index
+/-- formal decomposition of `prop:iter-limit`, step 1 (Part II, Proposition B.10 (`prop:iter-limit`)): for `T > 0` and every multi-index
 `γ`, `(∂_x^γ ω^{[j]})_j` is a uniform Cauchy sequence on `[-T, T] × ℝ²`. -/
 theorem iter_spaceD_uniformCauchySeqOn (h : IsSmoothDatum ω₀ R₀) (hne : ω₀ ≠ 0) {T : ℝ}
     (hT : 0 < T) (γ : ℕ × ℕ) :

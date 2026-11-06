@@ -10,26 +10,29 @@ import NonUniqueEuler.I.Infra.AngularFourier.Symmetry
 /-!
 # Proof of `thm:evans-simple` (`I/Sec4/EvansSimple.lean`)
 
-Manuscript `04_ring.tex:450-563`. Same declarations as the interface file, proved.
+Current reference: Part I Theorem 4.8 (`thm:evans-simple`), parts (1) and (2).
+The generalized-eigenvector and converse results formerly numbered (3) and (4) are retained
+Lean results; they are not assertions of the current theorem. Same declarations as the
+interface file, proved.
 
 * `evansSimple_J_eq`: substitution `r = e^ξ` (`H/Sec4/EvansSimple/Deriv.lean`);
 * `evansSimple_deriv` (part (1)): the variational equation of `∂_λψ` and the integrated
   Wronskian identity (`H/Sec4/EvansSimple/Deriv.lean`);
 * `evansSimple_riesz` (part (2), R2): **restructured.** Instead of computing the Riesz projection
-  by a contour integral and the residue theorem (`04_ring.tex:498-534`), the Laurent form
+  by a contour integral and the residue theorem (Part I Theorem 4.8 (`thm:evans-simple`)), the Laurent form
   `Dunford.IsSimpleSpectralProj` is derived from the abstract criterion
   `EvansSimpleAux.isSimpleSpectralProj_of_range` (`H/Sec4/EvansSimple/Abstract.lean`): eigenvector
   `g_*` (`lem:resolvent`(2)), one-dimensional eigenspace (`lem:resolvent`(2)), the functional
   `ℓ_*` bounded on `Y^s_ℓ` (`H/Sec4/EvansSimple/Functional.lean`) with `ℓ_*(g_*) = 1` and
-  `ℓ_* ∘ L_ℓ = λ_* ℓ_*` (the adjoint eigenfunction, `lem:adjoint`(1) in weak form), and the
+  `ℓ_* ∘ L_ℓ = λ_* ℓ_*` (the weak adjoint calculation in the proof of Part I Lemma 4.9(1), `lem:adjoint`), and the
   solvability `ran(L_ℓ - λ_*) ⊇ ker ℓ_*` (`I/Sec4/EvansSimple/Range.lean`);
 * `evansSimple_riesz_conj`: transport by the conjugation `C` of `exists_conj_Ysec`
   (`H/Sec4/EvansSimple/Conj.lean`);
-* `evansSimple_not_simple` (part (3)): the generalized eigenprofile (`I/Sec4/EvansSimple/GenEigen`),
+* `evansSimple_not_simple` (retained former part (3)): the generalized eigenprofile (`I/Sec4/EvansSimple/GenEigen`),
   lifted to `Y^s_ℓ` (`H/Sec4/EvansSimple/Lift.lean`), and `I/Sec4/RieszFixes.lean`;
 * `evansSimple_J_eq_zero_of_genEigen`: the unnormalized functional annihilates
   `ran(L_ℓ - λ_*)` and equals `J` at `g_*` (restructured, `H/Sec4/EvansSimple/Lift.lean`);
-* `evansSimple_iff` (part (4)): combination.
+* `evansSimple_iff` (retained former part (4)): combination.
 -/
 
 noncomputable section
@@ -71,7 +74,7 @@ namespace SectorSetting
 
 open Sect
 
-/-- `thm:evans-simple`, the two expressions of `J` (`04_ring.tex:455-457`):
+/-- `thm:evans-simple`, the two expressions of `J` (Part I Theorem 4.8 (`thm:evans-simple`)):
 `J = ∫_0^∞ g_* ψ_*(log r) M_* r dr = iℓ ∫_ℝ f_ξ ψ_*² / (λ_* + iℓΩ(e^ξ;G))² dξ`. -/
 theorem evansSimple_J_eq (S : SectorSetting) (hS : S.Valid) (ℓ : ℕ) (hℓ : 1 ≤ ℓ) (z : ℂ)
     (hz : 0 < z.re) (G : ℝ) (hE : S.evans ℓ z G = 0) :
@@ -116,7 +119,7 @@ theorem evansSimple_riesz (S : SectorSetting) (hS : S.Valid) (ℓ : ℕ) (hℓ :
   exact ⟨hspec, h1, hP, ⟨_, _, h1, hP⟩⟩
 
 /-- `thm:evans-simple`(2) in the conjugate sector `-ℓ` (R2; `lem:resolvent`, last assertion;
-`prop:SU`, `04_ring.tex:1263-1266`): if `∂_λE_ℓ(λ_*;G) ≠ 0`, then on every `Y^s_{-ℓ}`:
+Part I Proposition 4.19 (`prop:SU`)): if `∂_λE_ℓ(λ_*;G) ≠ 0`, then on every `Y^s_{-ℓ}`:
 `h ↦ conj(ℓ_*(conj h))` is a bounded functional acting on profiles by `S.ellStarBar`,
 `conj(g_*)e^{-iℓθ}` is an eigenvector of `L_{-ℓ}(G)` for `conj λ_*` on which this functional is `1`,
 `P̄ h = conj(ℓ_*(conj h)) conj g_*` is the spectral (Riesz) projection of `L_{-ℓ}(G)` at `conj λ_*`
@@ -185,7 +188,7 @@ theorem evansSimple_riesz_conj (S : SectorSetting) (hS : S.Valid) (ℓ : ℕ) (h
     exact hP'
   · exact ⟨f', C (S.gStarY s ℓ z G), h1', hP'⟩
 
-/-- `thm:evans-simple`(3), first half (low priority, R13): if `J = 0`, there is a profile
+/-- the retained generalized-eigenvector statement (former part (3) of `thm:evans-simple`), first half (low priority, R13): if `J = 0`, there is a profile
 `g₁`, smooth on `(0,∞)` and supported in `[r₁,r₂]`, with `g₁e^{iℓθ} ∈ Y^s_ℓ` and
 `(L_ℓ(G) - λ_*)g₁ = g_*` on every `Y^s_ℓ`; so `λ_*` is not algebraically simple. -/
 theorem evansSimple_not_simple (S : SectorSetting) (hS : S.Valid) (ℓ : ℕ) (hℓ : 1 ≤ ℓ) (z : ℂ)
@@ -202,7 +205,7 @@ theorem evansSimple_not_simple (S : SectorSetting) (hS : S.Valid) (ℓ : ℕ) (h
   have heig := (eigen_of_evans_eq_zero S hS ℓ hℓ z hz G hE).2.2.2.2 s
   exact EvansSimpleAux.not_isAlgSimpleEig_of_genEigen heig.2.1 heig.2.2.1 hh
 
-/-- `thm:evans-simple`(3), converse (low priority, R13): if some `g₁ ∈ Y^0_ℓ` satisfies
+/-- the retained generalized-eigenvector statement (former part (3) of `thm:evans-simple`), converse (low priority, R13): if some `g₁ ∈ Y^0_ℓ` satisfies
 `(L_ℓ(G) - λ_*)g₁ = g_*`, then `J = 0`. -/
 theorem evansSimple_J_eq_zero_of_genEigen (S : SectorSetting) (hS : S.Valid) (ℓ : ℕ)
     (hℓ : 1 ≤ ℓ) (z : ℂ) (hz : 0 < z.re) (G : ℝ) (hE : S.evans ℓ z G = 0)
@@ -211,7 +214,7 @@ theorem evansSimple_J_eq_zero_of_genEigen (S : SectorSetting) (hS : S.Valid) (�
   obtain ⟨h, hh⟩ := h₁
   exact EvansSimpleAux.J_eq_zero_of_genEigen S hS ℓ hℓ hz G hE 0 h hh
 
-/-- `thm:evans-simple`(4) (the implications other than "simple zero ⟹ algebraically simple" are
+/-- the retained converse criterion (former part (4) of `thm:evans-simple`) (the implications other than "simple zero ⟹ algebraically simple" are
 low priority, R13): on every `Y^s_ℓ`, `λ_*` is an algebraically simple eigenvalue of `L_ℓ(G)` iff
 `J ≠ 0`, iff `λ_*` is a simple zero of `E_ℓ(·;G)`. -/
 theorem evansSimple_iff (S : SectorSetting) (hS : S.Valid) (ℓ : ℕ) (hℓ : 1 ≤ ℓ) (z : ℂ)

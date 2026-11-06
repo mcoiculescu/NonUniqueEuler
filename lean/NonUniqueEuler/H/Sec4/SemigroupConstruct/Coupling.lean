@@ -10,9 +10,9 @@ import NonUniqueEuler.I.Infra.AngularFourier.Parseval
 import NonUniqueEuler.I.Infra.AngularFourier.Sector
 
 /-!
-# Helpers for `lem:semigroup-construct`(1): the coupling operator `𝒦` on `Y^s`
+# Helpers for Part I Lemma 4.14(1) (`lem:semigroup-construct`): the coupling operator `𝒦` on `Y^s`
 
-Helper file of `P/Sec4/SemigroupConstruct.lean` (fully proved). Manuscript `04_ring.tex:996-1000`
+Helper file of `P/Sec4/SemigroupConstruct.lean` (fully proved). Part I Lemma 4.14 (`lem:semigroup-construct`)
 (end of the proof of (1)).
 
 * `memLp_couplingFn`: `𝒦w = -(K_BS * w)·∇ω̄ ∈ L²` for `w ∈ L²` supported in `N_*`
@@ -21,7 +21,7 @@ Helper file of `P/Sec4/SemigroupConstruct.lean` (fully proved). Manuscript `04_r
 * `ae_eq_of_sectorProj`: two `L²` functions with a.e. equal sector projections are a.e. equal
   (`Ang.ae_eq_zero_of_sectorProj`).
 * `exists_KY`: `𝒦 = ⊕_ℓ k_ℓ𝒢_ℓ` (`sectorSum` of the uniformly bounded `S.Ksec s ℓ`); its function
-  is `𝒦 w` because both have the same sector projections (`lem:sector`(2), `couplingFn_sector`).
+  is `𝒦 w` because both have the same sector projections (Part I Lemma 4.5(2) (`lem:sector`), `couplingFn_sector`).
 -/
 
 noncomputable section

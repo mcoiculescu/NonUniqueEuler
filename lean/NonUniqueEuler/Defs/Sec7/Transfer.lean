@@ -1,19 +1,25 @@
 import NonUniqueEuler.Defs.Sec6.All
 
 /-!
-# Section 7.1: fields induced by one ring on another (definitions)
+# Part II Section 4.1: fields induced by one ring on another (definitions)
 
-Manuscript `07_several_rings.tex:13-272`
-(conventions for fields, `eq:complex-velocity`, `eq:derivative-norm`, `eq:Smi`, `lem:transfer`,
+**Constants.** Current Part II Lemmas 4.1 (`lem:transfer`), 4.2 (`lem:inner-field`)
+and 4.5 (`lem:field-bound`) use a common `C_vel`. The separate constants
+`C_M`, `C_O`, `C_in` and `C_η` retained by the Lean interfaces are the legacy
+decomposition of these estimates; the definitions below do not identify them
+with that common manuscript constant.
+
+Manuscript Part II Section 4 (`sec:several`)
+(conventions for fields, `eq:BS-complex`, `eq:BS-complex-deriv`, the differentiated-series estimate in the proof of `lem:transfer`, `lem:transfer`,
 `lem:inner-field`).
 
 * `Rings.complexForm V = V₁ - i V₂ = conj ∘ V`, the complex form of a vector field
-  (`07_several_rings.tex:43-45`; for `V = K_BS * g` it is `BS.complexVelocity g`);
-* `Rings.Smq m q = S_{m,q} = Σ_{p≥1} (pm+q)^q 2^{-(p-1)m}` (`eq:Smi`);
+  (Part II Equation (3) (`eq:BS-complex`); for `V = K_BS * g` it is `BS.complexVelocity g`);
+* `Rings.Smq m q = S_{m,q} = Σ_{p≥1} (pm+q)^q 2^{-(p-1)m}` (the differentiated-series estimate in the proof of `lem:transfer`);
 * `Rings.CL1 = |N|^{1/2}` (`lem:transfer`);
 * `P.b i k = b_{i,k} = μ^{i-k} (r_k/r_i)^{m-2}` (`lem:transfer`(4));
-* the constants of `lem:transfer` and `lem:inner-field`, which Sections 9–10 use by value
-  ((SA2), `09_relay.tex:40-41`; `K_O`, `C_op`, `K₁`, `Ā`, …). Following decision D11, the content
+* the constants of `lem:transfer` and `lem:inner-field`, which Part II Sections 6–7 and Appendix C use by value
+  ((SA2), Part II Definition C.1 (`def:standing`); `K_O`, `C_op`, `K₁`, `Ā`, …). Following decision D11, the content
   of each lemma is a Prop of its constants (`IsTransferConst χ M_h C^T_M C^T_O`,
   `IsInnerFieldConst χ M_h C_in`) and the constants are chosen (`CTM`, `CTO`, `Cin`);
   `C_M = C^T_M max(1, C_{L1})`, `C_O = C^T_O max(1, C_{L1})` (`CM`, `CO`). The interface theorems
@@ -35,18 +41,18 @@ namespace Rings
 
 open RingData Datum
 
-/-! ### Conventions for fields (`07_several_rings.tex:32-71`) -/
+/-! ### Conventions for fields (Part II Section 4 (`sec:several`)) -/
 
-/-- The complex form `F = V₁ - i V₂` of a vector field `V = V₁ + i V₂` (`07_several_rings.tex:44-45`;
-`eq:complex-velocity`, `eq:derivative-norm`). -/
+/-- The complex form `F = V₁ - i V₂` of a vector field `V = V₁ + i V₂` (Part II Equation (3) (`eq:BS-complex`);
+`eq:BS-complex`, `eq:BS-complex-deriv`). -/
 def complexForm (V : ℂ → ℂ) (z : ℂ) : ℂ := conj (V z)
 
-/-- `S_{m,q} = Σ_{p≥1} (pm + q)^q 2^{-(p-1)m}` (`eq:Smi`, `07_several_rings.tex:69-71`), summed
+/-- `S_{m,q} = Σ_{p≥1} (pm + q)^q 2^{-(p-1)m}` (the differentiated-series estimate in the proof of Part II Lemma 4.1 (`lem:transfer`)), summed
 over `p = p' + 1`, `p' : ℕ`. -/
 def Smq (m q : ℕ) : ℝ := ∑' p : ℕ, ((((p + 1) * m + q : ℕ) : ℝ)) ^ q * ((2 : ℝ)⁻¹) ^ (p * m)
 
 /-- `C_{L1} = |N|^{1/2}`, `|N|` the area of `N = {a/2 ≤ |y| ≤ 2}` (`lem:transfer`,
-`07_several_rings.tex:87-88`). -/
+Part II Lemma 4.1 (`lem:transfer`)). -/
 def CL1 : ℝ := Real.sqrt (volume annN).toReal
 
 theorem CL1_nonneg : 0 ≤ CL1 := Real.sqrt_nonneg _
@@ -63,7 +69,7 @@ namespace Approx
 
 variable (P : Approx)
 
-/-- `b_{i,k} = μ^{i-k} (r_k/r_i)^{m-2}`, `m = 3` (`lem:transfer`(4), `07_several_rings.tex:108`). -/
+/-- `b_{i,k} = μ^{i-k} (r_k/r_i)^{m-2}`, `m = 3` (`lem:transfer`(4), Part II Lemma 4.1 (`lem:transfer`)). -/
 def b (i k : ℕ) : ℝ := P.μ ^ ((i : ℤ) - k) * (P.r k / P.r i) ^ (3 - 2)
 
 theorem b_def (i k : ℕ) : P.b i k = P.μ ^ ((i : ℤ) - k) * (P.r k / P.r i) := by
@@ -77,10 +83,10 @@ namespace Rings
 
 open RingData Datum
 
-/-! ### `lem:transfer` (`07_several_rings.tex:83-114`) -/
+/-! ### Part II Lemma 4.1 (`lem:transfer`) -/
 
 /-- **The constants `C^T_M`, `C^T_O` work in `lem:transfer` at order `M_h`**
-(`07_several_rings.tex:83-114`), with `C_M = C^T_M max(1, C_{L1})`, `C_O = C^T_O max(1, C_{L1})`:
+(Part II Lemma 4.1 (`lem:transfer`)), with `C_M = C^T_M max(1, C_{L1})`, `C_O = C^T_O max(1, C_{L1})`:
 for every valid approximation `P` with cutoff `χ` (`s̄ ≤ a/16` is part of `Approx.Valid`), every
 `t ≥ 0`:
 1. (`inner_general`) for `1 ≤ j < n` and every real `g ∈ L¹`, `3`-fold symmetric, vanishing a.e.
@@ -142,21 +148,21 @@ open Classical in
 def transferConsts (χ : ℝ → ℝ) (Mh : ℕ) : ℝ × ℝ :=
   if h : ∃ x : ℝ × ℝ, IsTransferConst χ Mh x.1 x.2 then h.choose else (1, 1)
 
-/-- `C^T_M` of `lem:transfer` at order `M_h` (`07_several_rings.tex:86-87`). -/
+/-- `C^T_M` of `lem:transfer` at order `M_h` (Part II Lemma 4.1 (`lem:transfer`)). -/
 def CTM (χ : ℝ → ℝ) (Mh : ℕ) : ℝ := (transferConsts χ Mh).1
 
-/-- `C^T_O` of `lem:transfer` at order `M_h` (`07_several_rings.tex:86-87`). -/
+/-- `C^T_O` of `lem:transfer` at order `M_h` (Part II Lemma 4.1 (`lem:transfer`)). -/
 def CTO (χ : ℝ → ℝ) (Mh : ℕ) : ℝ := (transferConsts χ Mh).2
 
-/-- `C_M = C^T_M max(1, C_{L1})` (`07_several_rings.tex:89`). -/
+/-- `C_M = C^T_M max(1, C_{L1})` (Part II Lemma 4.1 (`lem:transfer`)). -/
 def CM (χ : ℝ → ℝ) (Mh : ℕ) : ℝ := CTM χ Mh * max 1 CL1
 
-/-- `C_O = C^T_O max(1, C_{L1})` (`07_several_rings.tex:89`). -/
+/-- `C_O = C^T_O max(1, C_{L1})` (Part II Lemma 4.1 (`lem:transfer`)). -/
 def CO (χ : ℝ → ℝ) (Mh : ℕ) : ℝ := CTO χ Mh * max 1 CL1
 
-/-! ### `lem:inner-field` (`07_several_rings.tex:243-252`) -/
+/-! ### Part II Lemma 4.2 (`lem:inner-field`) -/
 
-/-- **The constant `C_in` works in `lem:inner-field` at order `M_h`** (`07_several_rings.tex:243-251`):
+/-- **The constant `C_in` works in `lem:inner-field` at order `M_h`** (Part II Lemma 4.2 (`lem:inner-field`)):
 `C_in > 0` and for every valid approximation `P` with cutoff `χ`, `1 ≤ k < n`, `t ≥ 0`, `R` with
 `0 < R ≤ a r_k/8`: if `ω_{≥k+1}(t)` is supported in `\bar B_R` and
 `‖ω_{≥k+1}(t)‖_{L¹} ≤ M_vort A_{k+1} r_{k+1}²`, then the non-monopole field `E` of `ω_{≥k+1}(t)`
@@ -175,7 +181,7 @@ structure IsInnerFieldConst (χ : ℝ → ℝ) (Mh : ℕ) (C : ℝ) : Prop where
           C * P.μ * P.s k ^ 2 * (R / P.r k) ^ 3
 
 open Classical in
-/-- `C_in` of `lem:inner-field` at order `M_h` (`07_several_rings.tex:245`; chosen, junk `1`). -/
+/-- `C_in` of `lem:inner-field` at order `M_h` (Part II Lemma 4.2 (`lem:inner-field`); chosen, junk `1`). -/
 def Cin (χ : ℝ → ℝ) (Mh : ℕ) : ℝ :=
   if h : ∃ C : ℝ, IsInnerFieldConst χ Mh C then h.choose else 1
 

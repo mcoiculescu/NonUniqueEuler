@@ -1,17 +1,17 @@
 import NonUniqueEuler.H.Sec3.Stable.BddRenorm
 
 /-!
-# Helpers for `prop:stable`: strong convergence in space–time
+# Helpers for legacy `prop:stable`: strong convergence in space–time
 
-Helper file of `P/Sec3/Stable.lean`. Manuscript: proof of `prop:stable`, fourth paragraph
-(`03_compactness.tex:791-800`): `ωₙ → ω` in `L¹((0,T) × B_R)` for every `R > 0`.
+Helper file of `P/Sec3/Stable.lean`. Legacy proof decomposition: `prop:stable`, fourth paragraph
+(related current criterion proof: Part I Theorem 3.8 (`thm:criterion`)): `ωₙ → ω` in `L¹((0,T) × B_R)` for every `R > 0`.
 
 Restructured argument (deviation, same ingredients): instead of a diagonal subsequence over
 `k ∈ ℕ` and a Cauchy argument, we use a sub-subsequence argument, which gives the convergence of
 the **whole** sequence. Suppose `aₙ = ‖ωₙ - ω‖_{L¹((0,T)×B_R)} > ε` along a subsequence `ψ`. Pick
 `k` with `2TM²/k < ε`. Along a further subsequence `φ`, `T_k(ω_{ψφn}) → ū` in `L¹((0,T)×B_R)`
 (`stable_bddRenorm`), and `‖ū - ω‖_{L¹((0,T)×B_R)} ≤ TM²/k` (`lintegral_sub_limit_le`: test the
-weak convergence `ωₙ ⇀ ω` on the slab (`tendsto_integral_slab_mul`, from `prop:compact`(i) and
+weak convergence `ωₙ ⇀ ω` on the slab (`tendsto_integral_slab_mul`, from legacy `prop:compact`(i) and
 dominated convergence in `t`) with `Φ = sgn(ū - ω) 1_{B_R}`, and use
 `‖ωₙ - T_k ωₙ‖_{L¹((0,T)×ℝ²)} ≤ TM²/k`, `lintegral_sub_trunc_le`). Hence
 `a_{ψφn} ≤ TM²/k + ‖T_k ω_{ψφn} - ū‖ + TM²/k < ε` eventually, a contradiction.
@@ -38,7 +38,7 @@ theorem seq_eLpNorm_two_le (hseq : IsCompactSeq T M gs g ωs) (n : ℕ) {t : ℝ
     (ht : t ∈ Icc 0 T) : eLpNorm (ωs n t) 2 volume ≤ ENNReal.ofReal M :=
   (eLpNorm_le_normL1LpE 2 _).trans (hseq.bound n t ht)
 
-/-- The bounds pass to the limit (`prop:compact`(ii)). -/
+/-- The bounds pass to the limit (legacy `prop:compact`(ii)). -/
 theorem limit_eLpNorm_le (hseq : IsCompactSeq T M gs g ωs) (hlim : IsCompactLimit T g ωs ω)
     {t : ℝ} (ht : t ∈ Icc 0 T) {p : ℝ≥0∞} (hp : p = 1 ∨ p = 2) :
     eLpNorm (ω t) p volume ≤ ENNReal.ofReal M := by
@@ -90,7 +90,7 @@ theorem lintegral_sub_trunc_le (hseq : IsCompactSeq T M gs g ωs) (n : ℕ) {k :
 /-! ### Weak convergence on the slab against bounded test functions -/
 
 /-- `∫∫ ωₙ Φ → ∫∫ ω Φ` for bounded measurable `Φ` vanishing outside `ℝ × B_R`
-(`prop:compact`(i) and dominated convergence in `t`, `03_compactness.tex:798-800`). -/
+(legacy `prop:compact`(i) and dominated convergence in `t`, retained legacy stability step). -/
 theorem tendsto_integral_slab_mul (hseq : IsCompactSeq T M gs g ωs)
     (hlim : IsCompactLimit T g ωs ω) {Φ : ℝ × ℂ → ℝ} (hΦ : Measurable Φ) {C R : ℝ}
     (hC : ∀ p, |Φ p| ≤ C) (hR : ∀ p : ℝ × ℂ, R ≤ ‖p.2‖ → Φ p = 0) :
@@ -175,7 +175,7 @@ theorem lintegral_slab_mul_le {Φ : ℝ × ℂ → ℝ} {R : ℝ} (hC : ∀ p, |
   refine (lintegral_mono hpt).trans_eq ?_
   rw [lintegral_indicator hS, Measure.restrict_restrict hS, prod_ball_inter_slab]
 
-/-- **Identification** (`03_compactness.tex:797-800`): if `T_k(ωₙ) → ū` in `L¹((0,T) × B_R)`,
+/-- **Identification** (retained legacy stability step): if `T_k(ωₙ) → ū` in `L¹((0,T) × B_R)`,
 then `‖ū - ω‖_{L¹((0,T) × B_R)} ≤ TM²/k`. -/
 theorem lintegral_sub_limit_le (hseq : IsCompactSeq T M gs g ωs)
     (hlim : IsCompactLimit T g ωs ω) {k : ℝ} (hk : 0 < k) {ub : ℝ → ℂ → ℝ}
@@ -304,7 +304,7 @@ theorem tendsto_truncConst (T M : ℝ) :
     (Or.inr ENNReal.ofReal_ne_top)
   simpa using h3
 
-/-- **Strong convergence in space–time** (`03_compactness.tex:791-800`): `ωₙ → ω` in
+/-- **Strong convergence in space–time** (retained legacy stability step): `ωₙ → ω` in
 `L¹((0,T) × B_R)` for every `R > 0` (for the whole sequence). -/
 theorem stable_tendsto_slab (hseq : IsCompactSeq T M gs g ωs) (hlim : IsCompactLimit T g ωs ω)
     (hstrong : Tendsto (fun n => normL1LpE 2 (gs n - g)) atTop (𝓝 0))

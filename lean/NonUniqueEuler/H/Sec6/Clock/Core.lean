@@ -3,15 +3,15 @@ import NonUniqueEuler.Defs.Sec6.All
 /-!
 # Helper for `lem:clock`: the order of the clock and the agreement of the recursion
 
-Helper of `P/Sec6/Clock.lean` (`06_datum.tex:462-497`). Everything here uses only the definitions
+Helper of `P/Sec6/Clock.lean` (Part II Lemma 3.10 (`lem:clock`)). Everything here uses only the definitions
 of `Defs/Sec6`; the analytic inputs are hypotheses:
-* `order_core` (the proof of `lem:clock`(1), `06_datum.tex:463-466`): if every `A_j > 0`,
+* `order_core` (the proof of `lem:clock`(1), Part II Lemma 3.10 (`lem:clock`)): if every `A_j > 0`,
   `T_pin > 0`, `σ_j > 0` for `j ∈ [k, n]` and the clock is defined up to level `k`, then
   `t♯_j < T_j`, `T_j < t♯_{j-1}` (`j ≥ 1`) and `t♯` is antitone on `[k-1, n]`. It is stated for an
   arbitrary `Approx` (not necessarily valid), so that it applies to the clock of a comparison
   vorticity ("the proof of (1) applies to the clock of `ω̃` wherever it is defined",
-  `06_datum.tex:487-489`).
-* the agreement lemmas (the induction of `lem:clock`(2), `06_datum.tex:474-484`): if the flows of
+  Part II Lemma 3.10 (`lem:clock`)).
+* the agreement lemmas (the induction of `lem:clock`(2), Part II Lemma 3.10 (`lem:clock`)): if the flows of
   `P` and `P.withOm ω̃` agree on `[0, t̄]` and `ω̃ = ω^{(n)}` there, then `S_j(t)`, `w_j(t)`, `G_j`,
   `σ_j`, and the recursion `tshRev` agree as long as the activation times stay in `[0, t̄]`
   (`causal_core`, `clockUpTo_withOm`).
@@ -52,7 +52,7 @@ theorem T_lt_tsh_pred_of {i : ℕ} (hA : ∀ j, 0 < P.A j) (hTpin : 0 < P.Tpin) 
   have : 0 < P.Tpin / P.A i := div_pos hTpin (hA i)
   linarith
 
-/-- **The order of the clock** (the proof of `lem:clock`(1), `06_datum.tex:463-466`), for any
+/-- **The order of the clock** (the proof of `lem:clock`(1), Part II Lemma 3.10 (`lem:clock`)), for any
 data with `A_j > 0`, `T_pin > 0` and `σ_j > 0` on `[k, n]`. -/
 theorem order_core (hA : ∀ j, 0 < P.A j) (hTpin : 0 < P.Tpin) {k : ℕ}
     (hσ : ∀ j ∈ Finset.Icc k P.n, 0 < P.sigma j) (hc : P.ClockUpTo k) :
@@ -166,7 +166,7 @@ theorem tshRev_agree :
 
 end Agree
 
-/-! ### The causal core (`lem:clock`(2), `06_datum.tex:474-484`) -/
+/-! ### The causal core (`lem:clock`(2), Part II Lemma 3.10 (`lem:clock`)) -/
 
 /-- **The causal core**: if the clock of `P` is defined up to level `k`, the order hypotheses hold,
 and the flows and vorticities of `P` and `P.withOm ω̃` agree on `[0, t̄]` with `t♯_i ≤ t̄`

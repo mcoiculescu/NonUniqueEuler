@@ -5,7 +5,7 @@ import NonUniqueEuler.H.SmoothB.CommR2.Bounds
 # Proof: `lem:comm-R2` (the commutator estimate on the plane)
 
 Proof of `NonUniqueEuler/I/SmoothB/CommR2.lean` (same declaration, same statement).
-Manuscript: `B_global_smooth.tex:149-175`.
+Manuscript: Part II, Lemma B.4 (`lem:comm-R2`).
 
 1. Leibniz (`H/SmoothB/CommR2/Formula.lean`, `CommR2Aux.comm_formula`):
    `[∂^α, u·∇]g = ∑_l ∑_{(w₁,w₂)} ∂_{w₁} u_l ∂_{w₂} ∂_l g` over the `2^s - 1` splittings of the

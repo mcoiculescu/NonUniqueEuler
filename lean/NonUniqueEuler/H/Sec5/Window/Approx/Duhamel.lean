@@ -5,7 +5,7 @@ import NonUniqueEuler.I.Sec4.SemigroupLaw
 /-!
 # Helpers for `window_approx`: `lem:duhamel` for plane functions
 
-Helper of `P/Sec5/Window/Approx.lean` (`05_single_ring.tex:747-786`: "Lemmas `lem:duhamel` and
+Helper of `P/Sec5/Window/Approx.lean` (Part II Lemma 2.11 (`lem:window`): "Lemmas `lem:duhamel` and
 `lem:bilinear` give `w^{[j]} ∈ C([0,ū];X^{k_j}) ∩ C¹([0,ū];X^{k_j-1})`, real"). Namespace
 `NonUniqueEuler.OneRing.WAppH`.
 

@@ -5,7 +5,7 @@ import Mathlib.Analysis.Calculus.LineDeriv.IntegrationByParts
 /-!
 # Helper for `lem:BS-basic`(d): the `L²` identity `Σ_{i,l} ‖∂_l u_i‖² = ‖h‖²`
 
-Helper of `P/Sec2/BSSmooth.lean` (`02_prelim.tex:250-261`). For real `h ∈ C_c^∞` and `u = K ∗ h`:
+Helper of `P/Sec2/BSSmooth.lean` (Part I, Lemma 2.1 (`lem:BS-basic`)). For real `h ∈ C_c^∞` and `u = K ∗ h`:
 pointwise, with `div u = 0` and `curl u = h`,
 `|∂₁u|² + |∂₂u|² = (div u)² + (curl u)² - 2 det ∇u = h² - 2 Im(conj(∂₁u) ∂₂u)`,
 and `∫ conj(∂₁u) ∂₂u` is real: two whole-plane integrations by parts

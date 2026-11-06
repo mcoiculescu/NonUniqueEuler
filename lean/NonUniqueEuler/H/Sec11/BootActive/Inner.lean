@@ -8,7 +8,8 @@ import NonUniqueEuler.I.Sec9.ActiveRing
 /-!
 # Helper for `P/Sec11/BootActive.lean`: the inner field, `eq:boot-inner`
 
-Step 4 of the proof of `prop:bootstrap`, "(Field), inner part" (`11_bootstrap.tex:416-436`): for
+Lean step 4 of the historical bootstrap decomposition, "(Field), inner part" (Part II Appendix C.17
+(`sec:bootstrap-active-checks`)): for
 `u ∈ [0, ū]`, `h^in_k(t̄♯_k + u) ∈ C^{M_h}(N')` and
 `‖h^in_k(t̄♯_k + u)‖_{C^{M_h}(N')} ≤ C_F κ♯_k ⟨u⟩^m` (`eq:boot-inner`).
 
@@ -23,6 +24,8 @@ The identity `h^in_k(A_kt) = E_{[k]}` as functions on `ℂ` (`hIn_eq_unitsField_
 from `P/Sec7/FieldBound.lean` (`Rings.hIn_eq_unitsField_extField`, same proof): `inner_field_eq`
 gives it only on `N'`, while `C^{M_h}(N')` norms need it near `N'`; both sides differ by a constant
 multiple of `y^⊥/|y|²`, and the identity at the point `1 ∈ N'` kills the constant. All proved.
+Lean retains the auxiliary inner-field constant `C_F`. Current Equation (56)
+(`eq:boot-inner`, Appendix C.17) states the consequence with `C₀`, using `C_F ≤ C₀`.
 -/
 
 noncomputable section
@@ -116,10 +119,11 @@ theorem normCk_zero (M : ℕ) : normCk M annN' (0 : ℂ → ℂ) = 0 := by
 theorem memCk_zero (M : ℕ) : MemCk M annN' (0 : ℂ → ℂ) :=
   ⟨⟨univ, isOpen_univ, subset_univ _, contDiffOn_const⟩, by rw [normCkE_zero]; exact ENNReal.zero_ne_top⟩
 
-/-- **`eq:boot-inner`** (`11_bootstrap.tex:416-436`): for `u ∈ [0, A_k(t' - t♯_k)]`,
+/-- **`eq:boot-inner`** (Part II Appendix C.17 (`sec:bootstrap-active-checks`)): for
+`u ∈ [0, A_k(t' - t♯_k)]`,
 `h^in_k(t̄♯_k + u) ∈ C^{M_h}(N')` and `η^in_k(t̄♯_k + u) ≤ C_F κ♯_k ⟨u⟩^m`. Hypotheses: (SA), the
 clock up to level `k`, `t' ∈ Ph_k`, `t' > t♯_k`, `lem:geometry` with `t'`, and (for `k < n`)
-`κ♯_k ≥ K_lo s_k^{m+2}` (Step 3). -/
+`κ♯_k ≥ K_lo s_k^{m+2}` (Lean step 3). -/
 theorem boot_inner (S : Standing) (hS : S.Holds) {k : ℕ} (hk : k ∈ Finset.Icc 1 S.P.n)
     (hc : S.P.ClockUpTo k) {t' : ℝ} (ht' : t' ∈ S.P.Phase k) (htsh : S.P.tsh k < t')
     (hgeo : S.GeometryConcl t') (hamp : k < S.P.n → S.Klo * S.P.s k ^ (3 + 2) ≤ S.P.ksh k) :

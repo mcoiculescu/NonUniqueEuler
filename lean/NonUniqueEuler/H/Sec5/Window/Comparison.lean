@@ -10,7 +10,7 @@ from `I/Sec5/Energy.lean` (`lem:energy`) and `I/Infra/Sobolev/Norm.lean`.
 * `win_pathC_restrict`, `win_pathC1_restrict`: restriction of paths from `[0,T]` to `[0,T']`;
 * `win_normH_eq_zero_of_ae`: a function that vanishes a.e. has `H^k` norm `0`;
 * `v_le_integral`: `lem:energy` applied on `[0,t] ⊆ [0,ū]` with `w_app(0) = w(0)`
-  (`05_single_ring.tex:803-812`): `‖(w - w_app)(τ)‖_{H^s} ≤ ∫₀^τ e^{Λ(τ-τ')} R(τ') dτ'` for any
+  (Part II Lemma 2.11): `‖(w - w_app)(τ)‖_{H^s} ≤ ∫₀^τ e^{Λ(τ-τ')} R(τ') dτ'` for any
   continuous majorant `R` of `‖R_app‖_{H^s}` (the case `t = 0` is trivial).
 -/
 
@@ -48,7 +48,7 @@ theorem win_normH_eq_zero_of_ae {k : ℕ} {f g : ℂ → ℂ} (hg : Sob.MemH k g
   rw [h1.2, h0.2]
   simp
 
-/-- **`lem:energy` on `[0,t]`** with `w_app(0) = w(0)` (`05_single_ring.tex:803-812`). -/
+/-- **`lem:energy` on `[0,t]`** with `w_app(0) = w(0)` (Part II Lemma 2.11 (`lem:window`)). -/
 theorem v_le_integral {χ : ℝ → ℝ} (hχ : IsAdmissibleCutoff χ) (hN : NumericalHypothesis χ)
     {s : ℕ} (hs : 3 ≤ s) {c : RingConfig} {ubar t : ℝ} (hc : c.Hyp ubar)
     (ht : t ∈ Icc (0 : ℝ) ubar) (hG : c.G ∈ Icc (0 : ℝ) Gbar) (hsupp : c.RingSupportedIn t annN)

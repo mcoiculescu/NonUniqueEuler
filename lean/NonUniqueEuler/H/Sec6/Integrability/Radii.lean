@@ -5,12 +5,12 @@ import Mathlib.Analysis.SpecificLimits.Normed
 /-!
 # Helpers for `prop:integrability`: the radii and the amplitudes
 
-Helper of `P/Sec6/Integrability.lean` (`06_datum.tex:35-60`).
+Helper of `P/Sec6/Integrability.lean` (Part II Proposition 3.2 (`prop:integrability`)).
 
-* `IntegrabilityH.radius_lt_of_lt`: `r_l < a r_k` for `1 ≤ k < l` (`06_datum.tex:36-39`);
+* `IntegrabilityH.radius_lt_of_lt`: `r_l < a r_k` for `1 ≤ k < l` (Part II Proposition 3.2 (`prop:integrability`));
 * `IntegrabilityH.annuli_disjoint`: the annuli `{a r_k ≤ |x| ≤ r_k}` are pairwise disjoint;
 * `IntegrabilityH.log_inv_radius`: `log(1/r_k) = (k-1) log(1/s̄) + k(k-1)/2 · log(2μ)`;
-* `IntegrabilityH.summable_amp_rpow_mul_radius_sq`: `Σ_k A_k^q r_k² < ∞` (`06_datum.tex:52-59`),
+* `IntegrabilityH.summable_amp_rpow_mul_radius_sq`: `Σ_k A_k^q r_k² < ∞` (Part II Proposition 3.2 (`prop:integrability`)),
   by the ratio test: `A_{k+1}^q r_{k+1}² = μ^q s_k² · A_k^q r_k²` and `s_k → 0`.
 -/
 
@@ -53,7 +53,7 @@ theorem radius_antitone {sbar μ : ℝ} (hs : 0 < sbar) (hs1 : sbar ≤ 1) (hμ 
     Antitone (radius sbar μ) :=
   antitone_nat_of_succ_le (radius_succ_le hs hs1 hμ)
 
-/-- `r_{k+1} < a r_k` for `k ≥ 1` (`06_datum.tex:36-38`). -/
+/-- `r_{k+1} < a r_k` for `k ≥ 1` (Part II Proposition 3.2 (`prop:integrability`)). -/
 theorem radius_succ_lt {A₁ sbar μ : ℝ} (hp : DatumParams A₁ μ sbar) {k : ℕ}
     (hk : 1 ≤ k) : radius sbar μ (k + 1) < a * radius sbar μ k := by
   rw [radius_succ sbar μ hk]
@@ -63,14 +63,14 @@ theorem radius_succ_lt {A₁ sbar μ : ℝ} (hp : DatumParams A₁ μ sbar) {k :
   exact mul_lt_mul_of_pos_right h2 hr
 
 /-- `r_l < a r_k` for `1 ≤ k < l`: the annulus of index `l` lies in the open disk `B_{a r_k}`
-(`06_datum.tex:36-39`). -/
+(Part II Proposition 3.2 (`prop:integrability`)). -/
 theorem radius_lt_of_lt {A₁ sbar μ : ℝ} (hp : DatumParams A₁ μ sbar) {k l : ℕ} (hk : 1 ≤ k)
     (hkl : k < l) : radius sbar μ l < a * radius sbar μ k :=
   lt_of_le_of_lt
     (radius_antitone hp.sbar_pos (sbar_lt_one hp).le (by linarith [hp.one_lt_μ]) hkl)
     (radius_succ_lt hp hk)
 
-/-- The annuli `{a r_k ≤ |x| ≤ r_k}`, `k ≥ 1`, are pairwise disjoint (`06_datum.tex:36-40`). -/
+/-- The annuli `{a r_k ≤ |x| ≤ r_k}`, `k ≥ 1`, are pairwise disjoint (Part II Proposition 3.2 (`prop:integrability`)). -/
 theorem annuli_disjoint {A₁ μ sbar : ℝ} (hp : DatumParams A₁ μ sbar) :
     ∀ k l : ℕ, 1 ≤ k → 1 ≤ l → k ≠ l →
       Disjoint {x : ℂ | a * radius sbar μ k ≤ ‖x‖ ∧ ‖x‖ ≤ radius sbar μ k}
@@ -84,7 +84,7 @@ theorem annuli_disjoint {A₁ μ sbar : ℝ} (hp : DatumParams A₁ μ sbar) :
   · have := radius_lt_of_lt hp hl h
     linarith
 
-/-- `log(1/r_k) = (k-1) log(1/s̄) + k(k-1)/2 · log(2μ)` for `k ≥ 1` (`06_datum.tex:40-41`). -/
+/-- `log(1/r_k) = (k-1) log(1/s̄) + k(k-1)/2 · log(2μ)` for `k ≥ 1` (Part II Proposition 3.2 (`prop:integrability`)). -/
 theorem log_inv_radius {sbar μ : ℝ} (hs : 0 < sbar) (hμ : 0 < μ) :
     ∀ k : ℕ, 1 ≤ k → Real.log (1 / radius sbar μ k) =
       ((k : ℝ) - 1) * Real.log (1 / sbar) + (k : ℝ) * ((k : ℝ) - 1) / 2 * Real.log (2 * μ) := by
@@ -121,7 +121,7 @@ theorem amp_rpow_mul_radius_sq_succ {A₁ μ sbar : ℝ} (hp : DatumParams A₁ 
   rw [amp_succ A₁ μ hk, Real.mul_rpow hμ0 hA, radius_succ sbar μ hk]
   ring
 
-/-- `Σ_{k ≥ 1} A_k^q r_k² < ∞` for every real `q` (`06_datum.tex:52-59`; the manuscript states
+/-- `Σ_{k ≥ 1} A_k^q r_k² < ∞` for every real `q` (Part II Proposition 3.2 (`prop:integrability`); the manuscript states
 it for `q ≥ 1`). Ratio test: the ratio `μ^q s_k²` of consecutive terms tends to `0`. -/
 theorem summable_amp_rpow_mul_radius_sq {A₁ μ sbar : ℝ} (hp : DatumParams A₁ μ sbar) (q : ℝ) :
     Summable fun j : ℕ => amp A₁ μ (j + 1) ^ q * radius sbar μ (j + 1) ^ 2 := by

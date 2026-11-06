@@ -9,8 +9,9 @@ import Mathlib.MeasureTheory.Integral.DominatedConvergence
 /-!
 # Helpers for `P/Sec4/Uniform/EllRepCont`: joint continuity of the eigendata in `(G, r)`
 
-Manuscript `04_ring.tex:1540-1543` (proof of `lem:uniform`): "`ψ_*`, `M_*`, `n_*` and `J ≠ 0`
-are continuous". Several lemmas are adapted from `H/Sec4/PropU/Cont.lean` and
+The continuity facts for `ψ_*`, `M_*`, `n_*` and `J`, with `J ≠ 0`, are in the
+The proof of Part I Proposition 4.21(b) (`prop:U`); they support Lemma 4.23 (`lem:uniform`).
+Several lemmas are adapted from `H/Sec4/PropU/Cont.lean` and
 `H/Sec4/PropU/Quant.lean` (from the proof of `Sec4/PropU`); they are restated here in
 the private namespace `Eig.EllRepContH` (helper files of another proof may not be imported, and a
 shared name would clash in the full library). Differences: `λ_*` continuity and `Re λ_* > 0` come
@@ -89,7 +90,7 @@ theorem Mres_continuousOn (S : SectorSetting) (hS : S.Valid) (ℓ : ℤ) :
   exact (ne_of_gt hq.2.1) hre
 
 /-- `ψ_ℓ(ξ;λ,G)` is jointly continuous in `(ξ, λ, G)` on `ℝ × {Re λ > 0} × ℝ`
-(`04_ring.tex:1403-1404`; `LinODE.continuousOn_sol`). -/
+(proof of Part I Proposition 4.21 (`prop:U`); `LinODE.continuousOn_sol`). -/
 theorem psi_continuousOn_param (S : SectorSetting) (hS : S.Valid) (ℓ : ℕ) :
     ContinuousOn (fun q : ℝ × ℂ × ℝ => S.psi ℓ q.2.1 q.2.2 q.1)
       (univ ×ˢ ({z : ℂ | 0 < z.re} ×ˢ univ)) := by
@@ -214,12 +215,12 @@ theorem Icc_a_two_subset : Icc (a / 2) 2 ⊆ Ioi (0 : ℝ) :=
 theorem Gbar_nonneg : (0 : ℝ) ≤ Gbar := by
   rw [Gbar]; positivity
 
-/-- `λ_*` is continuous on `[0,G₁]` (`prop:U`(a)). -/
+/-- `λ_*` is continuous on `[0,G₁]` (Part I Proposition 4.21(a) (`prop:U`)). -/
 theorem lam_continuousOn (hχ : IsAdmissibleCutoff χ) (hN : NumericalHypothesis χ) :
     ContinuousOn (lam χ) (Icc 0 Gbar) :=
   (propU_a χ hχ hN).1
 
-/-- `Re λ_*(G) > 0` on `[0,G₁]` (`prop:U`(a): `Re λ_*(G) ≥ σ_b > 211/2500`). -/
+/-- `Re λ_*(G) > 0` on `[0,G₁]` (Part I Proposition 4.21(a) (`prop:U`): `Re λ_*(G) ≥ σ_b > 211/2500`). -/
 theorem lam_re_pos (hχ : IsAdmissibleCutoff χ) (hN : NumericalHypothesis χ) {G : ℝ}
     (hG : G ∈ Icc (0 : ℝ) Gbar) : 0 < (lam χ G).re := by
   obtain ⟨-, -, ⟨G₁, -, hsb, hmin⟩, hgap, -⟩ := propU_a χ hχ hN
@@ -302,7 +303,7 @@ theorem J_continuousOn (hχ : IsAdmissibleCutoff χ) (hN : NumericalHypothesis �
     Gbar_nonneg a_pos_lt_one.2.le hF
   exact hI.congr fun G _ => J_eq hχ G
 
-/-- `J(G) ≠ 0` on `[0,G₁]` (`prop:U`(b), from `thm:evans-simple`(1)). -/
+/-- `J(G) ≠ 0` on `[0,G₁]` (proof of Part I Proposition 4.21(b) (`prop:U`), using Part I Theorem 4.8(1) (`thm:evans-simple`)). -/
 theorem J_ne_zero (hχ : IsAdmissibleCutoff χ) (hN : NumericalHypothesis χ) {G : ℝ}
     (hG : G ∈ Icc (0 : ℝ) Gbar) : J χ G ≠ 0 :=
   norm_pos_iff.1 ((propU_b χ hχ hN).2.2.2.2.2.2 G hG).2.2.1

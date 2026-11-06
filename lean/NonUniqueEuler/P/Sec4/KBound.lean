@@ -9,12 +9,12 @@ import Mathlib.Analysis.Normed.Group.Bounded
 # Proof: `cor:K-bound` (the coupling `k_ℓ𝒢_ℓ` gains `(1+ℓ²)^{-1/2}`)
 
 Proof of `NonUniqueEuler/I/Sec4/KBound.lean` (same declaration, same statement).
-Manuscript `04_ring.tex:900-922`.
+Manuscript Part I Corollary 4.13 (`cor:K-bound`).
 
 Write `k_ℓ(r) = (ℓ i)·b(r)` with `b(r) = ω̄'(r)/r`, smooth on `(0, ∞)`, vanishing on `(0, ∞)`
 outside `[r₁, r₂] ⊂ [ρ₋, ρ₊]`, with `|b^{(i)}| ≤ M₁` on `[ρ₋, ρ₊]` for `i ≤ s` (compactness).
 For `ψ = 𝒢_ℓ g`:
-* `lem:elliptic` (`SectorSetting.elliptic` with `k = s`, `I = [ρ₋, ρ₊]`):
+* the elliptic estimate in the proof of Part I Corollary 4.13 (`cor:K-bound`) (`SectorSetting.elliptic` with `k = s`, `I = [ρ₋, ρ₊]`):
   `ψ ∈ H^{s+2}((0,∞))` and `‖ψ‖²_{s+2,ℓ} ≤ C_E ‖g‖²_{s,ℓ}`;
 * the multiplier bound for multipliers vanishing off `[ρ₋, ρ₊]`
   (`Sob.secNormSq_mul_le_of_vanish`, `I/Infra/SobolevOneD/MultiplierLocal.lean`):

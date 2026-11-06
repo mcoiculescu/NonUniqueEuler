@@ -4,7 +4,7 @@ import NonUniqueEuler.H.Sec10.Nonempty.Structural
 # Helper for `lem:nonempty`: the "power" conditions of (P6) for small `s̄`
 
 Helper of `P/Sec10/Nonempty.lean`, the treatment of (P6) in the proof of `lem:nonempty`
-(`10_parameters.tex:345-352`): (B1)–(B3), (B6), the first three parts of (B7), (B9)–(B11), the
+(Part II Appendix C.4, `sec:param-verification`): (B1)–(B3), (B6), the first three parts of (B7), (B9)–(B11), the
 first and the last part of (B8) have left sides that are finite sums of terms `C s̄^α` (with
 `η_b = C_op s̄^{2m}/(σ_b(μ-1))`, `m = 3`), which tend to `0`, while the right sides are fixed positive
 numbers (the constants are those of (P0)–(P5), which do not depend on `s̄`).

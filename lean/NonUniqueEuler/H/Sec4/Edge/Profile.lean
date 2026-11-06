@@ -3,9 +3,9 @@ import NonUniqueEuler.I.Sec4.Sector
 import NonUniqueEuler.I.Infra.Polar.Radial
 
 /-!
-# Helpers for `P/Sec4/Edge`: `lem:edge` for sector profiles
+# Helpers for `P/Sec4/Edge`: Part I Lemma 4.10 (`lem:edge`) for sector profiles
 
-Manuscript `04_ring.tex:735-747`. For a profile `g ∈ Y^0_ℓ` (`S.IsProfileL2 g`), not a.e. zero,
+See the proof of Part I Lemma 4.10 (`lem:edge`). For a profile `g ∈ Y^0_ℓ` (`S.IsProfileL2 g`), not a.e. zero,
 with `L_ℓ(G) g = λ g` a.e. on `(0,∞)` and `Re λ > 0`:
 * `ψ = 𝒢_ℓ g` is continuous (`green_bound`), and `g = M_λ k_ℓ ψ = ω̄' e` a.e.
   (`e = iℓψ/(r(λ+iℓΩ))`), so `g` vanishes off `{ω̄' ≠ 0}`;
@@ -84,7 +84,7 @@ theorem eq_dom_mul_efun {ℓ : ℤ} {z : ℂ} (hz : 0 < z.re) (G : ℝ) {h : ℝ
   apply mul_left_cancel₀ (mul_ne_zero hr0' hm)
   linear_combination (r : ℂ) * h1 + green ℓ h r * hk - ((S.dom r : ℝ) : ℂ) * hmul
 
-/-- `lem:edge` for sector profiles. -/
+/-- Part I Lemma 4.10 (`lem:edge`) for sector profiles. -/
 theorem edge_profile (hS : S.Valid) (hsplit : S.EdgeSplit) {ℓ : ℤ} (hℓ : ℓ ≠ 0) (G : ℝ)
     {z : ℂ} (hz : 0 < z.re) {h : ℝ → ℂ} (hh : S.IsProfileL2 h)
     (hne : ¬ (h =ᵐ[volume.restrict (Ioi 0)] 0))

@@ -6,7 +6,7 @@ import Mathlib.Analysis.Calculus.ContDiff.Convolution
 /-!
 # Helper for `lem:BS-basic`(d): differentiation under the integral sign
 
-Helper of `P/Sec2/BSSmooth.lean` (`02_prelim.tex:208-212`). For real `g ∈ C_c^∞`, the velocity
+Helper of `P/Sec2/BSSmooth.lean` (Part I, Lemma 2.1 (`lem:BS-basic`)). For real `g ∈ C_c^∞`, the velocity
 `u = K ∗ g` and the stream function `ψ = (2π)⁻¹ log|·| ∗ g` are Mathlib convolutions of a locally
 integrable kernel with a compactly supported smooth function, so they are smooth and every
 derivative falls on `g`:

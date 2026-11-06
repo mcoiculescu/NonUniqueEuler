@@ -5,7 +5,9 @@ import NonUniqueEuler.I.Sec3.Commutator
 # Helper for `P/Sec3/Transport`: the commutator on `(t₀, T') × B_R`
 
 `lem:commutator` (`I/Sec3/Commutator.lean`) is stated on an open interval `I` and compact
-`J ⊆ I`. As in the manuscript (`03_compactness.tex:481-491`) we extend the data below `t = 0`:
+`J ⊆ I`. For the application of Part I Lemma 3.3 (`lem:commutator`) we extend
+the data below `t = 0`. This differs from the datum-preserving extension below `t₀`
+in the current proof of Lemma 3.4 (`lem:transport`):
 `ũ(t) = u(t)`, `w̃(t) = w(t)` for `t > 0`, and `ũ(t) = 0`, `w̃(t) = 0` for `t ≤ 0` (the manuscript
 uses `u = u₀`, `w = 0` on `(t₀-1, t₀]`; only the hypotheses of `lem:commutator` matter here, and
 `C_ε[ũ, w̃](t) = C_ε[u, w](t)` for `t > 0`, since `C_ε` acts in `x` only). On

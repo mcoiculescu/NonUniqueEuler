@@ -2,9 +2,14 @@ import NonUniqueEuler.Defs.Sec8.All
 import NonUniqueEuler.I.Infra.Ip.Ip
 
 /-!
-# Proof: `lem:pinning` (the amplitude is pinned after time `0`)
+# Proof: the legacy pinning helper for the proof of `prop:kick` (the amplitude is pinned after time `0`)
 
-Proof of `NonUniqueEuler/I/Sec8/Pinning.lean` (`08_kick.tex:173-181`, proof `:182-191`).
+The pinning estimate remains a separate Lean helper. In the current manuscript
+its integral estimate is part of the proof of Part II Proposition 5.2
+(`prop:kick`), with no separate lemma label. The formal helper permits an
+infinite right endpoint; the current scalar setting uses a finite interval.
+
+Proof of `NonUniqueEuler/I/Sec8/Pinning.lean` (the integral estimates in the proof of Part II Proposition 5.2 (`prop:kick`)).
 
 Uses `I/Infra/Ip/Ip.lean` (`intervalIntegral_le_mul_Ip`:
 `∫_τ^{τ'} e^{-xs}(1+s)^p ds ≤ (1+τ)^p e^{-xτ} I_p(x)` for `0 ≤ τ ≤ τ'`), and Mathlib
@@ -87,7 +92,7 @@ theorem norm_integral_le {ζ₀ : ℂ} {τ₀ : ℝ} {τ₁ : EReal} {q : ℝ �
 end PinningAux
 
 open PinningAux in
-/-- **`lem:pinning`** (`08_kick.tex:173-181`). In the setting of Section 8 with `τ₀ < 0 < τ₁`,
+/-- **the legacy pinning helper for the proof of `prop:kick`** (the integral estimates in the proof of Part II Proposition 5.2 (`prop:kick`)). In the setting of Part II Section 5 with `τ₀ < 0 < τ₁`,
 `Q̄ > 0`, `p ∈ ℕ` and `|q(τ)| ≤ Q̄(1+τ)^p` on `I ∩ [0,∞)`: for `τ, τ' ∈ I` with `0 ≤ τ ≤ τ'`,
 `|A(τ') - A(τ)| ≤ |β|Q̄(1+τ)^pe^{-xτ}I_p(x)`, `x = Re ζ₀`. -/
 theorem pinning {ζ₀ β : ℂ} {τ₀ : ℝ} {τ₁ : EReal} {q : ℝ → ℂ} (h : IsSetting ζ₀ β τ₀ τ₁ q)

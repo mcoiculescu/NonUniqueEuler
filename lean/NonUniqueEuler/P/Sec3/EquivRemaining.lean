@@ -11,33 +11,34 @@ import Mathlib.Data.List.TFAE
 import Mathlib.Tactic.TFAE
 
 /-!
-# Proof of `I/Sec3/EquivRemaining.lean`: `prop:equiv`, the remaining implications
+# Proof of `I/Sec3/EquivRemaining.lean`: legacy `prop:equiv`, the remaining implications
 
-Manuscript: `prop:equiv`, `03_compactness.tex:1079-1097` (statement), proof
-`03_compactness.tex:1099-1128`.
+These implications retain the legacy `prop:equiv` decomposition. There is no current
+standalone equivalence proposition. The related current criterion and moment argument
+are Part I Theorem 3.8 (`thm:criterion`) and Corollary 3.9 (`cor:defect`).
 
-* (e) ⇒ (c) (`03_compactness.tex:1104-1108`): with `T' = T`, `ω^{(n_k)}(t) → ω_∞(t)` in `L¹`, so
+* (e) ⇒ (c): with `T' = T`, `ω^{(n_k)}(t) → ω_∞(t)` in `L¹`, so
   `∫ ω^{(n_k)}(t) ψ → ∫ ω_∞(t) ψ` for bounded `ψ` (Hölder `L¹`–`L^∞`). If `ω⁽ⁿ⁾(t) → f` in `𝒟'`,
   then `∫ (ω_∞(t) - f) ψ = 0` for every `ψ ∈ C_c^∞`, and `ω_∞(t) = f` a.e. by the fundamental
   lemma (`ae_eq_zero_of_integral_contDiff_smul_eq_zero`; `ω_∞(t) - f ∈ L²` is locally
   integrable).
-* (c) ⇒ (d) (`03_compactness.tex:1108-1110`): if `defectPairing = 0`, the suprema tend to `0`
+* (c) ⇒ (d): if `defectPairing = 0`, the suprema tend to `0`
   (`EquivRemaining.tendsto_zero_of_limsup_eq_zero`), and they dominate
   `|∫ ω⁽ⁿ⁾(t) ψ - ∫ f ψ|`.
-* (d) ⇒ (b) (`03_compactness.tex:1111-1112`): Hölder `|∫ g ψ| ≤ ‖g‖_{L^q} ‖ψ‖_{L^{q'}}`
+* (d) ⇒ (b): Hölder `|∫ g ψ| ≤ ‖g‖_{L^q} ‖ψ‖_{L^{q'}}`
   (`EquivRemaining.enorm_integral_mul_le`, `q' = ENNReal.conjExponent q`), hence
   `defectPairing ≤ ‖ψ‖_{L^{q'}} · defectLp q`.
-* (b) ⇒ (a) (`03_compactness.tex:1114-1127`): if `defectLp 1 = 0`, then
+* (b) ⇒ (a): if `defectLp 1 = 0`, then
   `sup_t ‖ω⁽ⁿ⁾(t) - f‖_{L¹} → 0`. Along the filter `comap Prod.fst atTop` on `ℕ × [0, T]` (which
   encodes uniformity in `t`), `ω⁽ⁿ⁾(t) → f` in `L¹` with a uniform `L²` bound
-  (`lem:bounded-adm`(ii), `boundedAdm_eLpNorm_eq`, `boundedAdm_iSup_eq`), hence weakly in `L²`
+  (legacy `lem:bounded-adm`(ii), `boundedAdm_eLpNorm_eq`, `boundedAdm_iSup_eq`), hence weakly in `L²`
   (`EquivRemaining.tendsto_integral_mul_of_eLpNorm_one`), and `‖ω⁽ⁿ⁾(t)‖_{L²} = ‖f⁽ⁿ⁾‖_{L²} →
-  ‖f‖_{L²}`; `lem:RR` (`radonRiesz_filter`) gives `sup_t ‖ω⁽ⁿ⁾(t) - f‖_{L²} → 0`. For `q ∈ (1, 2]`,
+  ‖f‖_{L²}`; legacy `lem:RR` (`radonRiesz_filter`) gives `sup_t ‖ω⁽ⁿ⁾(t) - f‖_{L²} → 0`. For `q ∈ (1, 2]`,
   `‖g‖_{L^q} ≤ ‖g‖_{L¹} + ‖g‖_{L²}` (`LpInterp.eLpNorm_le_eLpNorm_add_eLpNorm`) gives
   `defectLp q = 0`.
 * TFAE: (a) ⇒ (e) ⇒ (c) ⇒ (d) ⇒ (a) (with `I/Sec3/Equiv.lean`), (d) ⇒ (b∀) ⇒ (b∃) ⇒ (a).
 
-Deviations from the manuscript:
+Deviations from the legacy equivalence proof:
 * (b) ⇒ (a): instead of choosing almost maximizing times `tₙ`, the Radon–Riesz lemma is applied
   along the filter `comap Prod.fst atTop` on `ℕ × [0, T]` (uniform convergence in `t`); and for
   `q ∈ (1, 2)` the bound `‖g‖_q ≤ ‖g‖_1 + ‖g‖_2` replaces the interpolation inequality (both
@@ -65,7 +66,7 @@ private theorem integrable_mul_two {g ψ : ℂ → ℝ} (hg : MemLp g 2 volume)
   hg.integrable_mul hψ
 
 set_option linter.unusedVariables false in
-/-- **`prop:equiv`, (e) ⇒ (c)** (`03_compactness.tex:1104-1108`). -/
+/-- **legacy `prop:equiv`, (e) ⇒ (c)** (legacy implication; current criterion and moment arguments cited above). -/
 theorem equiv_e_imp_c {T₀ : ℝ≥0∞} {T : ℝ} {f : ℂ → ℝ} {fs : ℕ → ℂ → ℝ}
     {ωs : ℕ → ℝ → ℂ → ℝ} (hrad : IsRadial f) (hadm : IsAdmissibleSeq 2 T₀ f fs ωs)
     (hcont : ∀ n, IsWeakContL2On (timeInterval T₀) (ωs n))
@@ -118,7 +119,7 @@ theorem equiv_e_imp_c {T₀ : ℝ≥0∞} {T : ℝ} {f : ℂ → ℝ} {fs : ℕ 
   exact sub_eq_zero.1 hx
 
 set_option linter.unusedVariables false in
-/-- **`prop:equiv`, (c) ⇒ (d)** (`03_compactness.tex:1108-1110`). -/
+/-- **legacy `prop:equiv`, (c) ⇒ (d)** (legacy implication; current criterion and moment arguments cited above). -/
 theorem equiv_c_imp_d {T₀ : ℝ≥0∞} {T : ℝ} {f : ℂ → ℝ} {fs : ℕ → ℂ → ℝ}
     {ωs : ℕ → ℝ → ℂ → ℝ} (hrad : IsRadial f) (hadm : IsAdmissibleSeq 2 T₀ f fs ωs)
     (hcont : ∀ n, IsWeakContL2On (timeInterval T₀) (ωs n))
@@ -141,7 +142,7 @@ theorem equiv_c_imp_d {T₀ : ℝ≥0∞} {T : ℝ} {f : ℂ → ℝ} {fs : ℕ 
   exact le_iSup₂ (f := fun s (_ : s ∈ Icc 0 T) => ‖∫ x, (ωs n s x - f x) * ψ x‖ₑ) t htT
 
 set_option linter.unusedVariables false in
-/-- **`prop:equiv`, (d) ⇒ (b) for every `q ∈ (1, 2]`** (`03_compactness.tex:1111-1112`). -/
+/-- **legacy `prop:equiv`, (d) ⇒ (b) for every `q ∈ (1, 2]`** (legacy implication; current criterion and moment arguments cited above). -/
 theorem equiv_d_imp_b {T₀ : ℝ≥0∞} {T : ℝ} {f : ℂ → ℝ} {fs : ℕ → ℂ → ℝ}
     {ωs : ℕ → ℝ → ℂ → ℝ} (hrad : IsRadial f) (hadm : IsAdmissibleSeq 2 T₀ f fs ωs)
     (hcont : ∀ n, IsWeakContL2On (timeInterval T₀) (ωs n))
@@ -178,7 +179,7 @@ theorem equiv_d_imp_b {T₀ : ℝ≥0∞} {T : ℝ} {f : ℂ → ℝ} {fs : ℕ 
   exact (lt_of_lt_of_le hpos hle).false
 
 set_option linter.unusedVariables false in
-/-- **`prop:equiv`, (b) for some `q ∈ (1, 2]` ⇒ (a)** (`03_compactness.tex:1114-1127`). -/
+/-- **legacy `prop:equiv`, (b) for some `q ∈ (1, 2]` ⇒ (a)** (legacy implication; current criterion and moment arguments cited above). -/
 theorem equiv_b_imp_a {T₀ : ℝ≥0∞} {T : ℝ} {f : ℂ → ℝ} {fs : ℕ → ℂ → ℝ}
     {ωs : ℕ → ℝ → ℂ → ℝ} (hrad : IsRadial f) (hadm : IsAdmissibleSeq 2 T₀ f fs ωs)
     (hcont : ∀ n, IsWeakContL2On (timeInterval T₀) (ωs n))
@@ -193,7 +194,7 @@ theorem equiv_b_imp_a {T₀ : ℝ≥0∞} {T : ℝ} {f : ℂ → ℝ} {fs : ℕ 
   -- (1) `sup_t ‖ω⁽ⁿ⁾(t) - f‖_{L¹} → 0`
   have h1 : Tendsto (fun n => supDist 1 (Icc 0 T) (ωs n) (stationary f)) atTop (𝓝 0) :=
     EquivRemaining.tendsto_zero_of_limsup_eq_zero h0
-  -- the uniform `L²` bound (`lem:bounded-adm`(ii))
+  -- the uniform `L²` bound (legacy `lem:bounded-adm`(ii))
   obtain ⟨-, hfin⟩ := boundedAdm_iSup_eq hadm hcont
   have hnorm : ∀ n, ∀ t ∈ Icc 0 T, eLpNorm (ωs n t) 2 volume = eLpNorm (fs n) 2 volume := by
     intro n t ht
@@ -202,7 +203,7 @@ theorem equiv_b_imp_a {T₀ : ℝ≥0∞} {T : ℝ} {f : ℂ → ℝ} {fs : ℕ 
     rwa [ENNReal.ofReal_ofNat] at this
   have hfsB : ∀ n, eLpNorm (fs n) 2 volume ≤ ⨆ m, normL1LpE 2 (fs m) := fun n =>
     (eLpNorm_le_normL1LpE 2 (fs n)).trans (le_iSup (fun m => normL1LpE 2 (fs m)) n)
-  -- (2) `sup_t ‖ω⁽ⁿ⁾(t) - f‖_{L²} → 0`, by `lem:RR` along `comap Prod.fst atTop` on `ℕ × [0, T]`
+  -- (2) `sup_t ‖ω⁽ⁿ⁾(t) - f‖_{L²} → 0`, by legacy `lem:RR` along `comap Prod.fst atTop` on `ℕ × [0, T]`
   have hgs : ∀ i : ℕ × Icc 0 T, MemLp (ωs i.1 i.2) 2 volume := fun i => hslice i.1 i.2 i.2.2
   have hL1l : Tendsto (fun i : ℕ × Icc 0 T => eLpNorm (ωs i.1 i.2 - f) 1 volume)
       (comap Prod.fst atTop) (𝓝 0) := by
@@ -265,7 +266,7 @@ theorem equiv_b_imp_a {T₀ : ℝ≥0∞} {T : ℝ} {f : ℂ → ℝ} {fs : ℕ 
   rw [hzero] at hpos
   exact lt_irrefl _ hpos
 
-/-- **`prop:equiv`** (`03_compactness.tex:1079-1097`): the conditions (a), (b) for some `q`,
+/-- **legacy `prop:equiv`** (legacy implication; current criterion and moment arguments cited above): the conditions (a), (b) for some `q`,
 (b) for every `q`, (c), (d), (e) are equivalent. -/
 theorem equiv_tfae {T₀ : ℝ≥0∞} {T : ℝ} {f : ℂ → ℝ} {fs : ℕ → ℂ → ℝ}
     {ωs : ℕ → ℝ → ℂ → ℝ} (hrad : IsRadial f) (hadm : IsAdmissibleSeq 2 T₀ f fs ωs)

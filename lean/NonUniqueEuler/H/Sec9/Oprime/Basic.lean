@@ -4,15 +4,15 @@ import NonUniqueEuler.I.Sec6.RegionsBasic
 /-!
 # Helpers for `lem:Oprime`: positivity of the constants, the ring parameters, `w_i(0) = 0`
 
-Helper file of `P/Sec9/Oprime.lean` (`09_relay.tex:632-738`). Everything here is proved.
+Helper file of `P/Sec9/Oprime.lean` (`lem:Oprime`, Part II Lemma C.10). Everything here is proved.
 
 * positivity of the chosen constants `C_M`, `C_O` (`> 0`), `C_Q` (`≥ 0`), `C₂ ≥ 1`, `I_p ≥ 0`,
   `K_O ≥ 0` (the specifications, or the junk values, which have the same signs);
 * the algebra of `A_k`, `r_k`, `s_k`, `b_{i,k}`, `P̃_{i,j}`: `b_{j,k}b_{i,j} = b_{i,k}`,
   `b_{j,j+1}ε_j = s_j^{2m}`, `b_{i,j+1}P̃_{i,j+1} = b_{i,j}P̃_{i,j}K_Os_j^{2m}`, and
-  `Σ_{i<j} b_{i,j}P̃_{i,j} ≤ 1/3` when `K_Os̄^{2m} ≤ 1/4` (`09_relay.tex:651-657`);
+  `Σ_{i<j} b_{i,j}P̃_{i,j} ≤ 1/3` when `K_Os̄^{2m} ≤ 1/4` (`lem:Oprime`, Part II Lemma C.10);
 * `w_i(0) = 0` for `1 ≤ i < n` (the rings `i < n` start at `Φ` in their units,
-  `09_relay.tex:648-650`), from `eq:omega-ge` (`regions_basic_three`) and `Φ_0⁻¹ = id`
+  `lem:Oprime`, Part II Lemma C.10), from `eq:omega-ge` (`regions_basic_three`) and `Φ_0⁻¹ = id`
   (`maxFlow_self`: the maximal flow at its initial time is the identity, also for the junk value).
 -/
 
@@ -172,7 +172,7 @@ theorem b_succ (hP : P.Valid) {j : ℕ} (hj : 1 ≤ j) : P.b j (j + 1) = P.μ⁻
   congr 1
   field_simp
 
-/-- `b_{j,j+1} ε_j = s_j^{2m}` (`09_relay.tex:731`). -/
+/-- `b_{j,j+1} ε_j = s_j^{2m}` (`lem:Oprime`, Part II Lemma C.10). -/
 theorem b_succ_mul_eps (hP : P.Valid) {j : ℕ} (hj : 1 ≤ j) :
     P.b j (j + 1) * P.eps j = P.s j ^ (2 * 3) := by
   rw [b_succ hP hj, Approx.eps_def]
@@ -191,7 +191,7 @@ theorem Ptil_nonneg (S : Standing) (hS : S.Holds) (hsb : 0 < S.sigb) (i j : ℕ)
     mul_nonneg (KO_nonneg S hS hsb) (hS.valid.eps_pos p).le
 
 /-- `b_{i,j+1} P̃_{i,j+1} = b_{i,j} P̃_{i,j} · K_O s_j^{2m}` for `1 ≤ i ≤ j`
-(`09_relay.tex:651-655`). -/
+(`lem:Oprime`, Part II Lemma C.10). -/
 theorem bPtil_succ (S : Standing) (hS : S.Holds) {i j : ℕ} (hj : 1 ≤ j) (hij : i ≤ j) :
     S.P.b i (j + 1) * S.Ptil i (j + 1) =
       S.P.b i j * S.Ptil i j * (S.KO * S.P.s j ^ (2 * 3)) := by
@@ -201,7 +201,7 @@ theorem bPtil_succ (S : Standing) (hS : S.Holds) {i j : ℕ} (hj : 1 ≤ j) (hij
       = S.P.b i j * S.Ptil i j * (S.KO * (S.P.b j (j + 1) * S.P.eps j)) := by ring
     _ = _ := by rw [h]
 
-/-- `Σ_{i<j} b_{i,j} P̃_{i,j} ≤ 1/3` if `K_O s̄^{2m} ≤ 1/4` (`09_relay.tex:651-657`:
+/-- `Σ_{i<j} b_{i,j} P̃_{i,j} ≤ 1/3` if `K_O s̄^{2m} ≤ 1/4` (`lem:Oprime`, Part II Lemma C.10:
 `b_{i,j}P̃_{i,j} ≤ 4^{-(j-i)}`). -/
 theorem sum_bPtil_le (S : Standing) (hS : S.Holds) (hsb : 0 < S.sigb)
     (hsmall : S.KO * S.P.sbar ^ (2 * 3) ≤ 1 / 4) :
@@ -247,7 +247,7 @@ theorem flowInv_zero (P : Approx) (x : ℂ) : P.flowInv 0 x = x :=
   maxFlow_self _ _ _ _
 
 /-- **`w_i(0) = 0` for `1 ≤ i < n`**: the rings `i < n` start at `Φ` in their units
-(`09_relay.tex:648-650`). -/
+(`lem:Oprime`, Part II Lemma C.10). -/
 theorem w_zero (hP : P.Valid) (hN : NumericalHypothesis P.χ) {i : ℕ} (hi : 1 ≤ i)
     (hin : i < P.n) : P.w i 0 = 0 := by
   have hmem : i ∈ Finset.Icc 1 P.n := Finset.mem_Icc.mpr ⟨hi, hin.le⟩

@@ -4,7 +4,7 @@ import NonUniqueEuler.Defs.Infra.Sobolev
 import NonUniqueEuler.I.Infra.Sobolev.Smooth
 
 /-!
-# Helper for `P/Infra/Sobolev/DotGradSharp`: the cutoff `h̃ = ζ h` (step 1 of `04_ring.tex:1558`)
+# Helper for `P/Infra/Sobolev/DotGradSharp`: the cutoff `h̃ = ζ h` (support-localization helper for Part I, Lemma 4.23(3), `lem:uniform`)
 
 * `exists_cutoff_compact`: for a compact `K` inside an open `V`, a smooth compactly supported
   `ζ : ℂ → ℝ` with `tsupport ζ ⊆ V` and `ζ = 1` on an open `W ⊇ K`;

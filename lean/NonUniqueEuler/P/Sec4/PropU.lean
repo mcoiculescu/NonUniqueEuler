@@ -3,10 +3,13 @@ import NonUniqueEuler.H.Sec4.PropU.Quant
 /-!
 # Proof: `prop:U` (regularity of the eigendata in `G`)
 
-Proof of `I/Sec4/PropU.lean` (`04_ring.tex:1340-1354`, proof `:1355-1428`). Same declarations,
-statements copied verbatim.
+Proof of `I/Sec4/PropU.lean` (Part I Proposition 4.21 (`prop:U`) and its proof). Same declarations,
+statements copied verbatim from the Lean interface. Current Part I Proposition 4.21
+(`prop:U`) has parts (a) and (b). The Lean version of (b) also retains continuity and positivity
+of the inner moment and `J`, used in the proof; the identity formerly numbered (c) is an
+additional Lean consequence of Part I Theorem 4.8(1), Lemma 4.9(2),(3), and Equation 13.
 
-* (a) (restructuring R9: continuity instead of real-analyticity). The `λ_*(G)` are bounded on
+* (a) Continuity, as in the current proposition (the earlier R9 restructuring). The `λ_*(G)` are bounded on
   `[0,G₁]`: `λ_*(G)` lies in the spectrum of `L_3(G)` on `X^0_3` (`lam_SU`), so
   `|λ_*(G)| ≤ ‖L_3(G)‖`, and `L_3(G) = -3iΩ(·;0) - 3iGr⁻² + k_3𝒢_3` is affine in `G`
   (`radialMul_add`). Every cluster point of `λ_*(G')` as `G' → G` is a zero of `E_3(·;R_c²G)`
@@ -19,9 +22,9 @@ statements copied verbatim.
   `n_*`, `J`, the representer norm `‖ℓ_*(G)‖` (radial integrals over compact intervals) and
   `‖φ_*(G)‖_{H^k}` (`I/Infra/AngularFourier/NormHCont.lean`) are continuous
   (`H/Sec4/PropU/Quant.lean`). The formulas `pout_* = -6e^{3ξ₂}ψ_*(ξ₂)/n_*`,
-  `pin_3[φ_*] = -6e^{-3ξ₁}/n_*`, `β = n_*e^{-3ξ₁}/J` (`lem:adjoint`(3),(4)) give continuity, and
-  `lem:adjoint`(5), `n_* > 0`, `J ≠ 0` give positivity.
-* (c) `β pout_* = 6/∂_λE^Φ_3(λ_*;G)` from the same formulas and `thm:evans-simple`(1), and
+  `pin_3[φ_*] = -6e^{-3ξ₁}/n_*`, `β = n_*e^{-3ξ₁}/J` (Part I Lemma 4.9(2) (`lem:adjoint`) and Part I Lemma 4.9(3) (`lem:adjoint`)) give continuity, and
+  Part I Lemma 4.9(4) (`lem:adjoint`), `n_* > 0`, `J ≠ 0` give positivity.
+* Retained former (c): `β pout_* = 6/∂_λE^Φ_3(λ_*;G)` from the same formulas and `thm:evans-simple`(1), and
   `∂_λE^Φ_3(λ;G) = ∂_λE_3(λ;R_c²G)` (`evans_units_deriv`) (`H/Sec4/PropU/Basic.lean`).
 -/
 
@@ -37,7 +40,7 @@ open RingData
 
 namespace PropUH
 
-/-- `pout_*(G) = n_*⁻¹ (-6 e^{3ξ₂} ψ_*(ξ₂))` (`lem:adjoint`(3)). -/
+/-- `pout_*(G) = n_*⁻¹ (-6 e^{3ξ₂} ψ_*(ξ₂))` (Part I Lemma 4.9(2) (`lem:adjoint`)). -/
 theorem pout_formula {χ : ℝ → ℝ} (hχ : IsAdmissibleCutoff χ) (hN : NumericalHypothesis χ)
     {G : ℝ} (hG : G ∈ Icc (0 : ℝ) Gbar) :
     pout χ G = ((nstar χ G : ℝ) : ℂ)⁻¹ * (-2 * ((3 : ℕ) : ℂ) *
@@ -47,7 +50,7 @@ theorem pout_formula {χ : ℝ → ℝ} (hχ : IsAdmissibleCutoff χ) (hN : Nume
   rw [pout_eq hχ hN hG, (SectorSetting.adjoint_stream _ (ringPhiSetting_valid hχ) 3 (by norm_num)
     _ hz G hE hE').2.2.2.1]
 
-/-- `β(G) = n_* e^{-3ξ₁}/J` (`lem:adjoint`(3),(4)). -/
+/-- `β(G) = n_* e^{-3ξ₁}/J` (Part I Lemma 4.9(2) (`lem:adjoint`) and Part I Lemma 4.9(3) (`lem:adjoint`)). -/
 theorem beta_formula {χ : ℝ → ℝ} (hχ : IsAdmissibleCutoff χ) (hN : NumericalHypothesis χ)
     {G : ℝ} (hG : G ∈ Icc (0 : ℝ) Gbar) :
     beta χ G = ((nstar χ G : ℝ) : ℂ) * (-(-2 * ((3 : ℕ) : ℂ) *
@@ -58,7 +61,7 @@ theorem beta_formula {χ : ℝ → ℝ} (hχ : IsAdmissibleCutoff χ) (hN : Nume
     (SectorSetting.adjoint_stream _ hS 3 (by norm_num) _ hz G hE hE').2.2.1]
   rfl
 
-/-- `pout_*(G) ≠ 0` and `β(G) ≠ 0` (`lem:adjoint`(5)). -/
+/-- `pout_*(G) ≠ 0` and `β(G) ≠ 0` (Part I Lemma 4.9(4) (`lem:adjoint`)). -/
 theorem pout_beta_ne_zero {χ : ℝ → ℝ} (hχ : IsAdmissibleCutoff χ) (hN : NumericalHypothesis χ)
     {G : ℝ} (hG : G ∈ Icc (0 : ℝ) Gbar) : pout χ G ≠ 0 ∧ beta χ G ≠ 0 := by
   obtain ⟨-, hz, hE, -, hE', -⟩ := eig_facts hχ hN hG
@@ -70,7 +73,7 @@ theorem pout_beta_ne_zero {χ : ℝ → ℝ} (hχ : IsAdmissibleCutoff χ) (hN :
 
 end PropUH
 
-/-- **`prop:U`(a)** in the form of R9 (`04_ring.tex:1343-1345`): `λ_*` and `σ = Re λ_*` are
+/-- **Part I Proposition 4.21(a) (`prop:U`)**: `λ_*` and `σ = Re λ_*` are
 continuous on `[0,G₁]`, `σ_b = min σ` is attained, `σ_b > 211/2500`, and `max σ` is attained. -/
 theorem propU_a (χ : ℝ → ℝ) (hχ : IsAdmissibleCutoff χ) (hN : NumericalHypothesis χ) :
     ContinuousOn (lam χ) (Icc 0 Gbar) ∧ ContinuousOn (sigma χ) (Icc 0 Gbar) ∧
@@ -91,7 +94,7 @@ theorem propU_a (χ : ℝ → ℝ) (hχ : IsAdmissibleCutoff χ) (hN : Numerical
   rw [hsigb]
   exact (PropUH.eig_facts hχ hN hG₀).1
 
-/-- **`prop:U`(b)** (`04_ring.tex:1346-1349`): `|pout_*|`, `|pin_3[φ_*]|`, `|J|`, `|β|`,
+/-- **Part I Proposition 4.21(b) (`prop:U`), with retained auxiliary quantities**: `|pout_*|`, `|pin_3[φ_*]|`, `|J|`, `|β|`,
 `‖ℓ_*(G)‖_{(X^0)^*}` and `‖φ_*(G)‖_{H^k}` (`k ≥ 0`) are continuous on `[0,G₁]`, and the first four
 are positive. -/
 theorem propU_b (χ : ℝ → ℝ) (hχ : IsAdmissibleCutoff χ) (hN : NumericalHypothesis χ) :
@@ -146,7 +149,9 @@ theorem propU_b (χ : ℝ → ℝ) (hχ : IsAdmissibleCutoff χ) (hN : Numerical
     rw [pinPhi_eq χ hχ hN hG, norm_pos_iff, Complex.ofReal_ne_zero, neg_ne_zero]
     exact (div_pos (mul_pos (by norm_num) (Real.exp_pos _)) (PropUH.nstar_pos hχ hN hG)).ne'
 
-/-- **`prop:U`(c)** (`04_ring.tex:1350-1352`): for `G ∈ [0,G₁]`,
+/-- Retained eigenvalue-derivative identity (formerly `prop:U`(c)). It follows from
+Part I Theorem 4.8(1) (`thm:evans-simple`), Lemma 4.9(2),(3) (`lem:adjoint`) and Equation 13
+(`eq:evans-units`): for `G ∈ [0,G₁]`,
 `|β(G)| |pout_*(G)| = 6/|∂_λE_3(λ_*(G); R_c²G)|`, with `E_3` of Hypothesis (N). -/
 theorem propU_c (χ : ℝ → ℝ) (hχ : IsAdmissibleCutoff χ) (hN : NumericalHypothesis χ) {G : ℝ}
     (hG : G ∈ Icc (0 : ℝ) Gbar) :

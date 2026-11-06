@@ -11,8 +11,8 @@ import NonUniqueEuler.I.Sec3.CutoffGrad
 
 Helper file of `P/Sec3/RenormAllT.lean` (fully proved).
 
-`tail` (`03_compactness.tex:676-685`): `|ω|` satisfies `(te)` with datum `|ω^in|`
-(`lem:lip-renorm`); `lem:weak-cont` gives a weakly continuous representative `ũ`, which agrees
+`tail` (Part I Lemma 3.5 (`lem:renorm-all-t`) and its proof): `|ω|` satisfies `(te)` with datum `|ω^in|`
+(legacy `lem:lip-renorm`); `lem:weak-cont` gives a weakly continuous representative `ũ`, which agrees
 with `|ω(t)|` for every `t ∈ [0,T)` (both are weakly continuous on `[0,T']`, `T' < T`, the
 second by the strong `L²` continuity of `ω`); `lem:weak-cont`(b) with `ψ = ς_R` and
 eq:conservation for `|·|` give

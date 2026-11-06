@@ -4,10 +4,10 @@ import Mathlib.Analysis.SpecialFunctions.ExpDeriv
 import Mathlib.MeasureTheory.Integral.Bochner.ContinuousLinearMap
 
 /-!
-# Helper for `lem:sector`(2),(3): the conjugation symmetry of `L_ℓ` and the Riccati coefficient
+# Helper for Part I Lemma 4.5(2), (3) (`lem:sector`): the conjugation symmetry of `L_ℓ` and the Riccati coefficient
 
-Helper file of `P/Sec4/Sector.lean` (fully proved). Manuscript `04_ring.tex:274-277` (the
-relation `L_{-ℓ}(G)ḡ = conj(L_ℓ(G)g)`) and `:278-281` (part (3)).
+Helper file of `P/Sec4/Sector.lean` (fully proved). See the proof of Part I Lemma 4.5
+(`lem:sector`), parts (2) and (3), for `L_{-ℓ}(G)ḡ = conj(L_ℓ(G)g)` and the Riccati bound.
 -/
 
 noncomputable section

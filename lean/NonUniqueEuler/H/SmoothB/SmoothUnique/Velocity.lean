@@ -10,7 +10,7 @@ compact support
 * `velocity_sub`: `K ∗ f - K ∗ g = K ∗ (f - g)` pointwise (all three integrals converge
   absolutely, `lem:BS-basic`(b));
 * `integral_sq_velocity_ball_le`: `∫_{B_ρ} |K ∗ g|² ≤ (2ρ)² ∫ g²` (`lem:BS-basic`(c) with
-  `R = ρ`, the form used in `B_global_smooth.tex:504-506`).
+  `R = ρ`, the form used in Part II, §B.5, proof of Theorem 1.8 (`thm:smooth`)).
 -/
 
 noncomputable section

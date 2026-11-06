@@ -3,10 +3,9 @@ import NonUniqueEuler.Defs.Infra.Sobolev
 import Mathlib.Analysis.InnerProductSpace.Dual
 
 /-!
-# Section 2 conventions: coordinates, derivatives of vector fields, `⟨t⟩`, the `L²` pairing
+# Part I, Section 2 conventions: coordinates, derivatives of vector fields, `⟨t⟩`, the `L²` pairing
 
-Definitions for the conventions of `02_prelim.tex` §2.1
-(`02_prelim.tex:11-131`).
+Definitions for Part I, §2.1, Conventions (`sec:prelim`).
 
 The plane is `ℂ` (decision D1); a real vector field `u = (u₁, u₂)` is a function `u : ℂ → ℂ`,
 `u x = u₁ x + i u₂ x`; derivatives are Fréchet derivatives, `∂₁ = ∂_1`, `∂₂ = ∂_i` (D2).
@@ -14,19 +13,19 @@ Sobolev norms are those of I-HK (`NonUniqueEuler.Sob`, `Defs/Infra/Sobolev.lean`
 
 * `e2`, `comp2`: the standard basis `e₁ = 1`, `e₂ = i` of `ℝ² = ℂ` and the coordinates `x₁, x₂`;
 * `pd l h x = ∂_l h(x)` (classical), `gradEntry u i l x = ∂_l u_i(x)` (an entry of the matrix
-  `∇u = (∂_l u_i)_{i,l}`, `02_prelim.tex:48-50`);
-* `divergence u = ∂₁u₁ + ∂₂u₂ = tr ∇u`, `curl u = ∂₁u₂ - ∂₂u₁` (`02_prelim.tex:42-50`);
+  `∇u = (∂_l u_i)_{i,l}`, Part I, §2.1, Conventions (`sec:prelim`));
+* `divergence u = ∂₁u₁ + ∂₂u₂ = tr ∇u`, `curl u = ∂₁u₂ - ∂₂u₁` (Part I, §2.1, Conventions (`sec:prelim`));
 * `grad g`, `perpGrad g = ∇^⊥ g = (-∂₂ g, ∂₁ g)` of a real scalar `g`, as complex numbers
-  (`02_prelim.tex:36-37`);
-* `jap t = ⟨t⟩ = (1 + t²)^{1/2}` (`02_prelim.tex:82`);
-* `innerL2 f g = ⟨f, g⟩_{L²} = ∫ f ḡ` (the manuscript's convention, `04_ring.tex:583`);
-* `normL1Lp p g = ‖g‖_{L¹ ∩ L^p} = ‖g‖_{L¹} + ‖g‖_{L^p}` (`02_prelim.tex:122-124`);
+  (Part I, §2.1, Conventions (`sec:prelim`));
+* `jap t = ⟨t⟩ = (1 + t²)^{1/2}` (Part I, §2.1, Conventions (`sec:prelim`));
+* `innerL2 f g = ⟨f, g⟩_{L²} = ∫ f ḡ` (the manuscript's convention, the proof of Part I, Lemma 4.9 (`lem:adjoint`));
+* `normL1Lp p g = ‖g‖_{L¹ ∩ L^p} = ‖g‖_{L¹} + ‖g‖_{L^p}` (Part I, §2.1, Conventions (`sec:prelim`));
 * `gradL2 u = ‖∇u‖_{L²}`, `gradNormH k u = ‖∇u‖_{H^k}` (sums over the entries, weak derivatives,
-  `02_prelim.tex:62-66`) and `HasGradH k u` (`∇u ∈ H^k`, i.e. the weak first derivatives exist
+  Part I, §2.1, Conventions (`sec:prelim`)) and `HasGradH k u` (`∇u ∈ H^k`, i.e. the weak first derivatives exist
   and lie in `H^k`);
 * `partialDR γ g = ∂^γ g` for a real function `g` (classical; `Sob.partialD` is for complex `g`);
 * `gradAbs g x = |∇g(x)| = (|∂₁g|² + |∂₂g|²)^{1/2}` (classical; complex scalars, and real vector
-  fields in `ℂ`, where it is the Euclidean norm of the matrix `∇u`, `02_prelim.tex:14-17`);
+  fields in `ℂ`, where it is the Euclidean norm of the matrix `∇u`, Part I, §2.1, Conventions (`sec:prelim`));
 * `IsWeaklyDivFree u`: `div u = 0` in `𝒟'(ℝ²)` (`lem:BS-basic`(e)), with the integrability of
   `u · ∇φ` included (so that Lean's junk value `∫ = 0` cannot make it vacuous).
 
@@ -47,32 +46,32 @@ open scoped ENNReal
 
 namespace NonUniqueEuler.Prelim
 
-/-- The standard basis `e₁ = 1`, `e₂ = i` of `ℝ² = ℂ` (`02_prelim.tex:13-14`; decision D2:
+/-- The standard basis `e₁ = 1`, `e₂ = i` of `ℝ² = ℂ` (Part I, §2.1, Conventions (`sec:prelim`); decision D2:
 `∂₁ = ∂_{e₁}`, `∂₂ = ∂_{e₂}`). -/
 def e2 : Fin 2 → ℂ := ![1, Complex.I]
 
-/-- The coordinates of `z = z₁ + i z₂ ∈ ℝ² = ℂ` (`02_prelim.tex:13-14`):
+/-- The coordinates of `z = z₁ + i z₂ ∈ ℝ² = ℂ` (Part I, §2.1, Conventions (`sec:prelim`)):
 `comp2 0 z = z₁ = Re z`, `comp2 1 z = z₂ = Im z`. -/
 def comp2 (i : Fin 2) (z : ℂ) : ℝ := ![z.re, z.im] i
 
-/-- The classical partial derivative `∂_l h(x) = Dh(x) e_l` (`02_prelim.tex:52-53`), for `h`
+/-- The classical partial derivative `∂_l h(x) = Dh(x) e_l` (Part I, §2.1, Conventions (`sec:prelim`)), for `h`
 with values in any real normed space. -/
 def pd {F : Type*} [NormedAddCommGroup F] [NormedSpace ℝ F] (l : Fin 2) (h : ℂ → F) (x : ℂ) :
     F :=
   fderiv ℝ h x (e2 l)
 
 /-- The entry `∂_l u_i(x)` of the matrix `∇u = (∂_l u_i)_{i,l=1,2}` of a real vector field
-`u = u₁ + i u₂ : ℂ → ℂ` (`02_prelim.tex:48-50`; classical derivative). Indices are `0, 1` for the
+`u = u₁ + i u₂ : ℂ → ℂ` (Part I, §2.1, Conventions (`sec:prelim`); classical derivative). Indices are `0, 1` for the
 manuscript's `1, 2`. -/
 def gradEntry (u : ℂ → ℂ) (i l : Fin 2) (x : ℂ) : ℝ :=
   comp2 i (pd l u x)
 
-/-- The divergence `div u = ∂₁u₁ + ∂₂u₂ = tr ∇u` of a real vector field (`02_prelim.tex:49-50`;
+/-- The divergence `div u = ∂₁u₁ + ∂₂u₂ = tr ∇u` of a real vector field (Part I, §2.1, Conventions (`sec:prelim`);
 classical derivative). -/
 def divergence (u : ℂ → ℂ) (x : ℂ) : ℝ :=
   gradEntry u 0 0 x + gradEntry u 1 1 x
 
-/-- The scalar curl `∂₁u₂ - ∂₂u₁` of a real vector field (`02_prelim.tex:42-43`, `lem:BS-basic`(d);
+/-- The scalar curl `∂₁u₂ - ∂₂u₁` of a real vector field (Part I, §2.1, Conventions (`sec:prelim`), `lem:BS-basic`(d);
 classical derivative). -/
 def curl (u : ℂ → ℂ) (x : ℂ) : ℝ :=
   gradEntry u 1 0 x - gradEntry u 0 1 x
@@ -83,33 +82,33 @@ the operator norm `‖Dg(x)‖` (`norm_fderiv_eq_norm_grad`). -/
 def grad (g : ℂ → ℝ) (x : ℂ) : ℂ :=
   ((pd 0 g x : ℝ) : ℂ) + ((pd 1 g x : ℝ) : ℂ) * Complex.I
 
-/-- `∇^⊥ g = (-∂₂g, ∂₁g) = i ∇g` (`02_prelim.tex:36-37`). -/
+/-- `∇^⊥ g = (-∂₂g, ∂₁g) = i ∇g` (Part I, §2.1, Conventions (`sec:prelim`)). -/
 def perpGrad (g : ℂ → ℝ) (x : ℂ) : ℂ :=
   Complex.I * grad g x
 
-/-- The Japanese bracket `⟨t⟩ = (1 + t²)^{1/2}` (`02_prelim.tex:82`). -/
+/-- The Japanese bracket `⟨t⟩ = (1 + t²)^{1/2}` (Part I, §2.1, Conventions (`sec:prelim`)). -/
 def jap (t : ℝ) : ℝ :=
   Real.sqrt (1 + t ^ 2)
 
 /-- The `L²` pairing `⟨f, g⟩ = ∫ f ḡ` of complex functions on the plane (the manuscript's
-convention, `04_ring.tex:583`; used in `lem:Hk-calculus`(1), `02_prelim.tex:657-660`). The
+convention, the proof of Part I, Lemma 4.9 (`lem:adjoint`); used in Part II, Lemma 1.10(1) (`lem:Hk-calculus`)). The
 Bochner integral is `0` if `f ḡ` is not integrable. -/
 def innerL2 (f g : ℂ → ℂ) : ℂ :=
   ∫ x, f x * conj (g x)
 
-/-- `‖g‖_{L¹ ∩ L^p} = ‖g‖_{L¹} + ‖g‖_{L^p}` (`02_prelim.tex:122-124`), as a real number (each
+/-- `‖g‖_{L¹ ∩ L^p} = ‖g‖_{L¹} + ‖g‖_{L^p}` (Part I, §2.1, Conventions (`sec:prelim`)), as a real number (each
 term is `0` if infinite: carry `MemLp g 1`, `MemLp g p` next to it). -/
 def normL1Lp {E : Type*} [NormedAddCommGroup E] (p : ℝ≥0∞) (g : ℂ → E) : ℝ :=
   (eLpNorm g 1 volume).toReal + (eLpNorm g p volume).toReal
 
 /-- `‖∇u‖_{L²} = (‖∂₁u‖²_{L²} + ‖∂₂u‖²_{L²})^{1/2}` with weak derivatives on the plane
-(`02_prelim.tex:62-66`; for a vector field `u : ℂ → ℂ` this is the sum over the four entries
+(Part I, §2.1, Conventions (`sec:prelim`); for a vector field `u : ℂ → ℂ` this is the sum over the four entries
 `∂_l u_i`). -/
 def gradL2 (u : ℂ → ℂ) : ℝ :=
   Real.sqrt (Sob.l2 (Sob.weakPartial (1, 0) u) ^ 2 + Sob.l2 (Sob.weakPartial (0, 1) u) ^ 2)
 
 /-- `‖∇u‖_{H^k} = (‖∂₁u‖²_{H^k} + ‖∂₂u‖²_{H^k})^{1/2}` with weak derivatives on the plane
-(`02_prelim.tex:62-64`: "`‖∇u‖²_{H^k} = Σ_{i,l} ‖∂_l u_i‖²_{H^k}`"). Junk unless `HasGradH k u`. -/
+(Part I, §2.1, Conventions (`sec:prelim`): "`‖∇u‖²_{H^k} = Σ_{i,l} ‖∂_l u_i‖²_{H^k}`"). Junk unless `HasGradH k u`. -/
 def gradNormH (k : ℕ) (u : ℂ → ℂ) : ℝ :=
   Real.sqrt (Sob.normH k (Sob.weakPartial (1, 0) u) ^ 2 +
     Sob.normH k (Sob.weakPartial (0, 1) u) ^ 2)
@@ -121,19 +120,19 @@ structure HasGradH (k : ℕ) (u : ℂ → ℂ) : Prop where
   deriv : ∀ l : Fin 2, ∃ G : ℂ → ℂ, Sob.MemH k G ∧ Sob.HasWeakDerivOn univ [e2 l] u G
 
 /-- The classical partial derivative `∂^γ g` of a real function `g : ℂ → ℝ`
-(`02_prelim.tex:52-53`): the real part of `Sob.partialD γ` of `g` viewed as complex valued (the
+(Part I, §2.1, Conventions (`sec:prelim`)): the real part of `Sob.partialD γ` of `g` viewed as complex valued (the
 imaginary part vanishes). Used e.g. in `lem:BS-basic`(d): `∂^γ (K_BS ∗ g) = K_BS ∗ ∂^γ g`. -/
 def partialDR (γ : ℕ × ℕ) (g : ℂ → ℝ) (x : ℂ) : ℝ :=
   (Sob.partialD γ (fun y => (g y : ℂ)) x).re
 
 /-- `|∇g(x)| = (|∂₁g(x)|² + |∂₂g(x)|²)^{1/2}` (classical derivatives), the Euclidean norm of the
-array of first derivatives (`02_prelim.tex:14-17`). For a real vector field `u : ℂ → ℂ` this is
+array of first derivatives (Part I, §2.1, Conventions (`sec:prelim`)). For a real vector field `u : ℂ → ℂ` this is
 the Euclidean (Frobenius) norm `|∇u(x)|` of the matrix `(∂_l u_i)`; for a real scalar `g`,
 `gradAbs (fun y => (g y : ℂ)) x = ‖Dg(x)‖` when `g` is differentiable at `x`. -/
 def gradAbs (g : ℂ → ℂ) (x : ℂ) : ℝ :=
   Real.sqrt (‖pd 0 g x‖ ^ 2 + ‖pd 1 g x‖ ^ 2)
 
-/-- `div u = 0` in `𝒟'(ℝ²)` (`lem:BS-basic`(e), `02_prelim.tex:177-178`): for every real
+/-- `div u = 0` in `𝒟'(ℝ²)` (Part I, Lemma 2.1(e) (`lem:BS-basic`)): for every real
 `φ ∈ C_c^∞(ℝ²)`, `u · ∇φ` is integrable and `∫ u · ∇φ dx = 0`. -/
 def IsWeaklyDivFree (u : ℂ → ℂ) : Prop :=
   ∀ φ : ℂ → ℝ, ContDiff ℝ ((⊤ : ℕ∞) : WithTop ℕ∞) φ → HasCompactSupport φ →

@@ -7,7 +7,7 @@ import NonUniqueEuler.I.Infra.Sobolev.NormDeriv
 /-!
 # Helper for `P/Sec2/HkCalculus/CutoffBS`: the smooth case of `lem:Hk-calculus`(3)
 
-Manuscript: `02_prelim.tex:748-759`. For a real `h ∈ C_c^∞` with `tsupport h ⊆ B_{2ρ}` and
+Manuscript: Part II, Lemma 1.10 (`lem:Hk-calculus`). For a real `h ∈ C_c^∞` with `tsupport h ⊆ B_{2ρ}` and
 `u = K_BS ∗ h`:
 * `u ∈ H^{j+1}(B_ρ)` with `‖u‖_{H^{j+1}(B_ρ)} ≤ #(multiIdx (j+1))^{1/2} max(1, 3ρ) ‖h‖_{H^j}`
   (`lem:BS-basic`(c) with `R = ρ` and support radius `2ρ` for `γ = 0`; `lem:BS-basic`(d) for
@@ -67,7 +67,7 @@ theorem eLpNorm_ofReal (h : ℂ → ℝ) (p : ℝ≥0∞) :
   eLpNorm_congr_norm_ae (Filter.Eventually.of_forall fun x => by simp)
 
 /-- The local `H^{j+1}(B_ρ)` bound for the velocity of a smooth compactly supported real
-vorticity with `tsupport h ⊆ B_{2ρ}` (`02_prelim.tex:750-757`). -/
+vorticity with `tsupport h ⊆ B_{2ρ}` (Part II, Lemma 1.10 (`lem:Hk-calculus`)). -/
 theorem velocity_memHOn_ball (j : ℕ) {ρ : ℝ} (hρ : 0 < ρ) {h : ℂ → ℝ} (hh : ContDiff ℝ ∞ h)
     (hhc : HasCompactSupport h) (hts : tsupport h ⊆ ball (0 : ℂ) (2 * ρ)) :
     MemHOn (j + 1) (ball (0 : ℂ) ρ) (velocity h) ∧
@@ -155,7 +155,7 @@ theorem velocity_memHOn_ball (j : ℕ) {ρ : ℝ} (hρ : 0 < ρ) {h : ℂ → �
         rw [hA]
         ring
 
-/-- The smooth case of `lem:Hk-calculus`(3) (`02_prelim.tex:748-759`), with smooth real
+/-- The smooth case of Part II, Lemma 1.10(3) (`lem:Hk-calculus`), with smooth real
 vorticities supported in `B_{2ρ}`. -/
 theorem exists_cutoffBS_smooth (j : ℕ) {ρ : ℝ} (hρ : 0 < ρ) {χ : ℂ → ℝ} (hχ : ContDiff ℝ ∞ χ)
     (hχc : HasCompactSupport χ) (hχs : tsupport χ ⊆ ball (0 : ℂ) ρ) :

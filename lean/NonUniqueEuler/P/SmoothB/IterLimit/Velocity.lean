@@ -5,10 +5,10 @@ import NonUniqueEuler.I.SmoothB.VelocitySupBound
 import NonUniqueEuler.I.SmoothB.Iterates
 
 /-!
-# Proof: `prop:iter-limit`, step 3 — uniform convergence of the derivatives of the velocities
+# Proof: formal decomposition of `prop:iter-limit`, step 3 — uniform convergence of the derivatives of the velocities
 
 Proof of `I/SmoothB/IterLimit/Velocity.lean`, following the
-second paragraph of the proof of `prop:iter-limit` (`B_global_smooth.tex:422-431`).
+second paragraph of the proof of `prop:iter-limit` (Part II, Proposition B.10 (`prop:iter-limit`)).
 
 Fix `T > 0`, `γ`, and put `r = R(T)`, `ρ = |r| + 1`.
 1. For `|t| ≤ T`, `ω^{[j]}(t)` and `ω(t)` are `C^∞` and vanish outside `\bar B_r`
@@ -75,7 +75,7 @@ theorem partialDR_memLp_vanish {g : ℂ → ℝ} (hg : ContDiff ℝ ((⊤ : ℕ�
     have hy' : y ∉ tsupport (Sob.partialD γ (fun y => (g y : ℂ))) := fun h => hy (hT.subset h)
     simp only [Prelim.partialDR, image_eq_zero_of_notMem_tsupport hy', Complex.zero_re]
 
-/-- The core estimate (`B_global_smooth.tex:422-427`): for smooth real `g`, `h` vanishing outside
+/-- The core estimate (Part II, Proposition B.10 (`prop:iter-limit`)): for smooth real `g`, `h` vanishing outside
 `\bar B_r` with `|∂^γ g - ∂^γ h| ≤ δ` everywhere,
 `|∂^γ (K ∗ g)(x) - ∂^γ (K ∗ h)(x)| ≤ √2 (|r| + 1) δ` for every `x`. -/
 theorem norm_partialD_velocity_sub_le {g h : ℂ → ℝ} (hg : ContDiff ℝ ((⊤ : ℕ∞) : WithTop ℕ∞) g)
@@ -126,7 +126,7 @@ end IterVelAux
 
 variable {ω₀ : ℂ → ℝ} {R₀ : ℝ}
 
-/-- `prop:iter-limit`, step 3 (`B_global_smooth.tex:422-431`): if `ω(t) ∈ C^∞` vanishes outside
+/-- formal decomposition of `prop:iter-limit`, step 3 (Part II, Proposition B.10 (`prop:iter-limit`)): if `ω(t) ∈ C^∞` vanishes outside
 `B_{R(t)}` and `∂_x^γ ω^{[j]} → ∂_x^γ ω` uniformly on slabs, then `∂_x^γ v^{[j]} → ∂_x^γ v`
 uniformly on slabs. -/
 theorem iterVel_spaceD_tendstoUniformlyOn (h : IsSmoothDatum ω₀ R₀) (hne : ω₀ ≠ 0)

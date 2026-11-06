@@ -3,16 +3,17 @@ import NonUniqueEuler.I.Sec9.QuietTime
 import NonUniqueEuler.I.Sec10.ThetaQuiet
 
 /-!
-# Helper for `P/Sec11/BootQuietSize.lean`: the hypotheses of `prop:relay` in Step 5
+# Helper for `P/Sec11/BootQuietSize.lean`: the hypotheses of `prop:relay` in Lean step 5
 
-Helper of the proof of Step 5 of `prop:bootstrap` (`11_bootstrap.tex:497-511`): for a ring `j < n`
+Helper of the proof of Lean step 5 of the historical bootstrap decomposition (Part II Appendix C.18
+(`sec:bootstrap-quiet-checks`)): for a ring `j < n`
 with `t♯_j` defined and quiet at `t'`, the hypotheses (H1)–(H4) of `prop:relay` hold for `j` and
 `τ = A_jt'` with `C₀ = S.C0`, `K₁ = S.K1` (`relayHyp`):
 * (H1) (Loc) on `[0, t']`: `lem:geometry`(c);
-* (H2) `η^out_j ≤ θ_jmaj_j` on `[0, τ]` (Step 2, `lem:O`) and `θ_jτ ≤ ½` (`lem:quiet-time` at `t'`
+* (H2) `η^out_j ≤ θ_jmaj_j` on `[0, τ]` (Lean step 2, `lem:O`) and `θ_jτ ≤ ½` (`lem:quiet-time` at `t'`
   and `lem:theta-quiet`; `theta_tau_le`);
-* (H3) Step 2 for ring `j+1` at `min(t', t♯_{j+1})`;
-* (H4) if `t' > t♯_{j+1}`, as in Step 3 with `k = j`: `eq:handoff` for ring `j+1` (or `t̄♯_n = 0`),
+* (H3) Lean step 2 for ring `j+1` at `min(t', t♯_{j+1})`;
+* (H4) if `t' > t♯_{j+1}`, as in Lean step 3 with `k = j`: `eq:handoff` for ring `j+1` (or `t̄♯_n = 0`),
   `lem:geometry`(b), (BA°)(t') with `eq:boot-switch`/`eq:boot-start` at `t♯_{j+1}`, and
   `eq:boot-inner` for ring `j+1` with `C_F ≤ C₀`.
 All proved.
@@ -32,8 +33,10 @@ open RingData Datum
 
 variable {S : Standing}
 
-/-- **`θ_jA_jt' ≤ ½`** (`11_bootstrap.tex:500-505`): `lem:quiet-time` at the time `t'` gives
-`A_jt' ≤ τ̄♯_j` (the levels `i ∈ (j, n)` with `t♯_i ≤ t'` by Step 3, `κ♯_n ≥ ½κ_seed` by Step 0), and
+/-- **`θ_jA_jt' ≤ ½`** (Part II Appendix C.18 (`sec:bootstrap-quiet-checks`)): `lem:quiet-time` at
+the time `t'` gives
+`A_jt' ≤ τ̄♯_j` (the levels `i ∈ (j, n)` with `t♯_i ≤ t'` by Lean step 3, `κ♯_n ≥ ½κ_seed` by Lean
+step 0), and
 `lem:theta-quiet` gives `θ_jτ̄♯_j ≤ ½`. -/
 theorem theta_tau_le (hS : S.Holds) (hL : S.ParamLists) {t' : ℝ} (ht0 : 0 ≤ t')
     (h0 : S.BootStartConcl)
@@ -61,8 +64,9 @@ theorem theta_tau_le (hS : S.Holds) (hL : S.ParamLists) {t' : ℝ} (ht0 : 0 ≤ 
     _ ≤ min (1 / 2) (1 / (4 * Eig.Cls S.P.χ * S.K1)) := hθ
     _ ≤ 1 / 2 := min_le_left _ _
 
-/-- **(BA3) for ring `j+1` on `[t♯_{j+1}, t']`** (`11_bootstrap.tex:357-360`, used in Step 5 as in
-Step 3): (BA°)(t') away from `t♯_{j+1}`, and `eq:boot-switch` (`j+1 < n`) or `eq:boot-start`
+/-- **(BA3) for ring `j+1` on `[t♯_{j+1}, t']`** (Part II Appendix C.16
+(`sec:bootstrap-handoff-checks`), used in Lean step 5 as in
+Lean step 3): (BA°)(t') away from `t♯_{j+1}`, and `eq:boot-switch` (`j+1 < n`) or `eq:boot-start`
 (`j+1 = n`) at `t♯_{j+1}`. -/
 theorem ba3_next {t' : ℝ} (h0 : S.BootStartConcl) (hBA : S.BAcirc t')
     (hlev : ∀ i ∈ Finset.Ico 1 S.P.n, S.P.ClockUpTo (i + 1) → S.P.tsh i ≤ t' → S.HandoffStep i)
@@ -96,7 +100,8 @@ theorem ba3_next {t' : ℝ} (h0 : S.BootStartConcl) (hBA : S.BAcirc t')
     linarith [hb.1, hb.2]
   · exact hBA.ba3 t ⟨ht0, ht.2⟩ (j + 1) hmem heq ⟨hc, ht.1, htT⟩
 
-/-- **The hypotheses of `prop:relay` in Step 5** (`11_bootstrap.tex:497-511`): for `j < n` with
+/-- **The hypotheses of `prop:relay` in Lean step 5** (Part II Appendix C.18
+(`sec:bootstrap-quiet-checks`)): for `j < n` with
 `t♯_j` defined and `t' ≤ t♯_j`, `S.RelayHyp S.C0 S.K1 j (A_jt')`. -/
 theorem relayHyp (hS : S.Holds) (hL : S.ParamLists) {t' : ℝ} (ht0 : 0 ≤ t')
     (h0 : S.BootStartConcl) (hBA : S.BAcirc t') (hgeo : S.GeometryConcl t')

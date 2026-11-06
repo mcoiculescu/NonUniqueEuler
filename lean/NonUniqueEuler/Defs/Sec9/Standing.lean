@@ -2,19 +2,30 @@ import NonUniqueEuler.Defs.Sec7.All
 import NonUniqueEuler.Defs.Sec8.All
 
 /-!
-# Section 9.1: the standing assumptions (SA), the derived quantities, (Det) (definitions)
+# Standing relay data: the standing assumptions (SA), the derived quantities, (Det) (definitions)
 
-Manuscript `def:standing`
-(`09_relay.tex:27-69`), the conventions after it (`:71-91`) and the number `e_μ` of
-`lem:detuning` (`:104-113`).
+Current correspondence: Part II Definition C.1 (`def:standing`) and Appendix C.1
+(`sec:relay-data`). The formulas for error exponents are now in Appendix C.11
+(`sec:relay-constants`), `C_Duh` is in Lemma C.8 (`lem:O`), and `gammaJ` is in
+Proposition C.9 (`prop:relay`). Lean keeps the separate velocity constants
+`C_M`, `C_O` and `C_in`; the manuscript uses a common enlarged `C_vel`.
+`Holds` also retains the explicit small-radius inequalities and the bound
+`C_G μ s̄² ≤ G₁`; `Det` is imposed on `[0,C_G μ s̄²]`. Current Definition C.1
+uses `[0,μ s̄²]` and a shorter list. These records describe the retained
+formal hypotheses, not a literal transcription of that definition.
+The formal field norms and majorants take ring-time arguments, as specified
+below; the manuscript quantities take physical time.
+
+The standing data and their derived constants are collected here together with
+`e_μ` of Part II Lemma C.6 (`lem:detuning`).
 
 * `Relay.Standing`: the data fixed by (SA): the approximation `P : Datum.Approx` ((SA3): `χ`, `A₁`,
   `μ`, `s̄`, `κ_seed`, `n`, `δ₀`, `T_pin` and `ω^{(n)}`), the integer `s` and the number `σ'` of
   (SA1). Every constant of (SA1)–(SA2) is a function of these data: `S.M`, `S.sh` (`s_h`), `S.NQ`
   (`N_Q`), `S.Mh` (`M_h`), `S.dH`, `S.C2`, `S.C3`, `S.kappa0` (`κ₀(·)`), `S.Cact` (`C(·)`),
-  `S.majst`, `S.CQ`, `S.CDelta`, `S.CM`, `S.CO`, `S.Cin` (the chosen constants of Sections 5 and 7).
+  `S.majst`, `S.CQ`, `S.CDelta`, `S.CM`, `S.CO`, `S.Cin` (the chosen constants of Part II Sections 2 and 4).
 * `Standing.Holds`: (N1)–(N3) and the conditions (SA1)–(SA3) (a structure of Props).
-* the derived quantities of `def:standing`: `cgamma` (`c_γ`), `varthetaMu` (`ϑ_μ`), `gammaMu`
+* the derived quantities used by the relay estimates: `cgamma` (`c_γ`), `varthetaMu` (`ϑ_μ`), `gammaMu`
   (`γ_μ`), `gammaMu'` (`γ'_μ`), `CDuh` (`C_Duh`), `rT` (`r_T`), `gammaJ` (`γ_j`), `ahatK` (`â_k`),
   `rhoHatK` (`ρ̂_k`), and the detuning hypothesis `Det`;
 * `emu` (`e_μ` of `lem:detuning`), and the abbreviations `S.etaIn`, `S.etaOut`, `S.eta`, `S.maj`,
@@ -35,7 +46,7 @@ namespace Relay
 
 open RingData Datum
 
-/-- **The data fixed by the standing assumptions (SA)** (`def:standing`, `09_relay.tex:27-48`):
+/-- **The data fixed by the standing assumptions (SA)** (`def:standing`, Part II Definition C.1):
 the approximation `P` (the objects of `def:datum`–`def:clock` with the parameters
 `χ, A₁, μ, s̄, κ_seed, n, δ₀, T_pin` of (SA3), and `ω^{(n)}`), the integer `s` and the number `σ'`
 of (SA1). All constants of (SA1)–(SA2) are determined by `(P.χ, s, σ')`; the conditions are
@@ -54,25 +65,25 @@ variable (S : Standing)
 
 /-! ### Eigendata and the constants of (SA1)–(SA2) -/
 
-/-- `σ = σ(0) = Re z` (`def:eigendata`, `04_ring.tex:1323`). -/
+/-- `σ = σ(0) = Re z` (`def:eigendata`, Part I Definition 4.20). -/
 def sigma0 : ℝ := Eig.sigma S.P.χ 0
 
-/-- `σ_b = min_{[0,G₁]} σ` (`04_ring.tex:1323`). -/
+/-- `σ_b = min_{[0,G₁]} σ` (`def:eigendata`, Part I Definition 4.20). -/
 def sigb : ℝ := Eig.sigb S.P.χ
 
-/-- `z = λ_*(0)` (`04_ring.tex:1323`). -/
+/-- `z = λ_*(0)` (`def:eigendata`, Part I Definition 4.20). -/
 def z : ℂ := Eig.z S.P.χ
 
-/-- The integer `M` of `thm:active` for `s` ((SA1), `09_relay.tex:33-34`). -/
+/-- The integer `M` of `thm:active` for `s` ((SA1), `def:standing`, Part II Definition C.1). -/
 def M : ℕ := OneRing.Mact S.P.χ S.s
 
-/-- `s_h = M - 1` ((SA2), `09_relay.tex:37`). -/
+/-- `s_h = M - 1` ((SA2), `def:standing`, Part II Definition C.1). -/
 def sh : ℕ := S.M - 1
 
-/-- `N_Q = max(2, ⌈Λ(s_h)/σ_b⌉)` ((SA2), `09_relay.tex:37`), with `Λ` of `lem:energy`. -/
+/-- `N_Q = max(2, ⌈Λ(s_h)/σ_b⌉)` ((SA2), `def:standing`, Part II Definition C.1), with `Λ` of `lem:energy`. -/
 def NQ : ℕ := max 2 ⌈OneRing.Lam S.P.χ S.sh / Eig.sigb S.P.χ⌉₊
 
-/-- `M_h = s_h + N_Q + 1` ((SA2), `09_relay.tex:37`). -/
+/-- `M_h = s_h + N_Q + 1` ((SA2), `def:standing`, Part II Definition C.1). -/
 def Mh : ℕ := OneRing.Mh S.sh S.NQ
 
 /-- `d_H` of `thm:active` for `(s, σ')` ((SA1)). -/
@@ -110,8 +121,8 @@ def Cin : ℝ := Rings.Cin S.P.χ S.Mh
 
 /-! ### The standing assumptions -/
 
-/-- **The standing assumptions (SA)** (`def:standing`, `09_relay.tex:27-48`), together with
-(N1)–(N3):
+/-- **The retained formal standing assumptions**, corresponding to Part II Definition C.1
+(`def:standing`) with the explicit additional small-radius conditions described above:
 * (SA1) `s ≥ 3` and `σ' ∈ (9/200, min(σ_b, 3σ/4))`;
 * (SA2) holds by the definitions `S.sh`, `S.NQ`, `S.Mh` and the chosen constants;
 * (SA3) `δ₀ ∈ (0, d_H]`, `μ ∈ (1, 17/16]`, `T_pin > 0`, `κ_seed ∈ (0, κ_L]`, `s̄ ∈ (0, a/16]` with
@@ -131,65 +142,66 @@ structure Holds : Prop where
   mu_sbar_le : S.P.μ ^ 4 * S.P.sbar ^ 2 ≤ 1 / 8
   CG_le : CG S.P.χ * S.P.μ * S.P.sbar ^ 2 ≤ Gbar
 
-/-! ### Derived quantities of `def:standing` -/
+/-! ### Derived quantities for the relay estimates -/
 
-/-- `c_γ = 1 - 16σ'/(15σ)` (`09_relay.tex:51`). -/
+/-- `c_γ = 1 - 16σ'/(15σ)` (`sec:relay-constants`, Part II, Appendix C.11). -/
 def cgamma : ℝ := 1 - 16 * S.σ' / (15 * S.sigma0)
 
-/-- `ϑ_μ = (μ-1)/3` (`09_relay.tex:52`). -/
+/-- `ϑ_μ = (μ-1)/3` (`sec:relay-constants`, Part II, Appendix C.11). -/
 def varthetaMu : ℝ := (S.P.μ - 1) / 3
 
-/-- `γ_μ = min(ϑ_μ, c_γ)` (`09_relay.tex:52`). -/
+/-- `γ_μ = min(ϑ_μ, c_γ)` (`sec:relay-constants`, Part II, Appendix C.11). -/
 def gammaMu : ℝ := min S.varthetaMu S.cgamma
 
-/-- `γ'_μ = min((13/20)(μ-1)/μ, c_γ)` (`09_relay.tex:53`). -/
+/-- `γ'_μ = min((13/20)(μ-1)/μ, c_γ)` (`sec:relay-constants`, Part II, Appendix C.11). -/
 def gammaMu' : ℝ := min (13 / 20 * ((S.P.μ - 1) / S.P.μ)) S.cgamma
 
-/-- `C_Duh = 2μ/(σ_b(μ-1))` (`09_relay.tex:54`). -/
+/-- `C_Duh = 2μ/(σ_b(μ-1))` (`lem:O`, Part II Lemma C.8). -/
 def CDuh : ℝ := 2 * S.P.μ / (S.sigb * (S.P.μ - 1))
 
-/-- `r_T(T) = (1+T)^{p_K} e^{-σT/4}`, `p_K = m = 3` (`09_relay.tex:55-56`; meaningful for `T ≥ 0`). -/
+/-- `r_T(T) = (1+T)^{p_K} e^{-σT/4}`, `p_K = m = 3` (`def:standing`, Part II Definition C.1; meaningful for `T ≥ 0`). -/
 def rT (T : ℝ) : ℝ := (1 + T) ^ 3 * Real.exp (-(S.sigma0 * T / 4))
 
-/-- `γ_j = max(σ_j, μσ')/(μσ_{j+1})` for a level `j < n` (`09_relay.tex:58-61`). -/
+/-- `γ_j = max(σ_j, μσ')/(μσ_{j+1})` for a level `j < n` (`prop:relay`, Part II Proposition C.9). -/
 def gammaJ (j : ℕ) : ℝ := max (S.P.sigma j) (S.P.μ * S.σ') / (S.P.μ * S.P.sigma (j + 1))
 
-/-- The envelope `â_k(u) = κ♯_k e^{σ_k u}`, `u ≥ 0` (`09_relay.tex:63-64`; `OneRing.ahat`),
+/-- The envelope `â_k(u) = κ♯_k e^{σ_k u}`, `u ≥ 0` (`sec:relay`, Part II Section 6, envelope conventions; `OneRing.ahat`),
 meaningful when `κ♯_k` is defined (`P.ClockUpTo k`). -/
 def ahatK (k : ℕ) (u : ℝ) : ℝ := OneRing.ahat (S.P.ksh k) (S.P.sigma k) u
 
 /-- The transient `ρ̂_k` of `thm:active` with `G = G_k` and the constant `C₀` named in each
-statement (`09_relay.tex:64-66`; `OneRing.rhoHat`). -/
+statement (`sec:relay`, Part II Section 6, envelope conventions; `OneRing.rhoHat`). -/
 def rhoHatK (C₀ : ℝ) (k : ℕ) (u : ℝ) : ℝ := OneRing.rhoHat S.P.χ S.σ' C₀ (S.P.G k) u
 
-/-- **The detuning hypothesis (Det)** (`09_relay.tex:67-68`):
+/-- **The formal detuning hypothesis**, with the retained `C_G` interval
+(see the comparison with (Det) of Part II Definition C.1 above):
 `sup_{0 ≤ G ≤ C_G μ s̄²} |λ_*(G) - z| ≤ σ(μ-1)/(8μ)`, stated for every `G` in the interval
 (equivalent to the bound on the supremum; `Kick.Detuned`). -/
 def Det : Prop := ∀ G ∈ Icc (0 : ℝ) (CG S.P.χ * S.P.μ * S.P.sbar ^ 2), Kick.Detuned S.P.χ S.P.μ G
 
-/-- `e_μ = (μ-1)/(8μ)` (`lem:detuning`, `09_relay.tex:106`). -/
+/-- `e_μ = (μ-1)/(8μ)` (`lem:detuning`, Part II Lemma C.6). -/
 def emu : ℝ := (S.P.μ - 1) / (8 * S.P.μ)
 
 /-! ### Field norms and majorants at the order `M_h` (`def:regions`, ring-`k` time) -/
 
-/-- `η^in_k(τ) = ‖h^in_k(τ)‖_{C^{M_h}(N')}` (`06_datum.tex:197-201`), `τ` ring-`k` time. -/
+/-- `η^in_k(τ) = ‖h^in_k(τ)‖_{C^{M_h}(N')}` (`def:regions`, Part II Definition 3.5), `τ` ring-`k` time. -/
 def etaIn (k : ℕ) (τ : ℝ) : ℝ := S.P.etaIn S.Mh k τ
 
-/-- `η^out_k(τ) = ‖h^out_k(τ)‖_{C^{M_h}(N')}` (`06_datum.tex:197-201`). -/
+/-- `η^out_k(τ) = ‖h^out_k(τ)‖_{C^{M_h}(N')}` (`def:regions`, Part II Definition 3.5). -/
 def etaOut (k : ℕ) (τ : ℝ) : ℝ := S.P.etaOut S.Mh k τ
 
-/-- `η_k = η^in_k + η^out_k` (`06_datum.tex:200`). -/
+/-- `η_k = η^in_k + η^out_k` (`def:regions`, Part II Definition 3.5). -/
 def eta (k : ℕ) (τ : ℝ) : ℝ := S.P.eta S.Mh k τ
 
-/-- The Duhamel majorant `maj_k(τ) = ∫₀^τ e^{σ_k(τ-v)} η_k(v) dv` (`06_datum.tex:202-207`). -/
+/-- The Duhamel majorant `maj_k(τ) = ∫₀^τ e^{σ_k(τ-v)} η_k(v) dv` (`def:regions`, Part II Definition 3.5). -/
 def maj (k : ℕ) (τ : ℝ) : ℝ := S.P.majK S.Mh k τ
 
-/-- `maj^in_k`, the majorant of `η^in_k` (`06_datum.tex:209`). -/
+/-- `maj^in_k`, the majorant of `η^in_k` (`def:regions`, Part II Definition 3.5). -/
 def majIn (k : ℕ) (τ : ℝ) : ℝ := S.P.majIn S.Mh k τ
 
 /-- The linear response of `thm:quiet`(b) for ring `k` in ring-`k` time:
-`wlin_k(τ) = ∫₀^τ e^{(τ-v)L(G_k)}(-h_k(v)·∇Φ) dv ∈ Y^{s_h}(N)` (`05_single_ring.tex:424-426`,
-`09_relay.tex:76-80`; `OneRing.wlin` with `G = G_k`, `h = h_k`). -/
+`wlin_k(τ) = ∫₀^τ e^{(τ-v)L(G_k)}(-h_k(v)·∇Φ) dv ∈ Y^{s_h}(N)` (`thm:quiet`, Part II Theorem 2.8,
+`sec:relay-data`, Part II, Appendix C.1; `OneRing.wlin` with `G = G_k`, `h = h_k`). -/
 def wlinK (k : ℕ) (τ : ℝ) : Sect.Y S.sh annN := OneRing.wlin S.P.χ S.sh (S.P.G k) (S.P.hField k) τ
 
 /-! ### Basic lemmas (fully proved) -/

@@ -8,8 +8,7 @@ import NonUniqueEuler.H.Infra.FaaDiBruno.ExpPhase.Dilation
 /-!
 # Proof: derivatives of `e^{iφ} g` (library I-FAA)
 
-Proof of `NonUniqueEuler/I/Infra/FaaDiBruno/ExpPhase.lean` (`lem:semigroup-construct`(1),
-`04_ring.tex:949-962`).
+Proof of `NonUniqueEuler/I/Infra/FaaDiBruno/ExpPhase.lean` (Part I, Lemma 4.14 (`lem:semigroup-construct`), proof and preceding mode identification).
 
 * Phase bound: Mathlib's Faà di Bruno bound `norm_iteratedFDerivWithin_comp_le` with outer
   function `s ↦ e^{is}` (all derivatives of norm `1`) and `D = max 1 M`.

@@ -3,7 +3,7 @@ import NonUniqueEuler.Defs.Infra.AngularFourier
 import Mathlib.MeasureTheory.Integral.Bochner.Basic
 
 /-!
-# Helper for `lem:sector`(1): rotation reduction for the logarithmic potential of a sector function
+# Helper for Part I Lemma 4.5(1) (`lem:sector`): rotation reduction for the logarithmic potential of a sector function
 
 Helper file of `P/Sec4/Sector.lean` (fully proved). For `W = g(|y|)e^{iℓθ}`, the rotation by
 `arg x` gives `Δ⁻¹W(x) = e^{iℓ arg x} · Δ⁻¹W(|x|)` for `x ≠ 0` (`logPotential_ofProfile_rot`),

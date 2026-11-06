@@ -11,8 +11,7 @@ import Mathlib.Topology.Order.DenselyOrdered
 Proof of the interface `NonUniqueEuler/I/Verify/TaylorRecurrence.lean` (same declarations,
 statements copied verbatim).
 
-**Manuscript.** Proof of Proposition A.3 (`prop:enclosure`, `A_verification.tex:346-362`,
-`:380-400`, `:418-420`).
+**Manuscript.** Proof of Part II Proposition A.3 (`prop:enclosure`).
 
 The recurrences follow from the Taylor-coefficient calculus of `I/Verify/TaylorCoef.lean`
 (`taylorCoeff_deriv`, `taylorCoeff_mul`, `taylorCoeff_const_mul`, `taylorCoeff_add`,

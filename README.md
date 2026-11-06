@@ -42,7 +42,7 @@ Theorem 1.1 is proved in two steps (Part II, Section 1).
 
 - **`NonUniqueEuler.main_theorem_of_N : ConditionalTheorem`.** For every admissible cutoff `χ`,
   Hypothesis (N1)–(N3) implies Theorem 1.1. This is Proposition 1.2 of Part II, the whole analytic
-  part of the proof (Part I, Sections 2–4; Part II, Sections 1–8 and Appendix B), formalized.
+  part of the proof (Part I, Sections 2–4; Part II, Sections 1–8 and Appendices B–C), formalized.
 - **`NonUniqueEuler.n3_holds : N3`.** (N3), proved in Lean.
 - **`NonUniqueEuler.Verify.check_sound : CheckerSound Verify.check`.** Lean implements the
   algorithms of Appendix A of Part II: ball arithmetic, the Taylor enclosure of the Evans function,
@@ -84,36 +84,38 @@ Theorem 1.1 is proved in two steps (Part II, Section 1).
 
 ## How the code refers to the manuscript
 
-The Lean formalization and the code were written against an earlier, single-volume version of the
-manuscript (Sections 1–11 and Appendices A–C), which was later divided into Parts I and II. That
-version is not included here. In `lean/` and `euler-ring-certificate/`, "the manuscript" means
-that version.
+Lean references use the current **Part I** or **Part II**, a stable LaTeX label, and where useful the
+current statement number. The [manuscript–Lean index](lean/MANUSCRIPT_MAP.md) lists every current
+labeled theorem, lemma, proposition, corollary, definition and hypothesis, its Lean entry points,
+and the current destinations of removed labels. It also identifies results now collected from
+several formal proof modules, including Part II's one-step relay proposition.
 
-The formal result does not depend on this correspondence. The Lean statement is self-contained
-(`lean/NonUniqueEuler/Statement/`), and the proofs are checked by the Lean kernel. The references
-only help a reader find the matching argument on paper.
+The Lean module paths retain the names of the original single-volume organization. These names
+are import paths, not current section numbers. Some formal statements retain stronger bounds or
+additional hypotheses, and some current statements collect arguments spread over several Lean
+modules. See [formalization notes](lean/FORMALIZATION_NOTES.md) for these distinctions. The
+kernel verifies the encoded statements and their assumptions; the correspondence table is
+navigation, not a separate formal proof that every paper statement is identical to its encoding.
 
-- **Numbers.** Theorem 1.1, Proposition 1.2, Theorem 1.3 and the numbered statements of
-  Appendix A (Lemma A.1 to Proposition A.8) have the same numbers in Part II. Most other statement
-  and equation numbers have changed.
-- **Labels.** The Lean sources cite statements mainly by their LaTeX labels, such as `lem:clock`.
-  Of the 213 labels cited in `lean/`, 174 are also labels in `manuscript/part1` or
-  `manuscript/part2`; for example, `grep -rn 'label{lem:clock}' manuscript/` finds the statement.
-  The other 39 have no counterpart label in Parts I and II.
-- **Source files.** References of the form `B_global_smooth.tex:30-35` in Lean comments are to the
-  source files of the single-volume version.
+| Stable Lean folder | Current manuscript location |
+|---|---|
+| `Sec2` | Part I, Section 2, and Part II, Section 1.4 (multipoles, smooth solutions and calculus) |
+| `Sec3` | Part I, Section 3 |
+| `Sec4` | Part I, Section 4; `Annuli` belongs to Part II, Lemma 1.4; `Duhamel` to Part II, Lemma 2.1 |
+| `Sec5` | Part II, Section 2 (single-ring estimates) |
+| `Sec6` | Part II, Section 3 (datum and clock) |
+| `Sec7` | Part II, Section 4 (several rings) |
+| `Sec8` | Part II, Section 5 (kick) |
+| `Sec9` | Part II, Section 6 and Appendix C (relay estimates); `Readout` is used in the Section 8 reduction proof |
+| `Sec10` | Part II, Section 7 and Appendix C (parameter choices) |
+| `Sec11` | Part II, Sections 6 and 8 and Appendix C (stopping times and bootstrap); the concluding reduction is in Section 8 |
+| `SmoothB` | Part II, Theorem 1.8 and Appendix B |
+| `Verify` | Part II, Appendix A |
 
-The sections correspond as follows.
-
-| Single-volume version | Parts I and II | Lean folders (`Defs/`, `P/`, `H/`) |
-|---|---|---|
-| Section 1, Introduction | Part I, Section 1, and Part II, Section 1 | |
-| Section 2, Preliminaries | Part I, Section 2; several results are in Part II, Section 1.4 instead (for example `lem:Hk-calculus`, Part II, Lemma 1.9) | `Sec2` |
-| Section 3, Compactness | Part I, Section 3 | `Sec3` |
-| Section 4, The ring | Part I, Section 4 (Hypothesis (N) is Part I, Hypothesis 4.17) | `Sec4` |
-| Sections 5–11 | Part II, Sections 2–8 (subtract 3) | `Sec5` … `Sec11` |
-| Appendix A | Part II, Appendix A | `Verify` |
-| Appendix B | Part II, Appendix B | `SmoothB` |
+The map is generated from the current included TeX sources and a curated correspondence
+registry. Run `python3 lean/tools/manuscript_map.py --check` to detect stale numbering,
+missing statements or broken module paths; add `--check-aux` after building both manuscripts to
+compare its numbers with LaTeX. Historical identifiers in code remain documented as such.
 
 ## Building
 

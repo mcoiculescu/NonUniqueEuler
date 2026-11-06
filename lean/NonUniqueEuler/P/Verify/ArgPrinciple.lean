@@ -19,8 +19,9 @@ import Mathlib.Topology.DiscreteSubset
 Proof of the interface `NonUniqueEuler/I/Verify/ArgPrinciple.lean` (same declarations, same
 statements).
 
-**Manuscript.** Last assertion of Proposition A.4 (`A_verification.tex:486-488`, `:512`), used in
-Lemma A.6 (`:540-560`).
+**Manuscript.** The argument principle used in the proof of Part II Lemma A.6
+(`lem:Nprime-N`). The formalization retains a separate rectangle argument-principle lemma;
+current Part II Proposition A.4 (`prop:winding`) states only the segment formula.
 
 **Route** (no divisors or factorized rational functions).
 1. *Base case* (`ArgPrincipleAux.hasWinding_zero_of_ne_zero`): a function continuous on an open

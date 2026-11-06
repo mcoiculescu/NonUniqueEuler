@@ -13,7 +13,7 @@ import Mathlib.MeasureTheory.Integral.MeanInequalities
 
 For `convAbs K g x = ∫⁻ ‖K(x-y)‖ ‖g(y)‖ dy` on `ℂ` and real exponents `1 ≤ s, p, r` with
 `1/s + 1/p = 1 + 1/r`: `‖|K| ⋆ |g|‖_r ≤ ‖K‖_s ‖g‖_p`
-(manuscript `lem:velocity`(a),(b), `02_prelim.tex:323-381`).
+(Part I, Lemma 2.2(a),(b), `lem:velocity`, proof).
 
 The classical three-factor Hölder argument, entirely in `ℝ≥0∞` (so no degenerate case needs a
 separate treatment). Put `k = ‖K‖ₑ`, `h = ‖g‖ₑ`, `a = 1/r`, `b = 1 - 1/p`, `c = 1 - 1/s`

@@ -7,8 +7,10 @@ import NonUniqueEuler.I.Sec4.Resolvent.Regularity
 # Proof of `I/Sec4/EvansSimple/Range.lean`: solvability of `(L_ℓ(G) - λ_*) x = h` at a zero
 `λ_*` of `E_ℓ` (step of `thm:evans-simple`(2), the Fredholm alternative)
 
-Manuscript: the argument of `thm:evans-simple`(3) (`04_ring.tex:536-551`) with a general right
-side, plus the regularity part of the proof of `lem:resolvent`(1) (`04_ring.tex:423-440`).
+This extends the retained generalized-eigenvector construction to a general right side.
+That construction was formerly part (3) of `thm:evans-simple`; current Part I Theorem 4.8
+states only parts (1) and (2). The regularity step is in the proof of Part I Lemma 4.7(1)
+(`lem:resolvent`).
 
 Structure (namespace `NonUniqueEuler.EvansRangeAux` for the helpers):
 * the profile `p = h_ℓ` of `h ∈ Y^s_ℓ` lies in `H^s((0,∞))`, supported in `[ρ₋,ρ₊]`
@@ -22,7 +24,7 @@ Structure (namespace `NonUniqueEuler.EvansRangeAux` for the helpers):
   so `q e^{iℓθ}` is an element `η ∈ Y^s_ℓ` (`exists_Ysec_ofProfile`), and
   `λ_* η - L_ℓ η = h` (compare functions a.e.); `x = -η`.
 
-**Deviation.** The manuscript solves `(L_ℓ - λ_*)g₁ = g_*` with the ξ-ODE regularity
+**Deviation from the earlier generalized-eigenvector proof.** That proof solves `(L_ℓ - λ_*)g₁ = g_*` with the ξ-ODE regularity
 induction; here the right side is a general `h` (so its forcing is only `L¹`), `eq:bvp` is in
 integrated form, and the regularity comes from the bootstrap of
 `I/Sec4/Resolvent/Regularity.lean` (as in `P/Sec4/Resolvent.lean`).
@@ -39,8 +41,9 @@ namespace SectorSetting
 open Sect
 
 open EvansRangeAux in
-/-- Solvability at a zero of the Evans function (step of `thm:evans-simple`(2); the argument of
-`thm:evans-simple`(3), `04_ring.tex:536-551`, with a general right side): if
+/-- Solvability at a zero of the Evans function, used in the Lean proof of Part I
+Theorem 4.8(2) (`thm:evans-simple`). This generalizes the retained construction from former
+part (3), which is not in the current theorem: if
 `∫_0^∞ h_ℓ ψ_*(log r) M_* r dr = 0`, then `L_ℓ(G) x - λ_* x = h` has a solution `x ∈ Y^s_ℓ`. -/
 theorem evansSimple_range (S : SectorSetting) (hS : S.Valid) (ℓ : ℕ) (hℓ : 1 ≤ ℓ) (z : ℂ)
     (hz : 0 < z.re) (G : ℝ) (hE : S.evans ℓ z G = 0) (s : ℕ) (h : Ysec s S.Nstar ℓ)

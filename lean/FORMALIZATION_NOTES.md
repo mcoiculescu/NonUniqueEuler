@@ -2,26 +2,32 @@
 
 This file records the representation choices and the restructured arguments of the
 formalization. Comments in the Lean files refer to the labels used here:
-- decision `D1`–`D15` (Part 1);
+- analytic representation decision `D1`–`D15`;
 - restructuring `R1`–`R16`;
 - library `I-…`;
 - checker design decision `D1`–`D14`, and the checker deviations `A…`, `G1`, `T…`, `W…`.
 
-Manuscript locators such as `04_ring.tex:181` refer to the TeX sources of the manuscript.
+Manuscript references use the current Part I or Part II and stable LaTeX labels.
+[MANUSCRIPT_MAP.md](MANUSCRIPT_MAP.md) supplies their current numbers and source locations,
+and records the destinations of legacy labels retained in Lean. The `Sec2`–`Sec11` module
+names remain stable import paths from the original single-volume organization. In this file,
+“analytic proof” and “checker” distinguish parts of the formalization, not the two manuscripts.
+Historical label names in the restructuring notes identify formal auxiliaries; the map explains
+when their arguments are now inside another result's proof.
 
-## 1. Representation of the objects (Part 1)
+## 1. Representation of the objects (analytic proof)
 
 | | Decision |
 |---|---|
 | D1 | **The plane is `ℂ`**, with its Lebesgue measure `volume`. Real vector fields are `ℂ`-valued (`u₁ + i u₂`), and the rotation `O_θ` is multiplication by `e^{iθ}`. The manuscript itself identifies ℝ² with ℂ. |
 | D2 | **Derivatives.** Directional derivatives are written `v·∇φ(x) = fderiv ℝ φ x v` with `v : ℂ`. The partial derivatives are `∂₁ = fderiv ℝ · x 1` and `∂₂ = fderiv ℝ · x I`; multi-index derivatives are obtained by iteration. |
 | D3 | **Space–time functions are curried**: `ω : ℝ → ℂ → ℝ`, with `ω t x = ω(t, x)`. The test functions of `𝒟_T` are real-valued maps `φ : ℝ × ℂ → ℝ` of class `C^∞` with compact support in `(-∞, T) × ℝ²`. Since `ω` and `v` are real, complex test functions give the same class of solutions. |
-| D4 | **Membership in `X_q(T) = L^∞(0,T; L¹ ∩ L^q)`** is a predicate with two parts: joint a.e.-strong measurability of `(t, x) ↦ ω t x` on `(0,T) × ℝ²`, and an essential bound on `‖ω(t)‖_{L¹} + ‖ω(t)‖_{L^q}`. This is the manuscript's own convention (`02_prelim.tex:101-120`). "Distinct elements of `X_q(T)`" means "not a.e. equal on `(0,T) × ℝ²`". |
+| D4 | **Membership in `X_q(T) = L^∞(0,T; L¹ ∩ L^q)`** is a predicate with two parts: joint a.e.-strong measurability of `(t, x) ↦ ω t x` on `(0,T) × ℝ²`, and an essential bound on `‖ω(t)‖_{L¹} + ‖ω(t)‖_{L^q}`. This is the manuscript's own convention (Part I, Section 2, conventions preceding `def:weak`). "Distinct elements of `X_q(T)`" means "not a.e. equal on `(0,T) × ℝ²`". |
 | D5 | **The weak formulation includes its integrability conditions.** The absolute integrability of `ω(∂_tφ + v·∇φ)` on `(0,T) × ℝ²` and of `ω_in φ(0, ·)` are explicit conjuncts. So is the a.e. absolute convergence of the Biot–Savart integral. In Lean, the integral of a non-integrable function is `0`; the conjuncts keep this junk value out of the definition. The manuscript derives these conditions from `ω ∈ X_q(T)` with `q > 4/3`, so the definition is equivalent to the manuscript's. |
 | D6 | **The velocity** is the Bochner integral `v(x) = ∫ K_BS(x − y) ω(y) dy`, with value `0` where the integrand is not integrable. It equals the manuscript's velocity a.e., and only its a.e. values enter. |
 | D7 | **Sobolev spaces `H^k`** (integer `k` only, as in the manuscript) are defined by weak derivatives in `L²`. Fourier `H^s` is not used. |
 | D8 | **The linear evolution is defined sector by sector**: `S(t)w = Σ_{ℓ ∈ 3ℤ} (exp(t L_ℓ(G)) g_ℓ) e^{iℓθ}`. Here `exp` is the Banach-algebra exponential of the bounded sector operator `L_ℓ(G)`. This is the manuscript's semigroup (`lem:semigroup-construct`(3)). See R1. |
-| D9 | **Exponent 2 in Section 3.** The compactness section (Section 3) is formalized with the exponent `b = 2` only. The manuscript says that only this exponent is needed. Membership in `X_q` for other `q` follows from equimeasurability. See R5 and R7. |
+| D9 | **Exponent 2 in Part I, Section 3.** The compactness argument uses `b = 2`, as does the current manuscript. Membership in `X_q` for other `q` follows from equimeasurability. See R5 and R7 for the formal representation. |
 | D10 | **The Riesz projection is explicit.** On the full space it is the rank-two operator `R(G)w = 2 Re(ℓ_*(G)(w) φ_*(G))`; on sector 3 it is `P g = ℓ_*(g) g_*`. Contour integrals appear only in one lemma, an exponential bound for a bounded operator, and only on circles. See R2. |
 | D11 | **Constants are existential.** Every constant "depending only on …" is either existentially quantified or defined by `Classical.choose` from an existence theorem. The parameter lists (P0)–(P6) become structures. Uniformity is then a matter of quantifier order, which Lean checks. |
 | D12 | **The cutoff `χ` of `def:ring` is a parameter**, constrained by the predicate `IsAdmissibleCutoff χ`. The main theorem is proved for every admissible `χ`, which is slightly stronger than the statement for one fixed `χ`. The explicit cutoff `chiStd` of `lem:ring-facts` is proved admissible, so the class is not empty. |
@@ -31,34 +37,64 @@ Manuscript locators such as `04_ring.tex:181` refer to the TeX sources of the ma
 
 Further statement-level conventions:
 - **Radiality of `f`** is asserted pointwise, which is stronger than the a.e. notion.
-- **`MainTheorem`** also contains the explicit form `thm:main-explicit` (see `README.md`).
+- **`MainTheorem`** also contains the explicit global-solution and restriction clauses used
+  in Part II, Proposition 1.2's proof in Section 8 (the legacy label was
+  `thm:main-explicit`; see `README.md`).
 - **The Evans function.** `E_ℓ(λ; G)` is defined from a solution pair of the first-order system,
   with one-sided derivatives at the endpoints, chosen by `Classical.epsilon`. Its existence and
   uniqueness for `Re λ > 0` are proved. The rings are indexed by `k = j + 1` with `j : ℕ`.
 
-## 2. Restructured arguments (Part 1)
+## 2. Restructured arguments (analytic proof)
 
-Each restructuring keeps the manuscript's statement, or replaces it by an equivalent form, or by
-a weaker form that suffices for every use in the manuscript.
+These notes describe the encoded arguments and the forms used to prove the main theorem.
+Some current statements collect several formal results; some formal auxiliaries retain the
+older hypotheses or explicit constants. A sufficient formal variant is not a claim that every
+current paper statement has an identical Lean declaration. The correspondence map gives the
+current statement boundaries.
 
 | | Restructuring |
 |---|---|
 | R1 | **No theory of C₀-semigroups.** The evolution is the sector-wise exponential of D8.<br>- Bounds for `\|ℓ\| ≥ M_γ` come from `prop:large-sectors`, by Duhamel's formula for bounded operators. The finitely many small `\|ℓ\|` are treated individually.<br>- `lem:duhamel` is proved sector by sector.<br>- `lem:semigroup-construct`(2) is stated as follows: the semigroup law, strong continuity, both Duhamel formulas, and `d/dt S(t)w = L S(t)w` for `w ∈ X^{s+1}`. This is all that later sections use. |
-| R2 | **No Riesz projections of unbounded operators, and no contour deformation.**<br>- The spectral projection is the explicit rank-one operator of D10.<br>- `thm:evans-simple`(2) is stated as follows: `(λ − L₃)⁻¹ − (λ − λ_*)⁻¹ P` extends continuously to `λ_*`.<br>- The gap bound `‖exp(t L_ℓ)(1 − P_ℓ)‖ ≤ C e^{σ' t}` for the finitely many small sectors comes from a deflation `L₃ − (λ_* − μ₀) P` and a Dunford integral on one circle, uniformly in `G` (library I-DUNF).<br>- The second paragraph of `prop:SU` (the spectrum and Riesz projection of the full operator) is not needed downstream. |
+| R2 | **No Riesz projections of unbounded operators, and no contour deformation.**<br>- The spectral projection is the explicit rank-one operator of D10.<br>- the formal pole-removal component of `thm:evans-simple` is stated as follows: `(λ − L₃)⁻¹ − (λ − λ_*)⁻¹ P` extends continuously to `λ_*`.<br>- The gap bound `‖exp(t L_ℓ)(1 − P_ℓ)‖ ≤ C e^{σ' t}` for the finitely many small sectors comes from a deflation `L₃ − (λ_* − μ₀) P` and a Dunford integral on one circle, uniformly in `G` (library I-DUNF).<br>- The second paragraph of `prop:SU` (the spectrum and Riesz projection of the full operator) is not needed downstream. |
 | R3 | **No Fourier transform on ℝ².**<br>- The embedding (E2) holds with a constant that depends on the support.<br>- (E3) is proved by integration by parts.<br>- `lem:Hk-calculus`(2) is stated for products in which one factor is supported in a fixed ball, which covers all its uses. |
 | R4 | **No Fourier transform on ℝ.** `lem:elliptic` is proved by the energy identity for `ψ'' − ℓ²ψ = f` in the logarithmic variable, using exponential decay at `±∞`. |
-| R5 | **No Bochner spaces with values in `L¹ ∩ L^q`, no Pettis theorem, no `L^p` duality for `p ≠ 2`.**<br>- Section 3 works with weakly continuous `L²`-valued paths and Riesz representation in `L²`.<br>- The jointly measurable representative of `ω_∞` is constructed once (library I-JOINT).<br>- Membership in `X_q(T')` for `q ≠ 2` comes from equimeasurability.<br>- `lem:weak-cont` and `prop:compact` are stated for `b = 2`. |
+| R5 | **No Bochner spaces with values in `L¹ ∩ L^q`, no Pettis theorem, no `L^p` duality for `p ≠ 2`.**<br>- Section 3 works with weakly continuous `L²`-valued paths and Riesz representation in `L²`.<br>- The jointly measurable representative of `ω_∞` is constructed once (library I-JOINT).<br>- Membership in `X_q(T')` for `q ≠ 2` comes from equimeasurability.<br>- `lem:weak-cont` and the legacy `Compact` auxiliary use `b = 2`, agreeing with the current compactness setup. |
 | R6 | **No Green's identity on `{\|y\| > ε}`.** It is replaced by polar coordinates: an angular average followed by one-dimensional integration by parts. Where possible, it is replaced by whole-plane integration by parts, using the decay of the stream function. |
-| R7 | **The DiPerna–Lions argument only for `a = b = 2`.** The field `w = K_BS ∗ ω` is an `L²_loc` limit of smooth divergence-free fields whose gradients converge in `L²`. This covers every use: the manuscript also uses `(a, b) = (1, ∞)`, but only for functions in `L^∞(L¹ ∩ L^∞) ⊂ L^∞(L²)`. |
+| R7 | **The DiPerna–Lions argument for `a = b = 2`.** The field `w = K_BS ∗ ω` is an `L²_loc` limit of smooth divergence-free fields whose gradients converge in `L²`. The current Part I transport/compactness argument also uses the L² setting. Bounded-vorticity approximants enter through `L^∞(L¹ ∩ L^∞) ⊂ L^∞(L²)`. |
 | R8 | **Radon–Riesz only for `p = 2`.** `thm:criterion`(iii) for `q > 2` is proved by interpolation between continuity in `L²` and a uniform bound in `L^r`, `r > q`. Its hypothesis becomes `f ∈ L^r` for some `r > q`, which covers its only use (`f ∈ ⋂ L^q`). |
-| R9 | **Continuity of `λ_*(G)` instead of real-analytic dependence.** Continuity on `[0, G₁]` is obtained from (N1), by boundedness and a limit-point argument. Only continuity, the attained minimum and continuity at `0` are used. |
-| R10 | **`prop:bootstrap` by induction** over the phase intervals, in the chronological order that the manuscript's proof fixes. Each interval is closed by a generic continuity lemma. The proof is split into one statement per step of the manuscript's proof. |
+| R9 | **Continuity of `λ_*(G)`.** Continuity on `[0, G₁]` is obtained from (N1), by boundedness and a limit-point argument. The current Part I, Proposition 4.21 also states continuity; its proof uses local simple-zero continuation. This is a proof-method distinction, not a weaker current regularity claim. |
+| R10 | **Bootstrap by induction** over the phase intervals. Each interval is closed by a generic continuity lemma. Current Part II, Proposition 6.2 collects the relay steps, while Proposition 8.1 states four ring-1 conclusions. Lean retains separate `BootQuiet`, `BootHandoff`, `BootActive` and continuation modules, and its five-part `BootConcl` records all-ring conclusions. There is no single declaration of the current Proposition 6.2 package. |
 | R11 | **No winding numbers in `lem:reduction`(1).** They are replaced by the circulation of `K_BS(· − y)` around circles, computed from the Laurent expansion of `(z − w)⁻¹` (library I-MULT). |
 | R12 | **Explicit constants.** Constants that are used only existentially are existential (D11). The explicit numbers that matter stay explicit: `9/200`, `211/2500`, `1/50`, `17/16`, `a/16`, and the `μ`-dependent margins. |
-| R13 | **Statements off the path to Theorem 1.1.** These are `lem:Lq-growth`, the unused implications of `prop:equiv`, the converse directions of `thm:evans-simple`(3), and `lem:nesting`. The main theorem does not depend on them. `lem:Lq-growth` and `lem:nesting` are formalized nevertheless. |
-| R14 | **Independence of `q`.** The weak and renormalized identities are the same for every `q`. Once the integrability conditions hold, a solution is a solution in every `X_q(T)`. This is the manuscript's own argument in `thm:main-explicit`(ii). |
+| R13 | **Auxiliaries off the path to Theorem 1.1.** The formalization retains the legacy `LqGrowth`, unused equivalence implications, and generic `Nesting` auxiliary. These no longer have separately numbered current counterparts; the map records related arguments without claiming identical statements. The unused converse directions of `thm:evans-simple` are not required by the main theorem. |
+| R14 | **Independence of `q`.** The weak and renormalized identities are the same for every `q`. Once the relevant space membership and integrability conditions hold, the same identities give a solution in each `X_q(T)`. This is the argument in the current proof of Part II, Proposition 1.2 in Section 8; `thm:main-explicit` is the legacy label. |
 | R15 | **`lem:ode`** is proved from Mathlib's Picard–Lindelöf theorem, together with the vendored global existence and flow results (library I-FLOW). |
 | R16 | **Symmetry of smooth solutions.** `thm:smooth`(6) follows from the uniqueness statement (5), applied to `ω(t) ∘ O_θ`. Time-translation and scaling covariance also follow from (5). Uniqueness itself is an `L²` energy estimate. |
+
+### Current statements assembled from existing formal components
+
+- **Exterior angular mode (Part II, Lemma 1.6, `lem:exterior-mode`).**
+  `BS.angularSector_stream_exterior` in `P/Sec2/MultipoleStream.lean` uses annular support
+  and complex-valued input. `Multipole.angularSector_logPotential_exterior_pos` in
+  `P/Infra/Multipole/LogPotential.lean` gives the formula under a.e. disk support. These
+  supply the corresponding identity with the formal coefficient conventions; neither is
+  labeled as an identically packaged declaration of the new real-valued lemma.
+- **Hierarchy residual (Part II, Lemma 2.5, `lem:hier-res`).**
+  `QAppH.rapp_ae` in `H/Sec5/Quiet/Approx/Residual.lean` proves the residual identity for
+  the constructed quiet hierarchy, with `NQ ≥ 2`, as an a.e. equality. The current paper
+  combines a general `J ≥ 1` residual identity and initial values in one statement. The
+  window proof uses Picard increments with a different residual representation.
+- **Relay and bootstrap (Part II, Propositions 6.2 and 8.1).** The current unnumbered
+  (BA3), following Definition 6.1, applies strictly after activation; Lean's `BAcirc`
+  captures that convention. The endpoint-inclusive `BA` is a stronger auxiliary used in
+  the continuation proof. The legacy `prop:relay` is the transmitted-field estimate now
+  numbered Proposition C.9, not the new one-step relay proposition. The parameter lists,
+  hand-off and amplitude modules retain explicit sufficient constants from the original
+  proof decomposition. Formal estimates also retain ring-time pullbacks of physical-time
+  fields, a sufficient detuning interval `[0, C_G μ s̄²]`, and auxiliary `Standing.Holds`
+  fields. The formal true-field kick estimate gives a conclusion throughout `[0, Tpin]`;
+  current Lemma C.14 states the endpoint bound. These distinctions
+  are detailed in the relevant module documentation.
 
 ## 3. Infrastructure libraries
 
@@ -80,12 +116,12 @@ These are manuscript-independent libraries, under `Defs/Infra`, `P/Infra` and `H
 | I-MULT | the complex-variable form of the Biot–Savart law, multipoles |
 | I-ANG | angular Fourier decomposition |
 | I-SECT | sector spaces and sector-wise operators |
-| I-ODE | linear second-order ODEs with parameters (shared with Part 2) |
+| I-ODE | linear second-order ODEs with parameters (shared with the certificate checker) |
 | I-DUNF | exponential bounds from the spectrum, by Dunford integrals on circles |
 | I-FLOW | flows of smooth bounded vector fields on `ℂ` (partly vendored) |
 | I-FAA | derivatives of `e^{iφ} g` |
 
-## 4. The certificate checker (Part 2)
+## 4. The certificate checker (Part II, Appendix A)
 
 ### Checker design decisions
 
@@ -114,7 +150,7 @@ pass.
 
 | | Deviation |
 |---|---|
-| A1 | **Own ball arithmetic** instead of FLINT/Arb, with the containment property proved, not trusted. Radii, and hence segment counts, may differ slightly. The manuscript (§A.7) allows this. |
+| A1 | **Own ball arithmetic** instead of FLINT/Arb, with the containment property proved, not trusted. Radii, and hence segment counts, may differ slightly. The containment property of Part II, Section A.1 is proved for this arithmetic. |
 | A2 | **`exp`** by argument reduction, Taylor series and squaring; `H` through `exp`. |
 | A3 | **`κ_*`** is a checked dyadic candidate with `κ² ≥ max(q_*, ℓ²)`, which is all that the proof of Proposition A.3 uses. |
 | A4 | **Ball division** is multiplication by a ball reciprocal. |

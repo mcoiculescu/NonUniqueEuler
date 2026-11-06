@@ -5,7 +5,7 @@ import NonUniqueEuler.H.Sec8.Coupling.PartOne
 import NonUniqueEuler.H.Sec8.Coupling.KickFormula
 
 /-!
-# Helper for `lem:coupling`(2) and `eq:kick` (`08_kick.tex:111-138`)
+# Helper for `lem:coupling`(2) and `eq:kick` (Part II Lemma 5.1 (`lem:coupling`))
 
 Helper of `P/Sec8/Coupling.lean` (fully proved, modulo the interface files it imports).
 
@@ -71,7 +71,7 @@ theorem hIn_ckPath (hP : P.Valid) (hN : NumericalHypothesis P.χ) {k : ℕ} (hk 
 theorem ellFn_zero (χ : ℝ → ℝ) (G : ℝ) : Eig.ellFn χ G (0 : ℂ → ℂ) = 0 := by
   simp [Eig.ellFn, SectorSetting.ellStar, Polar.angularSector]
 
-/-- **`c^in` in kick time** (`08_kick.tex:121-135`): for `τ_K ∈ [τ₀, T_pin]`,
+/-- **`c^in` in kick time** (Part II Lemma 5.1 (`lem:coupling`)): for `τ_K ∈ [τ₀, T_pin]`,
 `c^in(τ_K) = Kick.coef ζ₀ β_k τ₀ q_{k+1} τ_K = e^{ζ₀τ_K} β_k ∫_{τ₀}^{τ_K} e^{-ζ₀s} q_{k+1}(s) ds`. -/
 theorem cin_eq_coef (hP : P.Valid) (hN : NumericalHypothesis P.χ) (hG : P.GSmall) {k : ℕ}
     (hk : 1 ≤ k) (hkn : k < P.n) (hc : P.ClockUpTo (k + 1))
@@ -122,7 +122,7 @@ theorem cin_eq_coef (hP : P.Valid) (hN : NumericalHypothesis P.χ) (hG : P.GSmal
   have h := coef_eq_of_running (lam := Eig.lam P.χ (P.G k)) (τK := τK) hμ (P.betaK k) hQ
   exact h
 
-/-- **`lem:coupling`(2) and `eq:kick`** (`08_kick.tex:34-53`), proved. -/
+/-- **`lem:coupling`(2) and `eq:kick`** (Part II Lemma 5.1 (`lem:coupling`)), proved. -/
 theorem coupling_two_aux (hP : P.Valid) (hN : NumericalHypothesis P.χ) (hG : P.GSmall)
     {k : ℕ} (hk : 1 ≤ k) (hkn : k < P.n) (hc : P.ClockUpTo (k + 1))
     (hin : ∀ t ∈ Icc (0 : ℝ) (P.tsh k), P.HInDefined k t) :

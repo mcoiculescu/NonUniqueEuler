@@ -6,7 +6,7 @@ import NonUniqueEuler.I.Sec4.Sector
 /-!
 # Helpers for `R_app ∈ C([0,t];X^s)`: the term `L(G)w_app`
 
-Helper of `P/Sec5/Energy/RappPath.lean` (`05_single_ring.tex:331`, "every term lies in
+Helper of `P/Sec5/Energy/RappPath.lean` (Part II Lemma 2.4 (`lem:energy`), "every term lies in
 `C([0,t];H^s)`"). Namespace `NonUniqueEuler.OneRing.RappPathH`.
 
 * `weakDerivOn_congr_ae` (copy of the proved helper of

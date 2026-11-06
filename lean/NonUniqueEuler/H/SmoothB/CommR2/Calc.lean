@@ -6,7 +6,7 @@ import NonUniqueEuler.Defs.Infra.Sobolev
 /-!
 # Helper for `lem:comm-R2`: classical calculus of iterated directional derivatives
 
-Helper of `P/SmoothB/CommR2.lean` (`B_global_smooth.tex:149-175`). For smooth functions on the
+Helper of `P/SmoothB/CommR2.lean` (Part II, Lemma B.4 (`lem:comm-R2`)). For smooth functions on the
 plane:
 * directional derivatives commute, so `iterDirDeriv vs f` depends only on `vs` up to
   permutation (`iterDirDeriv_perm`; the proof is copied from `P/Infra/Sobolev/WeakDeriv.lean`,

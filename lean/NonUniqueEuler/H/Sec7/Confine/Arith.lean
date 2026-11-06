@@ -4,13 +4,13 @@ import NonUniqueEuler.Defs.Sec7.All
 /-!
 # Helper for `prop:confine`: real-number estimates
 
-Helper of `P/Sec7/Confine.lean` (`07_several_rings.tex:322-349`, `:375-380`).
+Helper of `P/Sec7/Confine.lean` (Part II Proposition 4.3 (`prop:confine`)).
 
 * `Cstar_pos`: `C_* > 0`;
-* `sum_Icc_half_pow_le`: `Σ_{j=1}^k 2^{j-k} ≤ 2` (`07_several_rings.tex:344-345`);
-* `ring_term_le`: the per-ring bound of step (b), `07_several_rings.tex:334-343`, in the form
+* `sum_Icc_half_pow_le`: `Σ_{j=1}^k 2^{j-k} ≤ 2` (Part II Proposition 4.3 (`prop:confine`));
+* `ring_term_le`: the per-ring bound of step (b), Part II Proposition 4.3 (`prop:confine`), in the form
   `μ |K*g_j(x)| ≤ (4/3)(2/a)^3 Λ^2 s_k c A_{k+1} r_{k+1}` with `c = 2^{j-k}`;
-* `confRadius_le_Cmom`: `M_vort (2 + 2C_*τ)^3 ≤ C_mom (1 + τ)^3` for `τ ≥ 0` (`:378-380`).
+* `confRadius_le_Cmom`: `M_vort (2 + 2C_*τ)^3 ≤ C_mom (1 + τ)^3` for `τ ≥ 0` (Part II Proposition 4.3 (`prop:confine`)).
 -/
 
 noncomputable section
@@ -37,7 +37,7 @@ theorem Cstar_pos : 0 < Cstar := by
   have : 0 < Real.sqrt Mvort := Real.sqrt_pos.mpr hM
   positivity
 
-/-- `Σ_{j=1}^k (1/2)^{k-j} ≤ 2` (`07_several_rings.tex:344-345`). -/
+/-- `Σ_{j=1}^k (1/2)^{k-j} ≤ 2` (Part II Proposition 4.3 (`prop:confine`)). -/
 theorem sum_Icc_half_pow_le (k : ℕ) :
     ∑ j ∈ Finset.Icc 1 k, (1 / (2 : ℝ)) ^ (k - j) ≤ 2 := by
   have h : ∑ j ∈ Finset.Icc 1 k, (1 / (2 : ℝ)) ^ (k - j) =
@@ -60,7 +60,7 @@ theorem sum_Icc_half_pow_le (k : ℕ) :
   rw [h]
   exact sum_geometric_two_le k
 
-/-- **The per-ring bound** of `prop:confine`(b) (`07_several_rings.tex:334-343`), as real
+/-- **The per-ring bound** of the speed-bound paragraph in the proof of Part II Proposition 4.3 (`prop:confine`), as real
 arithmetic: from the hollow bound `v ≤ (4/(3π)) L X² R_j^{-3}` with `R_j = (a/2) r_j`,
 `L = ‖g_j‖_{L¹} ≤ π A_j r_j²`, `X = |x| ≤ Λ r_{k+1}`, `r_{k+1} ≤ s_k c r_j` and `μ A_j ≤ A_{k+1}`:
 `μ v ≤ (4/3)(2/a)³ Λ² s_k c A_{k+1} r_{k+1}`. -/
@@ -94,7 +94,7 @@ theorem ring_term_le {v L X rj rk1 Aj Ak1 μ Λ sk c : ℝ} (ha : 0 < a) (hrj : 
         gcongr
     _ = 4 / 3 * (2 / a) ^ 3 * Λ ^ 2 * sk * c * (Ak1 * rk1) := by ring
 
-/-- `M_vort (2 + 2C_*τ)³ ≤ C_mom (1 + τ)³` for `τ ≥ 0` (`07_several_rings.tex:378-380`), since
+/-- `M_vort (2 + 2C_*τ)³ ≤ C_mom (1 + τ)³` for `τ ≥ 0` (Part II Proposition 4.3 (`prop:confine`)), since
 `2 + 2C_*τ ≤ 2 max(1, C_*)(1 + τ)`. -/
 theorem Mvort_mul_le_Cmom {τ : ℝ} (hτ : 0 ≤ τ) :
     Mvort * (2 + 2 * Cstar * τ) ^ 3 ≤ Cmom * (1 + τ) ^ 3 := by

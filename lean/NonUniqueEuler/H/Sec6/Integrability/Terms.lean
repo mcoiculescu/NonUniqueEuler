@@ -5,7 +5,7 @@ import Mathlib.Topology.Algebra.InfiniteSum.Real
 /-!
 # Helpers for `prop:integrability`: the terms of the series
 
-Helper of `P/Sec6/Integrability.lean` (`06_datum.tex:42-47`). The `k`-th term `A_k Φ(·/r_k)` of
+Helper of `P/Sec6/Integrability.lean` (Part II Proposition 3.2 (`prop:integrability`)). The `k`-th term `A_k Φ(·/r_k)` of
 the datum is radial, nonnegative and supported in the `k`-th annulus (`lem:ring-facts`, here the
 hypothesis `RingFacts χ`); the annuli are disjoint, so at every point at most one term is nonzero
 and the series is summable.
@@ -36,7 +36,7 @@ theorem mem_annulus_of_ne_zero (hR : RingFacts χ) {r : ℝ} (hr : 0 < r) {x : �
   rw [hn, le_div_iff₀ hr, div_le_one hr] at h
   exact h
 
-/-- At every point at most one term of the series is nonzero (`06_datum.tex:44-46`). -/
+/-- At every point at most one term of the series is nonzero (Part II Proposition 3.2 (`prop:integrability`)). -/
 theorem phi_eq_zero_of_ne (hR : RingFacts χ) (hp : DatumParams A₁ μ sbar) (x : ℂ) (j l : ℕ)
     (hjl : j ≠ l) (hj : ringPhi χ (x / ((radius sbar μ (j + 1) : ℝ) : ℂ)) ≠ 0) :
     ringPhi χ (x / ((radius sbar μ (l + 1) : ℝ) : ℂ)) = 0 := by

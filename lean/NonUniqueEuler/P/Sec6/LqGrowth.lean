@@ -8,17 +8,21 @@ import Mathlib.MeasureTheory.Integral.ExpDecay
 import Mathlib.MeasureTheory.Constructions.BorelSpace.Order
 
 /-!
-# Proof: `lem:Lq-growth` (growth of `‖f‖_{L^q}`; off the path to the main theorem, R13)
+# Proof: the legacy supplementary `LqGrowth` result (growth of `‖f‖_{L^q}`; off the path to the main theorem, R13)
 
-Proof of `I/Sec6/LqGrowth.lean` (`06_datum.tex:504-527`, proof `:529-591`). Same declarations,
-statements copied verbatim.
+This supplementary result is retained from the earlier formalization and is
+no longer stated in the current manuscript. Part II Definition 3.1 (`def:datum`)
+and Proposition 3.2 (`prop:integrability`) still define and establish the basic
+integrability of its datum; they do not assert the growth conclusions below.
 
-**Part (1)** follows the manuscript: `Φ ≥ m = Φ(y₀)/2` on `B_ρ(y₀)` (continuity), so
+Proof of `I/Sec6/LqGrowth.lean` (supplementary material no longer stated in the manuscript). The formal interface is unchanged.
+
+**Part (1)** follows the earlier manuscript argument: `Φ ≥ m = Φ(y₀)/2` on `B_ρ(y₀)` (continuity), so
 `f ≥ A_k m` on `B_{ρ r_k}(r_k y₀)` (one term of the nonnegative series is below `f`), hence
 `‖f‖_q ≥ A_k m (πρ² r_k²)^{1/q}` (the `L^q` norm of a constant on a disk; this replaces the
 change of variables `x = r_k y`). With `j = ⌊q log μ/(2 log 2μ)⌋` and `log(1/r_k)` from
 `prop:integrability` one gets `‖f‖_q ≥ c e^{α_μ q}` with
-`c = m · min(1, πρ²) · A₁ · e^{-log μ - S log μ/L}` (`= c_Φ A₁ μ^{-1-S/L}` of the manuscript).
+`c = m · min(1, πρ²) · A₁ · e^{-log μ - S log μ/L}` (`= c_Φ A₁ μ^{-1-S/L}` of the earlier manuscript).
 
 **Part (2)** (deviation): instead of the arithmetic–geometric mean inequality we use
 `e^a e^b ≥ (1 + ab/2)²` (`LqGrowthH.sq_one_add_half_mul_le_exp_mul_exp`) with `a = ε log y`,
@@ -26,7 +30,7 @@ change of variables `x = r_k y`). With `j = ⌊q log μ/(2 log 2μ)⌋` and `log
 `y ↦ 1/(y(1 + γ log y)²)` is integrable on `(1, ∞)` (an explicit antiderivative). Measurability of
 `ψ_θ` on `(1, ∞)`: `ψ_θ` is monotone there (each `y ↦ y^ε` is), instead of upper semicontinuous.
 
-**Part (3)** follows the manuscript: `θ(p) ≥ (c/K₀) e^{α_μ p}`, so `1/(pθ(p)) ≤ (K₀/c) e^{-α_μ p}`.
+**Part (3)** follows the earlier manuscript argument: `θ(p) ≥ (c/K₀) e^{α_μ p}`, so `1/(pθ(p)) ≤ (K₀/c) e^{-α_μ p}`.
 -/
 
 noncomputable section
@@ -99,7 +103,7 @@ private theorem LqGrowthP_eLpNorm_ge_ball (χ : ℝ → ℝ) (hχ : IsAdmissible
   rw [hV, ENNReal.ofReal_rpow_of_nonneg (by positivity) (by positivity),
     Real.enorm_eq_ofReal (mul_nonneg hA.le hm), ← ENNReal.ofReal_mul (mul_nonneg hA.le hm)]
 
-/-- **`lem:Lq-growth`(1)** (`06_datum.tex:509-510`): there is `c > 0` with
+/-- **Supplementary growth bound (1)** (no current manuscript counterpart): there is `c > 0` with
 `‖f‖_{L^q} ≥ c e^{α_μ q}` for every real `q ≥ 1`. -/
 theorem Lq_growth_lower (χ : ℝ → ℝ) (hχ : IsAdmissibleCutoff χ) {A₁ μ sbar : ℝ}
     (hp : DatumParams A₁ μ sbar) :
@@ -195,7 +199,7 @@ private theorem LqGrowthP_alphaMu_pos {μ : ℝ} (hμ : 1 < μ) : 0 < alphaMu μ
   have h2 : 0 < Real.log (2 * μ) := Real.log_pos (by linarith)
   positivity
 
-/-- **`lem:Lq-growth`(2)** (`06_datum.tex:511-520`): if `p₀ ≥ 1`, `K₀ > 0`, `θ > 0` on `[p₀, ∞)`
+/-- **Supplementary growth bound (2)** (no current manuscript counterpart): if `p₀ ≥ 1`, `K₀ > 0`, `θ > 0` on `[p₀, ∞)`
 and `‖f‖_{L^p} ≤ K₀θ(p)` for `p ≥ p₀`, then `y ↦ 1/(y ψ_θ(y))` is integrable on `(1, ∞)`. -/
 theorem Lq_growth_psi (χ : ℝ → ℝ) (hχ : IsAdmissibleCutoff χ) {A₁ μ sbar : ℝ}
     (hp : DatumParams A₁ μ sbar) {p₀ K₀ : ℝ} {θ : ℝ → ℝ} (hp₀ : 1 ≤ p₀) (hK₀ : 0 < K₀)
@@ -300,7 +304,7 @@ theorem Lq_growth_psi (χ : ℝ → ℝ) (hχ : IsAdmissibleCutoff χ) {A₁ μ 
         (alphaMu μ / 2 * y⁻¹ / (1 + alphaMu μ / 2 * Real.log y) ^ 2) := by
         field_simp
 
-/-- **`lem:Lq-growth`(3)** (`06_datum.tex:521-526`): if `K₀ > 0`, `θ` is measurable and positive on
+/-- **Supplementary growth bound (3)** (no current manuscript counterpart): if `K₀ > 0`, `θ` is measurable and positive on
 `[1, ∞)`, and `‖f‖_{L^p} ≤ K₀θ(p)` for `p ≥ 1`, then `p ↦ 1/(p θ(p))` is integrable on `(1, ∞)`. -/
 theorem Lq_growth_theta (χ : ℝ → ℝ) (hχ : IsAdmissibleCutoff χ) {A₁ μ sbar : ℝ}
     (hp : DatumParams A₁ μ sbar) {K₀ : ℝ} {θ : ℝ → ℝ} (hK₀ : 0 < K₀) (hθm : Measurable θ)

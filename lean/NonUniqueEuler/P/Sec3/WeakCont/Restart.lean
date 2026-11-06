@@ -7,7 +7,7 @@ import NonUniqueEuler.H.Sec3.WeakCont.Restart.Limit
 /-!
 # Proof: `lem:weak-cont`, step 3 — restarting `(te)` at a time `t₀ ∈ (0,T)` (part (c))
 
-Proof of `I/Sec3/WeakCont/Restart.lean` (manuscript `03_compactness.tex:209-225`, `b = 2`).
+Proof of `I/Sec3/WeakCont/Restart.lean` (manuscript Part I Lemma 3.2 (`lem:weak-cont`), `b = 2`).
 
 * `continuousOn_integral_mul_slice`: `g(t) - g(s) = ∫ ũ(t) (φ(t) - φ(s)) + ∫ (ũ(t) - ũ(s)) φ(s)`;
   the first term is at most `N L |t - s| |K|^{1/2}` (Cauchy–Schwarz, `φ` is `L`-Lipschitz and its
@@ -26,7 +26,7 @@ open scoped ENNReal NNReal Topology
 namespace NonUniqueEuler.Weak.WeakCont
 
 /-- Continuity of `t ↦ ∫ ũ(t) φ(t,·)` on `[0,T]` for a weakly continuous `ũ` bounded in `L²` and
-`φ ∈ C_c¹(ℝ × ℝ²)` (`03_compactness.tex:216-219`). -/
+`φ ∈ C_c¹(ℝ × ℝ²)` (Part I Lemma 3.2 (`lem:weak-cont`)). -/
 theorem continuousOn_integral_mul_slice {T N : ℝ} {ũ : ℝ → ℂ → ℝ}
     (hũ : IsWeakContL2On (Icc 0 T) ũ)
     (hũN : ∀ t ∈ Icc 0 T, eLpNorm (ũ t) 2 volume ≤ ENNReal.ofReal N) {φ : ℝ × ℂ → ℝ}
@@ -94,7 +94,7 @@ theorem integrable_transportIntegrand_prod {T : ℝ} {u : ℝ → ℂ → ℝ} {
   rw [← JointRep.volume_restrict_slab]
   exact hte.integrableOn φ hφ
 
-/-- `(te)` tested with `ϰ_h φ`, `h > 0` (`03_compactness.tex:211-215`):
+/-- `(te)` tested with `ϰ_h φ`, `h > 0` (Part I Lemma 3.2 (`lem:weak-cont`)):
 `∫_0^T ϰ_h' g + ∫_0^T ϰ_h I = 0`, with `g(t) = ∫ ũ(t) φ(t)` and `I(t) = ∫ u (∂_t φ + w·∇φ)(t)`. -/
 theorem kappa_identity {T t₀ : ℝ} (ht₀ : t₀ ∈ Ioo 0 T) {u ũ : ℝ → ℂ → ℝ}
     {w : ℝ → ℂ → ℂ} {u₀ : ℂ → ℝ} (hte : SolvesTE 0 T u w u₀)
@@ -149,7 +149,7 @@ theorem kappa_identity {T t₀ : ℝ} (ht₀ : t₀ ∈ Ioo 0 T) {u ũ : ℝ →
 
 end Restart
 
-/-- `lem:weak-cont`(c) for `t₀ ∈ (0,T)` (`03_compactness.tex:209-225`): `u` satisfies `(te)` on
+/-- `lem:weak-cont`(c) for `t₀ ∈ (0,T)` (Part I Lemma 3.2 (`lem:weak-cont`)): `u` satisfies `(te)` on
 `[t₀,T)` with field `w` and datum `ũ(t₀)`. -/
 theorem solvesTE_restart {T N t₀ : ℝ} (ht₀ : t₀ ∈ Ioo 0 T) {u ũ : ℝ → ℂ → ℝ}
     {w : ℝ → ℂ → ℂ} {u₀ : ℂ → ℝ} (hte : SolvesTE 0 T u w u₀)

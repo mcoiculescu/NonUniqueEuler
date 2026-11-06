@@ -15,7 +15,7 @@ import Mathlib.MeasureTheory.Measure.OpenPos
 # Proof: `lem:reduction`(2) (the velocity of one ring and the radial motion of trajectories)
 
 Proof of `OneRing.reduction_velocity`, stated in `I/Sec5/Reduction.lean` (the statement is
-copied verbatim). Manuscript `05_single_ring.tex:110-117` (statement), `:187-198` (proof).
+copied verbatim). Manuscript Part II Lemma 2.2 (`lem:reduction`), statement and proof.
 
 **Proof.**
 * `ω_r ∈ C^∞(ℝ × ℝ²)` is `RingConfig.setting_parts_smooth`.
@@ -243,7 +243,7 @@ end ReductionVelocity
 
 open ReductionVelocity
 
-/-- **`lem:reduction`(2)** (`05_single_ring.tex:110-117`). Under the hypotheses of
+/-- **`lem:reduction`(2)** (Part II Lemma 2.2). Under the hypotheses of
 `lem:reduction` on `[0,T]`: `ω_r ∈ C^∞(ℝ × ℝ²)`; on `[0,T] × N'` the velocity is
 `v = K_BS * ω = Ω(|x|;G)x^⊥ + h + K_BS * (ω_r - Φ)`; and if `t ∈ [0,T]` and `Φ_τ(y) ∈ N'` for
 every `τ ∈ [0,t]`, then `|Φ_t(y)| - |y| = ∫₀ᵗ ((h + K_BS*(ω_r - Φ))·e_r)(τ, Φ_τ(y)) dτ`. -/

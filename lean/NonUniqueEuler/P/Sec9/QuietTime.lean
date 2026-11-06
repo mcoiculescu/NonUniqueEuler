@@ -7,9 +7,9 @@ import Mathlib.Analysis.SpecificLimits.Normed
 /-!
 # Proof of `lem:quiet-time` (the length of the quiet phase of a ring)
 
-Proof of the interface `I/Sec9/QuietTime.lean` (`09_relay.tex:1496-1554`).
+Proof of the interface `I/Sec9/QuietTime.lean` (`lem:quiet-time`, Part II Lemma C.16).
 
-* **Locating `t`** (`09_relay.tex:1512-1523`). We take `i_*` least in `(j, n]` such that for every
+* **Locating `t`** (`lem:quiet-time`, Part II Lemma C.16). We take `i_*` least in `(j, n]` such that for every
   `i ∈ [i_*, n]`, `t♯_i` is defined and `t♯_i ≤ t` (`Nat.find`; `i = n` qualifies since
   `t♯_n = 0 ≤ t`). This variant of the manuscript's `i_*` (least `i` with `t♯_i` defined and
   `t♯_i ≤ t`) avoids the monotonicity of `t♯` and gives the same conclusion: with `k = i_* - 1`,
@@ -17,13 +17,15 @@ Proof of the interface `I/Sec9/QuietTime.lean` (`09_relay.tex:1496-1554`).
   (by `htj` if `k = j`, by minimality of `i_*` if `k > j`).
 * **Unrolling the clock** (`tsh_eq_sum'`): `t♯_k = Σ_{i ∈ (k, n]} (T̂_i + T_pin)/A_i`, from
   `tsh_eq_T_add`, `T_of_ne` and `tsh_n` (pure algebra, no clock condition needed).
-* **The three groups** (`09_relay.tex:1525-1547`), with `A_j/A_i = μ^{-(i-j)}` (`A_div_A`):
+* **The three groups** (`lem:quiet-time`, Part II Lemma C.16), with `A_j/A_i = μ^{-(i-j)}` (`A_div_A`):
   pinning `≤ T_pin/(μ-1)`, active phases `≤ σ'⁻¹(log₊(δ₀/K_lo) + 5L)/(μ-1) +
   5σ'⁻¹log(2μ)·μ/(μ-1)²` (`L = log(1/s_j)`, geometric sums `sum_geom_le`, `sum_lin_geom_le`),
   seeded phase `≤ σ'⁻¹(log₊(δ₀/K_lo) + 6L)`; the final real algebra is `final_alg`.
 * `K_lo > 0` and `K_lo ≤ K_up` come from `lem:uniform` (`0 < c_N ≤ C_N`) and `|z| ≥ σ > 0`
   (`standing_levels`); `σ_i > σ'` from `lem:detuning`.
 * **The bound by `C_τ`** is `bound_alg` (`μ log(2μ) ≤ 3` suffices; the manuscript uses `< 1`).
+  This additional estimate is now in the proof of Lemma C.5 (`lem:theta-quiet`),
+  Appendix C.3 (`sec:param-feedback`), with `C_τ` chosen in (P3), Definition C.2.
 -/
 
 noncomputable section
@@ -127,7 +129,7 @@ theorem inv_mul_log_nonneg {σ δ κ : ℝ} (hσ : 0 < σ) (hκ : 0 < κ) (hκδ
     0 ≤ σ⁻¹ * Real.log (δ / κ) :=
   mul_nonneg (inv_nonneg.2 hσ.le) (Real.log_nonneg (by rw [le_div_iff₀ hκ]; linarith))
 
-/-- The final real algebra of `lem:quiet-time` (`09_relay.tex:1544-1547`), with `e = μ - 1`. -/
+/-- The final real algebra of `lem:quiet-time` (Part II Lemma C.16), with `e = μ - 1`. -/
 theorem final_alg {e σ' Tp Pl L lg μ X Y Z : ℝ} (he : 0 < e) (he1 : e ≤ 1) (hσ' : 0 < σ')
     (hT : 0 ≤ Tp) (hP : 0 ≤ Pl) (hL : 0 ≤ L)
     (hX : X ≤ σ'⁻¹ * (Pl + 5 * L) * (1 / e) + σ'⁻¹ * (5 * lg) * (μ / e ^ 2))
@@ -149,7 +151,7 @@ theorem final_alg {e σ' Tp Pl L lg μ X Y Z : ℝ} (he : 0 < e) (he1 : e ≤ 1)
   linarith
 
 /-- The real algebra of the bound `τ̄♯_j ≤ C_τ[T_z + L + (μ-1)⁻¹]/(μ-1)`
-(`09_relay.tex:1549-1553`), with `e = μ - 1`, `lg = log(2μ)`. -/
+(proof of Part II Lemma C.5, `lem:theta-quiet`), with `e = μ - 1`, `lg = log(2μ)`. -/
 theorem bound_alg {e σ' Tz L lg μ C : ℝ} (he : 0 < e) (hσ' : 0 < σ') (hTz : 0 ≤ Tz)
     (hL : 0 ≤ L) (hμlg : μ * lg ≤ 3) (hC3 : 3 ≤ C) (hC11 : (2 * 3 + 5) / σ' ≤ C)
     (hC15 : 3 * (3 + 2) / σ' ≤ C) :
@@ -173,8 +175,7 @@ theorem bound_alg {e σ' Tz L lg μ C : ℝ} (he : 0 < e) (hσ' : 0 < σ') (hTz 
 
 /-! ### The clock -/
 
-/-- Unrolling the clock: `t♯_{n-d} = Σ_{i ∈ (n-d, n]} (T̂_i + T_pin)/A_i` (`def:clock`,
-`06_datum.tex:404-409`; no clock condition is needed for the formulas). -/
+/-- Unrolling the clock: `t♯_{n-d} = Σ_{i ∈ (n-d, n]} (T̂_i + T_pin)/A_i` (`def:clock`, Part II Definition 3.9; no clock condition is needed for the formulas). -/
 theorem tsh_eq_sum (P : Approx) : ∀ d, d ≤ P.n →
     P.tsh (P.n - d) = ∑ i ∈ Finset.Ioc (P.n - d) P.n, (P.That i + P.Tpin) / P.A i
   | 0, _ => by simp [Approx.tsh_n]
@@ -246,7 +247,7 @@ theorem Klo_pos (S : Standing) (hS : S.Holds) : 0 < S.Klo := by
   apply div_pos (mul_pos h1 h3)
   exact mul_pos (mul_pos (by norm_num) h2) (by linarith)
 
-/-- `K_lo ≤ K_up` (`c_N ≤ C_N` and `1/22 ≤ 5μ e^{17σT_pin/16}`, `09_relay.tex:1537-1538`). -/
+/-- `K_lo ≤ K_up` (`c_N ≤ C_N` and `1/22 ≤ 5μ e^{17σT_pin/16}`, `lem:quiet-time`, Part II Lemma C.16). -/
 theorem Klo_le_Kup (S : Standing) (hS : S.Holds) : S.Klo ≤ S.Kup := by
   obtain ⟨hc, hcC⟩ := cN_pos_le_CN S hS
   have hz := norm_z_pos S hS
@@ -281,7 +282,7 @@ open QuietTimeAux
 
 /-! ### The core estimate -/
 
-/-- **The core of `lem:quiet-time`** (`09_relay.tex:1524-1547`): if `j ≤ k < n`, the clock is
+/-- **The core of `lem:quiet-time`** (`lem:quiet-time`, Part II Lemma C.16): if `j ≤ k < n`, the clock is
 defined up to level `k + 1`, `κ♯_i ≥ K_lo s_i⁵` for `k < i < n` and `κ♯_n ≥ ½κ_seed`, then
 `A_j t♯_k ≤ τ̄♯_j`. -/
 theorem QuietTimeAux.core (S : Standing) (hS : S.Holds) (hDet : S.Det)
@@ -421,7 +422,7 @@ theorem QuietTimeAux.core (S : Standing) (hS : S.Holds) (hDet : S.Det)
 
 /-! ### `lem:quiet-time` -/
 
-/-- **`lem:quiet-time`, main part** (`09_relay.tex:1496-1507`). Assume (SA), (Det),
+/-- **`lem:quiet-time`, main part** (`lem:quiet-time`, Part II Lemma C.16). Assume (SA), (Det),
 `K_up s̄⁵ ≤ κ_seed`, `1 ≤ j < n`, `t ≥ 0`; for every `i ∈ (j, n]` with `t♯_i` defined and
 `t♯_i ≤ t`, the clock is defined up to level `i` and `κ♯_i ≥ K_lo s_i⁵` if `i < n`; `t ≤ t♯_j` if
 `t♯_j` is defined; and `κ♯_n ≥ ½κ_seed`. Then `A_jt ≤ τ̄♯_j`. -/
@@ -478,7 +479,8 @@ theorem quiet_time (S : Standing) (hS : S.Holds) (hDet : S.Det)
         have hi' := Finset.mem_Ioo.1 hi
         exact (hfacts i (Finset.mem_Icc.2 ⟨by omega, hi'.2.le⟩)).2 hi'.2) hκn
 
-/-- **`lem:quiet-time`, the bound on `τ̄♯_j`** (`09_relay.tex:1507-1509`, proof `:1549-1553`):
+/-- **The auxiliary bound on `τ̄♯_j`**, now in the proof of Part II Lemma C.5
+(`lem:theta-quiet`, Appendix C.3), rather than the statement of Lemma C.16:
 under (SA), for `1 ≤ j < n`, `τ̄♯_j ≤ C_τ[T_z + log(1/s_j) + (μ-1)⁻¹]/(μ-1)`. -/
 theorem quiet_time_bound (S : Standing) (hS : S.Holds) {j : ℕ} (hj : 1 ≤ j) (hjn : j < S.P.n) :
     S.tauBarSh j ≤

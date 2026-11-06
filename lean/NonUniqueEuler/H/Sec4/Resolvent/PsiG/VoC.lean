@@ -5,7 +5,7 @@ import Mathlib.MeasureTheory.Integral.IntervalIntegral.FundThmCalculus
 /-!
 # Helpers for `P/Sec4/Resolvent/PsiG`: variation of constants with an `L¹` forcing
 
-Steps 2-3 of the proof of `psiG_spec` (proof of `lem:resolvent`(1), `04_ring.tex:412-422`:
+Steps 2-3 of the proof of `psiG_spec` (proof of Part I Lemma 4.7(1) (`lem:resolvent`):
 "differentiating the formula for `ψ_g`, the terms from the variable limits cancel, and
 `ψ_g'' = V_ℓψ_g + W⁻¹(ψ_Lψ_R' - ψ_L'ψ_R)F`"), for an abstract pair of classical solutions
 `ψ_L, ψ_R` of `ψ'' = Vψ` with constant Wronskian `W`, and a forcing `F` that is only locally

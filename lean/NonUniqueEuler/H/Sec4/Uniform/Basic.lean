@@ -5,7 +5,7 @@ import Mathlib.Analysis.SpecialFunctions.Complex.CircleMap
 import Mathlib.Analysis.SpecialFunctions.Pow.Continuity
 
 /-!
-# Helpers for `lem:uniform`: generic facts (a.e. classes, `Y^s(K)`, Cauchy–Schwarz)
+# Helpers for Part I Lemma 4.23 (`lem:uniform`): generic facts (a.e. classes, `Y^s(K)`, Cauchy–Schwarz)
 
 Helper of `P/Sec4/Uniform.lean` (fully proved). Namespace `NonUniqueEuler.Eig.UniformH`.
 

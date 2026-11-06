@@ -4,7 +4,7 @@ import NonUniqueEuler.H.Sec5.Quiet.Approx.Induction
 # Helpers for `quiet_approx`: the residual of `w_app = Σ_{j ≤ N_Q} w^{[j]}`
 
 Helper of `P/Sec5/Quiet/Approx.lean` (fully proved). Namespace `NonUniqueEuler.OneRing.QAppH`.
-Manuscript `05_single_ring.tex:494-507`: summing the equations of the `w^{[j]}` and using
+Manuscript Part II Theorem 2.8 (`thm:quiet`): summing the equations of the `w^{[j]}` and using
 `Σ_{j=2}^{N_Q} Σ_{i+l=j} B(w^{[i]},w^{[l]}) = B(w_app,w_app) - Σ_{i,l ≤ N_Q, i+l > N_Q} B(w^{[i]},w^{[l]})`,
 `Σ_{j=2}^{N_Q} h·∇w^{[j-1]} = h·∇w_app - h·∇w^{[N_Q]}`, the residual of `lem:energy` is
 `R_app = -Σ_{i,l ≤ N_Q, i+l > N_Q} B(w^{[i]},w^{[l]}) + h·∇w^{[N_Q]}` (a.e.).
@@ -48,7 +48,7 @@ theorem Lfn_sum_ae (χ : ℝ → ℝ) (hχ : IsAdmissibleCutoff χ) {k : ℕ} (G
   rw [← e1, e2]
   exact Finset.sum_congr rfl e3
 
-/-- **The residual identity** (`05_single_ring.tex:497-506`). -/
+/-- **The residual identity** (Part II Theorem 2.8 (`thm:quiet`)). -/
 theorem rapp_ae (χ : ℝ → ℝ) (K : ℕ) (G : ℝ) (h : ℝ → ℂ → ℂ) {NQ : ℕ} (hQ : 2 ≤ NQ) (τ : ℝ)
     (hX : ∀ j ∈ Finset.Icc 1 NQ, Lin.MemXFn 2 (hw χ K G h j τ)) :
     Rapp χ G h (fun t => ∑ j ∈ Finset.Icc 1 NQ, hw χ K G h j t)

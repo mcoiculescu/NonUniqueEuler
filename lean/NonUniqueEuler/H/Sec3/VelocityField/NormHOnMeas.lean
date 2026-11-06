@@ -6,7 +6,7 @@ import Mathlib.MeasureTheory.Integral.Prod
 # Helpers for `I/Sec3/VelocityField`: measurability of `t ↦ ‖f(t)‖_{H^k(B_R)}`
 
 Helper file of `P/Sec3/VelocityField.lean` (the measurability clause of
-`Weak.IsBddH1DivFreeField` in the remark `03_compactness.tex:243-247`).
+`Weak.IsBddH1DivFreeField` in the remark Part I §3.2 (`sec:weak-rep`)).
 
 * `aestronglyMeasurable_l2On_weakDerivOn`: if `f` is a.e. strongly measurable on `I × ℂ` and,
   for a.e. `t`, `f(t)` has a weak derivative `∂_{vs} f(t)` in `L²(B_R)`, then

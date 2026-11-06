@@ -9,9 +9,9 @@ import Mathlib.MeasureTheory.Integral.IntervalIntegral.FundThmCalculus
 /-!
 # Proof: the circulation term `g`, `Ω_G`, the denominator `λ + iℓΩ_G` and `δ`
 
-Proof of `NonUniqueEuler/I/Verify/ProfileOmega.lean`. Manuscript: proof of Proposition A.3,
-steps (i) and (iii) (`A_verification.tex:364-372`, `:401-404`), proof of Lemma A.1(2)
-(`:174-180`) and of Lemma A.2 (`:207-218`).
+Proof of `NonUniqueEuler/I/Verify/ProfileOmega.lean`. Manuscript: proof of Part II Proposition A.3,
+steps (i) and (iii) (`prop:enclosure`), proof of Part II Lemma A.1(2)
+(`lem:end-regions`) and of Part II Lemma A.2 (`lem:apriori`).
 
 We follow the manuscript.
 * The integrand `t ↦ ϖ(t) e^{2t}` is continuous, satisfies `0 ≤ ϖ e^{2·} ≤ e^{2·}` and
@@ -259,7 +259,7 @@ theorem contDiff_evansDelta {χ : ℝ → ℝ} (hχ : IsAdmissibleCutoff χ) (�
   rw [this]
   exact hnum.mul hinv
 
-/-- `|δ|/ℓ = |ϖ'|/|λ + iℓΩ_G|` (this is `b` of the proof of Lemma A.1(2)). -/
+/-- `|δ|/ℓ = |ϖ'|/|λ + iℓΩ_G|` (this is `b` of the proof of Part II Lemma A.1(2)). -/
 theorem norm_evansDelta_div {χ : ℝ → ℝ} {ℓ : ℕ} (hℓ : 1 ≤ ℓ) (z : ℂ) (G ξ : ℝ) :
     ‖evansDelta χ ℓ z G ξ‖ / ℓ =
       |deriv (prof χ) ξ| / ‖z + Complex.I * (ℓ : ℂ) * ((OmegaG χ G ξ : ℝ) : ℂ)‖ := by
