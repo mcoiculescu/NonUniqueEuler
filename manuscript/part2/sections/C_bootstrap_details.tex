@@ -151,7 +151,7 @@ local ring-$i$ coordinate is $s=A_it''$, and its inputs are the pullbacks
 \widetilde{\maj}_i(s)&=\maj_i(s/A_i).
 \end{aligned}
 \]
-In particular, $s\in[0,A_it']$ corresponds to the physical interval $[0,t']$.
+In particular, $s\in[0,A_it']$ corresponds to the physical time interval $[0,t']$.
 If $t'=0$, Equation~\eqref{eq:boot-quiet} holds since every ring $i\le j<n$
 starts at $\Phi$ in ring-$i$ units, with $\maj_i(0)=0$ and $w_i(0)=0$
 (Definition~\ref{def:approx}). Let $t'>0$. Suppose first that $\tsh_j$ is defined;
@@ -175,7 +175,7 @@ $i\le j$, after rescaling to ring-$i$ time. If $\tsh_j$ is not defined, apply
 Lemma~\ref{lem:O} instead to the innermost quiet ring at $t'$. Its activation
 time was assigned when the ring just inside it became active, and its
 outer rings include ring $j$. The conclusions of Lemma~\ref{lem:O} therefore
-give Theorem~\ref{thm:quiet} for ring $j$ on the physical interval $[0,t']$.
+give Theorem~\ref{thm:quiet} for ring $j$ on the physical time interval $[0,t']$.
 In both cases Theorem~\ref{thm:quiet} gives the bounds~\eqref{eq:boot-quiet}
 for every $t''\in[0,t']$.
 
@@ -190,7 +190,7 @@ hand-offs at the inner levels have already been performed.
 The clock is defined up to level $k+1$, and no ring is active on
 $(T_{k+1},\tsh_k)$.
 By the hand-off argument for ring $k+1$ and
-(B6), or by the seed estimates if $k+1=n$,
+(B6), or by Equation~\eqref{eq:boot-seed-data} if $k+1=n$,
 \begin{equation}
 \label{eq:boot-kappa}
 0<\ksh_{k+1}\le2\kseed .
@@ -210,7 +210,7 @@ $\eta=\eta_{b,k+1}\in[0,\eta_b]$, together with
 Equation~\eqref{eq:relay-drift-small}. Fourth, if $k+1<n$: on $[0,\tsh_{k+1}]$
 $D_{k+2}\subset B_{ar_{k+1}/8}$ and the rings $i\le k$ lie outside $B_{6r_{k+1}}$
 by Equations~\eqref{eq:geometry-quiet-inner} and~\eqref{eq:geometry-quiet-support};
-the hypotheses of Theorem~\ref{thm:quiet} for ring $k+1$ on the physical
+the hypotheses of Theorem~\ref{thm:quiet} for ring $k+1$ on the physical time
 interval $[0,\tsh_{k+1}]$ were checked in
 Appendix~\ref{sec:bootstrap-quiet-control}; $\maj_{k+1}(\tsh_{k+1})\le K_1\ksh_{k+1}$ is
 Equation~\eqref{eq:handoff} for ring $k+1$; the hypotheses of
@@ -232,11 +232,11 @@ and
 \end{equation}
 
 Next we apply Proposition~\ref{prop:relay} with the constants $C_0$ and $K_1$,
-$j=k$ and physical endpoint $\tsh_k$. By
+$j=k$ and endpoint $\tsh_k$ in physical time. By
 Lemma~\ref{lem:quiet-time} at the time $\tsh_k$ (its hypothesis
 $\Kup\sbar^5\le\kseed$ is (B6); its hypotheses on the levels
 $i\in(k,n)$ hold by the hand-off argument for these levels, and $\ksh_n\ge\frac12\kseed$ by
-the seed estimates) and Lemma~\ref{lem:theta-quiet},
+Equation~\eqref{eq:boot-seed-data}) and Lemma~\ref{lem:theta-quiet},
 \begin{equation}
 \label{eq:boot-theta}
 \theta_k A_k\tsh_k\le\theta_k\bar\tau^\sharp_k\le\min\Big\{\frac12,\frac1{4\Cls K_1}\Big\}.
@@ -358,11 +358,11 @@ This step verifies the hypotheses
 (Init), (Field), (Coef) and (Small) of Theorem~\ref{thm:active} for ring $k$ on
 $\Phase_k\cap[0,t]$. Let $t'\in\Phase_k\cap[0,t]$ and
 $\bar u=A_k(t'-\tsh_k)\le\hat T_k$. If $t'=\tsh_k$, we need only the two bounds
-at the end of this step for $t''=\tsh_k$, and they hold already: $S_k(\tsh_k)\subset\NNm_k\subset\NN_k$ by the seed estimates
+at the end of this step for $t''=\tsh_k$, and they hold already: $S_k(\tsh_k)\subset\NNm_k\subset\NN_k$ by Equation~\eqref{eq:boot-seed-data}
 if $k=n$ and by Equation~\eqref{eq:handoff} if $k<n$, and the bound on
 $\|w_k(\tsh_k)\|_{H^s}$ is Equation~\eqref{eq:boot-start}, respectively
 \eqref{eq:boot-switch}. So let $t'>\tsh_k$; then $\bar u>0$, and $T_k$ is defined
-by the seed or hand-off estimates. By the invariance of Equation~\eqref{eq:euler} under
+by Equation~\eqref{eq:boot-seed-data} or~\eqref{eq:relay-startup} and the clock definition. By the invariance of Equation~\eqref{eq:euler} under
 translations in time and the scaling of ring-$k$ units, and by
 Theorem~\ref{thm:smooth}(5), the solution in ring-$k$ units with time origin
 $\tsh_k$ is the solution of Theorem~\ref{thm:smooth} with datum
@@ -381,12 +381,13 @@ The support
 hypotheses of Lemma~\ref{lem:reduction} on $[0,\bar u]$ are
 Equations~\eqref{eq:geometry-quiet-support} and~\eqref{eq:geometry-quiet-inner}. For Theorem~\ref{thm:active}: $G_k\in[0,\Gone]$,
 $\delta_0\le\dH$ by (P1), $\eta_{b,k}\le\eta_b\le1$ by (B8), and (Small)
-holds: $\ksh_k\le2\kseed\le\kappa_0(C_0)$ by the seed estimates if $k=n$, by the hand-off argument and (B6) if
+holds: $\ksh_k\le2\kseed\le\kappa_0(C_0)$ by Equation~\eqref{eq:boot-seed-data} if $k=n$, by Equation~\eqref{eq:relay-startup} and (B6) if
 $k<n$, and by ($\kappa$4). It remains to check (Init), (Field) and (Coef).
 
 (Init): for $k<n$, Equation~\eqref{eq:handoff} gives
 $\|w_k(\tsh_k)\|_{H^{M-1}}\le K_1C_Q\ksh_k\le C_0\ksh_k$ and
-$\supp(\Phi+w_k(\tsh_k))\subset\NNm$; for $k=n$ this is the seed estimates.
+$\supp(\Phi+w_k(\tsh_k))\subset\NNm$; for $k=n$, these are the seed estimates
+\eqref{eq:boot-seed-data} in ring-$n$ units.
 
 (Field), inner part $h_1(u)=\hin_k(\tsh_k+u/A_k)$. For $k=n$, $h_1=0$, because
 $D_{n+1}=\emptyset$ and $G_n=0$. Let $k<n$, $u\in[0,\bar u]$ and
@@ -413,16 +414,16 @@ Lemma~\ref{lem:Oprime} with the constants $C_0$, $K_1$ at the time $t'$.
 The clock is defined up to level $k$, and (Loc) holds on $[0,t']$ by
 Equation~\eqref{eq:geometry-loc}. If $k\ge2$, ring $k-1$ is quiet on $[0,t']$,
 so the verification in Appendix~\ref{sec:bootstrap-quiet-control} gives the
-hypotheses and conclusions of Lemma~\ref{lem:O} for $j=k-1$ and physical
-endpoint $t'$; and $\theta_{k-1}A_{k-1}t'\le\theta_{k-1}A_{k-1}\tsh_{k-1}\le\frac12$
+hypotheses and conclusions of Lemma~\ref{lem:O} for $j=k-1$ and endpoint
+$t'$ in physical time; and $\theta_{k-1}A_{k-1}t'\le\theta_{k-1}A_{k-1}\tsh_{k-1}\le\frac12$
 (as ring $k-1$ is quiet at $t'$) by Lemma~\ref{lem:quiet-time} at the time
 $\tsh_{k-1}$ and Lemma~\ref{lem:theta-quiet}; the hypotheses of
 Lemma~\ref{lem:quiet-time} besides (B6) concern the levels $i\ge k$, whose amplitudes are
 bounded below by the hand-off argument at the times $\tsh_i\le\tsh_k$ and, for $i=n$, by
-the seed estimates. (BA3) for ring $k$ holds on $(\tsh_k,t']$ by (BA)$(t)$ and at
+Equation~\eqref{eq:boot-seed-data}. (BA3) for ring $k$ holds on $(\tsh_k,t']$ by (BA)$(t)$ and at
 $\tsh_k$ by Equation~\eqref{eq:boot-switch} or \eqref{eq:boot-start}; the inner
 bound is Equation~\eqref{eq:boot-inner}. If $k<n$, the conclusions of
-Theorem~\ref{thm:quiet} for ring $k$, after rescaling, on the physical
+Theorem~\ref{thm:quiet} for ring $k$, after rescaling, on the physical time
 interval $[0,\tsh_k]$ hold by the verification in
 Appendix~\ref{sec:bootstrap-quiet-control},
 $\maj_k(\tsh_k)\le K_1\ksh_k$ is Equation~\eqref{eq:relay-startup}, and the
@@ -435,7 +436,7 @@ $[\tsh_k,t']$. Equation~\eqref{eq:etab} therefore gives
 \end{equation}
 which is the second bound of (Field).
 
-(Coef): we apply Lemma~\ref{lem:drift} to ring $k$ with physical endpoint
+(Coef): we apply Lemma~\ref{lem:drift} to ring $k$ with endpoint in physical time
 $\bar t=t'$ and
 $\eta=\eta_{b,k}$. Hypotheses (i) and (ii) concern only $k<n$. (i) is
 Equation~\eqref{eq:geometry-moment} on $W_k$, since the kick time is
@@ -455,7 +456,7 @@ Equations~\eqref{eq:geometry-quiet-support} and~\eqref{eq:geometry-quiet-inner}.
 $\Cls\eta_{b,k}\hat T_k\le\frac1{32}$: for $k=1$, $\eta_{b,1}=0$; for $2\le k<n$,
 $\hat T_k\le\sigma'^{-1}\big(5\log\frac1{s_k}+\log_+\frac{\delta_0}{\Klo}\big)$,
 as $\sigma_k\ge\sigma'$ and $\ksh_k\ge\Klo s_k^5$, and (B8) applies; for
-$k=n$, $\hat T_n\le\sigma'^{-1}\log(2\delta_0/\kseed)$ by the seed estimates and
+$k=n$, $\hat T_n\le\sigma'^{-1}\log(2\delta_0/\kseed)$ by Equation~\eqref{eq:boot-seed-data} and
 $\eta_{b,n}\le\eta_b$, and (B8) applies. These are precisely
 Equation~\eqref{eq:drift-smallness} with $\eta=\eta_{b,k}$.
 Lemma~\ref{lem:drift} gives (Coef) on $[0,\bar u]$ and, if

@@ -26,16 +26,16 @@ First fix the ring, its spectral data and the regularity orders. The
 interval for $\sigma'$ is nonempty because $\sigb>211/2500>9/200$ and
 $3\sigma/4\ge3\sigb/4>9/200$. Choose $\delta_0>0$ small so the quadratic
 error is a small fraction of the outgoing moment. Choose $\mu-1>0$
-small compared with $\delta_0$ so the kick dominates the subsequent
-moment drift. The bound for the coefficient drift after pinning contains
-a polynomial times a decaying exponential. Choose $\Tpin$ large enough
-to make this factor small.
+small compared with $\delta_0$ to control
+$|c_k(v)-c_k(\tsh_k)|$ relative to $\ksh_k$
+(Equation~\eqref{eq:drift-interval}). Choose $\Tpin$ large enough
+to make $\rT(\Tpin)$ small.
 
 We now fix the constant $K_1$ in the Duhamel bound
 $\maj_k(\tsh_k)\le K_1\ksh_k$ of Equation~\eqref{eq:relay-startup}.
-Its formula in Definition~\ref{def:K1}
-reserves a fixed allowance for the remainder in the transmitted field
-estimate. This allows us to choose $K_1$ using the data already fixed.
+Its formula in Definition~\ref{def:K1} replaces $\Xi_{j+1}$ in
+Equation~\eqref{eq:relay} by $\delta_0/(\sigb(\mu-1))$;
+condition $(\kappa7)$ will ensure this bound. Thus $K_1$ uses only the data already fixed.
 Choose $C_0$ to satisfy Equation~\eqref{eq:param-C0}, which bounds the initial
 perturbation and inner field required by Theorem~\ref{thm:active}.
 The constants controlling the remainder, including
@@ -46,13 +46,13 @@ bound expressions of the form
 $C\kappa^\alpha\langle\log(\delta_0/\kappa)\rangle^N$ by fixed positive
 constants, with $\alpha>0$ and $N\ge0$. The exponents are positive because
 $\mu>1$ and $\sigma'<3\sigma/4$.
-These expressions tend to zero as $\kappa\to0$. The active transient also
+These expressions tend to zero as $\kappa\to0$. The function $\rhohat$ also
 tends to zero at saturation, uniformly in $G\in[0,\Gone]$: its initial layer
 has uniformly bounded length, while the saturation time grows like
 $\log(1/\kappa)$ and its decay rate is at least $\sigb-\sigma'>0$.
 Thus every condition holds throughout $(0,2\kseed]$ once $\kseed$ is small
-enough. In particular the remainder fits the allowance used to choose
-$K_1$ at every hand-off.
+enough. In particular, $\Xi_{j+1}\le\delta_0/(\sigb(\mu-1))$ at every
+hand-off, as required in the choice of $K_1$.
 
 After the seed is fixed, the radius conditions have the same form,
 $C\sbar^\alpha\log^N(1/\sbar)$, except for spectral continuity and the
@@ -76,7 +76,7 @@ Choice & Purpose & Fixed after \\
 \hline
 (P0): ring and regularity & Supply the spectral, velocity and single-ring estimates & fixed data \\
 (P1): $\delta_0$ & Keep nonlinear errors below the outgoing moment & (P0) \\
-(P2): $\mu$ & Separate the kick from the later moment drift & (P1) \\
+(P2): $\mu$ & Control the change in $c_k$ after activation & (P1) \\
 (P3): $\Tpin$, $K_1$ & Control the tail of the kick and fix the hand-off constant & (P2) \\
 (P4): $C_0$, error constants & Bound the initial perturbation, inner field and remainder & (P3) \\
 (P5): $\kseed$ & Control pre-activation and transient errors uniformly & (P4) \\

@@ -41,9 +41,8 @@ $\sigma_i\mu^{i-j}\le\sigma_i/\mu\le\sigma_j-\sigb(\mu-1)/(2\mu)$.
 
 Recall that $\etin_i$ and $\etout_i$ are the $C^{M_h}(N')$ norms of
 $\hin_i$ and $\hout_i$ in ring-$i$ units. The inner field has its monopole
-removed. The next lemma separates the contribution of the adjacent inner
-ring from that of the material deeper inside, and sums the contributions
-of the outer rings.
+removed. The next lemma bounds $\etin_i$ using $w_{i+1}$ and $\etin_{i+1}$,
+and bounds $\etout_i$ by summing over $w_l$ for $l<i$.
 
 \begin{lemma}
 \label{lem:transfer-step}
@@ -306,10 +305,10 @@ For $j=1$ there is no outer ring and $\etout_1=0$.
 \subsection{The field transmitted by the next inner ring}
 \label{sec:proof-relay}
 
-The incoming field has three contributions: the earlier quiet response, the
-growth of the next inner ring, and the material left after its saturation.
-The next proposition bounds their accumulated effect and absorbs the
-smaller feedback from the outer quiet rings.
+To bound $\maj_j^{\mathrm{in}}$, we integrate $\etin_j$ separately before
+$\tsh_{j+1}$, on $[\tsh_{j+1},T_{j+1}]$, and after $T_{j+1}$.
+The next proposition estimates these integrals and uses
+$\etout_j\le\theta_j\maj_j$ to obtain $\maj_j\le2\maj_j^{\mathrm{in}}$.
 
 \begin{proposition}
 \label{prop:relay}
@@ -622,9 +621,9 @@ the solution on $[0,t']$ only.
 \subsection{The coefficient after activation}
 \label{sec:relay-coefficient}
 
-The running coefficient has its free linear growth removed. Its exponential
-weight suppresses the polynomial growth of the inner moment after saturation.
-The next lemma bounds this remaining contribution and the outer-ring feedback.
+The coefficient $c_k$ has its free linear growth removed. Its exponential
+weight suppresses the polynomial growth of $q_{k+1}$ after $T_{k+1}$.
+The next lemma bounds $c_k(t')-c_k(t)$ using $q_{k+1}$ and $\hout_k$.
 In item (ii), $q'$ is the amplitude supplied by Lemma~\ref{lem:kicktrue}.
 
 \begin{lemma}
@@ -695,14 +694,15 @@ shows that $c_k(t')-c_k(t)$ is the sum of
 By Lemma~I.\ref{I-lem:uniform} and Equation~\eqref{eq:drift-outer},
 $|\ellst(G_k)(-\hout_k(t(v))\cdot\nabla\Phi)|
 \le\Cls\eta\kappa e^{\sigma_kv}$.
-The outer integral is therefore at most
+The modulus of the integral with $\bullet=\mathrm{out}$ is therefore at most
 $\Cls\eta\kappa(u'-u)=\Cls\eta\kappa A_k(t'-t)$.
 
 If $k=n$, then $D_{n+1}=\emptyset$ and $G_n=0$, so $\hin_n=0$.
 For $k<n$, Lemma~\ref{lem:coupling}\textup{(1)} gives
 $\ellst(G_k)(-\hin_k(t(v))\cdot\nabla\Phi)=\mu\beta_kq_{k+1}(t(v))$.
 With $\zeta_0=\lambda/\mu$ and $\tau_a=\Tpin+\mu u$, the substitution
-$\tauK=\Tpin+\mu v=A_{k+1}(t(v)-T_{k+1})$ gives the inner integral as
+$\tauK=\Tpin+\mu v=A_{k+1}(t(v)-T_{k+1})$ gives the integral with
+$\bullet=\mathrm{in}$ as
 \[
 e^{\zeta_0\Tpin}\beta_k\int_{\tau_a}^{\Tpin+\mu u'}
 e^{-\zeta_0\tauK}q_{k+1}\big(T_{k+1}+\tauK/A_{k+1}\big)\dd\tauK.
@@ -720,7 +720,7 @@ By Equation~\eqref{eq:drift-startup},
 |\beta_k|\Cmom\Ip{3}{\sigma/4}\le\frac{|\beta_k||q'|}{10|\lamref|(\mu-1)}
 \le|\Ain(\Tpin)|\le2\kappa e^{-x_k\Tpin}.
 \]
-The inner integral is at most $2\kappa\rT(\tau_a)$, proving
+The modulus of the integral with $\bullet=\mathrm{in}$ is at most $2\kappa\rT(\tau_a)$, proving
 Equation~\eqref{eq:drift-interval}.
 
 Apply Equation~\eqref{eq:drift-interval} to the pair $(\tsh_k,t)$, with $t\le\bar t\le T_k$.
@@ -919,8 +919,7 @@ and then the remaining ones; (a)--(f) refer to the inequalities in the statement
 above. Write $\sigma_+=\sigma_{k+1}$, $x=x_k=\sigma_k/\mu$,
 $L=\log(\delta_0/\kappa)$, $\lambda_{\mathrm{in}}=\lambda_{k+1}$, $\zeta_0=\lambda_k/\mu$ and
 $w=\lambda_{\mathrm{in}}-\zeta_0$, so that $\Re w=\sigma_+-x$ and $T_g=L/\sigma_+$, and let
-$\mathsf B=\frac{15}{16}\cout\delta_0/(20|\lamref|(\mu-1))$ be the common budget of (d),
-(e) and (f).
+$\mathsf B=\frac{15}{16}\cout\delta_0/(20|\lamref|(\mu-1))$.
 
 By Lemma~\ref{lem:detuning} and its proof,
 $\frac{15}{16}\sigma\le\sigma_+\le\frac{17}{16}\sigma$, $x\ge\frac\sigma4$,
@@ -989,7 +988,8 @@ $w(u)=w_{k+1}(t)$. As $\qs e^{\lambda_{\mathrm{in}}\tau}=2\pi\pout_*(G_{k+1})c_{
 \end{align*}
 Equation~\eqref{eq:active-moment} bounds the bracket, and
 Equation~\eqref{eq:drift-interval} for ring $k+1$, with the physical-time pair $(t,T_{k+1})$ and
-$\eta=\eta_b$, bounds the drift (hypothesis (iii) of Lemma~\ref{lem:drift} with
+$\eta=\eta_b$, bounds $|c_{k+1}(t)-c_{k+1}(T_{k+1})|$
+(hypothesis (iii) of Lemma~\ref{lem:drift} with
 $\eta\le\eta_b$ implies (iii) with $\eta_b$, and
 Equation~\eqref{eq:drift-interval} does not use the bound on
 $\Cls\eta\hat T_{k+1}$). With $\hat a(u)=\kappa e^{\sigma_+u}$,
@@ -1005,19 +1005,17 @@ $\rhohat(u)=\rhohat_{k+1}(\tsh_{k+1}+u/A_{k+1})$ and $P=\max_{G\in[0,\Gone]}|\po
 
 \emph{(Kick3).} We bound
 $\Errg=\int_{-T_g}^0e^{-x\tau}\err(\tau)\dd\tau=\int_0^{T_g}e^{x(T_g-u)}\err(u-T_g)\dd u$
-term by term. In their order in Equation~\eqref{eq:kicktrue-error}, the terms are the
-transient term, the $\hat a^2$-term, the $\kappa^{1/2}$-term and the $\eta_b$-term,
-which come from Equation~\eqref{eq:active-moment}; the inner and the outer drift
-terms, which come from Equation~\eqref{eq:drift-interval}; and the deep term
-$|q^{\mathrm{deep}}|$. As $x<\sigma_+$, $2\sigma_+-x\ge\sigma_+\ge\frac{15}{16}\sigma$, so by
-(a) and $\mu-1\le1$ the $\hat a^2$-term contributes
+term by term in Equation~\eqref{eq:kicktrue-error}.
+As $x<\sigma_+$, $2\sigma_+-x\ge\sigma_+\ge\frac{15}{16}\sigma$, so by
+(a) and $\mu-1\le1$ the weighted integral of $2\pi C_3\hat a(u)^2$ is
 $2\pi C_3\kappa^2e^{xT_g}\int_0^{T_g}e^{(2\sigma_+-x)u}\dd u\le\frac{2\pi C_3\kappa^2e^{2\sigma_+T_g}}{2\sigma_+-x}
 \le\frac{16}{15}\cdot\frac{2\pi C_3\delta_0^2}{\sigma}\le\frac{\mathsf B}4$.
-In the same way, by Equation~\eqref{eq:Rew}, the $\kappa^{1/2}$-term and the
-$\eta_b$-term contribute at most
+In the same way, by Equation~\eqref{eq:Rew}, the terms containing
+$\kappa^{1/2}$ and $\eta_b$ in the first line of Equation~\eqref{eq:kicktrue-error}
+contribute at most
 $2\pi C_3\kappa^{1/2}\kappa e^{\sigma_+T_g}/\Re w\le\delta_0\cdot2\pi C_3\kappa^{1/2}\mu/(\frac34\sigma(\mu-1))$
 and $2\pi C_3\eta_b\delta_0/\Re w\le2\pi C_3\eta_b\cdot4\mu\delta_0/(3\sigma(\mu-1))$.
-For the transient term, Equation~\eqref{eq:active-transient} gives
+For $2\pi C_3\hat a(u)\rhohat(u)$, Equation~\eqref{eq:active-transient} gives
 $\hat a(u)\rhohat(u)\le C(C_0)\kappa\jap{u}^3e^{\sigma'u}$; as
 $x(T_g-u)+\sigma'u\le\max(x,\sigma')T_g$ on $[0,T_g]$,
 $\jap{T_g}\le(1+\frac{16}{15\sigma})L$, $1-\max(x,\sigma')/\sigma_+\ge\gamma_\mu$ and
@@ -1028,7 +1026,7 @@ $\kappa<\delta_0$, it contributes at most
 \Big(\frac\kappa{\delta_0}\Big)^{\gamma_\mu}L^4,
 \]
 where the coefficient is bounded by $\Cerr$ by its choice.
-The inner drift term is absent if $k+1=n$. If $k+1<n$, we use
+The term containing $\rT(\Tpin+\mu u)$ vanishes if $k+1=n$. If $k+1<n$, we use
 $\rT(\Tpin+\mu u)\le\rT(\Tpin)(1+\mu u)^3e^{-\sigma\mu u/4}$,
 $(1+\mu u)^3\le\mu^3(1+u)^3$, $\mu\le\frac{17}{16}$, $1-x/\sigma_+\ge\vartheta_\mu$ and
 $\sigma_+-x-\frac{\mu\sigma}4\le\frac\sigma8-\frac\sigma4=-\frac\sigma8$
@@ -1037,12 +1035,12 @@ $\sigma_+-x-\frac{\mu\sigma}4\le\frac\sigma8-\frac\sigma4=-\frac\sigma8$
 4\pi P\kappa e^{xT_g}\rT(\Tpin)\mu^3\int_0^{\infty}(1+u)^3e^{-\sigma u/8}\dd u
 \le \Cerr\,\rT(\Tpin)\,\Ip{3}{\tfrac\sigma8}\,\delta_0\Big(\frac\kappa{\delta_0}\Big)^{\vartheta_\mu}.
 \]
-With $u=T_g-v$ and Equation~\eqref{eq:Rew}, the outer drift term contributes at
-most
+For $2\pi P\Cls\eta_b\kappa(T_g-u)e^{\sigma_+u}$, the substitution $u=T_g-v$
+and Equation~\eqref{eq:Rew} bound its weighted integral by
 $2\pi P\Cls\eta_b\kappa e^{\sigma_+T_g}\allowbreak\int_0^{T_g}v\,e^{-\Re w\,v}\dd v
 \le\frac{2\pi P\Cls\eta_b\delta_0}{(\Re w)^2}
 \le \Cerr\eta_b\delta_0\frac{\mu^2}{\sigma^2(\mu-1)^2}$.
-The deep term vanishes if $k+1=n$. Let $k+1<n$. As
+We have $q^{\mathrm{deep}}\equiv0$ if $k+1=n$. Let $k+1<n$. As
 $\tsh_{k+1}=T_{k+2}+\Tpin/A_{k+2}\ge T_{k+2}$, $\Phase_{k+1}$ lies in
 $[T_{k+2},T_{k+1}]$, and Proposition~\ref{prop:confine}(b) at level $k+1$,
 with $t_0=T_{k+2}$ and $t_1=T_{k+1}$, gives $|q_{k+2}(t)|\le\Cmom(1+\tau')^3$
@@ -1053,16 +1051,18 @@ $\int_{-T_g}^0e^{-x\tau}\dd\tau\le4e^{xT_g}/\sigma$. On $[-T_g,0]$,
 $1+\Tpin+\mu(\tau+T_g)\le1+\Tpin+2T_g\le(1+\Tpin+\frac{32}{15\sigma})L$, as
 $\mu\le2$, $T_g\le\frac{16}{15\sigma}L$ and $L\ge1$. With
 $s_{k+1}^5\le\kappa/\Klo$, $\kappa e^{xT_g}=\delta_0(\kappa/\delta_0)^{1-x/\sigma_+}$,
-$1-x/\sigma_+\ge\vartheta_\mu$ and $\kappa<\delta_0$, the deep term contributes at most
+$1-x/\sigma_+\ge\vartheta_\mu$ and $\kappa<\delta_0$, the weighted integral of
+$|q^{\mathrm{deep}}|$ is at most
 \[
 \frac{4\mu\Cmom}{\sigma\Klo}\Big(1+\Tpin+\frac{32}{15\sigma}\Big)^3L^3\,\kappa e^{xT_g}
 \le\Cerr\,\delta_0\Big(\frac\kappa{\delta_0}\Big)^{1-x/\sigma_+}L^3
 \le\Cerr\,\delta_0\Big(\frac\kappa{\delta_0}\Big)^{\vartheta_\mu}L^3 .
 \]
-As $L\ge1$, the $\kappa^{1/2}$-, transient,
-inner drift and deep terms add up to at most $\delta_0$ times the left side of
-(d), hence to at most $\frac{\mathsf B}2$; the $\eta_b$-term and the outer drift
-term add up to at most $\frac{\mathsf B}4$ by (f). With the $\hat a^2$-term,
+As $L\ge1$, the terms containing $\kappa^{1/2}$, $\rhohat$, $\rT$ and
+$|q^{\mathrm{deep}}|$ in Equation~\eqref{eq:kicktrue-error} contribute at most
+$\delta_0$ times the left side of (d), hence at most $\frac{\mathsf B}2$.
+The two terms containing $\eta_b$ contribute at most $\frac{\mathsf B}4$ by (f).
+Together with the estimate for $2\pi C_3\hat a^2$,
 $\Errg\le\frac{\mathsf B}4+\frac{\mathsf B}2+\frac{\mathsf B}4=\mathsf B\le|\qs|/(20|\lamref|(\mu-1))$, which is (Kick3).
 
 \emph{(Q2) and (Kick4) when $k+1<n$.} By Definition~\ref{def:clock},

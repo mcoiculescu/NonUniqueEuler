@@ -54,7 +54,7 @@ prescribed annuli:
 S_j(v)\subset\Nflat_j\qquad\text{if ring $j$ is not debris at $v$}.
 \end{equation}
 \item[(BA2)] The accumulated driving of each quiet ring stays on the scale
-of the incoming signal. For every quiet ring $j<n$, $h_j$ is defined on
+$\varepsilon_j$. For every quiet ring $j<n$, $h_j$ is defined on
 $[0,v]$ and
 \begin{equation}
 \label{eq:BA-quiet}
@@ -330,16 +330,16 @@ the clock recursion. The active size bound at that time follows directly:
 \end{equation}
 
 \phantomsection\label{par:relay-active}
-\emph{Active growth and the spent inner material.}
+\emph{Active growth and the inner vorticity.}
 Consider an active interval of positive length. For $k<n$ this means
 $\tsh_k<t$ after the hand-off above. For the seed it means $t>0$. Put
 $b=\min(t,T_k)$ and apply Lemma~\ref{lem:geometry} through $b$,
 using the new lower bound in \eqref{eq:relay-startup} if $k<n$.
 This gives \eqref{eq:geometry-confinement}--\eqref{eq:geometry-loc}
 on their stated time intervals. The local active time
-is $u=A_k(v-\tsh_k)$. In the field of the spent inner material, the
-monopole is included in $L(G_k)$. By Lemma~\ref{lem:inner-field}, the
-remaining velocity is bounded by $\Cvel\mu s_k^2$ times the cube of the
+is $u=A_k(v-\tsh_k)$. The circulation field of $\omega_{\ge k+1}$ is
+included in $L(G_k)$. By Lemma~\ref{lem:inner-field}, $\hin_k$ is
+bounded by $\Cvel\mu s_k^2$ times the cube of the
 confinement radius in ring-$k$ units. This gives the polynomial field
 bound
 \begin{equation}
@@ -356,21 +356,26 @@ For $k>1$, apply Lemma~\ref{lem:O} with $j=k-1$ through $b$, obtaining
 \eqref{eq:O-feedback} and \eqref{eq:boot-quiet} for the outer quiet rings.
 Lemma~\ref{lem:Oprime} then bounds their feedback, using (BA3) for
 $\tsh_k<v\le b$ and \eqref{eq:boot-switch} at $\tsh_k$ (or
-\eqref{eq:relay-seed} for $k=n$). The outward transfer to ring $k-1$ gains the factor
-$\varepsilon_{k-1}$. The return field carries the factor
-$\mu^{-1}s_{k-1}$. Their product is $s_{k-1}^6$, giving
+\eqref{eq:relay-seed} for $k=n$). The term $\|w_k(v)\|_{H^s}$ in the
+bound for $\etin_{k-1}(v)$ carries the factor $\varepsilon_{k-1}$;
+$\|w_{k-1}(v)\|_{H^s}$ in the bound for $\etout_k(v)$ carries
+$b_{k-1,k}=\mu^{-1}s_{k-1}$
+(Equations~\eqref{eq:transfer-step-inner}--\eqref{eq:transfer-step-outer}).
+Their product is $s_{k-1}^6$, giving
 \begin{equation}
 \label{eq:relay-outer-field}
 \|\hout_k(v)\|_{C^{M_h}(N')}
 \le \Crelay\frac{s_{k-1}^6}{\sigb(\mu-1)}\hat a_k(v)
 =\eta_{b,k}\hat a_k(v).
 \end{equation}
-For $k=1$ there is no outer field.
+For $k=1$, $\hout_1=0$.
 
-We now check that $c_k$ remains close to its initial value. For $k<n$,
-the inner contribution to Equation~\eqref{eq:running-k} begins at kick
-time $\Tpin$. By \eqref{eq:geometry-moment} and $x_k\ge\sigma/4$, its integral is
-bounded by $e^{x_k\Tpin}|\beta_k|\Cmom$ times
+We now bound $c_k(v)-c_k(\tsh_k)$ by splitting
+$F_k=-\hin_k\cdot\nabla\Phi-\hout_k\cdot\nabla\Phi$ in
+Equation~\eqref{eq:running-k}. For $k<n$, the integral containing
+$\hin_k$ starts at $\tauK=\Tpin$ after changing from physical time $s$
+to $\tauK=A_{k+1}(s-T_{k+1})$. By \eqref{eq:geometry-moment} and
+$x_k\ge\sigma/4$, its modulus is at most $e^{x_k\Tpin}|\beta_k|\Cmom$ times
 \begin{equation}
 \label{eq:relay-moment-tail}
 \int_{\Tpin}^{\infty} e^{-x_k\tau}(1+\tau)^3\dd\tau
@@ -378,11 +383,12 @@ bounded by $e^{x_k\Tpin}|\beta_k|\Cmom$ times
 \end{equation}
 The lower bound in \eqref{eq:boot-kick} and (P2) give
 $e^{x_k\Tpin}|\beta_k|\Cmom I_3(\sigma/4)\le |\cin_k|\le2\ksh_k$.
-Thus the inner contribution is at most
-$2(1+\Tpin)^3e^{-\sigma\Tpin/4}\ksh_k\le\ksh_k/32$ by (P3). The outer contribution is bounded by
-$\Cls\eta_{b,k}\hat T_k\ksh_k\le\ksh_k/32$ by (B8).
-These are the two contributions in \eqref{eq:drift-interval}, with the
-inner term omitted for the seed. The smallness conditions
+Thus the modulus of the integral containing $\hin_k$ is at most
+$2\rT(\Tpin)\ksh_k\le\ksh_k/32$ by (P3).
+For the integral containing $\hout_k$, Equation~\eqref{eq:relay-outer-field}
+gives the bound $\Cls\eta_{b,k}\hat T_k\ksh_k\le\ksh_k/32$ by (B8).
+These give the two terms on the right of \eqref{eq:drift-interval};
+for the seed, $\hin_n=0$. The smallness conditions
 \eqref{eq:relay-drift-small} give (Coef) and the saturation estimate
 \eqref{eq:relay-saturation}. The checks for these applications and
 for the rescaling are in Appendix~\ref{sec:bootstrap-active-checks}.
