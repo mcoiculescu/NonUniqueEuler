@@ -1,5 +1,7 @@
 # Non-uniqueness of weak solutions to the unforced 2D Euler equations with vorticity in L¹ ∩ Lᵖ
 
+[![Paperlane Lean: builds](https://pragyaangaur.dev/Paperlane/lean/mcoiculescu/NonUniqueEuler.svg)](https://pragyaangaur.dev/Paperlane/lean/mcoiculescu/NonUniqueEuler.html)
+
 This repository contains the manuscript
 
 > Matei P. Coiculescu, *Non-Uniqueness of Weak Solutions to the Unforced Two-Dimensional Euler
